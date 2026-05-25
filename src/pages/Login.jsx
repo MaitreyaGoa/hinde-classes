@@ -3,16 +3,8 @@ import { useAuth } from '../context/AuthContext'
 import styles from './Login.module.css'
 
 export default function Login() {
-  const { loginWithGoogle, loginDemo } = useAuth()
+  const { loginDemo } = useAuth()
   const [loading, setLoading] = useState(false)
-  const [error, setError]     = useState('')
-
-  async function handleGoogle() {
-    setLoading(true); setError('')
-    try { await loginWithGoogle() }
-    catch (e) { setError('Google login failed. Try the demo account below.') }
-    finally { setLoading(false) }
-  }
 
   async function handleDemo() {
     setLoading(true)
@@ -40,8 +32,6 @@ export default function Login() {
           ))}
         </div>
 
-        {error && <div className={styles.error}>{error}</div>}
-
         <div
           id="g_id_onload"
           data-client_id="572990500681-12u9hv4cg632ichlkutnjnet58t7vb83.apps.googleusercontent.com"
@@ -63,7 +53,7 @@ export default function Login() {
         <div className={styles.divider}><span>or</span></div>
 
         <button className={styles.demoBtn} onClick={handleDemo} disabled={loading}>
-          🎓 Try Demo Account
+          🎓 {loading ? 'Loading...' : 'Try Demo Account'}
         </button>
 
         <p className={styles.note}>
