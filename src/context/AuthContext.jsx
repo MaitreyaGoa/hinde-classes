@@ -4,8 +4,8 @@ import { POINTS } from '../data/content'
 
 const AuthContext = createContext(null)
 
-const LS_KEY = 'hinde_user'
-const LS_PTS = 'hinde_points'
+const LS_KEY  = 'hinde_user'
+const LS_PTS  = 'hinde_points'
 const LS_DONE = 'hinde_completed'
 const LS_ACT  = 'hinde_activity'
 
@@ -32,13 +32,14 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     if (user) {
-      localStorage.setItem(LS_KEY, JSON.stringify(user))
-      localStorage.setItem(LS_PTS, String(points))
+      localStorage.setItem(LS_KEY,  JSON.stringify(user))
+      localStorage.setItem(LS_PTS,  String(points))
       localStorage.setItem(LS_DONE, JSON.stringify([...completed]))
-      localStorage.setItem(LS_ACT, JSON.stringify(activity.slice(0, 50)))
+      localStorage.setItem(LS_ACT,  JSON.stringify(activity.slice(0, 50)))
     }
   }, [user, points, completed, activity])
 
+  // Google login — sets window.handleGoogleCallback for the GSI SDK
   const loginWithGoogle = useCallback(() => {
     return new Promise((resolve, reject) => {
       window.handleGoogleCallback = async (response) => {
