@@ -1,26 +1,25 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
-import Navbar  from './components/Navbar'
-import Login   from './pages/Login'
-import Home    from './pages/Home'
+import Navbar      from './components/Navbar'
+import Login       from './pages/Login'
+import Home        from './pages/Home'
 import ClassDetail from './pages/ClassDetail'
-import Points  from './pages/Points'
+import Points      from './pages/Points'
+import TestEngine  from './pages/TestEngine'
 
 function AppRoutes() {
   const { user, loading } = useAuth()
-
   if (loading) return <LoadingScreen />
-
-  if (!user) return <Login />
-
+  if (!user)   return <Login />
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/"         element={<Home />} />
-        <Route path="/class/:cls" element={<ClassDetail />} />
-        <Route path="/points"   element={<Points />} />
-        <Route path="*"         element={<Navigate to="/" replace />} />
+        <Route path="/"             element={<Home />} />
+        <Route path="/class/:cls"   element={<ClassDetail />} />
+        <Route path="/points"       element={<Points />} />
+        <Route path="/test/:testId" element={<TestEngine />} />
+        <Route path="*"             element={<Navigate to="/" replace />} />
       </Routes>
     </>
   )
@@ -42,10 +41,10 @@ function LoadingScreen() {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <AppRoutes />
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
