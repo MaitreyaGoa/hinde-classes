@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
   const [activity, setActivity]   = useState([])
   const [loading, setLoading]     = useState(true)
 
+  // Restore session from localStorage
   useEffect(() => {
     const saved = localStorage.getItem(LS_KEY)
     if (saved) {
@@ -30,6 +31,25 @@ export function AuthProvider({ children }) {
     setLoading(false)
   }, [])
 
+  // Register Google callback immediately on mount
+  useEffect(() => {
+    window.handleGoogleCallback = async (response) => {
+      try {
+        const payload = JSON.parse(atob(response.credential.split('.')[1]))
+        const userData = {
+          name:    payload.name,
+          email:   payload.email,
+          picture: payload.picture,
+          avatar:  payload.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
+        }
+        await _completeLogin(userData)
+      } catch (err) {
+        console.error('Google login error:', err)
+      }
+    }
+  }, [])
+
+  // Persist to localStorage whenever state changes
   useEffect(() => {
     if (user) {
       localStorage.setItem(LS_KEY,  JSON.stringify(user))
@@ -39,27 +59,25 @@ export function AuthProvider({ children }) {
     }
   }, [user, points, completed, activity])
 
-  // Google login — sets window.handleGoogleCallback for the GSI SDK
+  // Google login — callback already registered above via useEffect
   const loginWithGoogle = useCallback(() => {
-    return new Promise((resolve, reject) => {
-      window.handleGoogleCallback = async (response) => {
-        try {
-          const payload = JSON.parse(atob(response.credential.split('.')[1]))
-          const userData = {
-            name:    payload.name,
-            email:   payload.email,
-            picture: payload.picture,
-            avatar:  payload.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
-          }
-          await _completeLogin(userData)
-          resolve(userData)
-        } catch (err) {
-          reject(err)
+    window.handleGoogleCallback = async (response) => {
+      try {
+        const payload = JSON.parse(atob(response.credential.split('.')[1]))
+        const userData = {
+          name:    payload.name,
+          email:   payload.email,
+          picture: payload.picture,
+          avatar:  payload.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
         }
+        await _completeLogin(userData)
+      } catch (err) {
+        console.error('Google login error:', err)
       }
-    })
+    }
   }, [])
 
+  // Demo login
   const loginDemo = useCallback(async () => {
     const userData = {
       name:    'Demo Student',
