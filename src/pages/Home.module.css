@@ -1,0 +1,203 @@
+.page {
+  padding: 28px 24px 48px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* Banner */
+.banner {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 36px;
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.bannerGreeting {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.bannerTitle {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.bannerSub {
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+.bannerPoints {
+  text-align: center;
+  min-width: 180px;
+}
+
+.ptsBig {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.ptsLabel {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.progressBar {
+  height: 6px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.progressFill {
+  height: 100%;
+  background: white;
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.ptsNext {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* Section title */
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 20px;
+}
+
+/* Class Grid */
+.classGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.classCard {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.classCard::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--accent);
+  transition: height 0.2s;
+}
+
+.classCard:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.classCard:hover::before {
+  height: 6px;
+}
+
+.classNum {
+  font-family: var(--font-serif);
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.classLabel {
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.classStats {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--gray-400);
+}
+
+/* Activity */
+.recentBox {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+}
+
+.activityList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.activityItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+.actLabel {
+  flex: 1;
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.actTime {
+  color: var(--gray-400);
+  font-size: 12px;
+}
+
+.actPts {
+  font-weight: 600;
+  color: var(--green);
+}
+
+@media (max-width: 640px) {
+  .banner { flex-direction: column; text-align: center; padding: 24px 20px; }
+  .bannerPoints { min-width: unset; width: 100%; }
+  .classGrid { grid-template-columns: repeat(2, 1fr); }
+  .page { padding: 20px 16px 40px; }
+}

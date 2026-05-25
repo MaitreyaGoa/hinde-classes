@@ -1,0 +1,199 @@
+.page {
+  padding: 28px 24px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  text-align: center;
+  color: white;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-md);
+}
+
+.heroInner { max-width: 400px; margin: 0 auto; }
+
+.bigPts {
+  font-family: var(--font-serif);
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.levelName {
+  font-size: 16px;
+  opacity: 0.85;
+  margin-bottom: 20px;
+}
+
+.bar {
+  height: 8px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.barFill {
+  height: 100%;
+  background: white;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.barLabel {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* Section */
+.section {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 20px;
+}
+
+/* Level Grid */
+.levelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.levelCard {
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 16px 12px;
+  text-align: center;
+  position: relative;
+  transition: var(--transition);
+}
+
+.levelCurrent {
+  border-color: var(--teal);
+  background: var(--teal-light);
+}
+
+.levelDone {
+  background: var(--green-light);
+  border-color: rgba(5,150,105,0.3);
+  opacity: 0.8;
+}
+
+.levelIcon { font-size: 24px; margin-bottom: 6px; }
+
+.levelCardName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 4px;
+}
+
+.levelRange {
+  font-size: 11px;
+  color: var(--gray-400);
+}
+
+.currentBadge {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal);
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.doneLevelBadge {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: var(--green);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Earn list */
+.earnList { display: flex; flex-direction: column; gap: 8px; }
+
+.earnItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius);
+}
+
+.earnIcon { font-size: 20px; }
+
+.earnLabel { flex: 1; font-size: 14px; font-weight: 500; color: var(--gray-700); }
+
+.earnPts {
+  background: var(--gold-light);
+  color: var(--gold-dark);
+  border: 1px solid rgba(245,158,11,0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Activity */
+.actList { display: flex; flex-direction: column; gap: 8px; }
+
+.actItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  border-radius: var(--radius);
+}
+
+.actDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+.actInfo { flex: 1; }
+.actLabel { font-size: 13px; font-weight: 500; color: var(--gray-700); }
+.actTime  { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+.actPts   { font-size: 13px; font-weight: 600; color: var(--green); }
+
+.empty { font-size: 14px; color: var(--gray-400); text-align: center; padding: 20px; }
+
+@media (max-width: 640px) {
+  .page { padding: 16px 14px 40px; }
+  .hero { padding: 28px 20px; }
+  .bigPts { font-size: 44px; }
+  .levelGrid { grid-template-columns: repeat(3, 1fr); }
+  .section { padding: 20px 16px; }
+}
