@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probability Tree Diagram</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f9fafb;color:#1f2937;padding:20px}
+  h1{font-size:18px;font-weight:600;color:#0d5c73;margin-bottom:6px}
+  .sub{font-size:13px;color:#6b7280;margin-bottom:16px}
+  .btns{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  .btn{padding:9px 18px;border:1.5px solid #e5e7eb;border-radius:8px;background:white;font-size:13px;font-weight:500;color:#374151;cursor:pointer;transition:all 0.2s}
+  .btn:hover{border-color:#0d5c73;color:#0d5c73}
+  .btn.active{background:#0d5c73;color:white;border-color:#0d5c73}
+  .layout{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
+  canvas{border-radius:12px;background:white;border:1px solid #e5e7eb;display:block;width:100%}
+  .right{min-width:180px}
+  .outcomes-title{font-size:12px;color:#9ca3af;font-weight:600;margin-bottom:8px}
+  .outcomes-list{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .outcome-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#374151}
+  .outcome-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+  .total-box{background:white;border:1px solid #e5e7eb;border-radius:10px;padding:12px;text-align:center;margin-bottom:10px}
+  .total-box .label{font-size:11px;color:#9ca3af;margin-bottom:4px}
+  .total-box .value{font-size:22px;font-weight:600;color:#0d5c73}
+  .formula-box{background:white;border:1px solid #e5e7eb;border-radius:10px;padding:12px}
+  .formula-box .label{font-size:11px;color:#9ca3af;margin-bottom:6px}
+  .formula-box .text{font-size:12px;color:#374151;line-height:1.6}
+</style>
+</head>
+<body>
+<h1>Probability Tree Diagram</h1>
+<div class="sub">Explore probability experiments with tree diagrams</div>
+<div class="btns">
+  <button class="btn active" onclick="setExp('coin',this)">Toss 2 coins</button>
+  <button class="btn" onclick="setExp('die',this)">Roll a die</button>
+  <button class="btn" onclick="setExp('bag',this)">Draw from bag</button>
+  <button class="btn" onclick="setExp('card',this)">Pick a card</button>
+</div>
+<div class="layout">
+  <canvas id="prob-canvas" height="280"></canvas>
+  <div class="right">
+    <div class="outcomes-title">All Outcomes</div>
+    <div class="outcomes-list" id="outcomes-list"></div>
+    <div class="total-box"><div class="label">Total outcomes</div><div class="value" id="total-out">4</div></div>
+    <div class="formula-box"><div class="label">Example probability</div><div class="text" id="formula-out">P(2 Heads) = 1/4 = 0.25</div></div>
+  </div>
+</div>
+<script>
+const COLORS=['#0d5c73','#1a7a96','#059669','#7c3aed','#f59e0b','#dc2626','#d4537e','#ba7517'];
+const EXPS={
+  coin:{branches:[{label:'H (1/2)',sub:[{label:'H (1/2)',outcome:'HH'},{label:'T (1/2)',outcome:'HT'}]},{label:'T (1/2)',sub:[{label:'H (1/2)',outcome:'TH'},{label:'T (1/2)',outcome:'TT'}]}],formula:'P(2 Heads) = 1/4 = 0.25\nP(at least 1 Head) = 3/4 = 0.75'},
+  die:{branches:[{label:'1',outcome:'1'},{label:'2',outcome:'2'},{label:'3',outcome:'3'},{label:'4',outcome:'4'},{label:'5',outcome:'5'},{label:'6',outcome:'6'}],formula:'P(even) = 3/6 = 0.5\nP(prime) = 3/6 = 0.5'},
+  bag:{branches:[{label:'R (3/5)',sub:[{label:'R (2/4)',outcome:'RR'},{label:'B (2/4)',outcome:'RB'}]},{label:'B (2/5)',sub:[{label:'R (3/4)',outcome:'BR'},{label:'B (1/4)',outcome:'BB'}]}],formula:'P(same colour) = (6+2)/20 = 0.4\nP(different) = (6+6)/20 = 0.6'},
+  card:{branches:[{label:'Red (1/2)',sub:[{label:'Heart (1/2)',outcome:'Heart'},{label:'Diamond (1/2)',outcome:'Diamond'}]},{label:'Black (1/2)',sub:[{label:'Spade (1/2)',outcome:'Spade'},{label:'Club (1/2)',outcome:'Club'}]}],formula:'P(Heart) = 13/52 = 1/4\nP(Red) = 26/52 = 1/2'},
+};
+const pc=document.getElementById('prob-canvas');
+const ctx=pc.getContext('2d');
+function drawTree(exp){
+  const e=EXPS[exp];
+  const W=pc.width,H=pc.height;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='white';ctx.fillRect(0,0,W,H);
+  const hasSub=e.branches[0] && e.branches[0].sub;
+  const cx=36,cy=H/2;
+  ctx.fillStyle='#0d5c73';ctx.beginPath();ctx.arc(cx,cy,10,0,2*Math.PI);ctx.fill();
+  ctx.fillStyle='#374151';ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText('Start',cx,cy+22);
+  const outcomes=[];
+  if(hasSub){
+    const n1=e.branches.length;
+    e.branches.forEach((b,i)=>{
+      const y1=40+(i*(H-80)/(n1-1||1));
+      ctx.strokeStyle='rgba(0,0,0,0.15)';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(150,y1);ctx.stroke();
+      ctx.fillStyle=COLORS[i%COLORS.length];ctx.beginPath();ctx.arc(150,y1,8,0,2*Math.PI);ctx.fill();
+      ctx.fillStyle='#374151';ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText(b.label,150,y1-12);
+      b.sub.forEach((s,j)=>{
+        const y2=y1-35+(j*70);
+        ctx.strokeStyle='rgba(0,0,0,0.12)';ctx.lineWidth=1.5;
+        ctx.beginPath();ctx.moveTo(150,y1);ctx.lineTo(W-60,y2);ctx.stroke();
+        ctx.fillStyle=COLORS[(i*2+j)%COLORS.length];ctx.beginPath();ctx.arc(W-60,y2,7,0,2*Math.PI);ctx.fill();
+        ctx.fillStyle='#374151';ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText(s.label,W-60,y2-11);
+        ctx.fillStyle='#1f2937';ctx.font='bold 12px sans-serif';ctx.textAlign='left';ctx.fillText(s.outcome,W-50,y2+4);
+        outcomes.push({text:s.outcome,color:COLORS[(i*2+j)%COLORS.length]});
+      });
+    });
+  } else {
+    const n=e.branches.length;
+    e.branches.forEach((b,i)=>{
+      const y1=20+(i*((H-40)/(n-1||1)));
+      ctx.strokeStyle='rgba(0,0,0,0.15)';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(W-70,y1);ctx.stroke();
+      ctx.fillStyle=COLORS[i%COLORS.length];ctx.beginPath();ctx.arc(W-70,y1,8,0,2*Math.PI);ctx.fill();
+      ctx.fillStyle='#1f2937';ctx.font='bold 13px sans-serif';ctx.textAlign='left';ctx.fillText(b.label||b.outcome,W-58,y1+4);
+      outcomes.push({text:b.outcome||b.label,color:COLORS[i%COLORS.length]});
+    });
+  }
+  const list=document.getElementById('outcomes-list');
+  list.innerHTML='';
+  outcomes.forEach(o=>{
+    const d=document.createElement('div');
+    d.className='outcome-item';
+    d.innerHTML=`<div class="outcome-dot" style="background:${o.color}"></div>${o.text}`;
+    list.appendChild(d);
+  });
+  document.getElementById('total-out').textContent=outcomes.length;
+  document.getElementById('formula-out').textContent=e.formula;
+}
+function setExp(name,btn){
+  document.querySelectorAll('.btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  drawTree(name);
+}
+pc.width=pc.parentElement.offsetWidth-200||360;
+drawTree('coin');
+</script>
+</body>
+</html>
