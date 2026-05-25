@@ -9,7 +9,7 @@
 //  3. Paste the deployed Web App URL below
 // ============================================================
 
-const SHEETS_WEBAPP_URL = import.meta.env.VITE_SHEETS_WEBAPP_URL || ''
+const SHEETS_WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbw7MoOf6rbOdZNTb1onE40mJ6H6zhhO4oQsIVh0pajzMpb81FMVXkoTcRFcDcU8KtBJ/exec'
 
 async function sheetsRequest(action, payload = {}) {
   if (!SHEETS_WEBAPP_URL) {
