@@ -14,7 +14,87 @@ export const SUBJECTS = {
   11: ['Maths', 'Physics', 'Chemistry', 'Biology', 'English'],
   12: ['Maths', 'Physics', 'Chemistry', 'Biology', 'English'],
 }
+// ============================================================
+//  VIDEO LINKS — Add YouTube URLs per class > subject > chapter
+//  Format: 'Exact Chapter Name': 'YouTube URL'
+// ============================================================
+export const VIDEO_LINKS = {
+  12: {
+    Physics: {
+      'Chapter 1 – Electric Charges and Fields':             'https://www.youtube.com/watch?v=AAAAAAAAAA',
+      'Chapter 2 – Electrostatic Potential and Capacitance': 'https://www.youtube.com/watch?v=BBBBBBBBBB',
+      'Chapter 3 – Current Electricity':                     'https://www.youtube.com/watch?v=7GgaiRQKMwM',
+      'Chapter 4 – Moving Charges and Magnetism':            'https://www.youtube.com/watch?v=DDDDDDDDDD',
+    },
+    Chemistry: {
+      'Chapter 1 – Solutions':         'https://www.youtube.com/watch?v=EEEEEEEEEE',
+      'Chapter 2 – Electrochemistry':  'https://www.youtube.com/watch?v=FFFFFFFFFF',
+    },
+    Maths: {
+      'Chapter 1 – Relations and Functions': 'https://www.youtube.com/watch?v=GGGGGGGGGG',
+    },
+  },
+  11: {
+    Physics: {
+      'Chapter 3 – Motion in a Straight Line': 'https://www.youtube.com/watch?v=HHHHHHHHHH',
+      'Chapter 5 – Laws of Motion':            'https://www.youtube.com/watch?v=IIIIIIIIII',
+    },
+  },
+  10: {
+    Maths: {
+      'Chapter 3 – Pair of Linear Equations in Two Variables': 'https://www.youtube.com/watch?v=JJJJJJJJJJ',
+      'Chapter 4 – Quadratic Equations':                       'https://www.youtube.com/watch?v=KKKKKKKKKK',
+    },
+    Science: {
+      'Chapter 1 – Chemical Reactions and Equations': 'https://www.youtube.com/watch?v=LLLLLLLLLL',
+    },
+  },
+  9: {
+    Maths: {
+      'Chapter 1 – Number Systems': 'https://www.youtube.com/watch?v=MMMMMMMMMM',
+    },
+  },
+}
 
+// ============================================================
+//  NOTES LINKS — Add Google Drive PDF URLs per class > subject > chapter
+//  Format: 'Exact Chapter Name': 'Google Drive share URL'
+//
+//  How to get Google Drive link:
+//  1. Upload PDF to Google Drive
+//  2. Right-click → Share → Anyone with the link → Copy link
+//  Paste that link here exactly as copied
+// ============================================================
+export const NOTES_LINKS = {
+  12: {
+    Physics: {
+      'Chapter 1 – Electric Charges and Fields':             'https://drive.google.com/file/d/AAAAAAAAAAAAAA/view',
+      'Chapter 2 – Electrostatic Potential and Capacitance': 'https://drive.google.com/file/d/BBBBBBBBBBBBBB/view',
+      'Chapter 3 – Current Electricity':                     'https://drive.google.com/file/d/1xkH9YqVWjtSilf-g_TO7X07yTQP5n-cE/view?usp=sharing',
+    },
+    Chemistry: {
+      'Chapter 1 – Solutions':        'https://drive.google.com/file/d/DDDDDDDDDDDDDD/view',
+      'Chapter 2 – Electrochemistry': 'https://drive.google.com/file/d/EEEEEEEEEEEEEE/view',
+    },
+    Maths: {
+      'Chapter 1 – Relations and Functions': 'https://drive.google.com/file/d/FFFFFFFFFFFFFF/view',
+    },
+  },
+  11: {
+    Physics: {
+      'Chapter 3 – Motion in a Straight Line': 'https://drive.google.com/file/d/GGGGGGGGGGGGGG/view',
+    },
+  },
+  10: {
+    Maths: {
+      'Chapter 3 – Pair of Linear Equations in Two Variables': 'https://drive.google.com/file/d/HHHHHHHHHHHHHH/view',
+      'Chapter 4 – Quadratic Equations':                       'https://drive.google.com/file/d/IIIIIIIIIIIIII/view',
+    },
+    Science: {
+      'Chapter 1 – Chemical Reactions and Equations': 'https://drive.google.com/file/d/JJJJJJJJJJJJJJ/view',
+    },
+  },
+}
 export const CHAPTERS = {
   6: {
     Maths: [
@@ -504,23 +584,22 @@ export function getNotesForSubject(cls, subject) {
   return chapters.map((ch, i) => ({
     id: `n${cls}_${subject.replace(/\s/g,'')}_${String(i+1).padStart(2,'0')}`,
     title: ch,
-    meta: 'Notes · PDF',
+    meta: NOTES_LINKS[cls]?.[subject]?.[ch] ? '📄 PDF Available' : 'Notes · Coming Soon',
     pts: POINTS.notes,
     subject,
-    url: '',
+    url: NOTES_LINKS[cls]?.[subject]?.[ch] || '',
   }))
 }
-
 // Generate videos for a class+subject
 export function getVideosForSubject(cls, subject) {
   const chapters = CHAPTERS[cls]?.[subject] || []
   return chapters.map((ch, i) => ({
     id: `v${cls}_${subject.replace(/\s/g,'')}_${String(i+1).padStart(2,'0')}`,
     title: ch,
-    meta: 'Video Lecture',
+    meta: VIDEO_LINKS[cls]?.[subject]?.[ch] ? '▶️ Video Available' : 'Video · Coming Soon',
     pts: POINTS.video,
     subject,
-    url: '',
+    url: VIDEO_LINKS[cls]?.[subject]?.[ch] || '',
   }))
 }
 
