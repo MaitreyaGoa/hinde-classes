@@ -278,3 +278,95 @@
   .tab { flex: 1; justify-content: center; padding: 9px 12px; font-size: 13px; }
   .headerMain { padding: 18px 16px; }
 }
+
+/* Test Cards */
+.testCard {
+  background: white;
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: var(--shadow);
+  border: 1.5px solid transparent;
+  transition: var(--transition);
+  margin-bottom: 10px;
+}
+
+.testCard:hover {
+  border-color: var(--teal);
+  box-shadow: var(--shadow-md);
+}
+
+.testCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.testIcon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius);
+  background: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.testCardRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.testTags {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: var(--purple-light);
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.startTestBtn {
+  padding: 8px 18px;
+  background: var(--teal);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.startTestBtn:hover { background: var(--teal-dark); }
+
+.startTestBtnDone {
+  background: var(--gray-200);
+  color: var(--gray-600);
+}
+
+.startTestBtnDone:hover { background: var(--gray-300) !important; }
+
+.emptyTests {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
