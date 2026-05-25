@@ -1,0 +1,152 @@
+/**
+ * ============================================================
+ *  HINDE CLASSES – Google Apps Script Backend
+ *  
+ *  SETUP STEPS:
+ *  1. Open Google Sheets → Extensions → Apps Script
+ *  2. Paste this entire file into the editor
+ *  3. Click "Deploy" → "New Deployment" → Type: Web App
+ *  4. Set "Who has access" to "Anyone"
+ *  5. Copy the deployment URL → paste into .env.local as VITE_SHEETS_WEBAPP_URL
+ *
+ *  SHEET STRUCTURE (create these tabs manually):
+ *  - "Students": Email | Name | Avatar | Points | Level | JoinDate | LastLogin | Completed
+ *  - "Activity": Email | Action | Points | ItemId | Timestamp
+ * ============================================================
+ */
+
+const SPREADSHEET_ID = 'YOUR_GOOGLE_SHEET_ID_HERE'  // Replace with your Sheet ID from the URL
+
+function getSheet(name) {
+  return SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(name)
+}
+
+// ---- Handle POST requests ----
+function doPost(e) {
+  try {
+    const body = JSON.parse(e.postData.contents)
+    const { action } = body
+
+    let result
+    switch (action) {
+      case 'upsertStudent':  result = upsertStudent(body);  break
+      case 'fetchStudent':   result = fetchStudent(body);   break
+      case 'logActivity':    result = logActivity(body);    break
+      case 'updatePoints':   result = updatePoints(body);   break
+      case 'saveCompleted':  result = saveCompleted(body);  break
+      case 'leaderboard':    result = leaderboard();        break
+      default:               result = { error: 'Unknown action' }
+    }
+
+    return ContentService
+      .createTextOutput(JSON.stringify(result))
+      .setMimeType(ContentService.MimeType.JSON)
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ error: err.message }))
+      .setMimeType(ContentService.MimeType.JSON)
+  }
+}
+
+// ---- Handle GET (optional health check) ----
+function doGet() {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: 'ok', service: 'Hinde Classes Backend' }))
+    .setMimeType(ContentService.MimeType.JSON)
+}
+
+// ---- Find student row by email ----
+function findStudentRow(sheet, email) {
+  const data = sheet.getDataRange().getValues()
+  for (let i = 1; i < data.length; i++) {
+    if (data[i][0] === email) return i + 1  // 1-indexed
+  }
+  return -1
+}
+
+// ---- Upsert student (insert or update) ----
+function upsertStudent({ email, name, avatar, lastLogin }) {
+  const sheet = getSheet('Students')
+  const row   = findStudentRow(sheet, email)
+  const now   = new Date().toISOString()
+
+  if (row === -1) {
+    // New student
+    sheet.appendRow([email, name || '', avatar || '', 0, 'Beginner', now, lastLogin || now, '[]'])
+    return { status: 'created', email }
+  } else {
+    // Update name, avatar, lastLogin if provided
+    if (name)      sheet.getRange(row, 2).setValue(name)
+    if (avatar)    sheet.getRange(row, 3).setValue(avatar)
+    if (lastLogin) sheet.getRange(row, 7).setValue(lastLogin)
+    return { status: 'updated', email }
+  }
+}
+
+// ---- Fetch student data ----
+function fetchStudent({ email }) {
+  const sheet = getSheet('Students')
+  const row   = findStudentRow(sheet, email)
+  if (row === -1) return null
+
+  const r = sheet.getRange(row, 1, 1, 8).getValues()[0]
+  return {
+    email:     r[0],
+    name:      r[1],
+    avatar:    r[2],
+    points:    r[3],
+    level:     r[4],
+    joinDate:  r[5],
+    lastLogin: r[6],
+    completed: r[7],
+  }
+}
+
+// ---- Log an activity ----
+function logActivity({ email, action, pts, itemId }) {
+  const sheet = getSheet('Activity')
+  sheet.appendRow([email, action, pts, itemId, new Date().toISOString()])
+  return { status: 'logged' }
+}
+
+// ---- Update student points and level ----
+function updatePoints({ email, points }) {
+  const sheet  = getSheet('Students')
+  const row    = findStudentRow(sheet, email)
+  if (row === -1) return { error: 'Student not found' }
+
+  const level = computeLevel(points)
+  sheet.getRange(row, 4).setValue(points)
+  sheet.getRange(row, 5).setValue(level)
+  return { status: 'ok', points, level }
+}
+
+// ---- Save completed item IDs ----
+function saveCompleted({ email, completed }) {
+  const sheet = getSheet('Students')
+  const row   = findStudentRow(sheet, email)
+  if (row === -1) return { error: 'Student not found' }
+
+  sheet.getRange(row, 8).setValue(completed)
+  return { status: 'ok' }
+}
+
+// ---- Leaderboard (top 20) ----
+function leaderboard() {
+  const sheet = getSheet('Students')
+  const data  = sheet.getDataRange().getValues().slice(1)  // skip header
+  const sorted = data
+    .map(r => ({ email: r[0], name: r[1], points: Number(r[3]), level: r[4] }))
+    .sort((a, b) => b.points - a.points)
+    .slice(0, 20)
+  return { leaderboard: sorted }
+}
+
+// ---- Level helper ----
+function computeLevel(pts) {
+  if (pts >= 2000) return 'Master'
+  if (pts >= 1000) return 'Expert'
+  if (pts >= 500)  return 'Scholar'
+  if (pts >= 200)  return 'Explorer'
+  return 'Beginner'
+}
