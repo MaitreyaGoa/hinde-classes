@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { CLASSES, CONTENT, getLevel, LEVEL_CONFIG } from '../data/content'
+import { CLASSES, SUBJECTS, getLevel, LEVEL_CONFIG } from '../data/content'
 import styles from './Home.module.css'
 
-const CLASS_COLORS = ['#0d5c73','#1a7a96','#059669','#7c3aed','#f59e0b','#dc2626','#0d5c73','#1a7a96']
+const CLASS_COLORS = ['#0d5c73','#1a7a96','#059669','#7c3aed','#f59e0b','#dc2626','#0d5c73']
 
 export default function Home() {
   const { user, points, activity } = useAuth()
@@ -14,7 +14,6 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
-      {/* Welcome Banner */}
       <div className={styles.banner}>
         <div className={styles.bannerLeft}>
           <p className={styles.bannerGreeting}>Welcome back, {user?.name?.split(' ')[0]}! 👋</p>
@@ -33,31 +32,27 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Class Grid */}
       <h2 className={styles.sectionTitle}>Choose Your Standard</h2>
       <div className={styles.classGrid}>
         {CLASSES.map((cls, i) => {
-          const count = CONTENT[cls]
+          const subjects = SUBJECTS[cls] || []
           return (
             <button
               key={cls}
               className={styles.classCard}
               onClick={() => navigate(`/class/${cls}`)}
-              style={{ '--accent': CLASS_COLORS[i] }}
+              style={{ '--accent': CLASS_COLORS[i % CLASS_COLORS.length] }}
             >
               <div className={styles.classNum}>{cls}</div>
               <div className={styles.classLabel}>Standard {cls}</div>
               <div className={styles.classStats}>
-                <span>📄 {count.notes.length}</span>
-                <span>✏️ {count.tests.length}</span>
-                <span>▶️ {count.videos.length}</span>
+                <span>📚 {subjects.length} Subjects</span>
               </div>
             </button>
           )
         })}
       </div>
 
-      {/* Recent Activity */}
       {activity.length > 0 && (
         <div className={styles.recentBox}>
           <h2 className={styles.sectionTitle} style={{ marginBottom: 16 }}>Recent Activity</h2>
