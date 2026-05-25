@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
 import { upsertStudent, fetchStudent, saveCompleted, updatePoints, logActivity } from '../utils/sheets'
 import { POINTS } from '../data/content'
 
@@ -16,7 +16,17 @@ export function AuthProvider({ children }) {
   const [activity, setActivity]   = useState([])
   const [loading, setLoading]     = useState(true)
 
-  // Restore session from localStorage
+  const setUserRef       = useRef(setUser)
+  const setPointsRef     = useRef(setPoints)
+  const setCompletedRef  = useRef(setCompleted)
+  const setActivityRef   = useRef(setActivity)
+
+  useEffect(() => { setUserRef.current      = setUser      }, [setUser])
+  useEffect(() => { setPointsRef.current    = setPoints    }, [setPoints])
+  useEffect(() => { setCompletedRef.current = setCompleted }, [setCompleted])
+  useEffect(() => { setActivityRef.current  = setActivity  }, [setActivity])
+
+  // Restore session
   useEffect(() => {
     const saved = localStorage.getItem(LS_KEY)
     if (saved) {
@@ -31,7 +41,42 @@ export function AuthProvider({ children }) {
     setLoading(false)
   }, [])
 
-  // Register Google callback immediately on mount
+  // Persist to localStorage
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(LS_KEY,  JSON.stringify(user))
+      localStorage.setItem(LS_PTS,  String(points))
+      localStorage.setItem(LS_DONE, JSON.stringify([...completed]))
+      localStorage.setItem(LS_ACT,  JSON.stringify(activity.slice(0, 50)))
+    }
+  }, [user, points, completed, activity])
+
+  async function _awardPoints(email, pts, label, itemId) {
+    setPointsRef.current(prev => {
+      const next = prev + pts
+      updatePoints({ email, points: next })
+      return next
+    })
+    const entry = { label, pts, itemId, time: new Date().toISOString() }
+    setActivityRef.current(prev => [entry, ...prev].slice(0, 50))
+    await logActivity({ email, action: label, pts, itemId })
+  }
+
+  async function _completeLogin(userData) {
+    setUserRef.current(userData)
+    const remote = await fetchStudent(userData.email)
+    if (remote && remote.points !== undefined) {
+      setPointsRef.current(Number(remote.points))
+      const done = JSON.parse(remote.completed || '[]')
+      setCompletedRef.current(new Set(done))
+    } else {
+      await upsertStudent(userData)
+      await _awardPoints(userData.email, POINTS.login, 'Daily Login Bonus', 'login')
+    }
+    await upsertStudent({ ...userData, lastLogin: new Date().toISOString() })
+  }
+
+  // Register Google callback on mount
   useEffect(() => {
     window.handleGoogleCallback = async (response) => {
       try {
@@ -49,17 +94,6 @@ export function AuthProvider({ children }) {
     }
   }, [])
 
-  // Persist to localStorage whenever state changes
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem(LS_KEY,  JSON.stringify(user))
-      localStorage.setItem(LS_PTS,  String(points))
-      localStorage.setItem(LS_DONE, JSON.stringify([...completed]))
-      localStorage.setItem(LS_ACT,  JSON.stringify(activity.slice(0, 50)))
-    }
-  }, [user, points, completed, activity])
-
-  // Google login — callback already registered above via useEffect
   const loginWithGoogle = useCallback(() => {
     window.handleGoogleCallback = async (response) => {
       try {
@@ -77,7 +111,6 @@ export function AuthProvider({ children }) {
     }
   }, [])
 
-  // Demo login
   const loginDemo = useCallback(async () => {
     const userData = {
       name:    'Demo Student',
@@ -87,20 +120,6 @@ export function AuthProvider({ children }) {
     }
     await _completeLogin(userData)
   }, [])
-
-  async function _completeLogin(userData) {
-    setUser(userData)
-    const remote = await fetchStudent(userData.email)
-    if (remote && remote.points !== undefined) {
-      setPoints(Number(remote.points))
-      const done = JSON.parse(remote.completed || '[]')
-      setCompleted(new Set(done))
-    } else {
-      await upsertStudent(userData)
-      await _awardPoints(userData.email, POINTS.login, 'Daily Login Bonus', 'login')
-    }
-    await upsertStudent({ ...userData, lastLogin: new Date().toISOString() })
-  }
 
   const logout = useCallback(() => {
     localStorage.removeItem(LS_KEY)
@@ -112,17 +131,6 @@ export function AuthProvider({ children }) {
     setCompleted(new Set())
     setActivity([])
   }, [])
-
-  async function _awardPoints(email, pts, label, itemId) {
-    setPoints(prev => {
-      const next = prev + pts
-      updatePoints({ email, points: next })
-      return next
-    })
-    const entry = { label, pts, itemId, time: new Date().toISOString() }
-    setActivity(prev => [entry, ...prev].slice(0, 50))
-    await logActivity({ email, action: label, pts, itemId })
-  }
 
   const completeItem = useCallback(async ({ id, label, pts }) => {
     if (!user) return false
