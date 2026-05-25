@@ -42,34 +42,26 @@ export function AuthProvider({ children }) {
   }, [user, points, completed, activity])
 
   // ---- Google OAuth Login (using Google Identity Services) ----
-  const loginWithGoogle = useCallback(() => {
-    return new Promise((resolve, reject) => {
-      if (!window.google) {
-        reject(new Error('Google SDK not loaded'))
-        return
+const loginWithGoogle = useCallback(() => {
+  return new Promise((resolve, reject) => {
+    window.handleGoogleCallback = async (response) => {
+      try {
+        const payload = JSON.parse(atob(response.credential.split('.')[1]))
+        const userData = {
+          name:    payload.name,
+          email:   payload.email,
+          picture: payload.picture,
+          avatar:  payload.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
+        }
+        await _completeLogin(userData)
+        resolve(userData)
+      } catch (err) {
+        reject(err)
       }
-      window.google.accounts.id.initialize({
-        client_id: '572990500681-12u9hv4cg632ichlkutnjnet58t7vb83.apps.googleusercontent.com',
-        callback: async (response) => {
-          try {
-            // Decode JWT payload
-            const payload = JSON.parse(atob(response.credential.split('.')[1]))
-            const userData = {
-              name:    payload.name,
-              email:   payload.email,
-              picture: payload.picture,
-              avatar:  payload.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
-            }
-            await _completeLogin(userData)
-            resolve(userData)
-          } catch (err) {
-            reject(err)
-          }
-        },
-      })
-      window.google.accounts.id.prompt()
-    })
-  }, [])
+    }
+  })
+}, [])
+
 
   // ---- Demo login (no Google needed) ----
   const loginDemo = useCallback(async () => {
