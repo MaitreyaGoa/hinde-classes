@@ -1,6 +1,7 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 import Navbar      from './components/Navbar'
+import Footer      from './components/Footer'
 import Login       from './pages/Login'
 import Home        from './pages/Home'
 import ClassDetail from './pages/ClassDetail'
@@ -14,13 +15,16 @@ function AppRoutes() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/"             element={<Home />} />
-        <Route path="/class/:cls"   element={<ClassDetail />} />
-        <Route path="/points"       element={<Points />} />
-        <Route path="/test/:testId" element={<TestEngine />} />
-        <Route path="*"             element={<Navigate to="/" replace />} />
-      </Routes>
+      <div style={{ minHeight: 'calc(100vh - 64px)' }}>
+        <Routes>
+          <Route path="/"             element={<Home />} />
+          <Route path="/class/:cls"   element={<ClassDetail />} />
+          <Route path="/points"       element={<Points />} />
+          <Route path="/test/:testId" element={<TestEngine />} />
+          <Route path="*"             element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+      <Footer />
     </>
   )
 }
@@ -33,7 +37,7 @@ function LoadingScreen() {
       background: 'linear-gradient(135deg, #0a4a5e, #1a7a96)',
     }}>
       <div style={{ fontSize: 48 }}>🪐</div>
-      <div style={{ color: 'white', fontFamily: 'var(--font-serif)', fontSize: 22 }}>Hinde Classes</div>
+      <div style={{ color: 'white', fontFamily: 'Playfair Display, serif', fontSize: 22 }}>Hinde Classes</div>
       <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: 14 }}>Loading your portal…</div>
     </div>
   )
