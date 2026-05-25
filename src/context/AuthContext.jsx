@@ -16,40 +16,58 @@ export function AuthProvider({ children }) {
   const [activity, setActivity]   = useState([])
   const [loading, setLoading]     = useState(true)
 
-  const setUserRef       = useRef(setUser)
-  const setPointsRef     = useRef(setPoints)
-  const setCompletedRef  = useRef(setCompleted)
-  const setActivityRef   = useRef(setActivity)
+  const setUserRef      = useRef(setUser)
+  const setPointsRef    = useRef(setPoints)
+  const setCompletedRef = useRef(setCompleted)
+  const setActivityRef  = useRef(setActivity)
 
   useEffect(() => { setUserRef.current      = setUser      }, [setUser])
   useEffect(() => { setPointsRef.current    = setPoints    }, [setPoints])
   useEffect(() => { setCompletedRef.current = setCompleted }, [setCompleted])
   useEffect(() => { setActivityRef.current  = setActivity  }, [setActivity])
 
-  // Restore session
+  // Restore session from sessionStorage (clears on browser close = auto logout)
   useEffect(() => {
-    const saved = localStorage.getItem(LS_KEY)
+    const saved = sessionStorage.getItem(LS_KEY)
     if (saved) {
       const u = JSON.parse(saved)
       setUser(u)
-      setPoints(Number(localStorage.getItem(LS_PTS) || 0))
-      const done = JSON.parse(localStorage.getItem(LS_DONE) || '[]')
+      setPoints(Number(sessionStorage.getItem(LS_PTS) || 0))
+      const done = JSON.parse(sessionStorage.getItem(LS_DONE) || '[]')
       setCompleted(new Set(done))
-      const act = JSON.parse(localStorage.getItem(LS_ACT) || '[]')
+      const act = JSON.parse(sessionStorage.getItem(LS_ACT) || '[]')
       setActivity(act)
     }
     setLoading(false)
   }, [])
 
-  // Persist to localStorage
+  // Persist to sessionStorage whenever state changes
   useEffect(() => {
     if (user) {
-      localStorage.setItem(LS_KEY,  JSON.stringify(user))
-      localStorage.setItem(LS_PTS,  String(points))
-      localStorage.setItem(LS_DONE, JSON.stringify([...completed]))
-      localStorage.setItem(LS_ACT,  JSON.stringify(activity.slice(0, 50)))
+      sessionStorage.setItem(LS_KEY,  JSON.stringify(user))
+      sessionStorage.setItem(LS_PTS,  String(points))
+      sessionStorage.setItem(LS_DONE, JSON.stringify([...completed]))
+      sessionStorage.setItem(LS_ACT,  JSON.stringify(activity.slice(0, 50)))
     }
   }, [user, points, completed, activity])
+
+  // Register Google callback on mount
+  useEffect(() => {
+    window.handleGoogleCallback = async (response) => {
+      try {
+        const payload = JSON.parse(atob(response.credential.split('.')[1]))
+        const userData = {
+          name:    payload.name,
+          email:   payload.email,
+          picture: payload.picture,
+          avatar:  payload.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
+        }
+        await _completeLogin(userData)
+      } catch (err) {
+        console.error('Google login error:', err)
+      }
+    }
+  }, [])
 
   async function _awardPoints(email, pts, label, itemId) {
     setPointsRef.current(prev => {
@@ -75,24 +93,6 @@ export function AuthProvider({ children }) {
     }
     await upsertStudent({ ...userData, lastLogin: new Date().toISOString() })
   }
-
-  // Register Google callback on mount
-  useEffect(() => {
-    window.handleGoogleCallback = async (response) => {
-      try {
-        const payload = JSON.parse(atob(response.credential.split('.')[1]))
-        const userData = {
-          name:    payload.name,
-          email:   payload.email,
-          picture: payload.picture,
-          avatar:  payload.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase(),
-        }
-        await _completeLogin(userData)
-      } catch (err) {
-        console.error('Google login error:', err)
-      }
-    }
-  }, [])
 
   const loginWithGoogle = useCallback(() => {
     window.handleGoogleCallback = async (response) => {
@@ -122,10 +122,10 @@ export function AuthProvider({ children }) {
   }, [])
 
   const logout = useCallback(() => {
-    localStorage.removeItem(LS_KEY)
-    localStorage.removeItem(LS_PTS)
-    localStorage.removeItem(LS_DONE)
-    localStorage.removeItem(LS_ACT)
+    sessionStorage.removeItem(LS_KEY)
+    sessionStorage.removeItem(LS_PTS)
+    sessionStorage.removeItem(LS_DONE)
+    sessionStorage.removeItem(LS_ACT)
     setUser(null)
     setPoints(0)
     setCompleted(new Set())
