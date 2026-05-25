@@ -49,7 +49,7 @@ export function AuthProvider({ children }) {
         return
       }
       window.google.accounts.id.initialize({
-        client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID || 'YOUR_GOOGLE_CLIENT_ID',
+        client_id: '572990500681-12u9hv4cg632ichlkutnjnet58t7vb83.apps.googleusercontent.com',
         callback: async (response) => {
           try {
             // Decode JWT payload
