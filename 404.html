@@ -4,12 +4,8 @@
     <meta charset="utf-8">
     <title>Hinde Classes</title>
     <script>
-      var path = window.location.pathname;
-      var search = window.location.search;
-      var hash = window.location.hash;
-      var redirect = path + search + hash;
-      sessionStorage.setItem('redirect', redirect);
-      window.location.replace('/hinde-classes/');
+      sessionStorage.setItem('redirect', window.location.pathname + window.location.search + window.location.hash);
+      window.location.replace('/');
     </script>
   </head>
   <body></body>
