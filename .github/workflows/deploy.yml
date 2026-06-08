@@ -21,30 +21,45 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # STEP 1: Build React → docs/app/  (emptyOutDir clears old files)
+      # Build React app → dist/  (clean separate folder, no conflict)
       - name: Build React app
         env:
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
           VITE_SHEETS_WEBAPP_URL: ${{ secrets.VITE_SHEETS_WEBAPP_URL }}
         run: npm run build
 
-      # STEP 2: AFTER build, copy gateway (so it doesn't get wiped by emptyOutDir)
-      - name: Copy gateway index.html → docs/index.html
+      # Verify React built correctly
+      - name: Verify React build
+        run: |
+          echo "=== dist/ ===" && ls dist/
+          ls dist/assets/ | head -5
+
+      # Clear old docs/app/ and move fresh React build into it
+      - name: Move React build → docs/app/
+        run: |
+          rm -rf docs/app
+          cp -r dist docs/app
+          echo "✓ React build moved to docs/app/"
+          ls docs/app/
+
+      # Copy 3-tile gateway → docs/index.html
+      - name: Copy gateway → docs/index.html
         run: |
           cp index.html docs/index.html
-          echo "✓ Gateway copied"
+          echo "✓ Gateway at docs/index.html"
 
-      # STEP 3: Verify structure
-      - name: Verify
-        run: |
-          echo "=== docs/ ===" && ls docs/
-          echo "=== docs/app/ ===" && ls docs/app/
-
-      # STEP 4: Prevent Jekyll
+      # Prevent Jekyll
       - name: Create .nojekyll
         run: touch docs/.nojekyll
 
-      # STEP 5: Commit back to main (Pages serves /docs on main)
+      # Final structure check
+      - name: Final structure
+        run: |
+          echo "=== docs/ ===" && ls docs/
+          echo "=== docs/app/ ===" && ls docs/app/
+          echo "=== docs/app/assets/ ===" && ls docs/app/assets/ | head -5
+
+      # Commit docs/ back to main branch
       - name: Commit docs/ to main
         run: |
           git config user.name "github-actions[bot]"
