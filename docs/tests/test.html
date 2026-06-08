@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hinde Classes — Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:    #2563eb;
+      --blue-dk: #1d4ed8;
+      --blue-lt: #eff6ff;
+      --amber:   #f59e0b;
+      --green:   #16a34a;
+      --red:     #dc2626;
+      --grey:    #64748b;
+      --grey-lt: #f1f5f9;
+      --white:   #ffffff;
+      --text:    #0f172a;
+      --text-2:  #475569;
+      --radius:  12px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ---- TOPBAR ---- */
+    .topbar {
+      background: var(--blue);
+      color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1rem; height: 52px; position: sticky; top: 0; z-index: 50;
+    }
+    .topbar-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 1.1rem;
+    }
+    .topbar-timer {
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px; padding: 0.3rem 0.8rem;
+      font-size: 1rem; font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .topbar-timer.urgent { background: var(--red); animation: pulse 1s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+
+    /* ---- SCREENS ---- */
+    .screen { display: none; }
+    .screen.active { display: block; }
+    .card-wrap {
+      max-width: 520px; margin: 2rem auto; padding: 0 1rem;
+    }
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 20px rgba(37,99,235,0.10);
+      padding: 2rem;
+    }
+
+    /* ---- GATE / NAME SCREENS ---- */
+    .gate-icon { font-size: 3rem; text-align: center; margin-bottom: 1rem; }
+    .gate-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      text-align: center; margin-bottom: 0.5rem;
+    }
+    .gate-desc { text-align: center; color: var(--text-2); font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .field-label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; display: block; }
+    .field-input {
+      width: 100%; padding: 0.7rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px; font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      outline: none; transition: border-color .2s;
+    }
+    .field-input:focus { border-color: var(--blue); }
+    .field-group { margin-bottom: 1.2rem; }
+    .btn-primary {
+      width: 100%; padding: 0.8rem;
+      background: var(--blue); color: var(--white);
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 700;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--blue-dk); }
+    .error-msg {
+      color: var(--red); font-size: 0.82rem;
+      margin-top: 0.5rem; display: none;
+    }
+    .meta-pills {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+      margin-bottom: 1.2rem; justify-content: center;
+    }
+    .meta-pill {
+      background: var(--blue-lt); color: var(--blue);
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.2rem 0.6rem; border-radius: 6px;
+    }
+
+    /* ---- TEST AREA ---- */
+    #screen-test { padding: 0; }
+    .test-body {
+      max-width: 760px; margin: 0 auto; padding: 1rem;
+    }
+
+    /* Section tabs */
+    .section-tabs {
+      display: flex; gap: 0.4rem; flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .sec-tab {
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px; border: 2px solid #e2e8f0;
+      font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; background: var(--white);
+      color: var(--text-2); transition: all .2s;
+    }
+    .sec-tab.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+
+    /* Progress bar */
+    .progress-bar-wrap {
+      height: 6px; background: #e2e8f0;
+      border-radius: 3px; margin-bottom: 1rem; overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%; background: var(--blue);
+      border-radius: 3px; transition: width .3s;
+    }
+    .progress-label {
+      font-size: 0.78rem; color: var(--text-2);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Question card */
+    .q-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px rgba(37,99,235,0.08);
+      padding: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .q-number {
+      font-size: 0.75rem; color: var(--grey);
+      font-weight: 600; margin-bottom: 0.5rem;
+    }
+    .q-text {
+      font-size: 0.97rem; font-weight: 500;
+      line-height: 1.55; margin-bottom: 1rem;
+    }
+    .options-grid { display: flex; flex-direction: column; gap: 0.5rem; }
+    .option-btn {
+      text-align: left;
+      padding: 0.65rem 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      background: var(--white); cursor: pointer;
+      font-size: 0.9rem; font-family: 'Inter', sans-serif;
+      transition: all .15s; width: 100%;
+    }
+    .option-btn:hover { border-color: var(--blue); background: var(--blue-lt); }
+    .option-btn.selected { border-color: var(--blue); background: var(--blue-lt); color: var(--blue); font-weight: 600; }
+
+    /* Navigation */
+    .q-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 0.5rem; margin-top: 0.5rem;
+    }
+    .btn-nav {
+      padding: 0.55rem 1.2rem;
+      border: 2px solid var(--blue);
+      border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; background: var(--white); color: var(--blue);
+      transition: all .15s;
+    }
+    .btn-nav:hover { background: var(--blue); color: var(--white); }
+    .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+    .btn-submit-test {
+      padding: 0.6rem 1.4rem;
+      background: var(--green); color: var(--white);
+      border: none; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 700;
+      cursor: pointer; transition: background .2s;
+    }
+    .btn-submit-test:hover { background: #15803d; }
+
+    /* Question grid navigator */
+    .q-grid-nav {
+      display: flex; flex-wrap: wrap; gap: 0.3rem;
+      margin-bottom: 1rem;
+    }
+    .qn-dot {
+      width: 32px; height: 32px;
+      border-radius: 6px; border: 2px solid #e2e8f0;
+      font-size: 0.75rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; background: var(--white); color: var(--text-2);
+      transition: all .15s;
+    }
+    .qn-dot.answered { background: var(--blue); border-color: var(--blue); color: var(--white); }
+    .qn-dot.current { border-color: var(--amber); color: var(--amber); }
+
+    /* ---- SCORE SCREEN ---- */
+    .score-header {
+      text-align: center; padding: 1.5rem 1rem 1rem;
+    }
+    .score-emoji { font-size: 3.5rem; }
+    .score-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; margin: 0.5rem 0;
+    }
+    .score-circle {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue) var(--pct), #e2e8f0 0);
+      display: flex; align-items: center; justify-content: center;
+      margin: 1rem auto;
+      position: relative;
+    }
+    .score-circle-inner {
+      width: 90px; height: 90px;
+      border-radius: 50%; background: var(--white);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .score-pct { font-size: 1.2rem; font-weight: 800; color: var(--blue); }
+    .score-raw { font-size: 0.7rem; color: var(--grey); }
+    .score-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem; margin: 1rem 0;
+    }
+    .score-stat-box {
+      background: var(--grey-lt); border-radius: 10px;
+      padding: 0.8rem; text-align: center;
+    }
+    .score-stat-box strong { display: block; font-size: 1.2rem; }
+    .score-stat-box span { font-size: 0.7rem; color: var(--grey); }
+    .score-stat-box.correct strong { color: var(--green); }
+    .score-stat-box.wrong strong { color: var(--red); }
+
+    /* Review */
+    .review-section { padding: 0 1rem 2rem; max-width: 760px; margin: 0 auto; }
+    .review-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; margin-bottom: 1rem; color: var(--text);
+    }
+    .review-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 1.2rem; margin-bottom: 0.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-left: 4px solid transparent;
+    }
+    .review-card.correct { border-left-color: var(--green); }
+    .review-card.wrong { border-left-color: var(--red); }
+    .review-card.skipped { border-left-color: var(--amber); }
+    .review-q { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.6rem; }
+    .review-answer { font-size: 0.82rem; margin-bottom: 0.3rem; }
+    .review-answer .label { font-weight: 600; }
+    .correct-label { color: var(--green); }
+    .wrong-label { color: var(--red); }
+    .review-explanation {
+      font-size: 0.78rem; color: var(--text-2);
+      background: var(--grey-lt); border-radius: 6px;
+      padding: 0.5rem 0.7rem; margin-top: 0.5rem;
+    }
+
+    .btn-home {
+      display: block; width: fit-content; margin: 1rem auto;
+      padding: 0.7rem 2rem;
+      background: var(--blue); color: var(--white);
+      border-radius: 8px; font-weight: 700; font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar" id="topbar">
+    <div class="topbar-logo">Hinde Classes</div>
+    <div class="topbar-timer" id="topbar-timer" style="display:none">--:--</div>
+  </div>
+
+  <!-- SCREEN 1: PASSWORD GATE -->
+  <div id="screen-gate" class="screen active">
+    <div class="card-wrap">
+      <div class="card">
+        <div class="gate-icon">🔑</div>
+        <div class="gate-title">Enter Test Password</div>
+        <div class="gate-desc">Ask your teacher for the password to unlock this test.</div>
+        <div id="gate-test-meta" class="meta-pills"></div>
+        <div class="field-group">
+          <label class="field-label" for="inp-password">Test Password</label>
+          <input class="field-input" type="password" id="inp-password" placeholder="Enter password..." autocomplete="off" />
+          <div class="error-msg" id="err-password">❌ Incorrect password. Please try again.</div>
+        </div>
+        <button class="btn-primary" onclick="submitPassword()">Unlock Test →</button>
+        <p style="text-align:center; margin-top:1rem;"><a href="index.html" style="color:var(--blue); font-size:0.82rem;">← Back to Homepage</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: NAME ENTRY -->
+  <div id="screen-name" class="screen">
+    <div class="card-wrap">
+      <div class="card">
+        <div class="gate-icon">📝</div>
+        <div id="name-test-title" class="gate-title"></div>
+        <div id="name-test-meta" class="meta-pills"></div>
+        <div class="gate-desc">Enter your name to begin the test. Timer starts immediately!</div>
+        <div class="field-group">
+          <label class="field-label" for="inp-name">Your Full Name</label>
+          <input class="field-input" type="text" id="inp-name" placeholder="e.g. Priya Naik" autocomplete="name" />
+          <div class="error-msg" id="err-name">Please enter your name.</div>
+        </div>
+        <button class="btn-primary" onclick="startTest()">Start Test →</button>
+        <p style="text-align:center; margin-top:0.8rem; font-size:0.78rem; color:var(--grey);">Once you start, the timer cannot be paused.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: TEST -->
+  <div id="screen-test" class="screen">
+    <div class="test-body">
+      <!-- Section tabs -->
+      <div id="section-tabs" class="section-tabs"></div>
+      <!-- Progress -->
+      <div class="progress-label" id="progress-label">Question 1 of —</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+      </div>
+      <!-- Q grid navigator -->
+      <div id="q-grid-nav" class="q-grid-nav"></div>
+      <!-- Question -->
+      <div id="question-area"></div>
+      <!-- Nav buttons -->
+      <div class="q-nav">
+        <button class="btn-nav" id="btn-prev" onclick="goQuestion(-1)" disabled>← Prev</button>
+        <button class="btn-nav" id="btn-next" onclick="goQuestion(1)">Next →</button>
+        <button class="btn-submit-test" onclick="confirmSubmit()">Submit Test ✓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: SCORE -->
+  <div id="screen-score" class="screen">
+    <div class="score-header">
+      <div class="score-emoji" id="score-emoji">🎉</div>
+      <div class="score-title" id="score-title">Test Complete!</div>
+      <div id="score-subtitle" style="color:var(--text-2); font-size:0.88rem;"></div>
+      <div class="score-circle" id="score-circle" style="--pct:0turn">
+        <div class="score-circle-inner">
+          <div class="score-pct" id="score-pct">0%</div>
+          <div class="score-raw" id="score-raw">0/0</div>
+        </div>
+      </div>
+      <div class="score-stats" style="max-width:360px; margin: 0 auto 1rem;">
+        <div class="score-stat-box correct">
+          <strong id="stat-correct">0</strong>
+          <span>Correct</span>
+        </div>
+        <div class="score-stat-box wrong">
+          <strong id="stat-wrong">0</strong>
+          <span>Wrong</span>
+        </div>
+        <div class="score-stat-box">
+          <strong id="stat-skipped">0</strong>
+          <span>Skipped</span>
+        </div>
+      </div>
+      <div id="submit-status" style="font-size:0.82rem; color:var(--grey); margin-bottom:0.5rem;"></div>
+      <a class="btn-home" href="index.html">← Back to Homepage</a>
+    </div>
+
+    <!-- Answer Review -->
+    <div class="review-section">
+      <h3>📋 Answer Review</h3>
+      <div id="review-list"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="config.js"></script>
+  <script>
+    // ============================================================
+    // STATE
+    // ============================================================
+    var testConfig = null;     // matched test from config
+    var questions = [];        // loaded questions
+    var answers = {};          // { qId: "A"|"B"|"C"|"D" }
+    var currentQ = 0;
+    var currentSection = null;
+    var studentName = '';
+    var testStartTime = 0;
+    var endTime = 0;
+    var timerInterval = null;
+
+    // ============================================================
+    // INIT — read ?id= from URL
+    // ============================================================
+    (function init() {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+      if (!id) { alert('No test ID in URL.'); return; }
+
+      var allTests = [].concat(
+        CLASS_TESTS, SUBJECT_TESTS, OLYMPIAD_TESTS,
+        SCHOLARSHIP_TESTS, DAILY_QUIZ, SPECIAL_TESTS
+      );
+      testConfig = allTests.find(function (t) { return t.id === id; });
+      if (!testConfig) { alert('Test not found: ' + id); return; }
+
+      // Populate gate meta
+      buildMetaPills('gate-test-meta', testConfig);
+
+      // Enter on password field
+      document.getElementById('inp-password').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') submitPassword();
+      });
+    })();
+
+    function buildMetaPills(elId, t) {
+      var el = document.getElementById(elId);
+      if (!el) return;
+      el.innerHTML = '<span class="meta-pill">' + t.title + '</span>'
+        + '<span class="meta-pill">' + Math.floor(t.duration / 60) + ' min</span>'
+        + '<span class="meta-pill">' + t.totalMarks + ' marks</span>';
+    }
+
+    // ============================================================
+    // SCREEN HELPERS
+    // ============================================================
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('active'); });
+      document.getElementById(id).classList.add('active');
+    }
+
+    // ============================================================
+    // PASSWORD GATE
+    // ============================================================
+    function submitPassword() {
+      var val = document.getElementById('inp-password').value.trim();
+      if (val === testConfig.password) {
+        document.getElementById('err-password').style.display = 'none';
+        // Setup name screen
+        document.getElementById('name-test-title').textContent = testConfig.title;
+        buildMetaPills('name-test-meta', testConfig);
+        showScreen('screen-name');
+        document.getElementById('inp-name').focus();
+        document.getElementById('inp-name').addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') startTest();
+        });
+      } else {
+        document.getElementById('err-password').style.display = 'block';
+        document.getElementById('inp-password').value = '';
+        document.getElementById('inp-password').focus();
+      }
+    }
+
+    // ============================================================
+    // START TEST — load questions file
+    // ============================================================
+    function startTest() {
+      var name = document.getElementById('inp-name').value.trim();
+      if (!name || name.length < 2) {
+        document.getElementById('err-name').style.display = 'block';
+        return;
+      }
+      studentName = name;
+
+      // Load questions file
+      var script = document.createElement('script');
+      script.src = testConfig.questionsFile;
+      script.onload = function () {
+        if (typeof questions === 'undefined' || questions.length === 0) {
+          alert('Questions file empty or not found!');
+          return;
+        }
+        beginTest();
+      };
+      script.onerror = function () {
+        alert('Could not load questions. Check questionsFile path.');
+      };
+      document.head.appendChild(script);
+    }
+
+    function beginTest() {
+      showScreen('screen-test');
+      document.getElementById('topbar-timer').style.display = '';
+      testStartTime = Date.now();
+      endTime = Date.now() + testConfig.duration * 1000;
+
+      buildSectionTabs();
+      buildQGridNav();
+      renderQuestion(0);
+      startTimer();
+    }
+
+    // ============================================================
+    // TIMER — Date.now() polling at 500ms
+    // ============================================================
+    function startTimer() {
+      timerInterval = setInterval(function () {
+        var remaining = Math.max(0, endTime - Date.now());
+        var mins = Math.floor(remaining / 60000);
+        var secs = Math.floor((remaining % 60000) / 1000);
+        var display = pad(mins) + ':' + pad(secs);
+        var el = document.getElementById('topbar-timer');
+        el.textContent = display;
+        if (remaining <= 60000) el.classList.add('urgent');
+        if (remaining === 0) {
+          clearInterval(timerInterval);
+          autoSubmit();
+        }
+      }, 500);
+    }
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    // ============================================================
+    // SECTION TABS
+    // ============================================================
+    function buildSectionTabs() {
+      var sections = Object.keys(testConfig.sections);
+      currentSection = sections[0];
+      var el = document.getElementById('section-tabs');
+      if (sections.length <= 1) { el.style.display = 'none'; return; }
+      el.innerHTML = sections.map(function (s) {
+        return '<button class="sec-tab' + (s === currentSection ? ' active' : '') + '" onclick="switchSection(\'' + s + '\')">' + s + '</button>';
+      }).join('');
+    }
+
+    function switchSection(sec) {
+      currentSection = sec;
+      document.querySelectorAll('.sec-tab').forEach(function (t) {
+        t.classList.toggle('active', t.textContent === sec);
+      });
+      var idx = filteredQuestions().findIndex(function (q, i) { return i === 0; });
+      currentQ = questions.indexOf(filteredQuestions()[0]);
+      renderQuestion(currentQ);
+      buildQGridNav();
+    }
+
+    function filteredQuestions() {
+      if (!currentSection) return questions;
+      return questions.filter(function (q) { return q.section === currentSection; });
+    }
+
+    // ============================================================
+    // Q GRID NAV
+    // ============================================================
+    function buildQGridNav() {
+      var el = document.getElementById('q-grid-nav');
+      el.innerHTML = questions.map(function (q, i) {
+        var cls = 'qn-dot';
+        if (answers[q.id]) cls += ' answered';
+        if (i === currentQ) cls += ' current';
+        return '<div class="' + cls + '" onclick="jumpTo(' + i + ')">' + (i + 1) + '</div>';
+      }).join('');
+    }
+
+    function jumpTo(i) {
+      currentQ = i;
+      renderQuestion(i);
+      buildQGridNav();
+    }
+
+    // ============================================================
+    // RENDER QUESTION
+    // ============================================================
+    var optionLabels = ['A', 'B', 'C', 'D'];
+
+    function renderQuestion(idx) {
+      currentQ = idx;
+      var q = questions[idx];
+      var total = questions.length;
+
+      document.getElementById('progress-label').textContent = 'Question ' + (idx + 1) + ' of ' + total;
+      document.getElementById('progress-bar').style.width = ((idx + 1) / total * 100) + '%';
+
+      var sel = answers[q.id] || null;
+      var optHtml = q.options.map(function (opt, i) {
+        var lbl = optionLabels[i];
+        var cls = 'option-btn' + (sel === lbl ? ' selected' : '');
+        return '<button class="' + cls + '" onclick="selectOption(\'' + q.id + '\', \'' + lbl + '\')">'
+          + '<strong>' + lbl + '.</strong> ' + opt + '</button>';
+      }).join('');
+
+      document.getElementById('question-area').innerHTML =
+        '<div class="q-card">'
+        + '<div class="q-number">Q' + (idx + 1) + ' · ' + (q.section || '') + '</div>'
+        + '<div class="q-text">' + q.text + '</div>'
+        + '<div class="options-grid">' + optHtml + '</div>'
+        + '</div>';
+
+      document.getElementById('btn-prev').disabled = idx === 0;
+      document.getElementById('btn-next').disabled = idx === total - 1;
+    }
+
+    function selectOption(qId, label) {
+      answers[qId] = label;
+      renderQuestion(currentQ);
+      buildQGridNav();
+    }
+
+    function goQuestion(dir) {
+      var next = currentQ + dir;
+      if (next < 0 || next >= questions.length) return;
+      renderQuestion(next);
+      buildQGridNav();
+    }
+
+    // ============================================================
+    // SUBMIT
+    // ============================================================
+    function confirmSubmit() {
+      var attempted = Object.keys(answers).length;
+      var total = questions.length;
+      if (attempted < total) {
+        if (!confirm('You have answered ' + attempted + ' of ' + total + ' questions. Submit anyway?')) return;
+      }
+      submitTest();
+    }
+
+    function autoSubmit() {
+      submitTest();
+    }
+
+    function submitTest() {
+      clearInterval(timerInterval);
+      var timeTaken = Math.floor((Date.now() - testStartTime) / 1000);
+
+      // Score
+      var correct = 0, wrong = 0, skipped = 0;
+      var scoresObj = {};
+      questions.forEach(function (q) {
+        var given = answers[q.id];
+        if (!given) { skipped++; scoresObj[q.id] = 'S'; }
+        else if (given === q.answer) { correct++; scoresObj[q.id] = 'C'; }
+        else { wrong++; scoresObj[q.id] = 'W'; }
+      });
+
+      var total = testConfig.totalMarks;
+      var pct = Math.round(correct / total * 100);
+
+      showScoreScreen(correct, wrong, skipped, pct, total, timeTaken);
+      sendResult(correct, pct, timeTaken, scoresObj);
+    }
+
+    // ============================================================
+    // SCORE SCREEN
+    // ============================================================
+    function showScoreScreen(correct, wrong, skipped, pct, total, timeTaken) {
+      showScreen('screen-score');
+
+      var emoji = pct >= 80 ? '🏆' : pct >= 60 ? '🎉' : pct >= 40 ? '😊' : '💪';
+      document.getElementById('score-emoji').textContent = emoji;
+      document.getElementById('score-title').textContent = pct >= 60 ? 'Well Done, ' + studentName + '!' : 'Keep Practising, ' + studentName + '!';
+      document.getElementById('score-subtitle').textContent = 'You scored ' + correct + ' out of ' + total + ' · ' + formatTime(timeTaken) + ' taken';
+      document.getElementById('score-pct').textContent = pct + '%';
+      document.getElementById('score-raw').textContent = correct + '/' + total;
+
+      // Animate circle
+      var turn = (pct / 100).toFixed(3);
+      document.getElementById('score-circle').style.setProperty('--pct', turn + 'turn');
+
+      document.getElementById('stat-correct').textContent = correct;
+      document.getElementById('stat-wrong').textContent = wrong;
+      document.getElementById('stat-skipped').textContent = skipped;
+
+      buildReview();
+    }
+
+    function formatTime(secs) {
+      var m = Math.floor(secs / 60), s = secs % 60;
+      return m + 'm ' + s + 's';
+    }
+
+    // ============================================================
+    // ANSWER REVIEW
+    // ============================================================
+    function buildReview() {
+      var html = '';
+      questions.forEach(function (q, i) {
+        var given = answers[q.id];
+        var isCorrect = given && given === q.answer;
+        var isSkipped = !given;
+        var cls = isSkipped ? 'skipped' : (isCorrect ? 'correct' : 'wrong');
+        var givenText = given ? given + '. ' + q.options[optionLabels.indexOf(given)] : '—';
+        var correctText = q.answer + '. ' + q.options[optionLabels.indexOf(q.answer)];
+
+        html += '<div class="review-card ' + cls + '">'
+          + '<div class="q-number">Q' + (i + 1) + ' · ' + (q.section || '') + '</div>'
+          + '<div class="review-q">' + q.text + '</div>'
+          + '<div class="review-answer"><span class="label ' + (isCorrect ? 'correct-label' : 'wrong-label') + '">Your answer:</span> ' + givenText + '</div>'
+          + '<div class="review-answer"><span class="label correct-label">Correct answer:</span> ' + correctText + '</div>'
+          + (q.explanation ? '<div class="review-explanation">💡 ' + q.explanation + '</div>' : '')
+          + '</div>';
+      });
+      document.getElementById('review-list').innerHTML = html;
+    }
+
+    // ============================================================
+    // SEND RESULT TO GOOGLE SHEETS
+    // ============================================================
+    function sendResult(correct, pct, timeTaken, scoresObj) {
+      var statusEl = document.getElementById('submit-status');
+      statusEl.textContent = '⏳ Saving result...';
+
+      var params = new URLSearchParams({
+        action: 'submit',
+        testId: testConfig.id,
+        name: studentName,
+        scores: JSON.stringify(scoresObj),
+        total: correct,
+        percent: pct,
+        timeTaken: timeTaken
+      });
+
+      fetch(SCRIPT_URL + '?' + params.toString())
+        .then(function (r) { return r.json(); })
+        .then(function () {
+          statusEl.textContent = '✅ Result saved! You will appear on the merit list.';
+        })
+        .catch(function () {
+          statusEl.textContent = '⚠️ Could not save result (check internet connection).';
+        });
+    }
+  </script>
+</body>
+</html>
