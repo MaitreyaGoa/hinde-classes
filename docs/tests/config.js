@@ -3,7 +3,7 @@
 // Central configuration for all tests
 // ============================================================
 
-var SCRIPT_URL = "YOUR_APPS_SCRIPT_URL";
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_ApkIAQyAedZ_gGP-WL4QDfwrE5AaKWwdlzmHDYc3375ifmmSih92t3-qIHz7ykkiVw/exec";
 
 // ============================================================
 // CLASS_TESTS — Chapter-wise tests per class per subject
