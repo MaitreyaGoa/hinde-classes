@@ -7,8 +7,11 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -18,32 +21,34 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Vite builds React app → docs/app/
+      # Vite builds React → docs/app/
+      # Env vars injected from GitHub Secrets
       - name: Build React app
+        env:
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+          VITE_SHEETS_WEBAPP_URL: ${{ secrets.VITE_SHEETS_WEBAPP_URL }}
         run: npm run build
 
-      - name: Verify build output
+      # Verify build succeeded
+      - name: Verify build
         run: |
-          echo "=== docs/ ===" && ls -la docs/
-          echo "=== docs/app/ ===" && ls -la docs/app/ | head -15
+          echo "=== docs/ ===" && ls docs/
+          echo "=== docs/app/ ===" && ls docs/app/ | head -10
 
-      # Our 3-tile gateway is at repo root index.html
-      # Copy it into docs/ → becomes hindeclasses.com/
-      - name: Copy gateway → docs/index.html
-        run: |
-          cp index.html docs/index.html
-          echo "✓ Gateway copied"
+      # Copy 3-tile gateway → docs/index.html
+      - name: Copy gateway index.html
+        run: cp index.html docs/index.html
 
-      # Prevent Jekyll from ignoring files starting with _
+      # Prevent Jekyll processing
       - name: Create .nojekyll
         run: touch docs/.nojekyll
 
-      # Commit docs/ back to main (Pages serves from docs/ on main)
+      # Commit docs/ back to main (Pages serves /docs on main)
       - name: Commit docs/ to main
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/
-          git diff --staged --quiet && echo "No changes" || \
-            git commit -m "Deploy: rebuild docs/ [skip ci]"
+          git diff --staged --quiet && echo "Nothing to commit" || \
+            git commit -m "chore: rebuild docs/ [skip ci]"
           git push origin main
