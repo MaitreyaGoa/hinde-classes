@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'   # prevents loop when bot commits docs/
 
 jobs:
   build-and-deploy:
@@ -21,45 +23,30 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Build React app → dist/  (clean separate folder, no conflict)
       - name: Build React app
         env:
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
           VITE_SHEETS_WEBAPP_URL: ${{ secrets.VITE_SHEETS_WEBAPP_URL }}
         run: npm run build
 
-      # Verify React built correctly
-      - name: Verify React build
+      - name: Verify React build has assets
         run: |
           echo "=== dist/ ===" && ls dist/
-          ls dist/assets/ | head -5
+          echo "=== dist/assets/ ===" && ls dist/assets/
 
-      # Clear old docs/app/ and move fresh React build into it
-      - name: Move React build → docs/app/
+      - name: Clear old docs/app and move fresh build
         run: |
           rm -rf docs/app
           cp -r dist docs/app
-          echo "✓ React build moved to docs/app/"
+          echo "✓ docs/app/ updated"
           ls docs/app/
 
-      # Copy 3-tile gateway → docs/index.html
-      - name: Copy gateway → docs/index.html
-        run: |
-          cp index.html docs/index.html
-          echo "✓ Gateway at docs/index.html"
+      - name: Copy gateway to docs/index.html
+        run: cp index.html docs/index.html
 
-      # Prevent Jekyll
       - name: Create .nojekyll
         run: touch docs/.nojekyll
 
-      # Final structure check
-      - name: Final structure
-        run: |
-          echo "=== docs/ ===" && ls docs/
-          echo "=== docs/app/ ===" && ls docs/app/
-          echo "=== docs/app/assets/ ===" && ls docs/app/assets/ | head -5
-
-      # Commit docs/ back to main branch
       - name: Commit docs/ to main
         run: |
           git config user.name "github-actions[bot]"
