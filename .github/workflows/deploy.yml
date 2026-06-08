@@ -23,37 +23,29 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Temporarily rename gateway so Vite doesn't pick it up
-      - name: Hide gateway index.html from Vite
-        run: mv index.html gateway.html
-
-      # Now Vite finds the correct React index.html (public/index.html or src/index.html)
+      # index.html at root is the React entry point — build it normally
       - name: Build React app
         env:
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
           VITE_SHEETS_WEBAPP_URL: ${{ secrets.VITE_SHEETS_WEBAPP_URL }}
         run: npm run build
 
-      # Restore gateway
-      - name: Restore gateway
-        run: mv gateway.html index.html
-
-      # Verify React built with assets
       - name: Verify build
         run: |
           echo "=== dist/ ===" && ls dist/
           echo "=== dist/assets/ ===" && ls dist/assets/ | head -5
 
-      # Clear old docs/app and put fresh React build there
+      # Move React build → docs/app/
       - name: Move React build → docs/app/
         run: |
           rm -rf docs/app
           cp -r dist docs/app
           echo "✓ docs/app updated"
+          ls docs/app/
 
-      # Copy gateway to docs/index.html
+      # Copy our gateway (saved as gateway.html) → docs/index.html
       - name: Copy gateway → docs/index.html
-        run: cp index.html docs/index.html
+        run: cp gateway.html docs/index.html
 
       - name: Create .nojekyll
         run: touch docs/.nojekyll
