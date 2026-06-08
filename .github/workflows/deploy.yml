@@ -18,8 +18,28 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build React app (outputs to dist/app)
         run: npm run build
+
+      # Gateway homepage — the 3-tile index.html lives at repo root
+      # Copy it to dist/ so it becomes hindeclasses.com/
+      - name: Copy gateway index.html to dist root
+        run: cp index.html dist/index.html
+
+      # Test portal — pure HTML/JS files in /tests folder in repo
+      # Copy to dist/tests so it becomes hindeclasses.com/tests/
+      - name: Copy school test portal to dist/tests
+        run: |
+          if [ -d "tests" ]; then
+            cp -r tests dist/tests
+            echo "✓ tests/ folder copied"
+          else
+            echo "⚠ No tests/ folder found — skipping"
+          fi
+
+      # GitHub Pages needs this file at root to serve subfolders correctly
+      - name: Create .nojekyll
+        run: touch dist/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
