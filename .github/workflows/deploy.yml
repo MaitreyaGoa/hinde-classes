@@ -18,31 +18,32 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build React app (outputs to dist/app)
+      # Vite builds React app → docs/app/
+      - name: Build React app
         run: npm run build
 
-      # Gateway homepage — the 3-tile index.html lives at repo root
-      # Copy it to dist/ so it becomes hindeclasses.com/
-      - name: Copy gateway index.html to dist root
-        run: cp index.html dist/index.html
-
-      # Test portal — pure HTML/JS files in /tests folder in repo
-      # Copy to dist/tests so it becomes hindeclasses.com/tests/
-      - name: Copy school test portal to dist/tests
+      - name: Verify build output
         run: |
-          if [ -d "tests" ]; then
-            cp -r tests dist/tests
-            echo "✓ tests/ folder copied"
-          else
-            echo "⚠ No tests/ folder found — skipping"
-          fi
+          echo "=== docs/ ===" && ls -la docs/
+          echo "=== docs/app/ ===" && ls -la docs/app/ | head -15
 
-      # GitHub Pages needs this file at root to serve subfolders correctly
+      # Our 3-tile gateway is at repo root index.html
+      # Copy it into docs/ → becomes hindeclasses.com/
+      - name: Copy gateway → docs/index.html
+        run: |
+          cp index.html docs/index.html
+          echo "✓ Gateway copied"
+
+      # Prevent Jekyll from ignoring files starting with _
       - name: Create .nojekyll
-        run: touch dist/.nojekyll
+        run: touch docs/.nojekyll
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+      # Commit docs/ back to main (Pages serves from docs/ on main)
+      - name: Commit docs/ to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --staged --quiet && echo "No changes" || \
+            git commit -m "Deploy: rebuild docs/ [skip ci]"
+          git push origin main
