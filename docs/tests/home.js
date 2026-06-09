@@ -320,7 +320,7 @@ function goToTest(testId) {
   var test = getAllTests().find(function(t){ return t.id===testId; });
   if (!test || !test.live) return;
   // Just navigate — test.html will ask for name + password
-  window.location.href = "tests/test.html?id=" + testId;
+  window.location.href = "test.html?id=" + testId;
 }
 
 // ══ SECTION HEADER (with anchor id) ══════════════════════════
