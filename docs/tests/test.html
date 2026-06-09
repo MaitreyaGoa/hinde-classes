@@ -1,735 +1,571 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hinde Classes — Test</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --blue:    #2563eb;
-      --blue-dk: #1d4ed8;
-      --blue-lt: #eff6ff;
-      --amber:   #f59e0b;
-      --green:   #16a34a;
-      --red:     #dc2626;
-      --grey:    #64748b;
-      --grey-lt: #f1f5f9;
-      --white:   #ffffff;
-      --text:    #0f172a;
-      --text-2:  #475569;
-      --radius:  12px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #f8fafc;
-      color: var(--text);
-      min-height: 100vh;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Test — Hinde Classes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh;}
+:root{--acc:#0d9488;--acc-lt:#14b8a6;--acc-bg:#f0fdfa;}
 
-    /* ---- TOPBAR ---- */
-    .topbar {
-      background: var(--blue);
-      color: #fff;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 1rem; height: 52px; position: sticky; top: 0; z-index: 50;
-    }
-    .topbar-logo {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700; font-size: 1.1rem;
-    }
-    .topbar-timer {
-      background: rgba(255,255,255,0.15);
-      border-radius: 8px; padding: 0.3rem 0.8rem;
-      font-size: 1rem; font-weight: 700;
-      font-variant-numeric: tabular-nums;
-    }
-    .topbar-timer.urgent { background: var(--red); animation: pulse 1s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+/* ── HEADER ── */
+.hdr{background:rgba(245,245,247,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.08);position:sticky;top:0;z-index:200;padding:0 24px;}
+.hdr-in{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;gap:12px;}
+.back-link{font-size:13px;font-weight:500;color:#86868b;text-decoration:none;white-space:nowrap;transition:color .15s;}
+.back-link:hover{color:#1d1d1f;}
+.hdr-test-name{font-size:13px;font-weight:600;color:#1d1d1f;flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.timer{display:flex;align-items:center;gap:5px;background:#fff;border:1px solid rgba(0,0,0,0.1);border-radius:20px;padding:5px 14px;font-size:14px;font-weight:700;min-width:80px;justify-content:center;white-space:nowrap;}
+.timer.warn{color:#ff3b30;border-color:rgba(255,59,48,0.3);background:#fff0ef;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.6;}}
 
-    /* ---- SCREENS ---- */
-    .screen { display: none; }
-    .screen.active { display: block; }
-    .card-wrap {
-      max-width: 520px; margin: 2rem auto; padding: 0 1rem;
-    }
-    .card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 20px rgba(37,99,235,0.10);
-      padding: 2rem;
-    }
+/* ── SCREENS ── */
+.screen{display:none;}
+.screen.active{display:block;}
 
-    /* ---- GATE / NAME SCREENS ---- */
-    .gate-icon { font-size: 3rem; text-align: center; margin-bottom: 1rem; }
-    .gate-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700;
-      text-align: center; margin-bottom: 0.5rem;
-    }
-    .gate-desc { text-align: center; color: var(--text-2); font-size: 0.88rem; margin-bottom: 1.5rem; }
-    .field-label { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; display: block; }
-    .field-input {
-      width: 100%; padding: 0.7rem 1rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px; font-size: 1rem;
-      font-family: 'Inter', sans-serif;
-      outline: none; transition: border-color .2s;
-    }
-    .field-input:focus { border-color: var(--blue); }
-    .field-group { margin-bottom: 1.2rem; }
-    .btn-primary {
-      width: 100%; padding: 0.8rem;
-      background: var(--blue); color: var(--white);
-      border: none; border-radius: 8px;
-      font-size: 1rem; font-weight: 700;
-      cursor: pointer; transition: background .2s;
-    }
-    .btn-primary:hover { background: var(--blue-dk); }
-    .error-msg {
-      color: var(--red); font-size: 0.82rem;
-      margin-top: 0.5rem; display: none;
-    }
-    .meta-pills {
-      display: flex; flex-wrap: wrap; gap: 0.4rem;
-      margin-bottom: 1.2rem; justify-content: center;
-    }
-    .meta-pill {
-      background: var(--blue-lt); color: var(--blue);
-      font-size: 0.72rem; font-weight: 600;
-      padding: 0.2rem 0.6rem; border-radius: 6px;
-    }
+/* ════════ LOGIN SCREEN ════════ */
+.login-page{min-height:calc(100vh - 52px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:48px 20px;}
+.login-card{background:#fff;border-radius:20px;border:1px solid rgba(0,0,0,0.08);padding:40px 36px;width:100%;max-width:460px;box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+.login-breadcrumb{display:inline-flex;align-items:center;gap:6px;background:var(--acc-bg);color:var(--acc);border:1px solid rgba(13,148,136,0.2);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:20px;}
+.login-title{font-size:1.75rem;font-weight:800;letter-spacing:-.5px;color:#1d1d1f;margin-bottom:6px;}
+.login-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.meta-pill{font-size:11px;font-weight:600;color:#3a3a3c;background:#f5f5f7;border-radius:6px;padding:3px 9px;}
+.login-desc{font-size:13px;color:#86868b;margin-bottom:28px;line-height:1.6;}
+.f-label{display:block;font-size:12px;font-weight:600;color:#3a3a3c;margin-bottom:6px;}
+.f-input{width:100%;padding:12px 14px;background:#f5f5f7;border:1px solid rgba(0,0,0,0.1);border-radius:10px;font-size:14px;color:#1d1d1f;font-family:inherit;outline:none;margin-bottom:16px;transition:border-color .15s,background .15s;}
+.f-input:focus{border-color:var(--acc);background:#fff;}
+.login-error{color:#ff3b30;font-size:12px;margin-bottom:12px;display:none;padding:8px 12px;background:#fff0ef;border-radius:7px;}
+.btn-unlock{width:100%;padding:14px;background:var(--acc);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:-.2px;transition:background .15s;}
+.btn-unlock:hover{background:#0f766e;}
 
-    /* ---- TEST AREA ---- */
-    #screen-test { padding: 0; }
-    .test-body {
-      max-width: 760px; margin: 0 auto; padding: 1rem;
-    }
+/* Toppers on login page */
+.login-toppers{width:100%;max-width:460px;margin-top:20px;}
 
-    /* Section tabs */
-    .section-tabs {
-      display: flex; gap: 0.4rem; flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .sec-tab {
-      padding: 0.35rem 0.9rem;
-      border-radius: 20px; border: 2px solid #e2e8f0;
-      font-size: 0.8rem; font-weight: 600;
-      cursor: pointer; background: var(--white);
-      color: var(--text-2); transition: all .2s;
-    }
-    .sec-tab.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+/* ════════ QUIZ SCREEN ════════ */
+.quiz-page{max-width:800px;margin:0 auto;padding:28px 20px 80px;}
+.progress-row{display:flex;align-items:center;gap:10px;margin-bottom:24px;}
+.progress-track{flex:1;background:rgba(0,0,0,0.07);border-radius:4px;height:5px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--acc);border-radius:4px;transition:width .4s;}
+.progress-lbl{font-size:11px;font-weight:600;color:#86868b;white-space:nowrap;}
 
-    /* Progress bar */
-    .progress-bar-wrap {
-      height: 6px; background: #e2e8f0;
-      border-radius: 3px; margin-bottom: 1rem; overflow: hidden;
-    }
-    .progress-bar-fill {
-      height: 100%; background: var(--blue);
-      border-radius: 3px; transition: width .3s;
-    }
-    .progress-label {
-      font-size: 0.78rem; color: var(--text-2);
-      margin-bottom: 0.5rem;
-    }
+.q-card{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.07);padding:24px;margin-bottom:10px;}
+.q-num{font-size:10px;font-weight:700;color:var(--acc);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.q-text{font-size:15px;font-weight:500;color:#1d1d1f;line-height:1.65;margin-bottom:18px;}
+.q-opts{display:flex;flex-direction:column;gap:8px;}
+.q-opt{display:flex;align-items:center;gap:10px;padding:11px 14px;border:1px solid rgba(0,0,0,0.09);border-radius:10px;cursor:pointer;font-size:13px;color:#3a3a3c;background:#fff;transition:all .12s;user-select:none;}
+.q-opt:hover:not(.answered){border-color:var(--acc);background:var(--acc-bg);}
+.q-opt.selected{border-color:var(--acc);background:var(--acc-bg);color:var(--acc);font-weight:600;}
+.q-opt.correct{border-color:#34c759;background:#e8f8ec;color:#166534;font-weight:600;}
+.q-opt.wrong{border-color:#ff3b30;background:#fff0ef;color:#c0392b;}
+.q-opt.answered{pointer-events:none;}
+.q-lbl{width:24px;height:24px;min-width:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;background:#f5f5f7;color:#86868b;transition:all .12s;}
+.q-opt.selected .q-lbl{background:var(--acc);color:#fff;}
+.q-opt.correct .q-lbl{background:#34c759;color:#fff;}
+.q-opt.wrong .q-lbl{background:#ff3b30;color:#fff;}
+.q-exp{margin-top:12px;padding:10px 13px;background:#fff8e1;border-left:3px solid #ff9500;border-radius:0 8px 8px 0;font-size:12px;color:#78350f;line-height:1.6;display:none;}
+.q-exp.show{display:block;}
 
-    /* Question card */
-    .q-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: 0 2px 10px rgba(37,99,235,0.08);
-      padding: 1.4rem;
-      margin-bottom: 1rem;
-    }
-    .q-number {
-      font-size: 0.75rem; color: var(--grey);
-      font-weight: 600; margin-bottom: 0.5rem;
-    }
-    .q-text {
-      font-size: 0.97rem; font-weight: 500;
-      line-height: 1.55; margin-bottom: 1rem;
-    }
-    .options-grid { display: flex; flex-direction: column; gap: 0.5rem; }
-    .option-btn {
-      text-align: left;
-      padding: 0.65rem 1rem;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      background: var(--white); cursor: pointer;
-      font-size: 0.9rem; font-family: 'Inter', sans-serif;
-      transition: all .15s; width: 100%;
-    }
-    .option-btn:hover { border-color: var(--blue); background: var(--blue-lt); }
-    .option-btn.selected { border-color: var(--blue); background: var(--blue-lt); color: var(--blue); font-weight: 600; }
+/* Submit bar */
+.submit-bar{position:sticky;bottom:0;background:rgba(245,245,247,.97);backdrop-filter:blur(10px);border-top:1px solid rgba(0,0,0,0.07);padding:14px 20px;}
+.submit-bar-in{max-width:800px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.answered-lbl{font-size:13px;color:#86868b;}
+.answered-lbl strong{color:#1d1d1f;}
+.btn-submit{padding:11px 28px;background:var(--acc);color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn-submit:hover{background:#0f766e;}
+.btn-submit:disabled{background:#aeaeb2;cursor:default;}
 
-    /* Navigation */
-    .q-nav {
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 0.5rem; margin-top: 0.5rem;
-    }
-    .btn-nav {
-      padding: 0.55rem 1.2rem;
-      border: 2px solid var(--blue);
-      border-radius: 8px; font-size: 0.85rem; font-weight: 600;
-      cursor: pointer; background: var(--white); color: var(--blue);
-      transition: all .15s;
-    }
-    .btn-nav:hover { background: var(--blue); color: var(--white); }
-    .btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
-    .btn-submit-test {
-      padding: 0.6rem 1.4rem;
-      background: var(--green); color: var(--white);
-      border: none; border-radius: 8px;
-      font-size: 0.9rem; font-weight: 700;
-      cursor: pointer; transition: background .2s;
-    }
-    .btn-submit-test:hover { background: #15803d; }
+/* ════════ RESULT SCREEN ════════ */
+.result-page{max-width:640px;margin:0 auto;padding:40px 20px;}
+.result-card{background:#fff;border-radius:20px;border:1px solid rgba(0,0,0,0.07);padding:40px 36px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+.result-emoji{font-size:3.2rem;line-height:1;margin-bottom:14px;}
+.result-student{font-size:13px;color:#86868b;margin-bottom:6px;}
+.result-score{font-size:4rem;font-weight:900;letter-spacing:-2px;color:var(--acc);line-height:1;}
+.result-outof{font-size:14px;color:#86868b;margin-bottom:16px;}
+.result-bar-wrap{background:#f0f0f5;border-radius:6px;height:8px;margin-bottom:20px;overflow:hidden;}
+.result-bar{height:100%;background:var(--acc);border-radius:6px;transition:width 1s ease;}
+.result-grade{display:inline-block;padding:5px 16px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:16px;border:1px solid rgba(0,0,0,0.07);}
+.result-detail{font-size:12px;color:#86868b;margin-bottom:24px;}
+.result-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.btn-retake{padding:10px 20px;background:var(--acc-bg);color:var(--acc);border:1px solid rgba(13,148,136,0.2);border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn-home{padding:10px 20px;background:#f5f5f7;color:#3a3a3c;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
 
-    /* Question grid navigator */
-    .q-grid-nav {
-      display: flex; flex-wrap: wrap; gap: 0.3rem;
-      margin-bottom: 1rem;
-    }
-    .qn-dot {
-      width: 32px; height: 32px;
-      border-radius: 6px; border: 2px solid #e2e8f0;
-      font-size: 0.75rem; font-weight: 600;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; background: var(--white); color: var(--text-2);
-      transition: all .15s;
-    }
-    .qn-dot.answered { background: var(--blue); border-color: var(--blue); color: var(--white); }
-    .qn-dot.current { border-color: var(--amber); color: var(--amber); }
+/* ── Toppers (result page) ── */
+.toppers-card{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.07);overflow:hidden;margin-top:16px;}
+.toppers-hdr{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid rgba(0,0,0,0.06);}
+.toppers-hdr-title{font-size:13px;font-weight:700;color:#1d1d1f;}
+.toppers-count{font-size:11px;color:#86868b;}
+.toppers-list{list-style:none;}
+.topper-row{display:flex;align-items:center;gap:10px;padding:10px 18px;border-bottom:1px solid rgba(0,0,0,0.04);}
+.topper-row:last-child{border-bottom:none;}
+.topper-rank{font-size:15px;width:24px;text-align:center;flex-shrink:0;}
+.topper-info{flex:1;min-width:0;}
+.topper-name{font-size:13px;font-weight:600;color:#1d1d1f;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.topper-bar-wrap{height:3px;background:#f0f0f5;border-radius:3px;margin-top:4px;}
+.topper-bar{height:100%;background:var(--acc);border-radius:3px;}
+.topper-score{font-size:13px;font-weight:700;color:#1d1d1f;flex-shrink:0;}
+.topper-outof{font-size:10px;color:#86868b;}
+.toppers-footer{padding:10px 18px;text-align:center;font-size:10px;color:#aeaeb2;border-top:1px solid rgba(0,0,0,0.04);}
+.toppers-empty{padding:20px;text-align:center;font-size:12px;color:#aeaeb2;font-style:italic;}
+.toppers-loading{padding:20px;text-align:center;font-size:12px;color:#86868b;}
 
-    /* ---- SCORE SCREEN ---- */
-    .score-header {
-      text-align: center; padding: 1.5rem 1rem 1rem;
-    }
-    .score-emoji { font-size: 3.5rem; }
-    .score-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 700; margin: 0.5rem 0;
-    }
-    .score-circle {
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: conic-gradient(var(--blue) var(--pct), #e2e8f0 0);
-      display: flex; align-items: center; justify-content: center;
-      margin: 1rem auto;
-      position: relative;
-    }
-    .score-circle-inner {
-      width: 90px; height: 90px;
-      border-radius: 50%; background: var(--white);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-    }
-    .score-pct { font-size: 1.2rem; font-weight: 800; color: var(--blue); }
-    .score-raw { font-size: 0.7rem; color: var(--grey); }
-    .score-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem; margin: 1rem 0;
-    }
-    .score-stat-box {
-      background: var(--grey-lt); border-radius: 10px;
-      padding: 0.8rem; text-align: center;
-    }
-    .score-stat-box strong { display: block; font-size: 1.2rem; }
-    .score-stat-box span { font-size: 0.7rem; color: var(--grey); }
-    .score-stat-box.correct strong { color: var(--green); }
-    .score-stat-box.wrong strong { color: var(--red); }
+/* ── Error ── */
+.error-pg{text-align:center;padding:100px 20px;}
+.error-pg h2{font-size:1.4rem;font-weight:700;margin-bottom:8px;}
+.error-pg p{color:#86868b;font-size:14px;margin-bottom:20px;}
 
-    /* Review */
-    .review-section { padding: 0 1rem 2rem; max-width: 760px; margin: 0 auto; }
-    .review-section h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; margin-bottom: 1rem; color: var(--text);
-    }
-    .review-card {
-      background: var(--white); border-radius: var(--radius);
-      padding: 1.2rem; margin-bottom: 0.8rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      border-left: 4px solid transparent;
-    }
-    .review-card.correct { border-left-color: var(--green); }
-    .review-card.wrong { border-left-color: var(--red); }
-    .review-card.skipped { border-left-color: var(--amber); }
-    .review-q { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.6rem; }
-    .review-answer { font-size: 0.82rem; margin-bottom: 0.3rem; }
-    .review-answer .label { font-weight: 600; }
-    .correct-label { color: var(--green); }
-    .wrong-label { color: var(--red); }
-    .review-explanation {
-      font-size: 0.78rem; color: var(--text-2);
-      background: var(--grey-lt); border-radius: 6px;
-      padding: 0.5rem 0.7rem; margin-top: 0.5rem;
-    }
-
-    .btn-home {
-      display: block; width: fit-content; margin: 1rem auto;
-      padding: 0.7rem 2rem;
-      background: var(--blue); color: var(--white);
-      border-radius: 8px; font-weight: 700; font-size: 0.9rem;
-      text-align: center;
-    }
-  </style>
+/* ── Mobile ── */
+@media(max-width:500px){
+  .login-card,.result-card{padding:28px 18px;}
+  .quiz-page{padding:20px 12px 70px;}
+  .q-text{font-size:14px;}
+  .result-score{font-size:3rem;}
+}
+</style>
 </head>
 <body>
 
-  <!-- TOPBAR -->
-  <div class="topbar" id="topbar">
-    <div class="topbar-logo">Hinde Classes</div>
-    <div class="topbar-timer" id="topbar-timer" style="display:none">--:--</div>
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-in">
+    <a href="../index.html" class="back-link">← All Tests</a>
+    <div class="hdr-test-name" id="hdrName">Hinde Classes</div>
+    <div class="timer" id="timerEl" style="display:none;">⏱ --:--</div>
   </div>
+</header>
 
-  <!-- SCREEN 1: PASSWORD GATE -->
-  <div id="screen-gate" class="screen active">
-    <div class="card-wrap">
-      <div class="card">
-        <div class="gate-icon">🔑</div>
-        <div class="gate-title">Enter Test Password</div>
-        <div class="gate-desc">Ask your teacher for the password to unlock this test.</div>
-        <div id="gate-test-meta" class="meta-pills"></div>
-        <div class="field-group">
-          <label class="field-label" for="inp-password">Test Password</label>
-          <input class="field-input" type="password" id="inp-password" placeholder="Enter password..." autocomplete="off" />
-          <div class="error-msg" id="err-password">❌ Incorrect password. Please try again.</div>
-        </div>
-        <button class="btn-primary" onclick="submitPassword()">Unlock Test →</button>
-        <p style="text-align:center; margin-top:1rem;"><a href="index.html" style="color:var(--blue); font-size:0.82rem;">← Back to Homepage</a></p>
-      </div>
-    </div>
-  </div>
+<!-- ════ SCREEN: LOGIN ════ -->
+<div class="screen active" id="scrLogin">
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-breadcrumb" id="crumb">Hinde Classes</div>
+      <h1 class="login-title">Student Login</h1>
+      <div class="login-meta" id="loginMeta"></div>
+      <p class="login-desc">Enter your name to start. Your score will be saved to the leaderboard.</p>
 
-  <!-- SCREEN 2: NAME ENTRY -->
-  <div id="screen-name" class="screen">
-    <div class="card-wrap">
-      <div class="card">
-        <div class="gate-icon">📝</div>
-        <div id="name-test-title" class="gate-title"></div>
-        <div id="name-test-meta" class="meta-pills"></div>
-        <div class="gate-desc">Enter your name to begin the test. Timer starts immediately!</div>
-        <div class="field-group">
-          <label class="field-label" for="inp-name">Your Full Name</label>
-          <input class="field-input" type="text" id="inp-name" placeholder="e.g. Priya Naik" autocomplete="name" />
-          <div class="error-msg" id="err-name">Please enter your name.</div>
-        </div>
-        <button class="btn-primary" onclick="startTest()">Start Test →</button>
-        <p style="text-align:center; margin-top:0.8rem; font-size:0.78rem; color:var(--grey);">Once you start, the timer cannot be paused.</p>
-      </div>
-    </div>
-  </div>
+      <label class="f-label" for="fName">Full Name</label>
+      <input class="f-input" id="fName" type="text" placeholder="Enter your full name" autocomplete="name"/>
 
-  <!-- SCREEN 3: TEST -->
-  <div id="screen-test" class="screen">
-    <div class="test-body">
-      <!-- Section tabs -->
-      <div id="section-tabs" class="section-tabs"></div>
-      <!-- Progress -->
-      <div class="progress-label" id="progress-label">Question 1 of —</div>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar-fill" id="progress-bar" style="width:0%"></div>
+      <div id="pwdWrap" style="display:none;">
+        <label class="f-label" for="fPwd">Test Password</label>
+        <input class="f-input" id="fPwd" type="password" placeholder="Enter test password"
+          onkeydown="if(event.key==='Enter')doStart()"/>
       </div>
-      <!-- Q grid navigator -->
-      <div id="q-grid-nav" class="q-grid-nav"></div>
-      <!-- Question -->
-      <div id="question-area"></div>
-      <!-- Nav buttons -->
-      <div class="q-nav">
-        <button class="btn-nav" id="btn-prev" onclick="goQuestion(-1)" disabled>← Prev</button>
-        <button class="btn-nav" id="btn-next" onclick="goQuestion(1)">Next →</button>
-        <button class="btn-submit-test" onclick="confirmSubmit()">Submit Test ✓</button>
-      </div>
-    </div>
-  </div>
 
-  <!-- SCREEN 4: SCORE -->
-  <div id="screen-score" class="screen">
-    <div class="score-header">
-      <div class="score-emoji" id="score-emoji">🎉</div>
-      <div class="score-title" id="score-title">Test Complete!</div>
-      <div id="score-subtitle" style="color:var(--text-2); font-size:0.88rem;"></div>
-      <div class="score-circle" id="score-circle" style="--pct:0turn">
-        <div class="score-circle-inner">
-          <div class="score-pct" id="score-pct">0%</div>
-          <div class="score-raw" id="score-raw">0/0</div>
-        </div>
-      </div>
-      <div class="score-stats" style="max-width:360px; margin: 0 auto 1rem;">
-        <div class="score-stat-box correct">
-          <strong id="stat-correct">0</strong>
-          <span>Correct</span>
-        </div>
-        <div class="score-stat-box wrong">
-          <strong id="stat-wrong">0</strong>
-          <span>Wrong</span>
-        </div>
-        <div class="score-stat-box">
-          <strong id="stat-skipped">0</strong>
-          <span>Skipped</span>
-        </div>
-      </div>
-      <div id="submit-status" style="font-size:0.82rem; color:var(--grey); margin-bottom:0.5rem;"></div>
-      <a class="btn-home" href="index.html">← Back to Homepage</a>
+      <div class="login-error" id="loginErr"></div>
+      <button class="btn-unlock" onclick="doStart()">Start Test →</button>
     </div>
 
-    <!-- Answer Review -->
-    <div class="review-section">
-      <h3>📋 Answer Review</h3>
-      <div id="review-list"></div>
+    <!-- Toppers shown on login page -->
+    <div class="login-toppers" id="loginToppers"></div>
+  </div>
+</div>
+
+<!-- ════ SCREEN: QUIZ ════ -->
+<div class="screen" id="scrQuiz">
+  <div class="quiz-page">
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+      <div class="progress-lbl" id="progLbl">0 / 0</div>
+    </div>
+    <div id="qContainer"></div>
+  </div>
+  <!-- sticky submit bar -->
+  <div class="submit-bar">
+    <div class="submit-bar-in">
+      <div class="answered-lbl">Answered: <strong id="answCount">0</strong> / <strong id="totCount">0</strong></div>
+      <button class="btn-submit" id="submitBtn" onclick="doSubmit()" disabled>Submit Test</button>
     </div>
   </div>
+</div>
 
-  <!-- SCRIPTS -->
-  <script src="config.js"></script>
-  <script>
-    // ============================================================
-    // STATE
-    // ============================================================
-    var testConfig = null;     // matched test from config
-    var questions = [];        // loaded questions
-    var answers = {};          // { qId: "A"|"B"|"C"|"D" }
-    var currentQ = 0;
-    var currentSection = null;
-    var studentName = '';
-    var testStartTime = 0;
-    var endTime = 0;
-    var timerInterval = null;
+<!-- ════ SCREEN: RESULT ════ -->
+<div class="screen" id="scrResult">
+  <div class="result-page">
+    <div class="result-card">
+      <div class="result-emoji" id="resEmoji">🎉</div>
+      <div class="result-student" id="resStudent"></div>
+      <div class="result-score" id="resScore"></div>
+      <div class="result-outof" id="resOutOf"></div>
+      <div class="result-bar-wrap"><div class="result-bar" id="resBar" style="width:0%"></div></div>
+      <div class="result-grade" id="resGrade"></div>
+      <div class="result-detail" id="resDetail"></div>
+      <div class="result-btns">
+        <button class="btn-retake" onclick="doRetake()">↺ Retake</button>
+        <button class="btn-home" onclick="window.location.href='../index.html'">← All Tests</button>
+      </div>
+    </div>
+    <div id="resultToppers"></div>
+  </div>
+</div>
 
-    // ============================================================
-    // INIT — read ?id= from URL
-    // ============================================================
-    (function init() {
-      var params = new URLSearchParams(window.location.search);
-      var id = params.get('id');
-      if (!id) { alert('No test ID in URL.'); return; }
+<!-- ════ SCREEN: ERROR ════ -->
+<div class="screen" id="scrError">
+  <div class="error-pg">
+    <h2>Test not found</h2>
+    <p id="errMsg">This test doesn't exist or has been removed.</p>
+    <a href="../index.html" style="color:var(--acc);font-weight:600;">← Back to All Tests</a>
+  </div>
+</div>
 
-      var allTests = [].concat(
-        CLASS_TESTS, SUBJECT_TESTS, OLYMPIAD_TESTS,
-        SCHOLARSHIP_TESTS, DAILY_QUIZ, SPECIAL_TESTS
-      );
-      testConfig = allTests.find(function (t) { return t.id === id; });
-      if (!testConfig) { alert('Test not found: ' + id); return; }
+<!-- Config must be one level up -->
+<script src="../config.js"></script>
+<script>
+// ══════════════════════════════════════════════════════════════
+//  test.html — Hinde Classes
+//  Flow:  Login → Quiz → Result + Save → Toppers
+// ══════════════════════════════════════════════════════════════
 
-      // Populate gate meta
-      buildMetaPills('gate-test-meta', testConfig);
+var CFG       = null;   // test entry from ALL_TESTS
+var QDATA     = null;   // loaded question object
+var TEST_ID   = "";
+var STUDENT   = "";
+var ANSWERS   = {};     // { qIndex: chosenOptionIndex }
+var TIMER_IV  = null;
+var TIME_LEFT = 0;
 
-      // Enter on password field
-      document.getElementById('inp-password').addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') submitPassword();
-      });
-    })();
+// ── BOOT ─────────────────────────────────────────────────────
+window.addEventListener("DOMContentLoaded", function() {
+  var p = new URLSearchParams(window.location.search);
+  TEST_ID = p.get("id") || "";
 
-    function buildMetaPills(elId, t) {
-      var el = document.getElementById(elId);
-      if (!el) return;
-      el.innerHTML = '<span class="meta-pill">' + t.title + '</span>'
-        + '<span class="meta-pill">' + Math.floor(t.duration / 60) + ' min</span>'
-        + '<span class="meta-pill">' + t.totalMarks + ' marks</span>';
+  var all = window.ALL_TESTS || [];
+  CFG = all.find(function(t){ return t.id === TEST_ID; });
+
+  if (!CFG) { showErr("Test \"" + TEST_ID + "\" not found in config.js."); return; }
+
+  // Header
+  document.getElementById("hdrName").textContent = CFG.title;
+  document.getElementById("crumb").textContent   = CFG.subject || "Hinde Classes";
+
+  // Meta pills
+  var pills = [];
+  if (CFG.questions)  pills.push(CFG.questions + " Q");
+  if (CFG.duration)   pills.push("⏱ " + CFG.duration + " min");
+  if (CFG.totalMarks) pills.push("🏅 " + CFG.totalMarks + " marks");
+  if (CFG.subject)    pills.push(CFG.subject);
+  document.getElementById("loginMeta").innerHTML = pills.map(function(x){
+    return '<span class="meta-pill">'+x+'</span>';
+  }).join("");
+
+  // Password field
+  if (CFG.password && CFG.password !== "") {
+    document.getElementById("pwdWrap").style.display = "block";
+  }
+
+  // Load question file, then show toppers while student logs in
+  loadQFile(function() {
+    fetchToppers("loginToppers");
+  });
+
+  document.getElementById("fName").addEventListener("keydown", function(e){
+    if (e.key==="Enter") doStart();
+  });
+});
+
+// ── LOAD QUESTION FILE ────────────────────────────────────────
+function loadQFile(cb) {
+  if (!CFG.questionsFile) { showErr("questionsFile not set in config.js for: " + TEST_ID); return; }
+  var s = document.createElement("script");
+  // questionsFile is relative to the tests/ folder (e.g. "questions/c7mat1.js")
+  s.src = CFG.questionsFile;
+  s.onload = function() {
+    var vn = "TEST_" + TEST_ID.replace(/-/g,"_");
+    QDATA = window[vn];
+    if (!QDATA) { showErr("Variable " + vn + " not found in " + CFG.questionsFile); return; }
+    if (cb) cb();
+  };
+  s.onerror = function() { showErr("Cannot load: " + CFG.questionsFile); };
+  document.head.appendChild(s);
+}
+
+// ── LOGIN → START ─────────────────────────────────────────────
+function doStart() {
+  var name = document.getElementById("fName").value.trim();
+  var pwd  = document.getElementById("fPwd").value.trim();
+
+  if (!name) { showLoginErr("Please enter your full name."); return; }
+
+  if (CFG.password && CFG.password !== "") {
+    if (!pwd)              { showLoginErr("Please enter the test password."); return; }
+    if (pwd !== CFG.password) { showLoginErr("❌ Wrong password. Ask your teacher."); return; }
+  }
+
+  if (!QDATA) { showLoginErr("Questions are still loading. Please wait a moment."); return; }
+
+  STUDENT = name;
+  ANSWERS = {};
+  renderQuiz();
+  showScr("scrQuiz");
+  startTimer(CFG.duration * 60);
+  document.getElementById("timerEl").style.display = "flex";
+}
+
+// ── RENDER QUIZ ───────────────────────────────────────────────
+function renderQuiz() {
+  var qs  = QDATA.questions || [];
+  var con = document.getElementById("qContainer");
+  con.innerHTML = "";
+
+  document.getElementById("totCount").textContent  = qs.length;
+  document.getElementById("answCount").textContent = 0;
+  document.getElementById("submitBtn").disabled = true;
+
+  qs.forEach(function(q, idx) {
+    var labels = ["A","B","C","D"];
+    var opts = (q.options || []).map(function(opt, j){
+      return '<div class="q-opt" id="o'+idx+'_'+j+'" onclick="pick('+idx+','+j+')">'
+        +'<div class="q-lbl">'+labels[j]+'</div>'
+        +'<div>'+esc(opt)+'</div>'
+        +'</div>';
+    }).join("");
+
+    var card = document.createElement("div");
+    card.className = "q-card";
+    card.id = "qc"+idx;
+    card.innerHTML =
+      '<div class="q-num">Question '+(idx+1)+' / '+qs.length+'</div>'
+      +'<div class="q-text">'+esc(q.text)+'</div>'
+      +'<div class="q-opts">'+opts+'</div>'
+      +(q.explanation ? '<div class="q-exp" id="exp'+idx+'">💡 '+esc(q.explanation)+'</div>' : '');
+    con.appendChild(card);
+  });
+
+  updateProg();
+}
+
+function pick(qIdx, optIdx) {
+  if (ANSWERS.hasOwnProperty(qIdx)) return;  // already answered
+  ANSWERS[qIdx] = optIdx;
+
+  var qs  = QDATA.questions || [];
+  var ans = qs[qIdx].answer;  // correct index
+
+  for (var j = 0; j < (qs[qIdx].options||[]).length; j++) {
+    var el = document.getElementById("o"+qIdx+"_"+j);
+    if (!el) continue;
+    el.classList.add("answered");
+    if (j === ans)                   el.classList.add("correct");
+    else if (j === optIdx)           el.classList.add("wrong");
+  }
+
+  var expEl = document.getElementById("exp"+qIdx);
+  if (expEl) expEl.classList.add("show");
+
+  updateProg();
+}
+
+function updateProg() {
+  var qs  = QDATA.questions || [];
+  var done = Object.keys(ANSWERS).length;
+  var pct  = qs.length ? Math.round(done/qs.length*100) : 0;
+  document.getElementById("progFill").style.width = pct+"%";
+  document.getElementById("progLbl").textContent  = done+" / "+qs.length;
+  document.getElementById("answCount").textContent = done;
+  document.getElementById("submitBtn").disabled = (done === 0);
+}
+
+// ── TIMER ─────────────────────────────────────────────────────
+function startTimer(sec) {
+  TIME_LEFT = sec;
+  clearInterval(TIMER_IV);
+  tickTimer();
+  TIMER_IV = setInterval(function(){
+    TIME_LEFT--;
+    tickTimer();
+    if (TIME_LEFT <= 0) { clearInterval(TIMER_IV); doSubmit(); }
+  }, 1000);
+}
+
+function tickTimer() {
+  var m  = Math.floor(TIME_LEFT/60);
+  var s  = TIME_LEFT % 60;
+  var el = document.getElementById("timerEl");
+  el.textContent = "⏱ " + pad(m) + ":" + pad(s);
+  if (TIME_LEFT <= 120) el.classList.add("warn"); else el.classList.remove("warn");
+}
+function pad(n){ return String(n).padStart(2,"0"); }
+
+// ── SUBMIT ────────────────────────────────────────────────────
+function doSubmit() {
+  clearInterval(TIMER_IV);
+  document.getElementById("timerEl").style.display = "none";
+
+  var qs      = QDATA.questions || [];
+  var correct = 0;
+  var secMap  = {};   // subject → {got, max}
+
+  qs.forEach(function(q, idx){
+    var subj = q.subject || CFG.subject || "General";
+    if (!secMap[subj]) secMap[subj] = { got:0, max:0 };
+    secMap[subj].max += (q.marks || 1);
+
+    if (ANSWERS[idx] === q.answer) {
+      correct++;
+      secMap[subj].got += (q.marks || 1);
     }
+  });
 
-    // ============================================================
-    // SCREEN HELPERS
-    // ============================================================
-    function showScreen(id) {
-      document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('active'); });
-      document.getElementById(id).classList.add('active');
-    }
+  var outOf  = CFG.totalMarks || qs.length;
+  var raw    = qs.reduce(function(a,q){ return a+(q.marks||1); }, 0);
+  var score  = Math.round((correct / qs.length) * outOf);
+  var pct    = Math.round((score / outOf) * 100);
 
-    // ============================================================
-    // PASSWORD GATE
-    // ============================================================
-    function submitPassword() {
-      var val = document.getElementById('inp-password').value.trim();
-      if (val === testConfig.password) {
-        document.getElementById('err-password').style.display = 'none';
-        // Setup name screen
-        document.getElementById('name-test-title').textContent = testConfig.title;
-        buildMetaPills('name-test-meta', testConfig);
-        showScreen('screen-name');
-        document.getElementById('inp-name').focus();
-        document.getElementById('inp-name').addEventListener('keydown', function (e) {
-          if (e.key === 'Enter') startTest();
-        });
-      } else {
-        document.getElementById('err-password').style.display = 'block';
-        document.getElementById('inp-password').value = '';
-        document.getElementById('inp-password').focus();
-      }
-    }
+  // Grade
+  var emoji, grade, gradeBg;
+  if (pct>=90)      { emoji="🏆"; grade="Excellent";   gradeBg="#e8f8ec"; }
+  else if (pct>=75) { emoji="🎉"; grade="Very Good";   gradeBg="#f0fdfa"; }
+  else if (pct>=60) { emoji="😊"; grade="Good";        gradeBg="#f0f9ff"; }
+  else if (pct>=40) { emoji="📚"; grade="Average";     gradeBg="#fffbeb"; }
+  else              { emoji="💪"; grade="Keep Trying"; gradeBg="#fff0ef"; }
 
-    // ============================================================
-    // START TEST — load questions file
-    // ============================================================
-    function startTest() {
-      var name = document.getElementById('inp-name').value.trim();
-      if (!name || name.length < 2) {
-        document.getElementById('err-name').style.display = 'block';
-        return;
-      }
-      studentName = name;
+  document.getElementById("resEmoji").textContent   = emoji;
+  document.getElementById("resStudent").textContent = STUDENT;
+  document.getElementById("resScore").textContent   = score;
+  document.getElementById("resOutOf").textContent   = "out of " + outOf;
+  document.getElementById("resDetail").textContent  =
+    correct + " correct  ·  " + (qs.length - correct) + " wrong  ·  " + pct + "% scored";
 
-      // Load questions file
-      var script = document.createElement('script');
-      script.src = testConfig.questionsFile;
-      script.onload = function () {
-        if (typeof questions === 'undefined' || questions.length === 0) {
-          alert('Questions file empty or not found!');
-          return;
-        }
-        beginTest();
-      };
-      script.onerror = function () {
-        alert('Could not load questions. Check questionsFile path.');
-      };
-      document.head.appendChild(script);
-    }
+  var gEl = document.getElementById("resGrade");
+  gEl.textContent = grade + "  " + emoji;
+  gEl.style.background = gradeBg;
 
-    function beginTest() {
-      showScreen('screen-test');
-      document.getElementById('topbar-timer').style.display = '';
-      testStartTime = Date.now();
-      endTime = Date.now() + testConfig.duration * 1000;
+  setTimeout(function(){ document.getElementById("resBar").style.width = pct+"%"; }, 100);
 
-      buildSectionTabs();
-      buildQGridNav();
-      renderQuestion(0);
-      startTimer();
-    }
+  showScr("scrResult");
 
-    // ============================================================
-    // TIMER — Date.now() polling at 500ms
-    // ============================================================
-    function startTimer() {
-      timerInterval = setInterval(function () {
-        var remaining = Math.max(0, endTime - Date.now());
-        var mins = Math.floor(remaining / 60000);
-        var secs = Math.floor((remaining % 60000) / 1000);
-        var display = pad(mins) + ':' + pad(secs);
-        var el = document.getElementById('topbar-timer');
-        el.textContent = display;
-        if (remaining <= 60000) el.classList.add('urgent');
-        if (remaining === 0) {
-          clearInterval(timerInterval);
-          autoSubmit();
-        }
-      }, 500);
-    }
+  // Build section scores for sheets
+  var secScores = {};
+  Object.keys(secMap).forEach(function(k){ secScores[k] = secMap[k].got; });
 
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  saveScore(score, outOf, secScores);
+  setTimeout(function(){ fetchToppers("resultToppers"); }, 1800);
+}
 
-    // ============================================================
-    // SECTION TABS
-    // ============================================================
-    function buildSectionTabs() {
-      var sections = Object.keys(testConfig.sections);
-      currentSection = sections[0];
-      var el = document.getElementById('section-tabs');
-      if (sections.length <= 1) { el.style.display = 'none'; return; }
-      el.innerHTML = sections.map(function (s) {
-        return '<button class="sec-tab' + (s === currentSection ? ' active' : '') + '" onclick="switchSection(\'' + s + '\')">' + s + '</button>';
-      }).join('');
-    }
+// ── SAVE SCORE via POST ───────────────────────────────────────
+function saveScore(score, outOf, secScores) {
+  var url = window.SCRIPT_URL;
+  if (!url || url === "PASTE_YOUR_APPS_SCRIPT_URL_HERE") return;
 
-    function switchSection(sec) {
-      currentSection = sec;
-      document.querySelectorAll('.sec-tab').forEach(function (t) {
-        t.classList.toggle('active', t.textContent === sec);
-      });
-      var idx = filteredQuestions().findIndex(function (q, i) { return i === 0; });
-      currentQ = questions.indexOf(filteredQuestions()[0]);
-      renderQuestion(currentQ);
-      buildQGridNav();
-    }
+  var payload = {
+    testId:    TEST_ID,
+    testTitle: CFG.title,
+    name:      STUDENT,
+    timestamp: new Date().toLocaleString("en-IN", { timeZone:"Asia/Kolkata" }),
+    total:     score,
+    outOf:     outOf,
+    scores:    secScores
+  };
 
-    function filteredQuestions() {
-      if (!currentSection) return questions;
-      return questions.filter(function (q) { return q.section === currentSection; });
-    }
+  fetch(url, {
+    method:  "POST",
+    headers: { "Content-Type":"application/json" },
+    body:    JSON.stringify(payload)
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(res){
+    if (!res.success) console.warn("Score save failed:", res.error);
+  })
+  .catch(function(err){ console.warn("Score save error:", err); });
+}
 
-    // ============================================================
-    // Q GRID NAV
-    // ============================================================
-    function buildQGridNav() {
-      var el = document.getElementById('q-grid-nav');
-      el.innerHTML = questions.map(function (q, i) {
-        var cls = 'qn-dot';
-        if (answers[q.id]) cls += ' answered';
-        if (i === currentQ) cls += ' current';
-        return '<div class="' + cls + '" onclick="jumpTo(' + i + ')">' + (i + 1) + '</div>';
-      }).join('');
-    }
+// ── TOPPERS via GET ───────────────────────────────────────────
+function fetchToppers(containerId) {
+  var el  = document.getElementById(containerId);
+  if (!el) return;
 
-    function jumpTo(i) {
-      currentQ = i;
-      renderQuestion(i);
-      buildQGridNav();
-    }
+  var url = window.SCRIPT_URL;
+  if (!url || url === "PASTE_YOUR_APPS_SCRIPT_URL_HERE") {
+    el.innerHTML = toppersWrap('<p class="toppers-empty">Leaderboard not configured.</p>');
+    return;
+  }
 
-    // ============================================================
-    // RENDER QUESTION
-    // ============================================================
-    var optionLabels = ['A', 'B', 'C', 'D'];
+  el.innerHTML = toppersWrap('<div class="toppers-loading">⏳ Loading leaderboard...</div>');
 
-    function renderQuestion(idx) {
-      currentQ = idx;
-      var q = questions[idx];
-      var total = questions.length;
+  fetch(url + "?testId=" + encodeURIComponent(TEST_ID))
+    .then(function(r){ return r.json(); })
+    .then(function(res){ renderToppers(res, el); })
+    .catch(function(){ el.innerHTML = toppersWrap('<p class="toppers-empty">Could not load leaderboard.</p>'); });
+}
 
-      document.getElementById('progress-label').textContent = 'Question ' + (idx + 1) + ' of ' + total;
-      document.getElementById('progress-bar').style.width = ((idx + 1) / total * 100) + '%';
+function renderToppers(res, el) {
+  if (!res || !res.success) {
+    el.innerHTML = toppersWrap('<p class="toppers-empty">Leaderboard unavailable.</p>');
+    return;
+  }
 
-      var sel = answers[q.id] || null;
-      var optHtml = q.options.map(function (opt, i) {
-        var lbl = optionLabels[i];
-        var cls = 'option-btn' + (sel === lbl ? ' selected' : '');
-        return '<button class="' + cls + '" onclick="selectOption(\'' + q.id + '\', \'' + lbl + '\')">'
-          + '<strong>' + lbl + '.</strong> ' + opt + '</button>';
-      }).join('');
+  var data   = res.data  || [];
+  var count  = res.count || 0;
+  var medals = ["🥇","🥈","🥉"];
+  var outOf  = CFG.totalMarks || 0;
 
-      document.getElementById('question-area').innerHTML =
-        '<div class="q-card">'
-        + '<div class="q-number">Q' + (idx + 1) + ' · ' + (q.section || '') + '</div>'
-        + '<div class="q-text">' + q.text + '</div>'
-        + '<div class="options-grid">' + optHtml + '</div>'
-        + '</div>';
+  var rows = "";
+  if (!data.length) {
+    rows = '<p class="toppers-empty">No attempts yet — be the first! 🚀</p>';
+  } else {
+    data.forEach(function(r, i){
+      var max  = outOf || r.total || 1;
+      var pct  = Math.round((r.total / max) * 100);
+      var rank = i < 3
+        ? medals[i]
+        : '<span style="width:20px;height:20px;border-radius:50%;background:#f0f0f5;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#3a3a3c;">'+(i+1)+'</span>';
 
-      document.getElementById('btn-prev').disabled = idx === 0;
-      document.getElementById('btn-next').disabled = idx === total - 1;
-    }
+      rows += '<li class="topper-row">'
+        +'<div class="topper-rank">'+rank+'</div>'
+        +'<div class="topper-info">'
+        +'<div class="topper-name">'+esc(r.name)+'</div>'
+        +'<div class="topper-bar-wrap"><div class="topper-bar" style="width:'+Math.max(4,pct)+'%"></div></div>'
+        +'</div>'
+        +'<div class="topper-score">'+r.total+'<span class="topper-outof">/'+max+'</span></div>'
+        +'</li>';
+    });
+  }
 
-    function selectOption(qId, label) {
-      answers[qId] = label;
-      renderQuestion(currentQ);
-      buildQGridNav();
-    }
+  el.innerHTML =
+    '<div class="toppers-card">'
+    +'<div class="toppers-hdr">'
+    +'<span class="toppers-hdr-title">🏆 Top Students — '+esc(CFG.title)+'</span>'
+    +'<span class="toppers-count">'+count+' attempted</span>'
+    +'</div>'
+    +'<ul class="toppers-list">'+rows+'</ul>'
+    +(data.length ? '<div class="toppers-footer">Showing top 20 · Updates after each submission</div>' : '')
+    +'</div>';
+}
 
-    function goQuestion(dir) {
-      var next = currentQ + dir;
-      if (next < 0 || next >= questions.length) return;
-      renderQuestion(next);
-      buildQGridNav();
-    }
+function toppersWrap(inner) {
+  return '<div class="toppers-card">'+inner+'</div>';
+}
 
-    // ============================================================
-    // SUBMIT
-    // ============================================================
-    function confirmSubmit() {
-      var attempted = Object.keys(answers).length;
-      var total = questions.length;
-      if (attempted < total) {
-        if (!confirm('You have answered ' + attempted + ' of ' + total + ' questions. Submit anyway?')) return;
-      }
-      submitTest();
-    }
+// ── RETAKE ────────────────────────────────────────────────────
+function doRetake() {
+  ANSWERS = {};
+  showScr("scrLogin");
+  document.getElementById("fName").value = STUDENT;
+  document.getElementById("fPwd").value  = "";
+  document.getElementById("loginErr").style.display = "none";
+  fetchToppers("loginToppers");
+}
 
-    function autoSubmit() {
-      submitTest();
-    }
-
-    function submitTest() {
-      clearInterval(timerInterval);
-      var timeTaken = Math.floor((Date.now() - testStartTime) / 1000);
-
-      // Score
-      var correct = 0, wrong = 0, skipped = 0;
-      var scoresObj = {};
-      questions.forEach(function (q) {
-        var given = answers[q.id];
-        if (!given) { skipped++; scoresObj[q.id] = 'S'; }
-        else if (given === q.answer) { correct++; scoresObj[q.id] = 'C'; }
-        else { wrong++; scoresObj[q.id] = 'W'; }
-      });
-
-      var total = testConfig.totalMarks;
-      var pct = Math.round(correct / total * 100);
-
-      showScoreScreen(correct, wrong, skipped, pct, total, timeTaken);
-      sendResult(correct, pct, timeTaken, scoresObj);
-    }
-
-    // ============================================================
-    // SCORE SCREEN
-    // ============================================================
-    function showScoreScreen(correct, wrong, skipped, pct, total, timeTaken) {
-      showScreen('screen-score');
-
-      var emoji = pct >= 80 ? '🏆' : pct >= 60 ? '🎉' : pct >= 40 ? '😊' : '💪';
-      document.getElementById('score-emoji').textContent = emoji;
-      document.getElementById('score-title').textContent = pct >= 60 ? 'Well Done, ' + studentName + '!' : 'Keep Practising, ' + studentName + '!';
-      document.getElementById('score-subtitle').textContent = 'You scored ' + correct + ' out of ' + total + ' · ' + formatTime(timeTaken) + ' taken';
-      document.getElementById('score-pct').textContent = pct + '%';
-      document.getElementById('score-raw').textContent = correct + '/' + total;
-
-      // Animate circle
-      var turn = (pct / 100).toFixed(3);
-      document.getElementById('score-circle').style.setProperty('--pct', turn + 'turn');
-
-      document.getElementById('stat-correct').textContent = correct;
-      document.getElementById('stat-wrong').textContent = wrong;
-      document.getElementById('stat-skipped').textContent = skipped;
-
-      buildReview();
-    }
-
-    function formatTime(secs) {
-      var m = Math.floor(secs / 60), s = secs % 60;
-      return m + 'm ' + s + 's';
-    }
-
-    // ============================================================
-    // ANSWER REVIEW
-    // ============================================================
-    function buildReview() {
-      var html = '';
-      questions.forEach(function (q, i) {
-        var given = answers[q.id];
-        var isCorrect = given && given === q.answer;
-        var isSkipped = !given;
-        var cls = isSkipped ? 'skipped' : (isCorrect ? 'correct' : 'wrong');
-        var givenText = given ? given + '. ' + q.options[optionLabels.indexOf(given)] : '—';
-        var correctText = q.answer + '. ' + q.options[optionLabels.indexOf(q.answer)];
-
-        html += '<div class="review-card ' + cls + '">'
-          + '<div class="q-number">Q' + (i + 1) + ' · ' + (q.section || '') + '</div>'
-          + '<div class="review-q">' + q.text + '</div>'
-          + '<div class="review-answer"><span class="label ' + (isCorrect ? 'correct-label' : 'wrong-label') + '">Your answer:</span> ' + givenText + '</div>'
-          + '<div class="review-answer"><span class="label correct-label">Correct answer:</span> ' + correctText + '</div>'
-          + (q.explanation ? '<div class="review-explanation">💡 ' + q.explanation + '</div>' : '')
-          + '</div>';
-      });
-      document.getElementById('review-list').innerHTML = html;
-    }
-
-    // ============================================================
-    // SEND RESULT TO GOOGLE SHEETS
-    // ============================================================
-    function sendResult(correct, pct, timeTaken, scoresObj) {
-      var statusEl = document.getElementById('submit-status');
-      statusEl.textContent = '⏳ Saving result...';
-
-      var params = new URLSearchParams({
-        action: 'submit',
-        testId: testConfig.id,
-        name: studentName,
-        scores: JSON.stringify(scoresObj),
-        total: correct,
-        percent: pct,
-        timeTaken: timeTaken
-      });
-
-      fetch(SCRIPT_URL + '?' + params.toString())
-        .then(function (r) { return r.json(); })
-        .then(function () {
-          statusEl.textContent = '✅ Result saved! You will appear on the merit list.';
-        })
-        .catch(function () {
-          statusEl.textContent = '⚠️ Could not save result (check internet connection).';
-        });
-    }
-  </script>
+// ── HELPERS ───────────────────────────────────────────────────
+function showScr(id) {
+  document.querySelectorAll(".screen").forEach(function(s){ s.classList.remove("active"); });
+  document.getElementById(id).classList.add("active");
+  window.scrollTo(0, 0);
+}
+function showLoginErr(msg) {
+  var el = document.getElementById("loginErr");
+  el.textContent = msg;
+  el.style.display = "block";
+}
+function showErr(msg) {
+  document.getElementById("errMsg").textContent = msg;
+  showScr("scrError");
+}
+function esc(s) {
+  return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+</script>
 </body>
 </html>
