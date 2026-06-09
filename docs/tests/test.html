@@ -453,9 +453,13 @@ function doSubmit() {
     }
   });
 
-  var outOf  = CFG.totalMarks || qs.length;
-  var raw    = qs.reduce(function(a,q){ return a+(q.marks||1); }, 0);
-  var score  = Math.round((correct / qs.length) * outOf);
+  // Sum up marks for correct answers (each question has marks field, default 1)
+  var scored = 0;
+  qs.forEach(function(q, idx){
+    if (ANSWERS[idx] === q.answer) scored += (q.marks || 1);
+  });
+  var outOf  = CFG.totalMarks || qs.reduce(function(a,q){ return a+(q.marks||1); }, 0);
+  var score  = scored;
   var pct    = Math.round((score / outOf) * 100);
 
   // Grade
@@ -505,10 +509,15 @@ function doSubmit() {
   setTimeout(function(){ fetchToppers("resultToppers"); }, 1800);
 }
 
-// ── SAVE SCORE via POST ───────────────────────────────────────
+// ── SAVE SCORE ────────────────────────────────────────────────
+// Uses no-cors POST — Apps Script receives it but we can't read response
+// This is the correct pattern for GitHub Pages → Google Apps Script
 function saveScore(score, outOf, secScores) {
   var url = window.SCRIPT_URL;
-  if (!url || url === "PASTE_YOUR_APPS_SCRIPT_URL_HERE") return;
+  if (!url || url === "PASTE_YOUR_APPS_SCRIPT_URL_HERE") {
+    console.warn("SCRIPT_URL not set in config.js");
+    return;
+  }
 
   var payload = {
     testId:    TEST_ID,
@@ -520,14 +529,17 @@ function saveScore(score, outOf, secScores) {
     scores:    secScores
   };
 
+  // no-cors: bypasses CORS preflight, write succeeds, response opaque (unreadable)
   fetch(url, {
     method:  "POST",
+    mode:    "no-cors",
     headers: { "Content-Type":"application/json" },
     body:    JSON.stringify(payload)
   })
-  .then(function(r){ return r.json(); })
-  .then(function(res){
-    if (!res.success) console.warn("Score save failed:", res.error);
+  .then(function() {
+    console.log("Score submitted (no-cors)");
+    // Refresh toppers after short delay to pick up new entry
+    setTimeout(function(){ fetchToppers("resultToppers"); }, 3000);
   })
   .catch(function(err){ console.warn("Score save error:", err); });
 }
