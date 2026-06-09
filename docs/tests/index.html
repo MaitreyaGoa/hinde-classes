@@ -53,8 +53,11 @@
     /* ─── HERO ───────────────────────────────────────────── */
     .hero{background:#fff;padding:0 40px;overflow:hidden;}
     .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:flex-end;min-height:480px;}
-    @media(max-width:900px){.hero-inner{grid-template-columns:1fr;min-height:auto;}.hero-photo-col{display:flex;}}
-    .hero-content{padding:52px 0 36px;}
+    @media(max-width:900px){.hero-inner{grid-template-columns:1fr;min-height:auto;}}
+    .hero-content{padding:52px 0 36px;  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  }
     .hero-kicker{font-size:11px;font-weight:600;color:#86868b;text-transform:uppercase;letter-spacing:2px;margin-bottom:18px;}
     .hero-title{
       font-size:clamp(2.8rem,4.5vw,5rem);
@@ -117,13 +120,6 @@
     .class-sub{font-size:10px;color:#86868b;margin-top:2px;}
 
     /* ─── HERO PHOTO / LOGO ──────────────────────────────── */
-    .hero-photo-col{position:relative;display:flex;align-items:flex-end;justify-content:center;}
-    .hinde-wrap{position:relative;text-align:center;}
-    .hinde-img{height:420px;width:auto;display:block;margin:0 auto;object-fit:contain;filter:drop-shadow(0 16px 32px rgba(0,0,0,0.1));}
-    .hinde-nameplate{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:#fff;border-radius:12px;padding:12px 18px;box-shadow:0 4px 20px rgba(0,0,0,0.1);white-space:nowrap;text-align:center;min-width:220px;border:1px solid rgba(0,0,0,0.06);}
-    .hinde-name{font-size:14px;font-weight:700;color:#1d1d1f;letter-spacing:-0.2px;}
-    .hinde-role{font-size:11px;color:#86868b;margin-top:2px;}
-    .hc-tag{display:inline-flex;align-items:center;gap:4px;background:#f0feff;color:#0e7490;font-size:10px;font-weight:600;border-radius:5px;padding:2px 8px;margin-top:6px;border:1px solid rgba(14,116,144,0.15);}
 
     /* ─── DIVIDER ────────────────────────────────────────── */
     .divider{height:1px;background:rgba(0,0,0,0.07);}
@@ -451,73 +447,7 @@
     </div><!-- /hero-content -->
 
     <!-- HERO ILLUSTRATION COLUMN -->
-    <div class="hero-photo-col">
-      <div class="hinde-wrap">
-        <svg class="hinde-img" viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="heroGrad" cx="50%" cy="38%" r="58%">
-              <stop offset="0%" stop-color="#e8f4f8"/>
-              <stop offset="100%" stop-color="#f0feff"/>
-            </radialGradient>
-            <radialGradient id="planetGrad" cx="40%" cy="35%" r="60%">
-              <stop offset="0%" stop-color="#cfe8f0"/>
-              <stop offset="100%" stop-color="#0e7490"/>
-            </radialGradient>
-          </defs>
-          <!-- Background card -->
-          <rect width="300" height="380" fill="url(#heroGrad)" rx="22"/>
-
-          <!-- 4-sparkle stars like the logo -->
-          <g fill="#0e7490" opacity="0.55">
-            <!-- star top-left -->
-            <polygon points="68,68 71,78 81,78 73,84 76,94 68,88 60,94 63,84 55,78 65,78" transform="scale(0.55) translate(55,55)"/>
-            <!-- star top-right -->
-            <polygon points="220,48 222,55 229,55 224,59 226,66 220,62 214,66 216,59 211,55 218,55" transform="scale(0.7) translate(80,20)"/>
-          </g>
-          <!-- smaller 4-point sparkle -->
-          <g fill="#06b6d4" opacity="0.45">
-            <path d="M230 90 L232 96 L238 98 L232 100 L230 106 L228 100 L222 98 L228 96 Z"/>
-            <path d="M70 130 L72 136 L78 138 L72 140 L70 146 L68 140 L62 138 L68 136 Z"/>
-          </g>
-
-          <!-- Saturn planet body -->
-          <circle cx="150" cy="175" r="55" fill="url(#planetGrad)"/>
-          <!-- planet highlight -->
-          <ellipse cx="138" cy="158" rx="22" ry="16" fill="white" opacity="0.12"/>
-
-          <!-- Saturn ring - main -->
-          <ellipse cx="150" cy="185" rx="90" ry="26" fill="none" stroke="#0e7490" stroke-width="6" opacity="0.85"/>
-          <!-- Ring overlap front (hide back of ring behind planet) -->
-          <ellipse cx="150" cy="185" rx="90" ry="26" fill="none" stroke="#f0feff" stroke-width="3" opacity="0.3"/>
-          <!-- Moons on ring -->
-          <circle cx="72" cy="200" r="9" fill="#0e7490" opacity="0.75"/>
-          <circle cx="228" cy="200" r="9" fill="#0e7490" opacity="0.75"/>
-          <!-- Small satellite/moon top right -->
-          <circle cx="218" cy="132" r="16" fill="#0e7490" opacity="0.55"/>
-          <ellipse cx="218" cy="136" rx="28" ry="8" fill="none" stroke="#0e7490" stroke-width="2.5" opacity="0.6"/>
-
-          <!-- Book stack (pencil writing) matching screenshot -->
-          <rect x="65" y="285" width="170" height="22" rx="5" fill="#0e7490"/>
-          <rect x="56" y="264" width="188" height="22" rx="5" fill="#06b6d4"/>
-          <rect x="72" y="243" width="156" height="22" rx="5" fill="#22d3ee"/>
-
-          <!-- Pencil -->
-          <rect x="148" y="200" width="12" height="75" rx="3" fill="#f59e0b" transform="rotate(5 154 237)"/>
-          <polygon points="154,275 161,275 157.5,290" fill="#d97706" transform="rotate(5 154 275)"/>
-          <rect x="148" y="200" width="12" height="10" rx="2" fill="#fbbf24" transform="rotate(5 154 205)"/>
-
-          <!-- Bottom label -->
-          <rect x="70" y="320" width="160" height="45" rx="10" fill="white" opacity="0.9"/>
-          <text x="150" y="339" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#0e7490" font-weight="700">Hinde Classes</text>
-          <text x="150" y="354" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#86868b">Empowering Futures Through Learning</text>
-        </svg>
-        <div class="hinde-nameplate">
-          <div class="hinde-name">Maitreya Hinde</div>
-          <div class="hinde-role">Academic Coordinator · Bicholim, Goa</div>
-          <div class="hc-tag">🎓 Hinde Classes</div>
-        </div>
-      </div>
-    </div>
+    
 
   </div><!-- /hero-inner -->
 </section><!-- /hero -->
