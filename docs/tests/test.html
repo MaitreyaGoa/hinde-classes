@@ -273,54 +273,79 @@ window.addEventListener("DOMContentLoaded", function() {
 function loadQFile(cb) {
   if (!CFG.questionsFile) { showErr("questionsFile not set in config.js for: " + TEST_ID); return; }
 
-  // Clear any previous questions variable
-  window.questions = undefined;
+  // Reset global questions variable before loading new file
+  window.questions  = null;
+  window._hcLoaded  = null;
 
-  var s = document.createElement("script");
-  s.src = CFG.questionsFile + "?v=" + Date.now(); // cache-bust
+  var s  = document.createElement("script");
+  var ts = "?v=" + Date.now();  // force fresh load, no cache
+  s.src  = CFG.questionsFile + ts;
+
   s.onload = function() {
     var idUC = TEST_ID.replace(/-/g,"_");
 
-    // Format B: TEST_c7mat1 = { questions:[...], totalMarks, duration }
-    var wrappers = ["TEST_"+idUC, "TEST_"+TEST_ID, "QUESTIONS_"+idUC, idUC, TEST_ID];
-    for (var i = 0; i < wrappers.length; i++) {
-      var v = window[wrappers[i]];
-      if (v && v.questions) { QDATA = v; break; }
+    // Format B: TEST_c7mat1 = { questions:[...] }
+    var keys = ["TEST_"+idUC, "TEST_"+TEST_ID, "QUESTIONS_"+idUC, idUC, TEST_ID];
+    for (var i = 0; i < keys.length; i++) {
+      var v = window[keys[i]];
+      if (v && Array.isArray(v.questions) && v.questions.length) {
+        QDATA = v;
+        break;
+      }
     }
 
-    // Format A (existing repos): var questions = [...]  answer:"A"/"B"/"C"/"D"
-    if (!QDATA && Array.isArray(window.questions) && window.questions.length) {
-      // Normalise Format A → Format B
-      var qs = window.questions.map(function(q) {
-        var ansIdx = {"A":0,"B":1,"C":2,"D":3}[String(q.answer).toUpperCase()];
-        if (ansIdx === undefined) ansIdx = parseInt(q.answer) || 0;
-        return {
-          id:          q.id || "",
-          text:        q.text || q.question || "",
-          options:     q.options || [],
-          answer:      ansIdx,
-          explanation: q.explanation || q.explain || "",
-          marks:       q.marks || 1,
-          subject:     q.section || q.subject || CFG.subject || ""
-        };
-      });
-      QDATA = {
-        id:          TEST_ID,
-        title:       CFG.title,
-        questions:   qs,
-        totalMarks:  CFG.totalMarks || qs.length,
-        duration:    CFG.duration   || 25
-      };
-    }
-
+    // Format A: var questions = [ {answer:"A"/"B"/"C"/"D"} ]
     if (!QDATA) {
-      showErr("Could not load questions from " + CFG.questionsFile
-        + ". File loaded but no recognisable data found.");
+      var raw = window.questions;
+      if (!raw || !raw.length) {
+        // Last resort: scan all window keys for an array with question objects
+        Object.keys(window).forEach(function(k) {
+          if (!QDATA && Array.isArray(window[k]) && window[k].length > 0
+              && window[k][0] && window[k][0].options) {
+            raw = window[k];
+          }
+        });
+      }
+      if (raw && raw.length) {
+        var qs = raw.map(function(q, i) {
+          var letterMap = {"A":0,"B":1,"C":2,"D":3,"a":0,"b":1,"c":2,"d":3};
+          var ans = q.answer;
+          var ansIdx;
+          if (typeof ans === "number")          ansIdx = ans;          // already 0-3
+          else if (letterMap[ans] !== undefined) ansIdx = letterMap[ans]; // "A"→0
+          else                                  ansIdx = 0;
+          return {
+            id:          q.id    || ("q"+(i+1)),
+            text:        q.text  || q.question || "",
+            options:     q.options || [],
+            answer:      ansIdx,
+            explanation: q.explanation || q.explain || "",
+            marks:       parseInt(q.marks) || 1,
+            subject:     q.section || q.subject || CFG.subject || "General"
+          };
+        });
+        QDATA = {
+          id:         TEST_ID,
+          title:      CFG.title,
+          questions:  qs,
+          totalMarks: CFG.totalMarks || qs.reduce(function(a,q){ return a+(q.marks||1); }, 0),
+          duration:   CFG.duration   || 25
+        };
+      }
+    }
+
+    if (!QDATA || !QDATA.questions || !QDATA.questions.length) {
+      showErr("No questions found in: " + CFG.questionsFile);
       return;
     }
+
+    console.log("Loaded", QDATA.questions.length, "questions. First answer index:", QDATA.questions[0].answer);
     if (cb) cb();
   };
-  s.onerror = function() { showErr("File not found: " + CFG.questionsFile); };
+
+  s.onerror = function() {
+    showErr("Could not load question file: " + CFG.questionsFile);
+  };
   document.head.appendChild(s);
 }
 
@@ -510,38 +535,54 @@ function doSubmit() {
 }
 
 // ── SAVE SCORE ────────────────────────────────────────────────
-// Uses no-cors POST — Apps Script receives it but we can't read response
-// This is the correct pattern for GitHub Pages → Google Apps Script
+// Uses JSONP (script tag) pattern — the only reliable method for
+// static GitHub Pages → Google Apps Script without CORS issues.
+// Apps Script doGet() receives all params via e.parameter.
 function saveScore(score, outOf, secScores) {
   var url = window.SCRIPT_URL;
   if (!url || url === "PASTE_YOUR_APPS_SCRIPT_URL_HERE") {
-    console.warn("SCRIPT_URL not set in config.js");
+    console.warn("SCRIPT_URL not configured in config.js");
     return;
   }
 
-  var payload = {
-    testId:    TEST_ID,
-    testTitle: CFG.title,
-    name:      STUDENT,
-    timestamp: new Date().toLocaleString("en-IN", { timeZone:"Asia/Kolkata" }),
-    total:     score,
-    outOf:     outOf,
-    scores:    secScores
+  var ts  = new Date().toLocaleString("en-IN", { timeZone:"Asia/Kolkata" });
+  var cb  = "hc_save_" + Date.now();
+
+  // Build callback so we know when it completed
+  window[cb] = function(res) {
+    delete window[cb];
+    var tag = document.getElementById(cb);
+    if (tag) tag.remove();
+    console.log("Score saved:", res);
+    // Refresh toppers 2s after save
+    setTimeout(function(){ fetchToppers("resultToppers"); }, 2000);
   };
 
-  // no-cors: bypasses CORS preflight, write succeeds, response opaque (unreadable)
-  fetch(url, {
-    method:  "POST",
-    mode:    "no-cors",
-    headers: { "Content-Type":"application/json" },
-    body:    JSON.stringify(payload)
-  })
-  .then(function() {
-    console.log("Score submitted (no-cors)");
-    // Refresh toppers after short delay to pick up new entry
-    setTimeout(function(){ fetchToppers("resultToppers"); }, 3000);
-  })
-  .catch(function(err){ console.warn("Score save error:", err); });
+  // Encode section scores as a flat string: "Maths:8|Science:6"
+  var secStr = Object.keys(secScores).map(function(k){
+    return encodeURIComponent(k) + ":" + secScores[k];
+  }).join("|");
+
+  var src = url
+    + "?action=write"
+    + "&testId="    + encodeURIComponent(TEST_ID)
+    + "&testTitle=" + encodeURIComponent(CFG.title)
+    + "&name="      + encodeURIComponent(STUDENT)
+    + "&timestamp=" + encodeURIComponent(ts)
+    + "&total="     + score
+    + "&outOf="     + outOf
+    + "&scores="    + encodeURIComponent(secStr)
+    + "&callback="  + cb;
+
+  var tag = document.createElement("script");
+  tag.id  = cb;
+  tag.src = src;
+  tag.onerror = function() {
+    console.warn("Save script tag failed");
+    delete window[cb];
+    tag.remove();
+  };
+  document.head.appendChild(tag);
 }
 
 // ── TOPPERS via GET ───────────────────────────────────────────
