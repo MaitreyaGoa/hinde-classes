@@ -1,52 +1,52 @@
 // home.js — Hinde Classes Portal
-// Each standard = separate section, subjects = filter tabs inside
-// Load order in index.html: <script src="config.js"></script> <script src="home.js"></script>
+// Each standard = its own separate section with subject filter tabs
+// Load order: <script src="config.js"></script> <script src="home.js"></script>
 
 document.addEventListener("DOMContentLoaded", function () {
   renderTestsGrid();
 });
 
-// ══ STANDARD CONFIG ═══════════════════════════════════════
+// ══ STANDARDS — one entry per class ═══════════════════════
 var STANDARDS = [
   {
-    key: "std5", section: "c56", classNum: "5",
+    key: "std5",  section: "std5",  classNum: "5",
     label: "Standard 5", icon: "📓",
-    subjects: ["Maths","Science","English"]
+    subjects: ["Maths", "Science", "English"]
   },
   {
-    key: "std6", section: "c56", classNum: "6",
+    key: "std6",  section: "std6",  classNum: "6",
     label: "Standard 6", icon: "📔",
-    subjects: ["Maths","Science","English"]
+    subjects: ["Maths", "Science", "English"]
   },
   {
-    key: "std7", section: "c78", classNum: "7",
+    key: "std7",  section: "std7",  classNum: "7",
     label: "Standard 7", icon: "📒",
-    subjects: ["Maths","Science","English","Social Science"]
+    subjects: ["Maths", "Science", "English", "Social Science"]
   },
   {
-    key: "std8", section: "c78", classNum: "8",
+    key: "std8",  section: "std8",  classNum: "8",
     label: "Standard 8", icon: "📙",
-    subjects: ["Maths","Science","English","Social Science"]
+    subjects: ["Maths", "Science", "English", "Social Science"]
   },
   {
-    key: "std9", section: "c910", classNum: "9",
+    key: "std9",  section: "std9",  classNum: "9",
     label: "Standard 9", icon: "📗",
-    subjects: ["Maths","Science","English","Social Science"]
+    subjects: ["Maths", "Science", "English", "Social Science"]
   },
   {
-    key: "std10", section: "c910", classNum: "10",
+    key: "std10", section: "std10", classNum: "10",
     label: "Standard 10", icon: "📘",
-    subjects: ["Maths","Science","English","Social Science"]
+    subjects: ["Maths", "Science", "English", "Social Science"]
   },
   {
-    key: "std11", section: "c1112", classNum: "11",
+    key: "std11", section: "std11", classNum: "11",
     label: "Standard 11", icon: "📕",
-    subjects: ["Maths","Physics","Chemistry","Biology","English"]
+    subjects: ["Maths", "Physics", "Chemistry", "Biology", "English"]
   },
   {
-    key: "std12", section: "c1112", classNum: "12",
+    key: "std12", section: "std12", classNum: "12",
     label: "Standard 12", icon: "📕",
-    subjects: ["Maths","Physics","Chemistry","Biology","English"]
+    subjects: ["Maths", "Physics", "Chemistry", "Biology", "English"]
   }
 ];
 
@@ -82,10 +82,9 @@ function appendDailyTests(grid) {
 
   tests.sort(function (a, b) { return b.id > a.id ? 1 : -1; });
 
-  var dateMap = {};
-  var dateOrder = [];
+  var dateMap = {}, dateOrder = [];
   tests.forEach(function (t) {
-    var m = t.id.match(/hc_(\d{4})(\d{2})(\d{2})/);
+    var m = t.id.match(/(\d{4})(\d{2})(\d{2})/);
     var key = m ? (m[1] + "-" + m[2] + "-" + m[3]) : "other";
     if (!dateMap[key]) { dateMap[key] = []; dateOrder.push(key); }
     dateMap[key].push(t);
@@ -128,11 +127,13 @@ function showDailyTab(date, btn) {
   btn.classList.add("active");
 }
 
-// ══ STANDARD SECTION ══════════════════════════════════════
+// ══ STANDARD SECTION (one per class) ══════════════════════
 function appendStandardSection(grid, std) {
+  // Match by section key OR by class number (backward compat)
   var allTests = getAllTests().filter(function (t) {
-    return t.section === std.section
-      && (t.class === std.classNum || t.class === "all");
+    return t.section === std.section ||
+           (t.section === std.section && t.class === std.classNum) ||
+           (t.class === std.classNum && !isCrossSection(t.section));
   });
 
   appendSectionHeader(grid, std.icon, std.label, std.subjects.join(" · "));
@@ -174,6 +175,11 @@ function appendStandardSection(grid, std) {
   grid.appendChild(wrap);
 }
 
+// Returns true if a section belongs to a special category (not a class section)
+function isCrossSection(sec) {
+  return ["daily","olm","olsci","scholar"].indexOf(sec) !== -1;
+}
+
 function showStdTab(uid, subj, btn) {
   document.querySelectorAll("[id^='panel_" + uid + "_']")
     .forEach(function(p){ p.classList.add("hc-hidden"); });
@@ -184,7 +190,7 @@ function showStdTab(uid, subj, btn) {
   btn.classList.add("active");
 }
 
-// ══ OLYMPIAD SECTION ══════════════════════════════════════
+// ══ OLYMPIAD ══════════════════════════════════════════════
 function appendOlympiadSection(grid) {
   var mathTests = getAllTests().filter(function(t){ return t.section==="olm"; });
   var sciTests  = getAllTests().filter(function(t){ return t.section==="olsci"; });
@@ -224,7 +230,7 @@ function showOlmTab(subj, btn) {
   btn.classList.add("active");
 }
 
-// ══ SCHOLARSHIP SECTION ═══════════════════════════════════
+// ══ SCHOLARSHIP ═══════════════════════════════════════════
 function appendScholarshipSection(grid) {
   var tests = getAllTests().filter(function(t){ return t.section==="scholar"; });
   if (!tests.length) return;
@@ -283,7 +289,7 @@ function buildTestRow(test) {
   if (test.class && test.class !== "all") meta.push("Std " + test.class);
 
   var btn = isLive
-    ? '<button class="hc-btn-start" onclick="goToTest('' + test.id + '')">Start →</button>'
+    ? '<button class="hc-btn-start" onclick="goToTest(\'' + test.id + '\')">Start →</button>'
     : '<button class="hc-btn-soon">Soon</button>';
 
   return '<div class="hc-row">'
@@ -311,20 +317,24 @@ function appendSectionHeader(grid, icon, title, subtitle) {
   grid.appendChild(hdr);
 }
 
-// ══ NAVIGATE ══════════════════════════════════════════════
+// ══ NAVIGATE WITH STUDENT NAME ════════════════════════════
 function goToTest(testId) {
   var test = getAllTests().find(function(t){ return t.id===testId; });
-  if (!test) { window.location.href="test.html?id="+testId; return; }
-  if (!test.live) { return; } // safety: shouldn't reach here but guard anyway
+  if (!test || !test.live) return;
+
+  var name = prompt("👤 Enter your full name to begin:\n" + test.title);
+  if (!name || !name.trim()) return;
+
   if (test.password && test.password !== "") {
-    var entered = prompt("🔒 Enter password to start:\n" + test.title);
-    if (entered === null) return;
-    if (entered.trim() !== test.password) {
-      alert("❌ Wrong password. Please try again.");
+    var pwd = prompt("🔒 Enter test password:");
+    if (!pwd) return;
+    if (pwd.trim() !== test.password) {
+      alert("❌ Wrong password. Please check with your teacher.");
       return;
     }
   }
-  window.location.href = "test.html?id=" + testId;
+
+  window.location.href = "test.html?id=" + testId + "&name=" + encodeURIComponent(name.trim());
 }
 
 // ══ UTILS ═════════════════════════════════════════════════
