@@ -272,9 +272,26 @@ function loadQFile(cb) {
   // questionsFile is relative to the tests/ folder (e.g. "questions/c7mat1.js")
   s.src = CFG.questionsFile;
   s.onload = function() {
-    var vn = "TEST_" + TEST_ID.replace(/-/g,"_");
-    QDATA = window[vn];
-    if (!QDATA) { showErr("Variable " + vn + " not found in " + CFG.questionsFile); return; }
+    // Try multiple variable name conventions
+    var id   = TEST_ID;
+    var idUC = TEST_ID.replace(/-/g,"_");
+    QDATA = window["TEST_" + idUC]        // TEST_c7mat1
+         || window["TEST_" + id]          // TEST_c7mat1 (same)
+         || window["QUESTIONS_" + idUC]   // QUESTIONS_c7mat1
+         || window["quiz_" + idUC]        // quiz_c7mat1
+         || window[idUC]                  // c7mat1
+         || window[id]                    // c7mat1
+         || null;
+
+    if (!QDATA) {
+      // List all window keys that look like test data for debugging
+      var found = Object.keys(window).filter(function(k){
+        return typeof window[k]==="object" && window[k] && window[k].questions;
+      });
+      var hint = found.length ? " (found: " + found.join(", ") + ")" : "";
+      showErr("Question data not found in " + CFG.questionsFile + hint + ". Expected variable: TEST_" + idUC);
+      return;
+    }
     if (cb) cb();
   };
   s.onerror = function() { showErr("Cannot load: " + CFG.questionsFile); };
