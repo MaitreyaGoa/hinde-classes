@@ -266,35 +266,60 @@ window.addEventListener("DOMContentLoaded", function() {
 });
 
 // ── LOAD QUESTION FILE ────────────────────────────────────────
+// Supports two formats:
+//   Format A (existing): var questions = [{id, text, options, answer:"A", ...}]
+//   Format B (new):      var TEST_c7mat1 = {questions:[{..., answer:0}], totalMarks, duration}
 function loadQFile(cb) {
   if (!CFG.questionsFile) { showErr("questionsFile not set in config.js for: " + TEST_ID); return; }
+
+  // Clear any previous questions variable
+  window.questions = undefined;
+
   var s = document.createElement("script");
-  // questionsFile is relative to the tests/ folder (e.g. "questions/c7mat1.js")
-  s.src = CFG.questionsFile;
+  s.src = CFG.questionsFile + "?v=" + Date.now(); // cache-bust
   s.onload = function() {
-    // Try multiple variable name conventions
-    var id   = TEST_ID;
     var idUC = TEST_ID.replace(/-/g,"_");
-    QDATA = window["TEST_" + idUC]        // TEST_c7mat1
-         || window["TEST_" + id]          // TEST_c7mat1 (same)
-         || window["QUESTIONS_" + idUC]   // QUESTIONS_c7mat1
-         || window["quiz_" + idUC]        // quiz_c7mat1
-         || window[idUC]                  // c7mat1
-         || window[id]                    // c7mat1
-         || null;
+
+    // Format B: TEST_c7mat1 = { questions:[...], totalMarks, duration }
+    var wrappers = ["TEST_"+idUC, "TEST_"+TEST_ID, "QUESTIONS_"+idUC, idUC, TEST_ID];
+    for (var i = 0; i < wrappers.length; i++) {
+      var v = window[wrappers[i]];
+      if (v && v.questions) { QDATA = v; break; }
+    }
+
+    // Format A (existing repos): var questions = [...]  answer:"A"/"B"/"C"/"D"
+    if (!QDATA && Array.isArray(window.questions) && window.questions.length) {
+      // Normalise Format A → Format B
+      var qs = window.questions.map(function(q) {
+        var ansIdx = {"A":0,"B":1,"C":2,"D":3}[String(q.answer).toUpperCase()];
+        if (ansIdx === undefined) ansIdx = parseInt(q.answer) || 0;
+        return {
+          id:          q.id || "",
+          text:        q.text || q.question || "",
+          options:     q.options || [],
+          answer:      ansIdx,
+          explanation: q.explanation || q.explain || "",
+          marks:       q.marks || 1,
+          subject:     q.section || q.subject || CFG.subject || ""
+        };
+      });
+      QDATA = {
+        id:          TEST_ID,
+        title:       CFG.title,
+        questions:   qs,
+        totalMarks:  CFG.totalMarks || qs.length,
+        duration:    CFG.duration   || 25
+      };
+    }
 
     if (!QDATA) {
-      // List all window keys that look like test data for debugging
-      var found = Object.keys(window).filter(function(k){
-        return typeof window[k]==="object" && window[k] && window[k].questions;
-      });
-      var hint = found.length ? " (found: " + found.join(", ") + ")" : "";
-      showErr("Question data not found in " + CFG.questionsFile + hint + ". Expected variable: TEST_" + idUC);
+      showErr("Could not load questions from " + CFG.questionsFile
+        + ". File loaded but no recognisable data found.");
       return;
     }
     if (cb) cb();
   };
-  s.onerror = function() { showErr("Cannot load: " + CFG.questionsFile); };
+  s.onerror = function() { showErr("File not found: " + CFG.questionsFile); };
   document.head.appendChild(s);
 }
 
