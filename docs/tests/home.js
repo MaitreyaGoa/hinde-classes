@@ -165,22 +165,22 @@ function appendScholarshipSection(grid) {
   var tests = getAllTests().filter(function(t){ return t.section==="scholar"; });
   if (!tests.length) return;
 
-  appendSectionHeader(grid, "🏅", "Scholarship & NTSE", "State Scholarship · NTSE · Class 5–10", "sec-scholar");
+  appendSectionHeader(grid, "🏅", "Scholarship & NTSE", "NTSE MAT Mock Test · State Scholarship · Class 5–10", "sec-scholar");
   var wrap = makePanelWrap();
-  var classes = ["5","6","7","8","9","10"];
-  var icons   = {"5":"📓","6":"📔","7":"📒","8":"📙","9":"📗","10":"📘"};
+  var classes = ["ntse","5","6","7","8","9","10"];
+  var icons   = {"ntse":"🏆","5":"📓","6":"📔","7":"📒","8":"📙","9":"📗","10":"📘"};
 
   var tabsHtml = '<div class="hc-tabs" id="scTabs">';
   classes.forEach(function(cls,i){
     tabsHtml += '<button class="hc-tab'+(i===0?" active":"")
-      +'" onclick="showScTab(\''+cls+'\',this)">'+icons[cls]+' Class '+cls+'</button>';
+      +'" onclick="showScTab(\''+cls+'\',this)">'+(cls==='ntse'?'🏆 NTSE':icons[cls]+' Class '+cls)+'</button>';
   });
   tabsHtml += '</div>';
 
   var panelsHtml = "";
   classes.forEach(function(cls,i){
     var clsTests = tests.filter(function(t){ return t.class===cls; });
-    var rows = clsTests.length ? clsTests.map(buildTestRow).join("") : '<p class="hc-empty">Class '+cls+' coming soon!</p>';
+    var rows = clsTests.length ? clsTests.map(buildTestRow).join("") : '<p class="hc-empty">'+(cls==="ntse"?"NTSE":"Class "+cls)+" coming soon!</p>';
     panelsHtml += '<div id="sc_'+cls+'" class="hc-panel'+(i>0?" hc-hidden":"")+'"><div class="hc-list">'+rows+'</div></div>';
   });
 
@@ -189,7 +189,7 @@ function appendScholarshipSection(grid) {
 }
 
 function showScTab(cls, btn) {
-  ["5","6","7","8","9","10"].forEach(function(c){ var p=document.getElementById("sc_"+c); if(p) p.classList.add("hc-hidden"); });
+  ["ntse","5","6","7","8","9","10"].forEach(function(c){ var p=document.getElementById("sc_"+c); if(p) p.classList.add("hc-hidden"); });
   document.getElementById("scTabs").querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
   var p=document.getElementById("sc_"+cls); if(p) p.classList.remove("hc-hidden");
   btn.classList.add("active");
