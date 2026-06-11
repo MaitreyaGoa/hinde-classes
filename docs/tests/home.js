@@ -180,7 +180,7 @@ function appendScholarshipSection(grid) {
   var panelsHtml = "";
   classes.forEach(function(cls,i){
     var clsTests = tests.filter(function(t){ return t.class===cls; });
-    var rows = clsTests.length ? clsTests.map(buildTestRow).join("") : '<p class="hc-empty">'+(cls==="ntse"?"NTSE":"Class "+cls)+" coming soon!</p>';
+    var rows = clsTests.length ? clsTests.map(buildTestRow).join("") : '<p class="hc-empty">'+(cls==="ntse"?"NTSE":"Class "+cls)+' coming soon!</p>';
     panelsHtml += '<div id="sc_'+cls+'" class="hc-panel'+(i>0?" hc-hidden":"")+'"><div class="hc-list">'+rows+'</div></div>';
   });
 
