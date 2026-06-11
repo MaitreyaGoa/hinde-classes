@@ -455,9 +455,19 @@ var ALL_TESTS = [
     questions: 50,     duration: 60,  password: "nts003",
     live:          false,       totalMarks: 50, questionsFile: "questions/nts003.js",
     sections: { "Maths": 20, "Science": 20, "GK": 10 }
+  },
+
+  // ── NTSE MAT MOCK TEST ──────────────────────────────────
+  {
+    id: "ntse_mat1",   title: "NTSE MAT Mock Test 1 — Advanced",
+    subject: "MAT",    class: "ntse", section: "scholar",
+    questions: 100,    duration: 120, password: "ntsemat1",
+    live:          true,        totalMarks: 100,
+    questionsFile: "questions/scholar_ntse_mat1.js",
+    sections: { "Mental Ability Test": 100 }
   }
 
 ];
 // ============================================================
-//  END OF CONFIG  —  Total: 56 tests across 12 sections
+//  END OF CONFIG  —  Total: 57 tests across 12 sections
 // ============================================================
