@@ -15,6 +15,7 @@
 //    olm     → Maths Olympiad
 //    olsci   → Science Olympiad
 //    scholar → Scholarship & NTSE
+//    mat     → MAT (Mental Ability Test) Topic Tests
 //
 //  live: true  → Start button visible
 //  live: false → "Coming Soon"
@@ -215,9 +216,16 @@ var ALL_TESTS = [
   {
     id: "c10sci1",     title: "Class 10 Science — Chemical Reactions",
     subject: "Science", class: "10", section: "std10",
-    questions: 25,     duration: 30,  password: "c10sci1",
+    questions: 25,     duration: 30,  password: "c10sci1old",
     live:          false,       totalMarks: 25, questionsFile: "questions/c10sci1.js",
     sections: { "Science": 25 }
+  },
+  {
+    id: "c10sci_cer1", title: "Class 10 Science — Chemical Reactions",
+    subject: "Science", class: "10", section: "std10",
+    questions: 20,     duration: 25,  password: "c10sci1",
+    live: true,        totalMarks: 20, questionsFile: "questions/c10sci_cer1.js",
+    sections: { "Science": 20 }
   },
   {
     id: "c10sci2",     title: "Class 10 Science — Life Processes",
@@ -268,15 +276,7 @@ var ALL_TESTS = [
     live:          false,       totalMarks: 40, questionsFile: "questions/sp10b02.js",
     sections: { "Physics": 14, "Chemistry": 14, "Biology": 12 }
   },
-{
-  id: "c10sci_cer1", title: "Class 10 Science — Chemical Reactions",
-  subject: "Science", class: "10", section: "std10",
-  questions: 20, duration: 25, password: "c10sci1",
-  live: true, totalMarks: 20,
-  questionsFile: "questions/c10sci_cer1.js",
-  sections: { "Science": 20 }
-},
-  
+
   // ══════════════════════════════════════════════════════════
   //  📕  STANDARD 11  |  section: "std11"
   // ══════════════════════════════════════════════════════════
@@ -473,9 +473,216 @@ var ALL_TESTS = [
     live:          true,        totalMarks: 100,
     questionsFile: "questions/scholar_ntse_mat1.js",
     sections: { "Mental Ability Test": 100 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  🧠  MAT TOPIC TESTS  |  section: "mat"
+  //  Mental Ability Test — Topic-wise practice
+  //  Based on Dr. Shetye Academic Programme LR Notes (Day 1–28)
+  //  ID range: 9001–9249 (10 IDs per topic)
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "mat_t01",  title: "MAT — Series Completion",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt01",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t01_series_completion.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t02",  title: "MAT — Analogy",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt02",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t02_analogy.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t03",  title: "MAT — Classification",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt03",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t03_classification.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t04",  title: "MAT — Alphabet Test",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt04",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t04_alphabet_test.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t05",  title: "MAT — Coding-Decoding Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt05",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t05_coding_decoding_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t06",  title: "MAT — Coding-Decoding Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt06",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t06_coding_decoding_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t07",  title: "MAT — Direction Sense Test",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt07",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t07_direction_sense.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t08",  title: "MAT — Blood Relation Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt08",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t08_blood_relation_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t09",  title: "MAT — Blood Relation Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt09",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t09_blood_relation_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t10",  title: "MAT — Mathematical Operations Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt10",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t10_mathematical_ops_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t11",  title: "MAT — Mathematical Operations Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt11",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t11_mathematical_ops_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t12",  title: "MAT — Ranking & Ordering Test",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt12",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t12_ranking_ordering.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t13",  title: "MAT — Puzzle Test",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt13",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t13_puzzle_test.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t14",  title: "MAT — Logical Venn Diagram Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt14",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t14_venn_diagram_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t15",  title: "MAT — Logical Venn Diagram Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt15",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t15_venn_diagram_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t16",  title: "MAT — Arithmetical Reasoning",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt16",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t16_arithmetical_reasoning.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t17",  title: "MAT — Non-Verbal Reasoning Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt17",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t17_non_verbal_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t18",  title: "MAT — Non-Verbal Reasoning Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt18",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t18_non_verbal_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t19",  title: "MAT — Non-Verbal Reasoning Part 3",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt19",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t19_non_verbal_3.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t20",  title: "MAT — Figure Partition & Counting",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt20",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t20_figure_partition.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t21",  title: "MAT — Mirror Image & Water Image",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt21",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t21_mirror_water_image.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t22",  title: "MAT — Paper Cutting & Folding",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt22",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t22_paper_cutting_folding.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t23",  title: "MAT — Cube and Dice Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt23",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t23_cube_dice_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t24",  title: "MAT — Cube and Dice Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt24",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t24_cube_dice_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t25",  title: "MAT — Dot Situation",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt25",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t25_dot_situation.js",
+    sections: { "MAT": 10 }
   }
 
 ];
 // ============================================================
-//  END OF CONFIG  —  Total: 57 tests across 12 sections
+//  END OF CONFIG  —  Total: 82 tests across 13 sections
 // ============================================================
