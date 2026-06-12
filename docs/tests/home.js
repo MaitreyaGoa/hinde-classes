@@ -204,14 +204,18 @@ function appendMATSection(grid) {
   appendSectionHeader(grid, "🧠", "MAT Topic Tests", "Mental Ability Test · Topic-wise practice · NTSE / Olympiad prep", "sec-mat");
   var wrap = makePanelWrap();
 
-  // Group tests into 5 tabs of ~5 topics each
+  // Tabs use ID PREFIX matching — any mat_t01x, mat_t02 etc. auto-route correctly
   var tabGroups = [
-    { key: "verbal1",    label: "📝 Verbal Part 1",    ids: ["mat_t01","mat_t02","mat_t03","mat_t04","mat_t05"] },
-    { key: "verbal2",    label: "📝 Verbal Part 2",    ids: ["mat_t06","mat_t07","mat_t08","mat_t09","mat_t10"] },
-    { key: "verbal3",    label: "📝 Verbal Part 3",    ids: ["mat_t11","mat_t12","mat_t13","mat_t14","mat_t15"] },
-    { key: "verbal4",    label: "📝 Verbal Part 4",    ids: ["mat_t16"] },
-    { key: "nonverbal",  label: "🔷 Non-Verbal",       ids: ["mat_t17","mat_t18","mat_t19","mat_t20","mat_t21","mat_t22","mat_t23","mat_t24","mat_t25"] }
+    { key: "verbal1",   label: "📝 Verbal Part 1",   prefixes: ["mat_t01","mat_t02","mat_t03","mat_t04","mat_t05"] },
+    { key: "verbal2",   label: "📝 Verbal Part 2",   prefixes: ["mat_t06","mat_t07","mat_t08","mat_t09","mat_t10"] },
+    { key: "verbal3",   label: "📝 Verbal Part 3",   prefixes: ["mat_t11","mat_t12","mat_t13","mat_t14","mat_t15"] },
+    { key: "verbal4",   label: "📝 Verbal Part 4",   prefixes: ["mat_t16"] },
+    { key: "nonverbal", label: "🔷 Non-Verbal",      prefixes: ["mat_t17","mat_t18","mat_t19","mat_t20","mat_t21","mat_t22","mat_t23","mat_t24","mat_t25"] }
   ];
+
+  function testMatchesGroup(t, grp) {
+    return grp.prefixes.some(function(p){ return t.id === p || t.id.indexOf(p) === 0; });
+  }
 
   var tabsHtml = '<div class="hc-tabs" id="matTabs">';
   tabGroups.forEach(function(grp, i){
@@ -222,7 +226,7 @@ function appendMATSection(grid) {
 
   var panelsHtml = "";
   tabGroups.forEach(function(grp, i){
-    var grpTests = tests.filter(function(t){ return grp.ids.indexOf(t.id) !== -1; });
+    var grpTests = tests.filter(function(t){ return testMatchesGroup(t, grp); });
     var rows = grpTests.length ? grpTests.map(buildTestRow).join("") : '<p class="hc-empty">Coming soon!</p>';
     panelsHtml += '<div id="mat_'+grp.key+'" class="hc-panel'+(i>0?" hc-hidden":"")+'"><div class="hc-list">'+rows+'</div></div>';
   });
