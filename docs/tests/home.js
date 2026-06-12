@@ -31,6 +31,7 @@ function renderTestsGrid() {
   STANDARDS.forEach(function(std){ appendStandardSection(grid, std); });
   appendOlympiadSection(grid);
   appendScholarshipSection(grid);
+  appendMATSection(grid);
 }
 
 // ══ DAILY QUIZ ════════════════════════════════════════════════
@@ -192,6 +193,48 @@ function showScTab(cls, btn) {
   ["ntse","5","6","7","8","9","10"].forEach(function(c){ var p=document.getElementById("sc_"+c); if(p) p.classList.add("hc-hidden"); });
   document.getElementById("scTabs").querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
   var p=document.getElementById("sc_"+cls); if(p) p.classList.remove("hc-hidden");
+  btn.classList.add("active");
+}
+
+// ══ MAT TOPIC TESTS ═══════════════════════════════════════════
+function appendMATSection(grid) {
+  var tests = getAllTests().filter(function(t){ return t.section==="mat"; });
+  if (!tests.length) return;
+
+  appendSectionHeader(grid, "🧠", "MAT Topic Tests", "Mental Ability Test · Topic-wise practice · NTSE / Olympiad prep", "sec-mat");
+  var wrap = makePanelWrap();
+
+  // Group tests into 5 tabs of ~5 topics each
+  var tabGroups = [
+    { key: "verbal1",    label: "📝 Verbal Part 1",    ids: ["mat_t01","mat_t02","mat_t03","mat_t04","mat_t05"] },
+    { key: "verbal2",    label: "📝 Verbal Part 2",    ids: ["mat_t06","mat_t07","mat_t08","mat_t09","mat_t10"] },
+    { key: "verbal3",    label: "📝 Verbal Part 3",    ids: ["mat_t11","mat_t12","mat_t13","mat_t14","mat_t15"] },
+    { key: "verbal4",    label: "📝 Verbal Part 4",    ids: ["mat_t16"] },
+    { key: "nonverbal",  label: "🔷 Non-Verbal",       ids: ["mat_t17","mat_t18","mat_t19","mat_t20","mat_t21","mat_t22","mat_t23","mat_t24","mat_t25"] }
+  ];
+
+  var tabsHtml = '<div class="hc-tabs" id="matTabs">';
+  tabGroups.forEach(function(grp, i){
+    tabsHtml += '<button class="hc-tab'+(i===0?" active":"")
+      +'" onclick="showMatTab(\''+grp.key+'\',this)">'+grp.label+'</button>';
+  });
+  tabsHtml += '</div>';
+
+  var panelsHtml = "";
+  tabGroups.forEach(function(grp, i){
+    var grpTests = tests.filter(function(t){ return grp.ids.indexOf(t.id) !== -1; });
+    var rows = grpTests.length ? grpTests.map(buildTestRow).join("") : '<p class="hc-empty">Coming soon!</p>';
+    panelsHtml += '<div id="mat_'+grp.key+'" class="hc-panel'+(i>0?" hc-hidden":"")+'"><div class="hc-list">'+rows+'</div></div>';
+  });
+
+  wrap.innerHTML = tabsHtml + panelsHtml;
+  grid.appendChild(wrap);
+}
+
+function showMatTab(key, btn) {
+  ["verbal1","verbal2","verbal3","verbal4","nonverbal"].forEach(function(k){ var p=document.getElementById("mat_"+k); if(p) p.classList.add("hc-hidden"); });
+  document.getElementById("matTabs").querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
+  var p=document.getElementById("mat_"+key); if(p) p.classList.remove("hc-hidden");
   btn.classList.add("active");
 }
 
