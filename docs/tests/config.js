@@ -268,7 +268,15 @@ var ALL_TESTS = [
     live:          false,       totalMarks: 40, questionsFile: "questions/sp10b02.js",
     sections: { "Physics": 14, "Chemistry": 14, "Biology": 12 }
   },
-
+{
+  id: "c10sci_cer1", title: "Class 10 Science — Chemical Reactions",
+  subject: "Science", class: "10", section: "std10",
+  questions: 20, duration: 25, password: "c10sci1",
+  live: true, totalMarks: 20,
+  questionsFile: "questions/c10sci_cer1.js",
+  sections: { "Science": 20 }
+},
+  
   // ══════════════════════════════════════════════════════════
   //  📕  STANDARD 11  |  section: "std11"
   // ══════════════════════════════════════════════════════════
