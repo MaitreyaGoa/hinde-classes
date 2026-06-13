@@ -500,7 +500,7 @@ var ALL_TESTS = [
     id: "mat_t01b", title: "MAT — Series Completion: Alphabet Series",
     subject: "MAT", class: "all", section: "mat",
     questions: 10,  duration: 15, password: "matt01b",
-    live: false,    totalMarks: 10,
+    live: true,    totalMarks: 10,
     questionsFile: "questions/mat_t01b_alphabet_series.js",
     sections: { "MAT": 10 }
   },
@@ -508,7 +508,7 @@ var ALL_TESTS = [
     id: "mat_t01c", title: "MAT — Series Completion: Letter Repeating Series",
     subject: "MAT", class: "all", section: "mat",
     questions: 10,  duration: 15, password: "matt01c",
-    live: false,    totalMarks: 10,
+    live: true,    totalMarks: 10,
     questionsFile: "questions/mat_t01c_letter_repeating.js",
     sections: { "MAT": 10 }
   },
@@ -516,7 +516,7 @@ var ALL_TESTS = [
     id: "mat_t01d", title: "MAT — Series Completion: Missing Terms in Figure",
     subject: "MAT", class: "all", section: "mat",
     questions: 10,  duration: 15, password: "matt01d",
-    live: false,    totalMarks: 10,
+    live: true,    totalMarks: 10,
     questionsFile: "questions/mat_t01d_missing_figure.js",
     sections: { "MAT": 10 }
   },
