@@ -182,6 +182,13 @@ var ALL_TESTS = [
     sections: { "Science": 25 }
   },
   {
+    id: "c9sci_cell1",  title: "Class 9 Science — The Fundamental Unit of Life",
+    subject: "Science", class: "9",  section: "std9",
+    questions: 20,      duration: 25, password: "c9cell1",
+    live: true,         totalMarks: 20, questionsFile: "questions/c9sci_cell1.js",
+    sections: { "Science": 20 }
+  },
+  {
     id: "c9sst1",      title: "Class 9 SST — French Revolution",
     subject: "Social Science", class: "9", section: "std9",
     questions: 20,     duration: 25,  password: "c9sst1",
@@ -485,7 +492,7 @@ var ALL_TESTS = [
     id: "mat_t01a", title: "MAT — Series Completion: Number Series",
     subject: "MAT", class: "all", section: "mat",
     questions: 10,  duration: 15, password: "matt01a",
-    live: true,    totalMarks: 10,
+    live: false,    totalMarks: 10,
     questionsFile: "questions/mat_t01a_number_series.js",
     sections: { "MAT": 10 }
   },
@@ -493,7 +500,7 @@ var ALL_TESTS = [
     id: "mat_t01b", title: "MAT — Series Completion: Alphabet Series",
     subject: "MAT", class: "all", section: "mat",
     questions: 10,  duration: 15, password: "matt01b",
-    live: true,    totalMarks: 10,
+    live: false,    totalMarks: 10,
     questionsFile: "questions/mat_t01b_alphabet_series.js",
     sections: { "MAT": 10 }
   },
@@ -501,7 +508,7 @@ var ALL_TESTS = [
     id: "mat_t01c", title: "MAT — Series Completion: Letter Repeating Series",
     subject: "MAT", class: "all", section: "mat",
     questions: 10,  duration: 15, password: "matt01c",
-    live: true,    totalMarks: 10,
+    live: false,    totalMarks: 10,
     questionsFile: "questions/mat_t01c_letter_repeating.js",
     sections: { "MAT": 10 }
   },
