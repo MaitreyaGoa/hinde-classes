@@ -359,7 +359,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;m
 </header>
 
 <!-- ══ LOGIN PAGE ════════════════════════════════════════ -->
-<section id="loginPage">
+<section id="loginPage" style="display:flex;">
   <div class="login-card">
     <a class="back-link" onclick="handleBack()">← All Tests</a>
     <div class="login-badge" id="loginBadge">Hinde Classes</div>
@@ -376,7 +376,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;m
 </section>
 
 <!-- ══ TEST PAGE ═════════════════════════════════════════ -->
-<section id="testPage">
+<section id="testPage" style="display:none;">
 
   <!-- Section tabs -->
   <div class="sec-tab-bar" id="sectionTabBar"></div>
@@ -445,7 +445,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;m
 </div>
 
 <!-- ══ RESULT PAGE ═══════════════════════════════════════ -->
-<section id="resultPage">
+<section id="resultPage" style="display:none;">
   <div class="result-wrap">
     <div class="result-card">
       <div class="result-icon" id="resIcon">🏆</div>
@@ -470,7 +470,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;m
 </section>
 
 <!-- ══ ANSWER REVIEW PAGE ════════════════════════════════ -->
-<section id="answerPage">
+<section id="answerPage" style="display:none;">
   <div class="answer-header">
     <h2>Answer Key</h2>
     <button class="btn-back-result" onclick="showPage('resultPage')">← Back to Result</button>
@@ -729,7 +729,8 @@ function markForReview() {
   if (markedReview[currentQ]) { mrBtn.classList.add("marked"); mrBtn.textContent = "🟣 Marked"; }
   else { mrBtn.classList.remove("marked"); mrBtn.textContent = "Mark & Save"; }
   updatePalette();
-  if (currentQ < questions.length-1) renderQuestion(currentQ+1);
+  // Only auto-advance if not on last question
+  if (currentQ < questions.length - 1) renderQuestion(currentQ + 1);
 }
 
 function prevQuestion() { if (currentQ > 0) renderQuestion(currentQ-1); }
@@ -739,9 +740,13 @@ function nextQuestion() {
   var nb = document.getElementById("nextBtn");
   if (nb && userAnswers[questions[currentQ].id]) {
     nb.textContent = "Saved ✓"; nb.style.background = "#0f766e";
-    setTimeout(function(){ renderQuestion(currentQ+1); nb.style.background = ""; }, 300);
+    var nextIdx = currentQ + 1;
+    setTimeout(function(){
+      nb.textContent = "Next ▶"; nb.style.background = "";
+      renderQuestion(nextIdx);
+    }, 350);
   } else {
-    renderQuestion(currentQ+1);
+    renderQuestion(currentQ + 1);
   }
 }
 
@@ -1042,7 +1047,10 @@ function showPage(id) {
     if(el) el.style.display="none";
   });
   var target=document.getElementById(id);
-  if(target) target.style.display="block";
+  if(target) {
+    // loginPage uses flex centering, others use block
+    target.style.display = (id === "loginPage") ? "flex" : "block";
+  }
   window.scrollTo(0,0);
 }
 
