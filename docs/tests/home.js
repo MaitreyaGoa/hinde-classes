@@ -1,467 +1,719 @@
-// home.js — Hinde Classes Portal
-// Renders all sections into #testsGrid
-// Load order: <script src="config.js"></script> <script src="home.js"></script>
+// ============================================================
+//  config.js — Hinde Classes  |  hindeclasses.com
+//  Bicholim, Goa  |  Maitreya Hinde  |  7358425108
+//
+//  section values (each standard is SEPARATE):
+//    std5    → Standard 5
+//    std6    → Standard 6
+//    std7    → Standard 7
+//    std8    → Standard 8
+//    std9    → Standard 9
+//    std10   → Standard 10
+//    std11   → Standard 11
+//    std12   → Standard 12
+//    daily   → Daily Quiz
+//    olm     → Maths Olympiad
+//    olsci   → Science Olympiad
+//    scholar → Scholarship & NTSE
+//    mat     → MAT (Mental Ability Test) Topic Tests
+//
+//  live: true  → Start button visible
+//  live: false → "Coming Soon"
+// ============================================================
 
-document.addEventListener("DOMContentLoaded", function () {
-  renderTestsGrid();
-});
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_ApkIAQyAedZ_gGP-WL4QDfwrE5AaKWwdlzmHDYc3375ifmmSih92t3-qIHz7ykkiVw/exec";
 
-// ══ STANDARDS ═════════════════════════════════════════════════
-var STANDARDS = [
-  { key:"std5",  section:"std5",  classNum:"5",  label:"Standard 5",  icon:"📓", subjects:["Maths","Science","English"] },
-  { key:"std6",  section:"std6",  classNum:"6",  label:"Standard 6",  icon:"📔", subjects:["Maths","Science","English"] },
-  { key:"std7",  section:"std7",  classNum:"7",  label:"Standard 7",  icon:"📒", subjects:["Maths","Science","English","Social Science"] },
-  { key:"std8",  section:"std8",  classNum:"8",  label:"Standard 8",  icon:"📙", subjects:["Maths","Science","English","Social Science"] },
-  { key:"std9",  section:"std9",  classNum:"9",  label:"Standard 9",  icon:"📗", subjects:["Maths","Science","English","Social Science"] },
-  { key:"std10", section:"std10", classNum:"10", label:"Standard 10", icon:"📘", subjects:["Maths","Science","English","Social Science"] },
-  { key:"std11", section:"std11", classNum:"11", label:"Standard 11", icon:"📕", subjects:["Maths","Physics","Chemistry","Biology","English"] },
-  { key:"std12", section:"std12", classNum:"12", label:"Standard 12", icon:"📕", subjects:["Maths","Physics","Chemistry","Biology","English"] }
+var ALL_TESTS = [
+
+  // ══════════════════════════════════════════════════════════
+  //  📅  DAILY QUIZ  |  section: "daily"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "dq080626",    title: "Daily Quiz — Class 6–8 · 8 June 2026",
+    subject: "Mixed",  class: "all",   section: "daily",
+    questions: 10,     duration: 10,   password: "dq080626",
+    live:          false,        totalMarks: 10, questionsFile: "questions/dq080626.js",
+    sections: { "Mixed": 10 }
+  },
+  {
+    id: "dq080626b",   title: "Daily Quiz — Class 9–10 · 8 June 2026",
+    subject: "Mixed",  class: "all",   section: "daily",
+    questions: 10,     duration: 10,   password: "dq080626b",
+    live:          false,        totalMarks: 10, questionsFile: "questions/dq080626b.js",
+    sections: { "Mixed": 10 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  📓  STANDARD 5  |  section: "std5"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "c5eng1",      title: "Class 5 English — Grammar Basics",
+    subject: "English", class: "5",   section: "std5",
+    questions: 20,     duration: 25,  password: "c5eng1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c5eng1.js",
+    sections: { "English": 20 }
+  },
+  {
+    id: "c5mat1",      title: "Class 5 Maths — Fractions",
+    subject: "Maths",  class: "5",   section: "std5",
+    questions: 20,     duration: 25,  password: "c5mat1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c5mat1.js",
+    sections: { "Maths": 20 }
+  },
+  {
+    id: "c5sci1",      title: "Class 5 Science — Plants & Animals",
+    subject: "Science", class: "5",  section: "std5",
+    questions: 20,     duration: 25,  password: "c5sci1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c5sci1.js",
+    sections: { "Science": 20 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  📔  STANDARD 6  |  section: "std6"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "c6eng1",      title: "Class 6 English — Parts of Speech",
+    subject: "English", class: "6",  section: "std6",
+    questions: 20,     duration: 25,  password: "c6eng1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c6eng1.js",
+    sections: { "English": 20 }
+  },
+  {
+    id: "c6mat1",      title: "Class 6 Maths — Basic Algebra",
+    subject: "Maths",  class: "6",   section: "std6",
+    questions: 20,     duration: 25,  password: "c6mat1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c6mat1.js",
+    sections: { "Maths": 20 }
+  },
+  {
+    id: "c6sci1",      title: "Class 6 Science — Food & Nutrition",
+    subject: "Science", class: "6",  section: "std6",
+    questions: 20,     duration: 25,  password: "c6sci1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c6sci1.js",
+    sections: { "Science": 20 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  📒  STANDARD 7  |  section: "std7"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "c7eng1",      title: "Class 7 English — Tenses",
+    subject: "English", class: "7",  section: "std7",
+    questions: 20,     duration: 25,  password: "c7eng1",
+    live:          true,        totalMarks: 20, questionsFile: "questions/c7eng1.js",
+    sections: { "English": 20 }
+  },
+  {
+    id: "c7mat1",      title: "Class 7 Maths — Simple Equations",
+    subject: "Maths",  class: "7",   section: "std7",
+    questions: 20,     duration: 25,  password: "c7mat1",
+    live:          true,        totalMarks: 20, questionsFile: "questions/c7mat1.js",
+    sections: { "Maths": 20 }
+  },
+  {
+    id: "c7sci1",      title: "Class 7 Science — Nutrition in Plants",
+    subject: "Science", class: "7",  section: "std7",
+    questions: 20,     duration: 25,  password: "c7sci1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c7sci1.js",
+    sections: { "Science": 20 }
+  },
+  {
+    id: "c7sst1",      title: "Class 7 SST — Medieval India",
+    subject: "Social Science", class: "7", section: "std7",
+    questions: 20,     duration: 25,  password: "c7sst1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c7sst1.js",
+    sections: { "Social Science": 20 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  📙  STANDARD 8  |  section: "std8"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "c8eng1",      title: "Class 8 English — Active & Passive Voice",
+    subject: "English", class: "8",  section: "std8",
+    questions: 20,     duration: 25,  password: "c8eng1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c8eng1.js",
+    sections: { "English": 20 }
+  },
+  {
+    id: "c8mat1",      title: "Class 8 Maths — Linear Equations",
+    subject: "Maths",  class: "8",   section: "std8",
+    questions: 20,     duration: 25,  password: "c8mat1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c8mat1.js",
+    sections: { "Maths": 20 }
+  },
+  {
+    id: "c8sci1",      title: "Class 8 Science — Microorganisms",
+    subject: "Science", class: "8",  section: "std8",
+    questions: 20,     duration: 25,  password: "c8sci1",
+    live:          true,        totalMarks: 20, questionsFile: "questions/c8sci1.js",
+    sections: { "Science": 20 }
+  },
+  {
+    id: "c8sst1",      title: "Class 8 SST — The Indian Constitution",
+    subject: "Social Science", class: "8", section: "std8",
+    questions: 20,     duration: 25,  password: "c8sst1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c8sst1.js",
+    sections: { "Social Science": 20 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  📗  STANDARD 9  |  section: "std9"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "c9eng1",      title: "Class 9 English — Reading Comprehension",
+    subject: "English", class: "9",  section: "std9",
+    questions: 20,     duration: 25,  password: "c9eng1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c9eng1.js",
+    sections: { "English": 20 }
+  },
+  {
+    id: "c9mat1",      title: "Class 9 Maths — Number Systems",
+    subject: "Maths",  class: "9",   section: "std9",
+    questions: 25,     duration: 30,  password: "c9mat1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c9mat1.js",
+    sections: { "Maths": 25 }
+  },
+  {
+    id: "c9sci1",      title: "Class 9 Science — Force & Motion",
+    subject: "Science", class: "9",  section: "std9",
+    questions: 25,     duration: 30,  password: "c9sci1",
+    live:          true,        totalMarks: 25, questionsFile: "questions/c9sci1.js",
+    sections: { "Science": 25 }
+  },
+  {
+    id: "c9sci_cell1",  title: "Class 9 Science — The Fundamental Unit of Life",
+    subject: "Science", class: "9",  section: "std9",
+    questions: 20,      duration: 25, password: "c9cell1",
+    live: true,         totalMarks: 20, questionsFile: "questions/c9sci_cell1.js",
+    sections: { "Science": 20 }
+  },
+  {
+    id: "c9sst1",      title: "Class 9 SST — French Revolution",
+    subject: "Social Science", class: "9", section: "std9",
+    questions: 20,     duration: 25,  password: "c9sst1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c9sst1.js",
+    sections: { "Social Science": 20 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  📘  STANDARD 10  |  section: "std10"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "c10eng1",     title: "Class 10 English — Writing Skills & Grammar",
+    subject: "English", class: "10", section: "std10",
+    questions: 25,     duration: 30,  password: "c10eng1",
+    live:          true,        totalMarks: 25, questionsFile: "questions/c10eng1.js",
+    sections: { "English": 25 }
+  },
+  {
+    id: "c10mat1",     title: "Class 10 Maths — Quadratic Equations",
+    subject: "Maths",  class: "10",  section: "std10",
+    questions: 25,     duration: 30,  password: "c10mat1",
+    live:          true,        totalMarks: 25, questionsFile: "questions/c10mat1.js",
+    sections: { "Maths": 25 }
+  },
+  {
+    id: "c10mat2",     title: "Class 10 Maths — Trigonometry",
+    subject: "Maths",  class: "10",  section: "std10",
+    questions: 25,     duration: 30,  password: "c10mat2",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c10mat2.js",
+    sections: { "Maths": 25 }
+  },
+  {
+    id: "c10sci1",     title: "Class 10 Science — Chemical Reactions",
+    subject: "Science", class: "10", section: "std10",
+    questions: 25,     duration: 30,  password: "c10sci1old",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c10sci1.js",
+    sections: { "Science": 25 }
+  },
+  {
+    id: "c10sci_cer1", title: "Class 10 Science — Chemical Reactions",
+    subject: "Science", class: "10", section: "std10",
+    questions: 20,     duration: 25,  password: "c10sci1",
+    live: true,        totalMarks: 20, questionsFile: "questions/c10sci_cer1.js",
+    sections: { "Science": 20 }
+  },
+  {
+    id: "c10sci2",     title: "Class 10 Science — Life Processes",
+    subject: "Science", class: "10", section: "std10",
+    questions: 25,     duration: 30,  password: "c10sci2",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c10sci2.js",
+    sections: { "Science": 25 }
+  },
+  {
+    id: "c10sst1",     title: "Class 10 SST — Nationalism in India",
+    subject: "Social Science", class: "10", section: "std10",
+    questions: 20,     duration: 25,  password: "c10sst1",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c10sst1.js",
+    sections: { "Social Science": 20 }
+  },
+  {
+    id: "c10sst2",     title: "Class 10 SST — Resources & Development",
+    subject: "Social Science", class: "10", section: "std10",
+    questions: 20,     duration: 25,  password: "c10sst2",
+    live:          false,       totalMarks: 20, questionsFile: "questions/c10sst2.js",
+    sections: { "Social Science": 20 }
+  },
+  {
+    id: "sub_c10mat1", title: "Class 10 Maths — Full Mock Test 1",
+    subject: "Maths",  class: "10",  section: "std10",
+    questions: 40,     duration: 60,  password: "s10mat1",
+    live:          false,       totalMarks: 40, questionsFile: "questions/sub_c10mat1.js",
+    sections: { "Maths": 40 }
+  },
+  {
+    id: "sub_c10sci1", title: "Class 10 Science — Full Mock Test 1",
+    subject: "Science", class: "10", section: "std10",
+    questions: 40,     duration: 60,  password: "s10sci1",
+    live:          false,       totalMarks: 40, questionsFile: "questions/sub_c10sci1.js",
+    sections: { "Physics": 15, "Chemistry": 15, "Biology": 10 }
+  },
+  {
+    id: "sp10b01",     title: "Class 10 Maths — CBSE Sample Paper 2025-26",
+    subject: "Maths",  class: "10",  section: "std10",
+    questions: 40,     duration: 60,  password: "sp10b01",
+    live:          false,       totalMarks: 40, questionsFile: "questions/sp10b01.js",
+    sections: { "Maths": 40 }
+  },
+  {
+    id: "sp10b02",     title: "Class 10 Science — CBSE Sample Paper 2025-26",
+    subject: "Science", class: "10", section: "std10",
+    questions: 40,     duration: 60,  password: "sp10b02",
+    live:          false,       totalMarks: 40, questionsFile: "questions/sp10b02.js",
+    sections: { "Physics": 14, "Chemistry": 14, "Biology": 12 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  📕  STANDARD 11  |  section: "std11"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "c11eng1",     title: "Class 11 English — Prose & Poetry Analysis",
+    subject: "English", class: "11", section: "std11",
+    questions: 25,     duration: 30,  password: "c11eng1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c11eng1.js",
+    sections: { "English": 25 }
+  },
+  {
+    id: "c11mat1",     title: "Class 11 Maths — Sets & Relations",
+    subject: "Maths",  class: "11",  section: "std11",
+    questions: 25,     duration: 35,  password: "c11mat1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c11mat1.js",
+    sections: { "Maths": 25 }
+  },
+  {
+    id: "c11phy1",     title: "Class 11 Physics — Units & Measurement",
+    subject: "Physics", class: "11", section: "std11",
+    questions: 25,     duration: 35,  password: "c11phy1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c11phy1.js",
+    sections: { "Physics": 25 }
+  },
+  {
+    id: "c11chem1",    title: "Class 11 Chemistry — Basic Concepts",
+    subject: "Chemistry", class: "11", section: "std11",
+    questions: 25,     duration: 35,  password: "c11chem1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c11chem1.js",
+    sections: { "Chemistry": 25 }
+  },
+  {
+    id: "c11bio1",     title: "Class 11 Biology — Cell Structure & Functions",
+    subject: "Biology", class: "11", section: "std11",
+    questions: 25,     duration: 35,  password: "c11bio1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c11bio1.js",
+    sections: { "Biology": 25 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  📕  STANDARD 12  |  section: "std12"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "c12eng1",     title: "Class 12 English — Board Writing & Comprehension",
+    subject: "English", class: "12", section: "std12",
+    questions: 25,     duration: 30,  password: "c12eng1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12eng1.js",
+    sections: { "English": 25 }
+  },
+  {
+    id: "c12mat1",     title: "Class 12 Maths — Relations & Functions",
+    subject: "Maths",  class: "12",  section: "std12",
+    questions: 25,     duration: 35,  password: "c12mat1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12mat1.js",
+    sections: { "Maths": 25 }
+  },
+  {
+    id: "c12mat2",     title: "Class 12 Maths — Integrals",
+    subject: "Maths",  class: "12",  section: "std12",
+    questions: 25,     duration: 35,  password: "c12mat2",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12mat2.js",
+    sections: { "Maths": 25 }
+  },
+  {
+    id: "c12phy1",     title: "Class 12 Physics — Electric Charges & Fields",
+    subject: "Physics", class: "12", section: "std12",
+    questions: 25,     duration: 35,  password: "c12phy1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12phy1.js",
+    sections: { "Physics": 25 }
+  },
+  {
+    id: "c12phy2",     title: "Class 12 Physics — Ray Optics",
+    subject: "Physics", class: "12", section: "std12",
+    questions: 25,     duration: 35,  password: "c12phy2",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12phy2.js",
+    sections: { "Physics": 25 }
+  },
+  {
+    id: "c12chem1",    title: "Class 12 Chemistry — Solid State",
+    subject: "Chemistry", class: "12", section: "std12",
+    questions: 25,     duration: 35,  password: "c12chem1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12chem1.js",
+    sections: { "Chemistry": 25 }
+  },
+  {
+    id: "c12chem2",    title: "Class 12 Chemistry — Electrochemistry",
+    subject: "Chemistry", class: "12", section: "std12",
+    questions: 25,     duration: 35,  password: "c12chem2",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12chem2.js",
+    sections: { "Chemistry": 25 }
+  },
+  {
+    id: "c12bio1",     title: "Class 12 Biology — Reproduction in Organisms",
+    subject: "Biology", class: "12", section: "std12",
+    questions: 25,     duration: 35,  password: "c12bio1",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12bio1.js",
+    sections: { "Biology": 25 }
+  },
+  {
+    id: "c12bio2",     title: "Class 12 Biology — Genetics & Evolution",
+    subject: "Biology", class: "12", section: "std12",
+    questions: 25,     duration: 35,  password: "c12bio2",
+    live:          false,       totalMarks: 25, questionsFile: "questions/c12bio2.js",
+    sections: { "Biology": 25 }
+  },
+  {
+    id: "sub_c12phy1", title: "Class 12 Physics — Full Mock Test 1",
+    subject: "Physics", class: "12", section: "std12",
+    questions: 35,     duration: 60,  password: "s12phy1",
+    live:          false,       totalMarks: 35, questionsFile: "questions/sub_c12phy1.js",
+    sections: { "Physics": 35 }
+  },
+  {
+    id: "sp12b01",     title: "Class 12 Physics — CBSE Sample Paper 2025-26",
+    subject: "Physics", class: "12", section: "std12",
+    questions: 35,     duration: 60,  password: "sp12b01",
+    live:          false,       totalMarks: 35, questionsFile: "questions/sp12b01.js",
+    sections: { "Physics": 35 }
+  },
+  {
+    id: "sp12b02",     title: "Class 12 Maths — CBSE Sample Paper 2025-26",
+    subject: "Maths",  class: "12",  section: "std12",
+    questions: 35,     duration: 60,  password: "sp12b02",
+    live:          false,       totalMarks: 35, questionsFile: "questions/sp12b02.js",
+    sections: { "Maths": 35 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  🏆  MATHS OLYMPIAD  |  section: "olm"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "olm001",      title: "Maths Olympiad — Level 1 (Class 6–8)",
+    subject: "Maths",  class: "all", section: "olm",
+    questions: 30,     duration: 45,  password: "olm001",
+    live:          true,        totalMarks: 30, questionsFile: "questions/olm001.js",
+    sections: { "Number Theory": 10, "Geometry": 10, "Logical Maths": 10 }
+  },
+  {
+    id: "olm002",      title: "Maths Olympiad — Level 2 (Class 9–10)",
+    subject: "Maths",  class: "all", section: "olm",
+    questions: 30,     duration: 45,  password: "olm002",
+    live:          false,       totalMarks: 30, questionsFile: "questions/olm002.js",
+    sections: { "Algebra": 10, "Number Theory": 10, "Combinatorics": 10 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  🔬  SCIENCE OLYMPIAD  |  section: "olsci"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "olsci001",    title: "Science Olympiad — Level 1 (Class 6–8)",
+    subject: "Science", class: "all", section: "olsci",
+    questions: 30,     duration: 45,  password: "olsci001",
+    live:          true,        totalMarks: 30, questionsFile: "questions/olsci001.js",
+    sections: { "Physics": 10, "Chemistry": 10, "Biology": 10 }
+  },
+  {
+    id: "olsci002",    title: "Science Olympiad — Level 2 (Class 9–10)",
+    subject: "Science", class: "all", section: "olsci",
+    questions: 30,     duration: 45,  password: "olsci002",
+    live:          false,       totalMarks: 30, questionsFile: "questions/olsci002.js",
+    sections: { "Physics": 10, "Chemistry": 10, "Biology": 10 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  🏅  SCHOLARSHIP & NTSE  |  section: "scholar"
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "nts001",      title: "NTSE Stage 1 — MAT Practice (Class 10)",
+    subject: "Mixed",  class: "10",  section: "scholar",
+    questions: 40,     duration: 45,  password: "nts001",
+    live:          false,       totalMarks: 40, questionsFile: "questions/nts001.js",
+    sections: { "MAT": 40 }
+  },
+  {
+    id: "nts002",      title: "NTSE Stage 1 — SAT Practice (Class 10)",
+    subject: "Mixed",  class: "10",  section: "scholar",
+    questions: 40,     duration: 45,  password: "nts002",
+    live:          false,       totalMarks: 40, questionsFile: "questions/nts002.js",
+    sections: { "Science": 15, "Maths": 15, "Social Science": 10 }
+  },
+  {
+    id: "nts003",      title: "State Scholarship — Class 8 Practice",
+    subject: "Mixed",  class: "8",   section: "scholar",
+    questions: 50,     duration: 60,  password: "nts003",
+    live:          false,       totalMarks: 50, questionsFile: "questions/nts003.js",
+    sections: { "Maths": 20, "Science": 20, "GK": 10 }
+  },
+
+  // ── NTSE MAT MOCK TEST ──────────────────────────────────
+  {
+    id: "ntse_mat1",   title: "NTSE MAT Mock Test 1 — Advanced",
+    subject: "MAT",    class: "ntse", section: "scholar",
+    questions: 100,    duration: 120, password: "ntsemat1",
+    live:          true,        totalMarks: 100,
+    questionsFile: "questions/scholar_ntse_mat1.js",
+    sections: { "Mental Ability Test": 100 }
+  },
+
+  // ══════════════════════════════════════════════════════════
+  //  🧠  MAT TOPIC TESTS  |  section: "mat"
+  //  Mental Ability Test — Topic-wise practice
+  //  Based on Dr. Shetye Academic Programme LR Notes (Day 1–28)
+  //  ID range: 9001–9249 (10 IDs per topic)
+  // ══════════════════════════════════════════════════════════
+  {
+    id: "mat_t01a", title: "MAT — Series Completion: Number Series",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt01a",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t01a_number_series.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t01b", title: "MAT — Series Completion: Alphabet Series",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt01b",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t01b_alphabet_series.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t01c", title: "MAT — Series Completion: Letter Repeating Series",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt01c",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t01c_letter_repeating.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t01d", title: "MAT — Series Completion: Missing Terms in Figure",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt01d",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t01d_missing_figure.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t02",  title: "MAT — Analogy",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt02",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t02_analogy.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t03",  title: "MAT — Classification",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt03",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t03_classification.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t04",  title: "MAT — Alphabet Test",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt04",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t04_alphabet_test.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t05",  title: "MAT — Coding-Decoding Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt05",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t05_coding_decoding_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t06",  title: "MAT — Coding-Decoding Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt06",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t06_coding_decoding_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t07",  title: "MAT — Direction Sense Test",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt07",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t07_direction_sense.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t08",  title: "MAT — Blood Relation Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt08",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t08_blood_relation_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t09",  title: "MAT — Blood Relation Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt09",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t09_blood_relation_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t10",  title: "MAT — Mathematical Operations Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt10",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t10_mathematical_ops_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t11",  title: "MAT — Mathematical Operations Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt11",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t11_mathematical_ops_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t12",  title: "MAT — Ranking & Ordering Test",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt12",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t12_ranking_ordering.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t13",  title: "MAT — Puzzle Test",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt13",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t13_puzzle_test.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t14",  title: "MAT — Logical Venn Diagram Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt14",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t14_venn_diagram_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t15",  title: "MAT — Logical Venn Diagram Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt15",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t15_venn_diagram_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t16",  title: "MAT — Arithmetical Reasoning",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt16",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t16_arithmetical_reasoning.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t17",  title: "MAT — Non-Verbal Reasoning Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt17",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t17_non_verbal_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t18",  title: "MAT — Non-Verbal Reasoning Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt18",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t18_non_verbal_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t19",  title: "MAT — Non-Verbal Reasoning Part 3",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt19",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t19_non_verbal_3.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t20",  title: "MAT — Figure Partition & Counting",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt20",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t20_figure_partition.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t21",  title: "MAT — Mirror Image & Water Image",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt21",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t21_mirror_water_image.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t22",  title: "MAT — Paper Cutting & Folding",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt22",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t22_paper_cutting_folding.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t23",  title: "MAT — Cube and Dice Part 1",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt23",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t23_cube_dice_1.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t24",  title: "MAT — Cube and Dice Part 2",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt24",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t24_cube_dice_2.js",
+    sections: { "MAT": 10 }
+  },
+  {
+    id: "mat_t25",  title: "MAT — Dot Situation",
+    subject: "MAT", class: "all", section: "mat",
+    questions: 10,  duration: 15, password: "matt25",
+    live: false,    totalMarks: 10,
+    questionsFile: "questions/mat_t25_dot_situation.js",
+    sections: { "MAT": 10 }
+  }
+
 ];
-
-// ══ TOP-PANEL TIMERS ══════════════════════════════════════════
-var top20Timers = {};
-
-// ══ MAIN RENDER ═══════════════════════════════════════════════
-function renderTestsGrid() {
-  var grid = document.getElementById("testsGrid");
-  if (!grid) return;
-  grid.innerHTML = "";
-
-  appendDailyTests(grid);
-  STANDARDS.forEach(function(std){ appendStandardSection(grid, std); });
-  appendOlympiadSection(grid);
-  appendScholarshipSection(grid);
-  appendMATSection(grid);
-}
-
-// ══ DAILY QUIZ ════════════════════════════════════════════════
-function appendDailyTests(grid) {
-  var tests = getAllTests().filter(function(t){ return t.section==="daily"; });
-
-  // Section header with anchor for jump links
-  appendSectionHeader(grid, "📅", "Daily Quiz", "10 questions · 10 minutes · Mixed subjects · Free for all", "sec-daily");
-
-  var wrap = makePanelWrap();
-
-  if (!tests.length) {
-    wrap.innerHTML = '<p class="hc-empty">No daily quizzes yet. Check back tomorrow!</p>';
-    grid.appendChild(wrap);
-    return;
-  }
-
-  tests.sort(function(a,b){ return b.id > a.id ? 1 : -1; });
-
-  var dateMap = {}, dateOrder = [];
-  tests.forEach(function(t) {
-    var m = t.id.match(/(\d{4})(\d{2})(\d{2})/);
-    var key = m ? (m[1]+"-"+m[2]+"-"+m[3]) : "other";
-    if (!dateMap[key]) { dateMap[key]=[]; dateOrder.push(key); }
-    dateMap[key].push(t);
-  });
-
-  var today = getTodayStr();
-  function fmtDate(d) {
-    if (d==="other") return "Other";
-    var mo=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    var p=d.split("-"); return p[2]+" "+mo[+p[1]-1]+" "+p[0];
-  }
-
-  var tabsHtml = '<div class="hc-tabs" id="dailyTabs">';
-  dateOrder.forEach(function(d,i){
-    tabsHtml += '<button class="hc-tab'+(i===0?" active":"")
-      +'" onclick="showDailyTab(\''+d+'\',this)">'
-      +(d===today?"🔴 Today":fmtDate(d))+'</button>';
-  });
-  tabsHtml += '</div>';
-
-  var panelsHtml = "";
-  dateOrder.forEach(function(d,i){
-    var rows = dateMap[d].map(buildTestRow).join("");
-    panelsHtml += '<div id="dtp_'+d+'" class="hc-panel'+(i>0?" hc-hidden":"")+'"><div class="hc-list">'+rows+'</div></div>';
-  });
-
-  wrap.innerHTML = tabsHtml + panelsHtml;
-  grid.appendChild(wrap);
-}
-
-function showDailyTab(date, btn) {
-  document.querySelectorAll("[id^='dtp_']").forEach(function(p){ p.classList.add("hc-hidden"); });
-  document.getElementById("dailyTabs").querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
-  var p = document.getElementById("dtp_"+date); if(p) p.classList.remove("hc-hidden");
-  btn.classList.add("active");
-}
-
-// ══ STANDARD SECTIONS ═════════════════════════════════════════
-function appendStandardSection(grid, std) {
-  var allTests = getAllTests().filter(function(t){
-    return t.section===std.section && (t.class===std.classNum || t.class==="all");
-  });
-
-  // Section header with anchor ID for quick-jump
-  appendSectionHeader(grid, std.icon, std.label, std.subjects.join(" · "), "sec-"+std.key);
-
-  var wrap = makePanelWrap();
-  var uid  = std.key;
-
-  var tabsHtml = '<div class="hc-tabs" id="tabs_'+uid+'">';
-  tabsHtml += '<button class="hc-tab active" onclick="showStdTab(\''+uid+'\',\'all\',this)">📚 All</button>';
-  std.subjects.forEach(function(subj){
-    tabsHtml += '<button class="hc-tab" onclick="showStdTab(\''+uid+'\',\''+escKey(subj)+'\',this)">'+subjIcon(subj)+' '+subj+'</button>';
-  });
-  tabsHtml += '</div>';
-
-  var allRows = allTests.length ? allTests.map(buildTestRow).join("") : '<p class="hc-empty">Tests for '+std.label+' are coming soon!</p>';
-  var panelsHtml = '<div id="panel_'+uid+'_all" class="hc-panel"><div class="hc-list">'+allRows+'</div></div>';
-
-  std.subjects.forEach(function(subj){
-    var filtered = allTests.filter(function(t){ return normalise(t.subject)===normalise(subj); });
-    var rows = filtered.length ? filtered.map(buildTestRow).join("") : '<p class="hc-empty">'+subj+' tests coming soon!</p>';
-    panelsHtml += '<div id="panel_'+uid+'_'+escKey(subj)+'" class="hc-panel hc-hidden"><div class="hc-list">'+rows+'</div></div>';
-  });
-
-  wrap.innerHTML = tabsHtml + panelsHtml;
-  grid.appendChild(wrap);
-}
-
-function showStdTab(uid, subj, btn) {
-  document.querySelectorAll("[id^='panel_"+uid+"_']").forEach(function(p){ p.classList.add("hc-hidden"); });
-  document.getElementById("tabs_"+uid).querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
-  var panel = document.getElementById("panel_"+uid+"_"+subj);
-  if(panel) panel.classList.remove("hc-hidden");
-  btn.classList.add("active");
-}
-
-// ══ OLYMPIAD ══════════════════════════════════════════════════
-function appendOlympiadSection(grid) {
-  var mathTests = getAllTests().filter(function(t){ return t.section==="olm"; });
-  var sciTests  = getAllTests().filter(function(t){ return t.section==="olsci"; });
-  if (!mathTests.length && !sciTests.length) return;
-
-  appendSectionHeader(grid, "🏆", "Olympiad Training", "IMO · NSO · All standards", "sec-olm");
-  var wrap = makePanelWrap();
-
-  var tabsHtml = '<div class="hc-tabs" id="olmTabs">'
-    +'<button class="hc-tab active" onclick="showOlmTab(\'maths\',this)">📐 Maths — IMO</button>'
-    +'<button class="hc-tab" onclick="showOlmTab(\'science\',this)">🔬 Science — NSO</button>'
-    +'</div>';
-
-  var mathRows = mathTests.length ? mathTests.map(buildTestRow).join("") : '<p class="hc-empty">Coming soon!</p>';
-  var sciRows  = sciTests.length  ? sciTests.map(buildTestRow).join("")  : '<p class="hc-empty">Coming soon!</p>';
-
-  wrap.innerHTML = tabsHtml
-    +'<div id="olm_maths" class="hc-panel"><div class="hc-list">'+mathRows+'</div></div>'
-    +'<div id="olm_science" class="hc-panel hc-hidden"><div class="hc-list">'+sciRows+'</div></div>';
-  grid.appendChild(wrap);
-}
-
-function showOlmTab(subj, btn) {
-  ["maths","science"].forEach(function(s){ var p=document.getElementById("olm_"+s); if(p) p.classList.add("hc-hidden"); });
-  document.getElementById("olmTabs").querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
-  var p=document.getElementById("olm_"+subj); if(p) p.classList.remove("hc-hidden");
-  btn.classList.add("active");
-}
-
-// ══ SCHOLARSHIP ═══════════════════════════════════════════════
-function appendScholarshipSection(grid) {
-  var tests = getAllTests().filter(function(t){ return t.section==="scholar"; });
-  if (!tests.length) return;
-
-  appendSectionHeader(grid, "🏅", "Scholarship & NTSE", "NTSE MAT Mock Test · State Scholarship · Class 5–10", "sec-scholar");
-  var wrap = makePanelWrap();
-  var classes = ["ntse","5","6","7","8","9","10"];
-  var icons   = {"ntse":"🏆","5":"📓","6":"📔","7":"📒","8":"📙","9":"📗","10":"📘"};
-
-  var tabsHtml = '<div class="hc-tabs" id="scTabs">';
-  classes.forEach(function(cls,i){
-    tabsHtml += '<button class="hc-tab'+(i===0?" active":"")
-      +'" onclick="showScTab(\''+cls+'\',this)">'+(cls==='ntse'?'🏆 NTSE':icons[cls]+' Class '+cls)+'</button>';
-  });
-  tabsHtml += '</div>';
-
-  var panelsHtml = "";
-  classes.forEach(function(cls,i){
-    var clsTests = tests.filter(function(t){ return t.class===cls; });
-    var rows = clsTests.length ? clsTests.map(buildTestRow).join("") : '<p class="hc-empty">'+(cls==="ntse"?"NTSE":"Class "+cls)+' coming soon!</p>';
-    panelsHtml += '<div id="sc_'+cls+'" class="hc-panel'+(i>0?" hc-hidden":"")+'"><div class="hc-list">'+rows+'</div></div>';
-  });
-
-  wrap.innerHTML = tabsHtml + panelsHtml;
-  grid.appendChild(wrap);
-}
-
-function showScTab(cls, btn) {
-  ["ntse","5","6","7","8","9","10"].forEach(function(c){ var p=document.getElementById("sc_"+c); if(p) p.classList.add("hc-hidden"); });
-  document.getElementById("scTabs").querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
-  var p=document.getElementById("sc_"+cls); if(p) p.classList.remove("hc-hidden");
-  btn.classList.add("active");
-}
-
-// ══ MAT TOPIC TESTS ═══════════════════════════════════════════
-function appendMATSection(grid) {
-  var tests = getAllTests().filter(function(t){ return t.section==="mat"; });
-  if (!tests.length) return;
-
-  appendSectionHeader(grid, "🧠", "MAT Topic Tests", "Mental Ability Test · Topic-wise practice · NTSE / Olympiad prep", "sec-mat");
-  var wrap = makePanelWrap();
-
-  // Tabs use ID PREFIX matching — any mat_t01x, mat_t02 etc. auto-route correctly
-  var tabGroups = [
-    { key: "verbal1",   label: "📝 Verbal Part 1",   prefixes: ["mat_t01","mat_t02","mat_t03","mat_t04","mat_t05"] },
-    { key: "verbal2",   label: "📝 Verbal Part 2",   prefixes: ["mat_t06","mat_t07","mat_t08","mat_t09","mat_t10"] },
-    { key: "verbal3",   label: "📝 Verbal Part 3",   prefixes: ["mat_t11","mat_t12","mat_t13","mat_t14","mat_t15"] },
-    { key: "verbal4",   label: "📝 Verbal Part 4",   prefixes: ["mat_t16"] },
-    { key: "nonverbal", label: "🔷 Non-Verbal",      prefixes: ["mat_t17","mat_t18","mat_t19","mat_t20","mat_t21","mat_t22","mat_t23","mat_t24","mat_t25"] }
-  ];
-
-  function testMatchesGroup(t, grp) {
-    return grp.prefixes.some(function(p){ return t.id === p || t.id.indexOf(p) === 0; });
-  }
-
-  var tabsHtml = '<div class="hc-tabs" id="matTabs">';
-  tabGroups.forEach(function(grp, i){
-    tabsHtml += '<button class="hc-tab'+(i===0?" active":"")
-      +'" onclick="showMatTab(\''+grp.key+'\',this)">'+grp.label+'</button>';
-  });
-  tabsHtml += '</div>';
-
-  var panelsHtml = "";
-  tabGroups.forEach(function(grp, i){
-    var grpTests = tests.filter(function(t){ return testMatchesGroup(t, grp); });
-    var rows = grpTests.length ? grpTests.map(buildTestRow).join("") : '<p class="hc-empty">Coming soon!</p>';
-    panelsHtml += '<div id="mat_'+grp.key+'" class="hc-panel'+(i>0?" hc-hidden":"")+'"><div class="hc-list">'+rows+'</div></div>';
-  });
-
-  wrap.innerHTML = tabsHtml + panelsHtml;
-  grid.appendChild(wrap);
-}
-
-function showMatTab(key, btn) {
-  ["verbal1","verbal2","verbal3","verbal4","nonverbal"].forEach(function(k){ var p=document.getElementById("mat_"+k); if(p) p.classList.add("hc-hidden"); });
-  document.getElementById("matTabs").querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
-  var p=document.getElementById("mat_"+key); if(p) p.classList.remove("hc-hidden");
-  btn.classList.add("active");
-}
-
-// ══ TEST ROW (with Toppers button) ════════════════════════════
-function buildTestRow(test) {
-  var isLive   = (test.live === true);
-  var isLocked = !!(test.password && test.password !== "");
-
-  var badge = isLive
-    ? '<span class="hc-badge-live">● Live</span>'
-    : '<span class="hc-badge-soon">Soon</span>';
-
-  var meta = [];
-  if (test.questions)                     meta.push(test.questions+" Q");
-  if (test.duration)                      meta.push("⏱ "+test.duration+" min");
-  if (test.totalMarks)                    meta.push(test.totalMarks+" marks");
-  if (test.subject)                       meta.push(test.subject);
-  if (test.class && test.class!=="all")   meta.push("Std "+test.class);
-
-  // Toppers button (always shown for live tests)
-  var toppersBtn = isLive
-    ? '<button class="hc-btn-toppers" onclick="toggleToppers(\''+test.id+'\',\''+test.title.replace(/'/g,"\\'")+'\','+(test.totalMarks||0)+',this)">🏅 Toppers</button>'
-    : '';
-
-  var startBtn = isLive
-    ? '<button class="hc-btn-start" onclick="goToTest(\''+test.id+'\')">Start →</button>'
-    : '<button class="hc-btn-soon">Soon</button>';
-
-  return '<div class="hc-row">'
-    +'<div class="hc-row-info">'
-    +'<div class="hc-row-top">'
-    +'<span class="hc-row-title">'+(isLocked?"🔒 ":"")+test.title+'</span>'
-    +badge
-    +'</div>'
-    +'<div class="hc-row-meta">'+meta.join(" · ")+'</div>'
-    +'</div>'
-    +'<div class="hc-row-actions">'+toppersBtn+startBtn+'</div>'
-    +'</div>'
-    +'<div class="hc-top20-panel" id="top20_'+test.id+'"></div>';
-}
-
-// ══ TOPPERS PANEL ═════════════════════════════════════════════
-function toggleToppers(testId, testTitle, totalMarks, btn) {
-  var panel = document.getElementById("top20_"+testId);
-  if (!panel) return;
-
-  if (panel.classList.contains("open")) {
-    panel.classList.remove("open");
-    btn.textContent = "🏅 Toppers";
-    if (top20Timers[testId]) { clearInterval(top20Timers[testId]); delete top20Timers[testId]; }
-    return;
-  }
-
-  panel.classList.add("open");
-  btn.textContent = "✕ Close";
-  fetchToppers(testId, testTitle, totalMarks, panel);
-
-  // Auto-refresh every 30s
-  top20Timers[testId] = setInterval(function(){
-    fetchToppers(testId, testTitle, totalMarks, panel);
-  }, 30000);
-}
-
-function fetchToppers(testId, testTitle, totalMarks, panel) {
-  var url = window.SCRIPT_URL;
-  if (!url || url==="PASTE_YOUR_APPS_SCRIPT_URL_HERE") {
-    panel.innerHTML = '<div class="hc-top20-inner"><p class="hc-top20-empty">Leaderboard not configured yet.</p></div>';
-    return;
-  }
-
-  panel.innerHTML = '<div class="hc-top20-inner"><p class="hc-top20-loading">⏳ Loading leaderboard...</p></div>';
-
-  // Use fetch() — Apps Script GET returns JSON directly
-  fetch(url + "?testId=" + encodeURIComponent(testId))
-    .then(function(r){ return r.json(); })
-    .then(function(res){ renderToppers(res, testTitle, totalMarks, panel); })
-    .catch(function(){ panel.innerHTML = '<div class="hc-top20-inner"><p class="hc-top20-empty">Could not load leaderboard.</p></div>'; });
-}
-
-function renderToppers(res, testTitle, totalMarks, panel) {
-  if (!res || !res.success) {
-    panel.innerHTML = '<div class="hc-top20-inner"><p class="hc-top20-empty">Leaderboard unavailable.</p></div>';
-    return;
-  }
-
-  var data   = res.data  || [];
-  var count  = res.count || data.length;
-  var medals = ["🥇","🥈","🥉"];
-
-  var rows = "";
-  if (!data.length) {
-    rows = '<p class="hc-top20-empty">No attempts yet — be the first! 🚀</p>';
-  } else {
-    data.forEach(function(r, i) {
-      var outOf = totalMarks || r.total || 1;
-      var pct   = Math.round((r.total / outOf) * 100);
-      var rank  = i < 3
-        ? medals[i]
-        : '<span style="width:20px;height:20px;border-radius:50%;background:#e5e5ea;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#3a3a3c;">'+(i+1)+'</span>';
-
-      rows += '<li class="hc-top20-item">'
-        +'<span class="hc-top20-rank">'+rank+'</span>'
-        +'<div class="hc-top20-info">'
-        +'<div class="hc-top20-name">'+escHtml(r.name)+'</div>'
-        +'<div class="hc-top20-bar-wrap"><div class="hc-top20-bar" style="width:'+Math.max(4,pct)+'%"></div></div>'
-        +'</div>'
-        +'<span class="hc-top20-score">'+r.total+'<span class="hc-top20-outof">/'+outOf+'</span></span>'
-        +'</li>';
-    });
-  }
-
-  panel.innerHTML =
-    '<div class="hc-top20-inner">'
-    +'<div class="hc-top20-hdr">'
-    +'<span>🏆 '+testTitle+'</span>'
-    +'<span class="hc-top20-count">'+count+' attempted</span>'
-    +'</div>'
-    +'<ol class="hc-top20-list">'+rows+'</ol>'
-    +(data.length ? '<div class="hc-top20-footer">Top 20 · Auto-refreshes every 30s</div>' : '')
-    +'</div>';
-}
-
-// ══ NAVIGATE TO TEST ══════════════════════════════════════════
-// NO prompts here — test.html handles name + password
-function goToTest(testId) {
-  var test = getAllTests().find(function(t){ return t.id===testId; });
-  if (!test || !test.live) return;
-  // Just navigate — test.html will ask for name + password
-  window.location.href = "test.html?id=" + testId;
-}
-
-// ══ SECTION HEADER (with anchor id) ══════════════════════════
-function appendSectionHeader(grid, icon, title, subtitle, anchorId) {
-  var hdr = document.createElement("div");
-  hdr.className = "hc-section-hdr";
-  if (anchorId) hdr.id = anchorId;   // ← THIS fixes the quick-jump scroll
-  hdr.innerHTML =
-    '<span class="hc-section-icon">'+icon+'</span>'
-    +'<div>'
-    +'<div class="hc-section-title">'+title+'</div>'
-    +'<div class="hc-section-sub">'+subtitle+'</div>'
-    +'</div>';
-  grid.appendChild(hdr);
-}
-
-// ══ UTILS ═════════════════════════════════════════════════════
-function getAllTests()  { return window.ALL_TESTS || []; }
-function makePanelWrap(){ var w=document.createElement("div"); w.className="hc-wrap"; return w; }
-function escKey(s)     { return s.replace(/\s+/g,"_").replace(/[^a-zA-Z0-9_]/g,""); }
-function normalise(s)  { return (s||"").toLowerCase().replace(/[\s\-_]/g,""); }
-function escHtml(s)    { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
-function getTodayStr() {
-  var d=new Date();
-  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-}
-function subjIcon(s) {
-  return {Maths:"📐",Science:"🔬",English:"📘","Social Science":"🗺️",Physics:"⚡",Chemistry:"⚗️",Biology:"🧬"}[s]||"📄";
-}
-
-// ══ STYLES ════════════════════════════════════════════════════
-(function(){
-  var s = document.createElement("style");
-  s.textContent = `
-    .hc-section-hdr { display:flex; align-items:center; gap:12px; padding:28px 4px 10px; scroll-margin-top:64px; }
-    .hc-section-icon { font-size:1.5rem; line-height:1; }
-    .hc-section-title { font-size:15px; font-weight:800; color:#1d1d1f; letter-spacing:-0.3px; }
-    .hc-section-sub { font-size:11px; color:#86868b; margin-top:2px; }
-
-    .hc-wrap { background:#fff; border-radius:16px; border:1px solid rgba(0,0,0,0.07); overflow:hidden; margin-bottom:2px; }
-
-    .hc-tabs { display:flex; overflow-x:auto; border-bottom:1px solid rgba(0,0,0,0.07); scrollbar-width:none; }
-    .hc-tabs::-webkit-scrollbar { display:none; }
-    .hc-tab { flex-shrink:0; padding:10px 16px; font-size:12px; font-weight:600; color:#86868b; background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; transition:color .15s,border-color .15s; white-space:nowrap; font-family:inherit; }
-    .hc-tab:hover { color:#1d1d1f; }
-    .hc-tab.active { color:#0d9488; border-bottom-color:#0d9488; }
-
-    .hc-panel { }
-    .hc-panel.hc-hidden { display:none; }
-    .hc-list { display:flex; flex-direction:column; }
-
-    .hc-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-bottom:1px solid rgba(0,0,0,0.05); transition:background .12s; flex-wrap:wrap; }
-    .hc-row:last-child { border-bottom:none; }
-    .hc-row:hover { background:#f9f9fb; }
-    .hc-row-info { flex:1; min-width:200px; }
-    .hc-row-top { display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:3px; }
-    .hc-row-title { font-size:13px; font-weight:600; color:#1d1d1f; line-height:1.3; }
-    .hc-row-meta { font-size:11px; color:#86868b; }
-    .hc-row-actions { display:flex; align-items:center; gap:6px; flex-shrink:0; }
-
-    .hc-badge-live { font-size:10px; font-weight:600; color:#34c759; background:#e8f8ec; padding:2px 7px; border-radius:4px; white-space:nowrap; }
-    .hc-badge-soon { font-size:10px; color:#aeaeb2; background:#f5f5f7; padding:2px 6px; border-radius:4px; }
-
-    .hc-btn-toppers { padding:5px 10px; background:#f0fdf9; color:#0d9488; border:1px solid rgba(13,148,136,0.2); border-radius:6px; font-size:11px; font-weight:600; cursor:pointer; font-family:inherit; white-space:nowrap; transition:background .15s; }
-    .hc-btn-toppers:hover { background:#ccfbf1; }
-    .hc-btn-start { padding:6px 14px; background:#0d9488; color:#fff; border:none; border-radius:7px; font-size:11px; font-weight:700; cursor:pointer; font-family:inherit; white-space:nowrap; transition:background .15s; }
-    .hc-btn-start:hover { background:#0f766e; }
-    .hc-btn-soon { padding:6px 14px; background:#f5f5f7; color:#aeaeb2; border:none; border-radius:7px; font-size:11px; cursor:default; font-family:inherit; white-space:nowrap; }
-
-    /* ── Toppers panel ── */
-    .hc-top20-panel { display:none; }
-    .hc-top20-panel.open { display:block; background:#f9fafb; border-top:1px solid rgba(0,0,0,0.06); }
-    .hc-top20-inner { padding:14px 16px 12px; }
-    .hc-top20-hdr { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:700; color:#1d1d1f; margin-bottom:10px; }
-    .hc-top20-count { font-weight:400; color:#86868b; font-size:11px; }
-    .hc-top20-list { list-style:none; display:flex; flex-direction:column; gap:5px; }
-    .hc-top20-item { display:flex; align-items:center; gap:8px; background:#fff; border-radius:8px; padding:7px 10px; border:1px solid rgba(0,0,0,0.05); }
-    .hc-top20-rank { font-size:14px; width:22px; text-align:center; flex-shrink:0; }
-    .hc-top20-info { flex:1; min-width:0; }
-    .hc-top20-name { font-size:12px; font-weight:600; color:#1d1d1f; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .hc-top20-bar-wrap { height:2px; background:#e5e5ea; border-radius:2px; margin-top:4px; }
-    .hc-top20-bar { height:100%; background:#0d9488; border-radius:2px; }
-    .hc-top20-score { font-size:12px; font-weight:700; color:#1d1d1f; flex-shrink:0; }
-    .hc-top20-outof { font-size:10px; color:#86868b; }
-    .hc-top20-footer { font-size:10px; color:#aeaeb2; text-align:center; margin-top:10px; padding-top:8px; border-top:1px solid rgba(0,0,0,0.05); }
-    .hc-top20-empty { font-size:12px; color:#aeaeb2; font-style:italic; text-align:center; padding:8px; }
-    .hc-top20-loading { font-size:12px; color:#86868b; text-align:center; padding:12px; }
-
-    .hc-empty { color:#aeaeb2; font-style:italic; font-size:12px; padding:18px 16px; text-align:center; }
-
-    @media (max-width:500px) {
-      .hc-row-actions { width:100%; justify-content:flex-end; }
-      .hc-section-hdr { padding:22px 4px 8px; }
-    }
-  `;
-  document.head.appendChild(s);
-})();
+// ============================================================
+//  END OF CONFIG  —  Total: 82 tests across 13 sections
+// ============================================================
