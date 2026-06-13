@@ -492,7 +492,7 @@ var ALL_TESTS = [
     id: "mat_t01a", title: "MAT — Series Completion: Number Series",
     subject: "MAT", class: "all", section: "mat",
     questions: 10,  duration: 15, password: "matt01a",
-    live: false,    totalMarks: 10,
+    live: true,    totalMarks: 10,
     questionsFile: "questions/mat_t01a_number_series.js",
     sections: { "MAT": 10 }
   },
@@ -516,7 +516,7 @@ var ALL_TESTS = [
     id: "mat_t01d", title: "MAT — Series Completion: Missing Terms in Figure",
     subject: "MAT", class: "all", section: "mat",
     questions: 10,  duration: 15, password: "matt01d",
-    live: true,    totalMarks: 10,
+    live: false,    totalMarks: 10,
     questionsFile: "questions/mat_t01d_missing_figure.js",
     sections: { "MAT": 10 }
   },
