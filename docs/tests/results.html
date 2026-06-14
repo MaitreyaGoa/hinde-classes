@@ -83,11 +83,15 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;m
 .tier-name{font-size:11px;font-weight:700;color:#1d1d1f;}
 .tier-range{font-size:10px;color:#86868b;}
 
-/* ── PODIUM ── */
-.podium-section{margin-bottom:20px;}
+/* ── DUAL PODIUM ── */
+.dual-podium{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+@media(max-width:640px){.dual-podium{grid-template-columns:1fr;}}
+.podium-section{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.07);padding:16px;}
+.podium-section.pts-pod{border-top:3px solid var(--acc);}
+.podium-section.pct-pod{border-top:3px solid #7c3aed;}
 .sec-label{font-size:10px;font-weight:700;color:#86868b;text-transform:uppercase;letter-spacing:1.5px;display:flex;align-items:center;gap:8px;margin-bottom:12px;}
 .sec-label::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.07);}
-.podium{display:flex;align-items:flex-end;justify-content:center;gap:10px;max-width:500px;margin:0 auto;}
+.podium{display:flex;align-items:flex-end;justify-content:center;gap:8px;}
 .pod{display:flex;flex-direction:column;align-items:center;flex:1;max-width:160px;cursor:pointer;transition:transform .2s;}
 .pod:hover{transform:translateY(-4px);}
 .pod-medal{font-size:1.4rem;margin-bottom:6px;}
@@ -106,6 +110,11 @@ body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;m
   box-shadow:0 2px 8px rgba(0,0,0,.04);
 }
 .pod1 .pod-card{background:linear-gradient(180deg,#fffbeb,#fef9c3);border-color:rgba(251,191,36,.25);}
+.pct-pod .pod1 .pod-av{background:linear-gradient(135deg,#7c3aed,#6d28d9);}
+.pct-pod .pod2 .pod-av{background:linear-gradient(135deg,#64748b,#475569);}
+.pct-pod .pod3 .pod-av{background:linear-gradient(135deg,#b45309,#92400e);}
+.pct-pod .pod-pts{color:#7c3aed;}
+.pct-pod .mini-bar-fill{background:#7c3aed;}
 
 /* ── LEADERBOARD ── */
 .lb-card{background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,.07);overflow:hidden;margin-bottom:20px;}
@@ -366,7 +375,7 @@ function getTestMarks(id) {
 
 // ── POINTS FORMULA ────────────────────────────────────────
 // pts = (attemptPts + scorePts + bonus) × weight
-// attemptPts = 10 (always — rewards showing up)
+// attemptPts = 10 (always - rewards showing up)
 // scorePts   = (score/max) × 100 (0-100)
 // bonus      = 20 if ≥90%, 10 if ≥75%, 0 otherwise
 function calcPts(score, max, weight) {
@@ -628,31 +637,54 @@ function buildTierChips(students) {
   return '<div class="tier-row">'+chips+'</div>';
 }
 
-// ── PODIUM ────────────────────────────────────────────────
+// ── DUAL PODIUM ───────────────────────────────────────────
 function buildPodium(students) {
-  var top = students.slice(0,3);
-  var order = top.length>=3 ? [top[1],top[0],top[2]] : top.length===2 ? [top[1],top[0],null] : [null,top[0],null];
+  // Top 3 by POINTS (engagement + performance combined)
+  var byPts = students.slice()
+    .sort(function(a,b){ return (b._filterPts||b.totalPts)-(a._filterPts||a.totalPts); })
+    .slice(0,3);
+
+  // Top 3 by AVG PERCENTAGE (pure accuracy)
+  var byPct = students.slice()
+    .sort(function(a,b){ return b.avgPct-a.avgPct || b.testCount-a.testCount; })
+    .slice(0,3);
+
+  return '<div class="dual-podium">'
+    + buildSinglePodium(byPts, "pts-pod", "⚡ Top by Points",
+        function(s){ return (s._filterPts||s.totalPts)+" pts"; }, "points", "#0d9488")
+    + buildSinglePodium(byPct, "pct-pod", "🎯 Top by Score %",
+        function(s){ return s.avgPct+"%"; }, "avg score", "#7c3aed")
+    + '</div>';
+}
+
+function buildSinglePodium(top, extraCls, title, valueFn, valueLbl, colour) {
   var medals = ["🥈","🥇","🥉"];
-  var cls    = ["pod2","pod1","pod3"];
+  var podCls = ["pod2","pod1","pod3"];
+  var order  = top.length>=3 ? [top[1],top[0],top[2]]
+             : top.length===2 ? [top[1],top[0],null]
+             : [null, top[0], null];
 
   var items = order.map(function(s,i) {
-    if (!s) return '<div style="flex:1;max-width:160px;"></div>';
-    var iv = s.name.split(" ").map(function(w){ return w[0]||""; }).join("").toUpperCase().slice(0,2);
-    var pts = s._filterPts||s.totalPts;
-    var tier = getTier(pts);
-    return '<div class="pod '+cls[i]+'" onclick="openModal(\''+esc(s.name)+'\')">'
+    if (!s) return '<div style="flex:1;max-width:130px;"></div>';
+    var iv   = s.name.split(" ").map(function(w){ return w[0]||""; }).join("").toUpperCase().slice(0,2);
+    var tier = getTier(s._filterPts||s.totalPts);
+    return '<div class="pod '+podCls[i]+'" onclick="openModal(\''+esc(s.name)+'\')">'
       +'<div class="pod-card">'
       +'<div class="pod-medal">'+medals[i]+'</div>'
-      +'<div class="pod-av '+cls[i]+'">'+iv+'<span class="pod-tier-badge">'+tier.emoji+'</span></div>'
-      +'<div class="pod-name">'+esc(s.name)+(s.merged?'<span class="merged-tag">merged</span>':'')+'</div>'
-      +'<div class="pod-pts">'+pts+'</div>'
-      +'<div class="pod-pts-lbl">points</div>'
+      +'<div class="pod-av '+podCls[i]+'">'+iv
+      +'<span class="pod-tier-badge">'+tier.emoji+'</span></div>'
+      +'<div class="pod-name">'+esc(s.name)
+      +(s.merged?'<span class="merged-tag">merged</span>':'')+'</div>'
+      +'<div class="pod-pts" style="color:'+colour+'">'+valueFn(s)+'</div>'
+      +'<div class="pod-pts-lbl">'+valueLbl+'</div>'
       +'<div class="pod-meta">'+s.testCount+' test'+(s.testCount>1?"s":"")+'</div>'
       +'</div></div>';
   }).join("");
 
-  return '<div class="podium-section"><div class="sec-label">🥇 Top Performers</div>'
-    +'<div class="podium">'+items+'</div></div>';
+  return '<div class="podium-section '+extraCls+'">'
+    +'<div class="sec-label">'+title+'</div>'
+    +'<div class="podium">'+items+'</div>'
+    +'</div>';
 }
 
 // ── LEADERBOARD ───────────────────────────────────────────
@@ -864,19 +896,19 @@ function openModal(name) {
 function getEncouragement(s, rank, pts, tier, nt) {
   var msgs = [];
   // Rank-based
-  if (rank===1)       msgs.push("🏆 <strong>You're #1!</strong> Incredible dedication — keep it up!");
+  if (rank===1)       msgs.push("🏆 <strong>You're #1!</strong> Incredible dedication - keep it up!");
   else if (rank<=3)   msgs.push("🥇 <strong>Top 3!</strong> You're among the very best at Hinde Classes.");
   else if (rank<=10)  msgs.push("⭐ <strong>Top 10!</strong> You're in elite company. Keep going!");
   // Tests-based
-  if (s.testCount >= 5)     msgs.push("📚 <strong>Power User!</strong> You've taken "+s.testCount+" tests — consistency is your superpower.");
+  if (s.testCount >= 5)     msgs.push("📚 <strong>Power User!</strong> You've taken "+s.testCount+" tests - consistency is your superpower.");
   else if (s.testCount >= 3)msgs.push("🔥 "+s.testCount+" tests attempted! Every attempt earns you points.");
-  else                      msgs.push("💪 Take more tests to climb faster — even low scores earn attempt points!");
+  else                      msgs.push("💪 Take more tests to climb faster - even low scores earn attempt points!");
   // Next tier
   if (nt) msgs.push("🎯 Just <strong>"+(nt.min-pts)+" more points</strong> to reach "+nt.emoji+" "+nt.name+"!");
   // Avg score
-  if (s.avgPct >= 80) msgs.push("🌟 Amazing average score of "+s.avgPct+"% — you really know your stuff!");
+  if (s.avgPct >= 80) msgs.push("🌟 Amazing average score of "+s.avgPct+"% - you really know your stuff!");
   else if (s.avgPct >= 60) msgs.push("📈 Solid "+s.avgPct+"% average. Practice daily quizzes to push it higher!");
-  else msgs.push("📅 Try the Daily Quiz every day — even 10 minutes of practice builds your score.");
+  else msgs.push("📅 Try the Daily Quiz every day - even 10 minutes of practice builds your score.");
 
   return msgs.join("<br/>");
 }
