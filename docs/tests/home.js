@@ -103,32 +103,81 @@ function appendStandardSection(grid, std) {
   var wrap = makePanelWrap();
   var uid  = std.key;
 
-  var tabsHtml = '<div class="hc-tabs" id="tabs_'+uid+'">';
-  tabsHtml += '<button class="hc-tab active" onclick="showStdTab(\''+uid+'\',\'all\',this)">📚 All</button>';
-  std.subjects.forEach(function(subj){
-    tabsHtml += '<button class="hc-tab" onclick="showStdTab(\''+uid+'\',\''+escKey(subj)+'\',this)">'+subjIcon(subj)+' '+subj+'</button>';
+  // ── Row 1: Board tabs (Goa Board / CBSE / IB / All) ──────
+  var boards = [
+    { key: "all",  label: "📚 All" },
+    { key: "goa",  label: "🟠 Goa Board" },
+    { key: "cbse", label: "🔵 CBSE" },
+    { key: "ib",   label: "🟣 IB" }
+  ];
+
+  var boardTabsHtml = '<div class="hc-tabs hc-board-tabs" id="btabs_'+uid+'">';
+  boards.forEach(function(b, i){
+    boardTabsHtml += '<button class="hc-tab'+(i===0?' active':'')+'" onclick="showBoardTab(\''+uid+'\',\''+b.key+'\',this)">'+b.label+'</button>';
   });
-  tabsHtml += '</div>';
+  boardTabsHtml += '</div>';
 
-  var allRows = allTests.length ? allTests.map(buildTestRow).join("") : '<p class="hc-empty">Tests for '+std.label+' are coming soon!</p>';
-  var panelsHtml = '<div id="panel_'+uid+'_all" class="hc-panel"><div class="hc-list">'+allRows+'</div></div>';
-
+  // ── Row 2: Subject tabs ───────────────────────────────────
+  var subjTabsHtml = '<div class="hc-tabs" id="tabs_'+uid+'">';
+  subjTabsHtml += '<button class="hc-tab active" onclick="showStdTab(\''+uid+'\',\'all\',this)">📋 All Subjects</button>';
   std.subjects.forEach(function(subj){
-    var filtered = allTests.filter(function(t){ return normalise(t.subject)===normalise(subj); });
-    var rows = filtered.length ? filtered.map(buildTestRow).join("") : '<p class="hc-empty">'+subj+' tests coming soon!</p>';
-    panelsHtml += '<div id="panel_'+uid+'_'+escKey(subj)+'" class="hc-panel hc-hidden"><div class="hc-list">'+rows+'</div></div>';
+    subjTabsHtml += '<button class="hc-tab" onclick="showStdTab(\''+uid+'\',\''+escKey(subj)+'\',this)">'+subjIcon(subj)+' '+subj+'</button>';
+  });
+  subjTabsHtml += '</div>';
+
+  // ── Panels: filtered by active board × subject ────────────
+  function makePanel(panelId, tests, hidden) {
+    var rows = tests.length ? tests.map(buildTestRow).join("") : '<p class="hc-empty">Tests coming soon!</p>';
+    return '<div id="'+panelId+'" class="hc-panel'+(hidden?' hc-hidden':'')+'"><div class="hc-list">'+rows+'</div></div>';
+  }
+
+  var panelsHtml = "";
+  // board=all × subject=all
+  panelsHtml += makePanel("panel_"+uid+"_all_all", allTests, false);
+  // board=all × each subject
+  std.subjects.forEach(function(subj){
+    var t = allTests.filter(function(x){ return normalise(x.subject)===normalise(subj); });
+    panelsHtml += makePanel("panel_"+uid+"_all_"+escKey(subj), t, true);
+  });
+  // each board × subject combinations
+  ["goa","cbse","ib"].forEach(function(brd){
+    var bTests = allTests.filter(function(x){ return (x.board||"cbse")===brd; });
+    panelsHtml += makePanel("panel_"+uid+"_"+brd+"_all", bTests, true);
+    std.subjects.forEach(function(subj){
+      var t = bTests.filter(function(x){ return normalise(x.subject)===normalise(subj); });
+      panelsHtml += makePanel("panel_"+uid+"_"+brd+"_"+escKey(subj), t, true);
+    });
   });
 
-  wrap.innerHTML = tabsHtml + panelsHtml;
+  wrap.innerHTML = boardTabsHtml + subjTabsHtml + panelsHtml;
+  // Store active board on wrap for cross-tab awareness
+  wrap.dataset.board = "all";
+  wrap.dataset.subj  = "all";
   grid.appendChild(wrap);
 }
 
-function showStdTab(uid, subj, btn) {
-  document.querySelectorAll("[id^='panel_"+uid+"_']").forEach(function(p){ p.classList.add("hc-hidden"); });
-  document.getElementById("tabs_"+uid).querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
-  var panel = document.getElementById("panel_"+uid+"_"+subj);
-  if(panel) panel.classList.remove("hc-hidden");
+function showBoardTab(uid, board, btn) {
+  var wrap = document.getElementById("btabs_"+uid).parentElement;
+  wrap.dataset.board = board;
+  var subj = wrap.dataset.subj || "all";
+  _activateStdPanel(uid, board, subj);
+  document.getElementById("btabs_"+uid).querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
   btn.classList.add("active");
+}
+
+function showStdTab(uid, subj, btn) {
+  var wrap = document.getElementById("tabs_"+uid).parentElement;
+  wrap.dataset.subj = subj;
+  var board = wrap.dataset.board || "all";
+  _activateStdPanel(uid, board, subj);
+  document.getElementById("tabs_"+uid).querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
+  btn.classList.add("active");
+}
+
+function _activateStdPanel(uid, board, subj) {
+  document.querySelectorAll("[id^='panel_"+uid+"_']").forEach(function(p){ p.classList.add("hc-hidden"); });
+  var target = document.getElementById("panel_"+uid+"_"+board+"_"+subj);
+  if(target) target.classList.remove("hc-hidden");
 }
 
 // ══ OLYMPIAD ══════════════════════════════════════════════════
