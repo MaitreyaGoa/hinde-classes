@@ -131,7 +131,7 @@ var ALL_TESTS = [
     id: "c8mat_jun22_goa", title: "Std 8 Maths — A Story of Numbers",
     subject: "Maths", class: "8", section: "std8", board: "goa",
     questions: 30, duration: 60, password: "c8mat22g",
-    live: false,   totalMarks: 30, questionsFile: "questions/c8mat_jun22_goa.js",
+    live: true,   totalMarks: 30, questionsFile: "questions/c8mat_jun22_goa.js",
     sections: { "Maths": 30 }
   },
 
@@ -161,14 +161,14 @@ var ALL_TESTS = [
     id: "c9mat_jun22_goa",  title: "Std 9 Maths — Number System",
     subject: "Maths", class: "9", section: "std9", board: "goa",
     questions: 30, duration: 60, password: "c9mat22g",
-    live: false,   totalMarks: 30, questionsFile: "questions/c9mat_jun22_goa.js",
+    live: true,   totalMarks: 30, questionsFile: "questions/c9mat_jun22_goa.js",
     sections: { "Maths": 30 }
   },
   {
     id: "c9mat_jun22_cbse", title: "Std 9 Maths — Number Systems",
     subject: "Maths", class: "9", section: "std9", board: "cbse",
     questions: 30, duration: 60, password: "c9mat22c",
-    live: false,   totalMarks: 30, questionsFile: "questions/c9mat_jun22_cbse.js",
+    live: true,   totalMarks: 30, questionsFile: "questions/c9mat_jun22_cbse.js",
     sections: { "Maths": 30 }
   },
   {
@@ -212,7 +212,7 @@ var ALL_TESTS = [
     id: "c10mat_jun22_goa",  title: "Std 10 Maths — Real Numbers",
     subject: "Maths", class: "10", section: "std10", board: "goa",
     questions: 30, duration: 60, password: "c10mat22g",
-    live: false,   totalMarks: 30, questionsFile: "questions/c10mat_jun22_goa.js",
+    live: true,   totalMarks: 30, questionsFile: "questions/c10mat_jun22_goa.js",
     sections: { "Maths": 30 }
   },
   {
@@ -226,7 +226,7 @@ var ALL_TESTS = [
     id: "c10mat_jun22_cbse", title: "Std 10 Maths — Real Numbers",
     subject: "Maths", class: "10", section: "std10", board: "cbse",
     questions: 30, duration: 60, password: "c10mat22c",
-    live: false,   totalMarks: 30, questionsFile: "questions/c10mat_jun22_cbse.js",
+    live: true,   totalMarks: 30, questionsFile: "questions/c10mat_jun22_cbse.js",
     sections: { "Maths": 30 }
   },
   {
