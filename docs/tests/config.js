@@ -70,220 +70,172 @@ var ALL_TESTS = [
 
   // ══════════════════════════════════════════════════════════
   //  📔  STANDARD 6  |  section: "std6"
+  //  board: "goa" | "cbse" | "ib"
   // ══════════════════════════════════════════════════════════
-  {
-    id: "c6eng1",      title: "Class 6 English — Parts of Speech",
-    subject: "English", class: "6",  section: "std6",
-    questions: 20,     duration: 25,  password: "c6eng1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c6eng1.js",
-    sections: { "English": 20 }
-  },
-  {
-    id: "c6mat1",      title: "Class 6 Maths — Basic Algebra",
-    subject: "Maths",  class: "6",   section: "std6",
-    questions: 20,     duration: 25,  password: "c6mat1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c6mat1.js",
-    sections: { "Maths": 20 }
-  },
-  {
-    id: "c6sci1",      title: "Class 6 Science — Food & Nutrition",
-    subject: "Science", class: "6",  section: "std6",
-    questions: 20,     duration: 25,  password: "c6sci1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c6sci1.js",
-    sections: { "Science": 20 }
-  },
+
+  // ── STD 6 : No calendar tests yet — placeholder section ──
 
   // ══════════════════════════════════════════════════════════
   //  📒  STANDARD 7  |  section: "std7"
+  //  board: "goa" | "cbse" | "ib"
   // ══════════════════════════════════════════════════════════
+
+  // ── LIVE (carry-over) ────────────────────────────────────
   {
     id: "c7eng1",      title: "Class 7 English — Tenses",
-    subject: "English", class: "7",  section: "std7",
+    subject: "English", class: "7", section: "std7", board: "cbse",
     questions: 20,     duration: 25,  password: "c7eng1",
-    live:          true,        totalMarks: 20, questionsFile: "questions/c7eng1.js",
+    live: true,        totalMarks: 20, questionsFile: "questions/c7eng1.js",
     sections: { "English": 20 }
   },
   {
     id: "c7mat1",      title: "Class 7 Maths — Simple Equations",
-    subject: "Maths",  class: "7",   section: "std7",
+    subject: "Maths", class: "7", section: "std7", board: "cbse",
     questions: 20,     duration: 25,  password: "c7mat1",
-    live:          true,        totalMarks: 20, questionsFile: "questions/c7mat1.js",
+    live: true,        totalMarks: 20, questionsFile: "questions/c7mat1.js",
     sections: { "Maths": 20 }
   },
+
+  // ── 22 June 2026 Tests ───────────────────────────────────
   {
-    id: "c7sci1",      title: "Class 7 Science — Nutrition in Plants",
-    subject: "Science", class: "7",  section: "std7",
-    questions: 20,     duration: 25,  password: "c7sci1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c7sci1.js",
-    sections: { "Science": 20 }
+    id: "c7mat_jun22_goa", title: "Std 7 Maths — Large Numbers Around Us",
+    subject: "Maths", class: "7", section: "std7", board: "goa",
+    questions: 30, duration: 60, password: "c7mat22g",
+    live: true,    totalMarks: 30, questionsFile: "questions/c7mat_jun22_goa.js",
+    sections: { "Maths": 30 }
   },
   {
-    id: "c7sst1",      title: "Class 7 SST — Medieval India",
-    subject: "Social Science", class: "7", section: "std7",
-    questions: 20,     duration: 25,  password: "c7sst1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c7sst1.js",
-    sections: { "Social Science": 20 }
+    id: "c7sci_jun22_goa", title: "Std 7 Science — Ever-Evolving World of Science",
+    subject: "Science", class: "7", section: "std7", board: "goa",
+    questions: 30, duration: 60, password: "c7sci22g",
+    live: false,   totalMarks: 30, questionsFile: "questions/c7sci_jun22_goa.js",
+    sections: { "Science": 30 }
   },
 
   // ══════════════════════════════════════════════════════════
   //  📙  STANDARD 8  |  section: "std8"
+  //  board: "goa" | "cbse" | "ib"
   // ══════════════════════════════════════════════════════════
-  {
-    id: "c8eng1",      title: "Class 8 English — Active & Passive Voice",
-    subject: "English", class: "8",  section: "std8",
-    questions: 20,     duration: 25,  password: "c8eng1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c8eng1.js",
-    sections: { "English": 20 }
-  },
-  {
-    id: "c8mat1",      title: "Class 8 Maths — Linear Equations",
-    subject: "Maths",  class: "8",   section: "std8",
-    questions: 20,     duration: 25,  password: "c8mat1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c8mat1.js",
-    sections: { "Maths": 20 }
-  },
+
+  // ── LIVE (carry-over) ────────────────────────────────────
   {
     id: "c8sci1",      title: "Class 8 Science — Microorganisms",
-    subject: "Science", class: "8",  section: "std8",
+    subject: "Science", class: "8", section: "std8", board: "cbse",
     questions: 20,     duration: 25,  password: "c8sci1",
-    live:          true,        totalMarks: 20, questionsFile: "questions/c8sci1.js",
+    live: true,        totalMarks: 20, questionsFile: "questions/c8sci1.js",
     sections: { "Science": 20 }
   },
+
+  // ── 22 June 2026 Tests ───────────────────────────────────
   {
-    id: "c8sst1",      title: "Class 8 SST — The Indian Constitution",
-    subject: "Social Science", class: "8", section: "std8",
-    questions: 20,     duration: 25,  password: "c8sst1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c8sst1.js",
-    sections: { "Social Science": 20 }
+    id: "c8mat_jun22_goa", title: "Std 8 Maths — A Story of Numbers",
+    subject: "Maths", class: "8", section: "std8", board: "goa",
+    questions: 30, duration: 60, password: "c8mat22g",
+    live: false,   totalMarks: 30, questionsFile: "questions/c8mat_jun22_goa.js",
+    sections: { "Maths": 30 }
   },
 
   // ══════════════════════════════════════════════════════════
   //  📗  STANDARD 9  |  section: "std9"
+  //  board: "goa" | "cbse" | "ib"
   // ══════════════════════════════════════════════════════════
-  {
-    id: "c9eng1",      title: "Class 9 English — Reading Comprehension",
-    subject: "English", class: "9",  section: "std9",
-    questions: 20,     duration: 25,  password: "c9eng1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c9eng1.js",
-    sections: { "English": 20 }
-  },
-  {
-    id: "c9mat1",      title: "Class 9 Maths — Number Systems",
-    subject: "Maths",  class: "9",   section: "std9",
-    questions: 25,     duration: 30,  password: "c9mat1",
-    live:          false,       totalMarks: 25, questionsFile: "questions/c9mat1.js",
-    sections: { "Maths": 25 }
-  },
+
+  // ── LIVE (carry-over) ────────────────────────────────────
   {
     id: "c9sci1",      title: "Class 9 Science — Force & Motion",
-    subject: "Science", class: "9",  section: "std9",
+    subject: "Science", class: "9", section: "std9", board: "cbse",
     questions: 25,     duration: 30,  password: "c9sci1",
-    live:          true,        totalMarks: 25, questionsFile: "questions/c9sci1.js",
+    live: true,        totalMarks: 25, questionsFile: "questions/c9sci1.js",
     sections: { "Science": 25 }
   },
   {
-    id: "c9sci_cell1",  title: "Class 9 Science — The Fundamental Unit of Life",
-    subject: "Science", class: "9",  section: "std9",
-    questions: 20,      duration: 25, password: "c9cell1",
-    live: true,         totalMarks: 20, questionsFile: "questions/c9sci_cell1.js",
+    id: "c9sci_cell1", title: "Class 9 Science — The Fundamental Unit of Life",
+    subject: "Science", class: "9", section: "std9", board: "cbse",
+    questions: 20,     duration: 25,  password: "c9cell1",
+    live: true,        totalMarks: 20, questionsFile: "questions/c9sci_cell1.js",
     sections: { "Science": 20 }
   },
+
+  // ── 22 June 2026 Tests ───────────────────────────────────
   {
-    id: "c9sst1",      title: "Class 9 SST — French Revolution",
-    subject: "Social Science", class: "9", section: "std9",
-    questions: 20,     duration: 25,  password: "c9sst1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c9sst1.js",
-    sections: { "Social Science": 20 }
+    id: "c9mat_jun22_goa",  title: "Std 9 Maths — Number System",
+    subject: "Maths", class: "9", section: "std9", board: "goa",
+    questions: 30, duration: 60, password: "c9mat22g",
+    live: false,   totalMarks: 30, questionsFile: "questions/c9mat_jun22_goa.js",
+    sections: { "Maths": 30 }
+  },
+  {
+    id: "c9mat_jun22_cbse", title: "Std 9 Maths — Number Systems",
+    subject: "Maths", class: "9", section: "std9", board: "cbse",
+    questions: 30, duration: 60, password: "c9mat22c",
+    live: false,   totalMarks: 30, questionsFile: "questions/c9mat_jun22_cbse.js",
+    sections: { "Maths": 30 }
+  },
+  {
+    id: "c9sci_jun22_cbse", title: "Std 9 Science — Cell",
+    subject: "Science", class: "9", section: "std9", board: "cbse",
+    questions: 30, duration: 60, password: "c9sci22c",
+    live: false,   totalMarks: 30, questionsFile: "questions/c9sci_jun22_cbse.js",
+    sections: { "Science": 30 }
   },
 
   // ══════════════════════════════════════════════════════════
   //  📘  STANDARD 10  |  section: "std10"
+  //  board: "goa" | "cbse" | "ib"
   // ══════════════════════════════════════════════════════════
+
+  // ── LIVE (carry-over) ────────────────────────────────────
   {
     id: "c10eng1",     title: "Class 10 English — Writing Skills & Grammar",
-    subject: "English", class: "10", section: "std10",
+    subject: "English", class: "10", section: "std10", board: "cbse",
     questions: 25,     duration: 30,  password: "c10eng1",
-    live:          true,        totalMarks: 25, questionsFile: "questions/c10eng1.js",
+    live: true,        totalMarks: 25, questionsFile: "questions/c10eng1.js",
     sections: { "English": 25 }
   },
   {
     id: "c10mat1",     title: "Class 10 Maths — Quadratic Equations",
-    subject: "Maths",  class: "10",  section: "std10",
-    questions: 25,     duration: 30,  password: "c10mat1",
-    live:          true,        totalMarks: 25, questionsFile: "questions/c10mat1.js",
-    sections: { "Maths": 25 }
-  },
-  {
-    id: "c10mat2",     title: "Class 10 Maths — Trigonometry",
-    subject: "Maths",  class: "10",  section: "std10",
-    questions: 25,     duration: 30,  password: "c10mat2",
-    live:          false,       totalMarks: 25, questionsFile: "questions/c10mat2.js",
-    sections: { "Maths": 25 }
-  },
-  {
-    id: "c10sci1",     title: "Class 10 Science — Chemical Reactions",
-    subject: "Science", class: "10", section: "std10",
-    questions: 25,     duration: 30,  password: "c10sci1old",
-    live:          false,       totalMarks: 25, questionsFile: "questions/c10sci1.js",
-    sections: { "Science": 25 }
+    subject: "Maths", class: "10", section: "std10", board: "cbse",
+    questions: 20,     duration: 25,  password: "c10mat1",
+    live: true,        totalMarks: 20, questionsFile: "questions/c10mat1.js",
+    sections: { "Maths": 20 }
   },
   {
     id: "c10sci_cer1", title: "Class 10 Science — Chemical Reactions",
-    subject: "Science", class: "10", section: "std10",
+    subject: "Science", class: "10", section: "std10", board: "cbse",
     questions: 20,     duration: 25,  password: "c10sci1",
     live: true,        totalMarks: 20, questionsFile: "questions/c10sci_cer1.js",
     sections: { "Science": 20 }
   },
-  {
-    id: "c10sci2",     title: "Class 10 Science — Life Processes",
-    subject: "Science", class: "10", section: "std10",
-    questions: 25,     duration: 30,  password: "c10sci2",
-    live:          false,       totalMarks: 25, questionsFile: "questions/c10sci2.js",
-    sections: { "Science": 25 }
-  },
-  {
-    id: "c10sst1",     title: "Class 10 SST — Nationalism in India",
-    subject: "Social Science", class: "10", section: "std10",
-    questions: 20,     duration: 25,  password: "c10sst1",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c10sst1.js",
-    sections: { "Social Science": 20 }
-  },
-  {
-    id: "c10sst2",     title: "Class 10 SST — Resources & Development",
-    subject: "Social Science", class: "10", section: "std10",
-    questions: 20,     duration: 25,  password: "c10sst2",
-    live:          false,       totalMarks: 20, questionsFile: "questions/c10sst2.js",
-    sections: { "Social Science": 20 }
-  },
-  {
-    id: "sub_c10mat1", title: "Class 10 Maths — Full Mock Test 1",
-    subject: "Maths",  class: "10",  section: "std10",
-    questions: 40,     duration: 60,  password: "s10mat1",
-    live:          false,       totalMarks: 40, questionsFile: "questions/sub_c10mat1.js",
-    sections: { "Maths": 40 }
-  },
-  {
-    id: "sub_c10sci1", title: "Class 10 Science — Full Mock Test 1",
-    subject: "Science", class: "10", section: "std10",
-    questions: 40,     duration: 60,  password: "s10sci1",
-    live:          false,       totalMarks: 40, questionsFile: "questions/sub_c10sci1.js",
-    sections: { "Physics": 15, "Chemistry": 15, "Biology": 10 }
-  },
-  {
-    id: "sp10b01",     title: "Class 10 Maths — CBSE Sample Paper 2025-26",
-    subject: "Maths",  class: "10",  section: "std10",
-    questions: 40,     duration: 60,  password: "sp10b01",
-    live:          false,       totalMarks: 40, questionsFile: "questions/sp10b01.js",
-    sections: { "Maths": 40 }
-  },
-  {
-    id: "sp10b02",     title: "Class 10 Science — CBSE Sample Paper 2025-26",
-    subject: "Science", class: "10", section: "std10",
-    questions: 40,     duration: 60,  password: "sp10b02",
-    live:          false,       totalMarks: 40, questionsFile: "questions/sp10b02.js",
-    sections: { "Physics": 14, "Chemistry": 14, "Biology": 12 }
-  },
 
+  // ── 22 June 2026 Tests ───────────────────────────────────
+  {
+    id: "c10mat_jun22_goa",  title: "Std 10 Maths — Real Numbers",
+    subject: "Maths", class: "10", section: "std10", board: "goa",
+    questions: 30, duration: 60, password: "c10mat22g",
+    live: false,   totalMarks: 30, questionsFile: "questions/c10mat_jun22_goa.js",
+    sections: { "Maths": 30 }
+  },
+  {
+    id: "c10sci_jun22_goa",  title: "Std 10 Science — Chemical Reactions & Equations",
+    subject: "Science", class: "10", section: "std10", board: "goa",
+    questions: 30, duration: 60, password: "c10sci22g",
+    live: false,   totalMarks: 30, questionsFile: "questions/c10sci_jun22_goa.js",
+    sections: { "Science": 30 }
+  },
+  {
+    id: "c10mat_jun22_cbse", title: "Std 10 Maths — Real Numbers",
+    subject: "Maths", class: "10", section: "std10", board: "cbse",
+    questions: 30, duration: 60, password: "c10mat22c",
+    live: false,   totalMarks: 30, questionsFile: "questions/c10mat_jun22_cbse.js",
+    sections: { "Maths": 30 }
+  },
+  {
+    id: "c10sci_jun22_cbse", title: "Std 10 Science — Chemical Substances & Matter",
+    subject: "Science", class: "10", section: "std10", board: "cbse",
+    questions: 30, duration: 60, password: "c10sci22c",
+    live: false,   totalMarks: 30, questionsFile: "questions/c10sci_jun22_cbse.js",
+    sections: { "Science": 30 }
+  },
   // ══════════════════════════════════════════════════════════
   //  📕  STANDARD 11  |  section: "std11"
   // ══════════════════════════════════════════════════════════
@@ -715,5 +667,5 @@ var ALL_TESTS = [
 
 ];
 // ============================================================
-//  END OF CONFIG  —  Total: 82 tests across 13 sections
+//  END OF CONFIG  —  Total updated | Last: 22 June 2026 calendar added
 // ============================================================
