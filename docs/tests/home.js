@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
 // ══ STANDARDS ═════════════════════════════════════════════════
 var STANDARDS = [
   { key:"std5",  section:"std5",  classNum:"5",  label:"Standard 5",  icon:"📓", subjects:["Maths","Science","English"] },
-  { key:"std6",  section:"std6",  classNum:"6",  label:"Standard 6",  icon:"📔", subjects:["Maths","Science","English"] },
-  { key:"std7",  section:"std7",  classNum:"7",  label:"Standard 7",  icon:"📒", subjects:["Maths","Science","English","Social Science"] },
-  { key:"std8",  section:"std8",  classNum:"8",  label:"Standard 8",  icon:"📙", subjects:["Maths","Science","English","Social Science"] },
-  { key:"std9",  section:"std9",  classNum:"9",  label:"Standard 9",  icon:"📗", subjects:["Maths","Science","English","Social Science"] },
-  { key:"std10", section:"std10", classNum:"10", label:"Standard 10", icon:"📘", subjects:["Maths","Science","English","Social Science"] },
+  { key:"std6",  section:"std6",  classNum:"6",  label:"Standard 6",  icon:"📔", subjects:["Maths","Science","English"], ibSubjects:["Maths","Physics","Chemistry","Biology","English","Social Science"] },
+  { key:"std7",  section:"std7",  classNum:"7",  label:"Standard 7",  icon:"📒", subjects:["Maths","Science","English","Social Science"], ibSubjects:["Maths","Physics","Chemistry","Biology","English","Social Science"] },
+  { key:"std8",  section:"std8",  classNum:"8",  label:"Standard 8",  icon:"📙", subjects:["Maths","Science","English","Social Science"], ibSubjects:["Maths","Physics","Chemistry","Biology","English","Social Science"] },
+  { key:"std9",  section:"std9",  classNum:"9",  label:"Standard 9",  icon:"📗", subjects:["Maths","Science","English","Social Science"], ibSubjects:["Maths","Physics","Chemistry","Biology","English","Social Science"] },
+  { key:"std10", section:"std10", classNum:"10", label:"Standard 10", icon:"📘", subjects:["Maths","Science","English","Social Science"], ibSubjects:["Maths","Physics","Chemistry","Biology","English","Social Science"] },
   { key:"std11", section:"std11", classNum:"11", label:"Standard 11", icon:"📕", subjects:["Maths","Physics","Chemistry","Biology","English"] },
   { key:"std12", section:"std12", classNum:"12", label:"Standard 12", icon:"📕", subjects:["Maths","Physics","Chemistry","Biology","English"] }
 ];
@@ -102,6 +102,7 @@ function appendStandardSection(grid, std) {
 
   var wrap = makePanelWrap();
   var uid  = std.key;
+  var ibSubjects = std.ibSubjects || std.subjects; // fallback if a standard has no IB override
 
   // ── Row 1: Board tabs (Goa Board / CBSE / IB / All) ──────
   var boards = [
@@ -113,17 +114,28 @@ function appendStandardSection(grid, std) {
 
   var boardTabsHtml = '<div class="hc-tabs hc-board-tabs" id="btabs_'+uid+'">';
   boards.forEach(function(b, i){
-    boardTabsHtml += '<button class="hc-tab'+(i===0?' active':'')+'" onclick="showBoardTab(\''+uid+'\',\''+b.key+'\',this)">'+b.label+'</button>';
+    boardTabsHtml += '<button class="hc-tab'+(i===0?' active':'')
+      +'" onclick="showBoardTab(\''+uid+'\',\''+b.key+'\',this)">'+b.label+'</button>';
   });
   boardTabsHtml += '</div>';
 
-  // ── Row 2: Subject tabs ───────────────────────────────────
-  var subjTabsHtml = '<div class="hc-tabs" id="tabs_'+uid+'">';
-  subjTabsHtml += '<button class="hc-tab active" onclick="showStdTab(\''+uid+'\',\'all\',this)">📋 All Subjects</button>';
-  std.subjects.forEach(function(subj){
-    subjTabsHtml += '<button class="hc-tab" onclick="showStdTab(\''+uid+'\',\''+escKey(subj)+'\',this)">'+subjIcon(subj)+' '+subj+'</button>';
-  });
-  subjTabsHtml += '</div>';
+  // ── Row 2: Subject tabs — rendered PER BOARD (IB shows Physics/Chemistry/Biology) ──
+  function buildSubjTabs(subjList, boardKey) {
+    var html = '<div class="hc-tabs hc-subj-tabs" id="subjtabs_'+uid+'_'+boardKey+'"'
+      + (boardKey !== "all" ? ' style="display:none"' : '') + '>';
+    html += '<button class="hc-tab active" onclick="showStdTab(\''+uid+'\',\'all\',this)">📋 All Subjects</button>';
+    subjList.forEach(function(subj){
+      html += '<button class="hc-tab" onclick="showStdTab(\''+uid+'\',\''+escKey(subj)+'\',this)">'+subjIcon(subj)+' '+subj+'</button>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  var subjTabsHtml =
+    buildSubjTabs(std.subjects, "all") +
+    buildSubjTabs(std.subjects, "goa") +
+    buildSubjTabs(std.subjects, "cbse") +
+    buildSubjTabs(ibSubjects,   "ib");
 
   // ── Panels: filtered by active board × subject ────────────
   function makePanel(panelId, tests, hidden) {
@@ -134,18 +146,22 @@ function appendStandardSection(grid, std) {
   var panelsHtml = "";
   // board=all × subject=all
   panelsHtml += makePanel("panel_"+uid+"_all_all", allTests, false);
-  // board=all × each subject
+  // board=all × each subject (using default subject set)
   std.subjects.forEach(function(subj){
     var t = allTests.filter(function(x){ return normalise(x.subject)===normalise(subj); });
     panelsHtml += makePanel("panel_"+uid+"_all_"+escKey(subj), t, true);
   });
-  // each board × subject combinations
-  ["goa","cbse","ib"].forEach(function(brd){
-    var bTests = allTests.filter(function(x){ return (x.board||"cbse")===brd; });
-    panelsHtml += makePanel("panel_"+uid+"_"+brd+"_all", bTests, true);
-    std.subjects.forEach(function(subj){
+  // each board × subject combinations (Goa/CBSE use std.subjects; IB uses ibSubjects)
+  [
+    { brd: "goa",  subjList: std.subjects },
+    { brd: "cbse", subjList: std.subjects },
+    { brd: "ib",   subjList: ibSubjects }
+  ].forEach(function(entry){
+    var bTests = allTests.filter(function(x){ return (x.board||"cbse")===entry.brd; });
+    panelsHtml += makePanel("panel_"+uid+"_"+entry.brd+"_all", bTests, true);
+    entry.subjList.forEach(function(subj){
       var t = bTests.filter(function(x){ return normalise(x.subject)===normalise(subj); });
-      panelsHtml += makePanel("panel_"+uid+"_"+brd+"_"+escKey(subj), t, true);
+      panelsHtml += makePanel("panel_"+uid+"_"+entry.brd+"_"+escKey(subj), t, true);
     });
   });
 
@@ -159,18 +175,28 @@ function appendStandardSection(grid, std) {
 function showBoardTab(uid, board, btn) {
   var wrap = document.getElementById("btabs_"+uid).parentElement;
   wrap.dataset.board = board;
-  var subj = wrap.dataset.subj || "all";
-  _activateStdPanel(uid, board, subj);
+  wrap.dataset.subj  = "all"; // reset subject filter when switching board (subject sets differ for IB)
+
+  // Show only the subject-tab row matching this board; reset its active button to "All Subjects"
+  ["all","goa","cbse","ib"].forEach(function(b){
+    var row = document.getElementById("subjtabs_"+uid+"_"+b);
+    if (!row) return;
+    row.style.display = (b === board) ? "" : "none";
+    row.querySelectorAll(".hc-tab").forEach(function(t,i){ t.classList.toggle("active", i===0); });
+  });
+
+  _activateStdPanel(uid, board, "all");
   document.getElementById("btabs_"+uid).querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
   btn.classList.add("active");
 }
 
 function showStdTab(uid, subj, btn) {
-  var wrap = document.getElementById("tabs_"+uid).parentElement;
+  var wrap = document.getElementById("btabs_"+uid).parentElement;
   wrap.dataset.subj = subj;
   var board = wrap.dataset.board || "all";
   _activateStdPanel(uid, board, subj);
-  document.getElementById("tabs_"+uid).querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
+  // Only update active state within the currently visible subject-tab row
+  btn.parentElement.querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
   btn.classList.add("active");
 }
 
