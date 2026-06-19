@@ -68,6 +68,13 @@ var ALL_TESTS = [
     live: true,   totalMarks: 30, questionsFile: "questions/c7sci_jun22_goa.js",
     sections: { "Science": 30 }
   },
+  {
+    id: "c7sci_jul09_goa", title: "Std 7 Science — Exploring Substances: Acidic, Basic and Neutral",
+    subject: "Science", class: "7", section: "std7", board: "goa",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c7sci_jul09_goa.js",
+    sections: { "Science": 30 }
+  },
 
   // ── STD 7 : IB (International Board) ─────────────────────
   {
@@ -121,6 +128,13 @@ var ALL_TESTS = [
     live: true,   totalMarks: 30, questionsFile: "questions/c8sci_jun22_goa.js",
     sections: { "Science": 30 }
   },
+  {
+    id: "c8sci_jul09_goa", title: "Std 8 Science — The Invisible Living World: Beyond Our Naked Eye",
+    subject: "Science", class: "8", section: "std8", board: "goa",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c8sci_jul09_goa.js",
+    sections: { "Science": 30 }
+  },
 
   // ══════════════════════════════════════════════════════════
   //  📗  STANDARD 9  |  section: "std9"
@@ -159,6 +173,13 @@ var ALL_TESTS = [
     sections: { "Science": 30 }
   },
   {
+    id: "c9sci_jul09_goa", title: "Std 9 Science — Cell: The Fundamental Unit of Life",
+    subject: "Science", class: "9", section: "std9", board: "goa",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c9sci_jul09_goa.js",
+    sections: { "Science": 30 }
+  },
+  {
     id: "c9mat_jun22_cbse", title: "Std 9 Maths — Number Systems",
     subject: "Maths", class: "9", section: "std9", board: "cbse",
     questions: 30, duration: 60, password: "hindeclasses",
@@ -170,6 +191,13 @@ var ALL_TESTS = [
     subject: "Science", class: "9", section: "std9", board: "cbse",
     questions: 30, duration: 50, password: "hindeclasses",
     live: true,   totalMarks: 30, questionsFile: "questions/c9sci_jun22_cbse.js",
+    sections: { "Science": 30 }
+  },
+  {
+    id: "c9sci_jul09_cbse", title: "Std 9 Science — Is Matter Around Us Pure?",
+    subject: "Science", class: "9", section: "std9", board: "cbse",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c9sci_jul09_cbse.js",
     sections: { "Science": 30 }
   },
 
@@ -217,6 +245,13 @@ var ALL_TESTS = [
     sections: { "Science": 30 }
   },
   {
+    id: "c10sci_jul09_goa", title: "Std 10 Science — Life Processes",
+    subject: "Science", class: "10", section: "std10", board: "goa",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c10sci_jul09_goa.js",
+    sections: { "Science": 30 }
+  },
+  {
     id: "c10mat_jun22_cbse", title: "Std 10 Maths — Real Numbers",
     subject: "Maths", class: "10", section: "std10", board: "cbse",
     questions: 30, duration: 60, password: "hindeclasses",
@@ -228,6 +263,13 @@ var ALL_TESTS = [
     subject: "Science", class: "10", section: "std10", board: "cbse",
     questions: 30, duration: 50, password: "hindeclasses",
     live: true,   totalMarks: 30, questionsFile: "questions/c10sci_jun22_cbse.js",
+    sections: { "Science": 30 }
+  },
+  {
+    id: "c10sci_jul09_cbse", title: "Std 10 Science — Life Processes",
+    subject: "Science", class: "10", section: "std10", board: "cbse",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c10sci_jul09_cbse.js",
     sections: { "Science": 30 }
   },
 
