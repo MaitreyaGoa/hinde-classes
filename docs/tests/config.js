@@ -75,6 +75,27 @@ var ALL_TESTS = [
     live: true,   totalMarks: 30, questionsFile: "questions/c7sci_jul09_goa.js",
     sections: { "Science": 30 }
   },
+  {
+    id: "c7mat_jun22_cbse", title: "Std 7 Maths — Large Numbers Around Us",
+    subject: "Maths", class: "7", section: "std7", board: "cbse",
+    questions: 30, duration: 60, password: "hindeclasses",
+    live: true,    totalMarks: 30, questionsFile: "questions/c7mat_jun22_cbse.js",
+    sections: { "Maths": 30 }
+  },
+  {
+    id: "c7sci_jun22_cbse", title: "Std 7 Science — Ever-Evolving World of Science",
+    subject: "Science", class: "7", section: "std7", board: "cbse",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c7sci_jun22_cbse.js",
+    sections: { "Science": 30 }
+  },
+  {
+    id: "c7sci_jul09_cbse", title: "Std 7 Science — Exploring Substances: Acidic, Basic and Neutral",
+    subject: "Science", class: "7", section: "std7", board: "cbse",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c7sci_jul09_cbse.js",
+    sections: { "Science": 30 }
+  },
 
   // ── STD 7 : IB (International Board) ─────────────────────
   {
@@ -133,6 +154,27 @@ var ALL_TESTS = [
     subject: "Science", class: "8", section: "std8", board: "goa",
     questions: 30, duration: 50, password: "hindeclasses",
     live: true,   totalMarks: 30, questionsFile: "questions/c8sci_jul09_goa.js",
+    sections: { "Science": 30 }
+  },
+  {
+    id: "c8mat_jun22_cbse", title: "Std 8 Maths — A Story of Numbers",
+    subject: "Maths", class: "8", section: "std8", board: "cbse",
+    questions: 30, duration: 60, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c8mat_jun22_cbse.js",
+    sections: { "Maths": 30 }
+  },
+  {
+    id: "c8sci_jun22_cbse", title: "Std 8 Science — Exploring the Investigative World of Science",
+    subject: "Science", class: "8", section: "std8", board: "cbse",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c8sci_jun22_cbse.js",
+    sections: { "Science": 30 }
+  },
+  {
+    id: "c8sci_jul09_cbse", title: "Std 8 Science — The Invisible Living World: Beyond Our Naked Eye",
+    subject: "Science", class: "8", section: "std8", board: "cbse",
+    questions: 30, duration: 50, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c8sci_jul09_cbse.js",
     sections: { "Science": 30 }
   },
 
