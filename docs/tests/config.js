@@ -62,6 +62,13 @@ var ALL_TESTS = [
     sections: { "Maths": 30 }
   },
   {
+    id: "c7mat_jul06_goa", title: "Std 7 Maths — Arithmetic Expressions",
+    subject: "Maths", class: "7", section: "std7", board: "goa",
+    questions: 30, duration: 60, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c7mat_jul06_goa.js",
+    sections: { "Maths": 30 }
+  },
+  {
     id: "c7sci_jun22_goa", title: "Std 7 Science — Ever-Evolving World of Science",
     subject: "Science", class: "7", section: "std7", board: "goa",
     questions: 30, duration: 50, password: "hindeclasses",
@@ -73,27 +80,6 @@ var ALL_TESTS = [
     subject: "Science", class: "7", section: "std7", board: "goa",
     questions: 30, duration: 50, password: "hindeclasses",
     live: true,   totalMarks: 30, questionsFile: "questions/c7sci_jul09_goa.js",
-    sections: { "Science": 30 }
-  },
-  {
-    id: "c7mat_jun22_cbse", title: "Std 7 Maths — Large Numbers Around Us",
-    subject: "Maths", class: "7", section: "std7", board: "cbse",
-    questions: 30, duration: 60, password: "hindeclasses",
-    live: true,    totalMarks: 30, questionsFile: "questions/c7mat_jun22_cbse.js",
-    sections: { "Maths": 30 }
-  },
-  {
-    id: "c7sci_jun22_cbse", title: "Std 7 Science — Ever-Evolving World of Science",
-    subject: "Science", class: "7", section: "std7", board: "cbse",
-    questions: 30, duration: 50, password: "hindeclasses",
-    live: true,   totalMarks: 30, questionsFile: "questions/c7sci_jun22_cbse.js",
-    sections: { "Science": 30 }
-  },
-  {
-    id: "c7sci_jul09_cbse", title: "Std 7 Science — Exploring Substances: Acidic, Basic and Neutral",
-    subject: "Science", class: "7", section: "std7", board: "cbse",
-    questions: 30, duration: 50, password: "hindeclasses",
-    live: true,   totalMarks: 30, questionsFile: "questions/c7sci_jul09_cbse.js",
     sections: { "Science": 30 }
   },
 
@@ -143,6 +129,13 @@ var ALL_TESTS = [
     sections: { "Maths": 30 }
   },
   {
+    id: "c8mat_jul06_goa", title: "Std 8 Maths — Number Play",
+    subject: "Maths", class: "8", section: "std8", board: "goa",
+    questions: 30, duration: 60, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c8mat_jul06_goa.js",
+    sections: { "Maths": 30 }
+  },
+  {
     id: "c8sci_jun22_goa", title: "Std 8 Science — Exploring the Investigative World of Science",
     subject: "Science", class: "8", section: "std8", board: "goa",
     questions: 30, duration: 50, password: "hindeclasses",
@@ -154,27 +147,6 @@ var ALL_TESTS = [
     subject: "Science", class: "8", section: "std8", board: "goa",
     questions: 30, duration: 50, password: "hindeclasses",
     live: true,   totalMarks: 30, questionsFile: "questions/c8sci_jul09_goa.js",
-    sections: { "Science": 30 }
-  },
-  {
-    id: "c8mat_jun22_cbse", title: "Std 8 Maths — A Story of Numbers",
-    subject: "Maths", class: "8", section: "std8", board: "cbse",
-    questions: 30, duration: 60, password: "hindeclasses",
-    live: true,   totalMarks: 30, questionsFile: "questions/c8mat_jun22_cbse.js",
-    sections: { "Maths": 30 }
-  },
-  {
-    id: "c8sci_jun22_cbse", title: "Std 8 Science — Exploring the Investigative World of Science",
-    subject: "Science", class: "8", section: "std8", board: "cbse",
-    questions: 30, duration: 50, password: "hindeclasses",
-    live: true,   totalMarks: 30, questionsFile: "questions/c8sci_jun22_cbse.js",
-    sections: { "Science": 30 }
-  },
-  {
-    id: "c8sci_jul09_cbse", title: "Std 8 Science — The Invisible Living World: Beyond Our Naked Eye",
-    subject: "Science", class: "8", section: "std8", board: "cbse",
-    questions: 30, duration: 50, password: "hindeclasses",
-    live: true,   totalMarks: 30, questionsFile: "questions/c8sci_jul09_cbse.js",
     sections: { "Science": 30 }
   },
 
@@ -208,6 +180,13 @@ var ALL_TESTS = [
     sections: { "Maths": 30 }
   },
   {
+    id: "c9mat_jul06_goa", title: "Std 9 Maths — Polynomials",
+    subject: "Maths", class: "9", section: "std9", board: "goa",
+    questions: 30, duration: 60, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c9mat_jul06_goa.js",
+    sections: { "Maths": 30 }
+  },
+  {
     id: "c9sci_jun22_goa", title: "Std 9 Science — Matter in Our Surroundings",
     subject: "Science", class: "9", section: "std9", board: "goa",
     questions: 30, duration: 50, password: "hindeclasses",
@@ -226,6 +205,13 @@ var ALL_TESTS = [
     subject: "Maths", class: "9", section: "std9", board: "cbse",
     questions: 30, duration: 60, password: "hindeclasses",
     live: true,   totalMarks: 30, questionsFile: "questions/c9mat_jun22_cbse.js",
+    sections: { "Maths": 30 }
+  },
+  {
+    id: "c9mat_jul06_cbse", title: "Std 9 Maths — Algebra & Patterns",
+    subject: "Maths", class: "9", section: "std9", board: "cbse",
+    questions: 30, duration: 60, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c9mat_jul06_cbse.js",
     sections: { "Maths": 30 }
   },
   {
@@ -280,6 +266,13 @@ var ALL_TESTS = [
     sections: { "Maths": 30 }
   },
   {
+    id: "c10mat_jul06_goa", title: "Std 10 Maths — Polynomials",
+    subject: "Maths", class: "10", section: "std10", board: "goa",
+    questions: 30, duration: 60, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c10mat_jul06_goa.js",
+    sections: { "Maths": 30 }
+  },
+  {
     id: "c10sci_jun22_goa",  title: "Std 10 Science — Chemical Reactions & Equations",
     subject: "Science", class: "10", section: "std10", board: "goa",
     questions: 30, duration: 50, password: "hindeclasses",
@@ -298,6 +291,13 @@ var ALL_TESTS = [
     subject: "Maths", class: "10", section: "std10", board: "cbse",
     questions: 30, duration: 60, password: "hindeclasses",
     live: true,   totalMarks: 30, questionsFile: "questions/c10mat_jun22_cbse.js",
+    sections: { "Maths": 30 }
+  },
+  {
+    id: "c10mat_jul06_cbse", title: "Std 10 Maths — Polynomials",
+    subject: "Maths", class: "10", section: "std10", board: "cbse",
+    questions: 30, duration: 60, password: "hindeclasses",
+    live: true,   totalMarks: 30, questionsFile: "questions/c10mat_jul06_cbse.js",
     sections: { "Maths": 30 }
   },
   {
