@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Worksheet — Hinde Classes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ══ BASE ══════════════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh;}
+:root{
+  --acc:#7c3aed; --acc-dk:#6d28d9; --acc-lt:#a78bfa;
+  --acc-bg:#f5f3ff; --acc-tint:#ede9fe;
+}
+
+/* ══ SITE HEADER ══════════════════════════════════════════ */
+.site-header{ background:#fff;border-bottom:1px solid rgba(0,0,0,0.08); padding:0 20px; }
+.site-header-inner{ max-width:760px;margin:0 auto; display:flex;align-items:center;justify-content:space-between;height:48px; }
+.hdr-brand{font-size:14px;font-weight:700;color:#1d1d1f;}
+.hdr-sub{font-size:10px;color:#86868b;}
+
+/* ══ LOGIN PAGE ══════════════════════════════════════════ */
+#loginPage{min-height:calc(100vh - 48px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:40px 20px;}
+.login-card{background:#fff;border-radius:20px;border:1px solid rgba(0,0,0,0.08);padding:36px 30px;width:100%;max-width:460px;box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+.back-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#86868b;text-decoration:none;margin-bottom:20px;cursor:pointer;}
+.back-link:hover{color:#1d1d1f;}
+.login-badge{display:inline-block;background:var(--acc-bg);color:var(--acc);border:1px solid rgba(124,58,237,0.2);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;letter-spacing:.3px;margin-bottom:16px;}
+.login-card h2{font-size:1.4rem;font-weight:800;letter-spacing:-.5px;color:#1d1d1f;margin-bottom:4px;}
+.login-subtitle{font-size:13px;color:#86868b;margin-bottom:10px;line-height:1.5;}
+.chapter-list{font-size:12px;color:#6d28d9;background:var(--acc-bg);border-radius:10px;padding:10px 14px;margin-bottom:20px;line-height:1.6;}
+.chapter-list b{display:block;font-size:11px;color:#86868b;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;font-weight:700;}
+.f-label{display:block;font-size:12px;font-weight:600;color:#3a3a3c;margin-bottom:6px;}
+.f-input{width:100%;padding:11px 14px;background:#f5f5f7;border:1px solid rgba(0,0,0,0.1);border-radius:10px;font-size:14px;font-family:inherit;outline:none;margin-bottom:14px;transition:border-color .15s,background .15s;color:#1d1d1f;}
+.f-input:focus{border-color:var(--acc);background:#fff;}
+.btn-login{width:100%;padding:13px;background:var(--acc);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;transition:background .15s;}
+.btn-login:hover{background:var(--acc-dk);}
+.login-error{color:#ff3b30;font-size:12px;margin-top:10px;padding:8px 12px;background:#fff0ef;border-radius:7px;display:none;}
+.no-timer-note{display:flex;align-items:center;gap:8px;font-size:12px;color:#16a34a;background:#f0fdf4;border:1px solid rgba(22,163,74,0.15);border-radius:10px;padding:10px 14px;margin-bottom:16px;}
+
+/* ══ WORKSHEET PAGE ══════════════════════════════════════
+   Simpler than test.html: no timer, no palette, no MCQ radios.
+   All questions shown on one scrollable page, grouped by section. */
+#wsPage{display:none;background:#f5f5f7;min-height:100vh;padding-bottom:100px;}
+
+.ws-topbar{
+  background:#fff;border-bottom:1px solid rgba(0,0,0,0.08);
+  padding:12px 16px;position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.ws-topbar-title{font-size:13px;font-weight:700;color:#1d1d1f;}
+.ws-topbar-meta{font-size:11px;color:#86868b;margin-top:1px;}
+.ws-progress-pill{font-size:11px;font-weight:700;color:var(--acc);background:var(--acc-bg);border-radius:20px;padding:5px 12px;white-space:nowrap;}
+
+.ws-wrap{max-width:720px;margin:0 auto;padding:16px;}
+
+.ws-section-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 4px 8px;margin-top:8px;
+}
+.ws-section-name{font-size:13px;font-weight:800;color:#6d28d9;letter-spacing:-.2px;}
+.ws-section-marks{font-size:11px;color:#86868b;font-weight:600;}
+
+.ws-qcard{
+  background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,0.07);
+  padding:16px;margin-bottom:12px;
+}
+.ws-qhead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.ws-qnum{font-size:13px;font-weight:700;color:#1d1d1f;flex-shrink:0;}
+.ws-qmarks{font-size:10px;font-weight:700;color:var(--acc);background:var(--acc-bg);border-radius:6px;padding:2px 8px;white-space:nowrap;}
+.ws-qtext{font-size:14px;color:#1a2a3a;line-height:1.65;white-space:pre-wrap;margin-bottom:12px;}
+
+.ws-mcq-options{display:flex;flex-direction:column;gap:6px;margin-bottom:4px;}
+.ws-mcq-opt{font-size:13px;color:#3a3a3c;padding:8px 12px;background:#f9fafb;border-radius:8px;border:1px solid rgba(0,0,0,0.05);}
+
+.ws-answer-box{
+  width:100%;min-height:70px;padding:10px 12px;
+  background:#f9fafb;border:1px solid rgba(0,0,0,0.1);border-radius:10px;
+  font-size:13px;font-family:inherit;color:#1d1d1f;resize:vertical;outline:none;
+  transition:border-color .15s,background .15s;
+}
+.ws-answer-box:focus{border-color:var(--acc);background:#fff;}
+.ws-answer-note{font-size:10px;color:#aeaeb2;margin-top:4px;}
+
+/* MCQ in worksheet: simple selectable chips, no auto-grading, just records choice */
+.ws-mcq-chiprow{display:flex;flex-direction:column;gap:6px;}
+.ws-mcq-chip{
+  display:flex;align-items:center;gap:10px;padding:9px 12px;
+  background:#f9fafb;border:1.5px solid rgba(0,0,0,0.08);border-radius:9px;
+  cursor:pointer;transition:all .12s;font-size:13px;color:#1a2a3a;
+}
+.ws-mcq-chip:hover{background:#f3f0ff;}
+.ws-mcq-chip.selected{background:var(--acc-tint);border-color:var(--acc);}
+.ws-chip-letter{width:22px;height:22px;border-radius:50%;border:1.5px solid #c4b5fd;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#7c3aed;}
+.ws-mcq-chip.selected .ws-chip-letter{background:var(--acc);border-color:var(--acc);color:#fff;}
+
+/* Bottom submit bar */
+.ws-bottom-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:#fff;border-top:1px solid rgba(0,0,0,0.08);
+  padding:12px 16px;z-index:200;
+  display:flex;align-items:center;gap:10px;
+}
+.ws-bottom-info{flex:1;font-size:11px;color:#86868b;}
+.ws-bottom-info b{color:#1d1d1f;}
+.btn-submit-ws{
+  padding:12px 22px;background:var(--acc);border:none;border-radius:10px;
+  color:#fff;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:background .15s;white-space:nowrap;
+}
+.btn-submit-ws:hover{background:var(--acc-dk);}
+
+/* ══ SUBMITTED PAGE ════════════════════════════════════════ */
+#donePage{display:none;min-height:calc(100vh - 48px);}
+.done-wrap{max-width:520px;margin:0 auto;padding:50px 20px;}
+.done-card{background:#fff;border-radius:20px;border:1px solid rgba(0,0,0,0.07);padding:40px 28px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+.done-icon{font-size:3.2rem;margin-bottom:14px;line-height:1;}
+.done-title{font-size:1.3rem;font-weight:800;color:#1d1d1f;margin-bottom:8px;}
+.done-sub{font-size:13px;color:#86868b;line-height:1.6;margin-bottom:20px;}
+.done-note{font-size:12px;color:#16a34a;background:#f0fdf4;border-radius:10px;padding:12px 16px;margin-bottom:20px;text-align:left;line-height:1.6;}
+.saving-status{padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:14px;text-align:center;}
+.btn-back-home{padding:11px 20px;background:#f5f5f7;color:#3a3a3c;border:none;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+
+/* ══ CONFIRM MODAL ══════════════════════════════════════ */
+#confirmOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:999;align-items:center;justify-content:center;}
+.confirm-box{background:#fff;border-radius:18px;padding:28px 24px;max-width:340px;width:90%;text-align:center;}
+.confirm-icon{font-size:2.2rem;margin-bottom:10px;}
+.confirm-title{font-size:16px;font-weight:700;color:#1d1d1f;margin-bottom:6px;}
+.confirm-msg{font-size:13px;color:#6e6e73;line-height:1.5;margin-bottom:20px;}
+.confirm-btns{display:flex;gap:10px;}
+.confirm-cancel{flex:1;padding:11px;background:#f5f5f7;border:none;border-radius:9px;color:#3a3a3c;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;}
+.confirm-ok{flex:1;padding:11px;background:var(--acc);border:none;border-radius:9px;color:#fff;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;}
+
+.site-footer{text-align:center;padding:20px;font-size:11px;color:#86868b;}
+.site-footer a{color:var(--acc);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div>
+      <div class="hdr-brand">Hinde Classes</div>
+      <div class="hdr-sub">Practice Worksheet</div>
+    </div>
+  </div>
+</header>
+
+<!-- ══ LOGIN PAGE ════════════════════════════════════════ -->
+<div id="loginPage">
+  <div class="login-card">
+    <a class="back-link" onclick="history.back()">← Back</a>
+    <div class="login-badge" id="loginBadge">Worksheet</div>
+    <h2 id="loginTitle">Practice Worksheet</h2>
+    <p class="login-subtitle" id="loginSubtitle">Enter your name to begin.</p>
+    <div class="chapter-list" id="chapterList" style="display:none;"></div>
+    <div class="no-timer-note">⏱️ No timer — work at your own pace.</div>
+    <label class="f-label" for="studentName">Full Name</label>
+    <input class="f-input" id="studentName" type="text" placeholder="Enter your full name" autocomplete="off"/>
+    <button class="btn-login" onclick="login()">Open Worksheet →</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- ══ WORKSHEET PAGE ════════════════════════════════════ -->
+<div id="wsPage">
+  <div class="ws-topbar">
+    <div>
+      <div class="ws-topbar-title" id="wsTitle">Worksheet</div>
+      <div class="ws-topbar-meta" id="wsMeta">— Q · — Marks</div>
+    </div>
+    <div class="ws-progress-pill" id="wsProgress">0 / 0 answered</div>
+  </div>
+
+  <div class="ws-wrap" id="wsQuestionsWrap"></div>
+
+  <div class="ws-bottom-bar">
+    <div class="ws-bottom-info">Answer on paper too — this just records your <b>submission</b>, not your score.</div>
+    <button class="btn-submit-ws" onclick="handleSubmit()">Submit Worksheet</button>
+  </div>
+</div>
+
+<!-- ══ SUBMITTED PAGE ════════════════════════════════════ -->
+<div id="donePage">
+  <div class="done-wrap">
+    <div class="done-card">
+      <div class="done-icon">📝</div>
+      <div class="done-title" id="doneTitle">Worksheet Submitted!</div>
+      <div class="done-sub" id="doneSub">Your submission has been recorded.</div>
+      <div class="saving-status" id="savingStatus" style="display:none;"></div>
+      <div class="done-note">
+        ✅ Don't forget to hand in your <b>written answer sheet</b> in class.<br/>
+        Your teacher will grade it manually and upload your marks.
+      </div>
+      <button class="btn-back-home" onclick="window.location.href='index.html'">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONFIRM MODAL ════════════════════════════════════ -->
+<div id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-icon" id="confirmIcon">📝</div>
+    <div class="confirm-title" id="confirmTitle">Submit worksheet?</div>
+    <div class="confirm-msg" id="confirmMsg">This records that you've completed it.</div>
+    <div class="confirm-btns">
+      <button class="confirm-cancel" onclick="confirmCancel()">Cancel</button>
+      <button class="confirm-ok" id="confirmOkBtn" onclick="confirmOK()">Yes, submit</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>Hinde Classes · Bicholim, Goa · <a href="https://wa.me/917358425108" target="_blank">📞 7358425108 — Maitreya Hinde</a></p>
+</footer>
+
+<script src="config.js"></script>
+<script src="worksheets-config.js"></script>
+<script>
+// ══════════════════════════════════════════════════════════
+//  worksheet.js — Hinde Classes
+//  Simpler than test.js: no timer, no auto-scoring, no palette.
+//  Subjective + MCQ mix shown on one scrollable page.
+//  On submit: creates a backend entry (name + worksheetId + timestamp,
+//  NO score) so the teacher can manually add marks later.
+// ══════════════════════════════════════════════════════════
+
+var CFG          = null;
+var STUDENT      = "";
+var WS_ID        = "";
+var questions    = [];
+var userAnswers  = {};  // {qId: text or mcq letter}
+
+window.addEventListener("DOMContentLoaded", function() {
+  var p = new URLSearchParams(window.location.search);
+  WS_ID = p.get("id") || "";
+
+  var all = window.ALL_WORKSHEETS || [];
+  CFG = all.find(function(w){ return w.id === WS_ID; });
+
+  if (!CFG || !CFG.live) {
+    document.getElementById("loginPage").innerHTML =
+      '<div class="login-card" style="margin:40px auto;">' +
+      '<a class="back-link" onclick="history.back()">← All Worksheets</a>' +
+      '<h2 style="color:#dc2626;">Worksheet Not Available</h2>' +
+      '<p class="login-subtitle">This worksheet is not live yet or could not be found.</p></div>';
+    return;
+  }
+
+  document.getElementById("loginBadge").textContent  = CFG.subject || "Hinde Classes";
+  document.getElementById("loginTitle").textContent  = CFG.title;
+  document.getElementById("loginSubtitle").textContent =
+    (CFG.totalMarks ? CFG.totalMarks + " Marks" : "") + " · Self-paced · No timer";
+
+  if (CFG.chapters && CFG.chapters.length) {
+    var cl = document.getElementById("chapterList");
+    cl.style.display = "block";
+    cl.innerHTML = "<b>Chapters covered</b>" + CFG.chapters.map(function(c){ return "• " + esc(c); }).join("<br/>");
+  }
+
+  document.getElementById("studentName").addEventListener("keydown", function(e){ if(e.key==="Enter") login(); });
+
+  loadQFile();
+
+  history.pushState(null, null, location.href);
+  window.addEventListener("popstate", function() {
+    if (document.getElementById("wsPage").style.display !== "none") {
+      history.pushState(null, null, location.href);
+      showQuitConfirm();
+    }
+  });
+});
+
+// ── LOAD QUESTION FILE ────────────────────────────────────
+function loadQFile() {
+  if (!CFG.questionsFile) { showLoginErr("questionsFile not set."); return; }
+  window.worksheetQuestions = null;
+  var s = document.createElement("script");
+  s.src = CFG.questionsFile + "?v=" + Date.now();
+  s.onload = function() {
+    var raw = window.worksheetQuestions;
+    if (!raw || !raw.length) { showLoginErr("No questions found in: " + CFG.questionsFile); return; }
+    questions = raw;
+  };
+  s.onerror = function() { showLoginErr("Cannot load: " + CFG.questionsFile); };
+  document.head.appendChild(s);
+}
+
+// ── LOGIN ─────────────────────────────────────────────────
+function login() {
+  var name = document.getElementById("studentName").value.trim();
+  if (!name) { showLoginErr("Please enter your full name."); return; }
+  if (!questions.length) { showLoginErr("Worksheet loading… wait a moment and try again."); return; }
+
+  STUDENT     = name;
+  userAnswers = {};
+
+  renderWorksheet();
+  showPage("wsPage");
+}
+
+function showLoginErr(msg) {
+  var el = document.getElementById("loginError");
+  el.textContent = msg; el.style.display = "block";
+}
+
+// ── RENDER WORKSHEET (all questions, grouped by section) ──
+function renderWorksheet() {
+  document.getElementById("wsTitle").textContent = CFG.title;
+  var totalMarks = CFG.totalMarks || questions.reduce(function(s,q){return s+(q.marks||1);},0);
+  document.getElementById("wsMeta").textContent = questions.length + " Q · " + totalMarks + " Marks";
+
+  var wrap = document.getElementById("wsQuestionsWrap");
+  wrap.innerHTML = "";
+
+  var lastSection = null;
+  questions.forEach(function(q, i) {
+    if (q.section && q.section !== lastSection) {
+      lastSection = q.section;
+      var secMarks = questions.filter(function(x){ return x.section===q.section; })
+                               .reduce(function(s,x){ return s+(x.marks||1); }, 0);
+      var hdr = document.createElement("div");
+      hdr.className = "ws-section-hdr";
+      hdr.innerHTML = '<span class="ws-section-name">' + esc(q.section) + '</span>'
+                    + '<span class="ws-section-marks">' + secMarks + ' marks</span>';
+      wrap.appendChild(hdr);
+    }
+
+    var card = document.createElement("div");
+    card.className = "ws-qcard";
+
+    var head = '<div class="ws-qhead">'
+             + '<span class="ws-qnum">Q' + (i+1) + '</span>'
+             + '<span class="ws-qmarks">' + (q.marks||1) + ' mark' + ((q.marks||1)>1?'s':'') + '</span>'
+             + '</div>';
+
+    var body = '<div class="ws-qtext">' + esc(q.text) + '</div>';
+
+    var answerArea = "";
+    if (q.type === "mcq" && q.options && q.options.length) {
+      var labels = ["A","B","C","D"];
+      answerArea = '<div class="ws-mcq-chiprow">';
+      q.options.forEach(function(opt, oi) {
+        var lbl = labels[oi];
+        answerArea += '<div class="ws-mcq-chip" data-qid="' + q.id + '" data-lbl="' + lbl + '" onclick="selectMcq(this)">'
+                    + '<span class="ws-chip-letter">' + lbl + '</span>'
+                    + '<span>' + esc(opt.replace(/^[A-D]\)\s*/, "")) + '</span>'
+                    + '</div>';
+      });
+      answerArea += '</div>';
+    } else {
+      answerArea = '<textarea class="ws-answer-box" data-qid="' + q.id + '" '
+                 + 'placeholder="Write your answer here (optional — you can also answer on paper)..." '
+                 + 'oninput="recordSubjective(this)"></textarea>'
+                 + '<div class="ws-answer-note">This is just a scratch space — your graded answer should be on your submitted paper.</div>';
+    }
+
+    card.innerHTML = head + body + answerArea;
+    wrap.appendChild(card);
+  });
+
+  updateProgress();
+}
+
+function selectMcq(el) {
+  var qid = el.getAttribute("data-qid");
+  var lbl = el.getAttribute("data-lbl");
+  userAnswers[qid] = lbl;
+  el.parentElement.querySelectorAll(".ws-mcq-chip").forEach(function(c){ c.classList.remove("selected"); });
+  el.classList.add("selected");
+  updateProgress();
+}
+
+function recordSubjective(el) {
+  var qid = el.getAttribute("data-qid");
+  if (el.value.trim()) userAnswers[qid] = el.value;
+  else delete userAnswers[qid];
+  updateProgress();
+}
+
+function updateProgress() {
+  var answered = Object.keys(userAnswers).length;
+  document.getElementById("wsProgress").textContent = answered + " / " + questions.length + " touched";
+}
+
+// ── SUBMIT ────────────────────────────────────────────────
+function handleSubmit() {
+  showConfirm(
+    "📝", "Submit worksheet?",
+    "This records that you've completed this worksheet. Make sure you've also written your answers on paper to submit in class — no marks are recorded here.",
+    "Yes, submit", "#7c3aed", doSubmit
+  );
+}
+
+function doSubmit() {
+  showPage("donePage");
+  document.getElementById("doneTitle").textContent = "Worksheet Submitted!";
+  document.getElementById("doneSub").textContent =
+    "Nice work, " + STUDENT + "! Your completion of \"" + CFG.title + "\" has been recorded.";
+  saveSubmission();
+}
+
+// ── SAVE SUBMISSION (JSONP — no score fields, teacher grades later) ──
+function saveSubmission() {
+  var url = window.SCRIPT_URL;
+  if (!url || url === "PASTE_YOUR_APPS_SCRIPT_URL_HERE") return;
+
+  var statusEl = document.getElementById("savingStatus");
+  statusEl.style.display = "block";
+  statusEl.style.background = "#f5f3ff";
+  statusEl.style.color = "#7c3aed";
+  statusEl.textContent = "⏳ Recording your submission...";
+
+  var ts = new Date().toLocaleString("en-IN", {timeZone:"Asia/Kolkata"});
+  var cb = "hc_ws_" + Date.now();
+
+  window[cb] = function(res) {
+    delete window[cb];
+    var tag = document.getElementById(cb+"_s"); if(tag) tag.remove();
+    if (res && res.success) {
+      statusEl.textContent = "✅ Submission recorded!";
+      setTimeout(function(){ statusEl.style.display="none"; }, 3000);
+    } else {
+      statusEl.textContent = "⚠️ Could not record. Please inform your teacher.";
+      statusEl.style.color = "#dc2626";
+    }
+  };
+
+  // NOTE: total/outOf intentionally blank — this is a worksheet, not an auto-scored test.
+  // The Apps Script should treat blank total as "pending manual grading".
+  var src = url
+    + "?action=write"
+    + "&testId="    + encodeURIComponent(WS_ID)
+    + "&testTitle=" + encodeURIComponent(CFG.title)
+    + "&name="      + encodeURIComponent(STUDENT)
+    + "&timestamp=" + encodeURIComponent(ts)
+    + "&total="     + ""              // blank — pending manual grading
+    + "&outOf="     + (CFG.totalMarks || "")
+    + "&scores="    + ""              // blank — no section auto-score
+    + "&isWorksheet=" + "true"
+    + "&weight="    + (CFG.weight || 2)
+    + "&callback="  + cb;
+
+  var tag = document.createElement("script");
+  tag.id  = cb+"_s";
+  tag.src = src;
+  tag.onerror = function(){
+    statusEl.textContent = "⚠️ Could not record. Please inform your teacher.";
+    statusEl.style.color = "#dc2626";
+    delete window[cb]; tag.remove();
+  };
+  document.head.appendChild(tag);
+}
+
+// ── QUIT CONFIRM ──────────────────────────────────────────
+function showQuitConfirm() {
+  var ans = Object.keys(userAnswers).length;
+  showConfirm(
+    "🚪", "Leave worksheet?",
+    ans > 0
+      ? "You've touched " + ans + " question" + (ans>1?"s":"") + ". Your scratch notes will be lost (this doesn't affect your paper answers)."
+      : "If you leave now, nothing will be recorded.",
+    "Yes, leave", "#ff3b30",
+    function(){ window.location.href = "index.html"; }
+  );
+}
+
+// ── CONFIRM MODAL ─────────────────────────────────────────
+var _confirmCB = null;
+function showConfirm(icon, title, msg, okLabel, okColor, cb) {
+  _confirmCB = cb;
+  document.getElementById("confirmIcon").textContent  = icon;
+  document.getElementById("confirmTitle").textContent = title;
+  document.getElementById("confirmMsg").textContent   = msg;
+  var btn = document.getElementById("confirmOkBtn");
+  btn.textContent = okLabel;
+  btn.style.background = okColor;
+  document.getElementById("confirmOverlay").style.display = "flex";
+}
+function confirmOK()     { document.getElementById("confirmOverlay").style.display="none"; if(_confirmCB){_confirmCB();_confirmCB=null;} }
+function confirmCancel() { document.getElementById("confirmOverlay").style.display="none"; _confirmCB=null; }
+document.getElementById("confirmOverlay").addEventListener("click", function(e){ if(e.target===this) confirmCancel(); });
+
+// ── UTILS ─────────────────────────────────────────────────
+function showPage(id) {
+  ["loginPage","wsPage","donePage"].forEach(function(p){
+    var el = document.getElementById(p);
+    if (el) el.style.display = "none";
+  });
+  var target = document.getElementById(id);
+  if (target) target.style.display = (id === "loginPage" || id === "donePage") ? "flex" : "block";
+  window.scrollTo(0,0);
+}
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+</script>
+</body>
+</html>
