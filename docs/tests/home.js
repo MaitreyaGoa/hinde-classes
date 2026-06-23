@@ -32,6 +32,7 @@ function renderTestsGrid() {
   appendOlympiadSection(grid);
   appendScholarshipSection(grid);
   appendMATSection(grid);
+  appendWorksheetSection(grid);
 }
 
 // ══ DAILY QUIZ ════════════════════════════════════════════════
@@ -317,6 +318,90 @@ function showMatTab(key, btn) {
   btn.classList.add("active");
 }
 
+// ══ PRACTICE WORKSHEETS ═══════════════════════════════════════
+// Separate from ALL_TESTS — subjective, no timer, no auto-score.
+// One global Worksheet section with Standard tabs inside it.
+function appendWorksheetSection(grid) {
+  var sheets = (window.ALL_WORKSHEETS || []);
+  if (!sheets.length) return;
+
+  appendSectionHeader(grid, "📝", "Practice Worksheets", "Subjective practice · No timer · Submit on paper in class", "sec-worksheet");
+  var wrap = makePanelWrap();
+
+  // Build tabs from whichever classes actually have worksheets (std5..std12)
+  var classOrder = ["5","6","7","8","9","10","11","12"];
+  var classesPresent = classOrder.filter(function(c){
+    return sheets.some(function(w){ return w.class === c; });
+  });
+  if (!classesPresent.length) return;
+
+  var stdIcons = {"5":"📓","6":"📔","7":"📒","8":"📙","9":"📗","10":"📘","11":"📕","12":"📕"};
+
+  var tabsHtml = '<div class="hc-tabs" id="wsTabs">';
+  classesPresent.forEach(function(cls, i){
+    tabsHtml += '<button class="hc-tab'+(i===0?" active":"")
+      +'" onclick="showWsTab(\''+cls+'\',this)">'+(stdIcons[cls]||"📄")+' Std '+cls+'</button>';
+  });
+  tabsHtml += '</div>';
+
+  var panelsHtml = "";
+  classesPresent.forEach(function(cls, i){
+    var clsSheets = sheets.filter(function(w){ return w.class === cls; });
+    var rows = clsSheets.length ? clsSheets.map(buildWorksheetRow).join("") : '<p class="hc-empty">No worksheets yet for Std '+cls+'.</p>';
+    panelsHtml += '<div id="ws_'+cls+'" class="hc-panel'+(i>0?" hc-hidden":"")+'"><div class="hc-list">'+rows+'</div></div>';
+  });
+
+  wrap.innerHTML = tabsHtml + panelsHtml;
+  grid.appendChild(wrap);
+}
+
+function showWsTab(cls, btn) {
+  document.querySelectorAll("[id^='ws_']").forEach(function(p){ p.classList.add("hc-hidden"); });
+  document.getElementById("wsTabs").querySelectorAll(".hc-tab").forEach(function(t){ t.classList.remove("active"); });
+  var p = document.getElementById("ws_"+cls); if(p) p.classList.remove("hc-hidden");
+  btn.classList.add("active");
+}
+
+// ══ WORKSHEET ROW (simpler than test row — no Toppers, no score badge) ═
+function buildWorksheetRow(ws) {
+  var isLive = (ws.live === true);
+  var badge  = isLive
+    ? '<span class="hc-badge-live">● Open</span>'
+    : '<span class="hc-badge-soon">Soon</span>';
+
+  var meta = [];
+  if (ws.subject)    meta.push(subjIcon(ws.subject)+" "+ws.subject);
+  if (ws.totalMarks) meta.push(ws.totalMarks+" marks");
+  meta.push("⏱ No timer");
+  if (ws.weight)      meta.push("×"+ws.weight+" weight");
+
+  var chapterLine = (ws.chapters && ws.chapters.length)
+    ? '<div class="hc-ws-chapters">'+ws.chapters.map(escHtml).join(" · ")+'</div>'
+    : '';
+
+  var startBtn = isLive
+    ? '<button class="hc-btn-start hc-btn-ws" onclick="goToWorksheet(\''+ws.id+'\')">Open →</button>'
+    : '<button class="hc-btn-soon">Soon</button>';
+
+  return '<div class="hc-row hc-ws-row">'
+    +'<div class="hc-row-info">'
+    +'<div class="hc-row-top">'
+    +'<span class="hc-row-title">'+ws.title+'</span>'
+    +badge
+    +'</div>'
+    +'<div class="hc-row-meta">'+meta.join(" · ")+'</div>'
+    +chapterLine
+    +'</div>'
+    +'<div class="hc-row-actions">'+startBtn+'</div>'
+    +'</div>';
+}
+
+function goToWorksheet(wsId) {
+  var ws = (window.ALL_WORKSHEETS||[]).find(function(w){ return w.id===wsId; });
+  if (!ws || !ws.live) return;
+  window.location.href = "worksheet.html?id=" + wsId;
+}
+
 // ══ TEST ROW (with Toppers button) ════════════════════════════
 function buildTestRow(test) {
   var isLive   = (test.live === true);
@@ -532,6 +617,11 @@ function subjIcon(s) {
     .hc-top20-loading { font-size:12px; color:#86868b; text-align:center; padding:12px; }
 
     .hc-empty { color:#aeaeb2; font-style:italic; font-size:12px; padding:18px 16px; text-align:center; }
+
+    /* Worksheet-specific styling */
+    .hc-ws-chapters { font-size:10px; color:#9333ea; margin-top:4px; line-height:1.5; }
+    .hc-btn-ws { background:#7c3aed; }
+    .hc-btn-ws:hover { background:#6d28d9; }
 
     @media (max-width:500px) {
       .hc-row-actions { width:100%; justify-content:flex-end; }
