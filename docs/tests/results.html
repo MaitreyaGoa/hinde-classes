@@ -338,6 +338,7 @@ var ALL_TESTS  = window.ALL_TESTS  || [];
 
 // ── TIER SYSTEM ──────────────────────────────────────────
 var TIERS = [
+  { name:"Professional", min:4000, emoji:"👑", color:"#9333ea" },
   { name:"Champion",    min:1500, emoji:"🏆", color:"#d97706" },
   { name:"Scholar",     min:1000, emoji:"💎", color:"#7c3aed" },
   { name:"Achiever",   min:600,  emoji:"🔥", color:"#dc2626" },
@@ -704,7 +705,7 @@ function buildLeaderboard(students) {
       +'<td><div class="name-cell">'
       +'<div class="nav">'+iv+'</div>'
       +'<div><div class="name-txt">'+esc(s.name)+(s.merged?'<span class="merged-tag">merged</span>':'')+'</div>'
-      +(nt?'<div class="next-tier">'+nt.emoji+' '+(nt.min-pts)+' pts to '+nt.name+'</div>':'<div class="next-tier">🏆 Top Tier!</div>')
+      +(nt?'<div class="next-tier">'+nt.emoji+' '+(nt.min-pts)+' pts to '+nt.name+'</div>':'<div class="next-tier">👑 Top Tier!</div>')
       +'</div></div></td>'
       +'<td class="tier-cell">'+tier.emoji+'</td>'
       +'<td class="pts-cell">'+pts+'</td>'
@@ -743,7 +744,7 @@ function searchLb(q) {
       +'<td class="rank-cell">'+(i<3?'<span class="medal-rank">'+medals[i]+'</span>':(i+1))+'</td>'
       +'<td><div class="name-cell"><div class="nav">'+iv+'</div>'
       +'<div><div class="name-txt">'+esc(s.name)+(s.merged?'<span class="merged-tag">merged</span>':'')+'</div>'
-      +(nt?'<div class="next-tier">'+nt.emoji+' '+(nt.min-pts)+' pts to '+nt.name+'</div>':'<div class="next-tier">🏆 Top Tier!</div>')
+      +(nt?'<div class="next-tier">'+nt.emoji+' '+(nt.min-pts)+' pts to '+nt.name+'</div>':'<div class="next-tier">👑 Top Tier!</div>')
       +'</div></div></td>'
       +'<td class="tier-cell">'+tier.emoji+'</td>'
       +'<td class="pts-cell">'+pts+'</td>'
@@ -769,7 +770,7 @@ function filterTier(tierName) {
             +'<td class="rank-cell">'+(i+1)+'</td>'
             +'<td><div class="name-cell"><div class="nav">'+iv+'</div>'
             +'<div><div class="name-txt">'+esc(s.name)+'</div>'
-            +(nt?'<div class="next-tier">'+nt.emoji+' '+(nt.min-pts)+' pts to '+nt.name+'</div>':'<div class="next-tier">🏆 Top Tier!</div>')
+            +(nt?'<div class="next-tier">'+nt.emoji+' '+(nt.min-pts)+' pts to '+nt.name+'</div>':'<div class="next-tier">👑 Top Tier!</div>')
             +'</div></div></td>'
             +'<td class="tier-cell">'+tier.emoji+'</td>'
             +'<td class="pts-cell">'+pts+'</td>'
@@ -875,7 +876,7 @@ function openModal(name) {
       +'<div class="modal-progress-lbl">Progress to '+nt.emoji+' '+nt.name+' ('+nt.min+' pts)</div>'
       +'<div class="modal-progress-bar"><div class="modal-progress-fill" id="mProgFill" style="width:0%"></div></div>'
       +'<div class="modal-next-tier">'+nt.emoji+' '+(nt.min-pts)+' more points needed</div>'
-      +'</div>':'<div class="modal-progress" style="text-align:center;padding:8px;font-size:13px;color:var(--acc);font-weight:700;">🏆 Top Tier Achieved!</div>')
+      +'</div>':'<div class="modal-progress" style="text-align:center;padding:8px;font-size:13px;color:var(--acc);font-weight:700;">👑 Top Tier Achieved!</div>')
     +'<div class="modal-stats-row">'
     +'<div class="modal-stat"><div class="modal-stat-n">'+s.testCount+'</div><div class="modal-stat-l">Tests Taken</div></div>'
     +'<div class="modal-stat"><div class="modal-stat-n">'+s.avgPct+'%</div><div class="modal-stat-l">Avg Score</div></div>'
