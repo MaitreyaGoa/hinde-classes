@@ -47,6 +47,14 @@ jobs:
       - name: Copy gateway → docs/index.html
         run: cp gateway.html docs/index.html
 
+      # Copy ONLY the video pages from public/ → docs/
+      # (explicit, targeted — never touches anything else already in docs/)
+      - name: Copy videos.html and videos-config.js → docs/
+        run: |
+          cp public/videos.html docs/videos.html
+          cp public/videos-config.js docs/videos-config.js
+          echo "✓ videos.html and videos-config.js copied to docs/"
+
       - name: Create .nojekyll
         run: touch docs/.nojekyll
 
