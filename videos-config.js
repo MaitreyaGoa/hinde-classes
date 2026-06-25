@@ -12,7 +12,7 @@ var ALL_VIDEOS = [
     subject: "Maths",
     chapter: "Fractions and Decimals",
     platform: "Facebook",
-    url: "https://www.facebook.com/share/v/1FrTqzEdeR/"
+    url: "https://www.facebook.com/share/v/177zZdsGTb/"
   }
 
   // Add more videos here, e.g.:
