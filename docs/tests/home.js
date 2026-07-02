@@ -328,6 +328,11 @@ function appendWorksheetSection(grid) {
   appendSectionHeader(grid, "📝", "Practice Worksheets", "Subjective practice · No timer · Submit on paper in class", "sec-worksheet");
   var wrap = makePanelWrap();
 
+  var portalLink = document.createElement("div");
+  portalLink.style.cssText = "text-align:right;margin-bottom:8px;";
+  portalLink.innerHTML = '<a href="worksheets-portal.html" style="font-size:12px;font-weight:700;color:#7c3aed;text-decoration:none;">📚 Browse full Worksheets Portal (by week) →</a>';
+  wrap.appendChild(portalLink);
+
   // Build tabs from whichever classes actually have worksheets (std5..std12)
   var classOrder = ["5","6","7","8","9","10","11","12"];
   var classesPresent = classOrder.filter(function(c){
