@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Worksheets Portal — Hinde Classes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{font-family:'Inter',system-ui,sans-serif;background:#f5f5f7;color:#1d1d1f;min-height:100vh;}
+:root{
+  --acc:#7c3aed; --acc-dk:#6d28d9; --acc-lt:#a78bfa;
+  --acc-bg:#f5f3ff; --acc-tint:#ede9fe;
+}
+
+/* header */
+.site-header{background:#fff;border-bottom:1px solid rgba(0,0,0,0.08);padding:0 20px;}
+.site-header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:48px;}
+.hdr-brand{font-size:14px;font-weight:700;color:#1d1d1f;}
+.hdr-sub{font-size:10px;color:#86868b;}
+.hdr-back{font-size:12px;color:#86868b;text-decoration:none;}
+.hdr-back:hover{color:#1d1d1f;}
+
+/* hero */
+.ws-hero{background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);padding:28px 20px 22px;text-align:center;}
+.ws-hero h1{font-size:1.5rem;font-weight:800;letter-spacing:-.5px;margin-bottom:6px;}
+.ws-hero p{font-size:13px;color:#86868b;max-width:520px;margin:0 auto;line-height:1.5;}
+
+.wrap{max-width:960px;margin:0 auto;padding:20px;}
+
+/* subject tabs */
+.subj-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.subj-tab{
+  padding:9px 18px;border-radius:20px;border:1.5px solid rgba(0,0,0,0.08);
+  background:#fff;color:#3a3a3c;font-family:inherit;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .15s;
+}
+.subj-tab:hover{border-color:var(--acc-lt);}
+.subj-tab.active{background:var(--acc);border-color:var(--acc);color:#fff;}
+
+.subj-panel{display:none;}
+.subj-panel.active{display:block;}
+
+/* week block */
+.week-block{margin-bottom:26px;}
+.week-hdr{display:flex;align-items:baseline;gap:8px;margin-bottom:10px;padding:0 2px;}
+.week-hdr h2{font-size:15px;font-weight:800;color:#1d1d1f;}
+.week-hdr span{font-size:11px;color:#86868b;font-weight:600;}
+
+/* batch grid */
+.batch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;}
+.batch-card{
+  background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,0.07);
+  padding:14px 16px;
+}
+.batch-card.empty{background:#fafafa;border-style:dashed;}
+.batch-title{font-size:13px;font-weight:700;color:#1d1d1f;margin-bottom:2px;}
+.batch-chapters{font-size:11px;color:#86868b;margin-bottom:10px;line-height:1.4;min-height:14px;}
+.batch-empty-note{font-size:12px;color:#aeaeb2;font-style:italic;}
+
+.ws-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.ws-pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700;
+  text-decoration:none;transition:background .15s;
+}
+.ws-pill.live{background:var(--acc-bg);color:var(--acc);border:1px solid rgba(124,58,237,0.2);}
+.ws-pill.live:hover{background:var(--acc-tint);}
+.ws-pill.soon{background:#f5f5f7;color:#aeaeb2;cursor:default;}
+
+.empty-state{text-align:center;padding:60px 20px;color:#86868b;font-size:13px;}
+.empty-state .e-icon{font-size:2rem;margin-bottom:10px;}
+
+.site-footer{text-align:center;padding:24px;font-size:11px;color:#86868b;}
+.site-footer a{color:var(--acc);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <div>
+      <div class="hdr-brand">Hinde Classes</div>
+      <div class="hdr-sub">Worksheets Portal</div>
+    </div>
+    <a class="hdr-back" href="index.html">← Home</a>
+  </div>
+</header>
+
+<div class="ws-hero">
+  <h1>📝 Weekly Worksheets</h1>
+  <p>Browse by subject and week. Pick your board &amp; standard, then open a worksheet — no timer, work at your own pace.</p>
+</div>
+
+<div class="wrap">
+  <div class="subj-tabs" id="subjTabs"></div>
+  <div id="subjPanels"></div>
+</div>
+
+<footer class="site-footer">
+  <p>Hinde Classes · Bicholim, Goa · <a href="https://wa.me/917358425108" target="_blank">📞 7358425108 — Maitreya Hinde</a></p>
+</footer>
+
+<script src="worksheets-config.js"></script>
+<script>
+var SHEETS  = window.ALL_WORKSHEETS || [];
+var BATCHES = window.WS_BATCHES     || [];
+var SUBJECTS = window.WS_SUBJECTS   || ["Maths","Science","Social Science"];
+
+document.addEventListener("DOMContentLoaded", function(){
+  renderTabs();
+  renderAllPanels();
+  // activate first subject that actually has content, else first subject
+  var firstWithData = SUBJECTS.find(function(s){ return SHEETS.some(function(w){ return w.subject===s; }); }) || SUBJECTS[0];
+  activateSubject(firstWithData);
+});
+
+function renderTabs(){
+  var tabsEl = document.getElementById("subjTabs");
+  tabsEl.innerHTML = SUBJECTS.map(function(s){
+    return '<button class="subj-tab" data-subj="'+esc(s)+'" onclick="activateSubject(\''+esc(s)+'\')">'+subjIcon(s)+' '+esc(s)+'</button>';
+  }).join("");
+}
+
+function subjIcon(s){
+  if (s === "Maths") return "➗";
+  if (s === "Science") return "🔬";
+  if (s === "Social Science") return "🌍";
+  return "📄";
+}
+
+function renderAllPanels(){
+  var panelsEl = document.getElementById("subjPanels");
+  panelsEl.innerHTML = SUBJECTS.map(function(s){
+    return '<div class="subj-panel" id="panel_'+esc(s)+'">'+buildSubjectPanel(s)+'</div>';
+  }).join("");
+}
+
+function buildSubjectPanel(subject){
+  var subjSheets = SHEETS.filter(function(w){ return w.subject === subject; });
+
+  if (!subjSheets.length){
+    return '<div class="empty-state"><div class="e-icon">🗂️</div>No '+esc(subject)+' worksheets published yet. Check back soon!</div>';
+  }
+
+  // unique weeks, latest first
+  var weeks = [];
+  subjSheets.forEach(function(w){ if (w.week && weeks.indexOf(w.week) === -1) weeks.push(w.week); });
+  weeks.sort(function(a,b){ return a < b ? 1 : -1; });
+
+  return weeks.map(function(week){
+    var label = formatWeekLabel(week);
+    var batchCards = BATCHES.map(function(b){
+      var items = subjSheets.filter(function(w){
+        return w.week === week && w.board === b.board && w.class === b.class;
+      }).sort(function(x,y){ return x.id > y.id ? 1 : -1; });
+
+      if (!items.length){
+        return '<div class="batch-card empty">'
+             + '<div class="batch-title">'+esc(b.label)+'</div>'
+             + '<div class="batch-empty-note">Not published yet</div>'
+             + '</div>';
+      }
+
+      var chapters = (items[0].chapters && items[0].chapters.length) ? items[0].chapters.join(" · ") : "";
+      var pills = items.map(function(w, i){
+        var pillLabel = items.length > 1 ? ("W"+(i+1)) : "Open →";
+        if (w.live){
+          return '<a class="ws-pill live" href="worksheet.html?id='+encodeURIComponent(w.id)+'">'+pillLabel+'</a>';
+        }
+        return '<span class="ws-pill soon">'+pillLabel+'</span>';
+      }).join("");
+
+      return '<div class="batch-card">'
+           + '<div class="batch-title">'+esc(b.label)+'</div>'
+           + '<div class="batch-chapters">'+esc(chapters)+'</div>'
+           + '<div class="ws-pills">'+pills+'</div>'
+           + '</div>';
+    }).join("");
+
+    return '<div class="week-block">'
+         + '<div class="week-hdr"><h2>Week of '+esc(label)+'</h2></div>'
+         + '<div class="batch-grid">'+batchCards+'</div>'
+         + '</div>';
+  }).join("");
+}
+
+function formatWeekLabel(iso){
+  try{
+    var d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("en-GB", { day:"numeric", month:"short" });
+  } catch(e){ return iso; }
+}
+
+function activateSubject(subject){
+  document.querySelectorAll(".subj-tab").forEach(function(t){
+    t.classList.toggle("active", t.getAttribute("data-subj") === subject);
+  });
+  document.querySelectorAll(".subj-panel").forEach(function(p){
+    p.classList.toggle("active", p.id === "panel_"+subject);
+  });
+}
+
+function esc(s){ return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+</script>
+</body>
+</html>
