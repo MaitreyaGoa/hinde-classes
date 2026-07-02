@@ -45,11 +45,86 @@ var WS_SUBJECTS = ["Maths", "Science", "Social Science"];
 var ALL_WORKSHEETS = [
 
   // ── Week of 3 Jul 2026 ──────────────────────────────────────
-  // Add this week's worksheets below as they're created & reviewed.
+  {
+    id: "ws_goa_s7_math_20260703_00",
+    title: "Std 7 Maths (Goa) — July Starter Test (Combined Syllabus)",
+    subject: "Maths",
+    class: "7",
+    section: "std7",
+    board: "goa",
+    week: "2026-07-03",
+    chapters: ["Large Numbers Around Us", "Arithmetic Expressions", "A Peek Beyond the Point"],
+    totalMarks: 79,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s7_math_20260703_00.js"
+  },
+
+  {
+    id: "ws_goa_s8_math_20260703_00",
+    title: "Std 8 Maths (Goa) — July Starter Test (Combined Syllabus)",
+    subject: "Maths",
+    class: "8",
+    section: "std8",
+    board: "goa",
+    week: "2026-07-03",
+    chapters: ["A Story of Numbers", "Quadrilaterals", "Number Play"],
+    totalMarks: 78,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s8_math_20260703_00.js"
+  },
+
+  {
+    id: "ws_goa_s9_math_20260703_00",
+    title: "Std 9 Maths (Goa) — July Starter Test (Combined Syllabus)",
+    subject: "Maths",
+    class: "9",
+    section: "std9",
+    board: "goa",
+    week: "2026-07-03",
+    chapters: ["Number Systems", "Polynomials", "Lines and Angles"],
+    totalMarks: 78,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s9_math_20260703_00.js"
+  },
+
+  {
+    id: "ws_goa_s10_math_20260703_00",
+    title: "Std 10 Maths (Goa) — July Starter Test (Combined Syllabus)",
+    subject: "Maths",
+    class: "10",
+    section: "std10",
+    board: "goa",
+    week: "2026-07-03",
+    chapters: ["Polynomials", "Pair of Linear Equations in Two Variables", "Quadratic Equations"],
+    totalMarks: 78,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s10_math_20260703_00.js"
+  },
+
+  {
+    id: "ws_cbse_s9_math_20260703_00",
+    title: "Std 9 Maths (CBSE) — July Starter Test (Ganita Manjari Ch 1–4)",
+    subject: "Maths",
+    class: "9",
+    section: "std9",
+    board: "cbse",
+    week: "2026-07-03",
+    chapters: ["Orienting Yourself: Coordinates", "Introduction to Linear Polynomials", "The World of Numbers", "Exploring Algebraic Identities"],
+    totalMarks: 68,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_cbse_s9_math_20260703_00.js"
+  },
+
+  // Add this week's remaining worksheets below as they're created & reviewed.
   // Template (copy, fill in, verify, then flip live:true):
   //
   // {
-  //   id: "ws_goa_s7_math_20260703_01",
+  //   id: "ws_goa_s7_math_20260704_01",
   //   title: "Std 7 Maths (Goa) — Worksheet 1",
   //   subject: "Maths",
   //   class: "7",
@@ -60,7 +135,7 @@ var ALL_WORKSHEETS = [
   //   totalMarks: 40,
   //   weight: 2,
   //   live: false,
-  //   questionsFile: "questions/ws_goa_s7_math_20260703_01.js"
+  //   questionsFile: "questions/ws_goa_s7_math_20260704_01.js"
   // },
 
 ];
