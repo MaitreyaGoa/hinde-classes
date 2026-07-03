@@ -200,17 +200,18 @@ var JULY_DAYS = 31;
 
 var JULY_DATA = {
   1:{type:"inactive"}, 2:{type:"inactive"},
-  3:{type:"ss"},
-  4:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers",g9:"Number Systems",g10:"Polynomials",c9:"Ch 1 – Coordinates (pre-exam)"}},
+  3:{type:"maths", topics:{g7:"📋 Month-Start Starter Test (Combined: Large Numbers Around Us + Arithmetic Expressions + A Peek Beyond the Point) — 30Q, 79 marks",g8:"📋 Month-Start Starter Test (Combined: A Story of Numbers + Quadrilaterals + Number Play) — 30Q, 78 marks",g9:"📋 Month-Start Starter Test (Combined: Number Systems + Polynomials + Lines and Angles) — 30Q, 78 marks",g10:"📋 Month-Start Starter Test (Combined: Polynomials + Pair of Linear Equations + Quadratic Equations) — 30Q, 78 marks",c9:"📋 Month-Start Starter Test (Ganita Manjari Ch 1–4: Coordinates + Linear Polynomials + World of Numbers + Algebraic Identities) — 30Q, 68 marks"}},
+  4:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers (Worksheet 1)",g9:"Number Systems",g10:"Polynomials",c9:"Ch 1 – Coordinates (pre-exam)"}},
   5:{type:"holiday"},
-  6:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers",g9:"Number Systems",g10:"Polynomials",c9:"Ch 2 – Linear Polynomials (pre-exam)"}},
-  7:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers",g9:"Number Systems",g10:"Polynomials",c9:"Ch 3 – World of Numbers (pre-exam)"}},
-  8:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers",g9:"Number Systems",g10:"Polynomials",c9:"Ch 4 – Algebraic Identities (pre-exam)"}},
+  6:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers (Worksheet 2)",g9:"Number Systems",g10:"Polynomials",c9:"Ch 2 – Linear Polynomials (pre-exam)"}},
+  7:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers (Worksheet 3)",g9:"Number Systems",g10:"Polynomials",c9:"Ch 3 – World of Numbers (pre-exam)"}},
+  8:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers (Worksheet 4)",g9:"Number Systems",g10:"Polynomials",c9:"Ch 4 – Algebraic Identities (pre-exam)"}},
   9:{type:"science", topics:{g7:"Ever-Evolving World of Science",g8:"Investigative World of Science",g9:"Matter in Our Surroundings",g10:"Chemical Reactions & Equations",c9:"Cell"}},
-  10:{type:"exam", examNote:"Std 9 CBSE school exam — Chapters 1–4"},
-  11:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers",g9:"Number Systems",g10:"Polynomials",c9:"Ch 1 – Coordinates (deep practice)"}},
+  10:{type:"ss", examNote:"Std 9 CBSE school exam — Chapters 1–4 (no worksheet for this batch today)",
+      topics:{g7:"On hold",g8:"On hold",g9:"On hold",g10:"On hold",c9:"⚠️ School Exam — Chapters 1–4"}},
+  11:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers (Worksheet 5)",g9:"Number Systems",g10:"Polynomials",c9:"Ch 1 – Coordinates (deep practice)"}},
   12:{type:"holiday"},
-  13:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers",g9:"Number Systems",g10:"Polynomials",c9:"Ch 1 – Coordinates (deep practice)"}},
+  13:{type:"maths", topics:{g7:"Large Numbers Around Us",g8:"A Story of Numbers (Worksheet 6)",g9:"Number Systems",g10:"Polynomials",c9:"Ch 1 – Coordinates (deep practice)"}},
   14:{type:"maths", topics:{g7:"Arithmetic Expressions",g8:"Quadrilaterals",g9:"Polynomials",g10:"Pair of Linear Equations",c9:"Ch 1 – Coordinates (deep practice)"}},
   15:{type:"maths", topics:{g7:"Arithmetic Expressions",g8:"Quadrilaterals",g9:"Polynomials",g10:"Pair of Linear Equations",c9:"Ch 2 – Linear Polynomials (deep practice)"}},
   16:{type:"science", topics:{g7:"Acid, Base and Neutral",g8:"Invisible World",g9:"Cell",g10:"Acid, Bases and Salts",c9:"Tissues"}},
@@ -300,7 +301,7 @@ function renderCalendarGrid(m){
       tagHtml = '<span class="cc-tag holiday">Holiday</span>';
     }
 
-    var examMark = (info.type === "exam" || d === 10) ? '<span class="cc-exam">⚠️</span>' : "";
+    var examMark = info.examNote ? '<span class="cc-exam">⚠️</span>' : "";
 
     html += '<div class="'+cellClasses+'" onclick="'+(info.type==="inactive"?"":"openDay("+d+")")+'">'
           + examMark
@@ -324,8 +325,22 @@ function openDay(d){
 
   if (info.type === "holiday"){
     body = '<div class="dm-holiday"><div class="e">🌴</div>Sunday holiday — no worksheets today.</div>';
-  } else if (info.type === "ss"){
+  } else if (info.type === "ss" && !info.topics){
     body = '<div class="dm-holiday"><div class="e">🗂️</div>Social Science day — topics not finalised yet.<br/>All 5 batches on hold for now.</div>';
+  } else if (info.type === "ss" && info.topics){
+    if (info.examNote) body += '<div class="dm-exam-banner">⚠️ '+info.examNote+'</div>';
+    body += '<div class="dm-section-lbl">Social Science — 5 batches</div>';
+    body += BATCHES.map(function(b){
+      var topic = info.topics[b.key] || "—";
+      var isHold = topic === "On hold";
+      return '<div class="batch-row'+(isHold?" ss-hold":"")+'">'
+           + '<div class="br-left">'
+           + '<div class="br-batch">'+b.label+'</div>'
+           + '<div class="br-topic'+(isHold?" hold":"")+'">'+topic+'</div>'
+           + '</div>'
+           + '<div class="br-subj">'+b.icon+'</div>'
+           + '</div>';
+    }).join("");
   } else if (info.type === "exam"){
     body = '<div class="dm-exam-banner">⚠️ '+info.examNote+'</div>'
          + '<div class="dm-holiday" style="padding:10px 10px 0;">No new worksheet today — prep &amp; revision day.</div>';
