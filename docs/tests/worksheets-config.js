@@ -210,6 +210,96 @@ var ALL_WORKSHEETS = [
     questionsFile: "questions/ws_goa_s8_math_20260713_01.js"
   },
 
+  {
+    id: "ws_goa_s7_math_20260704_01",
+    title: "Std 7 Maths (Goa) — Large Numbers Around Us — Worksheet 1",
+    subject: "Maths",
+    class: "7",
+    section: "std7",
+    board: "goa",
+    week: "2026-07-04",
+    chapters: ["Large Numbers Around Us"],
+    totalMarks: 62,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s7_math_20260704_01.js"
+  },
+
+  {
+    id: "ws_goa_s7_math_20260706_01",
+    title: "Std 7 Maths (Goa) — Large Numbers Around Us — Worksheet 2",
+    subject: "Maths",
+    class: "7",
+    section: "std7",
+    board: "goa",
+    week: "2026-07-06",
+    chapters: ["Large Numbers Around Us"],
+    totalMarks: 63,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s7_math_20260706_01.js"
+  },
+
+  {
+    id: "ws_goa_s7_math_20260707_01",
+    title: "Std 7 Maths (Goa) — Large Numbers Around Us — Worksheet 3",
+    subject: "Maths",
+    class: "7",
+    section: "std7",
+    board: "goa",
+    week: "2026-07-07",
+    chapters: ["Large Numbers Around Us"],
+    totalMarks: 61,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s7_math_20260707_01.js"
+  },
+
+  {
+    id: "ws_goa_s7_math_20260708_01",
+    title: "Std 7 Maths (Goa) — Large Numbers Around Us — Worksheet 4",
+    subject: "Maths",
+    class: "7",
+    section: "std7",
+    board: "goa",
+    week: "2026-07-08",
+    chapters: ["Large Numbers Around Us"],
+    totalMarks: 68,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s7_math_20260708_01.js"
+  },
+
+  {
+    id: "ws_goa_s7_math_20260711_01",
+    title: "Std 7 Maths (Goa) — Large Numbers Around Us — Worksheet 5",
+    subject: "Maths",
+    class: "7",
+    section: "std7",
+    board: "goa",
+    week: "2026-07-11",
+    chapters: ["Large Numbers Around Us"],
+    totalMarks: 66,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s7_math_20260711_01.js"
+  },
+
+  {
+    id: "ws_goa_s7_math_20260713_01",
+    title: "Std 7 Maths (Goa) — Large Numbers Around Us — Worksheet 6",
+    subject: "Maths",
+    class: "7",
+    section: "std7",
+    board: "goa",
+    week: "2026-07-13",
+    chapters: ["Large Numbers Around Us"],
+    totalMarks: 63,
+    weight: 2,
+    live: true,
+    questionsFile: "questions/ws_goa_s7_math_20260713_01.js"
+  },
+
   // Add this week's remaining worksheets below as they're created & reviewed.
   // Template (copy, fill in, verify, then flip live:true):
   //
