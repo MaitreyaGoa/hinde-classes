@@ -48,7 +48,12 @@ const WORKSHEET_LIBRARY = {
   std8: {
     label: "Std 8", board: "Goa Board",
     subjects: {
-      maths: [],
+      maths: [
+        { num: 3, title: "A Story of Numbers",
+          html: "worksheets/story-of-numbers-worksheet.html",
+          pdf: "https://drive.google.com/file/d/1ew6S1hjA-7GGHnQIcARpn_2tHKIyHIr4/view?usp=sharing",
+          meta: "Complete concept sheet + practice worksheet, with teacher answer key" },
+      ],
       science: [],
       social: [],
       english: [],
