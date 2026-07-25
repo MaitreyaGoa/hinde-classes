@@ -46,6 +46,10 @@ const WORKSHEET_LIBRARY = {
           html: "worksheets/std7-maths-ch3-a-peek-beyond-the-point.html",
           pdf: "https://drive.google.com/file/d/1tsOzQK1j49U7EwPlleGclCMNjxVVcuVC/view?usp=sharing",
           meta: "Decimal numbers, place value & operations on decimals — concept notes + practice + teacher answer key" },
+        { num: 4, title: "Expressions Using Letter-Numbers",
+          html: "worksheets/std7-maths-ch4-expressions-using-letter-numbers.html",
+          pdf: "https://drive.google.com/file/d/1GdCIh896lsesG47M9OqSgw-alCzPWfTv/view?usp=sharing",
+          meta: "Variables, algebraic expressions & their evaluation — concept notes + practice + teacher answer key" },
       ],
       science: [
         { num: 1, title: "The Ever-Evolving World of Science",
