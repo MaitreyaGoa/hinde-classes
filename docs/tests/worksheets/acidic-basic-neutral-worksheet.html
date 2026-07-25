@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exploring Substances: Acidic, Basic and Neutral | Hinde Classes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0B4F4A;
+    --coral:#FF6B54;
+    --gold:#E0A93B;
+    --bg:#FAF7F2;
+    --card:#ffffff;
+    --ink:#1c2b2a;
+    --muted:#5c6b6a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',sans-serif; line-height:1.6; padding-bottom:60px;
+  }
+  header{
+    background:var(--teal); color:#fff; padding:28px 20px 34px;
+    text-align:center; border-bottom:6px solid var(--coral);
+  }
+  header .brand{
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:15px;
+    letter-spacing:1px; opacity:0.85; text-transform:uppercase;
+  }
+  header h1{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:26px;
+    margin:10px auto 6px; max-width:700px;
+  }
+  header .sub{ color:var(--gold); font-weight:600; font-size:14px; }
+  .wrap{ max-width:800px; margin:0 auto; padding:0 18px; }
+  section{ margin-top:34px; }
+  h2.section-title{
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:19px;
+    color:var(--teal); border-left:5px solid var(--coral); padding-left:12px;
+    margin-bottom:16px;
+  }
+  .note-card{
+    background:var(--card); border-radius:12px; padding:16px 18px;
+    margin-bottom:14px; box-shadow:0 1px 4px rgba(0,0,0,0.06);
+    border-top:3px solid var(--gold);
+  }
+  .note-card h3{ margin:0 0 6px; font-size:15.5px; color:var(--teal); font-family:'Poppins',sans-serif; }
+  .note-card p{ margin:4px 0; font-size:14.5px; color:var(--ink); }
+  .note-card .tag{
+    display:inline-block; font-size:12px; font-weight:700; color:#fff;
+    background:var(--coral); padding:2px 9px; border-radius:20px; margin-bottom:6px;
+  }
+  .eqn{
+    background:#F1F8F6; border-left:4px solid var(--teal); padding:10px 14px;
+    font-weight:600; border-radius:6px; margin:8px 0; font-size:14.5px;
+  }
+  .q-block{
+    background:var(--card); border-radius:12px; padding:16px 18px;
+    margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  }
+  .q-block .qnum{ color:var(--coral); font-weight:700; margin-right:6px; }
+  .q-block .marks{
+    float:right; font-size:12.5px; color:var(--muted); font-weight:600;
+    background:#F1EEE7; padding:2px 9px; border-radius:20px;
+  }
+  .section-note{ font-size:13.5px; color:var(--muted); margin-bottom:14px; }
+  .answer-zone{
+    background:#fff; border:1.5px dashed #d8d2c6; border-radius:8px;
+    min-height:34px; margin-top:8px;
+  }
+  .teacher-key{
+    background:#FFF6EC; border:2px solid var(--gold); border-radius:14px;
+    padding:22px; margin-top:40px;
+  }
+  .teacher-key .flag{
+    display:inline-block; background:var(--teal); color:#fff; font-weight:700;
+    font-size:12.5px; padding:4px 12px; border-radius:20px; margin-bottom:14px;
+    font-family:'Poppins',sans-serif; letter-spacing:0.5px;
+  }
+  .ans{ margin-bottom:16px; font-size:14.5px; }
+  .ans b{ color:var(--teal); }
+  footer{ text-align:center; margin-top:50px; color:var(--muted); font-size:13px; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="data:image/png;base64,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" alt="Hinde Classes" style="width:56px;height:56px;margin-bottom:6px;">
+  <div class="brand">Hinde Classes • Worksheets Library</div>
+  <h1>Exploring Substances: Acidic, Basic and Neutral</h1>
+  <div class="sub">Std 7 · Science (Goa Board) · Chapter 2</div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2 class="section-title">📘 Concept Notes</h2>
+
+    <div class="note-card">
+      <span class="tag">Indicators</span>
+      <h3>Litmus — the acid-base indicator</h3>
+      <p>Litmus is obtained from <b>lichens</b> and is available as a solution or as paper strips (blue and red).</p>
+      <p><b>Acidic</b> substances turn blue litmus paper <b>red</b>. <b>Basic</b> substances turn red litmus paper <b>blue</b>. Substances that don't change either are <b>neutral</b>.</p>
+    </div>
+
+    <div class="note-card">
+      <span class="tag">Indicators</span>
+      <h3>Red rose extract</h3>
+      <p>Turns <b>red</b> in an acidic solution and <b>green</b> in a basic solution. Other natural indicators: purple cabbage, red hibiscus (gudhal), beetroot.</p>
+    </div>
+
+    <div class="note-card">
+      <span class="tag">Indicators</span>
+      <h3>Turmeric paper</h3>
+      <p>Turns <b>red only in basic solutions</b>. It stays yellow (unchanged) in both acidic and neutral solutions — so it <b>cannot distinguish acidic from neutral</b> on its own.</p>
+    </div>
+
+    <div class="note-card">
+      <span class="tag">Indicators</span>
+      <h3>Olfactory indicators</h3>
+      <p>Some substances change <b>smell</b> in acidic/basic medium (e.g. onion, vanilla, clove) — these are called olfactory indicators.</p>
+    </div>
+
+    <div class="note-card">
+      <span class="tag">Skill</span>
+      <h3>Preparing a natural indicator (e.g. red rose extract)</h3>
+      <p>Collect fallen petals &rarr; wash and crush them &rarr; soak in hot water for 5&ndash;10 minutes &rarr; filter. The coloured filtrate is the natural indicator, ready to test other substances.</p>
+      <p><b>Know a Scientist:</b> Acharya P.C. Ray, the "Father of Modern Indian Chemistry," set up India's first pharmaceutical company (1901) and championed teaching science in one's mother tongue.</p>
+    </div>
+
+    <div class="note-card">
+      <span class="tag">Reaction</span>
+      <h3>Neutralisation</h3>
+      <p>When an acid and a base react in the right amount, they neutralise each other, forming a <b>salt</b> and <b>water</b>, with the release of <b>heat</b>.</p>
+      <div class="eqn">Acid + Base → Salt + Water + Heat</div>
+    </div>
+
+    <div class="note-card">
+      <span class="tag">Daily Life</span>
+      <h3>Neutralisation around us</h3>
+      <p><b>Ant bite:</b> injects acidic formic acid → relieved by rubbing moist baking soda (a base).</p>
+      <p><b>Acidic soil:</b> treated by adding lime (a base).</p>
+      <p><b>Basic soil:</b> treated by adding organic matter/manure (releases acids).</p>
+      <p><b>Factory waste:</b> acidic waste is neutralised with basic substances before release into water bodies, to protect aquatic life.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">✏️ Section A — Quick Recall (1 mark each)</h2>
+    <div class="section-note">Answer in one line.</div>
+
+    <div class="q-block"><span class="marks">1 mark</span><span class="qnum">1.</span>What is an acid-base indicator?<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">1 mark</span><span class="qnum">2.</span>What colour does blue litmus paper turn when a drop of vinegar is placed on it?<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">1 mark</span><span class="qnum">3.</span>Name the natural source from which litmus is obtained.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">1 mark</span><span class="qnum">4.</span>Name one substance which is neutral in nature.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">1 mark</span><span class="qnum">5.</span>What colour does red rose extract turn in a basic solution?<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">1 mark</span><span class="qnum">6.</span>Who is known as the "Father of Modern Indian Chemistry," and what pharmaceutical milestone is he credited with in 1901?<div class="answer-zone"></div></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">🧪 Section B — Understanding &amp; Application (2 marks each)</h2>
+
+    <div class="q-block"><span class="marks">2 marks</span><span class="qnum">7.</span>Turmeric paper turns red when dipped in solution X, but shows no colour change when dipped in solution Y. What can you conclude about the nature of X? Can you be sure about the exact nature of Y? Explain.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">2 marks</span><span class="qnum">8.</span>Explain, with a reason, why rubbing moist baking soda relieves the pain of a red ant bite.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">2 marks</span><span class="qnum">9.</span>A farmer's soil has become too acidic due to excess use of chemical fertilisers, and plants are not growing well. Suggest a remedy and explain why it works.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">2 marks</span><span class="qnum">10.</span>Write the general word equation for a neutralisation reaction. Name all three things produced/released in the reaction.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">2 marks</span><span class="qnum">11.</span>Why can bitter gourd (karela) not be called a "basic" substance even though it tastes bitter?<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">2 marks</span><span class="qnum">12.</span>How can a natural acid-base indicator be prepared at home? Explain briefly using red rose petals as your example.<div class="answer-zone"></div></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">🔍 Section C — Analysis (3 marks each)</h2>
+
+    <div class="q-block"><span class="marks">3 marks</span><span class="qnum">13.</span>Three unlabelled solutions P, Q and R are tested with litmus paper. P turns blue litmus red. Q turns red litmus blue. R does not change either litmus paper. Identify the nature of P, Q and R. Which one of these three could be used to treat soil that has become too basic, and why?<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">3 marks</span><span class="qnum">14.</span>Aman accidentally spilt vinegar on a piece of eggshell and saw bubbling, but poured soap solution on another piece and saw no bubbles. What does the bubbling with vinegar tell you about the reaction between an acid and the eggshell? Why do you think soap solution (a base) produced no such effect?<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">3 marks</span><span class="qnum">15.</span>Keerthi wrote a secret birthday message to her grandmother using orange juice as "ink" on plain paper. Which indicator paper could her grandmother use to reveal the message, and why would that work?<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">3 marks</span><span class="qnum">16.</span>Grape juice was mixed with red rose extract, and the mixture turned red. Baking soda solution is now added to this mixture, a little at a time. Describe what happens to the colour as more and more baking soda is added, and explain why.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">3 marks</span><span class="qnum">17.</span>Hydrangea flowers turn blue when grown in acidic soil, and pink/red when grown in basic soil. If a gardener wants pink hydrangea flowers, what does this tell you about the nature of the soil they need, and how might they adjust the soil to achieve it?<div class="answer-zone"></div></div>
+  </section>
+
+  <section>
+    <h2 class="section-title">🚀 Section D — Higher Order Thinking (4 marks each)</h2>
+
+    <div class="q-block"><span class="marks">4 marks</span><span class="qnum">18.</span>A liquid sample from the school lab was tested as follows: it did not change red litmus paper; it turned blue litmus paper red; it did not change the colour of turmeric paper. Identify the nature of the liquid, and justify your answer using <u>all three</u> observations.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">4 marks</span><span class="qnum">19.</span>Design a simple experiment, using materials commonly found at home, to test whether the soil in your kitchen garden is acidic, basic or neutral. Based on your possible results, explain what treatment you would suggest in each of the three cases.<div class="answer-zone"></div></div>
+    <div class="q-block"><span class="marks">4 marks</span><span class="qnum">20.</span>Two solutions A and B are mixed in the correct proportion. The resulting mixture is neutral, heat is given out, and apart from water, one more substance is formed. What is the nature of solution A, and of solution B? Name the type of reaction that has occurred, and name (in general terms) the "one more substance" that is formed.<div class="answer-zone"></div></div>
+  </section>
+
+  <div class="teacher-key">
+    <span class="flag">FOR TEACHER USE — ANSWER KEY</span>
+
+    <div class="ans"><b>1.</b> A substance that shows different colours in acidic and basic solutions, used to test the nature of a substance.</div>
+    <div class="ans"><b>2.</b> Red.</div>
+    <div class="ans"><b>3.</b> Lichens.</div>
+    <div class="ans"><b>4.</b> Any one: tap water / sugar solution / salt solution.</div>
+    <div class="ans"><b>5.</b> Green.</div>
+    <div class="ans"><b>6.</b> Acharya Prafulla Chandra Ray (P.C. Ray). He established India's first pharmaceutical company in 1901.</div>
+
+    <div class="ans"><b>7.</b> Turmeric paper turning red confirms X is basic. But since turmeric cannot distinguish acidic from neutral (it stays unchanged in both), Y could be either acidic or neutral — we cannot be sure without using litmus paper too.</div>
+    <div class="ans"><b>8.</b> An ant bite injects acidic formic acid into the skin. Baking soda is a base, so rubbing it on the bite neutralises the acid, relieving the stinging pain.</div>
+    <div class="ans"><b>9.</b> Add lime (calcium oxide/calcium hydroxide) to the soil. Lime is a base and neutralises the excess acid in the soil, restoring conditions suitable for plant growth.</div>
+    <div class="ans"><b>10.</b> Acid + Base → Salt + Water + Heat. The three things produced/released are: a salt, water, and heat.</div>
+    <div class="ans"><b>11.</b> Because not every bitter-tasting substance is basic — bitter taste alone does not confirm basic nature (karela is bitter but not basic); the nature must be confirmed using an indicator like litmus.</div>
+    <div class="ans"><b>12.</b> Collect fallen red rose petals, wash them, crush with a mortar and pestle, soak in hot water for 5–10 minutes, then filter. The coloured filtrate is the natural indicator — it turns red in acid and green in base.</div>
+
+    <div class="ans"><b>13.</b> P is acidic (turns blue litmus red); Q is basic (turns red litmus blue); R is neutral (no change to either). P (the acidic solution) should be used to treat basic soil, because an acid is needed to neutralise excess base.</div>
+    <div class="ans"><b>14.</b> The bubbling with vinegar shows that the acid reacted with the eggshell (which contains calcium carbonate), releasing carbon dioxide gas as bubbles. Soap solution, being basic, does not react with the carbonate in the same way, so no gas/bubbles are produced.</div>
+    <div class="ans"><b>15.</b> Turmeric paper. Orange juice is acidic and does not affect turmeric paper (it stays yellow), so the message written in orange juice would remain invisible — however, if the "reveal" liquid used were basic (like a soap or baking soda solution wiped over turmeric-treated paper), it would turn the background red while the acidic-juice writing stays yellow, making the message visible by contrast.</div>
+    <div class="ans"><b>16.</b> Initially the mixture is red (acidic, since red rose extract gives red in acid). As baking soda (a base) is added gradually, the acid is progressively neutralised and the colour changes from red towards green. With enough baking soda, the mixture becomes basic and turns green; adding even more baking soda keeps it green.</div>
+    <div class="ans"><b>17.</b> Pink/red hydrangea flowers grow in basic soil, so the gardener needs the soil to be basic (not acidic). They could adjust it by adding a basic substance (e.g. lime) to reduce acidity and raise the soil's basic nature.</div>
+
+    <div class="ans"><b>18.</b> The liquid is acidic. Reasoning: (i) it turned blue litmus red — a property of acids; (ii) it did not change red litmus — consistent with being acidic (only bases change red litmus to blue); (iii) it did not change turmeric paper — consistent with being acidic, since turmeric only turns red in bases and stays unchanged in both acidic and neutral solutions. All three results together confirm acidic nature (not neutral), since result (i) alone already rules out neutral.</div>
+    <div class="ans"><b>19.</b> Collect a soil sample, mix with a little water, filter/settle, and dip blue and red litmus paper (or turmeric paper) into the extract. If blue litmus turns red → soil is acidic → treat with lime. If red litmus turns blue (or turmeric turns red) → soil is basic → treat with organic matter/manure/compost. If neither litmus paper changes colour → soil is neutral → no acid-base treatment needed (check for nutrient deficiency instead).</div>
+    <div class="ans"><b>20.</b> A is acidic and B is basic (or vice versa). The reaction is a <b>neutralisation reaction</b>. Apart from water, the "one more substance" formed is a <b>salt</b> (Acid + Base → Salt + Water + Heat).</div>
+  </div>
+
+</div>
+
+<footer>Hinde Classes · Bicholim, Goa · hindeclasses.com</footer>
+
+</body>
+</html>
