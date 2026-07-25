@@ -38,6 +38,10 @@ const WORKSHEET_LIBRARY = {
           html: "worksheets/large-numbers-worksheet.html",
           pdf: "https://drive.google.com/file/d/1fXPmFlx-WyLBPLohOYvMqsobSn2h0XsD/view?usp=sharing",
           meta: "Includes full answer key for teachers" },
+        { num: 3, title: "A Peek Beyond the Point",
+          html: "worksheets/peek-beyond-the-point-worksheet.html",
+          pdf: "https://drive.google.com/file/d/1tsOzQK1j49U7EwPlleGclCMNjxVVcuVC/view?usp=sharing",
+          meta: "Decimal numbers, place value & operations on decimals — concept notes + practice + teacher answer key" },
       ],
       science: [
         { num: 1, title: "The Ever-Evolving World of Science",
