@@ -39,7 +39,12 @@ const WORKSHEET_LIBRARY = {
           pdf: "https://drive.google.com/file/d/1fXPmFlx-WyLBPLohOYvMqsobSn2h0XsD/view?usp=sharing",
           meta: "Includes full answer key for teachers" },
       ],
-      science: [],
+      science: [
+        { num: 2, title: "Exploring Substances: Acidic, Basic and Neutral",
+          html: "worksheets/acidic-basic-neutral-worksheet.html",
+          pdf: "https://drive.google.com/file/d/12iQsaw0A_S97GqmEnrftzDJzJq6K0zat/view?usp=sharing",
+          meta: "Litmus, natural indicators & neutralisation — concept notes + practice + teacher answer key" },
+      ],
       social: [],
       english: [],
     }
