@@ -62,6 +62,10 @@ const WORKSHEET_LIBRARY = {
     label: "Std 8", board: "Goa Board",
     subjects: {
       maths: [
+        { num: 1, title: "A Square and A Cube",
+          html: "worksheets/square-and-cube-worksheet.html",
+          pdf: "https://drive.google.com/file/d/1PZUbCm3FqRup7tXYecVtdzEqNtteaJNd/view?usp=sharing",
+          meta: "Perfect squares, perfect cubes, square roots & cube roots — concept notes + practice + teacher answer key" },
         { num: 3, title: "A Story of Numbers",
           html: "worksheets/story-of-numbers-worksheet.html",
           pdf: "https://drive.google.com/file/d/1ew6S1hjA-7GGHnQIcARpn_2tHKIyHIr4/view?usp=sharing",
