@@ -38,8 +38,12 @@ const WORKSHEET_LIBRARY = {
           html: "worksheets/large-numbers-worksheet.html",
           pdf: "https://drive.google.com/file/d/1fXPmFlx-WyLBPLohOYvMqsobSn2h0XsD/view?usp=sharing",
           meta: "Includes full answer key for teachers" },
+        { num: 2, title: "Arithmetic Expressions",
+          html: "worksheets/std7-maths-ch2-arithmetic-expressions.html",
+          pdf: "https://drive.google.com/file/d/1C0JBZvNdvc-HNTaR5lrrzMQ1kgIUYzez/view?usp=sharing",
+          meta: "Simplifying and evaluating arithmetic expressions — concept notes + practice + teacher answer key" },
         { num: 3, title: "A Peek Beyond the Point",
-          html: "worksheets/peek-beyond-the-point-worksheet.html",
+          html: "worksheets/std7-maths-ch3-a-peek-beyond-the-point.html",
           pdf: "https://drive.google.com/file/d/1tsOzQK1j49U7EwPlleGclCMNjxVVcuVC/view?usp=sharing",
           meta: "Decimal numbers, place value & operations on decimals — concept notes + practice + teacher answer key" },
       ],
@@ -67,7 +71,7 @@ const WORKSHEET_LIBRARY = {
     subjects: {
       maths: [
         { num: 1, title: "A Square and A Cube",
-          html: "worksheets/square-and-cube-worksheet.html",
+          html: "worksheets/std8-maths-ch1-a-square-and-a-cube.html",
           pdf: "https://drive.google.com/file/d/1PZUbCm3FqRup7tXYecVtdzEqNtteaJNd/view?usp=sharing",
           meta: "Perfect squares, perfect cubes, square roots & cube roots — concept notes + practice + teacher answer key" },
         { num: 3, title: "A Story of Numbers",
