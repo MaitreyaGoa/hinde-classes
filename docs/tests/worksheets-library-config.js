@@ -54,7 +54,16 @@ const WORKSHEET_LIBRARY = {
           pdf: "https://drive.google.com/file/d/1ew6S1hjA-7GGHnQIcARpn_2tHKIyHIr4/view?usp=sharing",
           meta: "Complete concept sheet + practice worksheet, with teacher answer key" },
       ],
-      science: [],
+      science: [
+        { num: 1, title: "Exploring the Investigative World of Science",
+          html: "worksheets/investigative-world-of-science-worksheet.html",
+          pdf: "https://drive.google.com/file/d/1T5fWRxb74dlAKpaMezL91gEIzf6bAPbg/view?usp=sharing",
+          meta: "Scientific method, fair testing & variables — concept notes + practice + teacher answer key" },
+        { num: 2, title: "The Invisible Living World: Beyond Our Naked Eye",
+          html: "worksheets/invisible-living-world-worksheet.html",
+          pdf: "https://drive.google.com/file/d/1TtBwEFo5zyFTg4gDS2E-EGwTFTHJOPmi/view?usp=sharing",
+          meta: "Cells, microorganisms & their role — concept notes + practice + teacher answer key" },
+      ],
       social: [],
       english: [],
     }
