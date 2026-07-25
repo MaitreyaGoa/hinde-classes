@@ -40,6 +40,10 @@ const WORKSHEET_LIBRARY = {
           meta: "Includes full answer key for teachers" },
       ],
       science: [
+        { num: 1, title: "The Ever-Evolving World of Science",
+          html: "worksheets/ever-evolving-world-of-science-worksheet.html",
+          pdf: "https://drive.google.com/file/d/14rAWE5AUHiLog-EoiqRP2hco3-c_digh/view?usp=sharing",
+          meta: "Nature of scientific knowledge & scientific inquiry — concept notes + practice + teacher answer key" },
         { num: 2, title: "Exploring Substances: Acidic, Basic and Neutral",
           html: "worksheets/acidic-basic-neutral-worksheet.html",
           pdf: "https://drive.google.com/file/d/12iQsaw0A_S97GqmEnrftzDJzJq6K0zat/view?usp=sharing",
