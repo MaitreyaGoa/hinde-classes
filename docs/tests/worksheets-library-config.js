@@ -112,7 +112,10 @@ const WORKSHEET_LIBRARY = {
     label: "Std 10", board: "Goa Board",
     subjects: {
       maths: [],
-      science: [],
+      science: [ { num: 1, title: "Life Processes",
+    html: "worksheets/Life_Processes_Worksheet.html",
+    pdf: "https://drive.google.com/file/d/1XoESU9wkDaWLSxUbvEjTnaPfVB3Kc4Lu/view?usp=sharing",
+    meta: "Complete concept notes + practice worksheet with teacher answer key" },],
       social: [],
       english: [],
     }
