@@ -124,7 +124,13 @@ const WORKSHEET_LIBRARY = {
   std9cbse: {
     label: "Std 9", board: "CBSE",
     subjects: {
-      maths: [],
+      maths: [{
+  num: 1,
+  title: "Linear Polynomials",
+  html: "worksheets/hindeclasses-std9cbse-linear-polynomials-worksheet.html",
+  pdf: "https://drive.google.com/file/d/1CHi1bn-vJByoINS5M8KDzExIdV2vA2rZ/view?usp=sharing",
+  meta: "Concept notes, solved examples, practice questions & teacher answer key"
+},],
       science: [{
   num: 2,
   title: "Cell – Structure and Functions",
