@@ -125,7 +125,13 @@ const WORKSHEET_LIBRARY = {
     label: "Std 9", board: "CBSE",
     subjects: {
       maths: [],
-      science: [],
+      science: [{
+  num: 2,
+  title: "Cell – Structure and Functions",
+  html: "worksheets/Std9_CBSE_Science_Ch2_Cell_Worksheet_HindeClasses.html",
+  pdf: "https://drive.google.com/file/d/1kkclCi25Yqb_QPCsjtqCxlNnJPv8dMiV/view?usp=sharing",
+  meta: "Cell structure, organelles & functions — concept notes + practice + teacher answer key"
+},],
       social: [],
       english: [],
     }
