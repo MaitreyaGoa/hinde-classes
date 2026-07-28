@@ -38,7 +38,9 @@ window.STD10_PORTAL = {
         totalMarks: 80,
         totalTime: "3 hrs",
         totalQuestions: 42,
-        pdfUrl: "assets/std10/maths-model-paper-blueprint.pdf", // generated blueprint breakdown (already built)
+        pdfUrl: "assets/std10/maths-model-paper-blueprint.pdf",
+        htmlUrl: "assets/std10/maths-model-paper-blueprint.html",
+        driveUrl: "",                 // TODO: paste a Drive copy of the blueprint PDF if you want one
         objectivesTable: [
           { label: "Remembering & Understanding", marks: 44, pct: "55%" },
           { label: "Applying",                     marks: 19, pct: "24%" },
@@ -70,7 +72,7 @@ window.STD10_PORTAL = {
             {
               title: "Worksheet 1 (Complete Section)",
               html: "worksheets/std10-maths-section-a-worksheet-1.html",
-              driveUrl: ""            // TODO: paste Drive PDF link
+              driveUrl: "https://drive.google.com/file/d/1yV8AfrK_0CrdvryyE7rvMtMPiRUjF2Qs/view?usp=sharing"
             }
           ]
         },
@@ -84,7 +86,7 @@ window.STD10_PORTAL = {
             {
               title: "Worksheet 1 (Complete Section)",
               html: "worksheets/std10-maths-section-b-worksheet-1.html",
-              driveUrl: ""            // TODO
+              driveUrl: "https://drive.google.com/file/d/1IMNFDQQoYa5eXUVl94bOXhTE3unQ23VC/view?usp=sharing"
             }
           ]
         },
@@ -98,7 +100,7 @@ window.STD10_PORTAL = {
             {
               title: "Worksheet 1 (Complete Section)",
               html: "worksheets/std10-maths-section-c-worksheet-1.html",
-              driveUrl: ""            // TODO
+              driveUrl: "https://drive.google.com/file/d/1iqqDTUKuginxqpfkylorX1yKzwUZO6jj/view?usp=sharing"
             }
           ]
         },
@@ -112,7 +114,7 @@ window.STD10_PORTAL = {
             {
               title: "Worksheet 1 (Complete Section)",
               html: "worksheets/std10-maths-section-d-worksheet-1.html",
-              driveUrl: ""            // TODO
+              driveUrl: "https://drive.google.com/file/d/1pBxbergYtpaQuw8SUE46MjwHHY1c6gGM/view?usp=sharing"
             }
           ]
         }
@@ -139,7 +141,9 @@ window.STD10_PORTAL = {
         totalMarks: 70,
         totalTime: "180 min",
         totalQuestions: 39,
-        pdfUrl: "",                    // TODO: add if you want a Science blueprint PDF like Maths
+        pdfUrl: "assets/std10/science-model-paper-blueprint.pdf",
+        htmlUrl: "assets/std10/science-model-paper-blueprint.html",
+        driveUrl: "",                 // TODO: paste a Drive copy of the blueprint PDF if you want one
         objectivesTable: [
           { label: "Remembering",   marks: 21, pct: "30%" },
           { label: "Understanding", marks: 21, pct: "30%" },
@@ -168,7 +172,13 @@ window.STD10_PORTAL = {
         { name: "Acids, Bases and Salts",                tag: "Chemistry", marks: 6, worksheets: [] },
         { name: "Metals and Non-metals",                 tag: "Chemistry", marks: 4, worksheets: [] },
         { name: "Carbon and its Compounds",              tag: "Chemistry", marks: 6, worksheets: [] },
-        { name: "Life Processes",                        tag: "Biology",   marks: 7, worksheets: [] },
+        { name: "Life Processes",                        tag: "Biology",   marks: 7, worksheets: [
+            {
+              title: "Worksheet 1 (Chapter)",
+              html: "worksheets/std10-science-life-processes-worksheet-1.html",
+              driveUrl: "https://drive.google.com/file/d/1XoESU9wkDaWLSxUbvEjTnaPfVB3Kc4Lu/view?usp=sharing"
+            }
+          ] },
         { name: "Control and Coordination",              tag: "Biology",   marks: 5, worksheets: [] },
         { name: "How do Organisms Reproduce?",           tag: "Biology",   marks: 6, worksheets: [] },
         { name: "Heredity",                              tag: "Biology",   marks: 3, worksheets: [] },
