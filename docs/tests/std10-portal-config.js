@@ -8,6 +8,10 @@
    - Add a new chapter        → add an object to `chapters` (or inside a section)
    - Mark a subject as ready  → nothing to do, it auto-detects from content
 
+   RULE: All PDFs live on Google Drive only (`driveUrl` fields).
+   Only HTML files are hosted in the repo (`html` / `htmlUrl` fields, under /worksheets/ or /assets/std10/).
+   Never point a config field at a repo-hosted PDF — upload the PDF to Drive and paste the share link instead.
+
    Fields marked  // TODO  need a real link from you before going live.
    ============================================================ */
 
@@ -38,9 +42,8 @@ window.STD10_PORTAL = {
         totalMarks: 80,
         totalTime: "3 hrs",
         totalQuestions: 42,
-        pdfUrl: "assets/std10/maths-model-paper-blueprint.pdf",
         htmlUrl: "assets/std10/maths-model-paper-blueprint.html",
-        driveUrl: "",                 // TODO: paste a Drive copy of the blueprint PDF if you want one
+        driveUrl: "https://drive.google.com/file/d/1MRuAUO53tEVjKxI5XihME9j2aXkKPlw7/view?usp=sharing",
         objectivesTable: [
           { label: "Remembering & Understanding", marks: 44, pct: "55%" },
           { label: "Applying",                     marks: 19, pct: "24%" },
@@ -71,7 +74,7 @@ window.STD10_PORTAL = {
           worksheets: [
             {
               title: "Worksheet 1 (Complete Section)",
-              html: "worksheets/std10-maths-section-a-worksheet-1.html",
+              html: "worksheets/Section-A_Worksheet-1.html",
               driveUrl: "https://drive.google.com/file/d/1yV8AfrK_0CrdvryyE7rvMtMPiRUjF2Qs/view?usp=sharing"
             }
           ]
@@ -85,7 +88,7 @@ window.STD10_PORTAL = {
           worksheets: [
             {
               title: "Worksheet 1 (Complete Section)",
-              html: "worksheets/std10-maths-section-b-worksheet-1.html",
+              html: "worksheets/Section-B_Worksheet-1.html",
               driveUrl: "https://drive.google.com/file/d/1IMNFDQQoYa5eXUVl94bOXhTE3unQ23VC/view?usp=sharing"
             }
           ]
@@ -99,7 +102,7 @@ window.STD10_PORTAL = {
           worksheets: [
             {
               title: "Worksheet 1 (Complete Section)",
-              html: "worksheets/std10-maths-section-c-worksheet-1.html",
+              html: "worksheets/Section-C_Worksheet-1.html",
               driveUrl: "https://drive.google.com/file/d/1iqqDTUKuginxqpfkylorX1yKzwUZO6jj/view?usp=sharing"
             }
           ]
@@ -113,7 +116,7 @@ window.STD10_PORTAL = {
           worksheets: [
             {
               title: "Worksheet 1 (Complete Section)",
-              html: "worksheets/std10-maths-section-d-worksheet-1.html",
+              html: "worksheets/Section-D_Worksheet-1.html",
               driveUrl: "https://drive.google.com/file/d/1pBxbergYtpaQuw8SUE46MjwHHY1c6gGM/view?usp=sharing"
             }
           ]
@@ -141,9 +144,8 @@ window.STD10_PORTAL = {
         totalMarks: 70,
         totalTime: "180 min",
         totalQuestions: 39,
-        pdfUrl: "assets/std10/science-model-paper-blueprint.pdf",
         htmlUrl: "assets/std10/science-model-paper-blueprint.html",
-        driveUrl: "",                 // TODO: paste a Drive copy of the blueprint PDF if you want one
+        driveUrl: "https://drive.google.com/file/d/1MtlJHXMFG9cjqvc3KUqKtZtHwXQHa1My/view?usp=sharing",
         objectivesTable: [
           { label: "Remembering",   marks: 21, pct: "30%" },
           { label: "Understanding", marks: 21, pct: "30%" },
@@ -175,7 +177,7 @@ window.STD10_PORTAL = {
         { name: "Life Processes",                        tag: "Biology",   marks: 7, worksheets: [
             {
               title: "Worksheet 1 (Chapter)",
-              html: "worksheets/std10-science-life-processes-worksheet-1.html",
+              html: "worksheets/Life_Processes_Worksheet.html",
               driveUrl: "https://drive.google.com/file/d/1XoESU9wkDaWLSxUbvEjTnaPfVB3Kc4Lu/view?usp=sharing"
             }
           ] },
