@@ -266,13 +266,15 @@ footer.site-footer-mini{text-align:center;padding:30px 20px;color:var(--grey);fo
       return '<span class="diff-pill">' + esc(d.label) + ' · ' + esc(d.pct) + '</span>';
     }).join("");
 
-    var pdfBtn = bp.pdfUrl ? '<a class="paper-strip-btn" style="background:var(--teal-bg);color:var(--teal);border-color:var(--teal);" href="' + esc(bp.pdfUrl) + '" target="_blank" rel="noopener">Full Blueprint PDF ↗</a>' : "";
+    var htmlBtn = bp.htmlUrl ? '<a class="paper-strip-btn" style="background:var(--teal-bg);color:var(--teal);border-color:var(--teal);" href="' + esc(bp.htmlUrl) + '">View Blueprint (HTML)</a>' : "";
+    var hasDrivePdf = bp.driveUrl && bp.driveUrl.trim().length > 0;
+    var pdfBtn = '<a class="paper-strip-btn' + (hasDrivePdf?'':' disabled') + '" style="background:#111;color:#fff;" href="' + esc(bp.driveUrl||"#") + '" target="_blank" rel="noopener">Download PDF ↗</a>';
 
     return '<div class="bp-card">' +
       '<div class="bp-head">' +
         '<div><div class="bp-head-title">Exam Blueprint</div>' +
         '<div class="bp-head-meta">' + esc(bp.totalMarks) + ' marks · ' + esc(bp.totalTime||"") + ' · ' + esc(bp.totalQuestions||"") + ' questions</div></div>' +
-        pdfBtn +
+        '<div style="display:flex;gap:8px;flex-wrap:wrap;">' + htmlBtn + pdfBtn + '</div>' +
       '</div>' +
       '<div class="bp-grid">' +
         '<div><div class="bp-block-label">Learning Objectives</div>' + objRows + (diffPills? '<div class="diff-pills">'+diffPills+'</div>' : '') + '</div>' +
@@ -342,6 +344,18 @@ footer.site-footer-mini{text-align:center;padding:30px 20px;color:var(--grey);fo
     var rows = filtered.map(function(c){
       var tagClass = (c.tag||"").toLowerCase();
       var hasWs = c.worksheets && c.worksheets.length>0;
+      var actionHtml;
+      if (hasWs) {
+        var w = c.worksheets[0];
+        var hasHtml = w.html && w.html.trim().length>0;
+        var hasPdf = w.driveUrl && w.driveUrl.trim().length>0;
+        actionHtml = '<div class="ws-btns">' +
+          '<a class="ws-btn html' + (hasHtml?'':' disabled') + '" href="' + esc(w.html||"#") + '">View</a>' +
+          '<a class="ws-btn pdf' + (hasPdf?'':' disabled') + '" href="' + esc(w.driveUrl||"#") + '" target="_blank" rel="noopener">PDF ↗</a>' +
+        '</div>';
+      } else {
+        actionHtml = '<span class="chapter-ws-badge pending">Coming soon</span>';
+      }
       return '<div class="chapter-row">' +
         '<div class="chapter-row-left">' +
           (c.tag ? '<span class="chapter-tag ' + tagClass + '">' + esc(c.tag) + '</span>' : '') +
@@ -349,7 +363,7 @@ footer.site-footer-mini{text-align:center;padding:30px 20px;color:var(--grey);fo
         '</div>' +
         '<div class="chapter-row-right">' +
           '<span class="chapter-marks">' + esc(c.marks) + ' mk</span>' +
-          '<span class="chapter-ws-badge ' + (hasWs?'ready':'pending') + '">' + (hasWs?'Worksheet ready':'Coming soon') + '</span>' +
+          actionHtml +
         '</div>' +
       '</div>';
     }).join("");
