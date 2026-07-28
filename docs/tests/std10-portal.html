@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="Hinde Classes — Goa Board Class 10 Special 2026-27. Worksheets, exam blueprints, syllabus & model papers for Maths, Science, Social Science & English."/>
+<title>Goa Board Class 10 Special · 2026-27 · Hinde Classes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+
+/* ─── RESET ─────────────────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f5f5f7;color:#1d1d1f;overflow-x:hidden;}
+
+:root{
+  --teal:      #0d9488;
+  --teal-lt:   #14b8a6;
+  --teal-bg:   #f0fdfa;
+  --coral:     #ff6b54;
+  --coral-bg:  #fff1ee;
+  --gold:      #e0a93b;
+  --gold-bg:   #fdf6e8;
+  --ink:       #1d1d1f;
+  --grey:      #86868b;
+}
+
+/* ─── HEADER ─────────────────────────────────────────────── */
+.site-header{
+  background:rgba(245,245,247,0.92);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  position:sticky;top:0;z-index:200;padding:0 40px;
+}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.header-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;}
+.header-logo-dot{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--teal),#0f766e);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.brand-title{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-0.2px;}
+.brand-sub{font-size:10px;color:var(--grey);margin-top:1px;}
+.back-link{font-size:12px;font-weight:600;color:var(--grey);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .15s;}
+.back-link:hover{color:var(--ink);}
+
+/* ─── HERO ───────────────────────────────────────────────── */
+.hero{background:#fff;padding:44px 40px 28px;}
+.hero-inner{max-width:1100px;margin:0 auto;}
+.hero-kicker{font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;}
+.hero-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:var(--ink);margin-bottom:12px;}
+.hero-desc{font-size:15px;color:var(--grey);line-height:1.65;max-width:600px;font-weight:400;}
+
+/* ─── SUBJECT TABS ───────────────────────────────────────── */
+.tabs-wrap{background:#fff;padding:0 40px 20px;position:sticky;top:56px;z-index:150;border-bottom:1px solid rgba(0,0,0,0.06);}
+.tabs-inner{max-width:1100px;margin:0 auto;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+.tabs-inner::-webkit-scrollbar{display:none;}
+.tab-btn{
+  display:flex;align-items:center;gap:7px;white-space:nowrap;
+  padding:9px 16px;border-radius:980px;border:1.5px solid rgba(0,0,0,0.09);
+  background:#fff;color:var(--ink);font-size:13px;font-weight:600;
+  cursor:pointer;transition:all .15s;font-family:inherit;
+}
+.tab-btn .tab-icon{font-size:15px;}
+.tab-btn:hover{border-color:rgba(0,0,0,0.2);}
+.tab-btn.active{background:var(--ink);border-color:var(--ink);color:#fff;}
+.tab-badge{font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;background:rgba(0,0,0,0.08);color:var(--grey);text-transform:uppercase;letter-spacing:0.3px;}
+.tab-btn.active .tab-badge{background:rgba(255,255,255,0.2);color:#fff;}
+
+/* ─── CONTENT AREA ───────────────────────────────────────── */
+.content{max-width:1100px;margin:0 auto;padding:32px 40px 80px;}
+
+.coming-soon-box{
+  background:#fff;border:1.5px dashed rgba(0,0,0,0.12);border-radius:18px;
+  padding:48px 32px;text-align:center;
+}
+.coming-soon-box .cs-icon{font-size:38px;margin-bottom:14px;}
+.coming-soon-box .cs-title{font-size:19px;font-weight:800;color:var(--ink);margin-bottom:6px;}
+.coming-soon-box .cs-sub{font-size:13.5px;color:var(--grey);max-width:420px;margin:0 auto;line-height:1.6;}
+
+/* Model paper strip */
+.paper-strip{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:linear-gradient(135deg,#111,#333);
+  border-radius:16px;padding:18px 24px;margin-bottom:20px;color:#fff;
+  flex-wrap:wrap;
+}
+.paper-strip-left{display:flex;align-items:center;gap:14px;}
+.paper-strip-icon{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.paper-strip-title{font-size:14px;font-weight:700;}
+.paper-strip-sub{font-size:11.5px;color:rgba(255,255,255,0.6);margin-top:2px;}
+.paper-strip-btn{
+  background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);
+  color:#fff;font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:980px;
+  text-decoration:none;white-space:nowrap;transition:background .15s;
+}
+.paper-strip-btn:hover{background:rgba(255,255,255,0.25);}
+.paper-strip-btn.disabled{opacity:0.4;pointer-events:none;}
+
+/* Blueprint summary card */
+.bp-card{background:#fff;border-radius:18px;padding:24px 26px;margin-bottom:24px;border:1px solid rgba(0,0,0,0.06);}
+.bp-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
+.bp-head-title{font-size:15px;font-weight:800;color:var(--ink);}
+.bp-head-meta{font-size:12px;color:var(--grey);}
+.bp-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;}
+@media(max-width:720px){.bp-grid{grid-template-columns:1fr;}}
+.bp-block-label{font-size:10.5px;font-weight:700;color:var(--grey);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.bp-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12.5px;}
+.bp-bar-label{width:190px;flex-shrink:0;color:#444;}
+.bp-bar-track{flex:1;height:8px;background:#f0f0f0;border-radius:5px;overflow:hidden;}
+.bp-bar-fill{height:100%;border-radius:5px;background:var(--teal);}
+.bp-bar-pct{width:38px;text-align:right;flex-shrink:0;font-weight:700;color:var(--ink);}
+table.bp-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+table.bp-table th{text-align:left;color:var(--grey);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:0.5px;padding:0 0 8px;border-bottom:1px solid #eee;}
+table.bp-table td{padding:7px 0;border-bottom:1px solid #f4f4f4;color:#333;}
+table.bp-table td:last-child, table.bp-table th:last-child{text-align:right;font-weight:600;}
+.diff-pills{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+.diff-pill{font-size:11px;font-weight:700;padding:5px 12px;border-radius:980px;background:var(--teal-bg);color:var(--teal);}
+
+/* Section / chapter cards */
+.section-block{background:#fff;border-radius:18px;padding:22px 26px;margin-bottom:16px;border:1px solid rgba(0,0,0,0.06);}
+.section-block-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;}
+.section-block-title-wrap{display:flex;align-items:center;gap:10px;}
+.section-letter{width:30px;height:30px;border-radius:9px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;}
+.section-block-title{font-size:15.5px;font-weight:800;color:var(--ink);}
+.section-block-marks{font-size:11.5px;font-weight:700;color:var(--grey);background:#f5f5f7;padding:4px 11px;border-radius:980px;}
+.chapter-chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;}
+.chapter-chip{font-size:12px;color:#444;background:#f5f5f7;padding:6px 12px;border-radius:980px;}
+.ws-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--teal-bg);border-radius:12px;padding:12px 16px;flex-wrap:wrap;}
+.ws-row + .ws-row{margin-top:8px;}
+.ws-title{font-size:12.5px;font-weight:700;color:var(--ink);}
+.ws-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.ws-btn{font-size:11.5px;font-weight:700;padding:7px 14px;border-radius:980px;text-decoration:none;white-space:nowrap;transition:opacity .15s;}
+.ws-btn.html{background:var(--teal);color:#fff;}
+.ws-btn.pdf{background:#fff;color:var(--teal);border:1.3px solid var(--teal);}
+.ws-btn.disabled{opacity:0.4;pointer-events:none;}
+.ws-empty{font-size:12px;color:var(--grey);font-style:italic;}
+
+/* Science filter pills */
+.filter-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+.filter-pill{
+  font-size:12px;font-weight:700;padding:7px 15px;border-radius:980px;
+  border:1.5px solid rgba(0,0,0,0.09);background:#fff;color:#444;cursor:pointer;
+  transition:all .15s;font-family:inherit;
+}
+.filter-pill.active{background:var(--coral);border-color:var(--coral);color:#fff;}
+
+/* Chapter list (flat, e.g. Science) */
+.chapter-list{background:#fff;border-radius:18px;border:1px solid rgba(0,0,0,0.06);overflow:hidden;}
+.chapter-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:15px 22px;border-bottom:1px solid #f2f2f2;flex-wrap:wrap;
+}
+.chapter-row:last-child{border-bottom:none;}
+.chapter-row-left{display:flex;align-items:center;gap:12px;}
+.chapter-tag{font-size:10px;font-weight:700;padding:4px 9px;border-radius:7px;text-transform:uppercase;letter-spacing:0.4px;}
+.chapter-tag.chemistry{background:#fdecea;color:#c0392b;}
+.chapter-tag.physics{background:#eaf2fd;color:#1b5fad;}
+.chapter-tag.biology{background:#eafaf0;color:#1e8449;}
+.chapter-name{font-size:13.5px;font-weight:600;color:var(--ink);}
+.chapter-marks{font-size:11.5px;color:var(--grey);font-weight:600;}
+.chapter-row-right{display:flex;align-items:center;gap:10px;}
+.chapter-ws-badge{font-size:11px;font-weight:700;padding:5px 11px;border-radius:980px;}
+.chapter-ws-badge.pending{background:#f5f5f7;color:var(--grey);}
+.chapter-ws-badge.ready{background:var(--teal-bg);color:var(--teal);}
+
+footer.site-footer-mini{text-align:center;padding:30px 20px;color:var(--grey);font-size:12px;}
+
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ────────────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="header-brand">
+      <div class="header-logo-dot">🎓</div>
+      <div>
+        <div class="brand-title">Hinde Classes</div>
+        <div class="brand-sub">Goa Board Class 10 Special</div>
+      </div>
+    </a>
+    <a href="index.html" class="back-link">← All Tests</a>
+  </div>
+</header>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-kicker" id="yearKicker">Goa Board · Class 10 · Academic Year —</div>
+    <h1 class="hero-title">Class 10 Special.<br/>Everything in one place.</h1>
+    <p class="hero-desc">Worksheets, exam blueprints, syllabus breakdowns and model papers for Maths, Science, Social Science &amp; English — built directly from the Goa Board's own assessment schemes.</p>
+  </div>
+</section>
+
+<!-- ── TABS ──────────────────────────────────────────────────── -->
+<div class="tabs-wrap">
+  <div class="tabs-inner" id="tabsInner"></div>
+</div>
+
+<!-- ── CONTENT ───────────────────────────────────────────────── -->
+<div class="content" id="content"></div>
+
+<footer class="site-footer-mini">Hinde Classes · Bicholim, Goa · Free forever</footer>
+
+<script src="std10-portal-config.js"></script>
+<script>
+(function(){
+  var DATA = window.STD10_PORTAL || { academicYear:"", subjects:{} };
+  var subjects = DATA.subjects || {};
+  var order = ["maths","science","socialScience","english"];
+  var activeKey = order[0];
+  for (var i=0; i<order.length; i++){ if (subjects[order[i]]) { activeKey = order[i]; break; } }
+
+  document.getElementById("yearKicker").textContent = "Goa Board · Class 10 · Academic Year " + (DATA.academicYear || "");
+
+  function esc(s){ return (s==null?"":String(s)); }
+
+  function renderTabs(){
+    var wrap = document.getElementById("tabsInner");
+    wrap.innerHTML = order.map(function(key){
+      var s = subjects[key];
+      if(!s) return "";
+      var badge = s.status === "comingSoon" ? '<span class="tab-badge">Soon</span>' : "";
+      return '<button class="tab-btn' + (key===activeKey?' active':'') + '" data-key="' + key + '">' +
+             '<span class="tab-icon">' + esc(s.icon||"") + '</span>' + esc(s.shortLabel||s.label) + badge +
+             '</button>';
+    }).join("");
+    wrap.querySelectorAll(".tab-btn").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        activeKey = btn.getAttribute("data-key");
+        renderTabs();
+        renderContent();
+        window.scrollTo({top: document.querySelector(".tabs-wrap").offsetTop - 10, behavior:"smooth"});
+      });
+    });
+  }
+
+  function renderPaperStrip(subj){
+    var mp = subj.sampleModelPaper;
+    if(!mp) return "";
+    var hasLink = mp.driveUrl && mp.driveUrl.trim().length > 0;
+    return '<div class="paper-strip">' +
+      '<div class="paper-strip-left">' +
+        '<div class="paper-strip-icon">📄</div>' +
+        '<div><div class="paper-strip-title">' + esc(mp.label) + '</div>' +
+        '<div class="paper-strip-sub">' + (hasLink ? "Official sample paper · PDF" : "Link coming soon") + '</div></div>' +
+      '</div>' +
+      '<a class="paper-strip-btn' + (hasLink?'':' disabled') + '" href="' + esc(mp.driveUrl||"#") + '" target="_blank" rel="noopener">Download PDF ↗</a>' +
+    '</div>';
+  }
+
+  function renderBlueprint(bp){
+    if(!bp) return "";
+    var objRows = (bp.objectivesTable||[]).map(function(o){
+      var pctNum = parseInt(o.pct) || 0;
+      return '<div class="bp-bar-row">' +
+        '<div class="bp-bar-label">' + esc(o.label) + '</div>' +
+        '<div class="bp-bar-track"><div class="bp-bar-fill" style="width:' + pctNum + '%"></div></div>' +
+        '<div class="bp-bar-pct">' + esc(o.pct) + '</div>' +
+      '</div>';
+    }).join("");
+
+    var qRows = (bp.questionTypeTable||[]).map(function(q){
+      return '<tr><td>' + esc(q.type) + '</td><td>' + esc(q.count) + '</td><td>' + esc(q.marks) + ' mk</td></tr>';
+    }).join("");
+
+    var diffPills = (bp.difficulty||[]).map(function(d){
+      return '<span class="diff-pill">' + esc(d.label) + ' · ' + esc(d.pct) + '</span>';
+    }).join("");
+
+    var pdfBtn = bp.pdfUrl ? '<a class="paper-strip-btn" style="background:var(--teal-bg);color:var(--teal);border-color:var(--teal);" href="' + esc(bp.pdfUrl) + '" target="_blank" rel="noopener">Full Blueprint PDF ↗</a>' : "";
+
+    return '<div class="bp-card">' +
+      '<div class="bp-head">' +
+        '<div><div class="bp-head-title">Exam Blueprint</div>' +
+        '<div class="bp-head-meta">' + esc(bp.totalMarks) + ' marks · ' + esc(bp.totalTime||"") + ' · ' + esc(bp.totalQuestions||"") + ' questions</div></div>' +
+        pdfBtn +
+      '</div>' +
+      '<div class="bp-grid">' +
+        '<div><div class="bp-block-label">Learning Objectives</div>' + objRows + (diffPills? '<div class="diff-pills">'+diffPills+'</div>' : '') + '</div>' +
+        '<div><div class="bp-block-label">Question Types</div>' +
+          '<table class="bp-table"><tr><th>Type</th><th>Count</th><th>Marks</th></tr>' + qRows + '</table>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function renderWorksheets(list){
+    if(!list || list.length===0){
+      return '<div class="ws-empty">No worksheet uploaded yet.</div>';
+    }
+    return list.map(function(w){
+      var hasHtml = w.html && w.html.trim().length>0;
+      var hasPdf = w.driveUrl && w.driveUrl.trim().length>0;
+      return '<div class="ws-row">' +
+        '<div class="ws-title">' + esc(w.title) + '</div>' +
+        '<div class="ws-btns">' +
+          '<a class="ws-btn html' + (hasHtml?'':' disabled') + '" href="' + esc(w.html||"#") + '">View Worksheet</a>' +
+          '<a class="ws-btn pdf' + (hasPdf?'':' disabled') + '" href="' + esc(w.driveUrl||"#") + '" target="_blank" rel="noopener">Download PDF ↗</a>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+  }
+
+  function renderMathsSections(sections){
+    var letters = Object.keys(sections);
+    return letters.map(function(L){
+      var sec = sections[L];
+      var chips = (sec.chapters||[]).map(function(c){ return '<span class="chapter-chip">'+esc(c)+'</span>'; }).join("");
+      return '<div class="section-block">' +
+        '<div class="section-block-head">' +
+          '<div class="section-block-title-wrap">' +
+            '<div class="section-letter">' + esc(L) + '</div>' +
+            '<div class="section-block-title">Section ' + esc(L) + ' — ' + esc(sec.label) + '</div>' +
+          '</div>' +
+          '<div class="section-block-marks">' + esc(sec.marks) + ' marks</div>' +
+        '</div>' +
+        '<div class="chapter-chips">' + chips + '</div>' +
+        renderWorksheets(sec.worksheets) +
+      '</div>';
+    }).join("");
+  }
+
+  var scienceFilter = "All";
+  function renderFlatChapters(chapters, withFilter){
+    if(!chapters || chapters.length===0){
+      return '<div class="coming-soon-box"><div class="cs-icon">🚧</div>' +
+        '<div class="cs-title">Chapters coming soon</div>' +
+        '<div class="cs-sub">This subject\'s syllabus and worksheets are being built. Check back soon.</div></div>';
+    }
+    var seenTags = {};
+    var uniqueTags = [];
+    chapters.forEach(function(c){
+      if (c.tag && !seenTags[c.tag]) { seenTags[c.tag] = true; uniqueTags.push(c.tag); }
+    });
+    var tags = ["All"].concat(uniqueTags);
+    var filterHtml = "";
+    if(withFilter && tags.length>1){
+      filterHtml = '<div class="filter-row">' + tags.map(function(t){
+        return '<button class="filter-pill' + (t===scienceFilter?' active':'') + '" data-tag="'+esc(t)+'">' + esc(t) + '</button>';
+      }).join("") + '</div>';
+    }
+    var filtered = (withFilter && scienceFilter!=="All") ? chapters.filter(function(c){return c.tag===scienceFilter;}) : chapters;
+    var rows = filtered.map(function(c){
+      var tagClass = (c.tag||"").toLowerCase();
+      var hasWs = c.worksheets && c.worksheets.length>0;
+      return '<div class="chapter-row">' +
+        '<div class="chapter-row-left">' +
+          (c.tag ? '<span class="chapter-tag ' + tagClass + '">' + esc(c.tag) + '</span>' : '') +
+          '<span class="chapter-name">' + esc(c.name) + '</span>' +
+        '</div>' +
+        '<div class="chapter-row-right">' +
+          '<span class="chapter-marks">' + esc(c.marks) + ' mk</span>' +
+          '<span class="chapter-ws-badge ' + (hasWs?'ready':'pending') + '">' + (hasWs?'Worksheet ready':'Coming soon') + '</span>' +
+        '</div>' +
+      '</div>';
+    }).join("");
+    return filterHtml + '<div class="chapter-list">' + rows + '</div>';
+  }
+
+  function renderContent(){
+    var el = document.getElementById("content");
+    var subj = subjects[activeKey];
+    if(!subj){ el.innerHTML = ""; return; }
+
+    var html = renderPaperStrip(subj) + renderBlueprint(subj.blueprint);
+
+    if(subj.sections){
+      html += renderMathsSections(subj.sections);
+    } else if(activeKey === "science"){
+      html += renderFlatChapters(subj.chapters, true);
+    } else {
+      html += renderFlatChapters(subj.chapters, false);
+    }
+
+    el.innerHTML = html;
+
+    el.querySelectorAll(".filter-pill").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        scienceFilter = btn.getAttribute("data-tag");
+        renderContent();
+      });
+    });
+  }
+
+  renderTabs();
+  renderContent();
+})();
+</script>
+
+</body>
+</html>
