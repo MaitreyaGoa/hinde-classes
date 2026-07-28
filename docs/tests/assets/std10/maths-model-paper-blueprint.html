@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Maths Blueprint · Std 10 Goa Board Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{ --teal:#0d9488; --teal-bg:#f0fdfa; --coral:#ff6b54; --coral-bg:#fff1ee; --gold:#e0a93b; --gold-bg:#fdf6e8; --ink:#1d1d1f; --grey:#86868b; }
+*{box-sizing:border-box;}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f5f5f7;color:var(--ink);margin:0;line-height:1.55;}
+.page{max-width:960px;margin:0 auto;padding:36px 32px 70px;}
+header.bp-header{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+.bp-logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--teal),#0f766e);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.bp-brand{font-size:13px;font-weight:700;}
+.bp-brand-sub{font-size:10.5px;color:var(--grey);}
+h1.bp-title{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;letter-spacing:-1px;margin:18px 0 4px;}
+p.bp-sub{font-size:13.5px;color:var(--grey);margin-bottom:26px;}
+.bp-actions{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap;}
+.bp-btn{font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:980px;text-decoration:none;white-space:nowrap;}
+.bp-btn.primary{background:var(--teal);color:#fff;}
+.bp-btn.secondary{background:#fff;color:var(--teal);border:1.4px solid var(--teal);}
+.bp-btn.disabled{opacity:0.4;pointer-events:none;}
+section.bp-section{background:#fff;border-radius:16px;padding:22px 26px;margin-bottom:20px;border:1px solid rgba(0,0,0,0.06);}
+h2.bp-h2{font-size:15px;font-weight:800;color:var(--teal);margin:0 0 14px;}
+table.bp-tbl{width:100%;border-collapse:collapse;font-size:12.8px;}
+table.bp-tbl th{background:var(--teal);color:#fff;text-align:left;padding:7px 10px;font-size:11px;}
+table.bp-tbl td{padding:6px 10px;border-bottom:1px solid #f0f0f0;}
+table.bp-tbl tr:nth-child(even) td{background:var(--teal-bg);}
+.tag{font-size:9.5px;font-weight:700;padding:3px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:0.3px;}
+.tag.chemistry{background:#fdecea;color:#c0392b;}
+.tag.physics{background:#eaf2fd;color:#1b5fad;}
+.tag.biology{background:#eafaf0;color:#1e8449;}
+.tag.A{background:var(--teal-bg);color:var(--teal);}
+.tag.B{background:var(--gold-bg);color:#946200;}
+.tag.C{background:var(--coral-bg);color:var(--coral);}
+.tag.D{background:var(--teal-bg);color:var(--teal);}
+.legend{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
+.legend span{font-size:11.5px;font-weight:700;padding:6px 13px;border-radius:980px;}
+.note-box{background:var(--gold-bg);border:1px solid var(--gold);border-radius:12px;padding:14px 18px;font-size:12.5px;color:#444;margin-top:16px;}
+.note-box b{color:var(--ink);}
+footer.bp-footer{text-align:center;color:var(--grey);font-size:11.5px;margin-top:40px;}
+@media(max-width:600px){ table.bp-tbl{font-size:11.5px;} .page{padding:24px 16px 50px;} }
+</style></head><body><div class="page">
+<header class="bp-header"><div class="bp-logo">🎓</div><div><div class="bp-brand">Hinde Classes</div><div class="bp-brand-sub">Goa Board Class 10 Special</div></div></header>
+
+<h1 class="bp-title">Std X Mathematics &mdash; Model Paper Blueprint</h1>
+<p class="bp-sub">Level 1 (Standard) &middot; Academic Year 2026&ndash;27 &middot; Based on Goa Board Design of SSC Final Exam Question Paper</p>
+
+<div class="bp-actions">
+  <a class="bp-btn primary" href="maths-model-paper-blueprint.pdf" target="_blank" rel="noopener">Download PDF</a>
+  <a class="bp-btn secondary disabled" id="mathsDriveBtn" href="#">Drive Copy (add link in config)</a>
+</div>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Exam Structure</h2>
+  <table class="bp-tbl">
+    <tr><th>Marks</th><th>Time</th><th>Questions</th></tr>
+    <tr><td>80</td><td>3 hrs</td><td>42</td></tr>
+  </table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Learning Objectives</h2>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12.5px;">
+      <div style="width:220px;flex-shrink:0;color:#444;">Remembering &amp; Understanding</div>
+      <div style="flex:1;height:8px;background:#f0f0f0;border-radius:5px;overflow:hidden;"><div style="height:100%;border-radius:5px;background:var(--teal);width:55%"></div></div>
+      <div style="width:70px;text-align:right;font-weight:700;">44 mk &middot; 55%</div>
+    </div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12.5px;">
+      <div style="width:220px;flex-shrink:0;color:#444;">Applying</div>
+      <div style="flex:1;height:8px;background:#f0f0f0;border-radius:5px;overflow:hidden;"><div style="height:100%;border-radius:5px;background:var(--teal);width:24%"></div></div>
+      <div style="width:70px;text-align:right;font-weight:700;">19 mk &middot; 24%</div>
+    </div>
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12.5px;">
+      <div style="width:220px;flex-shrink:0;color:#444;">Analysing, Evaluating &amp; Creating</div>
+      <div style="flex:1;height:8px;background:#f0f0f0;border-radius:5px;overflow:hidden;"><div style="height:100%;border-radius:5px;background:var(--teal);width:21%"></div></div>
+      <div style="width:70px;text-align:right;font-weight:700;">17 mk &middot; 21%</div>
+    </div>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Question Types</h2>
+  <table class="bp-tbl">
+    <tr><th>Type</th><th>Marks each</th><th>Count</th><th>Total</th></tr>
+    <tr><td>VSA</td><td>1</td><td>20</td><td>20</td></tr>
+    <tr><td>SA-I</td><td>2</td><td>9</td><td>18</td></tr>
+    <tr><td>SA-II</td><td>3</td><td>10</td><td>30</td></tr>
+    <tr><td>LA</td><td>4</td><td>3</td><td>12</td></tr>
+  </table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Section Groupings (used across all worksheets)</h2>
+  <div class="legend"><span class="tag A">A &mdash; Numbers & Algebra</span><span class="tag B">B &mdash; Geometry</span><span class="tag C">C &mdash; Trigonometry</span><span class="tag D">D &mdash; Mensuration & Data</span></div>
+  <table class="bp-tbl">
+    <tr><th>Section</th><th>Focus</th><th>Marks</th></tr>
+    <tr><td><span class="tag A">A</span></td><td>Numbers &amp; Algebra</td><td>30</td></tr>
+    <tr><td><span class="tag B">B</span></td><td>Geometry</td><td>21</td></tr>
+    <tr><td><span class="tag C">C</span></td><td>Trigonometry</td><td>10</td></tr>
+    <tr><td><span class="tag D">D</span></td><td>Mensuration &amp; Data</td><td>19</td></tr>
+  </table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Question-wise Map (all 42 questions)</h2>
+  <table class="bp-tbl">
+    <tr><th>Q</th><th>Sec</th><th>Chapter</th><th>Marks</th><th>Type</th><th>Topic tested</th></tr>
+    <tr><td>1</td><td><span class="tag A">A</span></td><td>Real Numbers</td><td>1 mk</td><td>VSA</td><td>Express a number as product of primes</td></tr><tr><td>2</td><td><span class="tag A">A</span></td><td>Real Numbers</td><td>1 mk</td><td>VSA</td><td>HCF given → find LCM (product of numbers rule)</td></tr><tr><td>3</td><td><span class="tag A">A</span></td><td>Polynomials</td><td>1 mk</td><td>VSA</td><td>Form quadratic polynomial from given zeros</td></tr><tr><td>4</td><td><span class="tag A">A</span></td><td>Pair of Linear Equations</td><td>1 mk</td><td>VSA</td><td>Solve simple pair (x+y, x−y form) → find ratio</td></tr><tr><td>5</td><td><span class="tag A">A</span></td><td>Quadratic Equations</td><td>1 mk</td><td>VSA</td><td>Use discriminant value to find unknown coefficient</td></tr><tr><td>6</td><td><span class="tag A">A</span></td><td>Arithmetic Progressions</td><td>1 mk</td><td>VSA</td><td>nth term from the end of an AP</td></tr><tr><td>7</td><td><span class="tag B">B</span></td><td>Coordinate Geometry</td><td>1 mk</td><td>VSA</td><td>Section formula – find ratio of division</td></tr><tr><td>8</td><td><span class="tag C">C</span></td><td>Introduction to Trigonometry</td><td>1 mk</td><td>VSA</td><td>Find one trig ratio given another</td></tr><tr><td>9</td><td><span class="tag B">B</span></td><td>Circles</td><td>1 mk</td><td>VSA</td><td>Two tangents from external point – angle property</td></tr><tr><td>10</td><td><span class="tag B">B</span></td><td>Circles</td><td>1 mk</td><td>VSA</td><td>Length of tangent from external point formula</td></tr><tr><td>11</td><td><span class="tag B">B</span></td><td>Areas Related to Circles</td><td>1 mk</td><td>VSA</td><td>Circumference = Area (numerically) → find diameter</td></tr><tr><td>12</td><td><span class="tag D">D</span></td><td>Surface Areas & Volumes</td><td>1 mk</td><td>VSA</td><td>Two cubes joined – surface area of resulting cuboid</td></tr><tr><td>13</td><td><span class="tag D">D</span></td><td>Probability</td><td>1 mk</td><td>VSA</td><td>Identify a valid probability value</td></tr><tr><td>14</td><td><span class="tag D">D</span></td><td>Logarithms</td><td>1 mk</td><td>VSA</td><td>Simplify using log laws (addition of logs)</td></tr><tr><td>15</td><td><span class="tag A">A</span></td><td>Polynomials</td><td>1 mk</td><td>VSA</td><td>Relation between zeros and coefficients – find k</td></tr><tr><td>16</td><td><span class="tag A">A</span></td><td>Arithmetic Progressions</td><td>1 mk</td><td>VSA</td><td>Three terms in AP – find next term</td></tr><tr><td>17</td><td><span class="tag C">C</span></td><td>Introduction to Trigonometry</td><td>1 mk</td><td>VSA</td><td>Trigonometric identity – direct substitution</td></tr><tr><td>18</td><td><span class="tag B">B</span></td><td>Areas Related to Circles</td><td>1 mk</td><td>VSA</td><td>Arc length → find radius (length of pendulum)</td></tr><tr><td>19</td><td><span class="tag A">A</span></td><td>Pair of Linear Equations</td><td>1 mk</td><td>A-R</td><td>Assertion–Reason: condition for parallel lines</td></tr><tr><td>20</td><td><span class="tag B">B</span></td><td>Triangles</td><td>1 mk</td><td>A-R</td><td>Assertion–Reason: converse of Basic Proportionality Theorem</td></tr><tr><td>21</td><td><span class="tag B">B</span></td><td>Triangles</td><td>2 mk</td><td>SA-I</td><td>Similar triangles formed by diagonals of a trapezium</td></tr><tr><td>22</td><td><span class="tag B">B</span></td><td>Coordinate Geometry</td><td>2 mk</td><td>SA-I</td><td>Distance / equidistant point – find unknown coordinate (OR)</td></tr><tr><td>23</td><td><span class="tag C">C</span></td><td>Introduction to Trigonometry</td><td>2 mk</td><td>SA-I</td><td>Right triangle trig ratios / evaluate expression (OR)</td></tr><tr><td>24</td><td><span class="tag B">B</span></td><td>Circles</td><td>2 mk</td><td>SA-I</td><td>Quadrilateral circumscribing a circle – find radius</td></tr><tr><td>25</td><td><span class="tag D">D</span></td><td>Surface Areas & Volumes</td><td>2 mk</td><td>SA-I</td><td>Volume of combined solid (cone + hemisphere)</td></tr><tr><td>26</td><td><span class="tag A">A</span></td><td>Real Numbers</td><td>2 mk</td><td>SA-I</td><td>Minimum number of articles for equal distribution (LCM)</td></tr><tr><td>27</td><td><span class="tag A">A</span></td><td>Polynomials</td><td>2 mk</td><td>SA-I</td><td>Find zeros of quadratic polynomial & verify relation</td></tr><tr><td>28</td><td><span class="tag D">D</span></td><td>Statistics</td><td>2 mk</td><td>SA-I</td><td>Median (grouped data) – find missing frequencies</td></tr><tr><td>29</td><td><span class="tag D">D</span></td><td>Probability</td><td>2 mk</td><td>SA-I</td><td>Cards removed from deck – probability of red/face card</td></tr><tr><td>30</td><td><span class="tag A">A</span></td><td>Pair of Linear Equations</td><td>3 mk</td><td>SA-II</td><td>Solve pair – Elimination method / Substitution method (OR)</td></tr><tr><td>31</td><td><span class="tag A">A</span></td><td>Quadratic Equations</td><td>3 mk</td><td>SA-II</td><td>Solve – Factorisation method / Quadratic formula (OR)</td></tr><tr><td>32</td><td><span class="tag A">A</span></td><td>Arithmetic Progressions</td><td>3 mk</td><td>SA-II</td><td>Word problem – find number of terms (rows/objects)</td></tr><tr><td>33</td><td><span class="tag B">B</span></td><td>Areas Related to Circles</td><td>3 mk</td><td>SA-II</td><td>Area of sector – difference on increasing radius</td></tr><tr><td>34</td><td><span class="tag B">B</span></td><td>Triangles</td><td>3 mk</td><td>SA-II</td><td>Prove a relation using similarity (proof-based)</td></tr><tr><td>35</td><td><span class="tag C">C</span></td><td>Introduction to Trigonometry</td><td>3 mk</td><td>SA-II</td><td>Prove a trigonometric identity</td></tr><tr><td>36</td><td><span class="tag C">C</span></td><td>Applications of Trigonometry</td><td>3 mk</td><td>SA-II</td><td>Heights & distances – two angles of depression</td></tr><tr><td>37</td><td><span class="tag D">D</span></td><td>Surface Areas & Volumes</td><td>3 mk</td><td>SA-II</td><td>Combined solid (cylinder+hemisphere+cone) – cost of painting</td></tr><tr><td>38</td><td><span class="tag D">D</span></td><td>Logarithms</td><td>3 mk</td><td>SA-II</td><td>Evaluate expression using logarithm method</td></tr><tr><td>39</td><td><span class="tag B">B</span></td><td>Coordinate Geometry</td><td>3 mk</td><td>SA-II</td><td>Parallelogram vertices – find unknown & diagonal length</td></tr><tr><td>40</td><td><span class="tag D">D</span></td><td>Statistics</td><td>4 mk</td><td>LA</td><td>Mean by Step-Deviation method (grouped data)</td></tr><tr><td>41</td><td><span class="tag A">A</span></td><td>Pair of Linear Equations</td><td>4 mk</td><td>LA</td><td>Word problem (speed-time-distance) forming pair of equations</td></tr><tr><td>42</td><td><span class="tag A">A</span></td><td>Quadratic Equations</td><td>4 mk</td><td>LA</td><td>Word problem forming quadratic equation (cost/rate type)</td></tr>
+  </table>
+  <div class="note-box"><b>Note:</b> Constructions is fully deleted for Level 1 &amp; Level 2 (2026&ndash;27 rationalised syllabus). Marks-to-question-type is fixed by the Board's blueprint &mdash; e.g. Applications of Trigonometry only ever appears as a 3-mark SA-II question.</div>
+</section>
+<footer class="bp-footer">Empowering Futures Through Learning &middot; Hinde Classes, Bicholim, Goa</footer></div></body></html>

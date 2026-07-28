@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Science Blueprint · Std 10 Goa Board Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{ --teal:#0d9488; --teal-bg:#f0fdfa; --coral:#ff6b54; --coral-bg:#fff1ee; --gold:#e0a93b; --gold-bg:#fdf6e8; --ink:#1d1d1f; --grey:#86868b; }
+*{box-sizing:border-box;}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f5f5f7;color:var(--ink);margin:0;line-height:1.55;}
+.page{max-width:960px;margin:0 auto;padding:36px 32px 70px;}
+header.bp-header{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+.bp-logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--teal),#0f766e);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.bp-brand{font-size:13px;font-weight:700;}
+.bp-brand-sub{font-size:10.5px;color:var(--grey);}
+h1.bp-title{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;letter-spacing:-1px;margin:18px 0 4px;}
+p.bp-sub{font-size:13.5px;color:var(--grey);margin-bottom:26px;}
+.bp-actions{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap;}
+.bp-btn{font-size:12.5px;font-weight:700;padding:9px 18px;border-radius:980px;text-decoration:none;white-space:nowrap;}
+.bp-btn.primary{background:var(--teal);color:#fff;}
+.bp-btn.secondary{background:#fff;color:var(--teal);border:1.4px solid var(--teal);}
+.bp-btn.disabled{opacity:0.4;pointer-events:none;}
+section.bp-section{background:#fff;border-radius:16px;padding:22px 26px;margin-bottom:20px;border:1px solid rgba(0,0,0,0.06);}
+h2.bp-h2{font-size:15px;font-weight:800;color:var(--teal);margin:0 0 14px;}
+table.bp-tbl{width:100%;border-collapse:collapse;font-size:12.8px;}
+table.bp-tbl th{background:var(--teal);color:#fff;text-align:left;padding:7px 10px;font-size:11px;}
+table.bp-tbl td{padding:6px 10px;border-bottom:1px solid #f0f0f0;}
+table.bp-tbl tr:nth-child(even) td{background:var(--teal-bg);}
+.tag{font-size:9.5px;font-weight:700;padding:3px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:0.3px;}
+.tag.chemistry{background:#fdecea;color:#c0392b;}
+.tag.physics{background:#eaf2fd;color:#1b5fad;}
+.tag.biology{background:#eafaf0;color:#1e8449;}
+.tag.A{background:var(--teal-bg);color:var(--teal);}
+.tag.B{background:var(--gold-bg);color:#946200;}
+.tag.C{background:var(--coral-bg);color:var(--coral);}
+.tag.D{background:var(--teal-bg);color:var(--teal);}
+.legend{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;}
+.legend span{font-size:11.5px;font-weight:700;padding:6px 13px;border-radius:980px;}
+.note-box{background:var(--gold-bg);border:1px solid var(--gold);border-radius:12px;padding:14px 18px;font-size:12.5px;color:#444;margin-top:16px;}
+.note-box b{color:var(--ink);}
+footer.bp-footer{text-align:center;color:var(--grey);font-size:11.5px;margin-top:40px;}
+@media(max-width:600px){ table.bp-tbl{font-size:11.5px;} .page{padding:24px 16px 50px;} }
+</style></head><body><div class="page">
+<header class="bp-header"><div class="bp-logo">🎓</div><div><div class="bp-brand">Hinde Classes</div><div class="bp-brand-sub">Goa Board Class 10 Special</div></div></header>
+
+<h1 class="bp-title">Std X Science &mdash; Model Paper Blueprint</h1>
+<p class="bp-sub">Academic Year 2026&ndash;27 &middot; Based on Goa Board Grade 10 Assessment Scheme &amp; Design of Question Paper</p>
+
+<div class="bp-actions">
+  <a class="bp-btn primary" href="science-model-paper-blueprint.pdf" target="_blank" rel="noopener">Download PDF</a>
+  <a class="bp-btn secondary disabled" id="sciDriveBtn" href="#">Drive Copy (add link in config)</a>
+</div>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Exam Structure</h2>
+  <table class="bp-tbl"><tr><th>Marks</th><th>Time</th><th>Questions</th></tr><tr><td>70</td><td>180 min</td><td>39</td></tr></table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Weightage to Learning Outcomes</h2>
+  <table class="bp-tbl"><tr><th>Outcome</th><th>Marks</th><th>%</th></tr><tr><td>Remembering</td><td>21</td><td>30%</td></tr><tr><td>Understanding</td><td>21</td><td>30%</td></tr><tr><td>Application</td><td>17</td><td>24%</td></tr><tr><td>Analysis</td><td>4</td><td>6%</td></tr><tr><td>Evaluation</td><td>4</td><td>6%</td></tr><tr><td>Creativity</td><td>3</td><td>4%</td></tr></table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Content Units</h2>
+  <div class="legend"><span class="tag chemistry">Chemistry</span><span class="tag physics">Physics</span><span class="tag biology">Biology</span></div>
+  <table class="bp-tbl"><tr><th>Ch.</th><th>Unit</th><th>Tag</th><th>Marks</th></tr><tr><td>1</td><td>Chemical Reactions and Equations</td><td><span class="tag chemistry">Chemistry</span></td><td>4</td></tr><tr><td>2</td><td>Acids, Bases and Salts</td><td><span class="tag chemistry">Chemistry</span></td><td>6</td></tr><tr><td>3</td><td>Metals and Non-metals</td><td><span class="tag chemistry">Chemistry</span></td><td>4</td></tr><tr><td>4</td><td>Carbon and its Compounds</td><td><span class="tag chemistry">Chemistry</span></td><td>6</td></tr><tr><td>5</td><td>Life Processes</td><td><span class="tag biology">Biology</span></td><td>7</td></tr><tr><td>6</td><td>Control and Coordination</td><td><span class="tag biology">Biology</span></td><td>5</td></tr><tr><td>7</td><td>How do Organisms Reproduce?</td><td><span class="tag biology">Biology</span></td><td>6</td></tr><tr><td>8</td><td>Heredity</td><td><span class="tag biology">Biology</span></td><td>3</td></tr><tr><td>9</td><td>Light – Reflection and Refraction</td><td><span class="tag physics">Physics</span></td><td>6</td></tr><tr><td>10</td><td>Human Eye and Colourful World</td><td><span class="tag physics">Physics</span></td><td>6</td></tr><tr><td>11</td><td>Electricity</td><td><span class="tag physics">Physics</span></td><td>7</td></tr><tr><td>12</td><td>Magnetic Effect of Electric Current</td><td><span class="tag physics">Physics</span></td><td>6</td></tr><tr><td>13</td><td>Our Environment</td><td><span class="tag biology">Biology</span></td><td>4</td></tr></table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Question Types</h2>
+  <table class="bp-tbl"><tr><th>Type</th><th>Marks each</th><th>Count</th><th>Total</th></tr><tr><td>Very Short Answer Type (VSA)</td><td>1</td><td>18</td><td>18</td></tr><tr><td>Short Answer Type (SA-I)</td><td>2</td><td>14</td><td>28</td></tr><tr><td>Short Answer Type (SA-II)</td><td>3</td><td>4</td><td>12</td></tr><tr><td>Long Answer Type (LA)</td><td>4</td><td>3</td><td>12</td></tr></table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Expected Time per Question</h2>
+  <table class="bp-tbl"><tr><th>Type</th><th>Time each</th><th>Count</th><th>Total</th></tr><tr><td>Very Short Answer Type (VSA)</td><td>3 min</td><td>18</td><td>54 min</td></tr><tr><td>Short Answer Type (SA-I)</td><td>5 min</td><td>14</td><td>70 min</td></tr><tr><td>Short Answer Type (SA-II)</td><td>7.5 min</td><td>4</td><td>30 min</td></tr><tr><td>Long Answer Type (LA)</td><td>12 min</td><td>3</td><td>36 min</td></tr></table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Difficulty Level</h2>
+  <table class="bp-tbl"><tr><td style='text-align:center;font-weight:700;'>Easy<br/>20%</td><td style='text-align:center;font-weight:700;'>Average<br/>60%</td><td style='text-align:center;font-weight:700;'>Difficult<br/>20%</td></tr></table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Question-wise Map (all 39 questions)</h2>
+  <table class="bp-tbl"><tr><th>Q</th><th>Chapter</th><th>Type</th><th>Topic tested</th></tr><tr><td>1</td><td>Chemical Reactions and Equations</td><td>VSA</td><td>Identify exothermic vs endothermic reaction</td></tr><tr><td>2</td><td>Electricity</td><td>VSA</td><td>Calculate resistance from V and I (Ohm's law)</td></tr><tr><td>3</td><td>Life Processes</td><td>VSA</td><td>Correct sequence of air passage during inhalation</td></tr><tr><td>4</td><td>Control and Coordination</td><td>VSA</td><td>Hormone preparing body for an emergency (adrenaline)</td></tr><tr><td>5</td><td>How do Organisms Reproduce?</td><td>VSA</td><td>Functions of labelled parts – female reproductive system diagram</td></tr><tr><td>6</td><td>Metals and Non-metals</td><td>VSA</td><td>Electrolytic refining of copper – identify correct statements</td></tr><tr><td>7</td><td>Electricity</td><td>VSA</td><td>Behaviour of current at the time of a short circuit</td></tr><tr><td>8</td><td>Acids, Bases and Salts</td><td>VSA</td><td>Product of calcium oxide reacting with water</td></tr><tr><td>9</td><td>Human Eye and Colourful World</td><td>VSA</td><td>Lens power to correct a given myopia defect</td></tr><tr><td>10</td><td>Acids, Bases and Salts</td><td>VSA</td><td>Relating pH value to H⁺ ion concentration</td></tr><tr><td>11</td><td>How do Organisms Reproduce?</td><td>VSA</td><td>Identify a bacterial sexually transmitted disease</td></tr><tr><td>12</td><td>Life Processes</td><td>VSA</td><td>Significance of transpiration in agriculture</td></tr><tr><td>13</td><td>Acids, Bases and Salts</td><td>VSA</td><td>Substance used to relieve indigestion (antacids)</td></tr><tr><td>14</td><td>Our Environment</td><td>VSA</td><td>Form of energy transferred between trophic levels</td></tr><tr><td>15</td><td>Metals and Non-metals</td><td>VSA</td><td>Protons and electrons in Mg²⁺</td></tr><tr><td>16</td><td>Light – Reflection and Refraction</td><td>VSA</td><td>Sign of magnification → nature of image</td></tr><tr><td>17</td><td>Heredity</td><td>Assertion-Reason</td><td>Sex determination and the XX chromosome in women</td></tr><tr><td>18</td><td>Acids, Bases and Salts</td><td>Assertion-Reason</td><td>Sodium oxide as an amphoteric oxide</td></tr><tr><td>19</td><td>Chemical Reactions and Equations</td><td>SA-I</td><td>Balance the given equation; name the reaction type</td></tr><tr><td>20</td><td>Human Eye and Colourful World</td><td>SA-I</td><td>Coloured lights on towers; far point of a myopic pilot's eye</td></tr><tr><td>21</td><td>Light – Reflection and Refraction</td><td>SA-I</td><td>Ray diagram – concave mirror, object between F and C</td></tr><tr><td>22</td><td>Metals and Non-metals</td><td>SA-I</td><td>Why heating elements use alloys; ampere–coulomb relation</td></tr><tr><td>23</td><td>Electricity</td><td>SA-I</td><td>Advantages of AC over DC; frequency of AC supply in India</td></tr><tr><td>24</td><td>Acids, Bases and Salts</td><td>SA-I</td><td>How pH of the mouth influences tooth decay</td></tr><tr><td>25</td><td>Carbon and its Compounds</td><td>SA-I</td><td>Electron dot structure of methane; justifying alcohols</td></tr><tr><td>26</td><td>Chemical Reactions and Equations</td><td>SA-I</td><td>Compound used to disinfect swimming pools – name & formula</td></tr><tr><td>27</td><td>Life Processes</td><td>SA-I</td><td>Label parts of the digestive system diagram</td></tr><tr><td>28</td><td>Control and Coordination</td><td>SA-I</td><td>Hormonal response to sudden fear</td></tr><tr><td>29</td><td>Heredity</td><td>SA-I</td><td>Why bacterial division shows only minor differences; inherited traits</td></tr><tr><td>30</td><td>Control and Coordination</td><td>SA-I</td><td>Chemical coordination in plants / phototropism (or hormone functions)</td></tr><tr><td>31</td><td>Metals and Non-metals</td><td>SA-I</td><td>Reactivity series & electrolytic refining anode (or native/combined state metals)</td></tr><tr><td>32</td><td>Our Environment</td><td>SA-I</td><td>Construct a food chain; food chain vs food web (or trophic levels)</td></tr><tr><td>33</td><td>Life Processes</td><td>SA-II</td><td>Excretory system diagram; scientific reason for controlling urination</td></tr><tr><td>34</td><td>Human Eye and Colourful World</td><td>SA-II</td><td>Identify and correct a refractive defect of vision</td></tr><tr><td>35</td><td>Light – Reflection and Refraction</td><td>SA-II</td><td>Characteristics & use of a convex lens (or concave lens)</td></tr><tr><td>36</td><td>Magnetic Effect of Electric Current</td><td>SA-II</td><td>Magnetic field line pattern & properties (or electromagnetic induction)</td></tr><tr><td>37</td><td>Electricity</td><td>LA</td><td>Electrical energy calculation; labelled parallel-circuit diagram (or series/parallel lamps)</td></tr><tr><td>38</td><td>Carbon and its Compounds</td><td>LA</td><td>Cleaning action of soap – micelle formation</td></tr><tr><td>39</td><td>How do Organisms Reproduce?</td><td>LA</td><td>Modes of reproduction – rose/bryophyllum, unisexual flowers, pollen tube, spores</td></tr></table>
+  <div class="note-box"><b>Note:</b> Composite/OR questions are attributed to their primary chapter &mdash; the Content Units table above is the authoritative chapter-wise mark total.</div>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Diagram Evaluation Checklist</h2>
+  <p style="font-size:12.5px;color:var(--grey);margin-bottom:12px;">Every diagram below is explicitly listed by the Board as eligible for evaluation (6 marks reserved under &lsquo;Remembering&rsquo;).</p>
+  <table class="bp-tbl"><tr><th>Chapter</th><th>Diagram</th></tr><tr><td>Chemical Reactions and Equations</td><td>Electrolysis of water</td></tr><tr><td>Metals and Non-metals</td><td>Electrolytic refining of copper</td></tr><tr><td>Metals and Non-metals</td><td>Action of steam on a metal</td></tr><tr><td>Carbon and its Compounds</td><td>Molecule of hydrogen; single/double/triple bonds (H₂, O₂, N₂)</td></tr><tr><td>Carbon and its Compounds</td><td>Electron dot structures – methane, ethane</td></tr><tr><td>Carbon and its Compounds</td><td>Structures of cyclohexane and benzene; micelle formation</td></tr><tr><td>Life Processes</td><td>Open and closed stomata</td></tr><tr><td>Life Processes</td><td>Nutrition in Amoeba</td></tr><tr><td>Life Processes</td><td>Human alimentary canal; excretory system</td></tr><tr><td>Life Processes</td><td>Human respiratory system; structure of the heart</td></tr><tr><td>Life Processes</td><td>Transport & exchange of O₂/CO₂ (schematic)</td></tr><tr><td>Control and Coordination</td><td>Structure of a neuron; human brain; reflex arc</td></tr><tr><td>Control and Coordination</td><td>Endocrine glands in humans</td></tr><tr><td>How do Organisms Reproduce?</td><td>Binary fission (Amoeba); budding (Hydra)</td></tr><tr><td>How do Organisms Reproduce?</td><td>Bryophyllum buds; spore formation (Rhizopus)</td></tr><tr><td>How do Organisms Reproduce?</td><td>L.S. of a flower; pollen germination on stigma; germination</td></tr><tr><td>How do Organisms Reproduce?</td><td>Human male & female reproductive systems</td></tr><tr><td>How do Organisms Reproduce?</td><td>Regeneration in Planaria</td></tr><tr><td>Light – Reflection and Refraction</td><td>Concave & convex mirrors; ray diagrams (concave mirror, all cases)</td></tr><tr><td>Light – Reflection and Refraction</td><td>Image formation by a convex mirror</td></tr><tr><td>Light – Reflection and Refraction</td><td>Converging/diverging action of convex & concave lens</td></tr><tr><td>Light – Reflection and Refraction</td><td>Image position/size/nature – convex & concave lens (all cases)</td></tr><tr><td>Light – Reflection and Refraction</td><td>Refraction through a rectangular glass slab</td></tr><tr><td>Human Eye and Colourful World</td><td>Human eye; myopic/hypermetropic eye & correction</td></tr><tr><td>Human Eye and Colourful World</td><td>Dispersion of white light by a glass prism</td></tr><tr><td>Electricity</td><td>Circuit diagram & component symbols; circuit for Ohm's law</td></tr><tr><td>Electricity</td><td>Resistors in series; resistors in parallel</td></tr><tr><td>Magnetic Effect of Electric Current</td><td>Field lines around a magnet / straight current-carrying wire</td></tr><tr><td>Magnetic Effect of Electric Current</td><td>Fleming's left-hand & right-hand rules</td></tr><tr><td>Magnetic Effect of Electric Current</td><td>Electromagnetic induction between two coils</td></tr><tr><td>Our Environment</td><td>Food chain; trophic levels; food web; energy flow in an ecosystem</td></tr></table>
+</section>
+
+<section class="bp-section">
+  <h2 class="bp-h2">Portion &amp; Calendar (2026&ndash;27)</h2>
+  <table class="bp-tbl"><tr><th>Month</th><th>Chapter</th><th>Marks</th></tr><tr><td>April</td><td>Chemical Reactions and Equations</td><td>4</td></tr><tr><td>June</td><td>Control and Coordination</td><td>5</td></tr><tr><td>June</td><td>Electricity</td><td>7</td></tr><tr><td>June</td><td>Life Processes</td><td>7</td></tr><tr><td>July</td><td>Acids, Bases and Salts</td><td>6</td></tr><tr><td>July</td><td>Light – Reflection and Refraction</td><td>6</td></tr><tr><td>August</td><td>How do Organisms Reproduce?</td><td>6</td></tr><tr><td>September</td><td>Heredity</td><td>3</td></tr><tr><td>September</td><td>Magnetic Effect of Electric Current</td><td>6</td></tr><tr><td>November</td><td>Carbon and its Compounds</td><td>6</td></tr><tr><td>November</td><td>Metals and Non-metals</td><td>4</td></tr><tr><td>December</td><td>Human Eye and Colourful World</td><td>6</td></tr><tr><td>December</td><td>Our Environment</td><td>4</td></tr></table>
+</section>
+<footer class="bp-footer">Empowering Futures Through Learning &middot; Hinde Classes, Bicholim, Goa</footer></div></body></html>
