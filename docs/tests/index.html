@@ -167,6 +167,52 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f5f5f7;c
   .merit-cta{width:100%;justify-content:center;}
 }
 
+/* ── BOARD SPECIAL TILE ── */
+.board-tile-wrap{max-width:840px;margin-bottom:12px;}
+.board-tile{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;
+  background:linear-gradient(135deg,#7c2d12 0%,#c2410c 45%,#e0a93b 100%);
+  border-radius:20px;padding:22px 28px;
+  text-decoration:none;
+  position:relative;overflow:hidden;
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+  box-shadow:0 4px 24px rgba(194,65,12,0.3);
+}
+.board-tile:hover{transform:translateY(-3px) scale(1.005);box-shadow:0 10px 36px rgba(194,65,12,0.45);}
+.board-tile::before{
+  content:'';position:absolute;top:-40%;right:-10%;
+  width:280px;height:280px;border-radius:50%;
+  background:rgba(255,255,255,0.06);pointer-events:none;
+}
+.board-left{display:flex;align-items:center;gap:16px;flex:1;}
+.board-icon-wrap{
+  width:52px;height:52px;border-radius:14px;
+  background:rgba(255,255,255,0.15);
+  border:1px solid rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;flex-shrink:0;
+}
+.board-eyebrow{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,237,213,0.85);margin-bottom:5px;}
+.board-title{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:800;color:#fff;letter-spacing:-0.5px;line-height:1.1;}
+.board-sub{font-size:12px;color:rgba(255,237,213,0.9);margin-top:4px;line-height:1.4;}
+.board-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:980px;padding:10px 20px;
+  font-size:13px;font-weight:700;color:#fff;
+  white-space:nowrap;flex-shrink:0;
+  transition:background 0.18s,gap 0.18s;
+}
+.board-tile:hover .board-cta{background:rgba(255,255,255,0.26);gap:12px;}
+.board-arrow{font-size:15px;transition:transform 0.18s;}
+.board-tile:hover .board-arrow{transform:translateX(4px);}
+@media(max-width:600px){
+  .board-tile{flex-direction:column;align-items:flex-start;padding:20px;}
+  .board-cta{width:100%;justify-content:center;}
+}
+
 /* ─── STATS ROW ──────────────────────────────────────────── */
 .hero-bottom{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
 .stat-block{border-left:2px solid var(--accent);padding-left:12px;}
@@ -410,6 +456,21 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f5f5f7;c
       </a>
     </div>
 
+    <!-- Goa Board Class 10 Special — NEW -->
+    <div class="board-tile-wrap">
+      <a href="std10-portal.html" class="board-tile">
+        <div class="board-left">
+          <div class="board-icon-wrap">🎓</div>
+          <div>
+            <div class="board-eyebrow">New · Class 10 Only · 2026–27</div>
+            <div class="board-title">Goa Board Class 10 Special</div>
+            <div class="board-sub">Maths, Science, Social Science &amp; English — worksheets, blueprints, syllabus &amp; model papers, all in one place.</div>
+          </div>
+        </div>
+        <div class="board-cta">Open Portal <span class="board-arrow">→</span></div>
+      </a>
+    </div>
+
     <!-- 4 tiles -->
     <div class="four-tiles">
       <a href="#class-tests" class="ftile ftile-1">
@@ -490,6 +551,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f5f5f7;c
         <a class="stile" href="#sec-mat">🧠 MAT</a>
         <a class="stile" href="#sec-daily">📅 Daily Quiz</a>
         <a class="stile" href="worksheets-hub.html">📝 Worksheet</a>
+        <a class="stile" href="std10-portal.html">🎓 Board Special</a>
       </div>
     </div>
 
