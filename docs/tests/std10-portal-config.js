@@ -132,7 +132,7 @@ window.STD10_PORTAL = {
       shortLabel: "Science",
       icon: "🔬",
       level: null,
-      status: "comingSoon",            // chapters listed, worksheets not yet built
+      status: "ready",                 // blueprint + Life Processes worksheet live
       accent: "coral",
 
       sampleModelPaper: {
@@ -193,17 +193,24 @@ window.STD10_PORTAL = {
     },
 
     // ============================================================
-    // SOCIAL SCIENCE — placeholder, to be filled in later
+    // SOCIAL SCIENCE
     // ============================================================
     socialScience: {
       label: "Social Science",
       shortLabel: "Social Sci.",
       icon: "🌍",
       level: null,
-      status: "comingSoon",
+      status: "ready",                 // blueprint live (full detail in the linked HTML/PDF)
       accent: "gold",
       sampleModelPaper: { label: "Goa Board Model Paper — Social Science", driveUrl: "" },
-      blueprint: null,               // TODO: fill in once assessment scheme is available
+      blueprint: {
+        htmlUrl: "assets/std10/std10-social-science-blueprint.html",
+        driveUrl: "https://drive.google.com/file/d/16Tp42nHnU4bOleClKGbnuPwYyHWI88P_/view?usp=sharing"
+        // Detailed objectivesTable / questionTypeTable not added yet — no assessment scheme
+        // shared for Social Science. Full breakdown lives in the linked HTML/PDF above.
+        // Add objectivesTable / questionTypeTable / totalMarks etc. here once available,
+        // same shape as Maths/Science, to bring back the in-page summary bars.
+      },
       chapters: []                   // TODO: add chapters as flat list, same shape as Science
     },
 
