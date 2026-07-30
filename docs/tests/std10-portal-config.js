@@ -170,10 +170,34 @@ window.STD10_PORTAL = {
       // Science uses a FLAT chapter list with a "tag" for filtering (Physics/Chemistry/Biology)
       // tag is display-only — purely a filter label, no structural effect
       chapters: [
-        { name: "Chemical Reactions and Equations",     tag: "Chemistry", marks: 4, worksheets: [] },
-        { name: "Acids, Bases and Salts",                tag: "Chemistry", marks: 6, worksheets: [] },
-        { name: "Metals and Non-metals",                 tag: "Chemistry", marks: 4, worksheets: [] },
-        { name: "Carbon and its Compounds",              tag: "Chemistry", marks: 6, worksheets: [] },
+        { name: "Chemical Reactions and Equations",     tag: "Chemistry", marks: 4, worksheets: [
+            {
+              title: "Worksheet 1 (Chapter)",
+              html: "worksheets/Ch1_Chemical_Reactions_and_Equations_Worksheet.html",
+              driveUrl: "https://drive.google.com/file/d/1SCAfzRVer4tZgJ9f8rnI_vrjM5d_OZKj/view?usp=sharing"
+            }
+          ] },
+        { name: "Acids, Bases and Salts",                tag: "Chemistry", marks: 6, worksheets: [
+            {
+              title: "Worksheet 1 (Chapter)",
+              html: "worksheets/Ch2_Acids_Bases_and_Salts_Worksheet.html",
+              driveUrl: "https://drive.google.com/file/d/10RnBGL2f10YKdfz0yxoidoUEbIImbzy9/view?usp=sharing"
+            }
+          ] },
+        { name: "Metals and Non-metals",                 tag: "Chemistry", marks: 4, worksheets: [
+            {
+              title: "Worksheet 1 (Chapter)",
+              html: "worksheets/ch3_metals_nonmetals.html",
+              driveUrl: "https://drive.google.com/file/d/1vqthn-dUnn5MBHQX1GBVm02UFwBDS5Ii/view?usp=sharing"
+            }
+          ] },
+        { name: "Carbon and its Compounds",              tag: "Chemistry", marks: 6, worksheets: [
+            {
+              title: "Worksheet 1 (Chapter)",
+              html: "worksheets/ch4_carbon_compounds.html",
+              driveUrl: "https://drive.google.com/file/d/1R2f-BYw7F29MSMBVToxHZ5fHMySfJQov/view?usp=sharing"
+            }
+          ] },
         { name: "Life Processes",                        tag: "Biology",   marks: 7, worksheets: [
             {
               title: "Worksheet 1 (Chapter)",
@@ -181,9 +205,27 @@ window.STD10_PORTAL = {
               driveUrl: "https://drive.google.com/file/d/1XoESU9wkDaWLSxUbvEjTnaPfVB3Kc4Lu/view?usp=sharing"
             }
           ] },
-        { name: "Control and Coordination",              tag: "Biology",   marks: 5, worksheets: [] },
-        { name: "How do Organisms Reproduce?",           tag: "Biology",   marks: 6, worksheets: [] },
-        { name: "Heredity",                              tag: "Biology",   marks: 3, worksheets: [] },
+        { name: "Control and Coordination",              tag: "Biology",   marks: 5, worksheets: [
+            {
+              title: "Worksheet 1 (Chapter)",
+              html: "worksheets/Std10_Science_Ch6_Control_and_Coordination_Worksheet.html",
+              driveUrl: "https://drive.google.com/file/d/1Xadiq7oF0-2UeRYQz3DSKuA3yAg8TG82/view?usp=sharing"
+            }
+          ] },
+        { name: "How do Organisms Reproduce?",           tag: "Biology",   marks: 6, worksheets: [
+            {
+              title: "Worksheet 1 (Chapter)",
+              html: "worksheets/Std10_Science_Ch7_How_do_Organisms_Reproduce_Worksheet.html",
+              driveUrl: "https://drive.google.com/file/d/1MqfIH9OlQUf81Zfp9QPjMgs9RdGnFi0H/view?usp=sharing"
+            }
+          ] },
+        { name: "Heredity",                              tag: "Biology",   marks: 3, worksheets: [
+            {
+              title: "Worksheet 1 (Chapter)",
+              html: "worksheets/Std10_Science_Ch8_Heredity_Worksheet.html",
+              driveUrl: "https://drive.google.com/file/d/1LfKyiRuUvSZFic8AeB9E9GUc_DZokhiK/view?usp=sharing"
+            }
+          ] },
         { name: "Light – Reflection and Refraction",     tag: "Physics",   marks: 6, worksheets: [] },
         { name: "Human Eye and Colourful World",         tag: "Physics",   marks: 6, worksheets: [] },
         { name: "Electricity",                           tag: "Physics",   marks: 7, worksheets: [] },
