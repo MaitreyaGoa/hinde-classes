@@ -242,7 +242,7 @@ footer.site-footer-mini{text-align:center;padding:30px 20px;color:var(--grey);fo
       '<div class="paper-strip-left">' +
         '<div class="paper-strip-icon">📄</div>' +
         '<div><div class="paper-strip-title">' + esc(mp.label) + '</div>' +
-        '<div class="paper-strip-sub">' + (hasLink ? "Official sample paper · PDF" : "Link coming soon") + '</div></div>' +
+        '<div class="paper-strip-sub">' + (hasLink ? esc(mp.note || "Model paper · PDF") : "Link coming soon") + '</div></div>' +
       '</div>' +
       '<a class="paper-strip-btn' + (hasLink?'':' disabled') + '" href="' + esc(mp.driveUrl||"#") + '" target="_blank" rel="noopener">Download PDF ↗</a>' +
     '</div>';
