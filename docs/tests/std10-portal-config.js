@@ -34,8 +34,9 @@ window.STD10_PORTAL = {
       accent: "teal",
 
       sampleModelPaper: {
-        label: "Goa Board Model Paper (Level 1 – Standard)",
-        driveUrl: ""                   // TODO: paste your Drive link to the official sample paper PDF
+        label: "Goa Board Mock Question Papers — Maths (Level 1 – Standard)",
+        note: "Hinde Classes model papers · PDF",
+        driveUrl: "https://drive.google.com/file/d/1ZFA_azuQObcziFHUfistqwlnmoVrWrgv/view?usp=drive_link"
       },
 
       blueprint: {
@@ -136,8 +137,9 @@ window.STD10_PORTAL = {
       accent: "coral",
 
       sampleModelPaper: {
-        label: "Goa Board Model Paper — Science",
-        driveUrl: ""                   // TODO
+        label: "Goa Board Mock Question Papers — Science",
+        note: "Hinde Classes model papers · PDF",
+        driveUrl: "https://drive.google.com/file/d/1cvezdSHvEmkpsSjfwdA4QO0e_a5pCVU2/view?usp=sharing"
       },
 
       blueprint: {
