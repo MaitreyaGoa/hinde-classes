@@ -604,6 +604,17 @@ body::before{background:transparent}
 .ct-go{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,#5ad66f,#1f9b45);box-shadow:0 0 18px rgba(90,214,111,.55)}
 .ct-go svg{width:18px;height:18px;fill:#fff}
 @media (prefers-reduced-motion:reduce){.ctile,.ct-ball,.ctile::after{animation:none!important}}
+/* Dangerous Dev tile: retro pixel styling */
+.g-dev{--a1:#ffd23a;--a2:#e8402a}
+.dtile{background:radial-gradient(260px 140px at 0% 50%,rgba(255,210,58,.25),transparent 70%) padding-box,linear-gradient(150deg,rgba(40,24,60,.9),rgba(24,14,48,.85)) padding-box,linear-gradient(140deg,#ffd23a,rgba(255,255,255,.08) 45%,#e8402a) border-box;box-shadow:var(--lift),0 0 40px rgba(232,64,42,.18);animation-delay:-4s}
+.dtile .ct-new{color:#ffd23a}
+.dtile .ct-go{background:linear-gradient(140deg,#ffd23a,#e8402a);box-shadow:0 0 18px rgba(232,64,42,.55)}
+.dt-art{background:linear-gradient(180deg,#79c3ea 0 55%,#3f9a35 55% 62%,#a5482b 62%);image-rendering:pixelated}
+.dt-dev{position:absolute;left:22px;bottom:31px;width:20px;height:28px;background:linear-gradient(180deg,#221814 0 30%,#c68a5e 30% 50%,#ef6a23 50% 78%,#2a3f8f 78%);box-shadow:inset 0 0 0 2px #1a1210;animation:dtHop 1.2s steps(2) infinite}
+.dt-gh{position:absolute;right:16px;bottom:38px;width:22px;height:18px;border-radius:4px 4px 9px 9px;background:#f2c23a;box-shadow:inset 0 3px 0 #fff3b0,inset 0 0 0 2px #1a1210;animation:dtGlow 1s steps(2) infinite}
+@keyframes dtHop{50%{transform:translateY(-8px)}}
+@keyframes dtGlow{50%{box-shadow:inset 0 3px 0 #fff3b0,inset 0 0 0 2px #1a1210,0 0 10px #ffd23a}}
+@media (prefers-reduced-motion:reduce){.dt-dev,.dt-gh{animation:none!important}}
 
 </style>
 </head>
@@ -692,7 +703,8 @@ const CONFIG = {
   API_URL: "https://script.google.com/macros/s/AKfycbxqnCASk2-M3f-44n8LjoGJQXV2Q59TeYGHEkrBqUK_mF-q8jsMuL5PtlFmaWSg44RV/exec",
   HOME_URL: "https://www.hindeclasses.com/",
   REWARD_AT: "2026-11-21T00:00:00+05:30",  // prize countdown target (IST)
-  CRICKET_URL: "/cricket/"                  // MHC Cricket lives here
+  CRICKET_URL: "/cricket/",                 // MHC Cricket lives here
+  DEV_URL: "/dangerousdev/"                 // Dangerous Dev lives here
 };
 </script>
 <script>
@@ -706,9 +718,10 @@ var HG = (function () {
     'prime-split':  { name: 'Prime Split',  div: 12, max: 40000, good: 1200 },
     'pattern-lock': { name: 'Pattern Lock', div: 14, max: 40000, good: 1500 },
     'cricket-12':   { name: 'MHC Cricket (12 overs)', div: .5, max: 600, good: 100 },
-    'cricket-2':    { name: 'MHC Cricket (2 overs)', div: .3, max: 120, good: 30 }
+    'cricket-2':    { name: 'MHC Cricket (2 overs)', div: .3, max: 120, good: 30 },
+    'dangerous-dev':{ name: 'Dangerous Dev', div: 60, max: 300000, good: 8000 }
   };
-  var MODES = { foundation: 1, core: 1.15, advanced: 1.3, classic: 1, quick: 1 };
+  var MODES = { foundation: 1, core: 1.15, advanced: 1.3, classic: 1, quick: 1, story: 1 };
   var RANKS = [[0, 'Digit'], [400, 'Integer'], [1200, 'Rational'], [2500, 'Prime'], [4500, 'Vector'], [7500, 'Matrix'], [12000, 'Theorem'], [20000, 'Infinity']];
 
   function dayNum(ms) { return Math.floor((ms + TZ) / DAY); }
@@ -1133,6 +1146,7 @@ const ICO = {
   trophy:'<svg viewBox="0 0 64 64" class="trophy"><defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a8"/><stop offset=".5" stop-color="#ffc145"/><stop offset="1" stop-color="#e07a12"/></linearGradient></defs><path d="M20 8h24v14a12 12 0 0 1-24 0z" fill="url(#tg)"/><path d="M20 12H10v4a10 10 0 0 0 10 10M44 12h10v4a10 10 0 0 1-10 10" fill="none" stroke="#ffc145" stroke-width="4" stroke-linecap="round"/><path d="M28 34h8v10h-8z" fill="#e8a024"/><path d="M18 54a6 6 0 0 1 6-6h16a6 6 0 0 1 6 6v2H18z" fill="url(#tg)"/><path d="M32 13l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.6-4.8 2.6.9-5.4-3.9-3.8 5.4-.8z" fill="#fff8e0"/></svg>'
 };
 const GICON = {
+  "dangerous-dev":'<svg viewBox="0 0 64 64"><path d="M18 50V30h28v20"/><path d="M14 30h36M24 30v-8h16v8"/><circle cx="32" cy="16" r="5" fill="#fff"/></svg>',
   "cricket-12":'<svg viewBox="0 0 64 64"><path d="M46 8l10 10-26 26-10-10z"/><path d="M22 36l-8 8"/><circle cx="17" cy="20" r="7" fill="#fff"/></svg>',
   "cricket-2":'<svg viewBox="0 0 64 64"><path d="M46 8l10 10-26 26-10-10z"/><path d="M22 36l-8 8"/><circle cx="17" cy="20" r="7" fill="#fff"/></svg>',
   "sigma-sprint":'<svg viewBox="0 0 64 64"><path d="M46 14H18l15 18-15 18h28"/></svg>',
@@ -1376,9 +1390,10 @@ const GL = [
 ];
 const XG = [
   {id:"cricket-12", cls:"g-cricket", name:"MHC Cricket · 12 overs"},
-  {id:"cricket-2",  cls:"g-cricket", name:"MHC Cricket · 2 overs"}
+  {id:"cricket-2",  cls:"g-cricket", name:"MHC Cricket · 2 overs"},
+  {id:"dangerous-dev", cls:"g-dev", name:"Dangerous Dev"}
 ];
-const XMODES = {classic:{name:"12 overs"}, quick:{name:"2 overs"}};
+const XMODES = {classic:{name:"12 overs"}, quick:{name:"2 overs"}, story:{name:"Story"}};
 const ALLG = () => GL.concat(XG);
 const modeName = m => (MODES[m] || XMODES[m])?.name || "";
 function cricketTile(p){
@@ -1387,6 +1402,13 @@ function cricketTile(p){
   return `<a class="ctile" href="${CONFIG.CRICKET_URL}" target="_top" aria-label="Play MHC Cricket">
     <span class="ct-art" aria-hidden="true"><span class="ct-pitch"></span><span class="ct-stumps"><i></i><i></i><i></i></span><span class="ct-ball"></span></span>
     <span class="ct-txt"><span class="ct-new">New · Bonus game</span><b>MHC Cricket</b><span class="ct-sub">Swipe to bat against pace, swing and spin. Your runs earn XP on this leaderboard.</span><span class="ct-best">${best}</span></span>
+    <span class="ct-go">${ICO.play}</span></a>`;
+}
+function devTile(p){
+  const b = p.best["dangerous-dev"];
+  return `<a class="ctile dtile" href="${CONFIG.DEV_URL}" target="_top" aria-label="Play Dangerous Dev">
+    <span class="ct-art dt-art" aria-hidden="true"><span class="dt-dev"></span><span class="dt-gh"></span></span>
+    <span class="ct-txt"><span class="ct-new">New · Retro adventure</span><b>Dangerous Dev</b><span class="ct-sub">A Goa treasure hunt from Mayem Lake to Palolem. Find the Golden Ghumots and earn XP.</span><span class="ct-best">${b ? "Best " + fmt(b.score) : "6 levels across real Goan places"}</span></span>
     <span class="ct-go">${ICO.play}</span></a>`;
 }
 const gIcon = (id, cls) => `<span class="gicon ${cls || ""}">${GICON[id]}</span>`;
@@ -1466,6 +1488,7 @@ function renderHome(){
   v.innerHTML = `${festive}${hello}
     ${user ? missionsHTML(p) : ""}
     ${cricketTile(p)}
+    ${devTile(p)}
     <div class="sec-t"><h2><span class="mini-diya" aria-hidden="true"></span>Games</h2><span class="sub" style="font-size:12.5px">3 levels each</span></div>
     <div class="games">${GL.map(g => {
       const b = p.best[g.id];
