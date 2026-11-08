@@ -43,6 +43,7 @@ a{color:inherit}
 /* overlays inside the screen */
 .ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px;text-align:center;background:rgba(5,3,10,.72)}
 .ov.clear{background:transparent}
+.ov.win{background:rgba(5,3,10,.38)}
 .logo{font-size:clamp(18px,6.2vw,34px);line-height:1.2;color:var(--gold);text-shadow:3px 3px 0 var(--red);letter-spacing:1px;padding:10px 12px;background:rgba(5,3,10,.55)}
 .logo small{display:block;font-size:.42em;color:var(--teal);text-shadow:2px 2px 0 #000;margin-top:10px;letter-spacing:2px}
 .press{font-size:11px;color:#fff;animation:blink 1s steps(1) infinite}
@@ -71,6 +72,13 @@ a{color:inherit}
 .scores ol{margin:0;padding-left:18px}
 input.name{font:inherit;font-size:11px;background:#000;color:var(--gold);border:0;box-shadow:inset 0 0 0 2px #4a3f63;padding:8px;width:180px;text-transform:uppercase;text-align:center}
 .tiny{font-size:7px;color:var(--dim);line-height:1.8}
+.acct{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:7px;line-height:1.8;color:#cfc6dd;padding:6px 8px;background:rgba(5,3,10,.7);max-width:340px}
+.acct b{color:var(--gold);font-weight:400}
+.acct .lnk{color:var(--dim);text-decoration:underline;font-size:7px}
+#gBtn{min-height:0}
+.xpbox{font-size:8px;line-height:1.9;color:#e8e0d0;padding:8px 10px;background:rgba(255,210,58,.08);box-shadow:inset 0 0 0 1px rgba(255,210,58,.4);max-width:320px}
+.xpbox b{color:var(--gold);font-weight:400}
+.xpbox:empty{display:none}
 .corner{position:absolute;top:6px;right:6px;display:flex;gap:6px}
 .corner button{width:28px;height:28px;font-size:10px;background:rgba(0,0,0,.55);box-shadow:inset 0 0 0 1px #4a3f63}
 
@@ -114,6 +122,7 @@ input.name{font:inherit;font-size:11px;background:#000;color:var(--gold);border:
         <button class="mbtn" id="mHow" type="button">HOW TO PLAY</button>
         <button class="mbtn" id="mHi" type="button">HIGH SCORES</button>
       </div>
+      <div class="acct" id="acct"><span id="acctInfo"></span><div id="gBtn"></div></div>
       <div class="credit">Inspired by the classic 1990 PC game <b>Dangerous Dave</b> by <b>John Romero</b>.<br>An original tribute by MHC Digital for Hinde Classes. All characters, art and levels are new.</div>
     </div>
     <div class="ov" id="panel" hidden><div class="card" id="panelCard"></div></div>
@@ -134,30 +143,41 @@ input.name{font:inherit;font-size:11px;background:#000;color:var(--gold);border:
 </div>
 
 <script>
-const SPR = {"pal": {"k": "#1a1210", "s": "#c68a5e", "S": "#9a6440", "h": "#221814", "o": "#ef6a23", "O": "#b84a14", "w": "#f6efe2", "n": "#2a3f8f", "N": "#1c2b66", "y": "#7a4422", "e": "#ffffff", "r": "#d8322b", "R": "#9e1f1a", "g": "#2f8a3c", "G": "#1f5e28", "b": "#6b4a2e", "B": "#3f2a18", "c": "#f2c23a", "C": "#c48a12", "t": "#fff3b0", "p": "#7d3c8a", "P": "#56256a", "a": "#8a8f99", "A": "#5a5e66", "m": "#f4b23c", "M": "#e07a1c", "l": "#e8e2cf", "v": "#3a2d4a", "V": "#211a2b", "z": "#9fd3ff", "f": "#ff9f2a", "F": "#ffe36b", "x": "#d9d9e0", "X": "#9a9aa8", "u": "#4a2c18", "U": "#2a1a0e", "q": "#c7a46a", "Q": "#8f6f3c", "j": "#6d6d74", "J": "#3e3e44"}, "spr": {"dev_stand": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "......kooook....", ".....koowwook...", "....ksoooooosk..", "....kskoOOoksk..", "......knnnnk....", "......knk.knk...", "......ksk.ksk...", ".....kyyk.kyyk.."], "dev_run1": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "......kooook....", ".....koowwook...", "....ksoooooosk..", "....kskoOOoksk..", "......knnnnk....", ".....knk..knk...", "....ksk....ksk..", "....kyyk...kyyk."], "dev_run2": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "......kooook....", ".....koowwook...", "....ksoooooosk..", "....kskoOOoksk..", "......knnnnk....", "......knkknk....", "......kskks.....", ".....kyykyyk...."], "dev_run3": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "......kooook....", ".....koowwook...", "....ksoooooosk..", "....kskoOOoksk..", "......knnnnk....", "......knk.kk....", ".....ksk..ksk...", ".....kyyk.kyyk.."], "dev_jump": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "...kk.kooook.kk.", "...kskoowwooksk.", "....kkoooooookk.", "......koOOok....", "......knnnnk....", ".....knk..knk...", "....kyyk..kyyk..", "................"], "dev_climb1": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhhhhk...", "....khhhhhhhk...", ".....khhhhhk....", "..ks..kkkkk..sk.", "..kskoooooooksk.", "...kkoowwwookk..", ".....koooooook..", ".....koOOOOok...", "......knnnnk....", "......knk.knk...", "......ksk.kyyk..", ".....kyyk......."], "dev_climb2": ["................", ".....kkkkk......", "....khhhhhk.....", "...khhhhhhhk....", "...khhhhhhhk....", "...khhhhhhhk....", "....khhhhhk.....", ".ks..kkkkk..sk..", ".kskoooooooksk..", "..kkoowwwookk...", "..koooooook.....", "...koOOOOok.....", "....knnnnk......", "...knk.knk......", "..kyyk.ksk......", ".......kyyk....."], "dev_die": ["................", "....f..F...f....", "..F..kkkkk...f..", ".f..khhhhhk.F...", "...khhhhhhhk....", "...khkhhhkhk..F.", "F..khhsssshk....", "...kkssksssk..f.", "....kkoooook....", "..kskoowwooksk..", "..kskoooooooksk.", "....kkoOOOkk....", "......knnnnk....", "....kyyk..kyyk..", "................", "................"], "dev_fly": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "....jj.kooook...", "...jJJkoowwook..", "...jJJkooooooksk", "...jJJkoOOOokskk", "...jjj.knnnnk...", "...fFf.knk.knk..", "....f..ksk.ksk..", "........kk..kk.."], "crab1": ["................", "................", "................", "................", "................", "...kk......kk...", "..krrk....krrk..", "..krRk.kk.kRrk..", "...kkkkrrkkkk...", "..kkrrrrrrrrkk..", ".krrrekrrkerrrk.", ".krrrrrrrrrrrrk.", "..kRRRRRRRRRRk..", "..k.k.k..k.k.k..", ".k..k.k..k.k..k.", "................"], "crab2": ["................", "................", "................", "................", "................", "...kk......kk...", "..krrk....krrk..", "..krRk.kk.kRrk..", "...kkkkrrkkkk...", "..kkrrrrrrrrkk..", ".krrrekrrkerrrk.", ".krrrrrrrrrrrrk.", "..kRRRRRRRRRRk..", "..kk.k....k.kk..", "...k.k....k.k...", "................"], "crow1": ["................", "................", "................", "..........kkk...", ".........kVVVk..", "..kkk...kVVekVk.", ".kVVVkk.kVVVVcck", "..kVVVVkkVVVVkkc", "...kVVVVVVVVVk..", "....kkVVVVVVk...", "......kVVVVk....", ".......kkkk.....", "........c.c.....", "................", "................", "................"], "crow2": ["................", "....kk..........", "...kVVk...kkk...", "...kVVVk.kVVVk..", "....kVVVkVVekVk.", ".....kVVVVVVVcck", "......kVVVVVVkkc", "......kVVVVVVk..", ".......kkVVVk...", ".........kkk....", "..........c.c...", "................", "................", "................", "................", "................"], "monkey1": ["................", ".....kkkkk......", "....kbbbbbk.....", "...kbqqqqqbk....", "..kkbqkqqkqbkk..", "..kqbqqqqqqbqk..", "...kbqqBBqqbk...", "....kbqqqqbk....", "...kbbbbbbbbk...", "..kbbkqqqqkbbk..", "..kqk.kqqk..kqk.", "..kk.kbbbbk..kk.", "....kbbkkbbk..k.", "....kbk..kbk.kbk", "...kqqk..kqqk.k.", "................"], "monkey2": ["................", ".....kkkkk......", "....kbbbbbk.....", "...kbqqqqqbk....", "..kkbqkqqkqbkk..", "..kqbqqqqqqbqk..", "...kbqqBBqqbk...", "....kbqqqqbk....", "...kbbbbbbbbk...", "..kbbkqqqqkbbk..", ".kqk..kqqk...kqk", ".kk..kbbbbk...kk", "....kbbkkbbk....", "...kbk....kbk...", "..kqqk....kqqk..", "................"], "bat1": ["................", "................", "................", "k.............k.", "kk....k..k....kk", "kvk...kvvk...kvk", "kvvk.kvvvvk.kvvk", "kvvvkvekkevkvvvk", ".kvvvvvvvvvvvvk.", "..kvvk.kvvk.kvvk", "...kk...kk...kk.", "................", "................", "................", "................", "................"], "bat2": ["................", "................", "................", "................", "......k..k......", "......kvvk......", "....kkvvvvkk....", "..kkvvekkevvkk..", ".kvvvvvvvvvvvvk.", "kvvk.kvvvvk.kvvk", "kk....kvvk....kk", "k......kk......k", "................", "................", "................", "................"], "kaju": ["................", "................", ".......kk.......", "......kaAk......", ".....kaaAk......", ".....kkAk.......", "....krrrrk......", "...krrrcrrk.....", "...krrrrcrk.....", "...krrrrrrk.....", "...kRrrrrRk.....", "....kRRRRk......", ".....kkkk.......", "................", "................", "................"], "mango": ["................", "................", "........gk......", ".......gGk......", ".....kkkk.......", "....kmmmmk......", "...kmmmmmMk.....", "...kmtmmmMk.....", "...kmmmmmMk.....", "...kmmmmMMk.....", "....kmmMMk......", ".....kkkk.......", "................", "................", "................", "................"], "bebinca": ["................", "................", "................", "..........kk....", "........kkqqk...", "......kkqqqqk...", "....kkbqqqqbk...", "...kqqbbbbbbk...", "...kbbqqqqqqk...", "...kqqbbbbbbk...", "...kbbqqqqqqk...", "...kqqbbbbbbk...", "...kkkkkkkkkk...", "................", "................", "................"], "kokum": ["................", "................", "................", ".......gk.......", "......kGk.......", ".....kkkkk......", "....kpppppk.....", "...kpplpppPk....", "...kppppppPk....", "...kpppppPPk....", "....kPPPPPk.....", ".....kkkkk......", "................", "................", "................", "................"], "coin": ["................", "................", "................", ".....kkkkkk.....", "....kxxxxxxk....", "...kxlxxxxXxk...", "...kxxXxxXxXk...", "...kxxxXXxxXk...", "...kxxXxxXxXk...", "...kxxxxxxXXk...", "....kxXXXXXk....", ".....kkkkkk.....", "................", "................", "................", "................"], "ghumot": ["................", "...kkkkkkkkkk...", "..kttttttttttk..", "..kCttttttttCk..", "...kkkkkkkkkk...", "..kcccckcccck...", ".kccckcccckcck..", ".kcctcckccckcck.", ".kcctcccccccCck.", ".kccccckccccCck.", "..kcccccccccCk..", "..kCcccckcccCk..", "...kCCCCCCCCk...", "....kkkkkkkk....", "................", "................"], "oneup": ["................", "................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhsskssk..", "....kkhsssssk...", ".....kksSssk....", "......kooook....", "................", "................", "................", "................", "................", "................"], "sling": ["................", "................", "................", "...kk.....kk....", "..kuuk...kuuk...", "..kuuk...kuuk...", "...kuuk.kuuk....", "....kuukuuk.....", ".....kuuuk......", "......kuk.......", "......kuk.......", "......kUk.......", "......kUk.......", ".......k........", "................", "................"], "jetpack": ["................", "................", "....kkk.kkk.....", "...kjjjkjjjk....", "...kjJjkjJjk....", "...kjJjkjJjk....", "...kjJjrjJjk....", "...kjJjrjJjk....", "...kjJjkjJjk....", "...kkkk.kkkk....", "....kAk..kAk....", "....fFf..fFf....", ".....f....f.....", "................", "................", "................"], "pebble": ["................", "................", "................", "................", "................", "................", "......kk........", ".....kaak.......", ".....kAAk.......", "......kk........", "................", "................", "................", "................", "................", "................"], "nut": ["................", "................", "................", "................", "................", "................", "......kk........", ".....kqQk.......", ".....kQQk.......", "......kk........", "................", "................", "................", "................", "................", "................"]}};
+const CFG = {
+  CLIENT_ID: "572990500681-12u9hv4cg632ichlkutnjnet58t7vb83.apps.googleusercontent.com",  // same Google login as hindeclasses.com
+  API_URL: "https://script.google.com/macros/s/AKfycbxqnCASk2-M3f-44n8LjoGJQXV2Q59TeYGHEkrBqUK_mF-q8jsMuL5PtlFmaWSg44RV/exec",  // Diwali Games backend
+  PORTAL: "/DiwaliGames/"
+};
+</script>
+<script>
+const SPR = {"pal": {"k": "#1a1210", "s": "#c68a5e", "S": "#9a6440", "h": "#221814", "o": "#ef6a23", "O": "#b84a14", "w": "#f6efe2", "n": "#2a3f8f", "N": "#1c2b66", "y": "#7a4422", "e": "#ffffff", "r": "#d8322b", "R": "#9e1f1a", "g": "#2f8a3c", "G": "#1f5e28", "b": "#6b4a2e", "B": "#3f2a18", "c": "#f2c23a", "C": "#c48a12", "t": "#fff3b0", "p": "#7d3c8a", "P": "#56256a", "a": "#8a8f99", "A": "#5a5e66", "m": "#f4b23c", "M": "#e07a1c", "l": "#e8e2cf", "v": "#3a2d4a", "V": "#211a2b", "z": "#9fd3ff", "f": "#ff9f2a", "F": "#ffe36b", "x": "#d9d9e0", "X": "#9a9aa8", "u": "#4a2c18", "U": "#2a1a0e", "q": "#c7a46a", "Q": "#8f6f3c", "j": "#6d6d74", "J": "#3e3e44"}, "spr": {"dev_stand": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "......kooook....", ".....koowwook...", "....ksoooooosk..", "....kskoOOoksk..", "......knnnnk....", "......knk.knk...", "......ksk.ksk...", ".....kyyk.kyyk.."], "dev_run1": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "......kooook....", ".....koowwook...", "....ksoooooosk..", "....kskoOOoksk..", "......knnnnk....", ".....knk..knk...", "....ksk....ksk..", "....kyyk...kyyk."], "dev_run2": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "......kooook....", ".....koowwook...", "....ksoooooosk..", "....kskoOOoksk..", "......knnnnk....", "......knkknk....", "......kskks.....", ".....kyykyyk...."], "dev_run3": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "......kooook....", ".....koowwook...", "....ksoooooosk..", "....kskoOOoksk..", "......knnnnk....", "......knk.kk....", ".....ksk..ksk...", ".....kyyk.kyyk.."], "dev_jump": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "...kk.kooook.kk.", "...kskoowwooksk.", "....kkoooooookk.", "......koOOok....", "......knnnnk....", ".....knk..knk...", "....kyyk..kyyk..", "................"], "dev_climb1": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhhhhk...", "....khhhhhhhk...", ".....khhhhhk....", "..ks..kkkkk..sk.", "..kskoooooooksk.", "...kkoowwwookk..", ".....koooooook..", ".....koOOOOok...", "......knnnnk....", "......knk.knk...", "......ksk.kyyk..", ".....kyyk......."], "dev_climb2": ["................", ".....kkkkk......", "....khhhhhk.....", "...khhhhhhhk....", "...khhhhhhhk....", "...khhhhhhhk....", "....khhhhhk.....", ".ks..kkkkk..sk..", ".kskoooooooksk..", "..kkoowwwookk...", "..koooooook.....", "...koOOOOok.....", "....knnnnk......", "...knk.knk......", "..kyyk.ksk......", ".......kyyk....."], "dev_die": ["................", "....f..F...f....", "..F..kkkkk...f..", ".f..khhhhhk.F...", "...khhhhhhhk....", "...khkhhhkhk..F.", "F..khhsssshk....", "...kkssksssk..f.", "....kkoooook....", "..kskoowwooksk..", "..kskoooooooksk.", "....kkoOOOkk....", "......knnnnk....", "....kyyk..kyyk..", "................", "................"], "dev_fly": ["................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhssksk...", "....kkhsssssk...", ".....kksSssk....", "....jj.kooook...", "...jJJkoowwook..", "...jJJkooooooksk", "...jJJkoOOOokskk", "...jjj.knnnnk...", "...fFf.knk.knk..", "....f..ksk.ksk..", "........kk..kk.."], "crab1": ["................", "................", "................", "................", "................", "...kk......kk...", "..krrk....krrk..", "..krRk.kk.kRrk..", "...kkkkrrkkkk...", "..kkrrrrrrrrkk..", ".krrrekrrkerrrk.", ".krrrrrrrrrrrrk.", "..kRRRRRRRRRRk..", "..k.k.k..k.k.k..", ".k..k.k..k.k..k.", "................"], "crab2": ["................", "................", "................", "................", "................", "...kk......kk...", "..krrk....krrk..", "..krRk.kk.kRrk..", "...kkkkrrkkkk...", "..kkrrrrrrrrkk..", ".krrrekrrkerrrk.", ".krrrrrrrrrrrrk.", "..kRRRRRRRRRRk..", "..kk.k....k.kk..", "...k.k....k.k...", "................"], "crow1": ["................", "................", "................", "..........kkk...", ".........kVVVk..", "..kkk...kVVekVk.", ".kVVVkk.kVVVVcck", "..kVVVVkkVVVVkkc", "...kVVVVVVVVVk..", "....kkVVVVVVk...", "......kVVVVk....", ".......kkkk.....", "........c.c.....", "................", "................", "................"], "crow2": ["................", "....kk..........", "...kVVk...kkk...", "...kVVVk.kVVVk..", "....kVVVkVVekVk.", ".....kVVVVVVVcck", "......kVVVVVVkkc", "......kVVVVVVk..", ".......kkVVVk...", ".........kkk....", "..........c.c...", "................", "................", "................", "................", "................"], "monkey1": ["................", ".....kkkkk......", "....kbbbbbk.....", "...kbqqqqqbk....", "..kkbqkqqkqbkk..", "..kqbqqqqqqbqk..", "...kbqqBBqqbk...", "....kbqqqqbk....", "...kbbbbbbbbk...", "..kbbkqqqqkbbk..", "..kqk.kqqk..kqk.", "..kk.kbbbbk..kk.", "....kbbkkbbk..k.", "....kbk..kbk.kbk", "...kqqk..kqqk.k.", "................"], "monkey2": ["................", ".....kkkkk......", "....kbbbbbk.....", "...kbqqqqqbk....", "..kkbqkqqkqbkk..", "..kqbqqqqqqbqk..", "...kbqqBBqqbk...", "....kbqqqqbk....", "...kbbbbbbbbk...", "..kbbkqqqqkbbk..", ".kqk..kqqk...kqk", ".kk..kbbbbk...kk", "....kbbkkbbk....", "...kbk....kbk...", "..kqqk....kqqk..", "................"], "bat1": ["................", "................", "................", "k.............k.", "kk....k..k....kk", "kvk...kvvk...kvk", "kvvk.kvvvvk.kvvk", "kvvvkvekkevkvvvk", ".kvvvvvvvvvvvvk.", "..kvvk.kvvk.kvvk", "...kk...kk...kk.", "................", "................", "................", "................", "................"], "bat2": ["................", "................", "................", "................", "......k..k......", "......kvvk......", "....kkvvvvkk....", "..kkvvekkevvkk..", ".kvvvvvvvvvvvvk.", "kvvk.kvvvvk.kvvk", "kk....kvvk....kk", "k......kk......k", "................", "................", "................", "................"], "kaju": ["................", "................", ".......kk.......", "......kaAk......", ".....kaaAk......", ".....kkAk.......", "....krrrrk......", "...krrrcrrk.....", "...krrrrcrk.....", "...krrrrrrk.....", "...kRrrrrRk.....", "....kRRRRk......", ".....kkkk.......", "................", "................", "................"], "mango": ["................", "................", "........gk......", ".......gGk......", ".....kkkk.......", "....kmmmmk......", "...kmmmmmMk.....", "...kmtmmmMk.....", "...kmmmmmMk.....", "...kmmmmMMk.....", "....kmmMMk......", ".....kkkk.......", "................", "................", "................", "................"], "bebinca": ["................", "................", "................", "..........kk....", "........kkqqk...", "......kkqqqqk...", "....kkbqqqqbk...", "...kqqbbbbbbk...", "...kbbqqqqqqk...", "...kqqbbbbbbk...", "...kbbqqqqqqk...", "...kqqbbbbbbk...", "...kkkkkkkkkk...", "................", "................", "................"], "kokum": ["................", "................", "................", ".......gk.......", "......kGk.......", ".....kkkkk......", "....kpppppk.....", "...kpplpppPk....", "...kppppppPk....", "...kpppppPPk....", "....kPPPPPk.....", ".....kkkkk......", "................", "................", "................", "................"], "coin": ["................", "................", "................", ".....kkkkkk.....", "....kxxxxxxk....", "...kxlxxxxXxk...", "...kxxXxxXxXk...", "...kxxxXXxxXk...", "...kxxXxxXxXk...", "...kxxxxxxXXk...", "....kxXXXXXk....", ".....kkkkkk.....", "................", "................", "................", "................"], "ghumot": ["................", "...kkkkkkkkkk...", "..kttttttttttk..", "..kCttttttttCk..", "...kkkkkkkkkk...", "..kcccckcccck...", ".kccckcccckcck..", ".kcctcckccckcck.", ".kcctcccccccCck.", ".kccccckccccCck.", "..kcccccccccCk..", "..kCcccckcccCk..", "...kCCCCCCCCk...", "....kkkkkkkk....", "................", "................"], "oneup": ["................", "................", "......kkkkk.....", ".....khhhhhk....", "....khhhhhhhk...", "....khhhhssssk..", "....khhhsskssk..", "....kkhsssssk...", ".....kksSssk....", "......kooook....", "................", "................", "................", "................", "................", "................"], "sling": ["................", "................", "................", "...kk.....kk....", "..kuuk...kuuk...", "..kuuk...kuuk...", "...kuuk.kuuk....", "....kuukuuk.....", ".....kuuuk......", "......kuk.......", "......kuk.......", "......kUk.......", "......kUk.......", ".......k........", "................", "................"], "jetpack": ["................", "................", "....kkk.kkk.....", "...kjjjkjjjk....", "...kjJjkjJjk....", "...kjJjkjJjk....", "...kjJjrjJjk....", "...kjJjrjJjk....", "...kjJjkjJjk....", "...kkkk.kkkk....", "....kAk..kAk....", "....fFf..fFf....", ".....f....f.....", "................", "................", "................"], "pebble": ["................", "................", "................", "................", "................", "................", "......kk........", ".....kaak.......", ".....kAAk.......", "......kk........", "................", "................", "................", "................", "................", "................"], "nut": ["................", "................", "................", "................", "................", "................", "......kk........", ".....kqQk.......", ".....kQQk.......", "......kk........", "................", "................", "................", "................", "................", "................"], "spider1": ["................", "................", "................", "......kkkk......", "..k..kVVVVk..k..", ".k.kkVVVVVVkk.k.", "k...kVrVVrVk...k", "...kkVVVVVVkk...", "..k..kVVVVk..k..", ".k....kkkk....k.", "k..............k", "................", "................", "................", "................", "................"], "spider2": ["................", "................", "................", "......kkkk......", "...k.kVVVVk.k...", "..kkkVVVVVVkkk..", ".k..kVrVVrVk..k.", "k..kkVVVVVVkk..k", "...k.kVVVVk.k...", "..k...kkkk...k..", "................", "................", "................", "................", "................", "................"], "poi": ["................", "................", "................", "................", ".....kkkkkk.....", "...kkqqqqqqkk...", "..kqqtqqqqqqQk..", ".kqqqqqqqqqqqQk.", ".kqtqqqqqqqqQQk.", ".kQqqqqqqqqQQQk.", "..kQQQQQQQQQQk..", "...kkkkkkkkkk...", "................", "................", "................", "................"]}};
 
 </script>
 <script>
 /* ===== Dangerous Dev engine (pure logic, no drawing) ===== */
 const T = 16, ROWS = 12;
 const PHYS = {run: 92, grav: 980, jumpV: 292, maxFall: 400, climb: 62, fly: 92, fuelPerSec: .085};
-const SOLID = "#=WBR";        // laterite, grass ground, stone masonry, basalt, roof tiles
-const HAZARD = "~^f";         // water, thorns, fire
-const ITEM_PTS = {k: 50, o: 75, m: 100, b: 150, x: 250, T: 1000, "1": 0, S: 0, J: 0};
-const ITEM_NAME = {k: "Cashew", o: "Kokum", m: "Mankurad mango", b: "Bebinca", x: "Xerafim coin", T: "Golden Ghumot", "1": "Extra life", S: "Slingshot", J: "Jetpack"};
+const SOLID = "#=WBRCA";      // laterite, grass ground, stone masonry, basalt/cave rock, roof tiles, painted wall, sand
+const HAZARD = "~^fY";        // water, thorns, fire, stalactites
+const ITEM_PTS = {k: 50, o: 75, m: 100, p: 120, b: 150, x: 250, T: 1000, "1": 0, S: 0, J: 0};
+const ITEM_NAME = {p: "Poi bread", k: "Cashew", o: "Kokum", m: "Mankurad mango", b: "Bebinca", x: "Xerafim coin", T: "Golden Ghumot", "1": "Extra life", S: "Slingshot", J: "Jetpack"};
 
 function parseLevel(def){
   const rows = def.map.map(r => r.split(""));
   const h = rows.length, w = rows[0].length;
-  const L = {def, w, h, grid: rows, items: [], enemies: [], lamps: [], gates: [], start: null, door: null};
+  const L = {def, w, h, grid: rows, items: [], enemies: [], lamps: [], gates: [], warps: [], warpTo: [], start: null, door: null};
   for (let y = 0; y < h; y++) for (let x = 0; x < w; x++){
     const c = rows[y][x];
-    if ("kombxT1SJ".includes(c)){ L.items.push({x, y, t: c, got: false}); rows[y][x] = "."; }
+    if (c === "N"){ L.boss = {tx: x, ty: y}; rows[y][x] = "."; }
+    else if (c === "i"){ (L.diyas = L.diyas || []).push({x, y}); rows[y][x] = "."; }
+    else if (c === "Z"){ L.warps.push({x, y}); rows[y][x] = "."; }
+    else if (c === "z"){ L.warpTo.push({x, y}); rows[y][x] = "."; }
+    else if ("kompbxT1SJ".includes(c)){ L.items.push({x, y, t: c, got: false}); rows[y][x] = "."; }
     else if (c === "P"){ L.start = {x, y}; rows[y][x] = "."; }
     else if (c === "D"){ L.door = {x, y}; rows[y][x] = "."; }
     else if (c === "L"){ L.lamps.push({x, y, on: false}); rows[y][x] = "."; }
     else if (c === "G"){ L.gates.push({x, y, open: false}); rows[y][x] = "g"; if (y > 0) rows[y - 1][x] = "g"; }
-    else if ("cwyv".includes(c)){ L.enemies.push(mkEnemy(c, x, y)); rows[y][x] = "."; }
+    else if ("cwyva".includes(c)){ L.enemies.push(mkEnemy(c, x, y)); rows[y][x] = "."; }
   }
   return L;
 }
@@ -167,6 +187,7 @@ function mkEnemy(t, tx, ty){
   if (t === "w"){ e.range = 3*T; e.h = 9; }
   if (t === "v"){ e.r = 18; e.h = 8; }
   if (t === "y"){ e.w = 12; e.h = 14; e.y = ty*T + 2; e.y0 = e.y; }
+  if (t === "a"){ e.w = 12; e.h = 10; e.range = 36; e.top = ty*T; }
   return e;
 }
 const tileAt = (L, tx, ty) => (tx < 0 || tx >= L.w) ? "#" : (ty < 0 || ty >= L.h) ? "." : L.grid[ty][tx];
@@ -241,6 +262,7 @@ function hazardHit(L, p){
   const inset = {x: p.x + 2, y: p.y + 3, w: p.w - 4, h: p.h - 3};
   return overlapTiles(inset, (tx, ty) => {
     const c = tileAt(L, tx, ty); if (!HAZARD.includes(c)) return false;
+    if (c === "Y") return inset.y < ty*T + 9;   // stalactites hang from above
     const top = ty*T + (c === "~" ? 5 : c === "^" ? 8 : 4);
     return inset.y + inset.h > top;
   });
@@ -257,6 +279,8 @@ function stepEnemies(L, dt, p, shots){
       if (isSolid(tileAt(L, Math.floor(ahead/T), mid)) || !isSolid(tileAt(L, Math.floor(ahead/T), foot)) && tileAt(L, Math.floor(ahead/T), foot) !== "-") e.vx = -e.vx;
     } else if (e.t === "w"){
       e.x = e.x0 + Math.sin(e.ph*.9)*e.range; e.y = e.y0 + Math.sin(e.ph*2.1)*6; e.vx = Math.cos(e.ph*.9);
+    } else if (e.t === "a"){
+      e.y = e.y0 + (Math.sin(e.ph*1.3)*.5 + .5)*e.range;
     } else if (e.t === "v"){
       e.x = e.x0 + Math.cos(e.ph*1.6)*e.r*1.6; e.y = e.y0 + Math.sin(e.ph*3.2)*e.r*.5;
     } else if (e.t === "y"){
@@ -279,7 +303,7 @@ if (typeof module !== "undefined") module.exports = {T, ROWS, PHYS, SOLID, HAZAR
 
 </script>
 <script>
-const LEVELS = [{"name": "Mayem Lake", "place": "Bicholim", "map": ["....................................................................................", "....................................................................................", "....................................................................................", "....................................w..............................x.m.T............", "...............................oo.................................##H####...........", "..............................----........b.b.............w.........H...............", "...........................kk.........HRRRRRRRRR....................H...............", "................k....m....----....k...H.#.....#.....................H.......k.......", "....................###...............H.#.....#..........x...x......H...............", "..P..k.k.k..c.......###.f..c..........H.#.....#..L.c.m..............H.....^^..G..D..", "===============~~~===============~~~===================~~#~~~#~~====================", "===============~~~===============~~~===================~~#~~~#~~===================="], "fact": "Mayem Lake is a freshwater lake near Bicholim, ringed by green hills and paddy fields.", "theme": "village"}, {"name": "Fort Aguada", "place": "Candolim", "map": ["...................................................................................v............", "................................................................................................", "........................v........................................................xT.x...........", "...............................................................................HWWWWW...........", "......................x.b.x...........................................w........HWWWWW...........", ".....................HWWWWW...........w................w..........k...k........HWWWWW...........", ".....................HWWWWW...................................HWWWWWWWWWWW.....HWWWWW...........", ".....................HWWWWW.....o...................k...k...k.H..........W.....HWWWWW...........", "..............k.kc...HWWWWW.............ff..m..L....--..--..-.HG.xx1.xb..W.....HWWWWW...c.m..D..", "..P.k.S..c..WWWWWWWWWWWWWWWWWWW...WWWWWWWWWWWWWWWWW..........WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", "============WWWWWWWWWWWWWWWWWWW~~~WWWWWWWWWWWWWWWWW~~~~~~~~~~WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", "============WWWWWWWWWWWWWWWWWWW~~~WWWWWWWWWWWWWWWWW~~~~~~~~~~WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"], "fact": "Fort Aguada was built by the Portuguese in 1612. Its lighthouse, from 1864, is one of the oldest in Asia.", "theme": "fort"}, {"name": "Dudhsagar Falls", "place": "Sanguem", "map": ["........................................................v...........................................", "..................................................w.....1.......w..............xTx..................", "..............................................................................BBBBB.................", "..........................................k...J.b.....k...x...k...m...x.............................", "......................................HWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW...........................", "......................................H.....W.......W.......W.......W...............................", ".................oo...k...............H.....W.......W.......W.......W...............m...............", ".............m...BB...y...............H.....W.......W.......W.......W.....Lk........y...............", "..P..k..k....BB..BB..BBB..x....ky...L.H.....W.......W.......W.......W....BBBB......BBB......b.G..D..", "BBBBBBBBBBB..BB..BB..BBB..BB..BBBB..BBB.....W.......W.......W.......W....BBBB..BB..BBB..BB..BBBBBBBB", "BBBBBBBBBBB~~BB~~BB~~BBB~~BB~~BBBB~~BBB~~~~~W~~~~~~~W~~~~~~~W~~~~~~~W~~~~BBBB~~BB~~BBB~~BB~~BBBBBBBB", "BBBBBBBBBBB~~BB~~BB~~BBB~~BB~~BBBB~~BBB~~~~~W~~~~~~~W~~~~~~~W~~~~~~~W~~~~BBBB~~BB~~BBB~~BB~~BBBBBBBB"], "fact": "Dudhsagar means 'sea of milk'. The falls drop about 310 m on the Mandovi river, and a railway bridge crosses in front of them.", "theme": "falls"}];
+const LEVELS = [{"name": "Mayem Lake", "place": "Bicholim", "map": ["....................................................................................", "....................................................................................", "....................................................................................", "....................................w..............................x.m.T............", "...............................oo.................................##H####...........", "..............................----........b.b.............w.........H...............", "...........................kk.........HRRRRRRRRR....................H...............", "................k....m....----....k...H.#.....#.....................H.......k.......", "....................###...............H.#.....#..........x...x......H...............", "..P..k.k.k..c.......###.f..c..........H.#.....#..L.c.m..............H.....^^..G..D..", "===============~~~===============~~~===================~~#~~~#~~====================", "===============~~~===============~~~===================~~#~~~#~~===================="], "fact": "Mayem Lake is a freshwater lake near Bicholim, ringed by green hills and paddy fields.", "theme": "village"}, {"name": "Fort Aguada", "place": "Candolim", "map": ["...................................................................................v............", "................................................................................................", "........................v........................................................xT.x...........", "...............................................................................HWWWWW...........", "......................x.b.x...........................................w........HWWWWW...........", ".....................HWWWWW...........w................w..........k...k........HWWWWW...........", ".....................HWWWWW...................................HWWWWWWWWWWW.....HWWWWW...........", ".....................HWWWWW.....o...................k...k...k.H..........W.....HWWWWW...........", "..............k.kc...HWWWWW.............ff..m..L....--..--..-.HG.xx1.xb..W.....HWWWWW...c.m..D..", "..P.k.S..c..WWWWWWWWWWWWWWWWWWW...WWWWWWWWWWWWWWWWW..........WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", "============WWWWWWWWWWWWWWWWWWW~~~WWWWWWWWWWWWWWWWW~~~~~~~~~~WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW", "============WWWWWWWWWWWWWWWWWWW~~~WWWWWWWWWWWWWWWWW~~~~~~~~~~WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"], "fact": "Fort Aguada was built by the Portuguese in 1612. Its lighthouse, from 1864, is one of the oldest in Asia.", "theme": "fort"}, {"name": "Dudhsagar Falls", "place": "Sanguem", "map": ["........................................................v...........................................", "..................................................w.....1.......w..............xTx..................", "..............................................................................BBBBB.................", "..........................................k...J.b.....k...x...k...m...x.............................", "......................................HWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW...........................", "......................................H.....W.......W.......W.......W...............................", ".................oo...k...............H.....W.......W.......W.......W...............m...............", ".............m...BB...y...............H.....W.......W.......W.......W.....Lk........y...............", "..P..k..k....BB..BB..BBB..x....ky...L.H.....W.......W.......W.......W....BBBB......BBB......b.G..D..", "BBBBBBBBBBB..BB..BB..BBB..BB..BBBB..BBB.....W.......W.......W.......W....BBBB..BB..BBB..BB..BBBBBBBB", "BBBBBBBBBBB~~BB~~BB~~BBB~~BB~~BBBB~~BBB~~~~~W~~~~~~~W~~~~~~~W~~~~~~~W~~~~BBBB~~BB~~BBB~~BB~~BBBBBBBB", "BBBBBBBBBBB~~BB~~BB~~BBB~~BB~~BBBB~~BBB~~~~~W~~~~~~~W~~~~~~~W~~~~~~~W~~~~BBBB~~BB~~BBB~~BB~~BBBBBBBB"], "fact": "Dudhsagar means 'sea of milk'. The falls drop about 310 m on the Mandovi river, and a railway bridge crosses in front of them.", "theme": "falls"}, {"name": "Lamgao Caves", "place": "Bicholim", "map": ["BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "...Y......Y......Y......Y......Y......Y......YYYYYYYY......Y......Y......Y......Y......Y........", "..................................v.....................v.................v.....................", "..1xZ.......................................b.......b...........................................", ".HBBB......................kk..............HBBBBBBBBBH.........a.............x.T.x..............", ".H................a.......----.......m.m...HBBBBBBBBBH...........b.........HBBBBBBB.............", ".H...................p.p...........------.aHBB.x1x.BBH..........BBB........H....................", ".H.............o...HBBBBB..................HBB.....BBH.....x....BBB....x...H....................", ".H.................HBBBBB..................HBBzxxxZBBH....BBB...BBB...BBB..H....................", ".H.P..k.k..c.......HBBBBB..................HBBBBBBBBBH.zL.BBB...BBB...BBB..H....c..k.^^..G..D...", "BBBBBBBBBBBBBB~~~BBBBBBBBBBBBB~B~~BBBBBBBBBBBBBBBBBBBBBBBBBBB~~~BBB~~~BBBBBBBBBBBBBBBBBBBBBBBBBB", "BBBBBBBBBBBBBB~~~BBBBBBBBBBBBB~B~~BBBBBBBBBBBBBBBBBBBBBBBBBBB~~~BBB~~~BBBBBBBBBBBBBBBBBBBBBBBBBB"], "fact": "The Lamgao caves near Bicholim are rock-cut caves carved out of laterite more than a thousand years ago.", "theme": "cave"}, {"name": "Fontainhas", "place": "Panjim", "map": ["....................................................................................................", "....................................................................................................", "..................o.yx..............................................................................", "..........k....RRRRRRRRR...................p.y.x........................T.yx........................", "........p.w...H.CCCCCCC.....b.w........HRRRRRRRRRRR.........m.wp....HRRRRRRRRR.........bw.x.........", "....HRRRRRRRRRH.CCCCCCC..RRRRRRRR......H.CCCCCCCCC......HRRRRRRRRR..H.CCCCCCC......HRRRRRRRRR.......", "....H.CCCCCCC.H.CCCCCCC...CCCCCC.k.....H.CCCCCCCCC......H.CCCCCCC...H.CCCCCCC......H.CCCCCCC........", "....H.CCCCCCC-H.CCCCCCC.-.CCCCCC.--..m.H.CCCCCCCCC......H.CCCCCCC.--H.CCCCCCC....k.H.CCCCCCC........", "....H.CCCCCCC.H.CCCCCCC...CCCCCC.......H.CCCCCCCCC....k.H.CCCCCCC...H.CCCCCCC......H.CCCCCCC........", "..PkH.CCCCCCC.H.CCCCCCC...CCCCCC....^^.H.CCCCCCCCC.Lc...H.CCCCCCC...H.CCCCCCC...^^.H.CCCCCCC..Gm.D..", "#####################################################~~~############################################", "#####################################################~~~############################################"], "fact": "Fontainhas is Panjim's old Latin Quarter, famous for brightly painted houses with tiled roofs and wooden balconies called balc\u00f5es.", "theme": "city"}, {"name": "Palolem Beach", "place": "Canacona", "map": [".......................................................................................xxzx1............", "......................................................................................-------...........", "..........................................w..xZ.....................w.....................v.............", "......................w.....................----...................................x....T....x..........", ".......................................mb.........................p..b..........----------------........", "....................p..m..............----.........x...........RRRRRRRRRH.........................m.....", "................HRRRRRRRRR.......kk.............H#####..........CCCCCCC.H........................---....", ".............o..H.CCCCCCC...k...----............H#####.....k....CCCCCCC.H..o............................", ".....J..........H.CCCCCCC.......................H#####..........CCCCCCC.H...............................", "..P.AAA..ck.....H.CCCCCCC............c..........H#####..c.....L.CCCCCCC.H.....c.....ff.............G.D..", "AAAAAAAAAAAA~~~AAAAAAAAAAAA~~~AAAAAAAAAAAAAAAAAAAAAAAAAAAA~~~AAAAAAAAAAAAA~~~AAAAAAAAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAA~~~AAAAAAAAAAAA~~~AAAAAAAAAAAAAAAAAAAAAAAAAAAA~~~AAAAAAAAAAAAA~~~AAAAAAAAAAAAAAAAAAAAAAAAAAA"], "fact": "Palolem in Canacona is a crescent-shaped beach lined with coconut palms, where fishing canoes still set out at dawn.", "theme": "beach"}, {"name": "Old Goa", "place": "Tiswadi", "map": ["....................................................................................................", "..............................................T.....................................................", "...........................................HWWWWW......v............................................", ".........................v.................HWWWWW..............a................v...................", ".............x.Z.x.........................HWWWWW..........xp...................xb..................", "..........HWWWWWWWWW.......................HWWWWW........HWWWW.................----.................", "..........H.W..a..W.....oo.........mp......HW...W....b...HWWWW....m..........kk.....................", "..........H.W.....W....----....k..----.....HW.x.W...WWW..HWWWW...WWW...k....----....................", "..........H.W.....W........................HWz.ZW...WWW..HWWWW...WWW.c..................^...........", "..P..k.k..H.W.....W...................L..c.HWWWWW.z.WWW..HWWWW...WWW......L.............^.c.m.G..D..", "##############################~~~#####################################~~~###########################", "##############################~~~#####################################~~~###########################"], "fact": "Old Goa was once the capital of Portuguese Goa. Its churches and convents are a UNESCO World Heritage Site, and the Viceroy's Arch still stands by the Mandovi.", "theme": "night"}, {"name": "Chor\u00e3o Island", "place": "Tiswadi", "map": ["........................................................................................................", "..................................................................w.....................................", ".............................................................x.T.x......................................", "....Zx.1...................................w...............H-------.................w...................", "....--H--...............w..................................H............................................", "......H....................................................H............................................", "......H....................................................H............................................", "......H..........o....k..k.m.............p.k.........x.....H....k..m.............k.p....................", "......H..............--------...k.......-----.......---....H...------...........------..................", "..Pk..H.....c...................c....L..........bc.........H...........o....Lc..........xzx....c.G.mD...", "=========~~===~~====~~~~~~~~~~~===~~===~~~~~~~~====~~~~~~=====~~~~~~~~===~~====~~~~~~~~~===~~===========", "=========~~===~~====~~~~~~~~~~~===~~===~~~~~~~~====~~~~~~=====~~~~~~~~===~~====~~~~~~~~~===~~==========="], "fact": "Chor\u00e3o Island in the Mandovi is home to the Salim Ali Bird Sanctuary, a maze of mangroves you reach by the Ribandar ferry.", "theme": "mangrove"}, {"name": "Mapusa Market", "place": "Bardez", "map": ["................................................................x...................................", ".............................................................RRRRR..................................", "............................................................H.......................................", "...................................w........................H.T.y...............w...................", "...................b.y.p..............xm.y.................HH------.................x.by............", ".......m.y........-------............-------.......p.y.b...H...........m.y.k.......-------..........", ".....-------.................o.o..................-------..H..........-------.......................", "........k...................------....#####................H........................................", "......#####........#####.....####.....#####........#####...H.#####.....#####........#####...........", "..Pk..#####.....k..#####..f..####.....#####..k..L..#####...H.#####..f..#####........#####.k.f..G.D..", "==============~~==============================~~==============================~~====================", "==============~~==============================~~==============================~~===================="], "fact": "Every Friday, farmers and traders from across Goa fill the Mapusa market with fruit, spices, pottery and local sweets.", "theme": "market"}, {"name": "Narkasur Night", "place": "Panjim", "map": ["..................................................", "..................................................", "..................................................", "..................................................", ".............................xb...................", "............................----..................", ".........................pm.......................", "........................----......................", "..................................................", "..Pi..S.i.k.i.k.i.oL.i......i......i..N.....i..D..", "##################################################", "##################################################"], "fact": "On Diwali eve, Goans build giant Narkasur effigies and burn them at dawn to celebrate the victory of good over evil.", "theme": "diwali"}];
 
 </script>
 <script>
@@ -310,8 +334,17 @@ const ART = (() => {
   const THEMES = {
     village: {water: ["#2f86a8", "#4aa5c4", "#bfe6ef"], wall: ["#a14a2c", "#7d3420", "#c2643c"], ground: "#8a3e24"},
     fort:    {water: ["#1f5f9e", "#2f7cc0", "#cfe8ff"], wall: ["#a3502f", "#76341d", "#c86b40"], ground: "#8a3e24"},
-    falls:   {water: ["#3f8fb0", "#7cc2d8", "#f2fbff"], wall: ["#777d86", "#545961", "#9aa0a8"], ground: "#5a4a3a"}
+    falls:   {water: ["#3f8fb0", "#7cc2d8", "#f2fbff"], wall: ["#777d86", "#545961", "#9aa0a8"], ground: "#5a4a3a"},
+    cave:    {water: ["#123a4a", "#1f5f6e", "#7fd0d8"], wall: ["#6a4a34", "#46301f", "#8a6448"], ground: "#4a3424"},
+    city:    {water: ["#2d5f78", "#3f7f98", "#b9dde8"], wall: ["#a14a2c", "#7d3420", "#c2643c"], ground: "#8a3e24"},
+    beach:   {water: ["#1f8fb0", "#3fb5cc", "#e8fbff"], wall: ["#a14a2c", "#7d3420", "#c2643c"], ground: "#d8b878"},
+    night:   {water: ["#0e2240", "#1a3a60", "#6a90c0"], wall: ["#6e3a2a", "#47241a", "#8a4e38"], ground: "#5a2e1e"},
+    mangrove:{water: ["#3a5a3a", "#557a48", "#a8c890"], wall: ["#6a4a34", "#46301f", "#8a6448"], ground: "#4a3424"},
+    market:  {water: ["#3a4a42", "#56665a", "#a0b0a0"], wall: ["#a14a2c", "#7d3420", "#c2643c"], ground: "#8a7a6a"},
+    diwali:  {water: ["#1a1840", "#2a2860", "#8a80d0"], wall: ["#6e3a2a", "#47241a", "#8a4e38"], ground: "#5a2e1e"}
   };
+  const CANOPY = [["#d8302a", "#f4ecd8"], ["#2a7ab8", "#f4ecd8"], ["#e8a020", "#7a2a10"], ["#3a9a4a", "#f4ecd8"], ["#c03a8a", "#ffd23a"]];
+  const HOUSE_COLS = [["#f2c94c", "#d9a92a"], ["#3f8fc8", "#2a6aa0"], ["#7cc08a", "#58a06a"], ["#e8875a", "#c8653a"], ["#c97fd0", "#a35aaa"], ["#e9e2cf", "#cfc6ae"]];
   function laterite(g, ox, oy, base, dark, light){
     rect(g, ox, oy, 16, 16, base);
     rect(g, ox, oy, 16, 1, light); rect(g, ox, oy, 1, 16, light);
@@ -321,7 +354,38 @@ const ART = (() => {
   }
   function drawTile(g, c, ox, oy, theme, above){
     const th = THEMES[theme];
-    if (c === "#") laterite(g, ox, oy, "#a5482b", "#74301b", "#c9693f");
+    if (c === "#" && (theme === "night" || theme === "diwali")){
+      laterite(g, ox, oy, "#7a3624", "#4e2014", "#9a4c32");
+      if (!"#=WBRCA".includes(above) && theme === "diwali"){ rect(g, ox, oy, 16, 3, "#8a8478"); rect(g, ox, oy, 16, 1, "#b0aa9c"); for (let x = 0; x < 16; x += 8) rect(g, ox + x, oy, 1, 3, "#5a564e"); } // Panjim pavement
+      else if (!"#=WBRCA".includes(above)){ rect(g, ox, oy, 16, 2, "#2f5a2a"); for (let x = 0; x < 16; x++) if (rnd() < .4) px(g, ox + x, oy + 2, "#24461f"); }
+    }
+    else if (c === "#" && theme === "market"){ // wooden produce crates
+      rect(g, ox, oy, 16, 16, "#a87a40"); rect(g, ox, oy, 16, 1, "#d0a060"); rect(g, ox, oy + 15, 16, 1, "#5e3a1a"); rect(g, ox + 15, oy, 1, 16, "#6a4420");
+      for (const y of [4, 9]) rect(g, ox + 1, oy + y, 14, 1, "#7a5228"); rect(g, ox + 1, oy + 1, 1, 14, "#7a5228");
+      if (!"#=WBRCA-".includes(above)){ const fr = [["#e8402a", "#a82a1a"], ["#f2c94c", "#c89a20"], ["#6cc451", "#3a8a2a"], ["#e8875a", "#b05a2a"], ["#7a3a8a", "#4a1a5a"]][(ox/16 + oy/16) % 5 | 0];
+        for (let i = 0; i < 5; i++){ disc(g, ox + 2 + i*3, oy + 1, 2, fr[1]); disc(g, ox + 2 + i*3, oy, 1, fr[0]); } }
+    }
+    else if (c === "-" && theme === "market"){ // striped stall canopy
+      const [a, b] = CANOPY[Math.floor(ox/16/6) % CANOPY.length];
+      for (let x = 0; x < 16; x += 4){ rect(g, ox + x, oy, 2, 5, a); rect(g, ox + x + 2, oy, 2, 5, b); }
+      rect(g, ox, oy, 16, 1, "#00000033"); for (let x = 1; x < 16; x += 4) rect(g, ox + x, oy + 5, 2, 2, a);
+    }
+    else if (c === "=" && theme === "mangrove"){ // tidal mud bank with mangrove roots
+      rect(g, ox, oy, 16, 16, "#4a3a2a"); for (let i = 0; i < 10; i++) px(g, ox + Math.floor(rnd()*16), oy + 3 + Math.floor(rnd()*13), rnd() < .5 ? "#3a2c1e" : "#5e4a36");
+      if (!"#=WBRCA".includes(above)){ rect(g, ox, oy, 16, 2, "#6a5a3a"); rect(g, ox, oy, 16, 1, "#8a7a52");
+        for (let i = 0; i < 3; i++){ const x = ox + 2 + i*5; rect(g, x, oy - 3 + (i % 2), 1, 4, "#7a5a3a"); px(g, x - 1, oy - 1, "#7a5a3a"); px(g, x + 1, oy - 2 + (i % 2), "#7a5a3a"); } }
+    }
+    else if (c === "=" && theme === "market"){ // Mapusa market paving
+      rect(g, ox, oy, 16, 16, "#7a6a5a"); for (let y = 0; y < 16; y += 5){ rect(g, ox, oy + y, 16, 1, "#5a4c40"); rect(g, ox + ((y/5) % 2 ? 4 : 11), oy + y, 1, 5, "#5a4c40"); }
+      for (let i = 0; i < 5; i++) px(g, ox + Math.floor(rnd()*16), oy + Math.floor(rnd()*16), "#94846e");
+      if (!"#=WBRCA".includes(above)){ rect(g, ox, oy, 16, 1, "#a8987e"); if (rnd() < .3) px(g, ox + 6, oy - 1, "#6cc451"); }
+    }
+    else if (c === "W" && theme === "night"){ // ruined laterite masonry under moonlight
+      rect(g, ox, oy, 16, 16, "#6e3a2a"); for (let r = 0; r < 4; r++){ rect(g, ox, oy + r*4 + 3, 16, 1, "#47241a"); rect(g, ox + (r % 2 ? 3 : 10), oy + r*4, 1, 3, "#47241a"); }
+      rect(g, ox, oy, 16, 1, "#9a6a5a"); for (let i = 0; i < 4; i++) px(g, ox + Math.floor(rnd()*16), oy + Math.floor(rnd()*16), rnd() < .5 ? "#3a6a3a" : "#8a4e38");
+      if (!"#=WBRCA".includes(above)) for (let x = 0; x < 16; x += 3) rect(g, ox + x, oy - 1, 2, 2, "#3a6a3a");
+    }
+    else if (c === "#") laterite(g, ox, oy, "#a5482b", "#74301b", "#c9693f");
     else if (c === "=" ){
       laterite(g, ox, oy, theme === "falls" ? "#6b4e35" : "#93412a", theme === "falls" ? "#4a3523" : "#6a2c19", theme === "falls" ? "#86664a" : "#b2583a");
       if (!"#=WBR".includes(above)){
@@ -334,6 +398,21 @@ const ART = (() => {
         rect(g, ox, y, 16, 1, l); }
       rect(g, ox + 8, oy + 8, 1, 7, d);
       for (let i = 0; i < 6; i++) px(g, ox + 1 + Math.floor(rnd()*14), oy + 1 + Math.floor(rnd()*14), d);
+    } else if (c === "B" && theme === "cave"){
+      rect(g, ox, oy, 16, 16, "#5a3f2c"); rect(g, ox, oy, 16, 1, "#7a5a40"); rect(g, ox, oy + 15, 16, 1, "#3a2818");
+      for (let i = 0; i < 8; i++){ const x = ox + 1 + Math.floor(rnd()*14), y = oy + 1 + Math.floor(rnd()*14); px(g, x, y, "#3e2a1b"); if (rnd() < .4) px(g, x + 1, y, "#3e2a1b"); }
+      for (let i = 0; i < 3; i++) px(g, ox + Math.floor(rnd()*16), oy + Math.floor(rnd()*16), "#8a6a4c");
+    } else if (c === "C"){ // Fontainhas painted wall: lime-wash colours with white trim
+      const [w, d] = HOUSE_COLS[Math.floor(ox/16/7) % HOUSE_COLS.length];
+      rect(g, ox, oy, 16, 16, w); rect(g, ox, oy + 15, 16, 1, d);
+      if ((ox/16) % 3 === 1){ rect(g, ox + 3, oy + 3, 10, 10, "#f6f1e4"); rect(g, ox + 4, oy + 4, 8, 8, "#2a5a7a"); rect(g, ox + 8, oy + 4, 1, 8, "#f6f1e4"); rect(g, ox + 4, oy + 8, 8, 1, "#f6f1e4"); }
+      else for (let i = 0; i < 3; i++) px(g, ox + Math.floor(rnd()*16), oy + Math.floor(rnd()*16), d);
+      if (above === "R" || above === ".") rect(g, ox, oy, 16, 2, "#f6f1e4");
+    } else if (c === "A"){ // sand
+      rect(g, ox, oy, 16, 16, "#e2c88a"); for (let i = 0; i < 12; i++) px(g, ox + Math.floor(rnd()*16), oy + Math.floor(rnd()*16), rnd() < .5 ? "#cbb070" : "#f2dca6");
+      if (!"#=WBRCA".includes(above)){ rect(g, ox, oy, 16, 1, "#f6e6b8"); if (rnd() < .3) { px(g, ox + 4, oy + 2, "#f6efe2"); px(g, ox + 5, oy + 2, "#e8a0a0"); } }
+    } else if (c === "Y"){ // stalactites
+      for (let i = 0; i < 3; i++){ const x = ox + 2 + i*5, h = 9 + (i % 2)*3; tri(g, x - 2, oy, x + 3, oy, x + .5, oy + h, "#6a4a34"); tri(g, x - 1, oy, x + 1, oy, x, oy + h - 2, "#8a6a4c"); }
     } else if (c === "B"){
       rect(g, ox, oy, 16, 16, "#4b505d"); rect(g, ox, oy, 16, 1, "#6f7584"); rect(g, ox, oy + 15, 16, 1, "#343844");
       for (let i = 0; i < 3; i++){ let x = ox + 2 + Math.floor(rnd()*12), y = oy + 2 + Math.floor(rnd()*6); for (let k = 0; k < 5; k++){ px(g, x, y, "#30343e"); x += rnd() < .5 ? 1 : -1; y++; } }
@@ -349,6 +428,10 @@ const ART = (() => {
     } else if (c === "H"){ // bamboo ladder
       for (const x of [3, 12]){ rect(g, ox + x, oy, 2, 16, "#c9a24a"); rect(g, ox + x, oy, 1, 16, "#e3c46e"); rect(g, ox + x, oy + 7, 2, 1, "#8f6d24"); }
       for (const y of [3, 11]){ rect(g, ox + 4, oy + y, 9, 2, "#b38b38"); rect(g, ox + 4, oy + y, 9, 1, "#d8b45c"); }
+    } else if (c === "^" && theme === "city"){ // bougainvillea with thorns
+      rect(g, ox, oy + 9, 16, 7, "#2f5a22");
+      for (let i = 0; i < 5; i++){ const x = ox + 1 + i*3; tri(g, x, oy + 9, x + 3, oy + 9, x + 1.5, oy + 3 + (i % 2)*2, "#d9d0b0"); }
+      for (let i = 0; i < 9; i++) disc(g, ox + 1 + Math.floor(rnd()*14), oy + 9 + Math.floor(rnd()*5), 1, rnd() < .7 ? "#e0388a" : "#ff6ab0");
     } else if (c === "^"){ // thorny bushes
       rect(g, ox, oy + 10, 16, 6, "#3b5a22");
       for (let i = 0; i < 5; i++){ const x = ox + 1 + i*3; tri(g, x, oy + 10, x + 3, oy + 10, x + 1.5, oy + 3 + (i % 2)*2, "#cfc7a0"); px(g, x + 1, oy + 4 + (i % 2)*2, "#ffffff"); }
@@ -424,8 +507,9 @@ const ART = (() => {
     tri(g, x - 3, base - h, x + w + 3, base - h, x + w/2, base - h - 9, "#b8482a");
     for (let y = 0; y < 8; y += 2) rect(g, x - 2 + y*.9, base - h - 1 - y, w + 4 - y*1.8, 1, "#d9693e");
   }
+  function g2a(g, x, y, w, c){ g.fillStyle = c; g.fillRect(Math.round(x), y, Math.round(w), 1); }
   function backgrounds(theme){
-    seed = theme === "village" ? 11 : theme === "fort" ? 23 : 37;
+    seed = {village: 11, fort: 23, falls: 37, cave: 41, city: 53, beach: 67, night: 71, mangrove: 79, market: 83, diwali: 89}[theme] || 5;
     const W = 480, H = 192, L = [];
     const [far, gf] = mk(W, H), [mid, gm] = mk(W, H), [near, gn] = mk(W, H);
     if (theme === "village"){
@@ -452,6 +536,95 @@ const ART = (() => {
       for (let i = 0; i < 4; i++){ const bx = 240 + i*60 + rnd()*20, by = 140 + rnd()*20; tri(gm, bx, by, bx + 18, by, bx + 14, by + 4, "#5a2f1c"); rect(gm, bx + 8, by - 10, 1, 10, "#3a2010"); tri(gm, bx + 9, by - 10, bx + 9, by - 2, bx + 15, by - 3, "#f2efe6"); }
       for (let i = 0; i < 6; i++){ const x = 120 + rnd()*340, y = 30 + rnd()*40; rect(gm, x, y, 2, 1, "#2a1e2e"); rect(gm, x + 3, y, 2, 1, "#2a1e2e"); px(gm, x + 2, y + 1, "#2a1e2e"); }
       for (let x = 0; x < W; x++){ const y = 170 + Math.sin(x/15)*3; rect(gn, x, y, 1, H - y, "#c8a46a"); } // sand
+    } else if (theme === "cave"){
+      sky(gf, W, H, ["#120c0a", "#1e1410", "#2a1c14"]);
+      for (let x = 0; x < W; x++){ const y = 40 + Math.sin(x/23)*12 + Math.sin(x/7)*4; rect(gf, x, 0, 1, y, "#0c0806"); const b = 150 + Math.sin(x/19)*10; rect(gf, x, b, 1, H - b, "#0c0806"); }
+      for (let i = 0; i < 3; i++){ const cx = 80 + i*160; disc(gm, cx, 110, 26, "#3a2a1e"); rect(gm, cx - 26, 110, 52, 60, "#3a2a1e"); disc(gm, cx, 110, 20, "#000000"); rect(gm, cx - 20, 110, 40, 60, "#000000");   // rock-cut cave openings
+        rect(gm, cx - 30, 104, 60, 3, "#4e3a28"); for (let k = -1; k <= 1; k += 2) rect(gm, cx + k*28 - 2, 104, 4, 66, "#4e3a28"); }
+      for (let i = 0; i < 70; i++){ const x = rnd()*W, y = 20 + rnd()*120; px(gf, x, y, rnd() < .5 ? "#7fe0c8" : "#c8ffe8"); }        // glow-worms
+      for (let i = 0; i < 4; i++){ const x = 30 + i*120 + rnd()*40; for (let y = 0; y < 150; y++){ const w = 4 + y*.18; g2a(gn, x - w/2, y, w, "rgba(255,230,170,0.05)"); } } // light shafts
+      for (let x = 0; x < W; x += 9){ const h = 8 + rnd()*22; tri(gn, x, 0, x + 8, 0, x + 4, h, "#1a110c"); }
+    } else if (theme === "city"){
+      sky(gf, W, H, ["#2b3f7a", "#6a5aa0", "#e88a6a", "#ffcf8a"]);
+      // Altinho hill with the white church and its zig-zag stairway
+      for (let x = 0; x < W; x++){ const y = 92 + Math.abs(x - 300)*.18 + Math.sin(x/16)*3; rect(gf, x, y, 1, H - y, "#3a4a3a"); }
+      rect(gf, 288, 52, 24, 34, "#f6f1e4"); tri(gf, 286, 52, 314, 52, 300, 40, "#f6f1e4"); rect(gf, 284, 46, 6, 40, "#f6f1e4"); rect(gf, 310, 46, 6, 40, "#f6f1e4");
+      rect(gf, 285, 42, 4, 4, "#f6f1e4"); rect(gf, 311, 42, 4, 4, "#f6f1e4"); rect(gf, 297, 62, 6, 12, "#3a4a6a");
+      for (let k = 0; k < 4; k++){ const y = 86 + k*6; rect(gf, k % 2 ? 292 : 300, y, 10, 2, "#f6f1e4"); }
+      // Fontainhas houses, tiled roofs and balconies
+      const cols = HOUSE_COLS;
+      for (let i = 0; i < 9; i++){ const x = i*54 + rnd()*10, w = 40 + rnd()*10, h = 34 + rnd()*14, [cw, cd] = cols[i % cols.length], base = 168;
+        rect(gm, x, base - h, w, h, cw); rect(gm, x, base - h, w, 2, "#f6f1e4"); rect(gm, x, base - 4, w, 4, cd);
+        tri(gm, x - 3, base - h, x + w + 3, base - h, x + w/2, base - h - 10, "#b8482a");
+        for (let k = 0; k < Math.floor(w/11); k++){ const wx = x + 4 + k*11; rect(gm, wx - 1, base - h + 6, 8, 11, "#f6f1e4"); rect(gm, wx, base - h + 7, 6, 9, "#2a5a7a"); rect(gm, wx - 2, base - h + 17, 10, 2, "#5e3a1a"); }
+        rect(gm, x + w/2 - 3, base - 12, 7, 12, "#5a3a1c"); }
+      for (let i = 0; i < 6; i++){ const x = 30 + i*80; rect(gn, x, 120, 2, 72, "#1e2228"); rect(gn, x - 3, 112, 8, 8, "#1e2228"); rect(gn, x - 2, 113, 6, 6, "#ffe27a"); }
+    } else if (theme === "beach"){
+      sky(gf, W, H, ["#5aa8e0", "#9ad0ee", "#ffe2b8", "#ffc890"]);
+      for (let i = 0; i < 3; i++) cloud(gf, 60 + i*150 + rnd()*30, 30 + rnd()*20, 1);
+      for (let x = 0; x < W; x++){ const y = 104 + Math.sin(x/40)*8 + (x < 120 ? (120 - x)*.25 : 0); rect(gf, x, y, 1, 30, "#3f7a52"); }  // Canacona hills
+      rect(gf, 0, 120, W, 72, "#1f8fb0"); for (let i = 0; i < 70; i++) rect(gf, rnd()*W, 124 + rnd()*40, 3 + rnd()*8, 1, rnd() < .3 ? "#ffffff" : "#5fc0d8");
+      for (let x = 0; x < W; x++){ const y = 158 + Math.sin(x/30)*4; rect(gm, x, y, 1, H - y, "#e8d098"); rect(gm, x, y, 1, 2, "#ffffff"); }
+      for (let i = 0; i < 5; i++){ const bx = 30 + i*95 + rnd()*20, by = 166 + rnd()*10; // fishing canoes on the sand
+        tri(gm, bx, by, bx + 26, by, bx + 22, by + 5, "#2f6a9a"); rect(gm, bx + 3, by - 1, 20, 1, "#f2c94c"); rect(gm, bx + 10, by - 12, 1, 12, "#5a3a1c"); }
+      for (let i = 0; i < 4; i++){ const x = 70 + i*120; rect(gm, x, 140, 30, 18, "#c8a46a"); tri(gm, x - 4, 140, x + 34, 140, x + 15, 128, "#8a6a3a"); rect(gm, x + 12, 148, 6, 10, "#5a3a1c"); }   // beach shacks
+      for (let i = 0; i < 7; i++) palm(gn, 20 + i*70 + rnd()*20, 192, 60 + rnd()*30, "#6a4a28", "#2a7030", "#3a9040");
+    } else if (theme === "night"){ // Old Goa under the moon: Bom Jesus & Se Cathedral silhouettes
+      sky(gf, W, H, ["#05061a", "#0c1030", "#1a1a48", "#2a2458"]);
+      for (let i = 0; i < 120; i++) px(gf, rnd()*W, rnd()*120, rnd() < .2 ? "#ffffff" : rnd() < .5 ? "#a8b0e0" : "#5a6098");
+      disc(gf, 96, 40, 13, "#f4ecd0"); disc(gf, 92, 37, 3, "#d8d0b0"); disc(gf, 101, 45, 2, "#d8d0b0"); disc(gf, 100, 34, 1, "#d8d0b0");
+      for (let x = 0; x < W; x++){ const y = 132 + Math.sin(x/31)*5; rect(gf, x, y, 1, H - y, "#141634"); }
+      const S1 = "#1c1a3a";
+      // Basilica of Bom Jesus: tiered facade
+      rect(gm, 200, 86, 56, 62, S1); rect(gm, 208, 72, 40, 14, S1); rect(gm, 216, 60, 24, 12, S1); tri(gm, 214, 60, 242, 60, 228, 48, S1); rect(gm, 227, 42, 2, 8, S1); rect(gm, 224, 44, 8, 2, S1);
+      for (let k = 0; k < 4; k++){ rect(gm, 206 + k*12, 98, 5, 9, "#e8a84a"); } rect(gm, 222, 120, 12, 28, "#3a2a20");
+      // Se Cathedral: one tall tower
+      rect(gm, 330, 92, 70, 56, S1); rect(gm, 330, 62, 20, 30, S1); tri(gm, 328, 62, 352, 62, 340, 52, S1); tri(gm, 350, 92, 400, 92, 375, 78, S1);
+      for (let k = 0; k < 3; k++) rect(gm, 356 + k*14, 104, 6, 10, "#c88a3a");
+      rect(gm, 0, 146, W, H - 146, "#0e1028");
+      for (let i = 0; i < 7; i++) palm(gm, 20 + i*70 + rnd()*20, 148, 40 + rnd()*20, "#0a0a1e", "#0e1a2a", "#0e1a2a");
+      for (let i = 0; i < 40; i++) px(gn, rnd()*W, 60 + rnd()*100, rnd() < .5 ? "#d8ff7a" : "#a8ff5a"); // fireflies
+    } else if (theme === "mangrove"){ // the Mandovi at Chorão, egrets and the ferry route
+      sky(gf, W, H, ["#f0a870", "#f4c890", "#d8e0c0", "#a8d0c8"]);
+      disc(gf, 380, 70, 14, "#ffe8b0"); disc(gf, 380, 70, 11, "#fff4d8");
+      for (let x = 0; x < W; x++){ const y = 104 + Math.sin(x/45)*6; rect(gf, x, y, 1, 16, "#5a7a8a"); } // far Panjim shore
+      rect(gf, 0, 118, W, H - 118, "#6a9aa0"); for (let i = 0; i < 70; i++) rect(gf, rnd()*W, 120 + rnd()*30, 3 + rnd()*8, 1, rnd() < .4 ? "#ffe8b0" : "#8ab8b8");
+      for (let x = 0; x < W; x++){ const y = 132 + Math.sin(x/9)*3 + Math.sin(x/23)*4; rect(gm, x, y, 1, H - y, "#2f5a32"); if (x % 3 === 0) px(gm, x, y, "#4a7a3e"); } // mangrove canopy
+      for (let i = 0; i < 160; i++) disc(gm, rnd()*W, 130 + rnd()*20, 2 + Math.floor(rnd()*3), rnd() < .5 ? "#3a6a3a" : "#24482a");
+      for (let x = 2; x < W; x += 6 + Math.floor(rnd()*6)){ const top = 150 + rnd()*6; for (let k = -1; k <= 1; k++){ const bx = x + k*3; rect(gm, bx, top, 1, 30, "#4a3a2a"); px(gm, bx + (k > 0 ? 1 : -1), top + 20, "#4a3a2a"); } } // stilt roots
+      rect(gm, 0, 176, W, 16, "#3a5a3a");
+      for (let i = 0; i < 8; i++){ const x = rnd()*W, y = 40 + rnd()*50; rect(gf, x, y, 3, 1, "#ffffff"); px(gf, x - 1, y - 1, "#ffffff"); px(gf, x + 3, y - 1, "#ffffff"); } // egrets in flight
+      for (let i = 0; i < 6; i++){ const x = 20 + rnd()*440, y = 128 + rnd()*10; rect(gm, x, y, 2, 4, "#ffffff"); px(gm, x + 2, y - 1, "#ffffff"); px(gm, x + 3, y - 1, "#e8b030"); } // egrets on the canopy
+    } else if (theme === "market"){ // Mapusa Friday market: shop-houses, umbrellas, the crowd
+      sky(gf, W, H, ["#8ac8f0", "#b8def0", "#f0e8d0"]);
+      for (let i = 0; i < 3; i++) cloud(gf, 50 + i*160 + rnd()*30, 26 + rnd()*20, 1);
+      for (let i = 0; i < 8; i++){ const x = i*62 + rnd()*10, w = 50 + rnd()*10, h = 50 + rnd()*30, [cw, cd] = HOUSE_COLS[(i + 2) % HOUSE_COLS.length];
+        rect(gf, x, 150 - h, w, h, cw); rect(gf, x, 150 - h, w, 3, "#f6f1e4"); for (let k = 0; k < 3; k++) rect(gf, x + 6 + k*15, 150 - h + 10, 8, 10, "#3a5a7a");
+        rect(gf, x + 4, 150 - h + 28, w - 8, 6, ["#d8302a", "#2a7ab8", "#3a9a4a"][i % 3]); rect(gf, x + 8, 150 - h + 30, w - 16, 2, "#f4ecd8"); } // shop signboards
+      rect(gm, 0, 150, W, H - 150, "#8a7a6a");
+      for (let i = 0; i < 9; i++){ const x = 10 + i*54 + rnd()*14, col = ["#d8302a", "#2a7ab8", "#e8a020", "#3a9a4a", "#c03a8a"][i % 5];
+        rect(gm, x + 13, 130, 1, 26, "#3a2a1a"); tri(gm, x, 132, x + 27, 132, x + 13.5, 120, col); rect(gm, x, 132, 27, 1, "#00000044");
+        rect(gm, x + 3, 146, 21, 8, "#a87a40"); for (let k = 0; k < 6; k++) disc(gm, x + 5 + k*3.5, 145, 2, ["#e8402a", "#f2c94c", "#6cc451", "#e8875a"][(k + i) % 4]); }
+      for (let i = 0; i < 26; i++){ const x = rnd()*W, c1 = ["#d8302a", "#2a7ab8", "#f2c94c", "#3a9a4a", "#c03a8a", "#f4ecd8"][i % 6]; rect(gm, x, 160, 5, 10, c1); disc(gm, x + 2, 157, 2, "#6a3a1e"); rect(gm, x + 1, 170, 1, 6, "#2a2a2a"); rect(gm, x + 3, 170, 1, 6, "#2a2a2a"); } // shoppers
+      for (let x = 0; x < W; x += 2){ const y = 6 + Math.round(Math.sin(x/40*Math.PI)*-4 + 4); px(gn, x, y, "#3a2a1a"); if (x % 6 === 0){ disc(gn, x, y + 3, 2, "#a8402a"); px(gn, x - 1, y + 2, "#d06a4a"); } } // strings of Goan chouriço sausages
+    } else if (theme === "diwali"){ // Diwali eve in Panjim: akash kandils, light strings, the church on the hill
+      sky(gf, W, H, ["#0a0620", "#1a0c3a", "#3a1450", "#5a2050"]);
+      for (let i = 0; i < 90; i++) px(gf, rnd()*W, rnd()*110, rnd() < .3 ? "#ffffff" : "#8a80c0");
+      for (let x = 0; x < W; x++){ const y = 104 + Math.abs(x - 240)*.12 + Math.sin(x/14)*2; rect(gf, x, y, 1, H - y, "#1a1030"); }
+      // Our Lady of the Immaculate Conception, lit white
+      rect(gf, 226, 62, 28, 40, "#e8e0f0"); rect(gf, 222, 52, 8, 50, "#e8e0f0"); rect(gf, 250, 52, 8, 50, "#e8e0f0"); tri(gf, 224, 62, 256, 62, 240, 50, "#e8e0f0"); rect(gf, 223, 46, 6, 6, "#e8e0f0"); rect(gf, 251, 46, 6, 6, "#e8e0f0");
+      rect(gf, 236, 78, 8, 16, "#3a2a5a"); for (const y of [104, 110, 116]) rect(gf, 214 + (y % 12), y, 52 - (y - 104), 2, "#c8c0d8");
+      for (let i = 0; i < 9; i++){ const x = i*55 + rnd()*10, w = 44, h = 32 + rnd()*14, [cw] = HOUSE_COLS[i % HOUSE_COLS.length];
+        rect(gm, x, 168 - h, w, h, "#2a1a3a"); tri(gm, x - 3, 168 - h, x + w + 3, 168 - h, x + w/2, 168 - h - 9, "#3a1a2a");
+        for (let k = 0; k < 3; k++){ rect(gm, x + 5 + k*13, 168 - h + 8, 7, 9, "#ffcf6a"); rect(gm, x + 8 + k*13, 168 - h + 8, 1, 9, cw); } }
+      rect(gm, 0, 168, W, H - 168, "#1a1028");
+      // strings of lights
+      for (let x = 0; x < W; x++){ const y = 20 + Math.round((1 - Math.cos(((x % 96)/96)*2*Math.PI))*7); px(gn, x, y, "#3a2a1a"); if (x % 5 === 0) px(gn, x, y + 1, ["#ff4a4a", "#ffd23a", "#4aff8a", "#4ac8ff", "#ff7ae0"][(x/5) % 5]); }
+      // akash kandils (star lanterns)
+      for (let i = 0; i < 5; i++){ const x = 40 + i*96, y = 32, col = ["#ff6a2a", "#ffd23a", "#e83a8a", "#3ac8a8", "#ff8a2a"][i];
+        rect(gn, x, 20, 1, 8, "#3a2a1a");
+        for (let k = 0; k < 5; k++){ const a = -Math.PI/2 + k*2*Math.PI/5; tri(gn, x, y + 6, x + Math.cos(a - .5)*5, y + 6 + Math.sin(a - .5)*5, x + Math.cos(a)*11, y + 6 + Math.sin(a)*11, col); tri(gn, x, y + 6, x + Math.cos(a + .5)*5, y + 6 + Math.sin(a + .5)*5, x + Math.cos(a)*11, y + 6 + Math.sin(a)*11, col); }
+        disc(gn, x, y + 6, 3, "#fff3a0"); for (let k = 0; k < 4; k++) rect(gn, x - 3 + k*2, y + 15, 1, 8 + (k % 2)*3, col); }
     } else {
       sky(gf, W, H, ["#8fd0e8", "#b8e2ea", "#dff2ec"]);
       // cliffs + Dudhsagar falls (sea of milk) + railway bridge
@@ -473,7 +646,53 @@ const ART = (() => {
     for (let x = 2; x < 130; x += 7) disc(g, x, 10, 1, "#1a1a1a");
     return c;
   }
-  return {sprite, drawTile, waterTile, fireTile, door, gate, lamp, levelCanvas, backgrounds, train, THEMES};
+  function ferry(){ // Ribandar–Chorão RoRo ferry
+    const [c, g] = mk(96, 26);
+    rect(g, 0, 16, 96, 6, "#2a5a9a"); rect(g, 2, 22, 92, 2, "#1a3a6a"); rect(g, 0, 15, 96, 2, "#f2efe6"); tri(g, 0, 16, 6, 16, 4, 24, "#2a5a9a");
+    rect(g, 36, 4, 22, 11, "#f2efe6"); rect(g, 36, 3, 22, 2, "#d8302a"); for (let k = 0; k < 4; k++) rect(g, 38 + k*5, 7, 3, 3, "#3a6a9a");
+    rect(g, 44, 0, 3, 4, "#2a2a2a");
+    rect(g, 10, 10, 12, 5, "#e8b030"); rect(g, 12, 8, 6, 3, "#e8b030"); disc(g, 12, 15, 1, "#1a1a1a"); disc(g, 20, 15, 1, "#1a1a1a"); // little car
+    for (const x of [66, 72, 80]){ rect(g, x, 8, 3, 7, ["#c03a3a", "#3a8ac0", "#e8c040"][x % 3]); disc(g, x + 1, 6, 1, "#7a4a2a"); } // passengers
+    return c;
+  }
+  function diya(g, x, y, f){ // clay oil lamp at a ground spot (x,y = tile top-left)
+    rect(g, x + 4, y + 13, 8, 3, "#b4622a"); rect(g, x + 3, y + 12, 10, 1, "#d07a3a"); rect(g, x + 5, y + 15, 6, 1, "#7a3a1a");
+    rect(g, x + 7, y + 11, 2, 1, "#4a2a1a");
+    const h = 3 + (f % 3 === 0 ? 1 : 0);
+    rect(g, x + 7, y + 11 - h, 2, h, "#ffb12a"); px(g, x + 7 + (f % 2), y + 10 - h, "#fff3a0"); px(g, x + 7, y + 10, "#fff3a0");
+  }
+  function cracker(){ const [c, g] = mk(8, 8); rect(g, 2, 2, 4, 5, "#d8302a"); rect(g, 2, 4, 4, 1, "#ffd23a"); rect(g, 3, 0, 1, 2, "#cfc6b8"); px(g, 4, 0, "#ffb12a"); return c; }
+  function chakra(f){ const [c, g] = mk(12, 12); disc(g, 6, 6, 5, "#ffd23a"); disc(g, 6, 6, 3, "#d8302a"); disc(g, 6, 6, 1, "#3a9a4a");
+    for (let k = 0; k < 4; k++){ const a = f*.8 + k*1.57; px(g, 6 + Math.round(Math.cos(a)*5), 6 + Math.round(Math.sin(a)*5), "#fff3a0"); } return c; }
+  /* Narkasur effigy, 48 x 64, two poses (0 arms up, 1 throwing) */
+  function narkasur(pose){
+    const [c, g] = mk(48, 64), skin = "#2f6a8a", skinD = "#1f4a66";
+    // bamboo cart
+    rect(g, 6, 58, 36, 4, "#9a6533"); rect(g, 6, 58, 36, 1, "#c08a4e"); for (const x of [10, 38]){ disc(g, x, 62, 2, "#3a2410"); px(g, x, 62, "#c08a4e"); }
+    // legs & dhoti
+    rect(g, 15, 44, 7, 14, "#3a9a4a"); rect(g, 26, 44, 7, 14, "#3a9a4a"); rect(g, 15, 52, 7, 2, "#ffd23a"); rect(g, 26, 52, 7, 2, "#ffd23a");
+    rect(g, 13, 56, 10, 2, skinD); rect(g, 25, 56, 10, 2, skinD);
+    // torso: paper costume with gold trim
+    rect(g, 12, 26, 24, 19, "#d8302a"); rect(g, 12, 26, 24, 2, "#ffd23a"); rect(g, 12, 42, 24, 3, "#ffd23a");
+    for (let x = 14; x < 36; x += 4){ px(g, x, 34, "#ffd23a"); px(g, x + 2, 37, "#ffd23a"); }
+    rect(g, 20, 28, 8, 8, skin); disc(g, 24, 33, 3, "#c03a8a"); // chest + medallion
+    for (let k = 0; k < 7; k++) disc(g, 15 + k*3, 29, 1, k % 2 ? "#fff3a0" : "#e8875a"); // marigold garland
+    // arms
+    if (pose === 0){ rect(g, 6, 12, 6, 18, skin); rect(g, 36, 12, 6, 18, skin); disc(g, 9, 11, 3, skinD); disc(g, 39, 11, 3, skinD); rect(g, 6, 22, 6, 2, "#ffd23a"); rect(g, 36, 22, 6, 2, "#ffd23a"); }
+    else { rect(g, 6, 26, 6, 14, skin); disc(g, 9, 41, 3, skinD); rect(g, 36, 20, 12, 6, skin); disc(g, 46, 22, 3, skinD); rect(g, 6, 30, 6, 2, "#ffd23a"); }
+    // head
+    rect(g, 15, 6, 18, 20, skin); rect(g, 15, 6, 2, 20, skinD); rect(g, 31, 6, 2, 20, skinD);
+    tri(g, 15, 9, 9, 0, 13, 10, "#f2e6c8"); tri(g, 33, 9, 39, 0, 35, 10, "#f2e6c8"); // horns
+    rect(g, 15, 3, 18, 4, "#ffd23a"); for (let x = 16; x < 33; x += 4) tri(g, x, 3, x + 3, 3, x + 1.5, 0, "#ffd23a"); px(g, 24, 4, "#d8302a"); // crown
+    rect(g, 17, 10, 6, 2, "#000"); rect(g, 25, 10, 6, 2, "#000"); // angry brows
+    rect(g, 18, 12, 5, 4, "#ffffff"); rect(g, 25, 12, 5, 4, "#ffffff"); rect(g, 20, 13, 2, 2, "#d8302a"); rect(g, 26, 13, 2, 2, "#d8302a");
+    rect(g, 23, 15, 2, 3, skinD);
+    rect(g, 17, 18, 14, 2, "#000"); px(g, 16, 17, "#000"); px(g, 31, 17, "#000"); // moustache
+    rect(g, 19, 20, 10, 4, "#7a1010"); rect(g, 19, 20, 10, 1, "#ffffff"); px(g, 20, 21, "#ffffff"); px(g, 27, 21, "#ffffff"); px(g, 20, 22, "#ffffff"); px(g, 27, 22, "#ffffff"); // fangs
+    return c;
+  }
+  function silhouette(src, col){ const [c, g] = mk(src.width, src.height); g.drawImage(src, 0, 0); g.globalCompositeOperation = "source-atop"; g.fillStyle = col; g.fillRect(0, 0, c.width, c.height); return c; }
+  return {sprite, drawTile, ferry, diya, cracker, chakra, narkasur, silhouette, waterTile, fireTile, door, gate, lamp, levelCanvas, backgrounds, train, THEMES};
 })();
 
 </script>
@@ -555,18 +774,19 @@ function pixText(str, x, y, col){ ctx.fillStyle = col; let cx = x; for (const ch
 
 /* ---------- game state ---------- */
 const G = {state: "title", lvl: 0, L: null, p: null, score: 0, lives: 3, nextLife: 20000, trophy: false, lamp: null, cam: 0, shots: [], parts: [], pops: [], t: 0, deadT: 0, inv: 0, fireCd: 0, gateCd: 0, unlocked: store.get("dd_unlocked", 1), msgT: 0};
-let LV = [], BG = {}, LEVELCV = [], TRAIN = null, DOOR = [null, null], GATE = null, LAMP = [null, null];
+let LV = [], BG = {}, LEVELCV = [], TRAIN = null, FERRY = null, NARK = null, NARKW = null, CRACK = null, LC = null, DOOR = [null, null], GATE = null, LAMP = [null, null];
 function prepArt(){
   LV = LEVELS.map(d => d);
-  BG = {village: ART.backgrounds("village"), fort: ART.backgrounds("fort"), falls: ART.backgrounds("falls")};
-  TRAIN = ART.train(); DOOR = [ART.door(false), ART.door(true)]; GATE = ART.gate(); LAMP = [ART.lamp(false), ART.lamp(true)];
+  BG = {};
+  TRAIN = ART.train(); FERRY = ART.ferry(); NARK = [ART.narkasur(0), ART.narkasur(1)]; NARKW = NARK.map(c => ART.silhouette(c, "#ffffff")); CRACK = ART.cracker(); DOOR = [ART.door(false), ART.door(true)]; GATE = ART.gate(); LAMP = [ART.lamp(false), ART.lamp(true)];
 }
 function loadLevel(i, keep){
-  G.lvl = i; G.L = parseLevel(LV[i]); G.theme = LV[i].theme; G.levelCv = ART.levelCanvas(G.L, G.theme);
-  G.p = mkPlayer(G.L); G.trophy = false; G.lamp = null; G.shots = []; G.parts = []; G.pops = []; G.cam = 0; G.inv = 1; G.trainX = -200;
+  G.lvl = i; G.L = parseLevel(LV[i]); G.theme = LV[i].theme; G.levelCv = ART.levelCanvas(G.L, G.theme); if (!BG[G.theme]) BG[G.theme] = ART.backgrounds(G.theme); G.warpCd = 0;
+  G.p = mkPlayer(G.L); G.trophy = false; G.lamp = null; G.shots = []; G.parts = []; G.pops = []; G.cam = 0; G.inv = 1; G.trainX = -200; G.bshots = []; G.fw = []; G.fwOn = false; G.flashes = [];
+  if (G.L.boss){ const b = G.L.boss; G.boss = {x: b.tx*16 - 16, y: b.ty*16 + 16 - 64, x0: b.tx*16 - 16, hp: BOSS_HP, cd: 1.6, n: 0, flash: 0, pose: 0, poseT: 0, active: false, dead: false, deadT: 0}; } else G.boss = null;
   setMsg("FIND THE GOLDEN GHUMOT!", true); hud();
 }
-function newGame(level = 0){ G.score = 0; G.lives = 3; G.nextLife = 20000; showCard(level); }
+function newGame(level = 0){ G.score = 0; G.lives = 3; G.nextLife = 20000; G.got = 0; G.deaths = 0; showCard(level); }
 function setMsg(m, blink){ const e = $("#hMsg"); e.textContent = m; e.classList.toggle("blink", !!blink); }
 function hud(){
   $("#hScore").textContent = String(G.score).padStart(5, "0"); $("#hLevel").textContent = G.lvl + 1;
@@ -602,7 +822,8 @@ function startPlay(){ audio(); hidePanel(); G.state = "play"; $("#corner").hidde
 function showHow(back){
   panel(`<h2>HOW TO PLAY</h2>
     <p>Grab the <span class="k">GOLDEN GHUMOT</span> in each level, then go through the <span class="k">DOOR</span>.</p>
-    <p>Collect Goan treats for points: cashew 50, kokum 75, Mankurad mango 100, bebinca 150, xerafim coin 250.</p>
+    <p>Collect Goan treats for points: cashew 50, kokum 75, Mankurad mango 100, poi bread 120, bebinca 150, xerafim coin 250.</p>
+    <p>Look out for <span class="k">SECRET PASSAGES</span>: shimmering spots that whisk Dev to hidden treasure.</p>
     <p>Fire, water and thorns are deadly. So are crabs, crows, monkeys and bats.</p>
     <p>Find the <span class="k">SLINGSHOT</span> to fire pebbles, and the <span class="k">JETPACK</span> to fly.</p>
     <p>Some gates are locked: solve a quick sum to open them.</p>
@@ -614,8 +835,10 @@ function hiscores(){ return store.get("dd_hi", []); }
 function showHi(){
   const h = hiscores();
   panel(`<h2>HIGH SCORES</h2><ol class="scores">${h.length ? h.map(s => `<li><span>${s.n}</span><span>${String(s.s).padStart(5, "0")} · L${s.l}</span></li>`).join("") : "<li><span>No scores yet</span></li>"}</ol>
-    <p class="tiny">Scores are saved on this device. Online leaderboard arrives in the next update.</p><button class="mbtn primary" id="hb" type="button">BACK</button>`);
+    <h2 style="margin-top:12px">DIWALI GAMES BOARD</h2><ol class="scores" id="onlineHi"><li><span>Loading…</span></li></ol>
+    <button class="mbtn primary" id="hb" type="button">BACK</button>`);
   $("#hb").onclick = hidePanel;
+  if (typeof loadOnlineHi === "function") loadOnlineHi();
 }
 function showLevels(){
   panel(`<h2>LEVEL SELECT</h2><div class="menu">${LV.map((d, i) => `<button class="mbtn${i < G.unlocked ? "" : " dis"}" data-l="${i}" type="button" ${i < G.unlocked ? "" : "disabled"}>${i + 1}. ${d.name.toUpperCase()}${i < G.unlocked ? "" : " 🔒"}</button>`).join("")}</div>
@@ -646,13 +869,16 @@ function gameEnd(won){
   G.state = "over"; stopMusic(); $("#corner").hidden = true;
   const h = hiscores(), qual = G.score > 0 && (h.length < 5 || G.score > h[h.length - 1].s);
   const name = (store.get("dg_user", null)?.name || "").toUpperCase().slice(0, 10);
-  panel(`${won ? `<div class="lvlname" style="color:var(--gold)">TO BE CONTINUED…</div><p class="fact">Dev has found all 3 Golden Ghumots so far! Next adventures: Lamgao Caves, Fontainhas in Panjim, Palolem Beach and more.</p>`
+  if (won) G.fwOn = true;
+  panel(`${won ? `<div class="lvlname" style="color:var(--gold)">HAPPY DIWALI, DEV!</div><p class="fact">Dev found all 10 Golden Ghumots and defeated Narkasur. The treasures of Goa are safe. Happy Diwali from Goa!</p>`
                  : `<div class="lvlname" style="color:var(--red)">GAME OVER</div>`}
     <div class="lvlplace">SCORE ${String(G.score).padStart(5, "0")}</div>
+    <div class="xpbox" id="xpBox"></div>
     ${qual ? `<div class="tiny">NEW HIGH SCORE! ENTER YOUR NAME</div><input class="name" id="nm" maxlength="10" value="${name}" aria-label="Your name"><button class="mbtn primary" id="sv" type="button">SAVE</button>`
-           : `<button class="mbtn primary" id="sv" type="button">TITLE SCREEN</button>`}`);
+           : `<button class="mbtn primary" id="sv" type="button">TITLE SCREEN</button>`}`, won ? "win" : "");
   if (won) SFX.trophy(); else SFX.die();
-  $("#sv").onclick = () => {
+  if (typeof submitRun === "function" && G.score > 0) submitRun({game: "dangerous-dev", mode: "story", score: G.score, correct: G.got || 0, wrong: G.deaths || 0}).then(showXp); else $("#xpBox").hidden = true;
+  $("#sv").onclick = () => { G.fwOn = false;
     if (qual){ const n = ($("#nm").value.trim() || "DEV").toUpperCase().slice(0, 10); const list = hiscores(); list.push({n, s: G.score, l: G.lvl + 1}); list.sort((a, b) => b.s - a.s); store.set("dd_hi", list.slice(0, 5)); }
     showTitle(); if (qual) showHi();
   };
@@ -732,15 +958,72 @@ function togglePause(){
 $("#bPause").onclick = togglePause;
 if (store.get("dd_crt", true) === false) $("#crt").classList.add("off");
 
+/* ---------- Narkasur boss (level 10) ---------- */
+const BOSS_HP = 14;
+function bossBox(b){ return {x: b.x + 9, y: b.y + 4, w: 30, h: 54}; }
+function stepBoss(dt, p){
+  const b = G.boss; if (!b) return;
+  b.flash = Math.max(0, b.flash - dt); b.poseT -= dt; if (b.poseT <= 0) b.pose = 0;
+  if (b.dead){ b.deadT += dt;
+    if (b.deadT < 3.2 && Math.random() < dt*6) launchFw(b.x + 24 + (Math.random() - .5)*30, b.y + 30);
+    if (b.deadT > 1.4 && !b.dropped){ b.dropped = true; G.L.items.push({x: Math.round((b.x + 24)/16), y: 9, t: "T", got: false}); setMsg("GRAB THE LAST GOLDEN GHUMOT!", true); }
+    return; }
+  if (!b.active){ if (b.x - G.cam < VW - 20){ b.active = true; setMsg("DEFEAT NARKASUR!", true); [196, 165, 147, 131].forEach((f, i) => blip(f, .25, "sawtooth", .1, 1, i*.18)); } else return; }
+  b.x = b.x0 + Math.sin(G.t*1.3)*10;
+  b.cd -= dt;
+  if (b.cd <= 0){
+    b.n++; b.pose = 1; b.poseT = .35;
+    if (b.n % 3 === 0){ G.bshots.push({k: "chakra", x: b.x + 4, y: 150, w: 10, h: 10, vx: -95, vy: 0, life: 7}); blip(900, .3, "sawtooth", .05, .5); }
+    else { const tx = p.x + p.w/2 + (Math.random() - .5)*20, T = 1.05, vx = Math.max(-170, Math.min(-30, (tx - b.x - 6)/T)); G.bshots.push({k: "cracker", x: b.x + 6, y: b.y + 12, w: 6, h: 6, vx, vy: -230, g: 330, life: 4}); blip(420, .12, "triangle", .08, 1.5); }
+    b.cd = b.hp > BOSS_HP/2 ? 1.6 : 1.05;
+  }
+}
+function boom(x, y){ noiseB(.3, .16, 1800); burst(x, y, ["#ffd23a", "#ff6a2a", "#ffffff", "#e83a8a"], 18, 90); G.flashes.push({x, y, t: .25}); }
+function stepBossShots(dt, p){
+  const L = G.L, box = {x: p.x + 1, y: p.y + 2, w: p.w - 2, h: p.h - 2};
+  for (const s of G.bshots){
+    s.life -= dt; s.vy += (s.g || 0)*dt; s.x += s.vx*dt; s.y += s.vy*dt;
+    if (s.k === "chakra"){ s.y = 160 - s.h; if (Math.random() < dt*25) G.parts.push({x: s.x + 5, y: s.y + 9, vx: 30 + Math.random()*20, vy: -20 - Math.random()*30, t: .3, c: Math.random() < .5 ? "#ffd23a" : "#fff3a0"}); if (s.x < 8) s.life = 0; }
+    else if (Math.random() < dt*30) G.parts.push({x: s.x + 3, y: s.y, vx: 0, vy: -10, t: .2, c: "#ffb12a"});
+    if (s.k === "cracker" && s.vy > 0 && (s.y + s.h >= 160 || isSolid(tileAt(L, Math.floor((s.x + 3)/16), Math.floor((s.y + 3)/16))) || tileAt(L, Math.floor((s.x + 3)/16), Math.floor((s.y + 6)/16)) === "-")){ s.life = 0; boom(s.x + 3, s.y + 3);
+      if (G.inv <= 0 && Math.abs(p.x + p.w/2 - s.x - 3) < 11 && Math.abs(p.y + p.h/2 - s.y) < 14){ die(); return; } continue; }
+    if (G.inv <= 0 && s.life > 0 && aabb(box, s)){ die(); return; }
+    for (const sh of G.shots) if (!sh.enemy && sh.life > 0 && s.life > 0 && aabb(sh, s)){ sh.life = 0; s.life = 0; boom(s.x + 3, s.y + 3); addScore(50, s.x, s.y); }
+  }
+  G.bshots = G.bshots.filter(s => s.life > 0);
+}
+function hitBoss(){
+  const b = G.boss; if (!b || b.dead || !b.active) return;
+  const bb = bossBox(b);
+  for (const s of G.shots){ if (s.enemy || s.life <= 0 || !aabb(s, bb)) continue;
+    s.life = 0; b.hp--; b.flash = .12; SFX.hit(); addScore(100, s.x, s.y - 6); burst(s.x, s.y, ["#fff", "#2f6a8a", "#d8302a"], 8);
+    if (b.hp <= 0){ b.dead = true; b.deadT = 0; G.bshots = []; addScore(5000, b.x + 16, b.y); SFX.trophy(); setMsg("NARKASUR DEFEATED! HAPPY DIWALI!", false); G.msgT = 3;
+      for (let k = 0; k < 6; k++) setTimeout(() => launchFw(b.x + 24 + (Math.random() - .5)*40, b.y + 20), k*180); break; }
+  }
+}
+/* fireworks: rockets that rise and burst into coloured sparks */
+const FWC = [["#ff4a4a", "#ffd23a"], ["#4ac8ff", "#ffffff"], ["#4aff8a", "#ffd23a"], ["#ff7ae0", "#ffffff"], ["#ffb12a", "#fff3a0"]];
+function launchFw(x, y){ G.fw.push({x, y, vx: (Math.random() - .5)*40, vy: -150 - Math.random()*70, t: .55 + Math.random()*.4, rocket: true, c: FWC[Math.floor(Math.random()*FWC.length)]}); blip(300, .4, "triangle", .03, 3); }
+function stepFw(dt){
+  if (G.fwOn && Math.random() < dt*2.5) launchFw(G.cam + 20 + Math.random()*(VW - 40), 180);
+  const out = [];
+  for (const f of G.fw){ f.t -= dt; f.x += f.vx*dt; f.y += f.vy*dt; f.vy += (f.rocket ? 60 : 70)*dt; if (!f.rocket) f.vx *= .985;
+    if (f.t <= 0 && f.rocket){ const n = 26; for (let i = 0; i < n; i++){ const a = i/n*6.283, v = 55 + Math.random()*25; out.push({x: f.x, y: f.y, vx: Math.cos(a)*v, vy: Math.sin(a)*v, t: .8 + Math.random()*.5, c: f.c[i % 2]}); } noiseB(.25, .06, 1400); continue; }
+    if (f.t > 0) out.push(f); }
+  G.fw = out;
+  for (const q of G.flashes) q.t -= dt; G.flashes = G.flashes.filter(q => q.t > 0);
+}
+
 /* ---------- update ---------- */
 const DT = 1/120;
 function update(dt){
   G.t += dt;
+  if (G.fw && (G.fw.length || G.fwOn)) stepFw(dt);
   if (G.state === "title"){ G.attract += dt; G.cam = (Math.sin(G.attract*.12)*.5 + .5)*(G.L.w*16 - VW); return; }
   if (G.state === "walk"){ G.walkT += dt; if (G.walkT > 3.4) afterWalk(); return; }
   if (G.state !== "play" && G.state !== "dead") return;
   const L = G.L, p = G.p;
-  G.trainX += dt*70; if (G.trainX > 1400) G.trainX = -300 - Math.random()*600;
+  G.trainX += dt*(G.theme === "mangrove" ? 14 : 70); if (G.trainX > 1400) G.trainX = -300 - Math.random()*600;
   // particles & pops
   for (const q of G.parts){ q.t -= dt; q.vy += 200*dt; q.x += q.vx*dt; q.y += q.vy*dt; } G.parts = G.parts.filter(q => q.t > 0);
   for (const q of G.pops){ q.t -= dt; q.y -= 18*dt; } G.pops = G.pops.filter(q => q.t > 0);
@@ -767,10 +1050,19 @@ function update(dt){
       else if (it.t === "S"){ p.hasSling = true; SFX.life(); setMsg(touch ? "SLINGSHOT! TAP FIRE" : "SLINGSHOT! PRESS X TO FIRE", false); G.msgT = 4; hud(); }
       else if (it.t === "J"){ p.hasJet = true; p.fuel = 1; SFX.life(); setMsg(touch ? "JETPACK! TAP JET TO FLY" : "JETPACK! PRESS Z TO FLY", false); G.msgT = 4; hud(); }
       else if (it.t === "1"){ G.lives++; SFX.life(); hud(); G.pops.push({x: cx, y: cy, s: "+1", t: 1}); }
-      else { (it.t === "x" ? SFX.coin : SFX.pick)(); addScore(ITEM_PTS[it.t], cx, cy); burst(cx, cy, ["#fff", "#ffd23a"], 6, 40); }
+      else { (it.t === "x" ? SFX.coin : SFX.pick)(); addScore(ITEM_PTS[it.t], cx, cy); burst(cx, cy, ["#fff", "#ffd23a"], 6, 40); G.got = (G.got || 0) + 1; }
     }
   }
   if (G.msgT > 0){ G.msgT -= dt; if (G.msgT <= 0) setMsg(G.trophy ? "GO THROUGH THE DOOR!" : "FIND THE GOLDEN GHUMOT!", true); }
+  // secret passages (warp zones)
+  G.warpCd -= dt;
+  if (G.warpCd <= 0) L.warps.forEach((w, i) => { const to = L.warpTo[i]; if (!to) return;
+    if (Math.abs(p.x + p.w/2 - (w.x*16 + 8)) < 8 && Math.abs(p.y + p.h - (w.y*16 + 16)) < 12){
+      burst(p.x + 5, p.y + 8, ["#7fe0ff", "#ffffff", "#c98aff"], 20, 80);
+      p.x = to.x*16 + 3; p.y = to.y*16 + 1; p.vx = p.vy = 0; p.flying = false; p.climbing = false; G.warpCd = 1;
+      burst(p.x + 5, p.y + 8, ["#7fe0ff", "#ffffff", "#c98aff"], 20, 80);
+      [880, 660, 990, 1320].forEach((f, k) => blip(f, .09, "triangle", .1, 1, k*.06)); setMsg("SECRET PASSAGE!", false); G.msgT = 2;
+      G.cam = Math.max(0, Math.min(L.w*16 - VW, p.x - VW/2)); } });
   // lamps (checkpoints)
   for (const lp of L.lamps) if (!lp.on && Math.abs(p.x + p.w/2 - (lp.x*16 + 8)) < 10 && Math.abs(p.y + p.h - (lp.y*16 + 16)) < 20){ lp.on = true; G.lamp = lp; SFX.lamp(); G.pops.push({x: lp.x*16 + 2, y: lp.y*16 - 20, s: "+0", t: .01}); setMsg("CHECKPOINT!", false); G.msgT = 1.6; }
   // gates
@@ -782,9 +1074,12 @@ function update(dt){
   }
   // enemies & shots
   stepEnemies(L, dt, p, G.shots); stepShots(L, G.shots, dt);
+  if (G.boss){ stepBoss(dt, p); hitBoss(); stepBossShots(dt, p); if (G.state !== "play") return;
+    if (!G.boss.dead && G.inv <= 0 && aabb({x: p.x + 1, y: p.y + 2, w: p.w - 2, h: p.h - 2}, bossBox(G.boss))) return die();
+    if (!G.boss.dead && p.x + p.w > G.boss.x + 9) p.x = G.boss.x + 9 - p.w; }
   for (const s of G.shots){
     if (s.enemy){ if (G.inv <= 0 && aabb(box, s)) return die(); continue; }
-    for (const e of L.enemies) if (e.alive && aabb(s, e)){ e.alive = false; s.life = 0; SFX.hit(); addScore({c: 100, w: 150, v: 200, y: 250}[e.t], e.x + 4, e.y); burst(e.x + 7, e.y + 5, ["#fff", "#aaa", "#e8402a"], 12); }
+    for (const e of L.enemies) if (e.alive && aabb(s, e)){ e.alive = false; s.life = 0; SFX.hit(); addScore({c: 100, w: 150, v: 200, y: 250, a: 150}[e.t], e.x + 4, e.y); burst(e.x + 7, e.y + 5, ["#fff", "#aaa", "#e8402a"], 12); }
   }
   if (G.inv <= 0) for (const e of L.enemies) if (e.alive && aabb({x: p.x + 1, y: p.y + 2, w: p.w - 2, h: p.h - 2}, e)) return die();
   // camera
@@ -797,13 +1092,34 @@ function die(){
   if (G.state !== "play") return;
   G.state = "dead"; G.deadT = 1.5; SFX.die(); stopMusic();
   burst(G.p.x + 5, G.p.y + 8, ["#ffd23a", "#e8402a", "#fff", "#ef6a23"], 30, 110);
-  G.lives--; hud();
+  G.lives--; G.deaths = (G.deaths || 0) + 1; hud();
 }
 function respawn(){
   if (G.lives <= 0) return gameEnd(false);
   const at = G.lamp ? {x: G.lamp.x, y: G.lamp.y} : G.L.start;
   const old = G.p; G.p = mkPlayer(G.L, at); G.p.hasSling = old.hasSling; G.p.hasJet = old.hasJet; G.p.fuel = Math.max(old.fuel, old.hasJet ? .35 : 0);
-  G.shots = []; G.inv = 1.6; G.state = "play"; startMusic(); hud();
+  G.shots = []; G.bshots = []; if (G.boss && !G.boss.dead) G.boss.cd = 2; G.inv = 1.6; G.state = "play"; startMusic(); hud();
+}
+
+/* ---------- darkness with light pools (Old Goa night, Diwali night) ---------- */
+function lighting(cam, a){
+  if (!LC || LC.width !== VW || LC.height !== VH){ LC = document.createElement("canvas"); LC.width = VW; LC.height = VH; }
+  const g = LC.getContext("2d"), L = G.L, p = G.p, lights = [];
+  g.globalCompositeOperation = "source-over"; g.clearRect(0, 0, VW, VH); g.fillStyle = `rgba(4,5,24,${a})`; g.fillRect(0, 0, VW, VH);
+  if (p && G.state !== "title") lights.push([p.x + p.w/2, p.y + 6, 72]);
+  for (const lp of L.lamps) lights.push([lp.x*16 + 8, lp.y*16 - 10, lp.on ? 64 : 20]);
+  if (L.diyas) for (const d of L.diyas) lights.push([d.x*16 + 8, d.y*16 + 10, 30 + Math.sin(G.t*9 + d.x)*2]);
+  if (L.door) lights.push([L.door.x*16 + 8, L.door.y*16, G.trophy ? 40 : 18]);
+  for (const it of L.items) if (!it.got && it.t === "T") lights.push([it.x*16 + 8, it.y*16 + 8, 26]);
+  const x0 = Math.floor(cam/16), x1 = Math.min(L.w - 1, x0 + Math.ceil(VW/16) + 1);
+  for (let y = 0; y < L.h; y++) for (let x = x0; x <= x1; x++) if (L.grid[y][x] === "f") lights.push([x*16 + 8, y*16 + 8, 34]);
+  if (G.boss){ const b = G.boss; lights.push([b.x + 24, b.y + 30, b.dead ? 70 : 46]); for (const s of G.bshots) lights.push([s.x + 3, s.y + 3, 18]); }
+  for (const f of G.fw) if (!f.rocket) lights.push([f.x, f.y, 10]);
+  for (const q of G.flashes) lights.push([q.x, q.y, 50]);
+  g.globalCompositeOperation = "destination-out";
+  for (const [lx, ly, r] of lights){ const x = lx - cam; if (x < -r || x > VW + r) continue; const gr = g.createRadialGradient(x, ly, 0, x, ly, r);
+    gr.addColorStop(0, "rgba(0,0,0,1)"); gr.addColorStop(.55, "rgba(0,0,0,.7)"); gr.addColorStop(1, "rgba(0,0,0,0)"); g.fillStyle = gr; g.beginPath(); g.arc(x, ly, r, 0, 6.283); g.fill(); }
+  ctx.drawImage(LC, 0, 0);
 }
 
 /* ---------- render ---------- */
@@ -814,6 +1130,8 @@ function render(){
   const layer = (img, f, yOff = 0) => { const off = Math.floor(cam*f) % img.width; for (let x = -off; x < VW; x += img.width) ctx.drawImage(img, x, yOff); };
   layer(far, .12); layer(mid, .3);
   if (th === "falls"){ const tx = Math.round(G.trainX - cam*.3); ctx.drawImage(TRAIN, ((tx % 900) + 900) % 900 - 140, 82); }
+  if (th === "mangrove"){ const tx = Math.round(G.trainX*1.5 - cam*.2); ctx.drawImage(FERRY, ((tx % 700) + 700) % 700 - 100, 104 + Math.round(Math.sin(G.t*1.5))); }
+  if (th === "diwali" && G.state === "play" && Math.random() < .012 && G.fw.length < 120) launchFw(cam + Math.random()*VW, 110);
   layer(near, .55, 0);
   // level tiles
   ctx.drawImage(G.levelCv, cam, 0, VW, VH, 0, 0, VW, VH);
@@ -823,6 +1141,11 @@ function render(){
     if (c === "~") ART.waterTile(ctx, x*16 - cam, y*16, th, fr + x, y === 0 || L.grid[y - 1][x] !== "~");
     else if (c === "f") ART.fireTile(ctx, x*16 - cam, y*16, fr + x);
   }
+  // secret passages shimmer faintly
+  for (const w of L.warps){ const wx = w.x*16 - cam, wy = w.y*16; if (wx < -16 || wx > VW) continue;
+    for (let k = 0; k < 3; k++){ const a = G.t*3 + k*2.1; ctx.fillStyle = k === 1 ? "#ffffff" : "#9fe8ff"; ctx.fillRect(Math.round(wx + 7 + Math.cos(a)*5), Math.round(wy + 8 + Math.sin(a)*6), 1, 1); } }
+  // diyas
+  if (L.diyas) for (const d of L.diyas){ const dx = d.x*16 - cam; if (dx > -16 && dx < VW) ART.diya(ctx, dx, d.y*16, fr + d.x); }
   // door, lamps, gates
   if (L.door){ const dx = L.door.x*16 - cam, dy = L.door.y*16 - 16; ctx.drawImage(DOOR[G.trophy ? 1 : 0], dx, dy); if (G.trophy && Math.floor(G.t*4) % 2) { ctx.fillStyle = "#ffd23a"; ctx.fillRect(dx + 7, dy - 4, 2, 2); } }
   for (const lp of L.lamps) ctx.drawImage(LAMP[lp.on ? 1 : 0], lp.x*16 - cam, lp.y*16 - 16);
@@ -830,16 +1153,28 @@ function render(){
   // items (bobbing)
   for (const it of L.items){ if (it.got) continue; const sx = it.x*16 - cam; if (sx < -16 || sx > VW) continue;
     const bob = it.t === "T" ? Math.round(Math.sin(G.t*4)*2) : Math.round(Math.sin(G.t*3 + it.x)*1);
-    const name = {k: "kaju", o: "kokum", m: "mango", b: "bebinca", x: "coin", T: "ghumot", "1": "oneup", S: "sling", J: "jetpack"}[it.t];
+    const name = {k: "kaju", o: "kokum", m: "mango", p: "poi", b: "bebinca", x: "coin", T: "ghumot", "1": "oneup", S: "sling", J: "jetpack"}[it.t];
     if (it.t === "T" && Math.floor(G.t*8) % 4 === 0){ ctx.fillStyle = "#fff3b0"; ctx.fillRect(sx + 2 + Math.floor(Math.random()*12), it.y*16 + bob + Math.floor(Math.random()*12), 1, 1); }
     ctx.drawImage(ART.sprite(name), sx, it.y*16 + bob); }
   // enemies
   for (const e of L.enemies){ if (!e.alive) continue; const sx = Math.round(e.x - cam); if (sx < -20 || sx > VW + 4) continue;
     const f = Math.floor(G.t*6 + e.x0) % 2 + 1;
-    const base = {c: "crab", w: "crow", v: "bat", y: "monkey"}[e.t];
+    const base = {c: "crab", w: "crow", v: "bat", y: "monkey", a: "spider"}[e.t];
+    if (e.t === "a"){ ctx.fillStyle = "#cfc6b8"; ctx.fillRect(sx + 7, e.top, 1, Math.round(e.y) - e.top); }
     const flip = e.t === "w" ? e.vx < 0 : e.t === "y" ? e.vx < 0 : false;
-    const oy = e.t === "c" ? -6 : e.t === "w" ? -4 : e.t === "v" ? -4 : -2;
+    const oy = e.t === "c" ? -6 : e.t === "w" ? -4 : e.t === "v" ? -4 : e.t === "a" ? -4 : -2;
     ctx.drawImage(ART.sprite(base + f, flip), sx - 1, Math.round(e.y) + oy); }
+  // Narkasur
+  const B = G.boss;
+  if (B){ const bx = Math.round(B.x - cam), sink = B.dead ? Math.min(40, B.deadT*14) : 0;
+    if (!B.dead || B.deadT < 3){
+      ctx.save(); ctx.beginPath(); ctx.rect(bx - 4, 0, 60, 160); ctx.clip();
+      ctx.drawImage(B.flash > 0 ? NARKW[B.pose] : NARK[B.pose], bx, Math.round(B.y + sink + (B.dead ? 0 : Math.sin(G.t*2.6))));
+      ctx.restore();
+      if (B.dead) for (let k = 0; k < 4; k++) ART.fireTile(ctx, bx + 4 + k*10, 144, fr + k);
+    }
+    for (const s of G.bshots){ const sx = Math.round(s.x - cam), sy = Math.round(s.y); if (s.k === "chakra") ctx.drawImage(ART.chakra(fr), sx - 1, sy - 1); else ctx.drawImage(CRACK, sx - 1, sy - 1); }
+  }
   // shots
   for (const s of G.shots) ctx.drawImage(ART.sprite(s.enemy ? "nut" : "pebble"), Math.round(s.x - cam) - 5, Math.round(s.y) - 7);
   // player
@@ -853,6 +1188,15 @@ function render(){
     else if (Math.abs(p.vx) > 1) n = ["dev_run1", "dev_run2", "dev_run3", "dev_run2"][Math.floor(p.anim/7) % 4];
     ctx.drawImage(ART.sprite(n, p.facing < 0 && !p.climbing), Math.round(p.x - cam) - 3, Math.round(p.y) - 1);
   }
+  // night lighting
+  if (th === "night" || th === "diwali") lighting(cam, th === "night" ? .5 : .42);
+  // fireworks & blast flashes (drawn over the darkness)
+  for (const f of G.fw){ ctx.fillStyle = f.rocket ? "#fff3a0" : f.c; const sz = f.rocket || f.t > .5 ? 2 : 1; ctx.fillRect(Math.round(f.x - cam), Math.round(f.y), sz, sz); }
+  for (const q of G.flashes){ ctx.fillStyle = `rgba(255,220,140,${Math.min(1, q.t*2)})`; ctx.beginPath(); ctx.arc(q.x - cam, q.y, 6 + (0.25 - q.t)*40, 0, 6.283); ctx.fill(); }
+  if (B && B.active && !B.dead){ // boss health bar
+    ctx.fillStyle = "#000"; ctx.fillRect(VW/2 - 52, 5, 104, 12); ctx.fillStyle = "#4a3f63"; ctx.fillRect(VW/2 - 51, 6, 102, 10);
+    ctx.fillStyle = "#e8402a"; ctx.fillRect(VW/2 - 50, 7, Math.round(100*B.hp/BOSS_HP), 8); ctx.fillStyle = "#ff8a6a"; ctx.fillRect(VW/2 - 50, 7, Math.round(100*B.hp/BOSS_HP), 2);
+    ctx.font = '8px "Press Start 2P", monospace'; ctx.textAlign = "center"; ctx.fillStyle = "#000"; ctx.fillText("NARKASUR", VW/2 + 1, 15); ctx.fillStyle = "#fff"; ctx.fillText("NARKASUR", VW/2, 14); ctx.textAlign = "left"; }
   // particles & pops
   for (const q of G.parts){ ctx.fillStyle = q.c; ctx.fillRect(Math.round(q.x - cam), Math.round(q.y), 1 + (q.t > .4 ? 1 : 0), 1 + (q.t > .4 ? 1 : 0)); }
   for (const q of G.pops) if (q.s !== "+0") pixText(q.s, Math.round(q.x - cam), Math.round(q.y), Math.floor(G.t*10) % 2 ? "#ffd23a" : "#ffffff");
@@ -881,6 +1225,83 @@ document.addEventListener("visibilitychange", () => { if (document.hidden && G.s
 layout(); prepArt(); showTitle(); hud();
 $("#bMusic").style.opacity = musicOn ? 1 : .4;
 requestAnimationFrame(frame);
+
+</script>
+<script>
+/* ===== Google sign-in + the shared Diwali Games leaderboard ===== */
+let user = store.get("dg_user", null), idToken = null, tokenExp = 0, googleReady = false, unsent = null;
+const shortName = full => { const p = String(full || "Player").trim().split(/\s+/); return p.length > 1 ? `${p[0]} ${p[p.length - 1][0]}.` : p[0]; };
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+try { const s = JSON.parse(sessionStorage.getItem("dg_tok") || "null"); if (s && s.exp > Date.now()){ idToken = s.t; tokenExp = s.exp; } } catch {}
+try { const h = JSON.parse(sessionStorage.getItem("hinde_user") || "null");
+  if (h && h.name && h.email && h.email !== "demo@hindeclasses.in" && (!user || user.guest)){ user = {name: shortName(h.name), picture: h.picture || "", guest: false, email: h.email}; store.set("dg_user", user); } } catch {}
+const tokenOk = () => !!idToken && Date.now() < tokenExp - 30000;
+const signedIn = () => !!user && !user.guest;
+function decodeJwt(t){ let b = t.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"); while (b.length % 4) b += "="; return JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b), c => c.charCodeAt(0)))); }
+function onCredential(resp){
+  const p = decodeJwt(resp.credential); idToken = resp.credential; tokenExp = p.exp*1000;
+  try { sessionStorage.setItem("dg_tok", JSON.stringify({t: idToken, exp: tokenExp})); } catch {}
+  user = {name: shortName(p.name || p.given_name), picture: p.picture || "", guest: false, email: p.email || ""}; store.set("dg_user", user);
+  renderAccount(); flushPending().then(() => { if (unsent){ const rd = unsent; unsent = null; submitRun(rd).then(showXp); } });
+}
+function noGoogle(){ googleReady = false; renderAccount(); }
+function initGoogle(){
+  if (!CFG.CLIENT_ID) return noGoogle();
+  const s = document.createElement("script"); s.src = "https://accounts.google.com/gsi/client"; s.async = true;
+  s.onload = () => { try {
+    google.accounts.id.initialize({client_id: CFG.CLIENT_ID, callback: onCredential, auto_select: true, cancel_on_tap_outside: true, use_fedcm_for_prompt: true});
+    google.accounts.id.renderButton($("#gBtn"), {theme: "filled_black", size: "medium", shape: "rectangular", text: "signin_with"});
+    googleReady = true; renderAccount(); if (!tokenOk()) google.accounts.id.prompt();
+  } catch { noGoogle(); } };
+  s.onerror = noGoogle; document.head.appendChild(s);
+  setTimeout(() => { if (!window.google?.accounts?.id) noGoogle(); }, 7000);
+}
+function renderAccount(){
+  const el = $("#acctInfo"); if (!el) return;
+  $("#gBtn").hidden = !googleReady || (signedIn() && tokenOk());
+  if (signedIn()){ el.innerHTML = `PLAYING AS <b>${esc(user.name).toUpperCase()}</b> · SCORES GO ON THE DIWALI GAMES BOARD <button class="lnk" id="so" type="button">SIGN OUT</button>`;
+    $("#so").onclick = () => { try { google.accounts.id.disableAutoSelect(); } catch {} user = null; idToken = null; store.set("dg_user", null); try { sessionStorage.removeItem("dg_tok"); } catch {} renderAccount(); }; }
+  else el.innerHTML = googleReady ? "SIGN IN WITH GOOGLE TO PUT YOUR SCORE ON THE DIWALI GAMES LEADERBOARD" : "PLAYING AS GUEST · ONLINE SCORES WORK ON HINDECLASSES.COM";
+}
+async function post(body){ const r = await fetch(CFG.API_URL, {method: "POST", body: JSON.stringify({...body, idToken})}); return r.json(); }
+function queue(rd){ const q = store.get("dg_pending", []); q.push(rd); store.set("dg_pending", q.slice(-10)); }
+let flushing = false;
+async function flushPending(){
+  if (flushing || !CFG.API_URL || !signedIn() || !tokenOk()) return; flushing = true;
+  try { let q = store.get("dg_pending", []);
+    while (q.length){ const r = await post({action: "submit", ...q[0]}); if (!r.ok && r.auth) break;
+      if (!r.ok && /quick/i.test(r.error || "")){ await new Promise(res => setTimeout(res, 16000)); continue; }
+      if (r.ok) store.set("dg_P", r.player); q.shift(); store.set("dg_pending", q); } } catch {}
+  flushing = false;
+}
+async function submitRun(rd){
+  if (!CFG.API_URL) return {status: "site"};
+  if (!signedIn()){ unsent = rd; return {status: "guest"}; }
+  if (!tokenOk()){ queue(rd); return {status: "queued"}; }
+  try { const r = await post({action: "submit", ...rd});
+    if (r.ok){ store.set("dg_P", r.player); return {status: "posted", xp: r.xp, week: r.week}; }
+    if (r.auth){ queue(rd); return {status: "queued"}; } return {status: "error", msg: r.error};
+  } catch { queue(rd); return {status: "offline"}; }
+}
+function showXp(out){
+  const b = $("#xpBox"); if (!b) return;
+  const link = `<a href="${CFG.PORTAL}#leaders" target="_top" style="color:var(--teal)">SEE THE LEADERBOARD</a>`;
+  if (out.status === "posted") b.innerHTML = `XP EARNED <b>+${out.xp.total}</b>${out.week && out.week.pos ? ` · YOU'RE <b>#${out.week.pos}</b> THIS WEEK` : ""}<br>${link}`;
+  else if (out.status === "guest") b.innerHTML = googleReady ? `SIGN IN WITH GOOGLE TO PUT THIS SCORE ON THE LEADERBOARD<div id="gBtn2" style="margin-top:6px;display:flex;justify-content:center"></div>` : `SCORE SAVED ON THIS DEVICE.`;
+  else if (out.status === "queued") b.innerHTML = `SIGN-IN EXPIRED. YOUR SCORE WILL POST WHEN YOU SIGN IN AGAIN.<div id="gBtn2" style="margin-top:6px;display:flex;justify-content:center"></div>`;
+  else if (out.status === "offline") b.innerHTML = `NO CONNECTION. YOUR SCORE WILL POST NEXT TIME YOU'RE ONLINE.`;
+  else if (out.status === "site") b.innerHTML = `SCORE SAVED ON THIS DEVICE. ON HINDECLASSES.COM IT GOES ON THE LEADERBOARD.`;
+  else b.textContent = out.msg || "THE LEADERBOARD DIDN'T ACCEPT THIS SCORE.";
+  if ($("#gBtn2") && googleReady) try { google.accounts.id.renderButton($("#gBtn2"), {theme: "filled_black", size: "medium", text: "signin_with"}); } catch {}
+}
+async function loadOnlineHi(){
+  const el = $("#onlineHi"); if (!el) return;
+  if (!CFG.API_URL){ el.innerHTML = "<li><span>On hindeclasses.com</span></li>"; return; }
+  try { const j = await (await fetch(`${CFG.API_URL}?board=game&period=all&game=dangerous-dev`)).json(); if (!j.ok) throw 0;
+    el.innerHTML = j.rows.length ? j.rows.slice(0, 5).map(r => `<li><span>${esc(r.name).toUpperCase()}</span><span>${String(r.v).padStart(5, "0")}</span></li>`).join("") : "<li><span>Be the first!</span></li>";
+  } catch { el.innerHTML = "<li><span>Online scores work on hindeclasses.com</span></li>"; }
+}
+initGoogle(); renderAccount(); flushPending();
 
 </script>
 </body>
