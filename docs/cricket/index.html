@@ -815,7 +815,7 @@ function setField(kind){
   S.fielders = PH.FIELDS[kind].map(f => ({...f, home: f.p.slice(), cur: f.p.slice()}));
 }
 function startInnings(mode){
-  Object.assign(S, {mode, plan: PH.overPlan(mode), over: 0, ballInOver: 0, runs: 0, wkts: 0, scoring: 0, maxW: mode === "quick" ? 3 : 10, fours: 0, sixes: 0, dots: 0, balls: 0, thisOver: [], shots: [], log: [], paused: false});
+  Object.assign(S, {mode, plan: PH.overPlan(mode), over: 0, ballInOver: 0, runs: 0, wkts: 0, scoring: 0, maxW: mode === "quick" ? 3 : 10, fours: 0, sixes: 0, dots: 0, balls: 0, thisOver: [], shots: [], log: [], paused: false, playSecs: 0});
   $("#menu").hidden = true; $("#result").hidden = true;
   setField(PH.STYLES[S.plan[0].style] && (S.plan[0].style === "off" || S.plan[0].style === "leg") ? "spin" : "pace");
   updateSB(); nextBall(true);
@@ -832,6 +832,7 @@ function nextBall(first){
 const RUNUP = 1.75, DELIVER = .34, RELEASE_AT = .24;
 function update(dt){
   if (S.paused || S.phase === "menu" || S.phase === "end") { stepPose(dt); return; }
+  S.playSecs = (S.playSecs || 0) + Math.min(dt, .1);
   S.t += dt; stepPose(dt);
   // camera blend
   if (S.camT !== S.camTo){ const sp = dt/.75; S.camT = S.camTo > S.camT ? Math.min(S.camTo, S.camT + sp) : Math.max(S.camTo, S.camT - sp); }
@@ -1238,7 +1239,7 @@ function endInnings(){
   drawWagon($("#wagon"));
   $("#rAgain").onclick = () => startInnings(S.mode);
   $("#rMenu").onclick = () => { $("#result").hidden = true; S.phase = "menu"; renderMenu(); $("#menu").hidden = false; if (typeof loadTops === "function"){ renderAccount(); loadTops(); } };
-  const rd = {game: S.mode === "quick" ? "cricket-2" : "cricket-12", mode: S.mode, score: S.runs, correct: S.scoring || 0, wrong: S.dots + S.wkts};
+  const rd = {game: S.mode === "quick" ? "cricket-2" : "cricket-12", mode: S.mode, score: S.runs, correct: S.scoring || 0, wrong: S.dots + S.wkts, secs: Math.round(S.playSecs || 0)};
   if (S.balls > 0 && typeof submitInnings === "function") submitInnings(rd).then(showXp); else $("#xpBox").hidden = true;
   S.thisOver = []; updateSB();
 }
@@ -1502,7 +1503,7 @@ function onCredential(resp){
   store.set("dg_user", user);
   renderAccount(); toast(`Signed in as ${user.name}`);
   flushPending().then(() => {
-    if (unsent){ const rd = unsent; unsent = null; submitInnings(rd).then(showXp); }
+    unsent = null;
     loadTops();
   });
 }
@@ -1584,7 +1585,7 @@ async function flushPending(){
 }
 async function submitInnings(rd){
   if (!CFG.API_URL) return {status: "offline-site"};
-  if (!signedIn()){ unsent = rd; return {status: "guest"}; }
+  if (!signedIn()) return {status: "guest"};
   if (!tokenOk()){ queue(rd); return {status: "queued"}; }
   try {
     const r = await post({action: "submit", ...rd});
@@ -1602,9 +1603,9 @@ function showXp(out){
     box.innerHTML = `<div class="xt"><span><b style="font-size:13px;color:#fff;font-family:inherit">XP earned</b></span><b>+${out.xp.total}</b></div>${wk ? `<div>${wk}</div>` : ""}<ul>${items}</ul>${portal}`;
     loadTops();
   } else if (out.status === "guest"){
-    box.innerHTML = `Sign in with Google to put this score on the Diwali Games leaderboard and win prizes.<div id="gBtn2" style="display:flex;justify-content:center;margin-top:8px"></div>`;
+    box.innerHTML = `Guest scores don't go on the leaderboard. Sign in with Google before your next innings to compete for prizes.<div id="gBtn2" style="display:flex;justify-content:center;margin-top:8px"></div>`;
     if (googleReady) try { google.accounts.id.renderButton($("#gBtn2"), {theme: "filled_black", size: "large", shape: "pill", text: "signin_with", width: 240}); } catch {}
-    else box.innerHTML = `Saved on this phone. On hindeclasses.com, sign in with Google to put your scores on the Diwali Games leaderboard.`;
+    else box.innerHTML = `Guest score, saved on this phone only. Sign in with Google to join the Diwali Games leaderboard.`;
   } else if (out.status === "queued"){
     box.innerHTML = `Your sign-in has expired. This score is saved and will post when you sign in again.<div id="gBtn2" style="display:flex;justify-content:center;margin-top:8px"></div>`;
     if (googleReady) try { google.accounts.id.renderButton($("#gBtn2"), {theme: "filled_black", size: "large", shape: "pill", text: "signin_with", width: 240}); google.accounts.id.prompt(); } catch {}
