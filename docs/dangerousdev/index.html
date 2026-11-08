@@ -84,8 +84,8 @@ input.name{font:inherit;font-size:11px;background:#000;color:var(--gold);border:
 
 /* touch game-pad */
 #pad{display:flex;justify-content:space-between;align-items:center;width:var(--sw);flex:1;min-height:150px;max-height:230px;padding:4px 6px;touch-action:none}
-#pad.land{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:auto;padding:0 max(14px,env(safe-area-inset-left,0px));pointer-events:none;min-height:0}
-#pad.land > *{pointer-events:auto;opacity:.75}
+#pad.landX{position:fixed;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:auto;padding:0 max(14px,env(safe-area-inset-left,0px));pointer-events:none;min-height:0}
+#pad.landX > *{pointer-events:auto;opacity:.75}
 .dpad{position:relative;width:150px;height:150px;border-radius:50%;background:#1d1828;box-shadow:inset 0 0 0 3px #3a3150,0 4px 0 #000;touch-action:none}
 .dpad i{position:absolute;background:#3a3150;border-radius:6px}
 .dpad i.h{left:20px;right:20px;top:58px;height:34px}
@@ -99,6 +99,47 @@ input.name{font:inherit;font-size:11px;background:#000;color:var(--gold);border:
 .pb.down{transform:translateY(3px);box-shadow:inset 0 -1px 0 rgba(0,0,0,.35),0 1px 0 #000}
 .pb.jet.onjet{background:var(--teal);color:#000}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+
+/* ===== phone landscape: handheld layout — screen in the middle, grips left and right ===== */
+body.lt #app{padding:0;gap:0;display:block;z-index:1}
+body.lt #screen{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 2px #2a2436,0 0 30px rgba(80,60,140,.3)}
+body.lt::before,body.lt::after{content:"";position:fixed;top:0;bottom:0;width:var(--side);background:linear-gradient(180deg,#1a1524,#100d17);z-index:0}
+body.lt::before{left:0;box-shadow:inset -2px 0 0 #2a2436;border-radius:0 26px 26px 0}
+body.lt::after{right:0;box-shadow:inset 2px 0 0 #2a2436;border-radius:26px 0 0 26px}
+body.lt #hudTop{position:fixed;z-index:2;top:max(8px,env(safe-area-inset-top,0px));left:max(10px,env(safe-area-inset-left,0px));width:calc(var(--side) - 20px);flex-direction:column;align-items:flex-start;gap:5px;background:none;box-shadow:none;padding:4px 0;font-size:9px}
+body.lt #hudTop .lives{flex-wrap:wrap}
+body.lt #hudBot{position:fixed;z-index:3;left:50%;transform:translateX(-50%);bottom:calc((100vh - var(--sh))/2 + 3px);width:calc(var(--sw) - 12px);background:rgba(5,3,10,.55);box-shadow:none;padding:4px 6px;font-size:8px;pointer-events:none}
+body.lt .corner{position:fixed;top:max(8px,env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));z-index:4}
+body.lt .corner button{width:34px;height:34px;font-size:11px;border-radius:8px}
+body.lt #pad{position:fixed;inset:0;width:auto;max-height:none;min-height:0;padding:0;display:block;pointer-events:none;z-index:2}
+body.lt #pad > *{pointer-events:auto}
+body.lt .dpad{position:absolute;left:calc(max(0px,env(safe-area-inset-left,0px)) + var(--side)/2);bottom:max(14px,calc(env(safe-area-inset-bottom,0px) + 8px));transform:translateX(-50%) scale(var(--dps));transform-origin:50% 100%}
+body.lt .btns{position:absolute;right:calc(max(0px,env(safe-area-inset-right,0px)) + 8px);bottom:max(14px,calc(env(safe-area-inset-bottom,0px) + 8px));width:calc(var(--side) - 16px);height:calc(var(--bs)*2.5);display:block}
+body.lt .pb{position:absolute;width:var(--bs);height:var(--bs);font-size:8px}
+body.lt .pb.a{width:calc(var(--bs)*1.25);height:calc(var(--bs)*1.25);right:0;bottom:0;font-size:9px}
+body.lt .pb.fire{left:0;bottom:calc(var(--bs)*.1)}
+body.lt .pb.jet{right:calc(var(--bs)*.12);bottom:calc(var(--bs)*1.38)}
+#pad.idle .pb,#pad.idle .dpad{opacity:.4}
+/* phone portrait: wide screen on top, big pad below */
+body.pt #pad{min-height:190px;max-height:none;padding:6px 10px calc(env(safe-area-inset-bottom,0px) + 10px)}
+body.pt .dpad{transform:scale(var(--dps));transform-origin:0 50%}
+body.pt .pb{width:var(--bs);height:var(--bs)}
+body.pt .pb.a{width:calc(var(--bs)*1.25);height:calc(var(--bs)*1.25)}
+.rot{font-size:8px;line-height:1.8;color:var(--teal);margin-top:6px;animation:blink 1.4s steps(1) infinite}
+/* short screens (phones on their side): compact title & cards */
+@media (max-height:460px){
+  .logo{font-size:20px;padding:6px 10px}
+  .logo small{margin-top:5px}
+  .press{display:none}
+  #title{gap:6px;justify-content:flex-start;padding-top:8px;overflow:auto}
+  #title .menu{display:grid;grid-template-columns:1fr 1fr;min-width:min(330px,96%);gap:6px}
+  #title .mbtn{padding:8px 6px;font-size:8px}
+  .acct,.credit{font-size:6px;padding:4px 6px;line-height:1.7}
+  .card{padding:10px}
+  .lvlname{font-size:15px}
+  .fact{font-size:7px;padding:6px 8px}
+}
+body{-webkit-touch-callout:none}
 </style>
 
 </head>
@@ -705,19 +746,47 @@ let VW = 192, VH = 192, SCALE = 2;
 const touch = matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
 
 /* ---------- layout ---------- */
+/* Three layouts:
+   desktop  – status bars above and below an integer-scaled screen.
+   phone landscape (handheld) – the screen fills the full height in the middle; the d-pad sits in the left
+     grip, JUMP / FIRE / JET in the right grip, score & lives in the grips, messages over the screen.
+   phone portrait – a wide screen on top and a big game-pad underneath. */
 function layout(){
-  const W = innerWidth, H = innerHeight, land = W > H;
-  const padH = touch && !land ? Math.min(220, Math.max(160, H*.26)) : 0;
-  const availW = W - 16, availH = H - 24 - 2*30 - padH - 12;
-  let s = Math.min(availH/192, availW/160);
-  s = s >= 2 ? Math.floor(s) : Math.max(1, s);
-  SCALE = s; VH = 192; VW = Math.max(160, Math.min(416, Math.floor(availW/s)));
-  cv.width = VW; cv.height = VH;
-  const sw = Math.round(VW*s), sh = Math.round(VH*s);
-  document.documentElement.style.setProperty("--sw", sw + "px"); document.documentElement.style.setProperty("--sh", sh + "px");
+  const W = innerWidth, H = innerHeight, land = W > H, rs = document.documentElement.style, B = document.body;
+  const lt = touch && land, pt = touch && !land;
+  B.classList.toggle("lt", lt); B.classList.toggle("pt", pt);
+  let s, sw, sh;
+  if (lt){
+    const side = Math.round(Math.max(118, Math.min(210, W*.2))), availW = W - 2*side, availH = H - 6;
+    s = availH/192; VW = Math.floor(availW/s);
+    if (VW < 220){ s = availW/220; VW = 220; }
+    VW = Math.min(416, VW);
+    const dp = Math.min(side - 14, H*.52, 168), bs = Math.min((side - 18)/2.25, H*.2, 74);
+    rs.setProperty("--side", side + "px"); rs.setProperty("--dps", (dp/150).toFixed(3)); rs.setProperty("--bs", Math.round(bs) + "px");
+  } else if (pt){
+    const availW = W - 12, padMin = 190, availH = H - 24 - 30 - padMin - 16;
+    s = Math.max(1, Math.min(availW/240, availH/192)); VW = Math.max(200, Math.min(416, Math.floor(availW/s)));
+    rs.setProperty("--dps", Math.min(1.25, Math.max(.95, W/390)).toFixed(3)); rs.setProperty("--bs", Math.round(Math.min(80, W*.17)) + "px");
+  } else {
+    const availW = W - 16, availH = H - 24 - 2*30 - 12;
+    s = Math.min(availH/192, availW/160); s = s >= 2 ? Math.floor(s) : Math.max(1, s);
+    VW = Math.max(160, Math.min(416, Math.floor(availW/s)));
+  }
+  SCALE = s; VH = 192; cv.width = VW; cv.height = VH;
+  sw = Math.round(VW*s); sh = Math.round(VH*s);
+  rs.setProperty("--sw", sw + "px"); rs.setProperty("--sh", sh + "px");
   ctx.imageSmoothingEnabled = false;
-  const pad = $("#pad"); pad.hidden = !touch; pad.classList.toggle("land", touch && land);
+  $("#pad").hidden = !touch;
 }
+addEventListener("orientationchange", () => setTimeout(layout, 250));
+/* fullscreen + landscape lock where the browser allows it (Android Chrome); iPhone Safari just ignores this */
+const canFull = !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
+function goFull(){
+  if (!touch || !canFull || document.fullscreenElement || document.webkitFullscreenElement) return;
+  const el = document.documentElement, rq = el.requestFullscreen || el.webkitRequestFullscreen;
+  try { const pr = rq.call(el, {navigationUI: "hide"}); pr && pr.then && pr.then(() => screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape").catch(() => {})).catch(() => {}); } catch {}
+}
+const buzz = ms => { try { touch && navigator.vibrate && navigator.vibrate(ms); } catch {} };
 addEventListener("resize", layout);
 
 /* ---------- audio: chiptune ---------- */
@@ -786,7 +855,7 @@ function loadLevel(i, keep){
   if (G.L.boss){ const b = G.L.boss; G.boss = {x: b.tx*16 - 16, y: b.ty*16 + 16 - 64, x0: b.tx*16 - 16, hp: BOSS_HP, cd: 1.6, n: 0, flash: 0, pose: 0, poseT: 0, active: false, dead: false, deadT: 0}; } else G.boss = null;
   setMsg("FIND THE GOLDEN GHUMOT!", true); hud();
 }
-function newGame(level = 0){ G.playSecs = 0; G.score = 0; G.lives = 3; G.nextLife = 20000; G.got = 0; G.deaths = 0; showCard(level); }
+function newGame(level = 0){ goFull(); G.playSecs = 0; G.score = 0; G.lives = 3; G.nextLife = 20000; G.got = 0; G.deaths = 0; showCard(level); }
 function setMsg(m, blink){ const e = $("#hMsg"); e.textContent = m; e.classList.toggle("blink", !!blink); }
 function hud(){
   $("#hScore").textContent = String(G.score).padStart(5, "0"); $("#hLevel").textContent = G.lvl + 1;
@@ -815,10 +884,10 @@ function showCard(i){
   G.state = "card"; $("#title").hidden = true; loadLevel(i); stopMusic();
   const d = LV[i];
   panel(`<div class="lvlno">LEVEL ${i + 1} OF ${LV.length}</div><div class="lvlname">${d.name.toUpperCase()}</div><div class="lvlplace">${d.place.toUpperCase()}, GOA</div>
-    <p class="fact">${d.fact}</p><button class="mbtn primary" id="goBtn" type="button">LET'S GO!</button><div class="tiny">${touch ? "TAP TO START" : "PRESS ENTER"}</div>`);
+    <p class="fact">${d.fact}</p><button class="mbtn primary" id="goBtn" type="button">LET'S GO!</button><div class="tiny">${touch ? "TAP TO START" : "PRESS ENTER"}</div>${touch && innerHeight > innerWidth ? `<div class="rot">↻ TURN YOUR PHONE SIDEWAYS FOR THE BIG SCREEN</div>` : ""}`);
   $("#goBtn").onclick = startPlay;
 }
-function startPlay(){ audio(); hidePanel(); G.state = "play"; $("#corner").hidden = false; startMusic(); G.inv = 1; }
+function startPlay(){ goFull(); audio(); hidePanel(); G.state = "play"; $("#corner").hidden = false; startMusic(); G.inv = 1; }
 function showHow(back){
   panel(`<h2>HOW TO PLAY</h2>
     <p>Grab the <span class="k">GOLDEN GHUMOT</span> in each level, then go through the <span class="k">DOOR</span>.</p>
@@ -936,8 +1005,7 @@ function dpadUpdate(){
   let l = false, r = false, u = false, d = false;
   const rc = dpad.getBoundingClientRect(), cx = rc.left + rc.width/2, cy = rc.top + rc.height/2;
   for (const [, pt] of dTouches){ const dx = pt.x - cx, dy = pt.y - cy; if (Math.hypot(dx, dy) < 12) continue; const a = Math.atan2(dy, dx)*180/Math.PI;
-    if (a > 112 || a < -112) l = true; if (a > -68 && a < 68) r = true; if (a < -22 && a > -158) u = true; if (a > 22 && a < 158) d = true; }
-  if (u && !K.up) upEdge = !K.climbingHint;
+    if (a > 120 || a < -120) l = true; if (a > -60 && a < 60) r = true; if (a < -35 && a > -145) u = true; if (a > 35 && a < 145) d = true; }
   K.left = l; K.right = r; K.up = u; K.down = d;
   $("#dL").classList.toggle("on", l); $("#dR").classList.toggle("on", r); $("#dU").classList.toggle("on", u); $("#dD").classList.toggle("on", d);
 }
@@ -945,9 +1013,11 @@ dpad.addEventListener("pointerdown", e => { audio(); dpad.setPointerCapture(e.po
 dpad.addEventListener("pointermove", e => { if (dTouches.has(e.pointerId)){ dTouches.set(e.pointerId, {x: e.clientX, y: e.clientY}); dpadUpdate(); } });
 for (const ev of ["pointerup", "pointercancel", "lostpointercapture"]) dpad.addEventListener(ev, e => { dTouches.delete(e.pointerId); dpadUpdate(); });
 function padBtn(el, fn){ el.addEventListener("pointerdown", e => { audio(); e.preventDefault(); el.classList.add("down"); fn(); }); for (const ev of ["pointerup", "pointercancel", "pointerleave"]) el.addEventListener(ev, () => el.classList.remove("down")); }
-padBtn($("#bJump"), () => { K.jumpQ = true; K.jumpHeld = true; }); $("#bJump").addEventListener("pointerup", () => K.jumpHeld = false);
-padBtn($("#bFire"), () => K.fireQ = true);
-padBtn($("#bJet"), () => K.jetQ = true);
+padBtn($("#bJump"), () => { K.jumpQ = true; K.jumpHeld = true; buzz(8); }); for (const ev of ["pointerup", "pointercancel"]) $("#bJump").addEventListener(ev, () => K.jumpHeld = false);
+padBtn($("#bFire"), () => { K.fireQ = true; buzz(12); });
+padBtn($("#bJet"), () => { K.jetQ = true; buzz(15); });
+// D-pad / buttons never scroll, zoom or open the long-press menu
+for (const el of [dpad, $("#bJump"), $("#bFire"), $("#bJet")]) el.addEventListener("contextmenu", e => e.preventDefault());
 // tap anywhere on the title / card to continue (touch)
 addEventListener("pointerdown", () => { G.lastInput = performance.now(); }, true);
 $("#screen").addEventListener("pointerdown", e => { if (G.state === "card" && e.target.id !== "goBtn" && !e.target.closest(".mbtn")) startPlay(); else if (G.state === "walk" && G.walkT > 1) afterWalk(); });
@@ -1091,7 +1161,7 @@ function update(dt){
   G.cam = Math.max(0, Math.min(L.w*16 - VW, G.cam));
   if (p.hasJet){ $("#hFuel").style.transform = `scaleX(${p.fuel})`; $("#bJet").classList.toggle("onjet", p.flying); }
 }
-function die(){
+function die(){ buzz([40, 30, 60]);
   if (G.state !== "play") return;
   G.state = "dead"; G.deadT = 1.5; SFX.die(); stopMusic();
   burst(G.p.x + 5, G.p.y + 8, ["#ffd23a", "#e8402a", "#fff", "#ef6a23"], 30, 110);
@@ -1220,6 +1290,7 @@ function frame(now){
   acc += Math.min(.1, (now - last)/1000); last = now;
   while (acc >= DT){ update(DT); acc -= DT; }
   render();
+  const idle = G.state !== "play"; if (idle !== frame.idle){ frame.idle = idle; $("#pad").classList.toggle("idle", idle); }
   requestAnimationFrame(frame);
 }
 document.addEventListener("visibilitychange", () => { if (document.hidden && G.state === "play") togglePause(); });
