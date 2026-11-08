@@ -583,6 +583,27 @@ body::before{background:transparent}
 /* header row shares the .bar class name with progress bars; undo those styles here */
 .top .bar{height:auto;overflow:visible;background:none;border-radius:0;box-shadow:none}
 .acct a{text-decoration:none}
+/* MHC Cricket floating tile */
+.g-cricket{--a1:#5ad66f;--a2:#e0313f}
+.ctile{position:relative;display:grid;grid-template-columns:92px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px;border-radius:26px;text-decoration:none;color:var(--text);overflow:hidden;
+  border:1px solid transparent;background:radial-gradient(260px 140px at 0% 50%,rgba(90,214,111,.28),transparent 70%) padding-box,linear-gradient(150deg,rgba(18,58,34,.85),rgba(24,14,48,.8)) padding-box,linear-gradient(140deg,#5ad66f,rgba(255,255,255,.08) 45%,#ffc145) border-box;
+  box-shadow:var(--lift),0 0 40px rgba(90,214,111,.18);animation:bob 6s ease-in-out infinite -2s;transition:transform .15s}
+.ctile:active{transform:scale(.98)}
+.ctile::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.12) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 6s ease-in-out infinite}
+.ct-art{position:relative;width:92px;height:92px;border-radius:22px;overflow:hidden;background:repeating-linear-gradient(90deg,#3f9a34 0 12px,#4fae3f 12px 24px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2),0 10px 24px rgba(0,0,0,.35)}
+.ct-pitch{position:absolute;left:34%;right:34%;top:-10%;bottom:-10%;background:linear-gradient(180deg,#b9b68d,#d2cea2);transform:perspective(120px) rotateX(35deg);transform-origin:bottom}
+.ct-stumps{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;gap:3px}
+.ct-stumps i{display:block;width:4px;height:26px;border-radius:2px;background:linear-gradient(180deg,#f3e3bf 0 60%,#8c2433 60% 78%,#f3e3bf 78%)}
+.ct-ball{position:absolute;width:14px;height:14px;border-radius:50%;left:24px;top:18px;background:radial-gradient(circle at 35% 35%,#ff7a7a,#b8212c 60%);box-shadow:0 0 0 2px rgba(255,255,255,.2);animation:ctBall 2.2s cubic-bezier(.5,0,.7,1) infinite}
+@keyframes ctBall{0%{transform:translate(18px,-8px) scale(.6)}55%{transform:translate(12px,38px) scale(.9)}70%{transform:translate(10px,30px) scale(1)}100%{transform:translate(-40px,-30px) scale(1.4);opacity:0}}
+.ct-txt{min-width:0;display:flex;flex-direction:column;gap:3px}
+.ct-new{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#7ff09a}
+.ct-txt b{font-family:var(--f-disp);font-size:19px;line-height:1.15}
+.ct-sub{color:#d6d0ea;font-size:13px;line-height:1.35}
+.ct-best{font-size:12px;font-weight:800;color:var(--gold)}
+.ct-go{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(140deg,#5ad66f,#1f9b45);box-shadow:0 0 18px rgba(90,214,111,.55)}
+.ct-go svg{width:18px;height:18px;fill:#fff}
+@media (prefers-reduced-motion:reduce){.ctile,.ct-ball,.ctile::after{animation:none!important}}
 
 </style>
 </head>
@@ -670,7 +691,8 @@ const CONFIG = {
   GOOGLE_CLIENT_ID: "572990500681-12u9hv4cg632ichlkutnjnet58t7vb83.apps.googleusercontent.com", // same Client ID as hindeclasses.com/app
   API_URL: "https://script.google.com/macros/s/AKfycbxqnCASk2-M3f-44n8LjoGJQXV2Q59TeYGHEkrBqUK_mF-q8jsMuL5PtlFmaWSg44RV/exec",
   HOME_URL: "https://www.hindeclasses.com/",
-  REWARD_AT: "2026-11-21T00:00:00+05:30"  // prize countdown target (IST)
+  REWARD_AT: "2026-11-21T00:00:00+05:30",  // prize countdown target (IST)
+  CRICKET_URL: "/cricket/"                  // MHC Cricket lives here
 };
 </script>
 <script>
@@ -682,9 +704,11 @@ var HG = (function () {
     'nexus':        { name: 'Nexus',        div: 25, max: 400000, good: 2000 },
     'axis':         { name: 'Axis',         div: 10, max: 20000, good: 1200 },
     'prime-split':  { name: 'Prime Split',  div: 12, max: 40000, good: 1200 },
-    'pattern-lock': { name: 'Pattern Lock', div: 14, max: 40000, good: 1500 }
+    'pattern-lock': { name: 'Pattern Lock', div: 14, max: 40000, good: 1500 },
+    'cricket-12':   { name: 'MHC Cricket (12 overs)', div: .5, max: 600, good: 100 },
+    'cricket-2':    { name: 'MHC Cricket (2 overs)', div: .3, max: 120, good: 30 }
   };
-  var MODES = { foundation: 1, core: 1.15, advanced: 1.3 };
+  var MODES = { foundation: 1, core: 1.15, advanced: 1.3, classic: 1, quick: 1 };
   var RANKS = [[0, 'Digit'], [400, 'Integer'], [1200, 'Rational'], [2500, 'Prime'], [4500, 'Vector'], [7500, 'Matrix'], [12000, 'Theorem'], [20000, 'Infinity']];
 
   function dayNum(ms) { return Math.floor((ms + TZ) / DAY); }
@@ -1109,6 +1133,8 @@ const ICO = {
   trophy:'<svg viewBox="0 0 64 64" class="trophy"><defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a8"/><stop offset=".5" stop-color="#ffc145"/><stop offset="1" stop-color="#e07a12"/></linearGradient></defs><path d="M20 8h24v14a12 12 0 0 1-24 0z" fill="url(#tg)"/><path d="M20 12H10v4a10 10 0 0 0 10 10M44 12h10v4a10 10 0 0 1-10 10" fill="none" stroke="#ffc145" stroke-width="4" stroke-linecap="round"/><path d="M28 34h8v10h-8z" fill="#e8a024"/><path d="M18 54a6 6 0 0 1 6-6h16a6 6 0 0 1 6 6v2H18z" fill="url(#tg)"/><path d="M32 13l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.6-4.8 2.6.9-5.4-3.9-3.8 5.4-.8z" fill="#fff8e0"/></svg>'
 };
 const GICON = {
+  "cricket-12":'<svg viewBox="0 0 64 64"><path d="M46 8l10 10-26 26-10-10z"/><path d="M22 36l-8 8"/><circle cx="17" cy="20" r="7" fill="#fff"/></svg>',
+  "cricket-2":'<svg viewBox="0 0 64 64"><path d="M46 8l10 10-26 26-10-10z"/><path d="M22 36l-8 8"/><circle cx="17" cy="20" r="7" fill="#fff"/></svg>',
   "sigma-sprint":'<svg viewBox="0 0 64 64"><path d="M46 14H18l15 18-15 18h28"/></svg>',
   "nexus":'<svg viewBox="0 0 64 64"><path d="M16 46L27 18l21 9-6 21z"/><circle cx="16" cy="46" r="5" fill="#fff"/><circle cx="27" cy="18" r="5" fill="#fff"/><circle cx="48" cy="27" r="5" fill="#fff"/><circle cx="42" cy="48" r="5" fill="#fff"/></svg>',
   "axis":'<svg viewBox="0 0 64 64"><path d="M8 42h48M8 35v14M32 37v10M56 35v14"/><path d="M36 14h12l-6 12z" fill="#fff"/></svg>',
@@ -1348,6 +1374,21 @@ const GL = [
   {id:"prime-split",  cls:"g-prime",   name:"Prime Split",  tag:"Break numbers into their prime factors as fast as you can.", basic:"Division facts", adv:"Index form"},
   {id:"pattern-lock", cls:"g-pattern", name:"Pattern Lock", tag:"Crack the rule behind the sequence and type the next number.", basic:"Skip counting", adv:"Fibonacci & quadratics"}
 ];
+const XG = [
+  {id:"cricket-12", cls:"g-cricket", name:"MHC Cricket · 12 overs"},
+  {id:"cricket-2",  cls:"g-cricket", name:"MHC Cricket · 2 overs"}
+];
+const XMODES = {classic:{name:"12 overs"}, quick:{name:"2 overs"}};
+const ALLG = () => GL.concat(XG);
+const modeName = m => (MODES[m] || XMODES[m])?.name || "";
+function cricketTile(p){
+  const b12 = p.best["cricket-12"], b2 = p.best["cricket-2"];
+  const best = b12 || b2 ? "Best " + [b12 ? fmt(b12.score) + " in 12 overs" : "", b2 ? fmt(b2.score) + " in 2 overs" : ""].filter(Boolean).join(" · ") : "Classic 12 overs or a quick 2-over blast";
+  return `<a class="ctile" href="${CONFIG.CRICKET_URL}" target="_top" aria-label="Play MHC Cricket">
+    <span class="ct-art" aria-hidden="true"><span class="ct-pitch"></span><span class="ct-stumps"><i></i><i></i><i></i></span><span class="ct-ball"></span></span>
+    <span class="ct-txt"><span class="ct-new">New · Bonus game</span><b>MHC Cricket</b><span class="ct-sub">Swipe to bat against pace, swing and spin. Your runs earn XP on this leaderboard.</span><span class="ct-best">${best}</span></span>
+    <span class="ct-go">${ICO.play}</span></a>`;
+}
 const gIcon = (id, cls) => `<span class="gicon ${cls || ""}">${GICON[id]}</span>`;
 
 /* ===== Views ===== */
@@ -1424,6 +1465,7 @@ function renderHome(){
     </div>`;
   v.innerHTML = `${festive}${hello}
     ${user ? missionsHTML(p) : ""}
+    ${cricketTile(p)}
     <div class="sec-t"><h2><span class="mini-diya" aria-hidden="true"></span>Games</h2><span class="sub" style="font-size:12.5px">3 levels each</span></div>
     <div class="games">${GL.map(g => {
       const b = p.best[g.id];
@@ -1446,10 +1488,11 @@ function renderLeaders(){
       <div class="cdown" id="cdown"><div><b id="cdD">0</b><small>Days</small></div><div><b id="cdH">0</b><small>Hrs</small></div><div><b id="cdM">0</b><small>Min</small></div><div><b id="cdS">0</b><small>Sec</small></div></div>
     </div>
     <div class="tabs" role="group" aria-label="Board">${[["week","This week"],["month","Month"],["all","All time"],["records","Records"]].map(([k,l]) => `<button type="button" data-t="${k}" aria-pressed="${lb.tab === k}">${l}</button>`).join("")}</div>
-    ${lb.tab === "records" ? `<div class="gchips">${GL.map(g => `<button type="button" class="${g.cls}" data-g="${g.id}" aria-pressed="${lb.game === g.id}">${g.name}</button>`).join("")}</div>` : ""}
+    ${lb.tab === "records" ? `<div class="gchips">${ALLG().map(g => `<button type="button" class="${g.cls}" data-g="${g.id}" aria-pressed="${lb.game === g.id}">${g.name}</button>`).join("")}</div>` : ""}
     <div id="lbBody"><div class="empty">Loading the board…</div></div>`;
   v.querySelectorAll(".tabs button").forEach(b => b.onclick = () => { lb.tab = b.dataset.t; lb.shown = 10; renderLeaders(); });
   v.querySelectorAll(".gchips button").forEach(b => b.onclick = () => { lb.game = b.dataset.g; lb.shown = 10; renderLeaders(); });
+  { const gc = v.querySelector(".gchips"), on = gc?.querySelector('[aria-pressed="true"]'); if (gc && on) gc.scrollLeft = on.offsetLeft - gc.clientWidth/2 + on.clientWidth/2; }
   tickCountdown();
   renderLbBody();
 }
@@ -1458,7 +1501,7 @@ async function renderLbBody(){
   const {rows, live} = await fetchBoard(rec ? "game" : "xp", rec ? "all" : lb.tab, rec ? lb.game : "");
   const body = $("#lbBody"); if (!body || view !== "leaders") return;
   const unit = rec ? "" : "XP";
-  const valHTML = r => `${fmt(r.v)}<small>${rec ? (MODES[r.mode]?.name || "") : unit}</small>`;
+  const valHTML = r => `${fmt(r.v)}<small>${rec ? modeName(r.mode) : unit}</small>`;
   const rowHTML = (r, i) => `<li class="${r.me ? "me" : ""}"><span class="pos">${i + 1}</span>${avatarHTML(r.name, r.picture, "sm")}
     <div class="who"><div class="nm">${esc(r.name)}${r.me ? " (you)" : ""}</div><div class="meta">${rankChip(r.xpAll || 0)}${r.sample ? '<span class="sample">Sample</span>' : ""}</div></div>
     <span class="val">${valHTML(r)}</span></li>`;
@@ -1495,8 +1538,8 @@ function renderMe(){
       <div class="stat"><b>${fmt(p.rounds)}</b><small>Rounds played</small></div>
     </div>
     <div class="card"><h2 style="margin-bottom:10px">Rank ladder</h2><div class="ladder">${HG.RANKS.map((x, i) => `<div class="rung${i < r.i ? " got" : i === r.i ? " now" : ""}" style="--rc:${RANK_STYLE[i][0]}"><div class="sym">${RANK_STYLE[i][1]}</div><b>${x[1]}</b><small>${fmt(x[0])} XP</small></div>`).join("")}</div></div>
-    <div class="card"><h2 style="margin-bottom:12px">Best scores</h2><div class="bests">${GL.map(g => { const b = p.best[g.id];
-      return `<div class="best">${gIcon(g.id, g.cls)}<div><div style="font-weight:800">${g.name}</div><div class="sub" style="font-size:12.5px">${b ? MODES[b.mode]?.name || "" : "Not played yet"}</div></div><b>${b ? fmt(b.score) : "—"}</b></div>`; }).join("")}</div></div>
+    <div class="card"><h2 style="margin-bottom:12px">Best scores</h2><div class="bests">${ALLG().map(g => { const b = p.best[g.id];
+      return `<div class="best">${gIcon(g.id, g.cls)}<div><div style="font-weight:800">${g.name}</div><div class="sub" style="font-size:12.5px">${b ? modeName(b.mode) : "Not played yet"}</div></div><b>${b ? fmt(b.score) : "—"}</b></div>`; }).join("")}</div></div>
     ${howHTML(false)}
     <div style="display:flex;gap:8px;flex-wrap:wrap">${user.guest ? `<button class="btn btn-primary" id="meG">Sign in with Google</button>` : ""}<button class="btn btn-ghost" id="meOut">${user.guest ? "Change name" : "Sign out"}</button></div>`;
   $("#meG")?.addEventListener("click", () => openLogin());
