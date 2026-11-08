@@ -786,7 +786,7 @@ function loadLevel(i, keep){
   if (G.L.boss){ const b = G.L.boss; G.boss = {x: b.tx*16 - 16, y: b.ty*16 + 16 - 64, x0: b.tx*16 - 16, hp: BOSS_HP, cd: 1.6, n: 0, flash: 0, pose: 0, poseT: 0, active: false, dead: false, deadT: 0}; } else G.boss = null;
   setMsg("FIND THE GOLDEN GHUMOT!", true); hud();
 }
-function newGame(level = 0){ G.score = 0; G.lives = 3; G.nextLife = 20000; G.got = 0; G.deaths = 0; showCard(level); }
+function newGame(level = 0){ G.playSecs = 0; G.score = 0; G.lives = 3; G.nextLife = 20000; G.got = 0; G.deaths = 0; showCard(level); }
 function setMsg(m, blink){ const e = $("#hMsg"); e.textContent = m; e.classList.toggle("blink", !!blink); }
 function hud(){
   $("#hScore").textContent = String(G.score).padStart(5, "0"); $("#hLevel").textContent = G.lvl + 1;
@@ -843,7 +843,7 @@ function showHi(){
 function showLevels(){
   panel(`<h2>LEVEL SELECT</h2><div class="menu">${LV.map((d, i) => `<button class="mbtn${i < G.unlocked ? "" : " dis"}" data-l="${i}" type="button" ${i < G.unlocked ? "" : "disabled"}>${i + 1}. ${d.name.toUpperCase()}${i < G.unlocked ? "" : " 🔒"}</button>`).join("")}</div>
     <p class="tiny">Finish a level to unlock the next.</p><button class="mbtn" id="hb" type="button">BACK</button>`);
-  document.querySelectorAll("[data-l]").forEach(b => b.onclick = () => { audio(); G.score = 0; G.lives = 3; G.nextLife = 20000; showCard(+b.dataset.l); });
+  document.querySelectorAll("[data-l]").forEach(b => b.onclick = () => { audio(); G.playSecs = 0; G.score = 0; G.lives = 3; G.nextLife = 20000; showCard(+b.dataset.l); });
   $("#hb").onclick = hidePanel;
 }
 $("#mStart").onclick = () => { audio(); newGame(0); };
@@ -877,7 +877,7 @@ function gameEnd(won){
     ${qual ? `<div class="tiny">NEW HIGH SCORE! ENTER YOUR NAME</div><input class="name" id="nm" maxlength="10" value="${name}" aria-label="Your name"><button class="mbtn primary" id="sv" type="button">SAVE</button>`
            : `<button class="mbtn primary" id="sv" type="button">TITLE SCREEN</button>`}`, won ? "win" : "");
   if (won) SFX.trophy(); else SFX.die();
-  if (typeof submitRun === "function" && G.score > 0) submitRun({game: "dangerous-dev", mode: "story", score: G.score, correct: G.got || 0, wrong: G.deaths || 0}).then(showXp); else $("#xpBox").hidden = true;
+  if (typeof submitRun === "function" && G.score > 0) submitRun({game: "dangerous-dev", mode: "story", score: G.score, correct: G.got || 0, wrong: G.deaths || 0, secs: Math.round(G.playSecs || 0)}).then(showXp); else $("#xpBox").hidden = true;
   $("#sv").onclick = () => { G.fwOn = false;
     if (qual){ const n = ($("#nm").value.trim() || "DEV").toUpperCase().slice(0, 10); const list = hiscores(); list.push({n, s: G.score, l: G.lvl + 1}); list.sort((a, b) => b.s - a.s); store.set("dd_hi", list.slice(0, 5)); }
     showTitle(); if (qual) showHi();
@@ -917,6 +917,7 @@ const K = {left: false, right: false, up: false, down: false, jumpQ: false, fire
 const keyMap = {ArrowLeft: "left", KeyA: "left", ArrowRight: "right", KeyD: "right", ArrowUp: "up", KeyW: "up", ArrowDown: "down", KeyS: "down"};
 let upEdge = false;
 addEventListener("keydown", e => {
+  G.lastInput = performance.now();
   if (e.repeat && !keyMap[e.code]) return;
   audio();
   if (G.state === "gate"){ if (["Digit1", "Digit2", "Digit3"].includes(e.code)){ const b = document.querySelectorAll("[data-o]")[+e.code.slice(-1) - 1]; b && answer(+b.dataset.o, b); } if (e.code === "Escape") closeGate(); return; }
@@ -948,6 +949,7 @@ padBtn($("#bJump"), () => { K.jumpQ = true; K.jumpHeld = true; }); $("#bJump").a
 padBtn($("#bFire"), () => K.fireQ = true);
 padBtn($("#bJet"), () => K.jetQ = true);
 // tap anywhere on the title / card to continue (touch)
+addEventListener("pointerdown", () => { G.lastInput = performance.now(); }, true);
 $("#screen").addEventListener("pointerdown", e => { if (G.state === "card" && e.target.id !== "goBtn" && !e.target.closest(".mbtn")) startPlay(); else if (G.state === "walk" && G.walkT > 1) afterWalk(); });
 function togglePause(){
   if (G.state === "play"){ G.state = "pause"; stopMusic(); panel(`<h2>PAUSED</h2><div class="menu"><button class="mbtn primary" id="rs" type="button">RESUME</button><button class="mbtn" id="hw" type="button">HOW TO PLAY</button><button class="mbtn" id="cr" type="button">CRT EFFECT: ${$("#crt").classList.contains("off") ? "OFF" : "ON"}</button><button class="mbtn" id="qt" type="button">QUIT TO TITLE</button></div>`);
@@ -1022,6 +1024,7 @@ function update(dt){
   if (G.state === "title"){ G.attract += dt; G.cam = (Math.sin(G.attract*.12)*.5 + .5)*(G.L.w*16 - VW); return; }
   if (G.state === "walk"){ G.walkT += dt; if (G.walkT > 3.4) afterWalk(); return; }
   if (G.state !== "play" && G.state !== "dead") return;
+  if (performance.now() - (G.lastInput || 0) < 15000) G.playSecs = (G.playSecs || 0) + dt;
   const L = G.L, p = G.p;
   G.trainX += dt*(G.theme === "mangrove" ? 14 : 70); if (G.trainX > 1400) G.trainX = -300 - Math.random()*600;
   // particles & pops
@@ -1242,7 +1245,7 @@ function onCredential(resp){
   const p = decodeJwt(resp.credential); idToken = resp.credential; tokenExp = p.exp*1000;
   try { sessionStorage.setItem("dg_tok", JSON.stringify({t: idToken, exp: tokenExp})); } catch {}
   user = {name: shortName(p.name || p.given_name), picture: p.picture || "", guest: false, email: p.email || ""}; store.set("dg_user", user);
-  renderAccount(); flushPending().then(() => { if (unsent){ const rd = unsent; unsent = null; submitRun(rd).then(showXp); } });
+  renderAccount(); flushPending(); unsent = null;
 }
 function noGoogle(){ googleReady = false; renderAccount(); }
 function initGoogle(){
@@ -1276,7 +1279,7 @@ async function flushPending(){
 }
 async function submitRun(rd){
   if (!CFG.API_URL) return {status: "site"};
-  if (!signedIn()){ unsent = rd; return {status: "guest"}; }
+  if (!signedIn()) return {status: "guest"};
   if (!tokenOk()){ queue(rd); return {status: "queued"}; }
   try { const r = await post({action: "submit", ...rd});
     if (r.ok){ store.set("dg_P", r.player); return {status: "posted", xp: r.xp, week: r.week}; }
@@ -1287,7 +1290,7 @@ function showXp(out){
   const b = $("#xpBox"); if (!b) return;
   const link = `<a href="${CFG.PORTAL}#leaders" target="_top" style="color:var(--teal)">SEE THE LEADERBOARD</a>`;
   if (out.status === "posted") b.innerHTML = `XP EARNED <b>+${out.xp.total}</b>${out.week && out.week.pos ? ` · YOU'RE <b>#${out.week.pos}</b> THIS WEEK` : ""}<br>${link}`;
-  else if (out.status === "guest") b.innerHTML = googleReady ? `SIGN IN WITH GOOGLE TO PUT THIS SCORE ON THE LEADERBOARD<div id="gBtn2" style="margin-top:6px;display:flex;justify-content:center"></div>` : `SCORE SAVED ON THIS DEVICE.`;
+  else if (out.status === "guest") b.innerHTML = googleReady ? `GUEST SCORES DON'T GO ON THE LEADERBOARD. SIGN IN WITH GOOGLE BEFORE YOUR NEXT GAME TO COMPETE FOR PRIZES.<div id="gBtn2" style="margin-top:6px;display:flex;justify-content:center"></div>` : `GUEST SCORE, SAVED ON THIS DEVICE ONLY. SIGN IN WITH GOOGLE TO JOIN THE LEADERBOARD.`;
   else if (out.status === "queued") b.innerHTML = `SIGN-IN EXPIRED. YOUR SCORE WILL POST WHEN YOU SIGN IN AGAIN.<div id="gBtn2" style="margin-top:6px;display:flex;justify-content:center"></div>`;
   else if (out.status === "offline") b.innerHTML = `NO CONNECTION. YOUR SCORE WILL POST NEXT TIME YOU'RE ONLINE.`;
   else if (out.status === "site") b.innerHTML = `SCORE SAVED ON THIS DEVICE. ON HINDECLASSES.COM IT GOES ON THE LEADERBOARD.`;
