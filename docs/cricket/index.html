@@ -294,7 +294,7 @@ const PH = (() => {
     if (full){ const tz = z0 / sh; vx0 = (P.xTarget - x0 - .5 * sw * tz * tz) / tz; }
     else vx0 = (P.xTarget - x0 - .5 * sw * t1 * t1 - (sw * t1 + P.dev) * t2) / (t1 + t2);
     Object.assign(P, {sh, t1, vy0, vx0, vz2, vy2, full, xb: x0 + vx0 * t1 + .5 * sw * t1 * t1, vx2: vx0 + sw * t1 + P.dev});
-    P.contactZ = full ? 1.0 : P.lenName === "Yorker" ? 1.15 : P.zb < 4.2 ? 1.1 : P.zb < 7 ? .75 : .35;
+    P.contactZ = full ? 1.85 : P.lenName === "Yorker" ? 1.45 : P.zb < 4.2 ? 1.85 : P.zb < 7 ? 1.65 : 1.05;   // front foot for full balls, back foot for short ones
     P.tArrive = timeAtZ(P, P.contactZ);
     P.tStumps = timeAtZ(P, 0);
     const s = posAt(P, P.tStumps);
@@ -693,84 +693,49 @@ function drawFigure(g, c, x, z, o){
   g.save(); g.translate(T.fs[0], T.fs[1]); g.scale(T.kx*m, -T.ky*m); figure(g, o); g.restore();
 }
 
-/* ---- the striker (detailed back view) ---- */
-const POSE = {
-  stance:  {hx: .26, hy: .97, a: 8,   tw: 0,    st: 0},
-  trigger: {hx: .1,  hy: 1.28, a: 205, tw: -.02, st: .02},
-  leave:   {hx: .02, hy: 1.55, a: 182, tw: -.03, st: .05},
-  defend:  {hx: .32, hy: .98, a: 4,   tw: .03,  st: .12},
-};
-const SHOTS = {
-  drive:  [{hx: .3,  hy: .95, a: 8,   tw: .04, st: .14}, {hx: .2,  hy: 1.64, a: 165, tw: .07, st: .16}],
-  off:    [{hx: .36, hy: 1.0, a: 50,  tw: .05, st: .1},  {hx: .52, hy: 1.34, a: 118, tw: .1,  st: .1}],
-  leg:    [{hx: .3,  hy: 1.06, a: 82,  tw: -.02, st: -.02}, {hx: -.2, hy: 1.36, a: 248, tw: -.08, st: -.04}],
-  dab:    [{hx: .38, hy: .98, a: 62,  tw: .04, st: .05}, {hx: .36, hy: .94, a: 40,  tw: .04, st: .05}],
-  glance: [{hx: .24, hy: .95, a: -6,  tw: -.02, st: .06}, {hx: .1,  hy: .92, a: -38, tw: -.04, st: .06}]
-};
-const shotCat = phi => Math.abs(phi) <= 32 ? "drive" : phi > 32 && phi <= 115 ? "off" : phi < -32 && phi >= -115 ? "leg" : phi > 115 ? "dab" : "glance";
-let bPose = {...POSE.stance}, bAnim = null;
-function animPose(seq){ bAnim = {seq, i: 0, t: 0, from: {...bPose}}; }
+/* ---- the striker: 3D rig (rig.js) with keyframed shots ---- */
+let curPose = null, poseAnim = null;
+function animTo(seq){ if (!curPose) curPose = clonePose(BP.stance); poseAnim = {seq, i: 0, t: 0, from: clonePose(curPose)}; }
 function stepPose(dt){
-  if (!bAnim) return;
-  const s = bAnim.seq[bAnim.i]; bAnim.t += dt;
-  const k = clamp(bAnim.t/s.d, 0, 1), e = s.lin ? k : ease(k);
-  for (const key of ["hx", "hy", "a", "tw", "st"]) bPose[key] = lerp(bAnim.from[key], s.p[key], e);
-  if (k >= 1){ bAnim.i++; bAnim.t = 0; bAnim.from = {...bPose}; if (bAnim.i >= bAnim.seq.length) bAnim = null; }
+  if (!curPose) curPose = clonePose(BP.stance);
+  if (!poseAnim) return;
+  const st = poseAnim.seq[poseAnim.i]; poseAnim.t += dt;
+  const k = clamp(poseAnim.t/st.d, 0, 1), e = st.ease === "in" ? k*k : st.ease === "out" ? 1 - (1 - k)*(1 - k) : ease(k);
+  curPose = lerpPose(poseAnim.from, st.p, e);
+  if (k >= 1){ poseAnim.i++; poseAnim.t = 0; poseAnim.from = clonePose(curPose); if (poseAnim.i >= poseAnim.seq.length) poseAnim = null; }
 }
-function drawStriker(g, c, x, z){
-  const f = tc(c, [x, 0, z]); if (f[2] < .4) return;
-  const fs = pj(c, f), k = c.f/f[2], P = bPose;
-  g.save(); g.globalAlpha = .64; g.translate(fs[0], fs[1]); g.scale(k, -k); g.lineCap = "round"; g.lineJoin = "round";
-  // shadow
-  g.fillStyle = "rgba(20,40,10,.2)"; g.beginPath(); g.ellipse(.04, 0, .5, .07, 0, 0, 7); g.fill();
-  const tw = P.tw, st = P.st;
-  const bat = (front) => {
-    const a = P.a*Math.PI/180, dx = Math.sin(a), dy = -Math.cos(a), hx = P.hx, hy = P.hy;
-    const behind = P.hy > 1.15 && (P.a > 110 && P.a < 290);
-    if (behind !== !front) return;
-    const t0 = [hx - dx*.05, hy - dy*.05], t1 = [hx + dx*.25, hy + dy*.25], t2 = [hx + dx*.84, hy + dy*.84];
-    limb(g, t0[0], t0[1], t1[0], t1[1], .042, "#262626");
-    for (let i = 1; i < 5; i++){ const u = i/5; limb(g, lerp(t0[0], t1[0], u) - dy*.02, lerp(t0[1], t1[1], u) + dx*.02, lerp(t0[0], t1[0], u) + dy*.02, lerp(t0[1], t1[1], u) - dx*.02, .008, "#555"); }
-    g.lineCap = "butt"; limb(g, t1[0], t1[1], t2[0], t2[1], .112, "#e6c88e"); limb(g, t1[0], t1[1], t2[0], t2[1], .03, "#cfa964"); g.lineCap = "round";
-    g.fillStyle = "#e6c88e"; g.beginPath(); g.arc(t2[0], t2[1], .056, 0, 7); g.fill();
-    limb(g, t1[0] + dx*.04, t1[1] + dy*.04, t1[0] + dx*.12, t1[1] + dy*.12, .114, "#8c2433");
-  };
-  bat(false);
-  // legs (back leg left on screen, front leg right)
-  const leg = (hx, kx, ax, near) => {
-    limb(g, hx, .93, kx, .53, .2, KIT);
-    limb(g, kx, .6, ax, .12, .2, "#fbfaf6");                       // pad
-    for (const o of [-.055, 0, .055]) limb(g, kx + o, .56, ax + o, .14, .012, "#d9d3c2");
-    g.fillStyle = "#fbfaf6"; g.beginPath(); g.ellipse(kx, .6, .115, .07, 0, 0, 7); g.fill();
-    g.fillStyle = "#f2f2f2"; g.beginPath(); g.ellipse(ax + .04, .05, .13, .06, 0, 0, 7); g.fill();
-    g.fillStyle = "#9aa0a6"; g.fillRect(ax - .09, 0, .26, .025);
-  };
-  leg(-.1, -.15, -.16, true); leg(.11 + st*.5, .2 + st, .23 + st, false);
-  // far (left) arm, behind torso
-  const S1 = [-.15 + tw, 1.35], S2 = [.2 + tw, 1.38];
-  const armTo = (S, side) => { const mx = (S[0] + P.hx)/2, my = (S[1] + P.hy)/2, dx = P.hx - S[0], dy = P.hy - S[1], L = Math.hypot(dx, dy) || 1, bend = Math.max(0, .55 - L)*.6;
-    const ex = mx - dy/L*bend*side, ey = my + dx/L*bend*side;
-    limb(g, S[0], S[1], ex, ey, .13, KIT); limb(g, ex, ey, P.hx, P.hy, .11, KIT2); };
-  armTo(S2, -1);
-  // torso
-  g.fillStyle = KIT; g.beginPath(); g.moveTo(-.21, .88); g.lineTo(.23, .88); g.lineTo(.29 + tw, 1.41); g.quadraticCurveTo(.05 + tw, 1.47, -.19 + tw, 1.39); g.closePath(); g.fill();
-  g.fillStyle = KIT2; g.beginPath(); g.moveTo(-.21, .88); g.lineTo(-.08, .88); g.lineTo(-.06 + tw, 1.39); g.lineTo(-.19 + tw, 1.39); g.closePath(); g.fill();
-  g.fillStyle = "#ece9e0"; g.fillRect(-.21, .86, .44, .05);
-  // head & helmet
-  const hx = .07 + tw*1.3, hy = 1.56;
-  g.fillStyle = SKIN; g.fillRect(hx - .05, 1.4, .1, .08);
-  g.fillStyle = NAVY; g.beginPath(); g.arc(hx, hy, .135, 0, 7); g.fill();
-  g.fillStyle = "rgba(255,255,255,.14)"; g.beginPath(); g.arc(hx - .04, hy + .04, .07, 0, 7); g.fill();
-  g.fillStyle = NAVY; g.beginPath(); g.moveTo(hx + .08, hy + .02); g.lineTo(hx + .26, hy - .02); g.lineTo(hx + .1, hy - .05); g.closePath(); g.fill();
-  g.strokeStyle = "#a5adbb"; g.lineWidth = .016; for (const o of [0, .04, .08]){ g.beginPath(); g.moveTo(hx + .12 + o*.4, hy - .04); g.lineTo(hx + .1 + o*.3, hy - .17 + o*.2); g.stroke(); }
-  g.fillStyle = "#14203d"; g.fillRect(hx - .12, hy - .12, .2, .05);
-  // near (right) arm in front
-  armTo(S1, 1);
-  g.fillStyle = "#fbfbfb"; g.beginPath(); g.arc(P.hx, P.hy, .08, 0, 7); g.fill(); g.fillStyle = "#d8d8d8"; g.beginPath(); g.arc(P.hx + .03, P.hy - .02, .04, 0, 7); g.fill();
-  bat(true);
-  g.restore();
+// pick one of the four shots from the swipe direction and the length of the ball
+function chooseShot(P, phi, tap){
+  const short = P.lenName === "Short" || P.lenName === "Bouncer";
+  if (tap) return {name: "defend", C: short ? BP.defendB : BP.defendF, F: null, w: short ? "back" : "front"};
+  if (short) return phi < -25 ? {name: "pull", C: BP.pullC, F: BP.pullF, w: "back"} : {name: "punch", C: BP.punchC, F: BP.punchF, w: "back"};
+  const t = clamp((phi + 20)/80, 0, 1);        // −20° or less = on/straight drive, 60°+ = cover drive
+  return {name: t > .5 ? "cover drive" : "straight drive", C: lerpPose(BP.onC, BP.coverC, t), F: lerpPose(BP.onF, BP.coverF, t), w: "front"};
 }
-
+function shotPoses(P, sh, kind, loft){
+  // steer the bat so its sweet spot meets the ball at contact
+  const ball = PH.posAt(P, P.tArrive), sw = sweetSpot(sh.C);
+  let d = [clamp(ball[0] - sw[0], -.5, .5), clamp(ball[1] - sw[1], -.45, .55), clamp(ball[2] - sw[2], -.5, .5)];
+  if (kind === "miss") d = [d[0]*.3 - .12, d[1]*.3, d[2]*.3];
+  const front = sh.w === "front";
+  const W = front ? {grip: [1, .6, 1], chest: [.5, .25, .5], head: [.45, .2, .45], pel: [.3, 0, .3], la: [.6, 0, .6]}
+                  : {grip: [1, .85, 1], chest: [.4, .3, .3], head: [.35, .3, .3], pel: [.2, .1, .2], ra: [.5, 0, .4]};
+  const C = shiftPose(sh.C, d, W);
+  let F = sh.F ? shiftPose(sh.F, d, {pel: W.pel, la: W.la || [0, 0, 0], ra: W.ra || [0, 0, 0], chest: [.3, 0, .3], head: [.3, 0, .3], grip: [.4, 0, .4]}) : null;
+  if (F && loft && front){ F.grip = [F.grip[0], F.grip[1] + .1, F.grip[2]]; F.bp += 12; }
+  return {C, F};
+}
+function drawStriker(g, c){
+  if (!curPose) curPose = clonePose(BP.stance);
+  const J = batsmanJoints(curPose);
+  // draw opaque into a layer, then lay it over the pitch semi-transparent so the ball stays visible
+  if (!drawStriker.cv){ drawStriker.cv = document.createElement("canvas"); }
+  const L = drawStriker.cv; if (L.width !== cv.width || L.height !== cv.height){ L.width = cv.width; L.height = cv.height; }
+  const lg = L.getContext("2d"); lg.setTransform(1, 0, 0, 1, 0, 0); lg.clearRect(0, 0, L.width, L.height); lg.setTransform(DPR, 0, 0, DPR, 0, 0);
+  drawRig(lg, c, J, RIG_STYLE.bat);
+  drawShadowRig(g, c, J);
+  g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = .72; g.drawImage(L, 0, 0); g.restore();
+}
 /* ================= Stumps & ball ================= */
 let stumpBreak = null; // {t, v:[...]}
 function drawStumps(g, c, z, brk){
@@ -861,7 +826,7 @@ function nextBall(first){
   S.phase = "ready"; S.t = first ? -.6 : 0; S.P = null; S.rel = 0; S.released = false; S.swipe = null; S.shot = null; S.hit = null; S.autoLeave = false; S.stumpChecked = false; S.hitAt = 0; stumpBreak = null;
   S.camTo = 0; BOWLER.z = 33; BOWLER.run = 0; BOWLER.arm = -.4; walkIn = 0;
   S.fielders.forEach(f => f.cur = f.home.slice());
-  animPose([{p: POSE.stance, d: .3}]);
+  animTo([{p: BP.stance, d: .3}]); S.footDone = false;
   $("#spd").hidden = true;
 }
 const RUNUP = 1.75, DELIVER = .34, RELEASE_AT = .24;
@@ -883,7 +848,7 @@ function update(dt){
   } else if (S.phase === "runup"){
     const u = Math.min(1, S.t/RUNUP);
     BOWLER.z = lerp(33, PITCH + 1.4, u*u*(3 - 2*u)*.4 + u*.6); BOWLER.run += dt*(9 + 6*u);
-    if (S.t >= RUNUP){ S.phase = "deliver"; S.t = 0; animPose([{p: POSE.trigger, d: .28}]); }
+    if (S.t >= RUNUP){ S.phase = "deliver"; S.t = 0; animTo([{p: BP.backlift, d: .34}]); }
   } else if (S.phase === "deliver"){
     BOWLER.arm = -.4 + (S.t/DELIVER)*5.2; BOWLER.z = PITCH + 1.4 - S.t*2.2;
     if (!S.released && S.t >= RELEASE_AT){ S.released = true; S.rel = S.t - RELEASE_AT; $("#spdV").textContent = Math.round(S.P.kmh); $("#spd").hidden = false; }
@@ -908,7 +873,10 @@ function ballTick(){
   const pending = sw && sw.started && !S.shot;
   if (pending && S.rel >= P.tArrive + .14) resolveSwipe(sw.longish);   // ball waits on the bat while the swipe finishes
   if (sw && sw.started && !S.shot) return;
-  if (!S.shot && !sw && !S.autoLeave && S.rel >= P.tArrive - .12){ S.autoLeave = true; animPose([{p: POSE.leave, d: .22}]); }
+  // footwork: the batsman reads the length and moves forward or back before the shot
+  if (!S.shot && !S.footDone && S.rel >= P.tArrive - .3){ S.footDone = true; const short = P.lenName === "Short" || P.lenName === "Bouncer";
+    animTo([{p: footwork(short ? "punchC" : P.contact[0] > .15 ? "coverC" : "onC"), d: .22}]); }
+  if (!S.shot && !sw && !S.autoLeave && S.rel >= P.tArrive - .1){ S.autoLeave = true; animTo([{p: BP.leave, d: .2}]); }
   if (S.shot && S.shot.kind !== "miss" && S.rel >= S.hitAt){ beginHit(); return; }
   if (S.rel >= P.tStumps && !S.stumpChecked){
     S.stumpChecked = true;
@@ -932,9 +900,10 @@ function resolveSwipe(loft){
   const res = PH.playShot(P, phi, loft && !sw.tap, tShot);
   if (sw.tap && res.kind === "hit"){ res.launch.s *= .42; res.launch.a = Math.min(res.launch.a, 3); res.defend = true; }
   S.shot = res; S.stumpChecked = false;
-  const cat = sw.tap ? null : shotCat(phi);
-  if (sw.tap) animPose([{p: POSE.defend, d: .1}]);
-  else { const [c1, c2] = SHOTS[cat], f2 = loft ? {...c2, hy: c2.hy + .12} : c2; animPose([{p: c1, d: Math.max(.06, Math.min(.12, P.tArrive - tShot + .02))}, {p: f2, d: .28}]); }
+  const sh = chooseShot(P, phi, sw.tap), poses = shotPoses(P, sh, res.kind, loft && !sw.tap);
+  S.shotName = sh.name;
+  const toContact = Math.max(.06, Math.min(.22, Math.max(tShot, P.tArrive) - S.rel + .01));
+  animTo(poses.F ? [{p: poses.C, d: toContact, ease: "in"}, {p: poses.F, d: .34, ease: "out"}] : [{p: poses.C, d: toContact}]);
   if (res.kind !== "miss"){
     S.hitAt = Math.max(tShot, P.tArrive);
     const start = PH.posAt(P, S.hitAt);
@@ -951,7 +920,7 @@ function beginHit(){
   const fr = S.hit.fr;
   // only fly the camera out for shots that go somewhere
   const far = !res.defend || (fr.runs > 0);
-  if (far) setTimeout(() => { if (S.phase === "hit") S.camTo = 1; }, 140);
+  if (far) setTimeout(() => { if (S.phase === "hit") S.camTo = 1; }, 480);   // let the follow-through play first
   // end time
   let end;
   if (fr.out) end = fr.t + .7;
@@ -1131,29 +1100,37 @@ function render(){
   const bp = S.phase !== "menu" ? ballPosNow() : null;
   const items = [];
   const add = (x, z, fn) => { const q = tc(c, [x, 0, z]); if (q[2] > .4) items.push({z: q[2], fn}); };
-  // fielders & keeper
+  // fielders & keeper (3D rigs, enlarged in the overhead view so they read)
+  const sc = aerial ? 2.4 : 1, now = performance.now()/1000;
+  const faceTo = (x, z, tx, tz) => Math.atan2(tx - x, tz - z)*180/Math.PI;
   S.fielders.forEach(f => {
     if (f.keeper && !aerial) return;
-    const run = f.running ? performance.now()/90 : 0;
-    const cr = f.keeper ? .9 : (S.phase === "deliver" || S.phase === "ball") ? .45 : 0;
-    add(f.cur[0], f.cur[1], g => drawFigure(g, c, f.cur[0], f.cur[1], {shirt: KIT, pants: KIT, crouch: cr, run, runAmp: run ? 1 : 0, gloves: f.keeper ? "#f1f1f1" : null, cap: f.keeper ? NAVY : "#7b1e2b", arms: f.keeper ? [-.7, .7] : cr ? [-.35, .35] : [-.12, .12], head: f.keeper ? "helmet" : "cap"}));
+    const waiting = S.phase === "deliver" || S.phase === "ball" || S.phase === "runup";
+    const tgt = S.hit && S.hit.fr && S.hit.fr.at ? [S.hit.fr.at[0], S.hit.fr.at[2]] : [0, 0];
+    const mode = f.keeper ? "keeper" : f.running ? "run" : waiting && S.phase !== "runup" ? "crouch" : "stand";
+    const J = humanoid({x: f.cur[0], z: f.cur[1], face: f.running ? faceTo(f.cur[0], f.cur[1], tgt[0], tgt[1]) : faceTo(f.cur[0], f.cur[1], 0, 1), mode, ph: now*11, s: sc});
+    add(f.cur[0], f.cur[1], g => { drawShadowRig(g, c, J); drawRig(g, c, J, f.keeper ? RIG_STYLE.keeper : RIG_STYLE.field); });
   });
-  // umpire, non-striker, bowler
-  add(-.55, PITCH + 1.9, g => drawFigure(g, c, -.55, PITCH + 1.9, {shirt: "#f4f2ea", pants: "#20242a", head: "hat", arms: [-.08, .08], shoe: "#222"}));
+  // umpire, batsmen, bowler
+  { const J = humanoid({x: -.55, z: PITCH + 1.9, face: 180, mode: "stand", s: sc}); add(-.55, PITCH + 1.9, g => { drawShadowRig(g, c, J); drawRig(g, c, J, RIG_STYLE.ump); }); }
   const runs = runnersNow();
   if (runs){
-    add(runs.a[0], runs.a[1], g => drawFigure(g, c, runs.a[0], runs.a[1], {shirt: KIT, pants: KIT, head: "helmet", run: performance.now()/80, bat: 1.9, gloves: "#fff"}));
-    add(runs.b[0], runs.b[1], g => drawFigure(g, c, runs.b[0], runs.b[1], {shirt: KIT, pants: KIT, head: "helmet", run: performance.now()/80 + 3, bat: 1.9, gloves: "#fff"}));
+    for (const [k, off] of [["a", 0], ["b", 3]]){ const r = runs[k], dir = (k === "a") === (runs.dir > 0) ? 0 : 180;
+      const J = humanoid({x: r[0], z: r[1], face: dir, mode: "run", ph: now*12 + off, s: sc, bat: true}); add(r[0], r[1], g => drawRig(g, c, J, RIG_STYLE.bat)); }
   } else {
-    add(-1.15, PITCH - .9, g => drawFigure(g, c, -1.15, PITCH - .9, {shirt: KIT, pants: KIT, head: "helmet", arms: [-.1, .25], bat: .3, gloves: "#fff", lean: .02}));
-    if (aerial) add(-.2, .9, g => drawFigure(g, c, -.4, .9, {shirt: KIT, pants: KIT, head: "helmet", arms: [-.1, .3], bat: .2, gloves: "#fff"}));
-    else add(-.2, .95, g => drawStriker(g, c, -.2, .95));
+    { const J = humanoid({x: -1.15, z: PITCH - .9, face: 180, mode: "stand", s: sc, bat: true}); add(-1.15, PITCH - .9, g => { drawShadowRig(g, c, J); drawRig(g, c, J, RIG_STYLE.bat); }); }
+    if (S.camT > .55){ const J = humanoid({x: -.25, z: 1.2, face: 90, mode: "stand", s: sc, bat: true}); add(-.25, 1.2, g => drawRig(g, c, J, RIG_STYLE.bat)); }
+    else add(-.25, 1.2, g => drawStriker(g, c));
   }
-  if (S.phase !== "menu"){
-    const bz = BOWLER.z, running = S.phase === "runup" || S.phase === "deliver";
-    add(BOWLER.x, bz, g => drawFigure(g, c, BOWLER.x, bz, {shirt: KIT, pants: KIT, cap: "#7b1e2b", run: running ? BOWLER.run : S.phase === "ball" ? BOWLER.run*.2 : 0, runAmp: running ? 1 : .2,
-      arms: S.phase === "deliver" || S.phase === "ball" ? [-2.5 + Math.min(BOWLER.arm, 5.4)*.2, BOWLER.arm] : [-.3, .3]}));
-  } else add(BOWLER.x, 32, g => drawFigure(g, c, BOWLER.x, 32, {shirt: KIT, pants: KIT, cap: "#7b1e2b", arms: [-.1, .1]}));
+  {
+    const bz = S.phase === "menu" ? 32 : BOWLER.z;
+    let mode = "stand", u = 0, ph = BOWLER.run;
+    if (S.phase === "runup") mode = "run";
+    else if (S.phase === "deliver"){ mode = "bowl"; u = clamp(S.t/DELIVER, 0, 1); }
+    else if (S.phase === "ball" && BOWLER.z > PITCH - 3.1){ mode = "run"; ph = BOWLER.run + S.rel*9; }
+    const J = humanoid({x: BOWLER.x, z: bz, face: 180, mode, ph, u, s: sc});
+    add(BOWLER.x, bz, g => { drawShadowRig(g, c, J); drawRig(g, c, J, RIG_STYLE.field); });
+  }
   // stumps
   add(0, PITCH, g => drawStumps(g, c, PITCH, null));
   add(0, -.001, g => drawStumps(g, c, 0, stumpBreak));
@@ -1202,7 +1179,7 @@ function runnersNow(){
 
 /* ================= Loop & lifecycle ================= */
 let last = performance.now();
-function frame(now){
+function frame(now){ if (window.__freeze) return;
   const dt = Math.min(.05, (now - last)/1000); last = now;
   update(dt); frameNow = now; render();
   if (S.trailFade > 0 && (S.shot || !S.swipe)) S.trailFade = Math.max(0, S.trailFade - dt*2.2);
@@ -1286,6 +1263,218 @@ function drawWagon(cvs){
   buildBoards(); setField("pace"); resize(); renderMenu(); updateSB();
   requestAnimationFrame(frame);
 })();
+
+</script>
+<script>
+/* ================= 3D skeleton rig for the batsman, bowler and other players =================
+   World axes as in the game: x = off side (+), y = up, z = toward the bowler. Metres.
+   Limbs keep real lengths; knees and elbows come from two-bone IK, so poses stay human. */
+const V3 = {
+  add: (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]], sub: (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]],
+  mul: (a, s) => [a[0]*s, a[1]*s, a[2]*s], len: a => Math.hypot(a[0], a[1], a[2]),
+  norm: a => { const l = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0]/l, a[1]/l, a[2]/l]; },
+  dot: (a, b) => a[0]*b[0] + a[1]*b[1] + a[2]*b[2], lerp: (a, b, t) => [a[0] + (b[0] - a[0])*t, a[1] + (b[1] - a[1])*t, a[2] + (b[2] - a[2])*t]
+};
+const D2R = Math.PI/180;
+const LEN = {thigh: .46, shin: .45, upper: .30, fore: .29, bat: .86, grip: .09};
+function ik(A, C, l1, l2, pole){
+  let d = V3.sub(C, A), dist = V3.len(d); const u = V3.norm(d);
+  dist = Math.min(dist, l1 + l2 - 1e-4); dist = Math.max(dist, Math.abs(l1 - l2) + 1e-4);
+  const a = (l1*l1 - l2*l2 + dist*dist)/(2*dist), h = Math.sqrt(Math.max(0, l1*l1 - a*a));
+  let b = V3.sub(pole, V3.mul(u, V3.dot(pole, u))); b = V3.norm(b);
+  return {joint: V3.add(V3.add(A, V3.mul(u, a)), V3.mul(b, h)), end: V3.add(A, V3.mul(u, dist))};
+}
+const axisYaw = deg => [Math.sin(deg*D2R), 0, Math.cos(deg*D2R)];       // 0 = toward the bowler (+z)
+const footDir = deg => [Math.cos(deg*D2R), 0, Math.sin(deg*D2R)];       // 0 = toes to the off side (+x)
+const batVec = (yaw, pitch) => [Math.cos(pitch*D2R)*Math.sin(yaw*D2R), Math.sin(pitch*D2R), Math.cos(pitch*D2R)*Math.cos(yaw*D2R)];
+
+/* ---------- batsman poses (right-hander, side-on, chest to the off side) ----------
+   pel/chest/head/la (front foot)/ra (back foot)/grip: positions; hy/sy: hip & shoulder yaw;
+   lf/rf: toe directions; by/bp: bat yaw & pitch; elL/elR: elbow pole hints */
+const BP = {
+  stance:  {pel: [-.30, .90, 1.22], hy: 0, chest: [-.22, 1.36, 1.22], sy: 0, head: [-.12, 1.58, 1.30], la: [-.30, .08, 1.48], ra: [-.32, .08, 1.00], lf: 15, rf: 0,
+            grip: [-.05, .95, 1.24], by: 60, bp: -80, elL: [.2, -.6, .8], elR: [-.1, -.9, -.4]},
+  backlift:{pel: [-.29, .91, 1.18], hy: 0, chest: [-.24, 1.39, 1.18], sy: -5, head: [-.13, 1.60, 1.28], la: [-.30, .08, 1.46], ra: [-.20, .08, .96], lf: 15, rf: 0,
+            grip: [-.27, 1.30, 1.06], by: 200, bp: 50, elL: [.4, -.5, .6], elR: [-.3, -.8, -.4]},
+  // front-foot cover drive: big stride to the pitch of the ball, head over the front knee, bat comes down straight
+  coverC:  {pel: [-.20, .78, 1.50], hy: -10, chest: [-.08, 1.18, 1.80], sy: -8, head: [0, 1.36, 1.95], la: [-.05, .08, 2.00], ra: [-.28, .08, 1.00], lf: 35, rf: -10,
+            grip: [.10, .80, 1.82], by: 48, bp: -72, elL: [.3, -.3, .9], elR: [-.2, -.9, -.3]},
+  coverF:  {pel: [-.18, .82, 1.55], hy: -15, chest: [-.10, 1.30, 1.72], sy: -35, head: [-.02, 1.48, 1.88], la: [-.05, .08, 2.00], ra: [-.22, .10, 1.10], lf: 35, rf: -10,
+            grip: [-.08, 1.55, 1.72], by: 205, bp: 38, elL: [.5, .2, .8], elR: [.2, -.6, -.6]},
+  // front-foot on / straight drive: stride straight down the pitch, full face of the bat
+  onC:     {pel: [-.30, .78, 1.50], hy: -15, chest: [-.18, 1.18, 1.78], sy: -15, head: [-.12, 1.36, 1.95], la: [-.28, .08, 2.00], ra: [-.30, .08, 1.00], lf: 25, rf: -10,
+            grip: [-.02, .80, 1.84], by: 5, bp: -75, elL: [.3, -.3, .9], elR: [-.2, -.9, -.3]},
+  onF:     {pel: [-.30, .82, 1.55], hy: -25, chest: [-.20, 1.30, 1.72], sy: -40, head: [-.14, 1.48, 1.88], la: [-.28, .08, 2.00], ra: [-.25, .10, 1.10], lf: 25, rf: -10,
+            grip: [-.18, 1.56, 1.70], by: 185, bp: 40, elL: [.5, .2, .8], elR: [.2, -.6, -.6]},
+  // back-foot punch: back foot back and across, stand tall, high elbow, short checked finish
+  punchC:  {pel: [-.15, .95, .95], hy: 0, chest: [-.05, 1.47, 1.00], sy: 0, head: [.05, 1.66, 1.08], la: [-.25, .10, 1.10], ra: [-.05, .08, .80], lf: 20, rf: 0,
+            grip: [.12, 1.15, 1.05], by: 70, bp: -70, elL: [.4, .3, .8], elR: [-.2, -.8, -.4]},
+  punchF:  {pel: [-.13, .95, .98], hy: -5, chest: [-.03, 1.47, 1.02], sy: -12, head: [.07, 1.66, 1.10], la: [-.25, .10, 1.10], ra: [-.05, .08, .80], lf: 20, rf: 0,
+            grip: [.26, 1.22, 1.22], by: 55, bp: -22, elL: [.4, .4, .6], elR: [-.2, -.8, -.4]},
+  // pull: back foot back and across, hips and shoulders open to face the bowler, flat bat swung across at chest height
+  pullC:   {pel: [-.20, .92, .98], hy: -60, chest: [-.12, 1.42, 1.00], sy: -75, head: [-.05, 1.62, 1.08], la: [-.42, .10, 1.12], ra: [-.02, .08, .85], lf: 60, rf: 10,
+            grip: [-.05, 1.25, 1.05], by: 50, bp: 2, elL: [-.2, -.5, .8], elR: [.3, -.8, -.2]},
+  pullF:   {pel: [-.22, .92, .98], hy: -80, chest: [-.15, 1.42, 1.00], sy: -105, head: [-.08, 1.62, 1.05], la: [-.42, .10, 1.12], ra: [-.02, .08, .85], lf: 60, rf: 20,
+            grip: [-.38, 1.36, .92], by: 228, bp: 22, elL: [-.6, .2, -.2], elR: [.2, -.6, -.6]},
+  // defence and leaving
+  defendF: {pel: [-.28, .82, 1.45], hy: -5, chest: [-.15, 1.25, 1.68], sy: -5, head: [-.06, 1.45, 1.85], la: [-.18, .08, 1.85], ra: [-.31, .08, 1.00], lf: 25, rf: -5,
+            grip: [-.02, .84, 1.80], by: 12, bp: -82, elL: [.3, -.2, .9], elR: [-.2, -.9, -.3]},
+  defendB: {pel: [-.17, .95, .96], hy: 0, chest: [-.07, 1.46, 1.02], sy: 0, head: [.03, 1.65, 1.10], la: [-.26, .10, 1.10], ra: [-.06, .08, .82], lf: 20, rf: 0,
+            grip: [.05, 1.10, 1.12], by: 25, bp: -80, elL: [.4, .3, .8], elR: [-.2, -.8, -.4]},
+  leave:   {pel: [-.30, .90, 1.25], hy: 0, chest: [-.22, 1.38, 1.25], sy: -3, head: [-.12, 1.60, 1.33], la: [-.30, .08, 1.62], ra: [-.31, .08, 1.00], lf: 20, rf: 0,
+            grip: [-.22, 1.68, 1.18], by: 190, bp: 72, elL: [.4, .3, .5], elR: [-.4, .1, -.4]}
+};
+// lower body from a shot + raised bat: the "footwork" pose the batsman moves into as the ball comes
+function footwork(shot){ const s = BP[shot], b = BP.backlift; return {...s, chest: V3.lerp(b.chest, s.chest, .55), sy: b.sy, head: V3.lerp(b.head, s.head, .6), grip: V3.lerp(b.grip, s.grip, .25), by: b.by, bp: b.bp, elL: b.elL, elR: b.elR}; }
+const PKEYS = ["pel", "chest", "head", "la", "ra", "grip", "elL", "elR"], NKEYS = ["hy", "sy", "lf", "rf", "by", "bp"];
+function lerpPose(a, b, t){ const o = {}; for (const k of PKEYS) o[k] = V3.lerp(a[k], b[k], t); for (const k of NKEYS) o[k] = a[k] + (b[k] - a[k])*t; return o; }
+function clonePose(p){ return lerpPose(p, p, 0); }
+function shiftPose(p, d, w){ // move parts of a pose by d (weights per part)
+  const o = clonePose(p);
+  for (const k in w) o[k] = [o[k][0] + d[0]*w[k][0], o[k][1] + d[1]*w[k][1], o[k][2] + d[2]*w[k][2]];
+  return o;
+}
+function batsmanJoints(P){
+  const ha = axisYaw(P.hy), sa = axisYaw(P.sy);
+  const lHip = V3.add(P.pel, V3.mul(ha, .12)), rHip = V3.sub(P.pel, V3.mul(ha, .12));
+  const lSh = V3.add(P.chest, V3.mul(sa, .19)), rSh = V3.sub(P.chest, V3.mul(sa, .19));
+  const lfd = footDir(P.lf), rfd = footDir(P.rf);
+  const kneeL = ik(lHip, P.la, LEN.thigh, LEN.shin, V3.add(lfd, [0, .2, 0])), kneeR = ik(rHip, P.ra, LEN.thigh, LEN.shin, V3.add(rfd, [0, .2, 0]));
+  const bd = V3.norm(batVec(P.by, P.bp)), gL = P.grip, gR = V3.add(P.grip, V3.mul(bd, LEN.grip));
+  const armL = ik(lSh, gL, LEN.upper, LEN.fore, P.elL), armR = ik(rSh, gR, LEN.upper, LEN.fore, P.elR);
+  return {lHip, rHip, lSh, rSh, neck: V3.add(P.chest, [0, .08, 0]), head: P.head,
+    lKnee: kneeL.joint, rKnee: kneeR.joint, lAnk: kneeL.end, rAnk: kneeR.end, lToe: V3.add(kneeL.end, V3.mul(lfd, .2)), rToe: V3.add(kneeR.end, V3.mul(rfd, .2)),
+    lEl: armL.joint, rEl: armR.joint, lHand: gL, rHand: gR, batA: V3.sub(gL, V3.mul(bd, .05)), batB: V3.add(gL, V3.mul(bd, LEN.bat)), batD: bd, face: [0, 0, 1]};
+}
+const sweetSpot = P => V3.add(P.grip, V3.mul(V3.norm(batVec(P.by, P.bp)), .62));
+
+/* ---------- generic players (bowler, fielders, umpire, non-striker) ---------- */
+function humanoid(o){
+  // o: {x, z, face (deg, 0 = toward +z), mode: 'stand'|'crouch'|'run'|'bowl', ph, u, s (size multiplier), bat}
+  const s = o.s || 1, f = axisYaw(o.face), side = [-f[2], 0, f[0]];          // side = body's left
+  const B = [o.x, 0, o.z], at = (fw, up, lf) => V3.add(B, V3.mul(V3.add(V3.add(V3.mul(f, fw), [0, up, 0]), V3.mul(side, lf)), s));
+  let pel, chest, head, la, ra, lh, rh, elPoleL = V3.add(V3.mul(f, -.6), [0, -.8, 0]), elPoleR = elPoleL, straightR = false;
+  if (o.mode === "run"){
+    const p = o.ph, sw = Math.sin(p), bob = Math.abs(Math.cos(p))*.04;
+    pel = at(.04, .93 + bob, 0); chest = at(.12, 1.42 + bob, 0); head = at(.16, 1.63 + bob, 0);
+    la = at(.45*sw, .08 + .34*Math.max(0, -Math.cos(p)), .11); ra = at(-.45*sw, .08 + .34*Math.max(0, Math.cos(p)), -.11);
+    lh = at(.14 - .36*sw, 1.02 + .1*Math.max(0, -sw), .25); rh = at(.14 + .36*sw, 1.02 + .1*Math.max(0, sw), -.25);
+  } else if (o.mode === "bowl"){
+    const u = o.u;                                   // 0..1 through the delivery stride
+    pel = at(.1*u, .9, 0); chest = at(-.12 + .4*u, 1.45 - .05*u, 0); head = at(-.06 + .42*u, 1.66 - .06*u, 0);
+    la = at(.6, .08, .14); ra = at(-.5 + .2*u, .08 + .12*(1 - u), -.12);
+    const shR = V3.add(chest, V3.mul(side, -.19*s)), shL = V3.add(chest, V3.mul(side, .19*s));
+    const a = (u <= .7 ? 60 + 135*(u/.7) : 195 + 140*((u - .7)/.3))*D2R, aL = (200 + 180*u)*D2R;   // release at ~195° (just past vertical)                   // bowling arm sweeps over the top, front arm pulls down
+    rh = V3.add(shR, V3.mul(V3.add(V3.mul(f, -Math.sin(a)), [0, -Math.cos(a), 0]), .6*s)); straightR = true;
+    lh = V3.add(shL, V3.mul(V3.add(V3.mul(f, -Math.sin(aL)), [0, -Math.cos(aL), 0]), .55*s));
+  } else if (o.mode === "crouch"){
+    pel = at(-.08, .7, 0); chest = at(.12, 1.15, 0); head = at(.22, 1.35, 0);
+    la = at(.05, .08, .2); ra = at(.05, .08, -.2); lh = at(.22, .62, .2); rh = at(.22, .62, -.2);
+    elPoleL = elPoleR = V3.add(f, [0, 0, 0]);
+  } else if (o.mode === "keeper"){
+    pel = at(-.05, .5, 0); chest = at(.18, .95, 0); head = at(.24, 1.18, 0);
+    la = at(.05, .08, .26); ra = at(.05, .08, -.26); lh = at(.42, .55, .08); rh = at(.42, .55, -.08);
+  } else { // stand
+    pel = at(0, .92, 0); chest = at(.02, 1.42, 0); head = at(.03, 1.63, 0);
+    la = at(.02, .08, .12); ra = at(-.02, .08, -.12);
+    lh = o.bat ? at(.25, .9, .05) : at(0, .82, .25); rh = o.bat ? at(.25, .95, -.03) : at(0, .82, -.25);
+  }
+  const lHip = V3.add(pel, V3.mul(side, .12*s)), rHip = V3.sub(pel, V3.mul(side, .12*s));
+  const lSh = V3.add(chest, V3.mul(side, .19*s)), rSh = V3.sub(chest, V3.mul(side, .19*s));
+  const kp = V3.add(f, [0, .1, 0]);
+  const kL = ik(lHip, la, LEN.thigh*s, LEN.shin*s, kp), kR = ik(rHip, ra, LEN.thigh*s, LEN.shin*s, kp);
+  const aL = ik(lSh, lh, LEN.upper*s, LEN.fore*s, elPoleL), aR = straightR ? {joint: V3.lerp(rSh, rh, .5), end: rh} : ik(rSh, rh, LEN.upper*s, LEN.fore*s, elPoleR);
+  const J = {lHip, rHip, lSh, rSh, neck: V3.add(chest, [0, .08*s, 0]), head, lKnee: kL.joint, rKnee: kR.joint, lAnk: kL.end, rAnk: kR.end,
+    lToe: V3.add(kL.end, V3.mul(f, .2*s)), rToe: V3.add(kR.end, V3.mul(f, .2*s)), lEl: aL.joint, rEl: aR.joint, lHand: aL.end, rHand: aR.end, face: f, s};
+  if (o.bat){ const bd = V3.norm([.25, -1, .05]); J.batA = J.rHand; J.batB = V3.add(J.rHand, V3.mul(bd, .82*s)); }
+  return J;
+}
+
+/* ---------- drawing ---------- */
+const RIG_STYLE = {
+  bat:    {kit: "#f4f2ea", kit2: "#dcd8cd", pants: "#f0eee6", skin: "#c48a62", head: "helmet", hc: "#1d2b4f", pads: true, gloves: true},
+  field:  {kit: "#f4f2ea", kit2: "#dcd8cd", pants: "#f0eee6", skin: "#c48a62", head: "cap", hc: "#7b1e2b"},
+  keeper: {kit: "#f4f2ea", kit2: "#dcd8cd", pants: "#f0eee6", skin: "#c48a62", head: "helmet", hc: "#1d2b4f", pads: true, gloves: true},
+  ump:    {kit: "#f4f2ea", kit2: "#dcd8cd", pants: "#22262c", skin: "#c48a62", head: "hat", hc: "#f2f0e6", shoe: "#1a1a1a"}
+};
+function drawRig(g, c, J, st){
+  const P = {}, Z = {};
+  for (const k in J){ const v = J[k]; if (!Array.isArray(v) || v.length !== 3 || k === "face" || k === "batD") continue; const q = tc(c, v); if (q[2] < .3) return; P[k] = pj(c, q); Z[k] = q[2]; }
+  const px = (w, z) => Math.max(1, w*c.f/z*(J.s || 1));
+  const items = [];
+  const seg = (a, b, w, col, extra) => items.push({z: (Z[a] + Z[b])/2, f: () => { g.strokeStyle = col; g.lineWidth = px(w, (Z[a] + Z[b])/2); g.beginPath(); g.moveTo(P[a][0], P[a][1]); g.lineTo(P[b][0], P[b][1]); g.stroke(); extra && extra(); }});
+  const dot = (a, r, col, dz = 0) => items.push({z: Z[a] + dz, f: () => { g.fillStyle = col; g.beginPath(); g.arc(P[a][0], P[a][1], px(r, Z[a]), 0, 7); g.fill(); }});
+  // legs
+  for (const s of ["l", "r"]){
+    const far = (Z[s + "Hip"] > Z[(s === "l" ? "r" : "l") + "Hip"]), shade = far ? st.kit2 : st.kit;
+    seg(s + "Hip", s + "Knee", .17, far ? st.kit2 : st.pants);
+    if (st.pads){
+      seg(s + "Knee", s + "Ank", .2, far ? "#e8e5da" : "#fbfaf5", () => {
+        const a = P[s + "Knee"], b = P[s + "Ank"]; g.strokeStyle = "rgba(150,140,120,.45)"; g.lineWidth = Math.max(1, px(.02, Z[s + "Ank"]));
+        g.beginPath(); g.moveTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.stroke(); });
+      dot(s + "Knee", .1, far ? "#e8e5da" : "#fbfaf5", -.01);
+    } else seg(s + "Knee", s + "Ank", .13, shade === st.kit ? st.pants : st.kit2);
+    seg(s + "Ank", s + "Toe", .1, st.shoe || "#f6f6f6");
+  }
+  // torso: a box with real chest depth, drawn as the convex hull of its projected corners
+  items.push({z: (Z.lHip + Z.rHip + Z.lSh + Z.rSh)/4, f: () => {
+    const sc = J.s || 1, ax = V3.norm(V3.sub(J.lSh, J.rSh)), nrm = V3.norm([ax[2], 0, -ax[0]]);
+    const corners = [];
+    for (const [k, d] of [["lSh", .12], ["rSh", .12], ["lHip", .1], ["rHip", .1]]) for (const sg of [-1, 1]){ const q = tc(c, V3.add(J[k], V3.mul(nrm, d*sg*sc))); if (q[2] > .3) corners.push(pj(c, q)); }
+    const hull = convexHull(corners);
+    g.fillStyle = st.kit; g.strokeStyle = st.kit; g.lineJoin = "round"; g.lineWidth = px(.05, Z.lSh);
+    g.beginPath(); hull.forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])); g.closePath(); g.fill(); g.stroke();
+    g.strokeStyle = st.kit2; g.lineWidth = px(.04, Z.lSh); g.beginPath(); g.moveTo((P.lHip[0] + P.rHip[0])/2, (P.lHip[1] + P.rHip[1])/2); g.lineTo(P.neck[0], P.neck[1]); g.stroke();
+  }});
+  seg("neck", "head", .08, st.skin);
+  // arms
+  for (const s of ["l", "r"]){
+    const far = Z[s + "Sh"] > Z[(s === "l" ? "r" : "l") + "Sh"];
+    seg(s + "Sh", s + "El", .11, far ? st.kit2 : st.kit); seg(s + "El", s + "Hand", .09, st.gloves ? (far ? st.kit2 : st.kit) : st.skin);
+    dot(s + "Hand", st.gloves ? .07 : .045, st.gloves ? "#ffffff" : st.skin, -.02);
+  }
+  // bat: grip + blade
+  if (P.batA && P.batB){
+    const za = Z.batA, zb = Z.batB, gm = [P.batA[0] + (P.batB[0] - P.batA[0])*.33, P.batA[1] + (P.batB[1] - P.batA[1])*.33];
+    items.push({z: (za + zb)/2 - .03, f: () => {
+      g.lineCap = "round"; g.strokeStyle = "#262626"; g.lineWidth = px(.04, za); g.beginPath(); g.moveTo(P.batA[0], P.batA[1]); g.lineTo(gm[0], gm[1]); g.stroke();
+      g.lineCap = "butt"; g.strokeStyle = "#e3c58a"; g.lineWidth = px(.11, (za + zb)/2); g.beginPath(); g.moveTo(gm[0], gm[1]); g.lineTo(P.batB[0], P.batB[1]); g.stroke();
+      g.strokeStyle = "#c9a35c"; g.lineWidth = px(.03, (za + zb)/2); g.beginPath(); g.moveTo(gm[0], gm[1]); g.lineTo(P.batB[0], P.batB[1]); g.stroke();
+      g.lineCap = "round";
+    }});
+  }
+  // head
+  items.push({z: Z.head - .02, f: () => {
+    const r = px(.12, Z.head), h = P.head;
+    g.fillStyle = st.skin; g.beginPath(); g.arc(h[0], h[1] + r*.15, r*.9, 0, 7); g.fill();
+    if (st.head === "helmet"){
+      g.fillStyle = st.hc; g.beginPath(); g.arc(h[0], h[1] - r*.05, r*1.08, Math.PI*.95, Math.PI*2.05); g.lineTo(h[0] + r, h[1] + r*.35); g.lineTo(h[0] - r, h[1] + r*.35); g.closePath(); g.fill();
+      g.fillStyle = "rgba(255,255,255,.18)"; g.beginPath(); g.arc(h[0] - r*.35, h[1] - r*.4, r*.35, 0, 7); g.fill();
+      if (J.face){ const fq = tc(c, V3.add(J.head, V3.mul(J.face, .12*(J.s || 1)))); if (fq[2] > .3){ const fp = pj(c, fq); g.strokeStyle = "#9aa3b2"; g.lineWidth = Math.max(1, r*.18); g.beginPath(); g.moveTo(fp[0], fp[1] - r*.2); g.lineTo(fp[0], fp[1] + r*.6); g.stroke(); } }
+    } else if (st.head === "hat"){
+      g.fillStyle = st.hc; g.beginPath(); g.ellipse(h[0], h[1] - r*.45, r*1.7, r*.35, 0, 0, 7); g.fill(); g.beginPath(); g.arc(h[0], h[1] - r*.4, r*.85, Math.PI, 0); g.fill();
+    } else {
+      g.fillStyle = st.hc; g.beginPath(); g.arc(h[0], h[1] - r*.1, r*.95, Math.PI*1.02, Math.PI*1.98); g.fill();
+      if (J.face){ const fq = tc(c, V3.add(V3.add(J.head, [0, .03, 0]), V3.mul(J.face, .15*(J.s || 1)))); if (fq[2] > .3){ const fp = pj(c, fq); g.strokeStyle = st.hc; g.lineWidth = Math.max(1, r*.35); g.beginPath(); g.moveTo(h[0], h[1] - r*.1); g.lineTo(fp[0], fp[1]); g.stroke(); } }
+    }
+  }});
+  items.sort((a, b) => b.z - a.z);
+  g.lineCap = "round"; g.lineJoin = "round";
+  for (const it of items) it.f();
+}
+function convexHull(pts){
+  const p = pts.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]); if (p.length < 3) return p;
+  const cr = (o, a, b) => (a[0] - o[0])*(b[1] - o[1]) - (a[1] - o[1])*(b[0] - o[0]);
+  const lo = [], hi = [];
+  for (const q of p){ while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
+  for (let i = p.length - 1; i >= 0; i--){ const q = p[i]; while (hi.length >= 2 && cr(hi[hi.length - 2], hi[hi.length - 1], q) <= 0) hi.pop(); hi.push(q); }
+  return lo.slice(0, -1).concat(hi.slice(0, -1));
+}
+function drawShadowRig(g, c, J){
+  const pts = ["lAnk", "rAnk", "lToe", "rToe"].map(k => J[k]);
+  const cx = pts.reduce((s, p) => s + p[0], 0)/4, cz = pts.reduce((s, p) => s + p[2], 0)/4;
+  shadow(g, c, cx, cz, .42*(J.s || 1));
+}
 
 </script>
 <script>
