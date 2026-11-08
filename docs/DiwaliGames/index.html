@@ -467,6 +467,16 @@ details.how[open] summary .i{transform:rotate(90deg)}
 .pl-k.go{grid-column:span 2;background:linear-gradient(140deg,var(--a1),var(--a2));color:#fff;font-family:var(--f-body);font-size:17px;font-weight:800}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* today's playtime meter */
+.playtime .pt-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.playtime .pt-head h2{margin:0}
+.pt-segs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pt-seg{padding:10px;border-radius:14px;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
+.pt-seg.full{box-shadow:inset 0 0 0 1px rgba(255,193,69,.55);background:rgba(255,193,69,.08)}
+.pt-bar{height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.pt-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--orange),var(--pink));transform-origin:left;border-radius:inherit}
+.pt-seg small{color:var(--muted);font-size:11px;font-weight:700;line-height:1.3}
+.pt-seg b{font-size:12.5px;color:var(--gold);font-weight:800}
 
 /* ===== Diwali theme layer: warm night sky, floating glass, marigold & diya-gold accents ===== */
 :root{
@@ -668,7 +678,7 @@ body::before{background:transparent}
       <input id="guestName" maxlength="20" placeholder="Your first name" autocomplete="given-name" aria-label="Your first name">
       <button class="btn btn-ghost" type="submit">Play as guest</button>
     </form>
-    <p class="tiny">Guest scores stay on this phone and can't win prizes. The board shows first name and last initial only.</p>
+    <p class="tiny">Guest scores stay on this phone and never appear on the leaderboard. Only Google sign-in scores count for prizes. The board shows first name and last initial only.</p>
     <button class="link" id="lgClose" type="button">Not now</button>
   </div>
 </div>
@@ -717,10 +727,14 @@ var HG = (function () {
     'axis':         { name: 'Axis',         div: 10, max: 20000, good: 1200 },
     'prime-split':  { name: 'Prime Split',  div: 12, max: 40000, good: 1200 },
     'pattern-lock': { name: 'Pattern Lock', div: 14, max: 40000, good: 1500 },
-    'cricket-12':   { name: 'MHC Cricket (12 overs)', div: .5, max: 600, good: 100 },
-    'cricket-2':    { name: 'MHC Cricket (2 overs)', div: .3, max: 120, good: 30 },
-    'dangerous-dev':{ name: 'Dangerous Dev', div: 60, max: 300000, good: 8000 }
+    'cricket-12':   { name: 'MHC Cricket (12 overs)', div: .5, max: 600, good: 100, maxSecs: 2700 },
+    'cricket-2':    { name: 'MHC Cricket (2 overs)', div: .3, max: 120, good: 30, maxSecs: 600 },
+    'dangerous-dev':{ name: 'Dangerous Dev', div: 60, max: 300000, good: 8000, maxSecs: 5400 }
   };
+  /* Playtime XP: every minute played earns XP, and each hour in a day pays more per minute than the last.
+     Hour chests at 1, 2 and 3 hours. After 3 hours a day, "rest mode" quarters all XP until midnight IST,
+     so nobody gains by playing more than 2-3 hours a day. */
+  var PLAY = { cap: 180, rates: [2, 3, 4], chests: [[60, 60], [120, 120], [180, 200]], rest: 0.25, chaser: 1.5, welcome: 75, defSecs: 240 };
   var MODES = { foundation: 1, core: 1.15, advanced: 1.3, classic: 1, quick: 1, story: 1 };
   var RANKS = [[0, 'Digit'], [400, 'Integer'], [1200, 'Rational'], [2500, 'Prime'], [4500, 'Vector'], [7500, 'Matrix'], [12000, 'Theorem'], [20000, 'Infinity']];
 
@@ -738,10 +752,26 @@ var HG = (function () {
     return { i: i, title: RANKS[i][1], min: RANKS[i][0], next: nx ? nx[0] : null, nextTitle: nx ? nx[1] : null };
   }
   function streakMult(s) { return Math.min(1.5, 1 + 0.1 * Math.max(0, s - 1)); }
+  // Streak shield: a streak of 3+ days survives one missed day.
   function nextStreak(lastDay, streak, ms) {
     if (lastDay === dayKey(ms)) return Math.max(1, streak || 1);
     if (lastDay === prevDayKey(ms)) return (streak || 0) + 1;
+    if ((streak || 0) >= 3 && lastDay === prevDayKey(ms - DAY)) return streak + 1;
     return 1;
+  }
+  function streakAlive(lastDay, streak, ms) {
+    return lastDay === dayKey(ms) || lastDay === prevDayKey(ms) || ((streak || 0) >= 3 && lastDay === prevDayKey(ms - DAY));
+  }
+  // Away 2+ days (and played before): eligible for the welcome-back bonus.
+  function isAway(lastDay, ms) { return !!lastDay && !streakAlive(lastDay, 0, ms); }
+  function maxSecs(game) { return (GAMES[game] && GAMES[game].maxSecs) || PLAY.defSecs; }
+  // XP for playing from minute a to minute b of today (both capped at 3 hours), plus chests crossed.
+  function playXp(a, b) {
+    a = Math.max(0, Math.min(PLAY.cap, a)); b = Math.max(a, Math.min(PLAY.cap, b));
+    var xp = 0, chests = [];
+    for (var h = 0; h < PLAY.rates.length; h++) { var lo = Math.max(a, h * 60), hi = Math.min(b, h * 60 + 60); if (hi > lo) xp += (hi - lo) * PLAY.rates[h]; }
+    PLAY.chests.forEach(function (c) { if (a < c[0] && b >= c[0]) chests.push(c); });
+    return { xp: Math.round(xp), chests: chests };
   }
 
   function rng(str) {
@@ -773,7 +803,8 @@ var HG = (function () {
   }
 
   /* round = {game, mode, score, correct, wrong}
-     ctx   = {day, today:[earlier rounds today], streak (including today), bestBefore, played} */
+     ctx   = {day, today:[earlier rounds today], streak (including today), bestBefore, played,
+              secs (play time of this round), minsToday (minutes played earlier today), chaser (outside the weekly top 3), welcome (back after 2+ days)} */
   function xpForRound(rd, ctx) {
     var G = GAMES[rd.game], items = [];
     var att = (rd.correct || 0) + (rd.wrong || 0), acc = att ? rd.correct / att : 0;
@@ -798,11 +829,23 @@ var HG = (function () {
       return { text: m.text, xp: m.xp, have: a.have, need: a.need, done: a.done };
     });
     if (allA && !allB) items.push({ label: 'All 3 missions bonus', xp: 100 });
+    // playtime
+    var before = ctx.minsToday || 0, mins = Math.max(0, Math.min(maxSecs(rd.game), ctx.secs || 0)) / 60;
+    var pt = playXp(before, before + mins);
+    if (pt.xp) {
+      var hr = Math.min(3, Math.floor(before / 60) + 1);
+      items.push({ label: 'Playtime ' + Math.max(1, Math.round(mins)) + ' min (hour ' + hr + ': ' + PLAY.rates[hr - 1] + ' XP/min)', xp: pt.xp });
+      if (ctx.chaser) items.push({ label: 'Chaser boost ×' + PLAY.chaser + ' on playtime', xp: Math.round(pt.xp * (PLAY.chaser - 1)) });
+    }
+    pt.chests.forEach(function (c) { items.push({ label: (c[0] / 60) + '-hour chest', xp: c[1] }); });
+    if (ctx.welcome) items.push({ label: 'Welcome back!', xp: PLAY.welcome });
+    var rest = before >= PLAY.cap;
+    if (rest) { items.forEach(function (i) { i.xp = Math.round(i.xp * PLAY.rest); }); items.push({ label: 'Rest mode: 3 hours played today, XP ×¼ until midnight', xp: 0 }); }
     var total = 0; items.forEach(function (i) { total += i.xp; });
-    return { items: items, total: total, missions: status };
+    return { items: items, total: total, missions: status, rest: rest, minsAfter: before + mins };
   }
 
-  return { GAMES: GAMES, MODES: MODES, RANKS: RANKS, dayKey: dayKey, prevDayKey: prevDayKey, weekKey: weekKey, monthKey: monthKey,
+  return { PLAY: PLAY, playXp: playXp, maxSecs: maxSecs, isAway: isAway, streakAlive: streakAlive, GAMES: GAMES, MODES: MODES, RANKS: RANKS, dayKey: dayKey, prevDayKey: prevDayKey, weekKey: weekKey, monthKey: monthKey,
     rankOf: rankOf, streakMult: streakMult, nextStreak: nextStreak, missionsFor: missionsFor, missionProgress: missionProgress, xpForRound: xpForRound };
 })();
 
@@ -1287,20 +1330,22 @@ async function syncProfile(){
   if (!isLive() || !tokenOk()) return;
   try { const r = await apiPost({action:"profile"}); if (r.ok){ P = r.player; store.set("dg_P", P); renderAll(); } } catch {}
 }
-const emptyP = () => ({uid:"", xpAll:0, xpWeek:0, xpMonth:0, rounds:0, streak:0, lastDay:"", best:{}, today:[]});
+const emptyP = () => ({uid:"", xpAll:0, xpWeek:0, xpMonth:0, rounds:0, streak:0, lastDay:"", best:{}, today:[], minsToday:0});
 const LOCAL0 = {rounds:[], xpAll:0, streak:0, lastDay:"", best:{}};
 const localData = () => store.get("dg_local", LOCAL0);
 function localSummary(){
   const l = localData(), now = Date.now(), wk = HG.weekKey(now), mo = HG.monthKey(now), day = HG.dayKey(now);
-  let w = 0, m = 0; const today = [];
-  l.rounds.forEach(r => { if (HG.weekKey(r.at) === wk) w += r.xp; if (HG.monthKey(r.at) === mo) m += r.xp; if (HG.dayKey(r.at) === day) today.push(r); });
-  const alive = l.lastDay === day || l.lastDay === HG.prevDayKey(now);
-  return {uid:"me", xpAll:l.xpAll, xpWeek:w, xpMonth:m, rounds:l.xpAll ? l.rounds.length : 0, streak: alive ? l.streak : 0, lastDay:l.lastDay, best:l.best, today};
+  let w = 0, m = 0, mins = 0; const today = [];
+  l.rounds.forEach(r => { if (HG.weekKey(r.at) === wk) w += r.xp; if (HG.monthKey(r.at) === mo) m += r.xp; if (HG.dayKey(r.at) === day){ today.push(r); mins += (r.secs || 0)/60; } });
+  const alive = HG.streakAlive(l.lastDay, l.streak, now);
+  return {uid:"me", xpAll:l.xpAll, xpWeek:w, xpMonth:m, rounds:l.xpAll ? l.rounds.length : 0, streak: alive ? l.streak : 0, lastDay:l.lastDay, best:l.best, today, minsToday:mins};
 }
 const player = () => user ? (isLive() ? (P || emptyP()) : localSummary()) : emptyP();
 function estimate(rd, base){
   const now = Date.now(), prev = base.best[rd.game];
-  return HG.xpForRound(rd, {day:HG.dayKey(now), today:base.today || [], streak:HG.nextStreak(base.lastDay, base.streak, now), bestBefore: prev ? prev.score : 0, played: !!prev});
+  const secs = Math.min(rd.secs || 0, HG.maxSecs(rd.game));
+  return HG.xpForRound(rd, {day:HG.dayKey(now), today:base.today || [], streak:HG.nextStreak(base.lastDay, base.streak, now), bestBefore: prev ? prev.score : 0, played: !!prev,
+    secs, minsToday: base.minsToday || 0, welcome: HG.isAway(base.lastDay, now)});
 }
 function recordLocal(rd){
   const l = localData(), base = localSummary(), now = Date.now(), xp = estimate(rd, base);
@@ -1370,9 +1415,11 @@ async function fetchBoard(kind, period, game = ""){
       const j = await (await fetch(u)).json();
       if (j.ok){ const out = {rows: j.rows.map(r => ({...r, me: !!(P && r.uid && r.uid === P.uid && isLive())})), live:true, at:Date.now()}; boardCache[key] = out; return out; }
     } catch {}
+    // The live board only ever shows Google-signed-in rounds from the server; never fill it with local or guest data.
+    return {rows:[], live:true, failed:true, at:Date.now()};
   }
   const rows = samples().map(s => ({uid:s.uid, name:s.name, picture:"", v: kind === "xp" ? (period === "week" ? s.w : period === "month" ? s.m : s.a) : s.best[game].score, mode: kind === "xp" ? "" : s.best[game].mode, xpAll:s.a, rounds:s.rounds, sample:true}));
-  if (user){
+  if (user && !user.guest){
     const me = localSummary(), v = kind === "xp" ? (period === "week" ? me.xpWeek : period === "month" ? me.xpMonth : me.xpAll) : (me.best[game]?.score || 0);
     if (v > 0) rows.push({uid:"me", name:user.name, picture:user.picture, v, mode: me.best[game]?.mode || "", xpAll:me.xpAll, rounds:me.rounds, me:true});
   }
@@ -1451,6 +1498,17 @@ function missionsHTML(p){
       <span class="xpc">+${m.xp}</span></div>`).join("")}</div>
     <div class="mfoot"><span>${all ? "All done! Bonus earned" : "Finish all 3 missions"}</span><span class="xpc">${all ? "✓" : "+100 XP"}</span></div></div>`;
 }
+/* Today's playtime meter: 3 hour segments, each paying more XP per minute, with a chest at the end of each. */
+function playtimeHTML(mins){
+  const PL = HG.PLAY, m = Math.min(PL.cap, mins), rest = mins >= PL.cap, hr = Math.min(2, Math.floor(m/60));
+  const next = PL.chests.find(c => m < c[0]);
+  const segs = PL.rates.map((rate, i) => { const f = Math.max(0, Math.min(1, (m - i*60)/60));
+    return `<div class="pt-seg${f >= 1 ? " full" : f > 0 ? " on" : ""}"><div class="pt-bar"><i style="transform:scaleX(${f.toFixed(3)})"></i></div><small>Hour ${i + 1} · ${rate} XP/min</small><b>${f >= 1 ? "✓ " : ""}+${PL.chests[i][1]} chest</b></div>`; }).join("");
+  const line = rest ? `You've played 3 hours today, so XP is ×¼ until midnight. Rest up and come back tomorrow for full XP!`
+    : next ? `<b>${Math.ceil(next[0] - m)} min</b> to your ${next[0]/60}-hour chest (+${next[1]} XP). Hour ${hr + 1} pays <b>${PL.rates[hr]} XP a minute</b>.` : "";
+  return `<div class="card playtime"><div class="pt-head"><h2>Today's playtime</h2><span class="chip">${Math.floor(m/60)} h ${String(Math.round(m % 60)).padStart(2, "0")} m / 3 h</span></div>
+    <div class="pt-segs">${segs}</div><p class="sub" style="margin:10px 0 0;font-size:13px">${line}</p></div>`;
+}
 function howHTML(open){
   return `<details class="card how"${open ? " open" : ""}><summary>How points work ${ICO.chev}</summary><ul class="rules">
     <li><b>Every round</b><span>20 XP for playing, plus XP from your score (up to 300).</span></li>
@@ -1458,6 +1516,9 @@ function howHTML(open){
     <li><b>Level</b><span>Core earns ×1.15 and Advanced ×1.3.</span></li>
     <li><b>Streak</b><span>+10% for every day in a row you play, up to ×1.5.</span></li>
     <li><b>Bonuses</b><span>+30 for your first round each day, +25 the first time you try a game, +40 for a personal best.</span></li>
+    <li><b>Playtime</b><span>Every minute you play earns XP: 2 a minute in your first hour each day, 3 in the second, 4 in the third. Chests of +60, +120 and +200 XP at 1, 2 and 3 hours.</span></li>
+    <li><b>Rest mode</b><span>After 3 hours in a day, XP drops to ×¼ until midnight IST. Play a little every day instead of all at once.</span></li>
+    <li><b>Catch up</b><span>Outside this week's top 3? Your playtime XP gets a ×1.5 chaser boost. Back after 2+ days away? +75 XP welcome bonus. A 3+ day streak survives one missed day.</span></li>
     <li><b>Missions</b><span>Three new missions every day, plus +100 XP for finishing all three.</span></li>
     <li><b>Ranks</b><span>${HG.RANKS.map(r => `${r[1]} ${fmt(r[0])}`).join(" · ")} XP.</span></li>
     <li><b>Boards</b><span>The weekly board resets every Saturday at 12 am IST, the monthly board on the 1st. Top 3 on each win prizes.</span></li>
@@ -1521,13 +1582,14 @@ function renderLeaders(){
 }
 async function renderLbBody(){
   const rec = lb.tab === "records";
-  const {rows, live} = await fetchBoard(rec ? "game" : "xp", rec ? "all" : lb.tab, rec ? lb.game : "");
+  const {rows, live, failed: lbFailed} = await fetchBoard(rec ? "game" : "xp", rec ? "all" : lb.tab, rec ? lb.game : "");
   const body = $("#lbBody"); if (!body || view !== "leaders") return;
   const unit = rec ? "" : "XP";
   const valHTML = r => `${fmt(r.v)}<small>${rec ? modeName(r.mode) : unit}</small>`;
   const rowHTML = (r, i) => `<li class="${r.me ? "me" : ""}"><span class="pos">${i + 1}</span>${avatarHTML(r.name, r.picture, "sm")}
     <div class="who"><div class="nm">${esc(r.name)}${r.me ? " (you)" : ""}</div><div class="meta">${rankChip(r.xpAll || 0)}${r.sample ? '<span class="sample">Sample</span>' : ""}</div></div>
     <span class="val">${valHTML(r)}</span></li>`;
+  if (!rows.length && lbFailed){ body.innerHTML = `<div class="card empty">Couldn't load the leaderboard. Check your connection and try again.</div>`; return; }
   if (!rows.length){ body.innerHTML = `<div class="card empty">No scores yet this ${lb.tab === "month" ? "month" : "week"}. Play a round to take the top spot!</div>`; return; }
   const pod = [1, 0, 2].map(i => {
     const r = rows[i];
@@ -1560,6 +1622,7 @@ function renderMe(){
       <div class="stat"><b>${p.streak}</b><small>Day streak</small></div>
       <div class="stat"><b>${fmt(p.rounds)}</b><small>Rounds played</small></div>
     </div>
+    ${playtimeHTML(p.minsToday || 0)}
     <div class="card"><h2 style="margin-bottom:10px">Rank ladder</h2><div class="ladder">${HG.RANKS.map((x, i) => `<div class="rung${i < r.i ? " got" : i === r.i ? " now" : ""}" style="--rc:${RANK_STYLE[i][0]}"><div class="sym">${RANK_STYLE[i][1]}</div><b>${x[1]}</b><small>${fmt(x[0])} XP</small></div>`).join("")}</div></div>
     <div class="card"><h2 style="margin-bottom:12px">Best scores</h2><div class="bests">${ALLG().map(g => { const b = p.best[g.id];
       return `<div class="best">${gIcon(g.id, g.cls)}<div><div style="font-weight:800">${g.name}</div><div class="sub" style="font-size:12.5px">${b ? modeName(b.mode) : "Not played yet"}</div></div><b>${b ? fmt(b.score) : "—"}</b></div>`; }).join("")}</div></div>
@@ -1627,7 +1690,7 @@ const Stage = {
   start(mode){ const go = () => this._start(mode); if (!user) openLogin(go); else go(); },
   _start(mode){
     this.stopRun();
-    this.mode = mode; this.ended = false;
+    this.mode = mode; this.ended = false; this.t0 = Date.now();
     const run = ++this.run;
     $("#sMode").textContent = MODES[mode].name;
     ["hA","hB","hC"].forEach(id => { const e = $("#" + id); e.classList.remove("low"); e.querySelector("small").textContent = ""; e.querySelector("b").textContent = ""; e.querySelector("em").textContent = ""; });
@@ -1677,7 +1740,7 @@ const Stage = {
     };
   },
   async results(res, run){
-    const g = this.g, mode = this.mode, rd = {game:g.id, mode, score:Math.max(0, Math.round(res.score)), correct:res.correct|0, wrong:res.wrong|0};
+    const g = this.g, mode = this.mode, rd = {game:g.id, mode, score:Math.max(0, Math.round(res.score)), correct:res.correct|0, wrong:res.wrong|0, secs: Math.round((Date.now() - (this.t0 || Date.now()))/1000)};
     const before = player(), prevBest = before.best[g.id]?.score || 0, xpBefore = before.xpAll;
     const att = rd.correct + rd.wrong, acc = att ? rd.correct/att : 0;
     const title = acc >= .9 && rd.correct >= 8 ? "Brilliant!" : acc >= .75 ? "Great round!" : acc >= .5 ? "Nice work" : "Keep going";
@@ -1705,7 +1768,7 @@ const Stage = {
     const msg = {
       posted: "Saved to the leaderboard.",
       local: "Saved on this device. The live leaderboard starts once the portal is connected.",
-      guest: "Guest XP stays on this phone. Sign in with Google to join the leaderboard and win prizes.",
+      guest: "Guest scores don't go on the leaderboard. Sign in with Google to compete for prizes; only rounds played while signed in count.",
       queued: "Sign in again to post this round. It's saved and will post automatically.",
       offline: "No connection. This round is saved and will post when you're back online.",
       error: out.msg || "The leaderboard didn't accept this round."
