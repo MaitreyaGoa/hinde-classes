@@ -477,6 +477,9 @@ details.how[open] summary .i{transform:rotate(90deg)}
 .pt-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--orange),var(--pink));transform-origin:left;border-radius:inherit}
 .pt-seg small{color:var(--muted);font-size:11px;font-weight:700;line-height:1.3}
 .pt-seg b{font-size:12.5px;color:var(--gold);font-weight:800}
+.review{display:inline-block;font-size:10px;font-weight:800;color:#ffb4a8;box-shadow:inset 0 0 0 1px rgba(255,120,100,.6);background:rgba(232,64,42,.14);border-radius:6px;padding:0 5px;margin-left:4px;white-space:nowrap}
+.pod .review{margin:2px 0 0}
+.review.bot{color:#fff;background:rgba(232,64,42,.55);box-shadow:inset 0 0 0 1px #ff8a6a}
 
 /* ===== Diwali theme layer: warm night sky, floating glass, marigold & diya-gold accents ===== */
 :root{
@@ -839,8 +842,12 @@ var HG = (function () {
     }
     pt.chests.forEach(function (c) { items.push({ label: (c[0] / 60) + '-hour chest', xp: c[1] }); });
     if (ctx.welcome) items.push({ label: 'Welcome back!', xp: PLAY.welcome });
-    var rest = before >= PLAY.cap;
-    if (rest) { items.forEach(function (i) { i.xp = Math.round(i.xp * PLAY.rest); }); items.push({ label: 'Rest mode: 3 hours played today, XP ×¼ until midnight', xp: 0 }); }
+    // Pace: a round only earns full XP if enough real time passed since the previous one for it to be played.
+    if (ctx.pace != null && ctx.pace < 1) { var pc = Math.max(0, ctx.pace); items.forEach(function (i) { i.xp = Math.round(i.xp * pc); }); items.push({ label: 'Short round: XP ×' + pc.toFixed(2), xp: 0 }); }
+    var rest = Math.max(before, ctx.restMins || 0) >= PLAY.cap;
+    var stop = Math.max(before, ctx.restMins || 0) >= PLAY.cap + 60;
+    if (stop) { items.forEach(function (i) { i.xp = 0; }); items.push({ label: 'Daily limit: 4 hours played today. XP returns at midnight', xp: 0 }); }
+    else if (rest) { items.forEach(function (i) { i.xp = Math.round(i.xp * PLAY.rest); }); items.push({ label: 'Rest mode: 3 hours played today, XP ×¼ until midnight', xp: 0 }); }
     var total = 0; items.forEach(function (i) { total += i.xp; });
     return { items: items, total: total, missions: status, rest: rest, minsAfter: before + mins };
   }
@@ -1587,14 +1594,14 @@ async function renderLbBody(){
   const unit = rec ? "" : "XP";
   const valHTML = r => `${fmt(r.v)}<small>${rec ? modeName(r.mode) : unit}</small>`;
   const rowHTML = (r, i) => `<li class="${r.me ? "me" : ""}"><span class="pos">${i + 1}</span>${avatarHTML(r.name, r.picture, "sm")}
-    <div class="who"><div class="nm">${esc(r.name)}${r.me ? " (you)" : ""}</div><div class="meta">${rankChip(r.xpAll || 0)}${r.sample ? '<span class="sample">Sample</span>' : ""}</div></div>
+    <div class="who"><div class="nm">${esc(r.name)}${r.me ? " (you)" : ""}</div><div class="meta">${rankChip(r.xpAll || 0)}${r.sample ? '<span class="sample">Sample</span>' : ""}${r.bot ? '<span class="review bot" title="Our fraud check found automated play on more than one day. These scores can\'t win prizes.">🤖 Bot used</span>' : r.review ? '<span class="review" title="Our fraud check found unusual activity. Scores under review can\'t win prizes until cleared.">⚠ Under review</span>' : ""}</div></div>
     <span class="val">${valHTML(r)}</span></li>`;
   if (!rows.length && lbFailed){ body.innerHTML = `<div class="card empty">Couldn't load the leaderboard. Check your connection and try again.</div>`; return; }
   if (!rows.length){ body.innerHTML = `<div class="card empty">No scores yet this ${lb.tab === "month" ? "month" : "week"}. Play a round to take the top spot!</div>`; return; }
   const pod = [1, 0, 2].map(i => {
     const r = rows[i];
     if (!r) return `<div class="pod p${i+1} empty">${avatarHTML("?", "")}<span class="nm">Open spot</span><span class="vv">—</span><div class="step">${i+1}</div></div>`;
-    return `<div class="pod p${i+1}">${avatarHTML(r.name, r.picture, "", ["#ffc145","#d8d3ea","#e39a6a"][i])}<span class="nm">${esc(r.name)}${r.me ? " (you)" : ""}</span><span class="vv">${fmt(r.v)} ${unit}</span><div class="step">${i+1}</div></div>`;
+    return `<div class="pod p${i+1}">${avatarHTML(r.name, r.picture, "", ["#ffc145","#d8d3ea","#e39a6a"][i])}<span class="nm">${esc(r.name)}${r.me ? " (you)" : ""}</span>${r.bot ? '<span class="review bot">🤖 Bot used</span>' : r.review ? '<span class="review">⚠ Under review</span>' : ""}<span class="vv">${fmt(r.v)} ${unit}</span><div class="step">${i+1}</div></div>`;
   }).join("");
   const rest = rows.slice(3, lb.shown);
   const meIdx = rows.findIndex(r => r.me);
