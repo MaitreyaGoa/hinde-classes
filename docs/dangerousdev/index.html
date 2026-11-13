@@ -911,9 +911,48 @@ function showHi(){
   $("#hb").onclick = hidePanel;
   if (typeof loadOnlineHi === "function") loadOnlineHi();
 }
+/* Level codes: a secret 4-digit code for each level from 2 up opens that level directly.
+   Only one-way fingerprints of the codes are stored here, never the codes themselves. */
+const CODE_HASH = {"1": 454635645, "2": 2629995585, "3": 1050074717, "4": 584979877, "5": 318022261, "6": 1790709797, "7": 3452973729, "8": 172659433, "9": 3302092389, "10": 236555805, "11": 2318023469, "12": 3790247541, "13": 2709585797, "14": 475893053};
+function codeHash(code, lvl){
+  const s = "dd-goa-" + lvl + "-" + code; let x = 0x811c9dc5;
+  for (let r = 0; r < 500; r++) for (let i = 0; i < s.length; i++){ x ^= s.charCodeAt(i); x = Math.imul(x, 16777619) >>> 0; }
+  return x >>> 0;
+}
+function showCode(){
+  const wait = Math.max(0, (G.codeLock || 0) - Date.now());
+  panel(`<h2>ENTER LEVEL CODE</h2><p>Got a secret code from Hinde Classes? Enter it to jump straight to that level.</p>
+    <input class="name" id="cd" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="4" placeholder="----" aria-label="4-digit level code" style="letter-spacing:8px;font-size:16px">
+    <div id="cdMsg" aria-live="polite" style="font-size:9px;line-height:1.8;min-height:16px;color:var(--gold)">${wait ? "TOO MANY TRIES. WAIT " + Math.ceil(wait/1000) + " S" : ""}</div>
+    <button class="mbtn primary" id="cdGo" type="button">UNLOCK</button><button class="mbtn" id="hb" type="button">BACK</button>`);
+  const inp = $("#cd"), msg = $("#cdMsg");
+  inp.addEventListener("keydown", e => { e.stopPropagation(); if (e.key === "Enter") $("#cdGo").click(); });
+  inp.addEventListener("input", () => { inp.value = inp.value.replace(/\D/g, "").slice(0, 4); });
+  setTimeout(() => inp.focus(), 50);
+  $("#cdGo").onclick = () => {
+    audio();
+    if (Date.now() < (G.codeLock || 0)){ msg.textContent = "TOO MANY TRIES. WAIT " + Math.ceil((G.codeLock - Date.now())/1000) + " S"; return; }
+    const c = inp.value;
+    if (!/^\d{4}$/.test(c)){ msg.textContent = "ENTER 4 DIGITS"; return; }
+    let hit = -1;
+    for (const k in CODE_HASH) if (codeHash(c, +k + 1) === CODE_HASH[k]) hit = +k;
+    if (hit < 0){
+      G.codeTries = (G.codeTries || 0) + 1; SFX.hurt && SFX.hurt();
+      if (G.codeTries >= 5){ G.codeTries = 0; G.codeLock = Date.now() + 30000; msg.textContent = "TOO MANY TRIES. WAIT 30 S"; }
+      else msg.textContent = "WRONG CODE. TRY AGAIN";
+      $("#panelCard").classList.remove("shake"); void $("#panelCard").offsetWidth; $("#panelCard").classList.add("shake"); inp.select(); return;
+    }
+    G.codeTries = 0; SFX.trophy && SFX.trophy();
+    G.unlocked = Math.max(G.unlocked, hit + 1); store.set("dd_unlocked", G.unlocked);
+    msg.textContent = "LEVEL " + (hit + 1) + " UNLOCKED: " + LV[hit].name.toUpperCase() + "!";
+    setTimeout(() => { G.playSecs = 0; G.score = 0; G.lives = 3; G.nextLife = 20000; showCard(hit); }, 900);
+  };
+  $("#hb").onclick = showLevels;
+}
 function showLevels(){
   panel(`<h2>LEVEL SELECT</h2><div class="menu">${LV.map((d, i) => `<button class="mbtn${i < G.unlocked ? "" : " dis"}" data-l="${i}" type="button" ${i < G.unlocked ? "" : "disabled"}>${i + 1}. ${d.name.toUpperCase()}${i < G.unlocked ? "" : " 🔒"}</button>`).join("")}</div>
-    <p class="tiny">Finish a level to unlock the next.</p><button class="mbtn" id="hb" type="button">BACK</button>`);
+    <p class="tiny">Finish a level to unlock the next, or enter a secret level code.</p><button class="mbtn primary" id="hc" type="button">ENTER CODE</button><button class="mbtn" id="hb" type="button">BACK</button>`);
+  $("#hc").onclick = showCode;
   document.querySelectorAll("[data-l]").forEach(b => b.onclick = () => { audio(); G.playSecs = 0; G.score = 0; G.lives = 3; G.nextLife = 20000; showCard(+b.dataset.l); });
   $("#hb").onclick = hidePanel;
 }
