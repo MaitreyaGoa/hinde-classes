@@ -752,6 +752,135 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .eq-op.no{animation:shake .35s;border-color:#ff5b6e}
 .eq-win{grid-column:1/-1;text-align:center;padding:16px;border-radius:16px;font-family:var(--f-disp);font-size:26px;font-weight:700;color:#07101f;background:linear-gradient(135deg,#6ee7b7,#3fd5f5)}
 
+/* ===== Chapter games section ===== */
+.g-twins{--a1:#a78bfa;--a2:#22d3ee}
+.chwrap{margin-top:-2px}
+.chtabs{display:flex;gap:6px;padding:5px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--gl-edge);width:max-content;max-width:100%;overflow-x:auto}
+.chtabs button{padding:7px 16px;border-radius:999px;font-weight:800;font-size:13px;color:var(--muted);white-space:nowrap}
+.chtabs button[aria-selected="true"]{color:#07101f;background:linear-gradient(135deg,#c7b8ff,var(--cyan))}
+.chg{gap:12px;min-height:190px;justify-content:space-between}
+.chg .head{display:flex;align-items:center;gap:10px}
+.chg .head .gicon{margin-left:auto;width:48px;height:48px;border-radius:15px}
+.chg .head .gicon svg{width:30px;height:30px}
+.chno{display:grid;place-items:center;width:50px;height:50px;flex:none;border-radius:16px;font-family:var(--f-disp);font-weight:700;font-size:22px;line-height:1;background:rgba(255,255,255,.08);border:1px solid var(--gl-edge)}
+.chno small{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.chg h3{margin:0;font-family:var(--f-disp);font-size:22px;font-weight:700}
+.chg p{margin:4px 0 0;color:var(--muted);font-size:13.5px;line-height:1.4}
+.chg .foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mastery{flex:1 1 120px;height:8px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}
+.mastery i{display:block;height:100%;background:linear-gradient(90deg,var(--a1),var(--a2));border-radius:inherit}
+.chsoon{display:flex;flex-direction:column;justify-content:center;gap:6px;min-height:120px;border-style:dashed}
+.chsoon b{font-family:var(--f-disp);font-size:16px}
+.chsoon span{color:var(--muted);font-size:13px}
+
+/* ===== Geometric Twins game ===== */
+.tw-map{display:flex;flex-direction:column;gap:10px}
+.tw-mis{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;text-align:left;padding:14px;border-radius:18px;background:var(--glass-2);border:1px solid var(--gl-edge);color:var(--text)}
+.tw-mis .no{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;font-family:var(--f-disp);font-weight:700;font-size:18px;color:#07101f;background:linear-gradient(140deg,#c7b8ff,#22d3ee)}
+.tw-mis .tx b{display:block;font-family:var(--f-disp);font-size:16px}
+.tw-mis .tx small{display:block;color:var(--muted);font-size:12.5px;line-height:1.35;margin-top:2px}
+.tw-mis .st{color:var(--gold);font-size:16px;letter-spacing:2px;white-space:nowrap}
+.tw-mis.locked{opacity:.45}
+.tw-mis.locked .no{background:rgba(255,255,255,.12);color:var(--muted)}
+.tw-head{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
+.tw-badge{align-self:flex-start;font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.tw-head b{font-family:var(--f-disp);font-size:19px}
+.tw-head small{color:var(--muted);font-size:12.5px;line-height:1.35}
+.tw-prog{height:6px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:6px}
+.tw-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#a78bfa,#22d3ee);transition:width .4s}
+.tw-card{border-radius:20px;padding:12px;background:rgba(255,255,255,.04);border:1px solid var(--gl-edge)}
+.tw-card.in{animation:twIn .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes twIn{from{opacity:0;transform:translateY(8px)}}
+.tw-q{margin:2px 2px 8px;font-size:15px;line-height:1.45}
+.tw-q b{color:#e9e2ff}
+.tw-mini{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.tw-svg{display:block;width:100%;height:auto;max-height:240px;margin:0 auto 6px}
+.tw-vl{fill:#ffffff;font:700 15px var(--f-ui)}
+.tw-sl{fill:#ffcf5a;font:800 12px var(--f-ui)}
+.tw-al{fill:#ff9fbd;font:800 12.5px var(--f-ui)}
+.tw-opts{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}
+.tw-opts.two{grid-template-columns:1fr 1fr}
+.tw-opts.six{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tw-opts.five{grid-template-columns:repeat(5,minmax(0,1fr))}
+.tw-b{padding:12px 10px;border-radius:14px;font-weight:800;font-size:14.5px;color:var(--text);background:var(--glass-2);border:1px solid var(--gl-edge);transition:transform .12s}
+.tw-b:active{transform:scale(.96)}
+.tw-b.ok{background:rgba(182,243,106,.2);border-color:var(--lime);color:#eaffd0}
+.tw-b.no{background:rgba(255,91,110,.18);border-color:#ff5b6e;animation:shake .35s}
+.tw-b.go{color:#07101f;background:linear-gradient(135deg,#c7b8ff,var(--cyan));border:0}
+.tw-b.sm{padding:10px 8px;font-size:14px}
+.tw-b:disabled{opacity:.6}
+.tw-ctl{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tw-sup .tw-mv{transition:transform .5s}
+.tw-sup .tw-mv.fit{animation:twFit .6s forwards}
+.tw-sup .tw-mv.miss{animation:shake .4s}
+@keyframes twFit{to{transform:translateX(-170px)}}
+.tw-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0}
+.tw-chip{padding:9px 14px;border-radius:999px;font-weight:800;font-size:14px;color:var(--text);background:var(--glass-2);border:1px solid var(--gl-edge)}
+.tw-chip.big{font-family:var(--f-disp);font-size:20px;min-width:52px}
+.tw-chip.on{color:#07101f;background:linear-gradient(135deg,#c7b8ff,var(--cyan));border-color:transparent}
+.tw-slot{display:inline-block;min-width:3.4em;color:var(--cyan);letter-spacing:.12em}
+.tw-facts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 10px}
+.tw-facts span{padding:7px 12px;border-radius:12px;font-weight:800;font-size:15px;background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.35)}
+.tw-ans{display:flex;justify-content:center;align-items:baseline;gap:2px;margin:4px auto 8px;padding:8px 18px;width:max-content;border-radius:14px;font-family:var(--f-disp);font-size:30px;font-weight:700;background:rgba(255,255,255,.06);border:1px solid var(--gl-edge)}
+.tw-ans.ok{border-color:var(--lime)}.tw-ans.no{border-color:#ff5b6e;animation:shake .35s}
+.tw-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;max-width:300px;margin:0 auto}
+.tw-pad .k{font-family:var(--f-disp);font-size:20px;padding:11px}
+.tw-fb{margin-top:10px;display:flex;flex-direction:column;gap:10px;padding:12px 14px;border-radius:16px;font-size:14px;line-height:1.5}
+.tw-fb.good{background:rgba(182,243,106,.12);border:1px solid rgba(182,243,106,.45)}
+.tw-fb.teach{background:rgba(255,207,90,.1);border:1px solid rgba(255,207,90,.45)}
+.tw-fb b{margin-right:4px}
+@media (max-width:380px){.tw-opts.six{grid-template-columns:repeat(2,minmax(0,1fr))}.tw-opts.five{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ===== Fractions in Disguise ===== */
+.g-fdis{--a1:#ffb547;--a2:#ff5f8f}
+.g-trig{--a1:#6ee7b7;--a2:#3b82f6}
+.tr-svg{max-height:200px}
+.tw-opts.tr .tw-b{font-size:17px;font-family:var(--f-disp)}.tw-opts.tr .fr{font-size:.95em}
+.tr-side{cursor:pointer}.tr-side:hover{stroke:rgba(255,255,255,.18)}
+.tr-build{display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--f-disp);font-size:24px;margin:4px 0 8px}
+.tr-build .fr{font-size:1em}.tr-slot i{min-width:1.6em;text-align:center;color:var(--cyan)}
+.tr-cell{display:flex;justify-content:center;margin:2px 0 10px}.tr-cell span{font-family:var(--f-disp);font-size:26px;padding:10px 22px;border-radius:14px;background:var(--glass-2);border:1px dashed var(--gl-edge)}
+.tr-expr{text-align:center;font-family:var(--f-disp);font-size:22px;margin:4px 0 12px;padding:12px;border-radius:14px;background:var(--glass-2);overflow-x:auto}
+.tr-expr .fr,.tr-proof .fr,.tr-step .fr,.tw-q .fr{font-size:.82em}
+.tr-exp{background:var(--glass-2);border-radius:14px;padding:8px 10px;margin:4px 0}
+.tr-exp svg{max-height:150px}
+.tr-vals{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-size:13px;font-variant-numeric:tabular-nums}
+.tr-proof{border-left:3px solid var(--a1,#6ee7b7);padding:4px 0 4px 12px;margin:6px 0;font-size:15px;min-height:28px}
+.tr-l{padding:3px 0;animation:trIn .3s ease}.tr-l:first-child{opacity:.6;font-size:12px;letter-spacing:.08em}
+@keyframes trIn{from{opacity:0;transform:translateY(-4px)}}
+.tr-steps{display:flex;flex-direction:column;gap:8px}
+.tr-step{text-align:left;padding:10px 14px;border-radius:12px;font-size:15px;color:var(--text);background:var(--glass-2);border:1px solid var(--gl-edge)}
+.tr-step.ok{opacity:.35}.tr-step.no{animation:trShake .35s;border-color:#ff5b6e}
+@keyframes trShake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.fd-hero{display:flex;justify-content:center;align-items:center;min-height:86px;margin:2px auto 10px;padding:10px 26px;width:max-content;border-radius:22px;font-family:var(--f-disp);font-size:42px;font-weight:700;color:#ffd27a;background:rgba(255,181,71,.1);border:1px solid rgba(255,181,71,.4)}
+.fd-hero .fr{font-size:.7em}
+.fd-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.fd-c{display:flex;align-items:center;justify-content:center;min-height:66px;font-family:var(--f-disp);font-size:22px;border-radius:16px}
+.fd-c .fr{font-size:.8em}
+.fd-c.ok{background:rgba(182,243,106,.2);border-color:var(--lime);color:#eaffd0}
+.fd-c.no{background:rgba(255,91,110,.18);border-color:#ff5b6e;animation:shake .35s}
+.fd-bar{position:relative;height:56px;margin:22px 4px 26px;border-radius:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--gl-edge)}
+.fd-fill{position:absolute;left:0;top:0;bottom:0;border-radius:14px;background:linear-gradient(90deg,#ff9152,#ffb547 70%,#ffd27a)}
+.fd-bar i{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.3)}
+.fd-bar i span{position:absolute;top:60px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:800;color:var(--muted);font-style:normal}
+.fd-true{position:absolute;top:-10px;bottom:-10px;width:4px;margin-left:-2px;border-radius:4px;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.fd-range{width:100%;accent-color:#ffb547;height:30px}
+.fd-vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin:6px 0 10px}
+.fd-vs div{display:flex;align-items:center;justify-content:center;min-height:74px;padding:10px;border-radius:16px;text-align:center;font-family:var(--f-disp);font-size:18px;font-weight:700;background:rgba(255,255,255,.06);border:1px solid var(--gl-edge)}
+.fd-vs span{font-weight:900;color:var(--muted)}
+.tw-opts.fd-three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fd-tags{display:flex;gap:10px;justify-content:center;margin:4px 0 10px;flex-wrap:wrap}
+.fd-tag{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 18px 10px 24px;border-radius:10px 16px 16px 10px;background:linear-gradient(135deg,rgba(255,207,90,.25),rgba(255,145,82,.15));border:1px solid rgba(255,207,90,.45)}
+.fd-tag::before{content:"";position:absolute;left:9px;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:var(--bg)}
+.fd-tag small{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.fd-tag b{font-family:var(--f-disp);font-size:20px}
+.fd-tag.sp{background:linear-gradient(135deg,rgba(110,231,183,.22),rgba(63,213,245,.12));border-color:rgba(110,231,183,.45)}
+.fd-tag.off{background:linear-gradient(135deg,rgba(255,91,110,.22),rgba(255,145,82,.12));border-color:rgba(255,91,110,.45)}
+.tw-ans b{color:var(--muted);font-size:.8em}
+.tw-pad{gap:6px;max-width:320px}
+.tw-pad .k{font-size:18px;padding:8px;min-height:44px}
+.tw-ans{font-size:26px;padding:6px 16px;margin:2px auto 8px}
+
 </style>
 </head>
 <body>
@@ -856,6 +985,10 @@ var HG = (function () {
     'pattern-lock': { name: 'Pattern Lock', div: 14, max: 40000, good: 1500 },
     'vinculum':     { name: 'Vinculum',     div: 12, max: 40000, good: 1400 },
     'equilibrium':  { name: 'Equilibrium',  div: 12, max: 40000, good: 1400 },
+    // Chapter games (one per textbook chapter)
+    'c7-geometric-twins': { name: 'Geometric Twins', div: 8, max: 60000, good: 1000 },
+    'c8-fractions-disguise': { name: 'Fractions in Disguise', div: 8, max: 60000, good: 1000 },
+    'c10-trigonometry': { name: 'Introduction to Trigonometry', div: 8, max: 60000, good: 1000 },
     // Fun games: scores go on the Records board, but they earn no XP and don't count for missions.
     'cricket-12':   { name: 'MHC Cricket (12 overs)', div: .5, max: 600, good: 100, maxSecs: 2700, noXp: true },
     'cricket-2':    { name: 'MHC Cricket (2 overs)', div: .3, max: 120, good: 30, maxSecs: 600, noXp: true },
@@ -1346,6 +1479,9 @@ const GICON = {
   "nexus":'<svg viewBox="0 0 64 64"><path d="M16 46L27 18l21 9-6 21z"/><circle cx="16" cy="46" r="5" fill="#fff"/><circle cx="27" cy="18" r="5" fill="#fff"/><circle cx="48" cy="27" r="5" fill="#fff"/><circle cx="42" cy="48" r="5" fill="#fff"/></svg>',
   "axis":'<svg viewBox="0 0 64 64"><path d="M8 42h48M8 35v14M32 37v10M56 35v14"/><path d="M36 14h12l-6 12z" fill="#fff"/></svg>',
   "prime-split":'<svg viewBox="0 0 64 64"><path d="M32 18L18 38M32 18l14 20M46 38l-8 14M46 38l8 14"/><circle cx="32" cy="14" r="6" fill="#fff"/><circle cx="18" cy="42" r="5" fill="#fff"/><circle cx="46" cy="38" r="4" fill="#fff"/></svg>',
+  "c7-geometric-twins":'<svg viewBox="0 0 64 64"><path d="M8 50L22 18l14 32z"/><path d="M30 50l14-32 14 32z" stroke-dasharray="5 4"/><path d="M13 36l4 2M47 36l4 2"/></svg>',
+  "c10-trigonometry":'<svg viewBox="0 0 64 64"><path d="M12 52H52V14Z"/><path d="M44 52v-8h8"/><path d="M24 52a12 12 0 0 0-2-7"/></svg>',
+  "c8-fractions-disguise":'<svg viewBox="0 0 64 64"><circle cx="20" cy="18" r="7"/><circle cx="44" cy="46" r="7"/><path d="M48 12L16 52"/></svg>',
   "vinculum":'<svg viewBox="0 0 64 64"><rect x="22" y="8" width="20" height="16" rx="4"/><path d="M10 32h44"/><rect x="22" y="40" width="20" height="16" rx="4"/></svg>',
   "equilibrium":'<svg viewBox="0 0 64 64"><path d="M32 10v44M20 54h24M12 20h40"/><path d="M12 20l-7 16h14zM52 20l-7 16h14z"/><circle cx="32" cy="10" r="3" fill="#fff"/></svg>',
   "pattern-lock":'<svg viewBox="0 0 64 64"><path d="M16 16L32 32 48 16V48"/><g fill="#fff" stroke="none"><circle cx="16" cy="16" r="4"/><circle cx="32" cy="16" r="4"/><circle cx="48" cy="16" r="4"/><circle cx="16" cy="32" r="4"/><circle cx="32" cy="32" r="4"/><circle cx="48" cy="32" r="4"/><circle cx="16" cy="48" r="4"/><circle cx="32" cy="48" r="4"/><circle cx="48" cy="48" r="4"/></g></svg>'
@@ -1595,7 +1731,14 @@ const XG = [
   {id:"dangerous-dev", cls:"g-dev", name:"Dangerous Dev"}
 ];
 const XMODES = {classic:{name:"12 overs"}, quick:{name:"2 overs"}, story:{name:"Story"}};
-const ALLG = () => GL.concat(XG);
+/* Chapter games: one game per textbook chapter, grouped by class */
+const CH = [
+  {id:"c7-geometric-twins", cls:"g-twins", std:7, book:"Ganita Prakash · Part 2", chn:1, name:"Geometric Twins", tag:"Congruence: superimposing, SSS, SAS, ASA, AAS, RHS, and isosceles angles", missions:9, key:"tw7c1_stars"},
+  {id:"c8-fractions-disguise", cls:"g-fdis", std:8, book:"Ganita Prakash · Part 2", chn:1, name:"Fractions in Disguise", tag:"Percentages: the FDP trio, part & whole, increase/decrease, profit, discount, GST and compound interest", missions:9, key:"fd8c1_stars"},
+  {id:"c10-trigonometry", cls:"g-trig", std:10, book:"NCERT", chn:8, name:"Introduction to Trigonometry", tag:"Sides, SOH-CAH-TOA, one ratio → all ratios, special angles 0°–90°, identities and step-by-step proofs", missions:9, key:"tr10c8_stars"}
+];
+const CH_CLASSES = [7, 8, 9, 10];
+const ALLG = () => GL.concat(CH, XG);
 const modeName = m => (MODES[m] || XMODES[m])?.name || "";
 /* Same-screen multiplayer games (no scores, so they don't touch XP or the leaderboard) */
 const MP = [
@@ -1690,6 +1833,19 @@ function howHTML(open){
   </ul></details>`;
 }
 
+let chTab = 7;
+function chapterBlock(p){
+  const list = CH.filter(c => c.std === chTab);
+  const starsOf = c => { try { return Object.values(JSON.parse(localStorage.getItem(c.key) || "{}")).reduce((a, b) => a + b, 0); } catch { return 0; } };
+  const tiles = list.map(c => { const b = p.best[c.id], pct = Math.round(starsOf(c)/(c.missions*3)*100);
+    return `<button class="bt chg ${c.cls} b2" type="button" data-g="${c.id}" aria-label="Play ${c.name}">
+      <span class="head"><span class="chno"><small>Ch</small>${c.chn}</span><span class="eyebrow">Std ${c.std} · ${c.book}</span>${gIcon(c.id)}</span>
+      <span><h3>${c.name}</h3><p>${c.tag}</p></span>
+      <span class="foot"><span class="mastery"><i style="width:${pct}%"></i></span><span class="lvp"><b>${pct}%</b> mastered · ${c.missions} missions</span>${b ? `<span class="fbest">Best ${fmt(b.score)}</span>` : ""}</span></button>`; }).join("");
+  return `<div class="ball chwrap"><div class="chtabs" role="tablist">${CH_CLASSES.map(s => `<button type="button" role="tab" aria-selected="${s === chTab}" data-std="${s}">Std ${s}</button>`).join("")}</div></div>
+    ${tiles || `<div class="bt ball chsoon"><b>Std ${chTab} chapter games are on the way.</b><span>One game for every maths chapter, built to make the whole unit click.</span></div>`}
+    ${list.length && list.length < 2 ? `<div class="bt chsoon b2"><b>More Std ${chTab} chapters coming</b><span>Each chapter gets its own mastery game, in textbook order.</span></div>` : ""}`;
+}
 function renderHome(){
   const v = $("#v-home"), p = player();
   const side = !user
@@ -1723,12 +1879,15 @@ function renderHome(){
     <div class="sec-label"><h2><i></i>Maths arcade</h2><span>Tap a game to play</span></div>
     ${gtile(GL[5], true)}${gtile(GL[6], true)}${gtile(GL[0])}${gtile(GL[1])}${gtile(GL[2])}${gtile(GL[3])}${gtile(GL[4])}
     ${user ? `<div class="b2 md-b4" style="display:contents">${missionsHTML(p).replace('class="card"', 'class="card b2"')}</div>` : ""}
+    <div class="sec-label"><h2><i></i>Chapter games</h2><span>One game per textbook chapter</span></div>
+    ${chapterBlock(p)}
     <div class="sec-label"><h2><i></i>Play together</h2><span>Pass-and-play · no sign-in needed</span></div>
     ${MP.map(mtile).join("")}
     <div class="ball">${howHTML(false)}</div>
   </div>`;
   $("#hSign")?.addEventListener("click", () => openLogin());
   v.querySelectorAll("[data-g]").forEach(c => c.onclick = () => Stage.open(c.dataset.g));
+  v.querySelectorAll(".chtabs [data-std]").forEach(b => b.onclick = () => { chTab = +b.dataset.std; const y = scrollY; renderHome(); scrollTo(0, y); });
   fetchBoard("xp", "week").then(({rows, failed}) => {
     const box = $("#lbPrev .top3"); if (!box) return;
     if (!rows.length){ box.innerHTML = `<div class="empty">${failed ? "Couldn't load the leaderboard." : "No scores yet this week. Play a round to take the top spot!"}</div>`; return; }
@@ -1839,7 +1998,7 @@ setInterval(tickCountdown, 1000);
 const Stage = {
   run:0, g:null, mod:null, mode:null, keyFn:null, stops:[], clock:null, ended:false, quitAt:0,
   open(id){
-    const g = GL.find(x => x.id === id); if (!g) return;
+    const g = GL.concat(CH).find(x => x.id === id); if (!g) return;
     this.g = g; this.mod = GAME_MODS[id];
     $("#stage").className = "stage " + g.cls;
     $("#sIcon").innerHTML = GICON[id]; $("#sName").textContent = g.name;
@@ -1853,7 +2012,7 @@ const Stage = {
     $("#sMode").textContent = "Choose a level";
     $("#sIntro").innerHTML = `<div class="intro">
       <div class="hero">${gIcon(g.id)}<div><h2>${g.name}</h2><p class="sub">${m.desc}</p></div></div>
-      <div class="modes">${Object.entries(MODES).map(([k, md]) => `<button class="mode" type="button" data-m="${k}">
+      <div class="modes">${Object.entries(m.modeNames || MODES).map(([k, md]) => `<button class="mode" type="button" data-m="${k}">
         <span class="mn">${md.name}<small>${md.ages}</small></span><span class="mx">${m.modes[k]}</span>
         <span class="mb">${p.best[g.id]?.mode === k ? "Your best<b>" + fmt(p.best[g.id].score) + "</b>" : k === "foundation" ? "×1.0 XP" : k === "core" ? "×1.15 XP" : "×1.3 XP"}</span></button>`).join("")}</div>
       <div class="card"><div class="howto">${m.howto.map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join("")}</div></div></div>`;
@@ -2715,6 +2874,993 @@ const GEqui = {
 
 const GAME_MODS = {"sigma-sprint":GSigma, "nexus":GNexus, "axis":GAxis, "prime-split":GPrime, "pattern-lock":GPattern, "vinculum":GVinc, "equilibrium":GEqui};
 
+/* ================= Chapter-game engine =================
+   Every textbook chapter becomes a mastery quest: 3 tracks (Learn / Apply / Master) × 3 missions,
+   3 lives per mission, instant "why" feedback after every answer, stars that unlock the next mission,
+   and a chapter mastery %. A chapter only supplies its missions and question generators.            */
+const CQ = (() => {
+  const P = a => a[Math.floor(Math.random()*a.length)];
+  const SH = a => { for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const R = (a, b) => a + Math.floor(Math.random()*(b - a + 1));
+  const choice = (opts, cls = "") => `<div class="tw-opts ${cls}">${opts.map((o, i) => `<button class="tw-b" type="button" data-i="${i}">${o}</button>`).join("")}</div>`;
+  // one-tap multiple choice; correct = index (or array of indexes)
+  function bindChoice(el, correct, done, why, topic, okWhy){
+    const C = Array.isArray(correct) ? correct : [correct];
+    el.querySelectorAll(".tw-opts .tw-b").forEach(b => b.onclick = () => {
+      if (el.dataset.lock) return; el.dataset.lock = 1; const ok = C.includes(+b.dataset.i);
+      b.classList.add(ok ? "ok" : "no"); if (!ok) el.querySelectorAll(".tw-opts .tw-b").forEach(x => { if (C.includes(+x.dataset.i)) x.classList.add("ok"); });
+      done(ok, ok ? (okWhy || why) : why, topic); });
+  }
+  // numeric keypad answer; tol = allowed error; pre/post = unit shown around the number (₹, %, km …)
+  const padHTML = (pre = "", post = "") => `<div class="tw-ans">${pre ? `<b>${pre}</b>` : ""}<span id="twIn">?</span>${post ? `<b>${post}</b>` : ""}</div>
+    <div class="tw-pad">${[1,2,3,4,5,6,7,8,9,".",0,"⌫"].map(k => `<button class="tw-b k" type="button" data-k="${k}">${k}</button>`).join("")}<button class="tw-b k go" type="button" data-k="✓" style="grid-column:1/-1">Check ✓</button></div>`;
+  function bindPad(el, ans, tol, done, why, topic, okWhy){
+    let s = ""; const inp = el.querySelector("#twIn");
+    const press = k => { if (el.dataset.lock) return;
+      if (k === "⌫") s = s.slice(0, -1);
+      else if (k === "✓"){ if (!s || s === ".") return; el.dataset.lock = 1; const v = parseFloat(s), ok = Math.abs(v - ans) <= tol + 1e-9;
+        inp.parentElement.classList.add(ok ? "ok" : "no"); done(ok, ok ? (okWhy || why) : why, topic); return; }
+      else if (k === "." ){ if (!s.includes(".") && s.length < 9) s += s ? "." : "0."; }
+      else if (s.length < 9) s = (s === "0" ? "" : s) + k;
+      inp.textContent = s || "?"; };
+    el.querySelectorAll(".tw-pad .k").forEach(b => b.onclick = () => press(b.dataset.k));
+    el._key = k => { if (/^[0-9.]$/.test(k)) press(k); else if (k === "Backspace") press("⌫"); else if (k === "Enter") press("✓"); else return false; return true; };
+  }
+  const n2 = x => { const r = Math.round(x*100)/100; return (Math.abs(r - Math.round(r)) < 1e-9 ? Math.round(r) : r).toLocaleString("en-IN", {maximumFractionDigits:2}); };
+  const rs = x => "₹" + n2(x);
+
+  function quest(cfg){
+    const ALL = cfg.missions, TOT = ALL.length*3;
+    return {
+      timed:false, chapter:cfg.chapter, modeNames:cfg.modeNames || {foundation:{name:"Learn", ages:"Missions 1–3"}, core:{name:"Apply", ages:"Missions 4–6"}, advanced:{name:"Master", ages:"Missions 7–9"}},
+      desc:cfg.desc, modes:cfg.modes, howto:cfg.howto || [["Missions","Each track has 3 missions. Earn stars to unlock the next one. Finish all 9 to master the chapter."],["Learn","Every answer shows why, so mistakes teach you something."],["Lives","Missions 1–8 give you 3 lives. The last mission is a timed mix of everything."],["Stars","★★★ = no mistakes. Replay any mission to improve your stars and score."]],
+      start(api){
+        const q = s => api.root.querySelector(s), KEY = cfg.key;
+        const stars = (() => { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { return {}; } })();
+        const save = () => { try { localStorage.setItem(KEY, JSON.stringify(stars)); } catch {} };
+        const list = ALL.filter(m => m.track === api.mode), total = ALL.reduce((a, m) => a + (stars[m.id] || 0), 0);
+        const unlocked = m => m.id === list[0].id || (stars[m.id - 1] || 0) > 0;
+        api.hud({a:["Score", 0], b:["Stars", `${total}/${TOT}`, ""], c:["Mission", "–", ""]});
+        api.root.innerHTML = `<div class="tw-map"><p class="tw-q">Choose a mission <span class="tw-mini">${total}/${TOT} stars · chapter mastery ${Math.round(total/TOT*100)}%</span></p>
+          ${list.map(m => { const st = stars[m.id] || 0, open = unlocked(m);
+            return `<button class="tw-mis${open ? "" : " locked"}" type="button" data-m="${m.id}" ${open ? "" : "disabled"}><span class="no">${m.id}</span><span class="tx"><b>${m.name}</b><small>${m.goal}</small></span><span class="st">${open ? "★".repeat(st) + "☆".repeat(3 - st) : "🔒"}</span></button>`; }).join("")}
+          <p class="tw-mini">${api.mode === "foundation" ? "Start here: Learn builds the basic ideas." : api.mode === "core" ? "Tip: finish the Learn track first." : "Tip: finish Learn and Apply first. The last mission mixes everything."}</p></div>`;
+        api.root.querySelectorAll(".tw-mis").forEach(b => b.onclick = () => play(ALL.find(m => m.id === +b.dataset.m)));
+
+        function play(M){
+          const S = {score:0, streak:0, best:0, right:0, wrong:0, lives:3, i:0, miss:{}, good:{}}, timed = !!M.timed;
+          const hud = () => api.hud({a:["Score", fmt(S.score)], b: timed ? ["Time", Math.ceil(api.clock.remaining ? api.clock.remaining() : M.timed), ""] : ["Lives", "♥".repeat(S.lives) + "<span style='opacity:.25'>" + "♥".repeat(3 - S.lives) + "</span>", ""], c:["Mission", `${M.id}`, timed ? `${S.right} right` : `${Math.min(S.i + 1, M.n)}/${M.n}`]});
+          api.root.innerHTML = `<div class="tw-head"><span class="tw-badge">Mission ${M.id}</span><b>${M.name}</b><small>${M.goal}</small><div class="tw-prog"><i id="twPg"></i></div></div><div class="tw-card" id="twC"></div><div class="tw-fb" id="twF" hidden></div>`;
+          const next = () => {
+            if (!api.alive()) return;
+            if (!timed && (S.i >= M.n || S.lives <= 0)) return end();
+            const it = cfg.gen[M.id](S.i), c = q("#twC"); delete c.dataset.lock; c.innerHTML = it.html; c._key = null; q("#twF").hidden = true; S.tq = Date.now();
+            c.classList.remove("in"); void c.offsetWidth; c.classList.add("in");
+            it.mount(c, onAnswer); hud(); if (!timed) q("#twPg").style.width = (S.i/M.n*100) + "%";
+          };
+          const onAnswer = (ok, why, topic, bonus = 0) => {
+            const fb = q("#twF"), secs = (Date.now() - S.tq)/1000;
+            if (ok){ S.right++; S.streak++; S.best = Math.max(S.best, S.streak); S.good[topic] = 1;
+              const pts = 100 + 20*Math.min(5, S.streak - 1) + (secs < 8 ? 30 : secs < 15 ? 15 : 0) + bonus; S.score += pts;
+              api.float(q("#twC"), "+" + pts); api.chime(1 + .05*Math.min(4, S.streak)); api.buzz(8); if (timed) api.clock.add(2); }
+            else { S.wrong++; S.streak = 0; S.miss[topic] = (S.miss[topic] || 0) + 1; if (!timed) S.lives--; else api.clock.add(-3);
+              api.tone(150, .2, "sawtooth", .06); api.buzz([20, 30, 20]); }
+            S.i++; hud();
+            fb.className = "tw-fb " + (ok ? "good" : "teach"); fb.hidden = false;
+            fb.innerHTML = `<div><b>${ok ? P(["Correct!", "Exactly!", "Spot on!", "Brilliant!"]) : "Learn this"}</b> ${why}</div><button class="tw-b go" type="button" id="twN">${!timed && (S.i >= M.n || S.lives <= 0) ? "Finish" : "Next →"}</button>`;
+            q("#twN").onclick = next; q("#twN").focus({preventScroll:true});
+            fb.scrollIntoView({block:"nearest", behavior:"smooth"});
+            if (ok && timed) setTimeout(() => { if (api.alive() && !q("#twF").hidden && api.clock.remaining() > 0) next(); }, 900);
+          };
+          api.onKey(k => { const c = q("#twC"); if (c && c._key && c._key(k)) return true;
+            if ((k === "Enter" || k === " ") && q("#twF") && !q("#twF").hidden){ q("#twN").click(); return true; }
+            const n = +k; if (c && n >= 1 && n <= 6){ const sets = c.querySelectorAll(".tw-opts"); const set = sets.length ? sets[sets.length - 1].querySelectorAll(".tw-b") : []; if (set[n - 1]){ set[n - 1].click(); return true; } } });
+          if (timed){ next(); api.countdown().then(() => api.clock.start(M.timed, end)); } else next();
+          function end(){
+            if (S.ended) return; S.ended = true;
+            const done = timed || S.lives > 0, st = timed ? (S.right >= 18 ? 3 : S.right >= 12 ? 2 : S.right >= 6 ? 1 : 0) : !done ? 0 : S.wrong === 0 ? 3 : S.wrong <= 1 ? 2 : 1;
+            if (st > (stars[M.id] || 0)){ stars[M.id] = st; save(); }
+            const tot = S.right + S.wrong, now = ALL.reduce((a, m) => a + (stars[m.id] || 0), 0);
+            api.finish({score:S.score, correct:S.right, wrong:S.wrong,
+              stats:[["Mission", `${M.id} · ${"★".repeat(st)}${"☆".repeat(3 - st)}`], ["Accuracy", (tot ? Math.round(100*S.right/tot) : 0) + "%"], ["Best streak", S.best], ["Chapter", Math.round(now/TOT*100) + "% mastered"]],
+              learn:{good:{title: done ? `Mission ${M.id} ${st ? "complete" : "played"}: you practised` : "Out of lives: you practised", items:Object.keys(S.good)}, goodCls:"plain",
+                     work:{title:"Practise next", items:Object.entries(S.miss).sort((a, b) => b[1] - a[1]).map(([k]) => k)}}});
+          }
+        }
+      }
+    };
+  }
+  return {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, rs, quest};
+})();
+/* ================= Chapter game: Std 7 (Part 2) Ch 1 · Geometric Twins (congruence) =================
+   A mastery quest in 3 tracks x 3 missions. Each mission teaches one idea of the chapter with instant feedback:
+   Learn  : 1 Twin or Not?  2 Superimpose  3 What fixes a shape?
+   Apply  : 4 Match the corners (≅ convention)  5 Rule detective (SSS/SAS/ASA/AAS/RHS vs SSA/AAA)  6 Measurement check
+   Master : 7 Hidden twins in figures  8 Angle hunter (isosceles / equilateral)  9 Twin Master (timed mix)            */
+const TW = (() => {
+  const D = Math.PI/180, R = (a, b) => a + Math.floor(Math.random()*(b - a + 1)), P = a => a[Math.floor(Math.random()*a.length)];
+  const SH = a => { for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const rot = (p, a) => { const c = Math.cos(a*D), s = Math.sin(a*D); return [p[0]*c - p[1]*s, p[0]*s + p[1]*c]; };
+  const cen = ps => { const n = ps.length; return [ps.reduce((a, p) => a + p[0], 0)/n, ps.reduce((a, p) => a + p[1], 0)/n]; };
+  const centre = ps => { const c = cen(ps); return ps.map(p => [p[0] - c[0], p[1] - c[1]]); };
+  const xform = (ps, {r = 0, f = false, s = 1} = {}) => centre(ps).map(p => rot([(f ? -p[0] : p[0])*s, p[1]*s], r));
+  const bbox = ps => { const xs = ps.map(p => p[0]), ys = ps.map(p => p[1]); return {x0:Math.min(...xs), x1:Math.max(...xs), y0:Math.min(...ys), y1:Math.max(...ys)}; };
+  // Fit several point sets into boxes with ONE shared scale (so sizes stay comparable)
+  function fitShared(sets, boxes, pad = 26){
+    let k = Infinity;
+    sets.forEach((ps, i) => { const b = bbox(ps), w = Math.max(.01, b.x1 - b.x0), h = Math.max(.01, b.y1 - b.y0); k = Math.min(k, (boxes[i].w - 2*pad)/w, (boxes[i].h - 2*pad)/h); });
+    return sets.map((ps, i) => { const b = bbox(ps), cx = (b.x0 + b.x1)/2, cy = (b.y0 + b.y1)/2, B = boxes[i];
+      return ps.map(p => [B.x + B.w/2 + (p[0] - cx)*k, B.y + B.h/2 + (p[1] - cy)*k]); });
+  }
+  const n1 = v => Math.round(v*10)/10;
+  // Triangle from angle A, angle B and side AB = c (y is drawn downward, so the apex goes up)
+  function triAB(A, B, c = 6){ const C = 180 - A - B, b = c*Math.sin(B*D)/Math.sin(C*D); return [[0, 0], [c, 0], [b*Math.cos(A*D), -b*Math.sin(A*D)]]; }
+  const dist = (p, q) => Math.hypot(p[0] - q[0], p[1] - q[1]);
+  const angAt = (ps, i) => { const a = ps[i], b = ps[(i + 1) % 3], c = ps[(i + 2) % 3];
+    const u = [b[0] - a[0], b[1] - a[1]], v = [c[0] - a[0], c[1] - a[1]]; return Math.acos((u[0]*v[0] + u[1]*v[1])/(Math.hypot(...u)*Math.hypot(...v)))/D; };
+  function scalene(){ for (;;){ const A = R(35, 85), B = R(35, 85), C = 180 - A - B; if (C < 30 || C > 110) continue;
+    const s = [A, B, C].sort((x, y) => x - y); if (s[1] - s[0] < 7 || s[2] - s[1] < 7) continue; return {A, B, C, ps: triAB(A, B, R(5, 7))}; } }
+
+  /* ---------- SVG drawing ---------- */
+  const PAL = {line:"#e7eaff", fill:"rgba(167,139,250,.16)", fill2:"rgba(34,211,238,.14)", mark:"#ffcf5a", mark2:"#ff8fb1", txt:"#e7eaff", dim:"#97a0c4"};
+  function ticks(p, q, n, col){ if (!n) return ""; const mx = (p[0] + q[0])/2, my = (p[1] + q[1])/2, L = dist(p, q), ux = (q[0] - p[0])/L, uy = (q[1] - p[1])/L, nx = -uy, ny = ux; let s = "";
+    for (let i = 0; i < n; i++){ const o = (i - (n - 1)/2)*5; const cx = mx + ux*o, cy = my + uy*o; s += `<line x1="${cx - nx*6}" y1="${cy - ny*6}" x2="${cx + nx*6}" y2="${cy + ny*6}" stroke="${col}" stroke-width="2.4" stroke-linecap="round"/>`; } return s; }
+  function arcs(ps, i, n, col, rad = 17){ if (!n) return ""; const a = ps[i], b = ps[(i + 1) % 3], c = ps[(i + 2) % 3]; let s = "";
+    const t1 = Math.atan2(b[1] - a[1], b[0] - a[0]), t2 = Math.atan2(c[1] - a[1], c[0] - a[0]); let d = t2 - t1; while (d > Math.PI) d -= 2*Math.PI; while (d < -Math.PI) d += 2*Math.PI;
+    for (let k = 0; k < n; k++){ const r = rad + k*5, x1 = a[0] + r*Math.cos(t1), y1 = a[1] + r*Math.sin(t1), x2 = a[0] + r*Math.cos(t1 + d), y2 = a[1] + r*Math.sin(t1 + d);
+      s += `<path d="M${x1} ${y1} A${r} ${r} 0 0 ${d > 0 ? 1 : 0} ${x2} ${y2}" fill="none" stroke="${col}" stroke-width="2.2"/>`; } return s; }
+  function rightBox(ps, i, col){ const a = ps[i], b = ps[(i + 1) % 3], c = ps[(i + 2) % 3], k = 11;
+    const u = [(b[0] - a[0])/dist(a, b)*k, (b[1] - a[1])/dist(a, b)*k], v = [(c[0] - a[0])/dist(a, c)*k, (c[1] - a[1])/dist(a, c)*k];
+    return `<path d="M${a[0] + u[0]} ${a[1] + u[1]} L${a[0] + u[0] + v[0]} ${a[1] + u[1] + v[1]} L${a[0] + v[0]} ${a[1] + v[1]}" fill="none" stroke="${col}" stroke-width="2"/>`; }
+  function vLabel(ps, i, txt){ const c = cen(ps), p = ps[i], L = dist(p, c) || 1; return `<text x="${p[0] + (p[0] - c[0])/L*15}" y="${p[1] + (p[1] - c[1])/L*15 + 5}" text-anchor="middle" class="tw-vl">${txt}</text>`; }
+  function sLabel(ps, i, txt){ const c = cen(ps), p = ps[i], q = ps[(i + 1) % 3], m = [(p[0] + q[0])/2, (p[1] + q[1])/2], L = dist(m, c) || 1;
+    return `<text x="${m[0] + (m[0] - c[0])/L*24}" y="${m[1] + (m[1] - c[1])/L*24 + 4}" text-anchor="middle" class="tw-sl">${txt}</text>`; }
+  function aLabel(ps, i, txt){ const c = cen(ps), p = ps[i], L = dist(p, c) || 1; return `<text x="${p[0] + (c[0] - p[0])/L*34}" y="${p[1] + (c[1] - p[1])/L*34 + 4}" text-anchor="middle" class="tw-al">${txt}</text>`; }
+  // t = {ps, names, ticks:[side i = ps[i]→ps[i+1]], arcs:[vertex i], right:[i], side:[txt], ang:[txt], fill}
+  function triSVG(t){
+    const ps = t.ps, tk = t.ticks || [], ar = t.arcs || [], sd = t.side || [], an = t.ang || [];
+    let s = `<polygon points="${ps.map(p => p.join(",")).join(" ")}" fill="${t.fill || PAL.fill}" stroke="${PAL.line}" stroke-width="2.4" stroke-linejoin="round"/>`;
+    for (let i = 0; i < 3; i++){ s += ticks(ps[i], ps[(i + 1) % 3], tk[i], PAL.mark); if ((t.right || []).includes(i)) s += rightBox(ps, i, PAL.mark2); else s += arcs(ps, i, ar[i], PAL.mark2);
+      if (sd[i]) s += sLabel(ps, i, sd[i]); if (an[i]) s += aLabel(ps, i, an[i]); if (t.names) s += vLabel(ps, i, t.names[i]); }
+    return s;
+  }
+  const svg = (inner, w = 340, h = 190, cls = "") => `<svg class="tw-svg ${cls}" viewBox="0 0 ${w} ${h}" role="img" aria-label="figure">${inner}</svg>`;
+  const poly = (ps, fill, closed = true) => closed ? `<polygon points="${ps.map(p => p.join(",")).join(" ")}" fill="${fill}" stroke="${PAL.line}" stroke-width="2.4" stroke-linejoin="round"/>`
+    : `<polyline points="${ps.map(p => p.join(",")).join(" ")}" fill="none" stroke="${PAL.line}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const dot = (p, col = PAL.mark) => `<circle cx="${p[0]}" cy="${p[1]}" r="3.6" fill="${col}"/>`;
+
+  /* ---------- shapes for Learn missions ---------- */
+  const SHAPES = {
+    L:[[0,0],[3,0],[3,1],[1,1],[1,3.2],[0,3.2]], boot:[[0,0],[1.1,0],[1.1,2],[2.8,2],[2.8,3],[0,3]],
+    bolt:[[1,0],[2.4,0],[1.7,1.3],[2.6,1.3],[0.6,3.4],[1.1,1.9],[0.2,1.9]], quad:[[0,0],[3.2,0.4],[2.5,2.3],[0.4,1.9]],
+    flag:[[0,0],[0.5,0],[0.5,1.2],[2.6,1.8],[0.5,2.3],[0.5,3.4],[0,3.4]], kitex:[[0,1.2],[1.5,0],[3.4,1.6],[1.2,2.8]],
+    tri:[[0,0],[3.4,0],[0.9,2.3]], step:[[0,0],[1,0],[1,1],[2,1],[2,2],[3,2],[3,3],[0,3]]
+  };
+  const ASYM = ["L", "boot", "bolt", "quad", "flag", "kitex", "tri"];
+  function distort(ps){ const q = ps.map(p => p.slice()), i = R(0, q.length - 1); q[i] = [q[i][0] + P([-1, 1])*R(5, 8)/10, q[i][1] + P([-1, 1])*R(5, 8)/10]; return q; }
+  function vSym(arm1, arm2, ang){ return [[arm1, 0], [0, 0], rot([arm2, 0], -ang)]; }
+
+  /* ---------- names & correspondence ---------- */
+  const NAMESETS = ["ABC", "XYZ", "PQR", "DEF", "LMN", "HEN", "BIG", "AIR", "FLY", "RED", "JAM", "STU", "KOT"];
+  function twoNames(){ for (;;){ const a = P(NAMESETS), b = P(NAMESETS); if (a !== b && ![...a].some(ch => b.includes(ch))) return [a, b]; } }
+  const tri = n => `∆${n}`;
+  const PERMS = [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]];
+  const side = (n, i, j) => n[i] + n[j];
+
+  /* ---------- rule classification ---------- */
+  const RULES = ["SSS", "SAS", "ASA", "AAS", "RHS", "NO"];
+  const RULE_TXT = {SSS:"SSS: all three sides equal", SAS:"SAS: two sides and the angle between them", ASA:"ASA: two angles and the side between them", AAS:"AAS: two angles and a side not between them", RHS:"RHS: right angle, hypotenuse and one side", NO:"Not guaranteed"};
+  const RULE_WHY = {
+    SSS:"Three equal sides fix a triangle completely. Only one shape and size is possible.",
+    SAS:"Two sides with the angle <b>between</b> them fix the triangle: the angle locks how the two sides open.",
+    ASA:"Two angles fix the shape, and the side <b>between</b> them fixes the size.",
+    AAS:"Two angles give the third angle too (angles add to 180°), so this becomes ASA.",
+    RHS:"In right triangles, the hypotenuse and one side are enough: the arc meets the perpendicular line in mirror-image points that give congruent triangles.",
+    SSA:"Two sides and an angle that is <b>not between</b> them (SSA) can make <b>two different triangles</b>: the arc can cut the line at two points.",
+    AAA:"Equal angles only fix the <b>shape</b>, not the size. A bigger copy has the same angles. So AAA does not prove congruence."
+  };
+
+  /* ================= missions ================= */
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Twin or Not?", goal:"Congruent = same shape AND same size. Turning or flipping is allowed.", n:8},
+    {id:2, track:"foundation", name:"Superimpose", goal:"Turn and flip the copy so it fits exactly on the original.", n:6},
+    {id:3, track:"foundation", name:"What Fixes a Shape?", goal:"Pick the measurements that let you make an exact copy.", n:7},
+    {id:4, track:"core", name:"Match the Corners", goal:"Write congruence the right way: ∆ABC ≅ ∆XYZ means A↔X, B↔Y, C↔Z.", n:8},
+    {id:5, track:"core", name:"Rule Detective", goal:"Read the marks. Which rule proves the triangles are twins: or is it a trap?", n:8},
+    {id:6, track:"core", name:"Measurement Check", goal:"Given equal parts in words, decide the rule and write the congruence.", n:7},
+    {id:7, track:"advanced", name:"Hidden Twins", goal:"Find congruent triangles inside figures and say why.", n:6},
+    {id:8, track:"advanced", name:"Angle Hunter", goal:"Angles opposite equal sides are equal. Equilateral angles are 60°.", n:8},
+    {id:9, track:"advanced", name:"Twin Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+
+  /* ----- item builders: each returns {html, mount(el, done)} where done(ok, explainHTML, topic) ----- */
+  const choice = (opts, cls = "") => `<div class="tw-opts ${cls}">${opts.map((o, i) => `<button class="tw-b" type="button" data-i="${i}">${o}</button>`).join("")}</div>`;
+  function bindChoice(el, correctIdx, done, explain, topic, okMsg){
+    el.querySelectorAll(".tw-opts .tw-b").forEach(b => b.onclick = () => {
+      if (el.dataset.lock) return; el.dataset.lock = 1; const i = +b.dataset.i, ok = Array.isArray(correctIdx) ? correctIdx.includes(i) : i === correctIdx;
+      b.classList.add(ok ? "ok" : "no"); if (!ok) el.querySelectorAll(".tw-opts .tw-b").forEach(x => { if ((Array.isArray(correctIdx) ? correctIdx : [correctIdx]).includes(+x.dataset.i)) x.classList.add("ok"); });
+      done(ok, ok ? (okMsg || explain) : explain, topic); });
+  }
+
+  // Mission 1: Twin or Not?
+  function m1(){
+    const kind = P(["shape", "shape", "shape", "v", "circle", "rect"]), twin = Math.random() < .5;
+    let A, B, why, topic = "Same shape and same size", draw;
+    const boxes = [{x:0, y:0, w:170, h:170}, {x:170, y:0, w:170, h:170}];
+    if (kind === "circle"){ const r1 = R(3, 6), r2 = twin ? r1 : r1 + P([-2, -1, 1, 2]);
+      const m = 60/Math.max(r1, r2); draw = `<circle cx="85" cy="85" r="${r1*m}" fill="${PAL.fill}" stroke="${PAL.line}" stroke-width="2.4"/><circle cx="255" cy="85" r="${r2*m}" fill="${PAL.fill2}" stroke="${PAL.line}" stroke-width="2.4"/>`;
+      why = twin ? "Both circles have the same radius, so they fit exactly. For circles, equal radius means congruent." : "Different radius means a different size. Circles are congruent only when their radii are equal."; topic = "Congruent circles"; }
+    else if (kind === "rect"){ const l = R(3, 6), b = R(2, l - 1), ps = [[0,0],[l,0],[l,b],[0,b]];
+      let q = twin ? ps : (Math.random() < .5 ? [[0,0],[l,0],[l,b + 1],[0,b + 1]] : [[0,0],[l + 1,0],[l + 1,b],[0,b]]);
+      [A, B] = fitShared([xform(ps), xform(q, {r: twin && Math.random() < .5 ? 90 : 0})], boxes); draw = poly(A, PAL.fill) + poly(B, PAL.fill2);
+      why = twin ? "Same length and same breadth, so the rectangles fit exactly (even when one is turned)." : "One side is longer, so the rectangles are not the same size. Rectangles are congruent only if length AND breadth match."; topic = "Congruent rectangles"; }
+    else if (kind === "v"){ const a1 = R(25, 40)/10, a2 = R(18, 30)/10, an = R(50, 120), an2 = twin ? an : an + P([-1, 1])*R(18, 30);
+      const r = R(0, 359), f = Math.random() < .5;
+      [A, B] = fitShared([xform(vSym(a1, a2, an)), xform(vSym(a1, a2, an2), {r, f})], boxes);
+      draw = poly(A, "", false) + poly(B, "", false) + dot(A[1]) + dot(B[1]);
+      why = twin ? `Same two arm lengths AND the same angle between them, so the symbols fit exactly${f ? " (one is flipped, which is allowed)" : ""}.` : "The arms are the same lengths but the angle between them is different, so the shape is different. The angle must match too!";
+      topic = "Arms and the angle between them"; }
+    else { const key = P(ASYM), ps = SHAPES[key]; let q = ps, mode = "twin";
+      if (!twin){ mode = P(["scale", "distort"]); q = mode === "distort" ? distort(ps) : ps; }
+      const r = R(0, 359), f = Math.random() < .5, s = mode === "scale" ? P([.72, 1.3]) : 1;
+      [A, B] = fitShared([xform(ps), xform(q, {r, f, s})], boxes); draw = poly(A, PAL.fill) + poly(B, PAL.fill2);
+      why = twin ? `It's the same shape and size, just ${f ? "flipped and " : ""}turned. Flipping and turning are allowed when checking congruence.`
+        : mode === "scale" ? "Same shape but a <b>different size</b>, like a photo zoomed in. Congruent figures must also have the same size." : "Close, but one corner is in a different place, so the shapes are not the same. They would not fit exactly on top of each other.";
+      topic = mode === "scale" ? "Same shape is not enough: size must match" : "Same shape and same size"; }
+    return {html:`<p class="tw-q">Are these two figures <b>congruent</b> (geometric twins)?</p>${svg(draw, 340, 170)}${choice(["✓ Twins", "✗ Not twins"], "two")}`,
+      mount(el, done){ bindChoice(el, twin ? 0 : 1, done, why, topic); }};
+  }
+
+  // Mission 2: Superimpose by turning and flipping
+  function m2(){
+    const key = P(ASYM), base = xform(SHAPES[key]); let r0, f0; do { r0 = R(0, 7); f0 = Math.random() < .5; } while (r0 === 0 && !f0);
+    const best = (() => { const seen = new Map([[r0 + (f0 ? 8 : 0), 0]]), q = [[r0, f0]]; while (q.length){ const [r, f] = q.shift(), d = seen.get(r + (f ? 8 : 0));
+      if (r === 0 && !f) return d; for (const [nr, nf] of [[(r + 1) % 8, f], [(r + 7) % 8, f], [(8 - r) % 8, !f]]){ const k = nr + (nf ? 8 : 0); if (!seen.has(k)){ seen.set(k, d + 1); q.push([nr, nf]); } } } return 3; })();
+    return {html:`<p class="tw-q">Turn and flip the coloured copy until it would fit <b>exactly</b> on the outline. Then press <b>Place it</b>.</p>
+      <div class="tw-sup" id="twSup"></div>
+      <div class="tw-ctl"><button class="tw-b sm" type="button" data-op="l">⟲ 45°</button><button class="tw-b sm" type="button" data-op="f">⇋ Flip</button><button class="tw-b sm" type="button" data-op="r">⟳ 45°</button></div>
+      <div class="tw-opts one"><button class="tw-b go" type="button" data-op="go">Place it</button></div><p class="tw-mini" id="twMv">Fewest moves possible: ${best}</p>`,
+      mount(el, done){
+        let r = r0, f = f0, moves = 0;
+        const box = [{x:0, y:0, w:170, h:180}, {x:170, y:0, w:170, h:180}];
+        const draw = (land) => { const cur = base.map(p => rot([f ? -p[0] : p[0], p[1]], r*45));
+          const [A, B] = fitShared([base, cur], box);
+          const ghost = land ? fitShared([base, base], box)[0] : null;
+          el.querySelector("#twSup").innerHTML = svg(`<polygon points="${A.map(p => p.join(",")).join(" ")}" fill="none" stroke="${PAL.dim}" stroke-width="2.4" stroke-dasharray="6 5"/>${dot(A[0], PAL.mark2)}
+            <g class="tw-mv${land ? " land" : ""}">${poly(B, PAL.fill2)}${dot(B[0], PAL.mark2)}</g>`, 340, 180); };
+        draw();
+        el.querySelectorAll("[data-op]").forEach(b => b.onclick = () => { if (el.dataset.lock) return; const op = b.dataset.op;
+          if (op === "l"){ r = (r + 7) % 8; moves++; } else if (op === "r"){ r = (r + 1) % 8; moves++; } else if (op === "f"){ r = (8 - r) % 8; f = !f; moves++; }
+          if (op !== "go"){ draw(); el.querySelector("#twMv").textContent = `Moves: ${moves} · fewest possible: ${best}`; return; }
+          el.dataset.lock = 1; const ok = r === 0 && !f;
+          el.querySelector(".tw-mv").classList.add(ok ? "fit" : "miss");
+          done(ok, ok ? (moves <= best ? `Perfect fit in the fewest moves (${moves})! The pink dot shows the matching corner.` : `It fits! (${moves} moves; ${best} was possible.)`)
+            : `Not yet: ${f ? "it is still a mirror image, so it needs a <b>flip</b>" : `it is still turned by ${Math.min(r, 8 - r)*45}°`}. Congruent figures fit exactly only when matching corners land on each other.`, "Superimposing: turn and flip", ok && moves <= best ? 40 : 0);
+        });
+      }};
+  }
+
+  // Mission 3: what measurements fix the figure?
+  function m3(){
+    const it = P(["circle", "rect", "v", "tri", "tri", "tri"]);
+    if (it === "tri"){
+      const t = scalene(), ps = fitShared([t.ps], [{x:40, y:8, w:260, h:150}])[0];
+      const chips = ["AB", "BC", "CA", "∠A", "∠B", "∠C"];
+      return {html:`<p class="tw-q">Pick <b>exactly 3</b> measurements of ∆ABC that are enough to make an exact copy.</p>${svg(triSVG({ps, names:["A", "B", "C"]}), 340, 165)}
+        <div class="tw-chips">${chips.map((c, i) => `<button class="tw-chip" type="button" data-i="${i}">${c}</button>`).join("")}</div><div class="tw-opts one"><button class="tw-b go" type="button" data-op="go">Check</button></div>`,
+        mount(el, done){ const sel = new Set();
+          el.querySelectorAll(".tw-chip").forEach(c => c.onclick = () => { if (el.dataset.lock) return; const i = +c.dataset.i; sel.has(i) ? sel.delete(i) : sel.size < 3 && sel.add(i); el.querySelectorAll(".tw-chip").forEach(x => x.classList.toggle("on", sel.has(+x.dataset.i))); });
+          el.querySelector("[data-op=go]").onclick = () => { if (el.dataset.lock || sel.size !== 3) return; el.dataset.lock = 1;
+            const S = [...sel].filter(i => i < 3), A = [...sel].filter(i => i >= 3).map(i => i - 3); // side i joins vertex i and i+1
+            let rule;
+            if (S.length === 3) rule = "SSS"; else if (A.length === 3) rule = "AAA";
+            else if (S.length === 2){ const shared = [0, 1, 2].find(v => S.every(s => s === v || (s + 1) % 3 === v)); rule = A[0] === shared ? "SAS" : "SSA"; }
+            else { const s = S[0], incl = A.every(v => v === s || v === (s + 1) % 3); rule = incl ? "ASA" : "AAS"; }
+            const ok = !["AAA", "SSA"].includes(rule);
+            done(ok, ok ? `Yes! That is <b>${rule}</b>. ${RULE_WHY[rule]}` : RULE_WHY[rule], ok ? "Measurements that fix a triangle" : (rule === "AAA" ? "AAA is not enough" : "SSA is not enough"));
+          };
+        }};
+    }
+    const Q = {circle:{q:"To draw a circle congruent to this one, what must you measure?", fig:`<circle cx="170" cy="82" r="62" fill="${PAL.fill}" stroke="${PAL.line}" stroke-width="2.4"/>${dot([170, 82])}<line x1="170" y1="82" x2="232" y2="82" stroke="${PAL.mark}" stroke-width="2.4" stroke-dasharray="5 4"/>`,
+        chips:["Radius", "Colour", "Where it is on the page", "Thickness of the outline"], need:[0], why:"Only the <b>radius</b> fixes a circle's size. Its colour or position does not matter for congruence."},
+      rect:{q:"To draw a rectangle congruent to this one, what must you measure?", fig:poly([[70, 30], [270, 30], [270, 140], [70, 140]], PAL.fill), chips:["Length", "Breadth", "Colour", "Where it is on the page"], need:[0, 1], why:"A rectangle's angles are all 90°, so its <b>length and breadth</b> fix it completely."},
+      v:{q:"To recreate this signboard symbol exactly, what must you measure?", fig:(() => { const ps = fitShared([vSym(3.6, 2.4, 70)], [{x:60, y:8, w:220, h:150}])[0]; return poly(ps, "", false) + `<text x="${ps[0][0] + 6}" y="${ps[0][1] + 18}" class="tw-vl">A</text><text x="${ps[1][0] - 18}" y="${ps[1][1] + 18}" class="tw-vl">B</text><text x="${ps[2][0] + 8}" y="${ps[2][1]}" class="tw-vl">C</text>`; })(),
+        chips:["Arm AB", "Arm BC", "∠ABC", "Colour of the board"], need:[0, 1, 2], why:"The two arm lengths alone allow many different symbols. The angle <b>∠ABC</b> between the arms fixes the shape. You need AB, BC and ∠ABC."}}[it];
+    return {html:`<p class="tw-q">${Q.q} <span class="tw-mini">Pick all that are needed.</span></p>${svg(Q.fig, 340, 165)}
+      <div class="tw-chips">${Q.chips.map((c, i) => `<button class="tw-chip" type="button" data-i="${i}">${c}</button>`).join("")}</div><div class="tw-opts one"><button class="tw-b go" type="button" data-op="go">Check</button></div>`,
+      mount(el, done){ const sel = new Set();
+        el.querySelectorAll(".tw-chip").forEach(c => c.onclick = () => { if (el.dataset.lock) return; const i = +c.dataset.i; sel.has(i) ? sel.delete(i) : sel.add(i); c.classList.toggle("on", sel.has(i)); });
+        el.querySelector("[data-op=go]").onclick = () => { if (el.dataset.lock || !sel.size) return; el.dataset.lock = 1;
+          const ok = sel.size === Q.need.length && Q.need.every(i => sel.has(i)); done(ok, Q.why, "What fixes shape and size"); };
+      }};
+  }
+
+  // Mission 4: correspondence and the ≅ convention
+  function m4(){
+    const [n1s, n2s] = twoNames(), perm = P(PERMS), t = scalene(); // vertex i of first ↔ vertex perm[i] of second
+    const kind = P(["build", "build", "side", "angle", "rewrite"]);
+    if (kind === "build"){
+      const ps1 = t.ps, ps2 = []; for (let i = 0; i < 3; i++) ps2[perm[i]] = ps1[i];
+      const [A, B] = fitShared([xform(ps1), xform(ps2, {r: R(0, 359), f: Math.random() < .5})], [{x:0, y:0, w:170, h:175}, {x:170, y:0, w:170, h:175}]);
+      const len = i => n1(dist(t.ps[i], t.ps[(i + 1) % 3]));
+      const side1 = [0, 1, 2].map(i => len(i) + " cm"), side2 = []; for (let i = 0; i < 3; i++){ const a = perm[i], b = perm[(i + 1) % 3]; const k = (b === (a + 1) % 3) ? a : b; side2[k] = side1[i]; }
+      const ans = [0, 1, 2].map(i => n2s[perm[i]]).join("");
+      return {html:`<p class="tw-q">These triangles are congruent (look at the side lengths). Complete: <b>${tri(n1s)} ≅ ∆<span class="tw-slot" id="twSl">_ _ _</span></b></p>
+        ${svg(triSVG({ps:A, names:[...n1s], side:side1}) + triSVG({ps:B, names:[...n2s], side:side2, fill:PAL.fill2}), 340, 175)}
+        <div class="tw-chips">${SH([...n2s]).map(c => `<button class="tw-chip big" type="button" data-c="${c}">${c}</button>`).join("")}</div><p class="tw-mini">Tap the letters in order: the vertex that matches ${n1s[0]}, then ${n1s[1]}, then ${n1s[2]}.</p>`,
+        mount(el, done){ let s = "";
+          el.querySelectorAll(".tw-chip").forEach(c => c.onclick = () => { if (el.dataset.lock || c.disabled) return; s += c.dataset.c; c.disabled = true; c.classList.add("on");
+            el.querySelector("#twSl").textContent = (s + "___").slice(0, 3).split("").join(" ");
+            if (s.length === 3){ el.dataset.lock = 1; const ok = s === ans;
+              done(ok, ok ? `Correct: ${n1s[0]}↔${ans[0]}, ${n1s[1]}↔${ans[1]}, ${n1s[2]}↔${ans[2]}. Equal sides overlap when you superimpose.` : `Match equal sides: ${tri(n1s)} ≅ ${tri(ans)}. The 1st letters correspond, then the 2nd, then the 3rd.`, "Writing correspondence (≅)"); } }); }};
+    }
+    const ans = [0, 1, 2].map(i => n2s[perm[i]]).join(""), stmt = `${tri(n1s)} ≅ ${tri(ans)}`;
+    if (kind === "side"){ const i = R(0, 2), j = (i + R(1, 2)) % 3, s1 = n1s[i] + n1s[j], good = ans[i] + ans[j];
+      const opts = SH([good, ans[i] + ans[3 - i - j], ans[j] + ans[3 - i - j]]);
+      return {html:`<p class="tw-q">Given <b>${stmt}</b>. Which side is equal to <b>${s1}</b>?</p>${choice(opts)}`, mount(el, done){ bindChoice(el, opts.indexOf(good), done, `${n1s[i]}↔${ans[i]} and ${n1s[j]}↔${ans[j]}, so ${s1} = ${good}. Corresponding parts of congruent triangles are equal.`, "Corresponding sides"); }}; }
+    if (kind === "angle"){ const i = R(0, 2), good = "∠" + ans[i], opts = SH([0, 1, 2].map(k => "∠" + ans[k]));
+      return {html:`<p class="tw-q">Given <b>${stmt}</b>. Which angle is equal to <b>∠${n1s[i]}</b>?</p>${choice(opts)}`, mount(el, done){ bindChoice(el, opts.indexOf(good), done, `${n1s[i]} is letter ${i + 1} on the left, so it matches letter ${i + 1} on the right: ${ans[i]}.`, "Corresponding angles"); }}; }
+    const q = P(PERMS.filter(p => p.join() !== "0,1,2")), good = `${tri(q.map(i => n1s[i]).join(""))} ≅ ${tri(q.map(i => ans[i]).join(""))}`;
+    const bad = new Set(); while (bad.size < 2){ const w = P(PERMS); if (w.join() !== q.join()) bad.add(`${tri(q.map(i => n1s[i]).join(""))} ≅ ${tri(w.map(i => ans[i]).join(""))}`); }
+    const opts = SH([good, ...bad]);
+    return {html:`<p class="tw-q">Given <b>${stmt}</b>. Which is <b>another correct way</b> to write it?</p>${choice(opts)}`, mount(el, done){ bindChoice(el, opts.indexOf(good), done, `Reorder both names the <b>same way</b> so matching vertices stay in the same positions: ${good}.`, "Rewriting a congruence"); }};
+  }
+
+  // Mission 5: rule detective from marked figures
+  function marked(type){
+    const t = scalene(); let ps1 = t.ps, ps2 = null, T = {ticks:[0, 0, 0], arcs:[0, 0, 0], right:[]};
+    if (type === "SSS") T.ticks = [1, 2, 3];
+    else if (type === "SAS"){ T.ticks = [1, 0, 2]; T.arcs = [1, 0, 0]; } // sides 0 (AB) & 2 (CA) meet at A
+    else if (type === "ASA"){ T.ticks = [1, 0, 0]; T.arcs = [1, 2, 0]; } // side AB between ∠A and ∠B
+    else if (type === "AAS"){ T.ticks = [0, 1, 0]; T.arcs = [1, 2, 0]; } // side BC not between A and B
+    else if (type === "AAA"){ T.arcs = [1, 2, 3]; }
+    else if (type === "RHS"){ const a = R(35, 55); ps1 = triAB(90, a, R(4, 6)); T.right = [0]; T.ticks = [1, 2, 0]; } // right angle at A; side 1 (BC) is the hypotenuse
+    if (type === "SSA"){ // two sides and a non-included angle that give two different triangles
+      const B = R(30, 42), c = R(6, 7), b = n1(c*Math.sin(B*D) + (c - c*Math.sin(B*D))*R(40, 70)/100);
+      const h = c*Math.sin(B*D), proj = c*Math.cos(B*D), d = Math.sqrt(b*b - h*h);
+      const Bp = [0, 0], Ap = [c*Math.cos(B*D), -h];
+      const C1 = [proj - d, 0], C2 = [proj + d, 0];
+      ps1 = [Ap, Bp, C2]; ps2 = [Ap, Bp, C1];
+      T.ticks = [1, 0, 2]; T.arcs = [0, 1, 0]; // AB (side 0), CA (side 2), ∠B
+    }
+    let second = ps2 ? xform(ps2) : xform(ps1, {r: R(0, 359), f: Math.random() < .5, s: type === "AAA" ? P([.7, 1.35]) : 1});
+    const [A, B] = fitShared([xform(ps1), second], [{x:0, y:0, w:170, h:175}, {x:170, y:0, w:170, h:175}]);
+    return {fig: svg(triSVG({ps:A, ...T}) + triSVG({ps:B, ...T, fill:PAL.fill2}), 340, 175), ans: ["SSA", "AAA"].includes(type) ? "NO" : type};
+  }
+  function m5(){
+    const type = P(["SSS", "SAS", "ASA", "AAS", "RHS", "SSA", "AAA", "SAS", "ASA"]), M = marked(type);
+    const labels = ["SSS", "SAS", "ASA", "AAS", "RHS", "Not guaranteed"];
+    return {html:`<p class="tw-q">Matching marks show equal parts. Which rule proves these triangles <b>congruent</b>?</p>${M.fig}${choice(labels, "six")}`,
+      mount(el, done){ bindChoice(el, RULES.indexOf(M.ans), done, RULE_WHY[type], type === "SSA" || type === "AAA" ? `${type} traps` : `${type} condition`); }};
+  }
+
+  // Mission 6: equal parts given in words
+  function m6(){
+    const [a, b] = twoNames(), perm = P(PERMS), m = i => b[perm[i]];
+    const type = P(["SSS", "SAS", "ASA", "AAS", "RHS", "SSA", "AAA"]), S = (i, j) => `${a[i]}${a[j]} = ${m(i)}${m(j)}`, An = i => `∠${a[i]} = ∠${m(i)}`;
+    const v = SH([0, 1, 2]); let facts;
+    if (type === "SSS") facts = [S(0, 1), S(1, 2), S(2, 0)];
+    else if (type === "SAS") facts = [S(v[0], v[1]), S(v[0], v[2]), An(v[0])];
+    else if (type === "ASA") facts = [An(v[0]), An(v[1]), S(v[0], v[1])];
+    else if (type === "AAS") facts = [An(v[0]), An(v[1]), S(v[1], v[2])];
+    else if (type === "RHS") facts = [`∠${a[v[0]]} = ∠${m(v[0])} = 90°`, S(v[1], v[2]) + " (hypotenuse)", S(v[0], v[1])];
+    else if (type === "SSA") facts = [S(v[0], v[1]), S(v[0], v[2]), An(v[1])];
+    else facts = [An(0), An(1), An(2)];
+    const ansStmt = `${tri(a)} ≅ ${tri([0, 1, 2].map(m).join(""))}`, rule = ["SSA", "AAA"].includes(type) ? "NO" : type;
+    const labels = ["SSS", "SAS", "ASA", "AAS", "RHS", "Not guaranteed"];
+    return {html:`<p class="tw-q">In ${tri(a)} and ${tri(b)}:</p><div class="tw-facts">${SH(facts).map(f => `<span>${f}</span>`).join("")}</div><p class="tw-q">Are they congruent? By which rule?</p>${choice(labels, "six")}<div id="tw2"></div>`,
+      mount(el, done){
+        el.querySelectorAll(".tw-opts .tw-b").forEach(btn => btn.onclick = () => {
+          if (el.dataset.lock) return; el.dataset.lock = 1; const i = +btn.dataset.i, ok = RULES[i] === rule;
+          btn.classList.add(ok ? "ok" : "no"); if (!ok) el.querySelectorAll(".tw-opts .tw-b")[RULES.indexOf(rule)].classList.add("ok");
+          if (!ok || rule === "NO"){ done(ok, RULE_WHY[type], `${type} from given facts`); return; }
+          // step 2: write the congruence correctly
+          const bad = new Set(); while (bad.size < 2){ const w = P(PERMS); const s = `${tri(a)} ≅ ${tri(w.map(k => b[k]).join(""))}`; if (s !== ansStmt) bad.add(s); }
+          const opts = SH([ansStmt, ...bad]);
+          el.querySelector("#tw2").innerHTML = `<p class="tw-q">Right! Now write the congruence correctly:</p>${choice(opts)}`;
+          const box = el.querySelector("#tw2"); delete el.dataset.lock;
+          box.querySelectorAll(".tw-b").forEach(b2 => b2.onclick = () => { if (el.dataset.lock) return; el.dataset.lock = 1; const ok2 = b2.textContent === ansStmt;
+            b2.classList.add(ok2 ? "ok" : "no"); if (!ok2) box.querySelectorAll(".tw-b").forEach(x => { if (x.textContent === ansStmt) x.classList.add("ok"); });
+            done(ok2, ok2 ? `${type} proves it, and ${ansStmt} matches each vertex with its partner.` : `The rule was right, but the order matters: ${ansStmt}. Follow the equal parts letter by letter.`, "Writing correspondence (≅)", ok2 ? 30 : 0); });
+          el.dispatchEvent(new CustomEvent("tw-step"));
+        });
+      }};
+  }
+
+  // Mission 7: hidden twins inside figures
+  const FIGS = [
+    {name:"Rectangle and diagonal", info:"ABCD is a rectangle with diagonal BD.", pts:{A:[60,30],B:[280,30],C:[280,150],D:[60,150]}, lines:["AB","BC","CD","DA","BD"],
+      q:"∆ABD", pair:"∆CDB", wrong:["∆BCD","∆ADB"], rule:"SSS", reason:"AB = CD, AD = CB and BD is common", wr:["BD bisects ∠B","All angles are 90°"], marks:[["AB","CD",1],["AD","CB",2]]},
+    {name:"Kite", info:"AB = AD and CB = CD.", pts:{A:[50,90],B:[170,30],C:[290,90],D:[170,150]}, lines:["AB","BC","CD","DA","AC"],
+      q:"∆ABC", pair:"∆ADC", wrong:["∆ACD","∆CBA"], rule:"SSS", reason:"AB = AD, CB = CD and AC is common", wr:["AC is the longest side","∠B = 90°"], marks:[["AB","AD",1],["CB","CD",2]]},
+    {name:"Crossing segments", info:"O is the midpoint of AD and of BC.", pts:{A:[60,30],B:[60,150],O:[170,90],C:[280,30],D:[280,150]}, lines:["AD","BC","AB","CD"],
+      q:"∆AOB", pair:"∆DOC", wrong:["∆COD","∆DCO"], rule:"SAS", reason:"AO = OD, BO = OC and ∠AOB = ∠DOC (vertically opposite)", wr:["AB is parallel to CD","AB = CD is given"], marks:[["AO","OD",1],["BO","OC",2]]},
+    {name:"Parallel lines", info:"AB ∥ CD and AB = CD. AD and BC meet at O.", pts:{A:[60,40],B:[150,40],O:[170,90],D:[280,140],C:[190,140]}, lines:["AB","CD","AD","BC"],
+      q:"∆AOB", pair:"∆DOC", wrong:["∆COD","∆ODC"], rule:"ASA", reason:"∠OAB = ∠ODC and ∠OBA = ∠OCD (alternate angles), with AB = DC", wr:["O is the centre of a circle","AD = BC is given"], marks:[["AB","DC",1]]},
+    {name:"Isosceles with altitude", info:"AB = AC and AD ⟂ BC.", pts:{A:[170,25],B:[60,150],D:[170,150],C:[280,150]}, lines:["AB","AC","BC","AD"],
+      q:"∆ADB", pair:"∆ADC", wrong:["∆DAC","∆ACD"], rule:"RHS", reason:"right angles at D, hypotenuse AB = AC and AD is common", wr:["BD = DC is given","∠B = 45°"], marks:[["AB","AC",1]], right:"D"},
+    {name:"Square and diagonal", info:"ABCD is a square with diagonal AC.", pts:{A:[105,22],B:[245,22],C:[245,162],D:[105,162]}, lines:["AB","BC","CD","DA","AC"],
+      q:"∆ABC", pair:"∆ADC", wrong:["∆DAC","∆ACD"], rule:"SSS", reason:"AB = AD, BC = DC and AC is common", wr:["AC = BD","The square has 4 lines of symmetry"], marks:[["AB","AD",1],["BC","DC",1]]},
+    {name:"Shared side", info:"∠ABC = ∠DBC and ∠ACB = ∠DCB.", pts:{A:[170,25],B:[70,95],C:[270,95],D:[170,165]}, lines:["AB","AC","BC","DB","DC"],
+      q:"∆ABC", pair:"∆DBC", wrong:["∆BDC","∆CDB"], rule:"ASA", reason:"∠ABC = ∠DBC, BC is common and ∠ACB = ∠DCB", wr:["AB = AC is given","AD is a diagonal"], marks:[]}
+  ];
+  function figSVG(F){
+    const P2 = F.pts, seg = s => [P2[s[0]], P2[s[1]]]; let g = "";
+    F.lines.forEach(l => { const [p, q] = seg(l); g += `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${PAL.line}" stroke-width="2.4" stroke-linecap="round"/>`; });
+    (F.marks || []).forEach(([s1, s2, n]) => { [s1, s2].forEach(s => { const [p, q] = seg(s); g += ticks(p, q, n, PAL.mark); }); });
+    if (F.right){ const d = P2[F.right], a = P2.A; g += `<path d="M${d[0] - 11} ${d[1]} L${d[0] - 11} ${d[1] - 11} L${d[0]} ${d[1] - 11}" fill="none" stroke="${PAL.mark2}" stroke-width="2"/>`; }
+    const c = [170, 90]; Object.entries(P2).forEach(([k, p]) => { const L = Math.hypot(p[0] - c[0], p[1] - c[1]) || 1; g += `<text x="${p[0] + (p[0] - c[0])/L*15}" y="${p[1] + (p[1] - c[1])/L*15 + 5}" text-anchor="middle" class="tw-vl">${k}</text>`; });
+    return svg(g, 340, 180);
+  }
+  function m7(){
+    const F = P(FIGS);
+    return {html:`<p class="tw-q"><b>${F.info}</b></p>${figSVG(F)}<p class="tw-q">Step 1: Which triangle is the twin of <b>${F.q}</b>?</p>${choice(SH([F.pair, ...F.wrong]))}<div id="tw2"></div>`,
+      mount(el, done){
+        const ob = el.querySelector(".tw-opts"), opts = [...ob.querySelectorAll(".tw-b")];
+        opts.forEach(b => b.onclick = () => { if (el.dataset.lock) return; const ok = b.textContent === F.pair;
+          if (!ok){ el.dataset.lock = 1; b.classList.add("no"); opts.find(x => x.textContent === F.pair).classList.add("ok");
+            done(false, `${F.q} ≅ ${F.pair}: ${F.reason}. Match each vertex with its partner in order.`, "Spotting congruent triangles in figures"); return; }
+          b.classList.add("ok"); opts.forEach(x => x.disabled = true);
+          const box = el.querySelector("#tw2"), labels = ["SSS", "SAS", "ASA", "AAS", "RHS"];
+          box.innerHTML = `<p class="tw-q">Step 2: Which rule, and why?</p>${choice(labels, "five")}`;
+          box.querySelectorAll(".tw-b").forEach(b2 => b2.onclick = () => { if (el.dataset.lock) return;
+            const pick = b2.textContent, ok2 = pick === F.rule || (F.rule === "ASA" && pick === "AAS" && F.name === "Parallel lines");
+            b2.classList.add(ok2 ? "ok" : "no"); box.querySelectorAll(".tw-b").forEach(x => x.disabled = true); if (!ok2) [...box.querySelectorAll(".tw-b")].find(x => x.textContent === F.rule).classList.add("ok");
+            if (!ok2){ el.dataset.lock = 1; done(false, `It's <b>${F.rule}</b>: ${F.reason}.`, `Choosing the rule (${F.rule})`); return; }
+            const ro = SH([F.reason, ...F.wr]); box.insertAdjacentHTML("beforeend", `<p class="tw-q">Step 3: Which facts prove it?</p>${choice(ro)}`);
+            const last = box.querySelectorAll(".tw-opts")[1];
+            last.querySelectorAll(".tw-b").forEach(b3 => b3.onclick = () => { if (el.dataset.lock) return; el.dataset.lock = 1; const ok3 = b3.textContent === F.reason;
+              b3.classList.add(ok3 ? "ok" : "no"); if (!ok3) [...last.querySelectorAll(".tw-b")].find(x => x.textContent === F.reason).classList.add("ok");
+              done(ok3, `${F.q} ≅ ${F.pair} by ${F.rule}: ${F.reason}.${F.name === "Isosceles with altitude" ? " So ∠B = ∠C: angles opposite equal sides are equal!" : F.name === "Crossing segments" ? " So AB = DC as corresponding sides." : ""}`, "Giving reasons", ok3 ? 60 : 0); });
+            el.dispatchEvent(new CustomEvent("tw-step"));
+          });
+          el.dispatchEvent(new CustomEvent("tw-step"));
+        });
+      }};
+  }
+
+  // Mission 8: angles of isosceles and equilateral triangles
+  function m8(){
+    const kind = P(["apex", "apex", "base", "equi", "circle", "right"]); let ps, T = {ticks:[1, 0, 1], arcs:[0, 0, 0], ang:["", "", ""]}, ans, why, q;
+    const isoPts = apex => { const h = Math.cos(apex/2*D), w = Math.sin(apex/2*D); return [[0, -h*6], [-w*6, 0], [w*6, 0]]; }; // A top, B left, C right; AB = side 0? sides: AB(0), BC(1), CA(2)
+    if (kind === "apex"){ const x = R(10, 70)*2; ps = isoPts(x); T.ang = [x + "°", "?", ""]; ans = (180 - x)/2; q = `AB = AC and ∠A = ${x}°. Find <b>∠B</b>.`;
+      why = `Angles opposite equal sides are equal, so ∠B = ∠C. Then ∠B + ∠C = 180° − ${x}° = ${180 - x}°, so ∠B = ${ans}°.`; }
+    else if (kind === "base"){ const y = R(25, 80); ps = isoPts(180 - 2*y); T.ang = ["?", y + "°", ""]; ans = 180 - 2*y; q = `AB = AC and ∠B = ${y}°. Find <b>∠A</b>.`;
+      why = `∠C = ∠B = ${y}° (opposite equal sides). So ∠A = 180° − ${y}° − ${y}° = ${ans}°.`; }
+    else if (kind === "equi"){ ps = isoPts(60); T.ticks = [1, 1, 1]; T.ang = ["?", "", ""]; ans = 60; q = "All three sides are equal. Find <b>∠A</b>.";
+      why = "All sides equal means all angles equal (opposite equal sides). 3 × angle = 180°, so each angle is 60°."; }
+    else if (kind === "right"){ ps = isoPts(90); T.right = [0]; T.ang = ["", "?", ""]; ans = 45; q = "∠A = 90° and AB = AC. Find <b>∠B</b>.";
+      why = "∠B = ∠C and ∠B + ∠C = 90°, so ∠B = 45°."; }
+    else { const x = R(8, 70)*2; ps = isoPts(x); T.ang = [x + "°", "?", ""]; ans = (180 - x)/2; q = `A is the centre of a circle through B and C, and ∠BAC = ${x}°. Find <b>∠ABC</b>.`;
+      why = `AB and AC are both radii, so AB = AC and the triangle is isosceles. ∠B = ∠C = (180° − ${x}°) ÷ 2 = ${ans}°.`; }
+    const [A] = fitShared([ps], [{x:60, y:6, w:220, h:170}], 30);
+    let extra = "";
+    if (kind === "circle"){ const r = dist(A[0], A[1]); extra = `<circle cx="${A[0][0]}" cy="${A[0][1]}" r="${r}" fill="none" stroke="${PAL.dim}" stroke-width="1.6" stroke-dasharray="5 5"/>`; }
+    return {html:`<p class="tw-q">${q}</p>${svg(extra + triSVG({ps:A, names:["A", "B", "C"], ...T}), 340, 182)}
+      <div class="tw-ans"><span id="twIn">?</span><b>°</b></div><div class="tw-pad">${[1,2,3,4,5,6,7,8,9,"⌫",0,"✓"].map(k => `<button class="tw-b k" type="button" data-k="${k}">${k}</button>`).join("")}</div>`,
+      mount(el, done){ let s = ""; const inp = el.querySelector("#twIn");
+        const press = k => { if (el.dataset.lock) return; if (k === "⌫"){ s = s.slice(0, -1); } else if (k === "✓"){ if (!s) return; el.dataset.lock = 1; const ok = +s === ans; inp.parentElement.classList.add(ok ? "ok" : "no");
+            done(ok, ok ? `${why}` : `Answer: ${ans}°. ${why}`, kind === "equi" ? "Equilateral triangle angles" : "Angles opposite equal sides"); return; } else if (s.length < 3) s += k; inp.textContent = s || "?"; };
+        el.querySelectorAll(".tw-pad .k").forEach(b => b.onclick = () => press(b.dataset.k));
+        el._key = k => { if (/^[0-9]$/.test(k)) press(k); else if (k === "Backspace") press("⌫"); else if (k === "Enter") press("✓"); else return false; return true; };
+      }};
+  }
+
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: () => P([m1, m4, m5, m5, m6, m8, m3])()};
+  return {MISSIONS, GEN};
+})();
+
+const GTwins = CQ.quest({
+  key:"tw7c1_stars", missions:TW.MISSIONS, gen:TW.GEN, chapter:{std:7, part:"Part 2", ch:1},
+  desc:"Std 7 · Ganita Prakash Part 2 · Chapter 1. Master congruence in 9 missions: from spotting twins to proving them with SSS, SAS, ASA, AAS and RHS.",
+  modes:{foundation:"Twin or not, superimposing, and what fixes a shape", core:"The ≅ convention and the 5 congruence rules (plus the SSA and AAA traps)", advanced:"Hidden twins in figures, isosceles angles, and the timed Twin Master"},
+  howto:[["Missions","Each track has 3 missions. Earn stars to unlock the next one. Finish all 9 to master the chapter."],["Learn","Every answer shows why, so mistakes teach you something."],["Lives","Missions 1–8 give you 3 lives. Twin Master is 90 seconds of everything."],["Stars","★★★ = no mistakes. Replay any mission to improve your stars and score."]]
+});
+/* ================= Chapter game: Std 8 (Part 2) Ch 1 · Fractions in Disguise (percentages) =================
+   Learn  : 1 Unmask the Disguise (FDP trio)  2 Bar Estimator  3 Mental Shortcuts
+   Apply  : 4 Part & Whole  5 Fair Compare  6 Change Detector (increase/decrease, >100%)
+   Master : 7 Shopkeeper (CP, MP, SP, profit, loss, discount, GST)  8 Grow It (interest, depreciation, successive %)  9 Disguise Master */
+const FD = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, rs} = CQ;
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a || 1; };
+  const red = (n, d) => { const g = gcd(n, d); return [n/g, d/g]; };
+  const F = (n, d) => fracHTML(red(n, d));
+  const pct = v => n2(v) + "%";
+
+  /* ---------- the FDP trio ---------- */
+  const TRIO = [[1,2],[1,4],[3,4],[1,5],[2,5],[3,5],[4,5],[1,10],[3,10],[7,10],[9,10],[1,20],[3,20],[7,20],[9,20],[1,25],[6,25],[12,25],[1,8],[3,8],[5,8],[7,8],
+    [1,3],[2,3],[6,5],[5,4],[3,2],[5,2],[7,4],[1,100],[43,100],[9,4],[11,20]];
+  const pctOf = ([n, d]) => n/d*100, decOf = ([n, d]) => n/d;
+  const pctTxt = f => { const v = pctOf(f); return Number.isInteger(Math.round(v*1000)/1000) ? v + "%" : (Math.round(v*100)/100) + "%"; };
+  const decTxt = f => { const v = decOf(f); return Math.abs(v*1000 - Math.round(v*1000)) < 1e-9 ? String(v) : (Math.round(v*100)/100) + "…"; };
+  const close = (a, b) => Math.abs(a - b) < 0.006;
+
+  // Mission 1: unmask: pick the two other disguises of the same number
+  function m1(){
+    const f = P(TRIO), show = P(["frac", "pct", "dec"]), v = decOf(f);
+    const forms = {frac: {h: F(...f), v}, pct: {h: pctTxt(f), v}, dec: {h: decTxt(f), v}};
+    const good = Object.entries(forms).filter(([k]) => k !== show).map(([, x]) => x.h);
+    // decoys built from real misconceptions
+    const [n, d] = red(...f), cand = [];
+    cand.push({h: n + d/100 >= 0 ? `${n}.${d}` : "", v: parseFloat(`${n}.${d}`)});                // 3/4 → 3.4
+    cand.push({h: `0.${n}${d}`, v: parseFloat(`0.${n}${d}`)});                                      // 3/4 → 0.34
+    cand.push({h: `${n}${d}%`, v: (n*10 + d)/100}); cand.push({h: (v*10) + "%", v: v/10});           // 34%, 7.5%
+    cand.push({h: n2(v/10), v: v/10}); cand.push({h: n2(v*10), v: v*10});                           // 0.075, 7.5
+    cand.push({h: F(n, d + 1), v: n/(d + 1)}); cand.push({h: F(d, n * (n === d ? 2 : 1)), v: d/n});   // near fractions
+    cand.push({h: pctTxt([n + 1, d]), v: (n + 1)/d});
+    const decoys = SH(cand.filter(c => c.h && !close(c.v, v) && !good.includes(c.h))).filter((c, i, a) => a.findIndex(x => x.h === c.h) === i).slice(0, 4).map(c => c.h);
+    const opts = SH([...good, ...decoys]);
+    const p100 = Math.round(v*100*100)/100, chain = `${F(...f)}${Number.isInteger(p100) ? ` = ${fracHTML([p100, 100])}` : ""} = ${pctTxt(f)} = ${decTxt(f)}`;
+    return {html:`<p class="tw-q">Unmask it! Pick the <b>two</b> cards that are the same number in disguise.</p><div class="fd-hero">${forms[show].h}</div>
+      <div class="tw-chips fd-cards">${opts.map((o, i) => `<button class="tw-chip fd-c" type="button" data-i="${i}">${o}</button>`).join("")}</div>`,
+      mount(el, done){ const sel = new Set();
+        el.querySelectorAll(".fd-c").forEach(c => c.onclick = () => { if (el.dataset.lock) return; const i = +c.dataset.i; sel.has(i) ? sel.delete(i) : sel.add(i); c.classList.toggle("on", sel.has(i));
+          if (sel.size === 2){ el.dataset.lock = 1; const ok = [...sel].every(i => good.includes(opts[i]));
+            el.querySelectorAll(".fd-c").forEach(x => { const g = good.includes(opts[+x.dataset.i]); if (g) x.classList.add("ok"); else if (sel.has(+x.dataset.i)) x.classList.add("no"); });
+            done(ok, `${chain}. A percentage is just a fraction with denominator 100, and a decimal is the same fraction in base 10.${v > 1 ? " More than 100% means more than one whole." : ""}`, v > 1 ? "Percentages above 100%" : "Fractions ↔ decimals ↔ percentages"); } }); }};
+  }
+
+  // Mission 2: estimate on the percentage bar
+  function m2(){
+    const kind = P(["frac", "frac", "story", "big"]); let val, prompt, hint, max = 100;
+    if (kind === "frac"){ let a, b; do { b = R(3, 19); a = R(1, b - 1); } while (gcd(a, b) !== 1 || [2, 4, 5, 10].includes(b)); val = a/b*100; prompt = `Slide to where ${F(a, b)} is on the percentage bar.`;
+      hint = `${F(a, b)} × 100 = ${n2(val)}%. Estimate: half of ${b} is ${n2(b/2)}, so ${a} is ${a > b/2 ? "more" : "less"} than 50%; 10% of ${b} is ${n2(b/10)}.`; }
+    else if (kind === "story"){ const T = P([5000, 8000, 400, 250]), s = Math.round(T*R(12, 95)/100); val = s/T*100;
+      prompt = `A shop's target is ${rs(T)}. Today it sold ${rs(s)}. Slide to the % of the target achieved.`; hint = `${n2(s)} ÷ ${n2(T)} × 100 = ${n2(val)}%.`; }
+    else { max = 300; const base = P([200, 260, 400, 500]), got = Math.round(base*R(110, 280)/100); val = got/base*100;
+      prompt = `Last year: ${got > 0 ? base : 0} kg. This year: ${got} kg. Slide to this year as a % of last year.`; hint = `${got} ÷ ${base} × 100 = ${n2(val)}%. Over 100% means more than last year: ${n2(got/base)} times as much.`; }
+    const tol = max === 100 ? 4 : 10, ticks = max === 100 ? [0, 25, 50, 75, 100] : [0, 100, 200, 300];
+    return {html:`<p class="tw-q">${prompt}</p><div class="fd-bar"><div class="fd-fill" id="fdF"></div><div class="fd-true" id="fdT" hidden></div>
+        ${ticks.map(t => `<i style="left:${t/max*100}%"><span>${t}%</span></i>`).join("")}</div>
+      <input class="fd-range" id="fdR" type="range" min="0" max="${max}" step="0.5" value="${max/2}" aria-label="Your estimate in percent"><div class="tw-ans"><span id="fdV">${max/2}</span><b>%</b></div>
+      <div class="tw-opts one"><button class="tw-b go" type="button" id="fdGo">Lock it in</button></div>`,
+      mount(el, done){ const r = el.querySelector("#fdR"), f = el.querySelector("#fdF"), out = el.querySelector("#fdV");
+        const sync = () => { f.style.width = (r.value/max*100) + "%"; out.textContent = r.value; }; r.oninput = sync; sync();
+        el.querySelector("#fdGo").onclick = () => { if (el.dataset.lock) return; el.dataset.lock = 1; r.disabled = true;
+          const off = Math.abs(r.value - val), ok = off <= tol, t = el.querySelector("#fdT"); t.hidden = false; t.style.left = (val/max*100) + "%";
+          done(ok, `${ok ? `Only ${n2(off)} away! ` : `You were ${n2(off)} away. `}${hint}`, "Estimating percentages", ok && off <= 1.5 ? 50 : 0); };
+        el._key = k => { if (k === "ArrowLeft"){ r.value = +r.value - 1; sync(); return true; } if (k === "ArrowRight"){ r.value = +r.value + 1; sync(); return true; } if (k === "Enter"){ el.querySelector("#fdGo").click(); return true; } return false; };
+      }};
+  }
+
+  // Mission 3: mental shortcuts (10%, 5%, 20%, 25%, 15%, 75% …)
+  function m3(){
+    const p = P([10, 5, 20, 25, 50, 15, 30, 40, 75, 1, 90, 110, 150, 35]);
+    let N; do { N = P([40, 60, 80, 120, 160, 200, 240, 280, 300, 360, 420, 480, 500, 640, 800, 900, 1200]); } while ((N*p) % 100 !== 0 && (N*p*2) % 100 !== 0);
+    const ans = N*p/100, t = N/10;
+    const how = {10:`10% is ÷10: ${N} ÷ 10 = ${n2(t)}.`, 5:`10% = ${n2(t)}, so 5% is half of that = ${n2(t/2)}.`, 20:`10% = ${n2(t)}, so 20% = double = ${n2(2*t)}.`, 25:`25% = ¼, so ${N} ÷ 4 = ${n2(N/4)}.`,
+      50:`50% = ½, so ${N} ÷ 2 = ${n2(N/2)}.`, 15:`15% = 10% + 5% = ${n2(t)} + ${n2(t/2)} = ${n2(ans)}.`, 30:`10% = ${n2(t)}, so 30% = 3 × ${n2(t)} = ${n2(ans)}.`, 40:`10% = ${n2(t)}, so 40% = 4 × ${n2(t)} = ${n2(ans)}.`,
+      75:`75% = ¾: ¼ of ${N} is ${n2(N/4)}, so ¾ is ${n2(ans)}.`, 1:`1% is ÷100: ${N} ÷ 100 = ${n2(ans)}.`, 90:`90% = 100% − 10% = ${N} − ${n2(t)} = ${n2(ans)}.`, 110:`110% = 100% + 10% = ${N} + ${n2(t)} = ${n2(ans)}.`,
+      150:`150% = 100% + 50% = ${N} + ${n2(N/2)} = ${n2(ans)}.`, 35:`35% = 25% + 10% = ${n2(N/4)} + ${n2(t)} = ${n2(ans)}.`}[p];
+    return {html:`<p class="tw-q">No pen, no paper: find <b>${p}% of ${N}</b>.</p>${padHTML()}`, mount(el, done){ bindPad(el, ans, 0.01, done, how, p === 15 || p === 35 || p === 90 || p === 110 ? "Building percentages from 10% and 5%" : "Mental percentages"); }};
+  }
+
+  // a simple bar model: known part / whole with a '?'
+  const barSVG = (pctKnown, labelKnown, labelWhole, unknown = "?") => `<svg class="tw-svg" viewBox="0 0 340 92"><rect x="10" y="30" width="320" height="30" rx="8" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.25)"/>
+    <rect x="10" y="30" width="${Math.min(320, 320*pctKnown/100)}" height="30" rx="8" fill="rgba(255,181,71,.55)"/>
+    <text x="${10 + Math.min(300, 320*pctKnown/200)}" y="50" text-anchor="middle" class="tw-sl" style="fill:#2a1c00">${pctKnown}%</text>
+    <text x="${10 + Math.min(310, 320*pctKnown/200)}" y="22" text-anchor="middle" class="tw-al" style="fill:#ffd27a">${labelKnown}</text>
+    <text x="330" y="82" text-anchor="end" class="tw-al" style="fill:#c7b8ff">100% = ${labelWhole}</text></svg>`;
+
+  // Mission 4: part and whole
+  function m4(){
+    const k = P(["of", "whole", "remain", "what", "chain"]);
+    if (k === "of"){ const p = P([16, 62, 24, 36, 45, 140, 8, 72, 125]), N = P([250, 360, 40, 75, 120, 480, 650]), ans = p*N/100;
+      return {html:`<p class="tw-q">Find <b>${p}% of ${N}</b>.</p>${barSVG(Math.min(p, 100), "?", N)}${padHTML()}`, mount(el, done){ bindPad(el, ans, 0.01, done, `${p}% of ${N} = ${p}/100 × ${N} = ${n2(p/100)} × ${N} = ${n2(ans)}.`, "Percentage of a quantity"); }}; }
+    if (k === "whole"){ const p = P([20, 25, 40, 60, 75, 80, 15]), W = P([40, 60, 80, 120, 200, 240, 300, 360]), part = W*p/100;
+      if (!Number.isInteger(part)) return m4();
+      return {html:`<p class="tw-q"><b>${part}</b> is <b>${p}%</b> of what number?</p>${barSVG(p, part, "?")}${padHTML()}`, mount(el, done){ bindPad(el, W, 0.01, done, `${p}% → ${part}, so 1% → ${n2(part/p)} and 100% → ${n2(part/p)} × 100 = ${W}. (Or ${part} ÷ ${n2(p/100)} = ${W}.)`, "Finding the whole from a part"); }}; }
+    if (k === "remain"){ const p = P([20, 25, 40, 60]), D = P([150, 200, 230, 300, 400, 450]), done1 = D*p/100;
+      if (!Number.isInteger(done1)) return m4();
+      return {html:`<p class="tw-q">A cyclist has covered <b>${p}%</b> of a journey, which is <b>${done1} km</b>. How many km are <b>left</b>?</p>${barSVG(p, done1 + " km", "? km")}${padHTML("", "km")}`,
+        mount(el, done){ bindPad(el, D - done1, 0.01, done, `${p}% is ${done1} km, so 100% is ${D} km. Left: ${100 - p}% = ${D} − ${done1} = ${D - done1} km.`, "Finding the whole from a part"); }}; }
+    if (k === "what"){ const pair = P([[3, 300], [15, 80], [42, 50], [70, 80], [9, 36], [18, 24], [45, 60], [21, 28], [7, 140], [99, 150]]), ans = pair[0]/pair[1]*100;
+      return {html:`<p class="tw-q"><b>${pair[0]}</b> is what percent of <b>${pair[1]}</b>?</p>${padHTML("", "%")}`, mount(el, done){ bindPad(el, ans, 0.01, done, `${pair[0]}/${pair[1]} × 100 = ${n2(ans)}%.`, "Expressing as a percentage"); }}; }
+    const a = P([10, 20, 30, 40]), v = P([30, 50, 70, 90]), b = P([2, 3, 4].map(m => a*m).filter(x => x <= 150)), ans = v*b/a;
+    return {html:`<p class="tw-q">${a}% of k is <b>${v}</b>. What is <b>${b}% of k</b>?</p>${padHTML()}`, mount(el, done){ bindPad(el, ans, 0.01, done, `${b}% is ${b/a} times ${a}%, so it is ${b/a} × ${v} = ${n2(ans)}. No need to find k!`, "Scaling percentages"); }};
+  }
+
+  // Mission 5: compare fairly
+  function m5(){
+    const k = P(["pp", "pp", "fp", "score", "offer", "time"]); let L, Rv, Lh, Rh, why, topic = "Comparing with percentages";
+    if (k === "pp"){ const a = R(2, 9)*10, b = R(2, 9)*10, x = R(2, 12)*10, y = R(2, 12)*10; L = a*x/100; Rv = b*y/100; Lh = `${a}% of ${x}`; Rh = `${b}% of ${y}`;
+      why = `${Lh} = ${n2(L)} and ${Rh} = ${n2(Rv)}.${a === y && b === x ? " Notice: x% of y = y% of x!" : ""}`; }
+    else if (k === "fp"){ let a, b; do { b = R(3, 15); a = R(1, b - 1); } while (gcd(a, b) !== 1); const p = R(5, 95); L = a/b*100; Rv = p; Lh = F(a, b); Rh = p + "%";
+      why = `${F(a, b)} = ${n2(L)}%, compared with ${p}%. Quick check: is ${a} more or less than ${p}% of ${b} (${n2(p*b/100)})?`; topic = "Fractions vs percentages"; }
+    else if (k === "score"){ const [m1v, M1, m2v, M2] = P([[42, 50, 70, 80], [18, 25, 27, 40], [36, 40, 45, 50], [56, 80, 39, 60], [21, 30, 32, 50]]); L = m1v/M1*100; Rv = m2v/M2*100;
+      Lh = `${m1v}/${M1} in Maths`; Rh = `${m2v}/${M2} in Science`; why = `Different maximum marks, so compare percentages: ${n2(L)}% vs ${n2(Rv)}%.`; topic = "Comparing scores out of different totals"; }
+    else if (k === "offer"){ const bill = P([180, 225, 250, 300, 400]), off = P([20, 25]), flat = P([40, 50, 60]); L = bill*off/100; Rv = flat;
+      Lh = `${off}% off`; Rh = `₹${flat} off`; why = `On a ${rs(bill)} bill, ${off}% off saves ${rs(L)} and the flat offer saves ${rs(flat)}. Percent offers win on bigger bills.`; topic = "% discount vs flat discount";
+      return cmp(`On a bill of <b>${rs(bill)}</b>, which saves you <b>more</b>?`, Lh, Rh, L, Rv, why, topic); }
+    else { const [pa, ua, pb, ub] = P([[10, "day", 1, "week"], [1, "day", 10, "hour"], [5, "hour", 1, "day"], [50, "minute", 1, "hour"]]); const sec = {minute:60, hour:3600, day:86400, week:604800};
+      L = pa/100*sec[ua]; Rv = pb/100*sec[ub]; Lh = `${pa}% of a ${ua}`; Rh = `${pb}% of a ${ub}`; why = `${Lh} = ${n2(L/60)} minutes; ${Rh} = ${n2(Rv/60)} minutes.`; topic = "Percentages of different wholes"; }
+    return cmp("Which is <b>greater</b>?", Lh, Rh, L, Rv, why, topic);
+  }
+  function cmp(q, Lh, Rh, L, Rv, why, topic){
+    const ans = Math.abs(L - Rv) < 1e-9 ? 1 : L > Rv ? 0 : 2;
+    return {html:`<p class="tw-q">${q}</p><div class="fd-vs"><div>${Lh}</div><span>vs</span><div>${Rh}</div></div>${choice(["Left", "Equal", "Right"], "six fd-three")}`,
+      mount(el, done){ bindChoice(el, ans, done, why, topic); }};
+  }
+
+  // Mission 6: change, increase / decrease, more than 100%
+  function m6(){
+    const k = P(["inc", "dec", "same", "rev", "target", "times"]);
+    if (k === "inc"){ const [a, b] = P([[30, 42], [60, 100], [38, 42], [250, 300], [80, 92], [40, 70], [1200, 1500]]), ans = (b - a)/a*100;
+      return {html:`<p class="tw-q">A price went from <b>${rs(a)}</b> to <b>${rs(b)}</b>. What is the <b>percentage increase</b>?</p>${padHTML("", "%")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `Increase = ${b - a}. Percentage increase = increase ÷ <b>original</b> × 100 = ${b - a}/${a} × 100 = ${n2(ans)}%.`, "Percentage increase"); }}; }
+    if (k === "dec"){ const [a, b] = P([[160, 100], [80, 60], [250, 200], [400, 340], [1250, 1000], [50, 35]]), ans = (a - b)/a*100;
+      return {html:`<p class="tw-q">Average visitors fell from <b>${a}</b> to <b>${b}</b>. What is the <b>percentage decrease</b>?</p>${padHTML("", "%")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `Decrease = ${a - b}. Divide by the <b>original</b> (${a}), not the new value: ${a - b}/${a} × 100 = ${n2(ans)}%.`, "Percentage decrease"); }}; }
+    if (k === "same"){ const p = P([120, 135, 150, 165, 210, 250]), opts = SH([`increased by ${p - 100}%`, `increased by ${p}%`, `is ${p - 100}% of the old value`, `increased by ${n2(p/100)}%`]);
+      return {html:`<p class="tw-q">“The population now is <b>${p}%</b> of what it was.” This means the population has…</p>${choice(opts)}`,
+        mount(el, done){ bindChoice(el, opts.indexOf(`increased by ${p - 100}%`), done, `${p}% of p = ${n2(p/100)}p = p + ${p - 100}% of p. So it grew by ${p - 100}% (it is ${n2(p/100)} times the old value).`, "Percentages above 100%"); }}; }
+    if (k === "rev"){ const p = P([120, 125, 150, 80, 75, 200]), ans = 10000/p;
+      return {html:`<p class="tw-q">Ariba says: “I have <b>${p}%</b> of Arun's marbles.” What percent of Ariba's marbles does Arun have?</p>${padHTML("", "%")}`,
+        mount(el, done){ bindPad(el, ans, 0.05, done, `If Arun has 100, Ariba has ${p}. Arun as a % of Ariba = 100/${p} × 100 = ${n2(ans)}%. The base changed, so it is NOT ${200 - p}%!`, "Changing the base"); }}; }
+    if (k === "target"){ const T = P([5000, 4000, 8000]), p = P([120, 150, 210, 135, 90]), ans = T*p/100;
+      return {html:`<p class="tw-q">Kishan's daily target is <b>${rs(T)}</b>. Today he achieved <b>${p}%</b> of it. How much did he sell?</p>${padHTML("₹")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `${p}% of ${n2(T)} = ${n2(p/100)} × ${n2(T)} = ${rs(ans)}.${p > 100 ? ` That's ${p - 100}% above target.` : ""}`, "Percentages above 100%"); }}; }
+    const [a, b] = P([[260, 650], [200, 500], [120, 300], [80, 200], [50, 175]]), ans = b/a*100;
+    return {html:`<p class="tw-q">Last year's harvest: <b>${a} kg</b>. This year: <b>${b} kg</b>. This year is what % of last year?</p>${padHTML("", "%")}`,
+      mount(el, done){ bindPad(el, ans, 0.01, done, `${b}/${a} × 100 = ${n2(ans)}%, which means ${n2(b/a)} times last year's harvest.`, "Percentages above 100%"); }};
+  }
+
+  // Mission 7: the shopkeeper
+  const tag = rows => `<div class="fd-tags">${rows.map(([k, v, c]) => `<div class="fd-tag ${c || ""}"><small>${k}</small><b>${v}</b></div>`).join("")}</div>`;
+  function m7(){
+    const k = P(["profit", "loss", "sp", "cp", "disc", "orig", "gst", "base"]);
+    if (k === "profit"){ const [cp, sp] = P([[300, 430], [75, 110], [500, 750], [240, 300], [80, 100], [1600, 2000], [36, 45]]), ans = (sp - cp)/cp*100;
+      return {html:`<p class="tw-q">Find the <b>profit %</b> (on cost price).</p>${tag([["Cost price", rs(cp)], ["Selling price", rs(sp), "sp"]])}${padHTML("", "%")}`,
+        mount(el, done){ bindPad(el, ans, 0.05, done, `Profit = ${rs(sp - cp)}. Profit % = profit ÷ <b>cost price</b> × 100 = ${sp - cp}/${cp} × 100 = ${n2(ans)}%.`, "Profit percentage"); }}; }
+    if (k === "loss"){ const [cp, sp] = P([[350, 300], [2650, 2173], [500, 425], [800, 680], [1200, 900]]), ans = (cp - sp)/cp*100;
+      return {html:`<p class="tw-q">Old stock was sold below cost. Find the <b>loss %</b>.</p>${tag([["Cost price", rs(cp)], ["Selling price", rs(sp), "sp"]])}${padHTML("", "%")}`,
+        mount(el, done){ bindPad(el, ans, 0.05, done, `Loss = ${rs(cp - sp)}. Loss % = ${cp - sp}/${cp} × 100 = ${n2(ans)}%.`, "Loss percentage"); }}; }
+    if (k === "sp"){ const [cp, m] = P([[36, 20], [475, 50], [240, 25], [600, 15], [1500, 12], [80, 35]]), ans = cp*(100 + m)/100;
+      return {html:`<p class="tw-q">Bought at <b>${rs(cp)}</b>. To make a <b>${m}% profit</b>, what should the selling price be?</p>${padHTML("₹")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `SP = ${100 + m}% of CP = ${n2((100 + m)/100)} × ${n2(cp)} = ${rs(ans)}.`, "Selling price from profit %"); }}; }
+    if (k === "cp"){ const [sp, m] = P([[50, 25], [750, 50], [360, 20], [88, 10], [1150, 15]]), ans = sp*100/(100 + m);
+      return {html:`<p class="tw-q">Sold at <b>${rs(sp)}</b> with a <b>${m}% profit</b>. What was the cost price?</p>${padHTML("₹")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `SP is ${100 + m}% of CP, so CP = ${n2(sp)} ÷ ${n2((100 + m)/100)} = ${rs(ans)}. (Not ${m}% less than SP!)`, "Cost price from selling price"); }}; }
+    if (k === "disc"){ const [mp, d] = P([[1800, 35], [300, 25], [2400, 15], [960, 12.5], [4500, 40]]), ans = mp*(100 - d)/100;
+      return {html:`<p class="tw-q">A cooker's marked price is <b>${rs(mp)}</b> with <b>${d}% off</b>. What do you pay?</p>${tag([["Marked price", rs(mp)], ["Discount", d + "%", "off"]])}${padHTML("₹")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `You pay ${100 - d}% of ${n2(mp)} = ${n2((100 - d)/100)} × ${n2(mp)} = ${rs(ans)}.`, "Discount"); }}; }
+    if (k === "orig"){ const [paid, d] = P([[3400, 15], [440000, 12], [255, 15], [1200, 25], [720, 10]]), ans = paid*100/(100 - d);
+      return {html:`<p class="tw-q">After a <b>${d}% discount</b>, Samson paid <b>${rs(paid)}</b>. What was the original price?</p>${padHTML("₹")}`,
+        mount(el, done){ bindPad(el, ans, 0.5, done, `${rs(paid)} is ${100 - d}% of the original, so original = ${n2(paid)} ÷ ${n2((100 - d)/100)} = ${rs(ans)}.`, "Original price from discounted price"); }}; }
+    if (k === "gst"){ const price = P([8250, 1200, 450, 2500, 640]), g = P([18, 12, 5, 28]), right = Math.random() < .5 ? `${price} × ${n2(1 + g/100)}` : `${price} + ${price} × ${n2(g/100)}`;
+      const opts = SH([right, `${price} + ${g}`, `${price} × ${g}`, `${price} + ${g}/100`, `${price} × ${n2(g/10)}`].slice(0, 5)).slice(0, 4); if (!opts.includes(right)) opts[0] = right;
+      return {html:`<p class="tw-q">A phone costs <b>${rs(price)}</b> and <b>${g}% GST</b> is added. Which gives the <b>final price</b>?</p>${choice(opts)}`,
+        mount(el, done){ bindChoice(el, opts.indexOf(right), done, `Final price = ${price} + ${g}% of ${price} = ${price} × ${n2(1 + g/100)} = ${rs(price*(1 + g/100))}.`, "Adding GST"); }}; }
+    const opts = ["Profit ÷ cost price", "Profit ÷ selling price"];
+    const onCost = Math.random() < .5;
+    return {html:`<p class="tw-q">Manisha buys a bag at ₹500 and sells it at ₹750. She wants “profit compared with what I <b>${onCost ? "invested in buying" : "earned from sales"}</b>”. Which base should she use?</p>${choice(opts)}`,
+      mount(el, done){ bindChoice(el, onCost ? 0 : 1, done, `On cost: 250/500 = 50%. On sales: 250/750 = 33.33%. The <b>base</b> decides the answer, so always ask “percent of what?”.`, "Choosing the base"); }};
+  }
+
+  // Mission 8: growth & compounding, depreciation, successive percentages
+  function m8(){
+    const k = P(["si", "ci", "mult", "dep", "succ", "mishap", "pop"]);
+    if (k === "si"){ const [p, r, t] = P([[6000, 10, 3], [20000, 10, 2], [50000, 7, 3], [12500, 8, 2], [20000, 5, 4]]), ans = p*(1 + r*t/100);
+      return {html:`<p class="tw-q">${rs(p)} in a deposit at <b>${r}% p.a.</b> for <b>${t} years</b>, interest paid out every year (no compounding). Total received (interest + principal)?</p>${padHTML("₹")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `Each year's interest = ${r}% of ${n2(p)} = ${rs(p*r/100)}. For ${t} years: ${rs(p*r*t/100)}. Total = ${n2(p)} + ${n2(p*r*t/100)} = ${rs(ans)}.`, "Simple interest"); }}; }
+    if (k === "ci"){ const [p, r, t] = P([[6000, 10, 3], [20000, 10, 2], [20000, 5, 2], [10000, 20, 2], [8000, 5, 2], [1000, 10, 3]]), ans = p*Math.pow(1 + r/100, t);
+      return {html:`<p class="tw-q">${rs(p)} at <b>${r}% p.a.</b>, <b>compounded yearly</b>, for <b>${t} years</b>. What is the final amount?</p>${padHTML("₹")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `Each year multiplies by ${n2(1 + r/100)}: ${n2(p)} × ${Array(t).fill(n2(1 + r/100)).join(" × ")} = ${rs(ans)}. Interest earns interest, so it beats simple interest (${rs(p*(1 + r*t/100))}).`, "Compound interest"); }}; }
+    if (k === "mult"){ const r = P([10, 5, 6, 8]), t = P([3, 4]), m = n2(1 + r/100), right = `P × ${Array(t).fill(m).join(" × ")}`;
+      const opts = SH([right, `P × ${m} × ${t}`, `P + P × ${n2(r/100)} × ${t}`, `P × ${n2(r*t/100 + 1)}`]);
+      return {html:`<p class="tw-q">Which gives the amount after <b>${t} years</b> at <b>${r}% p.a. compounded</b>?</p>${choice(opts)}`,
+        mount(el, done){ bindChoice(el, opts.indexOf(right), done, `Compounding multiplies by ${m} every year: P × (${m})<sup>${t}</sup>. “P + P × ${n2(r/100)} × ${t}” is the no-compounding amount.`, "Compound interest"); }}; }
+    if (k === "dep"){ const [v, r, t] = P([[21000, 5, 1], [40000, 10, 2], [60000, 20, 2], [15000, 10, 1], [100000, 15, 2]]), ans = v*Math.pow(1 - r/100, t);
+      return {html:`<p class="tw-q">A machine worth <b>${rs(v)}</b> loses <b>${r}%</b> of its value every year. Value after <b>${t} year${t > 1 ? "s" : ""}</b>?</p>${padHTML("₹")}`,
+        mount(el, done){ bindPad(el, ans, 0.01, done, `Each year it keeps ${100 - r}%: ${n2(v)} × ${Array(t).fill(n2(1 - r/100)).join(" × ")} = ${rs(ans)}.`, "Depreciation"); }}; }
+    if (k === "succ"){ const [a, b] = P([[30, 20], [20, 10], [50, 20], [40, 25], [10, 10]]), single = 100 - (100 - a)*(100 - b)/100;
+      return {html:`<p class="tw-q">A bakery offers <b>${a}% + ${b}%</b> off (one after the other). What <b>single discount</b> is this equal to?</p>${padHTML("", "%")}`,
+        mount(el, done){ bindPad(el, single, 0.01, done, `After ${a}% off you pay ${100 - a}%; then ${b}% off leaves ${100 - b}% of that: ${n2((100 - a)/100)} × ${n2((100 - b)/100)} = ${n2((100 - single)/100)}. So it's ${n2(single)}% off, not ${a + b}%!`, "Successive discounts"); }}; }
+    if (k === "mishap"){ const [u, d] = P([[50, 50], [20, 20], [25, 20], [10, 10], [40, 30]]), f = (1 + u/100)*(1 - d/100), ans = Math.abs(f - 1)*100;
+      const kind = f < 1 ? "loss" : f > 1 ? "profit" : "no";
+      return {html:`<p class="tw-q">Surbhi marks goods <b>${u}% above cost</b>, then gives a <b>${d}% discount</b>. Overall ${kind === "no" ? "change" : kind} as a % of cost?</p>${choice([kind === "no" ? `${u - d}% profit` : `${n2(ans)}% ${kind === "profit" ? "profit" : "loss"}`, "No profit, no loss", `${Math.abs(u - d) || 5}% ${u > d ? "profit" : "loss"}`, `${n2(ans + 5)}% loss`].filter((x, i, a) => a.indexOf(x) === i))}`,
+        mount(el, done){ bindChoice(el, kind === "no" ? 1 : 0, done, `Cost x → marked ${n2(1 + u/100)}x → after discount ${n2(1 + u/100)} × ${n2(1 - d/100)}x = ${n2(f)}x. So ${kind === "no" ? "no change" : `${n2(ans)}% ${kind}`}. The discount is taken on a <b>bigger</b> base!`, "Mark-up then discount"); }}; }
+    const [p0, r, t] = P([[1250, 10, 2], [2000, 10, 2], [5000, 20, 2], [8000, 5, 2]]), ans = p0*Math.pow(1 - r/100, t);
+    return {html:`<p class="tw-q">A village of <b>${p0}</b> people shrinks by <b>${r}%</b> every decade. Expected population after <b>${t} decades</b>?</p>${padHTML()}`,
+      mount(el, done){ bindPad(el, ans, 0.5, done, `${p0} × ${n2(1 - r/100)} × ${n2(1 - r/100)} = ${n2(ans)}. Each decade's ${r}% is taken on a smaller number.`, "Repeated percentage decrease"); }};
+  }
+
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Unmask the Disguise", goal:"Fractions, decimals and percentages are the same number in different costumes.", n:8},
+    {id:2, track:"foundation", name:"Bar Estimator", goal:"Estimate before you calculate: slide to the right spot on the percentage bar.", n:7},
+    {id:3, track:"foundation", name:"Mental Shortcuts", goal:"10%, 5%, 25%, 50%: build any percentage in your head.", n:8},
+    {id:4, track:"core", name:"Part & Whole", goal:"x% of N, the whole from a part, and “what percent of”.", n:8},
+    {id:5, track:"core", name:"Fair Compare", goal:"Compare scores, offers and quantities with different wholes.", n:8},
+    {id:6, track:"core", name:"Change Detector", goal:"Increase, decrease, more than 100%, and changing the base.", n:7},
+    {id:7, track:"advanced", name:"Shopkeeper", goal:"Cost price, selling price, profit, loss, discount and GST.", n:8},
+    {id:8, track:"advanced", name:"Grow It", goal:"Simple vs compound interest, depreciation and successive percentages.", n:7},
+    {id:9, track:"advanced", name:"Disguise Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: () => P([m1, m3, m3, m4, m5, m6, m7])()};
+  return {MISSIONS, GEN};
+})();
+
+const GFracDisguise = CQ.quest({
+  key:"fd8c1_stars", missions:FD.MISSIONS, gen:FD.GEN, chapter:{std:8, part:"Part 2", ch:1},
+  desc:"Std 8 · Ganita Prakash Part 2 · Chapter 1. Percentages are fractions in disguise. Master them in 9 missions, from unmasking 3/4 = 75% to compound interest.",
+  modes:{foundation:"The FDP trio, estimating on a bar, and mental percentages", core:"Part & whole, fair comparisons, increase/decrease and more than 100%", advanced:"Profit, loss, discount and GST; interest, depreciation and the timed Disguise Master"}
+});
+/* ================= Chapter game: Std 10 · Ch 8 · Introduction to Trigonometry =================
+   Learn  : 1 Name the Sides  2 Build the Ratio  3 One Ratio → All Ratios
+   Apply  : 4 Special Angles  5 Evaluate  6 True or False? (with a live angle explorer)
+   Master : 7 Identity Forge  8 Proof Builder  9 Trig Master (timed)                                   */
+const TRG = (() => {
+  const {P, SH, R, choice, bindChoice} = CQ;
+  const D = Math.PI/180;
+  const fr = (n, d) => `<span class="fr"><i>${n}</i><i>${d}</i></span>`;
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a || 1; };
+  const rf = (n, d) => { const g = gcd(n, d); return fr(n/g, d/g); };
+  const TRIPLES = [[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29],[9,40,41],[6,8,10],[12,16,20]];
+  const RATIO_NAMES = ["sin", "cos", "tan", "cosec", "sec", "cot"];
+  const RATIO_DEF = {sin:["opp", "hyp"], cos:["adj", "hyp"], tan:["opp", "adj"], cosec:["hyp", "opp"], sec:["hyp", "adj"], cot:["adj", "opp"]};
+  const WORD = {opp:"opposite", adj:"adjacent", hyp:"hypotenuse"};
+
+  /* ---------- right-triangle drawing: right angle at B; A and C are the acute corners ---------- */
+  function rightTri(ab, bc, names = ["A", "B", "C"], opt = {}){
+    // local coords: B=(0,0), A=(0,-ab) up, C=(bc,0) right; then random rotate/flip and fit
+    let pts = [[0, -ab], [0, 0], [bc, 0]];
+    const f = opt.flip ?? Math.random() < .5, r = opt.rot ?? P([0, 0, 90, 180, 270, 30, -30]);
+    pts = pts.map(([x, y]) => { x = f ? -x : x; const c = Math.cos(r*D), s = Math.sin(r*D); return [x*c - y*s, x*s + y*c]; });
+    const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]), W = opt.w || 300, H = opt.h || 180, pad = 34;
+    const k = Math.min((W - 2*pad)/(Math.max(...xs) - Math.min(...xs) || 1), (H - 2*pad)/(Math.max(...ys) - Math.min(...ys) || 1));
+    const cx = (Math.max(...xs) + Math.min(...xs))/2, cy = (Math.max(...ys) + Math.min(...ys))/2;
+    pts = pts.map(([x, y]) => [W/2 + (x - cx)*k, H/2 + (y - cy)*k]);
+    return {pts, names, W, H};
+  }
+  const mid = (p, q) => [(p[0] + q[0])/2, (p[1] + q[1])/2];
+  const cen = ps => [(ps[0][0] + ps[1][0] + ps[2][0])/3, (ps[0][1] + ps[1][1] + ps[2][1])/3];
+  const out = (p, c, d) => { const L = Math.hypot(p[0] - c[0], p[1] - c[1]) || 1; return [p[0] + (p[0] - c[0])/L*d, p[1] + (p[1] - c[1])/L*d]; };
+  // sides: "AB" (between A,B), "BC", "CA"  · labels: {AB:"24"} · mark: "A" or "C" draws the angle arc · clickable: true makes sides tappable
+  function triSVG(T, o = {}){
+    const [A, B, C] = T.pts, c = cen(T.pts), V = {A, B, C}, nm = T.names;
+    const side = {AB:[A, B], BC:[B, C], CA:[C, A]};
+    let s = `<polygon points="${T.pts.map(p => p.join(",")).join(" ")}" fill="rgba(110,231,183,.12)" stroke="#e7eaff" stroke-width="2.6" stroke-linejoin="round"/>`;
+    // right angle box at B
+    const u = [(A[0] - B[0]), (A[1] - B[1])], v = [(C[0] - B[0]), (C[1] - B[1])], lu = Math.hypot(...u), lv = Math.hypot(...v), q = 12;
+    s += `<path d="M${B[0] + u[0]/lu*q} ${B[1] + u[1]/lu*q} L${B[0] + u[0]/lu*q + v[0]/lv*q} ${B[1] + u[1]/lu*q + v[1]/lv*q} L${B[0] + v[0]/lv*q} ${B[1] + v[1]/lv*q}" fill="none" stroke="#ff9fbd" stroke-width="2"/>`;
+    if (o.mark){ const P0 = V[o.mark], o1 = o.mark === "A" ? B : B, o2 = o.mark === "A" ? C : A;
+      const t1 = Math.atan2(o1[1] - P0[1], o1[0] - P0[0]), t2 = Math.atan2(o2[1] - P0[1], o2[0] - P0[0]); let d = t2 - t1; while (d > Math.PI) d -= 2*Math.PI; while (d < -Math.PI) d += 2*Math.PI;
+      const rr = 22; s += `<path d="M${P0[0] + rr*Math.cos(t1)} ${P0[1] + rr*Math.sin(t1)} A${rr} ${rr} 0 0 ${d > 0 ? 1 : 0} ${P0[0] + rr*Math.cos(t1 + d)} ${P0[1] + rr*Math.sin(t1 + d)}" fill="rgba(255,207,90,.25)" stroke="#ffcf5a" stroke-width="2.4"/>`;
+      if (o.theta){ const m = [P0[0] + 34*Math.cos(t1 + d/2), P0[1] + 34*Math.sin(t1 + d/2)]; s += `<text x="${m[0]}" y="${m[1] + 5}" text-anchor="middle" class="tw-al" style="fill:#ffcf5a">${o.theta}</text>`; } }
+    Object.entries(side).forEach(([k, [p, q2]]) => {
+      if (o.clickable) s += `<line class="tr-side" data-s="${k}" x1="${p[0]}" y1="${p[1]}" x2="${q2[0]}" y2="${q2[1]}" stroke="transparent" stroke-width="26" stroke-linecap="round"/>`;
+      const lb = (o.labels || {})[k]; if (lb){ const m = out(mid(p, q2), c, 18); s += `<text x="${m[0]}" y="${m[1] + 5}" text-anchor="middle" class="tw-sl" ${o.tapLen ? `data-len="${k}" style="cursor:pointer"` : ""}>${lb}</text>`; }
+    });
+    ["A", "B", "C"].forEach((k, i) => { const p = out(V[k], c, 16); s += `<text x="${p[0]}" y="${p[1] + 5}" text-anchor="middle" class="tw-vl">${nm[i]}</text>`; });
+    return `<svg class="tw-svg tr-svg" viewBox="0 0 ${T.W} ${T.H}" role="img" aria-label="right triangle">${s}</svg>`;
+  }
+  // which side is opposite / adjacent / hypotenuse for the angle at A or C
+  const roles = at => at === "A" ? {opp:"BC", adj:"AB", hyp:"CA"} : {opp:"AB", adj:"BC", hyp:"CA"};
+  const sideName = (k, nm) => ({AB:nm[0] + nm[1], BC:nm[1] + nm[2], CA:nm[0] + nm[2]})[k];
+  const NAMESETS = [["A","B","C"],["P","Q","R"],["X","Y","Z"],["L","M","N"],["D","E","F"]];
+
+  // Mission 1: name the sides by tapping them
+  function m1(i){
+    const nm = P(NAMESETS), at = P(["A", "C"]), atName = at === "A" ? nm[0] : nm[2], role = P(["opp", "adj", "hyp", "opp", "adj"]);
+    const T = rightTri(R(3, 6), R(3, 7), nm), rl = roles(at), want = rl[role];
+    return {html:`<p class="tw-q">Tap the side <b>${WORD[role].toUpperCase()}</b> to <b>∠${atName}</b>.</p>${triSVG(T, {mark:at, clickable:true})}<p class="tw-mini">Right angle at ${nm[1]}. Tap directly on a side.</p>`,
+      mount(el, done){ el.querySelectorAll(".tr-side").forEach(l => l.addEventListener("click", () => {
+        if (el.dataset.lock) return; el.dataset.lock = 1; const ok = l.dataset.s === want;
+        l.setAttribute("stroke", ok ? "rgba(182,243,106,.55)" : "rgba(255,91,110,.55)"); if (!ok) el.querySelector(`.tr-side[data-s="${want}"]`).setAttribute("stroke", "rgba(182,243,106,.55)");
+        done(ok, `For ∠${atName}: the <b>hypotenuse</b> ${sideName(rl.hyp, nm)} is opposite the right angle (always the longest side); the <b>opposite</b> side is ${sideName(rl.opp, nm)}; the <b>adjacent</b> side is ${sideName(rl.adj, nm)} (it touches ∠${atName} but isn't the hypotenuse). Opposite and adjacent swap when you change the angle!`, "Naming opposite, adjacent and hypotenuse"); })); }};
+  }
+
+  // Mission 2: build a ratio by tapping the numerator and denominator lengths
+  function m2(i){
+    const nm = P(NAMESETS), at = P(["A", "C"]), atName = at === "A" ? nm[0] : nm[2], [a, b, h] = P(TRIPLES), sw = Math.random() < .5;
+    const AB = sw ? a : b, BC = sw ? b : a, CA = h, len = {AB, BC, CA}, T = rightTri(AB, BC, nm);
+    const ratio = i < 4 ? P(["sin", "cos", "tan"]) : P(RATIO_NAMES), [nu, de] = RATIO_DEF[ratio], rl = roles(at);
+    const want = [len[rl[nu]], len[rl[de]]];
+    return {html:`<p class="tw-q">Build <b>${ratio} ${atName}</b>: tap the <b>top</b> number, then the <b>bottom</b> number.</p>${triSVG(T, {mark:at, labels:{AB, BC, CA}})}
+      <div class="tr-build"><span class="tr-r">${ratio} ${atName} =</span><span class="fr tr-slot"><i id="trN">?</i><i id="trD">?</i></span></div>
+      <div class="tw-chips">${SH(["AB", "BC", "CA"]).map(k => `<button class="tw-chip big" type="button" data-v="${len[k]}">${len[k]}</button>`).join("")}</div>`,
+      mount(el, done){ const pick = [];
+        el.querySelectorAll(".tw-chip").forEach(c => c.onclick = () => { if (el.dataset.lock || c.disabled) return; pick.push(+c.dataset.v); c.disabled = true; c.classList.add("on");
+          el.querySelector(pick.length === 1 ? "#trN" : "#trD").textContent = c.dataset.v;
+          if (pick.length === 2){ el.dataset.lock = 1; const ok = pick[0] === want[0] && pick[1] === want[1];
+            done(ok, `${ratio} = ${WORD[nu]} / ${WORD[de]}. For ∠${atName}: ${WORD[nu]} = ${want[0]}, ${WORD[de]} = ${want[1]}, so ${ratio} ${atName} = ${rf(...want)}.${["cosec", "sec", "cot"].includes(ratio) ? ` (It is the reciprocal of ${({cosec:"sin", sec:"cos", cot:"tan"})[ratio]} ${atName}.)` : " Remember: SOH-CAH-TOA."}`,
+              ["cosec", "sec", "cot"].includes(ratio) ? "Reciprocal ratios" : "sin, cos, tan from a triangle"); } }); }};
+  }
+
+  // Mission 3: one ratio given → find another
+  function m3(i){
+    const surd = Math.random() < .35; let opp, adj, hyp, oppT, adjT, hypT;
+    if (surd){ const [o, h] = P([[3, 4], [1, 3], [2, 3], [1, 2], [2, 5], [1, 4], [3, 7]]); opp = o; hyp = h; adj = Math.sqrt(h*h - o*o); oppT = o; hypT = h; adjT = `√${h*h - o*o}`; }
+    else { const t = P(TRIPLES); [opp, adj, hyp] = Math.random() < .5 ? [t[0], t[1], t[2]] : [t[1], t[0], t[2]]; oppT = opp; adjT = adj; hypT = hyp; }
+    const val = {opp, adj, hyp}, txt = {opp:oppT, adj:adjT, hyp:hypT};
+    const given = surd ? P(["sin", "cosec"]) : P(RATIO_NAMES), [gn, gd] = RATIO_DEF[given];
+    let ask; do { ask = P(RATIO_NAMES); } while (ask === given);
+    const [an, ad] = RATIO_DEF[ask], show = (n, d) => (typeof txt[n] === "string" || typeof txt[d] === "string") ? fr(txt[n], txt[d]) : rf(val[n], val[d]);
+    const right = show(an, ad), num = val[an]/val[ad];
+    const pool = []; RATIO_NAMES.forEach(r => { const [x, y] = RATIO_DEF[r]; if (Math.abs(val[x]/val[y] - num) > 1e-9) pool.push(show(x, y)); });
+    const opts = SH([right, ...SH([...new Set(pool)]).slice(0, 3)]);
+    const g = gcd(val[gn], val[gd]), giv = surd ? fr(txt[gn], txt[gd]) : rf(val[gn], val[gd]);
+    const third = gn !== "adj" && gd !== "adj" ? "adj" : gn !== "opp" && gd !== "opp" ? "opp" : "hyp";
+    const form = !surd && Math.random() < .3 && given !== "sin" ? `${val[gd]/g} ${given} A = ${val[gn]/g}` : `${given} A = ${giv}`;
+    return {html:`<p class="tw-q">Given <b>${form}</b> (A acute). Find <b>${ask} A</b>.</p>${triSVG(rightTri(4, 5, ["A", "B", "C"], {flip:false, rot:0, h:150}), {mark:"A", labels:{BC:"opp", AB:"adj", CA:"hyp"}})}${choice(opts, "tr")}`,
+      mount(el, done){ bindChoice(el, opts.indexOf(right), done, `${given} = ${WORD[gn]}/${WORD[gd]}, so take ${WORD[gn]} = ${txt[gn]}k, ${WORD[gd]} = ${txt[gd]}k. Pythagoras gives the ${WORD[third]}: ${third === "hyp" ? `√(${val.opp}² + ${val.adj}²)` : `√(${val.hyp}² − ${val[third === "adj" ? "opp" : "adj"]}²)`} = ${txt[third]}k. Then ${ask} A = ${WORD[an]}/${WORD[ad]} = ${right}.`,
+        surd ? "Ratios with surds (Pythagoras)" : "Finding all ratios from one"); }};
+  }
+
+  /* ---------- exact special values ---------- */
+  const V = {"0":0, "1/2":.5, "1/√2":1/Math.SQRT2, "√3/2":Math.sqrt(3)/2, "1":1, "1/√3":1/Math.sqrt(3), "√3":Math.sqrt(3), "2/√3":2/Math.sqrt(3), "√2":Math.SQRT2, "2":2, "not defined":NaN};
+  const VH = k => ({"1/2":fr(1, 2), "1/√2":fr(1, "√2"), "√3/2":fr("√3", 2), "1/√3":fr(1, "√3"), "2/√3":fr(2, "√3")})[k] || k;
+  const TABLE = {
+    sin:{0:"0", 30:"1/2", 45:"1/√2", 60:"√3/2", 90:"1"}, cos:{0:"1", 30:"√3/2", 45:"1/√2", 60:"1/2", 90:"0"}, tan:{0:"0", 30:"1/√3", 45:"1", 60:"√3", 90:"not defined"},
+    cosec:{0:"not defined", 30:"2", 45:"√2", 60:"2/√3", 90:"1"}, sec:{0:"1", 30:"2/√3", 45:"√2", 60:"2", 90:"not defined"}, cot:{0:"not defined", 30:"√3", 45:"1", 60:"1/√3", 90:"0"}
+  };
+  const WHY_ANGLE = {30:"Half an equilateral triangle of side 2a: hypotenuse 2a, short side a, long side √3·a.", 60:"Half an equilateral triangle of side 2a: hypotenuse 2a, short side a, long side √3·a.",
+    45:"An isosceles right triangle: both legs a, hypotenuse √2·a.", 0:"At 0° the opposite side shrinks to 0 and the adjacent side equals the hypotenuse.", 90:"At 90° the adjacent side shrinks to 0 and the opposite side equals the hypotenuse."};
+  function m4(i){
+    const kind = i % 4 === 3 ? "rev" : "cell";
+    if (kind === "rev"){ const f = P(["sin", "cos", "tan"]), ang = P([30, 45, 60]), val = TABLE[f][ang], opts = SH([0, 30, 45, 60, 90].map(a => a + "°")).slice(0, 4); if (!opts.includes(ang + "°")) opts[0] = ang + "°";
+      const pairs = [0, 30, 45, 60, 90].filter(a => TABLE[f][a] === val).map(a => a + "°");
+      const so = SH(opts); return {html:`<p class="tw-q">For which angle is <b>${f} θ = ${VH(val)}</b>?</p>${choice(so, "two tr")}`,
+        mount(el, done){ const o = [...el.querySelectorAll(".tw-opts .tw-b")].map(b => b.textContent.trim()); bindChoice(el, o.map((x, j) => pairs.includes(x) ? j : -1).filter(j => j >= 0), done, `${f} ${ang}° = ${VH(val)}. ${WHY_ANGLE[ang]}`, "Special angle values"); }}; }
+    const f = i < 3 ? P(["sin", "cos", "tan"]) : P(RATIO_NAMES), ang = P([0, 30, 45, 60, 90]), val = TABLE[f][ang];
+    const pool = SH(Object.keys(V).filter(k => k !== val && !(Number.isNaN(V[k]) && Number.isNaN(V[val])))).slice(0, 3), opts = SH([val, ...pool]);
+    const trick = f === "sin" || f === "cos" ? ` Trick: sin 0°, 30°, 45°, 60°, 90° = √0/2, √1/2, √2/2, √3/2, √4/2, and cos runs the same list backwards.` : f === "tan" ? " tan = sin ÷ cos." : ` ${f} is the reciprocal of ${({cosec:"sin", sec:"cos", cot:"tan"})[f]}.`;
+    return {html:`<p class="tw-q">Fill the table: <b>${f} ${ang}°</b> = ?</p><div class="tr-cell"><span>${f} ${ang}°</span></div>${choice(opts.map(VH), "two tr")}`,
+      mount(el, done){ bindChoice(el, opts.indexOf(val), done, `${f} ${ang}° = ${VH(val)}. ${WHY_ANGLE[ang]}${trick}`, "Special angle values"); }};
+  }
+
+  // Mission 5: evaluate expressions (answers verified numerically)
+  const S = a => Math.sin(a*D), C = a => Math.cos(a*D), Tn = a => Math.tan(a*D);
+  const CANDS = {"0":0, "1/4":.25, "1/2":.5, "3/4":.75, "1":1, "5/4":1.25, "3/2":1.5, "7/4":1.75, "2":2, "5/2":2.5, "3":3, "4":4, "1/√2":1/Math.SQRT2, "√3/2":Math.sqrt(3)/2, "√3":Math.sqrt(3), "1/√3":1/Math.sqrt(3), "2/√3":2/Math.sqrt(3), "√2":Math.SQRT2, "(√3+1)/2":(Math.sqrt(3) + 1)/2, "(√3−1)/2":(Math.sqrt(3) - 1)/2};
+  const CH = k => ({"1/4":fr(1, 4), "3/4":fr(3, 4), "5/4":fr(5, 4), "3/2":fr(3, 2), "7/4":fr(7, 4), "5/2":fr(5, 2), "(√3+1)/2":fr("√3 + 1", 2), "(√3−1)/2":fr("√3 − 1", 2)})[k] || VH(k);
+  function m5(i){
+    const t = P(["sum", "sum", "sq", "named", "named", "solve", "dbl"]);
+    if (t === "named"){ const T5 = P([
+        {e:`${fr("2 tan 30°", "1 + tan²30°")}`, v:"sin 60°", why:"2·(1/√3) ÷ (1 + 1/3) = (2/√3) × (3/4) = √3/2 = sin 60°."},
+        {e:`${fr("1 − tan²45°", "1 + tan²45°")}`, v:"0", why:"tan 45° = 1, so (1 − 1)/(1 + 1) = 0."},
+        {e:`${fr("2 tan 30°", "1 − tan²30°")}`, v:"tan 60°", why:"(2/√3) ÷ (2/3) = 3/√3 = √3 = tan 60°."},
+        {e:`${fr("1 − tan²30°", "1 + tan²30°")}`, v:"cos 60°", why:"(2/3) ÷ (4/3) = 1/2 = cos 60°."}]);
+      const opts = SH([T5.v, ...SH(["sin 60°", "cos 60°", "tan 60°", "sin 30°", "0", "1", "tan 90°"].filter(x => x !== T5.v && !(T5.v === "cos 60°" && x === "sin 30°") && !(T5.v === "sin 30°" && x === "cos 60°"))).slice(0, 3)]);
+      return {html:`<p class="tw-q">Choose the value of</p><div class="tr-expr">${T5.e}</div>${choice(opts, "two tr")}`, mount(el, done){ bindChoice(el, opts.indexOf(T5.v), done, T5.why, "Evaluating with special angles"); }}; }
+    if (t === "solve"){ const [sm, df] = P([[60, 30], [90, 30], [90, 60], [60, 30]]), A = (sm + df)/2, B = (sm - df)/2;
+      const okF = a => ["sin", "cos", "tan"].filter(f => TABLE[f][a] !== "not defined" && Object.keys(TABLE[f]).filter(x => TABLE[f][x] === TABLE[f][a]).length === 1);
+      const f1 = P(okF(sm)), f2 = P(okF(df)), right = `A = ${A}°, B = ${B}°`;
+      const wr = [...new Set([`A = ${B}°, B = ${A}°`, `A = ${sm}°, B = ${df}°`, `A = ${df}°, B = ${sm - df}°`, `A = ${A + 15}°, B = ${B + 15}°`, `A = ${sm}°, B = 0°`])].filter(x => x !== right);
+      const opts = SH([right, ...SH(wr).slice(0, 3)]);
+      return {html:`<p class="tw-q">${f1} (A + B) = ${VH(TABLE[f1][sm])} and ${f2} (A − B) = ${VH(TABLE[f2][df])}, with 0° &lt; A + B ≤ 90° and A > B. Find A and B.</p>${choice(opts, "tr")}`,
+        mount(el, done){ bindChoice(el, opts.indexOf(right), done, `${f1} ${sm}° = ${VH(TABLE[f1][sm])}, so A + B = ${sm}°. ${f2} ${df}° = ${VH(TABLE[f2][df])}, so A − B = ${df}°. Add the two equations: 2A = ${sm + df}°, so A = ${A}°, and then B = ${B}°.`, "Solving with special angles"); }}; }
+    if (t === "dbl"){ const opts = SH(["0°", "30°", "45°", "60°"]);
+      return {html:`<p class="tw-q"><b>sin 2A = 2 sin A</b> is true when A = ?</p>${choice(opts, "two tr")}`, mount(el, done){ bindChoice(el, opts.indexOf("0°"), done, "At A = 0°: sin 0° = 0 = 2 × 0. At 30°: sin 60° = √3/2 but 2 sin 30° = 1, so it fails. In general sin 2A ≠ 2 sin A!", "Trig ratios are not linear"); }}; }
+    for (let k = 0; k < 400; k++){
+      let html, val, why;
+      if (t === "sum"){ const [a, b] = P([[60, 30], [30, 60], [45, 45], [30, 30], [60, 0], [45, 0], [30, 0]]), plus = Math.random() < .6;
+        html = plus ? `sin ${a}° cos ${b}° + cos ${a}° sin ${b}°` : `cos ${a}° cos ${b}° − sin ${a}° sin ${b}°`;
+        val = plus ? S(a)*C(b) + C(a)*S(b) : C(a)*C(b) - S(a)*S(b); why = `Substitute: ${plus ? `${VH(TABLE.sin[a])} × ${VH(TABLE.cos[b])} + ${VH(TABLE.cos[a])} × ${VH(TABLE.sin[b])}` : `${VH(TABLE.cos[a])} × ${VH(TABLE.cos[b])} − ${VH(TABLE.sin[a])} × ${VH(TABLE.sin[b])}`}`; }
+      else { const terms = [], subs = []; let v = 0; const n = R(2, 3); for (let j = 0; j < n; j++){ const f = P(["sin", "cos", "tan"]), a = P([30, 45, 60]), co = P([1, 1, 2, 3, 4]), sg = j === 0 ? 1 : P([1, -1]);
+          const fv = ({sin:S, cos:C, tan:Tn})[f](a), op = j ? (sg > 0 ? " + " : " − ") : ""; v += sg*co*fv*fv; terms.push(`${op}${co > 1 ? co + " " : ""}${f}²${a}°`); subs.push(`${op}${co > 1 ? co + "·" : ""}(${VH(TABLE[f][a])})²`); }
+        html = terms.join(""); val = v; why = `Square the value, not the angle: ${subs.join("")}`; }
+      const key = Object.keys(CANDS).find(c => Math.abs(CANDS[c] - val) < 1e-9); if (key === undefined) continue;
+      const opts = SH([key, ...SH(Object.keys(CANDS).filter(c => c !== key)).slice(0, 3)]);
+      return {html:`<p class="tw-q">Evaluate</p><div class="tr-expr">${html}</div>${choice(opts.map(CH), "two tr")}`,
+        mount(el, done){ bindChoice(el, opts.indexOf(key), done, `${why} = ${CH(key)}.`, "Evaluating with special angles"); }};
+    }
+    return m5(i);
+  }
+
+  // Mission 6: true or false, with a live angle explorer
+  const TF = [
+    ["The value of tan A is always less than 1.", false, "tan 60° = √3 ≈ 1.73. tan can be any positive value as A grows."],
+    ["sec A = 12/5 for some angle A.", true, "sec A = hyp/adj ≥ 1, and 12/5 = 2.4 ≥ 1, so it's possible."],
+    ["sin θ = 4/3 for some angle θ.", false, "sin = opp/hyp, and the hypotenuse is the longest side, so sin θ ≤ 1. 4/3 > 1 is impossible."],
+    ["cos A is short for the cosecant of angle A.", false, "cos A is the cosine; the cosecant is written cosec A."],
+    ["cot A is the product of cot and A.", false, "cot A is one symbol, the cotangent of A, not 'cot × A'."],
+    ["sin (A + B) = sin A + sin B.", false, "Try A = B = 45°: sin 90° = 1 but sin 45° + sin 45° = √2 ≈ 1.41."],
+    ["The value of sin θ increases as θ increases (0° to 90°).", true, "Drag the explorer: the opposite side grows from 0 to the full hypotenuse, so sin goes 0 → 1."],
+    ["The value of cos θ increases as θ increases (0° to 90°).", false, "cos θ decreases from 1 to 0, because the adjacent side shrinks."],
+    ["sin θ = cos θ for all values of θ.", false, "Only at θ = 45°. At 30°: sin = 1/2, cos = √3/2."],
+    ["cot A is not defined for A = 0°.", true, "cot 0° = cos 0°/sin 0° = 1/0, which is not defined."],
+    ["cosec A can be less than 1 for an acute angle A.", false, "cosec = hyp/opp and the hypotenuse is the longest side, so cosec A ≥ 1."],
+    ["tan 90° is not defined.", true, "tan 90° = sin 90°/cos 90° = 1/0."],
+    ["sin² A + cos² A = 1 for every angle A.", true, "This is the basic identity: (opp² + adj²)/hyp² = hyp²/hyp² = 1."],
+    ["sin² A means sin (A²).", false, "sin² A means (sin A)², the square of the value of sin A."],
+    ["If cos A = cos B for acute angles A and B, then A = B.", true, "In a right triangle, equal cos values give equal ratios adj/hyp, so the angles are equal."],
+    ["tan θ increases as θ increases (0° to 90°).", true, "Opposite grows while adjacent shrinks, so tan grows from 0 without limit."]
+  ];
+  function explorer(){ return `<div class="tr-exp"><svg class="tw-svg" viewBox="0 0 300 170" id="trX"></svg><input class="fd-range" type="range" min="0" max="90" value="30" id="trXs" aria-label="Angle θ in degrees">
+    <div class="tr-vals"><span>θ = <b id="trT">30°</b></span><span>sin <b id="trS"></b></span><span>cos <b id="trC"></b></span><span>tan <b id="trTn"></b></span></div></div>`; }
+  function bindExplorer(el){
+    const sv = el.querySelector("#trX"), s = el.querySelector("#trXs"); if (!sv) return;
+    const draw = () => { const t = +s.value, r = 140, ox = 20, oy = 155, x = ox + r*Math.cos(t*D), y = oy - r*Math.sin(t*D);
+      sv.innerHTML = `<path d="M${ox + r} ${oy} A${r} ${r} 0 0 0 ${ox} ${oy - r}" fill="none" stroke="rgba(255,255,255,.18)" stroke-dasharray="4 5"/>
+        <line x1="${ox}" y1="${oy}" x2="${x}" y2="${y}" stroke="#e7eaff" stroke-width="3"/><line x1="${x}" y1="${y}" x2="${x}" y2="${oy}" stroke="#ff9152" stroke-width="4"/><line x1="${ox}" y1="${oy}" x2="${x}" y2="${oy}" stroke="#22d3ee" stroke-width="4"/>
+        <text x="${x + 6}" y="${(y + oy)/2}" class="tw-sl" style="fill:#ff9152">opp = sin θ</text><text x="${(ox + x)/2}" y="${oy + 14}" text-anchor="middle" class="tw-sl" style="fill:#22d3ee">adj = cos θ</text><text x="${(ox + x)/2 - 18}" y="${(oy + y)/2 - 6}" class="tw-sl" style="fill:#e7eaff">1</text>`;
+      el.querySelector("#trT").textContent = t + "°"; el.querySelector("#trS").textContent = Math.sin(t*D).toFixed(3); el.querySelector("#trC").textContent = Math.cos(t*D).toFixed(3);
+      el.querySelector("#trTn").textContent = t === 90 ? "not defined" : Math.tan(t*D).toFixed(3); };
+    s.oninput = draw; draw();
+  }
+  function m6(i){
+    const [st, ans, why] = P(TF), opts = ["True", "False"];
+    return {html:`<p class="tw-q">True or false? <b>${st}</b></p>${explorer()}<p class="tw-mini">Use the explorer: hypotenuse = 1, so opposite = sin θ and adjacent = cos θ.</p>${choice(opts, "two tr")}`,
+      mount(el, done){ bindExplorer(el); bindChoice(el, ans ? 0 : 1, done, why, "Reasoning about trig ratios"); }};
+  }
+
+  // Mission 7: identity forge (every option checked numerically at several angles)
+  const sec = a => 1/C(a), csc = a => 1/S(a), cot = a => 1/Tn(a);
+  const EXPR = [
+    ["9 sec²A − 9 tan²A", a => 9*sec(a)**2 - 9*Tn(a)**2], ["(sec A + tan A)(1 − sin A)", a => (sec(a) + Tn(a))*(1 - S(a))], [fr("1 + tan²A", "1 + cot²A"), a => (1 + Tn(a)**2)/(1 + cot(a)**2)],
+    ["(1 + tan A + sec A)(1 + cot A − cosec A)", a => (1 + Tn(a) + sec(a))*(1 + cot(a) - csc(a))], ["(1 − cos²A) cosec²A", a => (1 - C(a)**2)*csc(a)**2], ["tan A · cos A", a => Tn(a)*C(a)],
+    ["sec²A − 1", a => sec(a)**2 - 1], ["(cosec²A − 1) tan²A", a => (csc(a)**2 - 1)*Tn(a)**2], ["sin A · sec A", a => S(a)*sec(a)], ["(1 − sin²A) sec²A", a => (1 - S(a)**2)*sec(a)**2],
+    ["cos A · cosec A · tan A", a => C(a)*csc(a)*Tn(a)], ["(sin A + cos A)² + (sin A − cos A)²", a => (S(a) + C(a))**2 + (S(a) - C(a))**2], ["sec A − sin A tan A", a => sec(a) - S(a)*Tn(a)],
+    ["cosec²A − cot²A", a => csc(a)**2 - cot(a)**2], [fr("sin A", "1 + cos A") + " + " + fr("1 + cos A", "sin A"), a => S(a)/(1 + C(a)) + (1 + C(a))/S(a)], ["cos⁴A − sin⁴A", a => C(a)**4 - S(a)**4]
+  ];
+  const FORMS = [["0", a => 0], ["1", a => 1], ["2", a => 2], ["9", a => 9], ["sin A", S], ["cos A", C], ["tan A", Tn], ["sec A", sec], ["cosec A", csc], ["tan²A", a => Tn(a)**2], ["cot²A", a => cot(a)**2],
+    ["sec²A", a => sec(a)**2], ["sin²A", a => S(a)**2], ["cos²A", a => C(a)**2], ["2 cosec A", a => 2*csc(a)], ["2 sec A", a => 2*sec(a)], ["cos²A − sin²A", a => C(a)**2 - S(a)**2], ["8", a => 8]];
+  const same = (f, g) => [17, 33, 49, 71].every(a => Math.abs(f(a) - g(a)) < 1e-7);
+  const EXPRESS = [
+    ["cos A in terms of sin A", "√(1 − sin²A)", ["1 − sin²A", "√(1 + sin²A)", fr(1, "sin A")], "sin²A + cos²A = 1 gives cos A = √(1 − sin²A) (A acute, so cos A > 0)."],
+    ["sec A in terms of tan A", "√(1 + tan²A)", ["1 + tan²A", "√(tan²A − 1)", fr(1, "tan A")], "1 + tan²A = sec²A, so sec A = √(1 + tan²A)."],
+    ["cosec A in terms of cot A", "√(1 + cot²A)", ["1 + cot²A", "√(cot²A − 1)", fr(1, "cot A")], "cosec²A = 1 + cot²A, so cosec A = √(1 + cot²A)."],
+    ["tan A in terms of sin A", fr("sin A", "√(1 − sin²A)"), [fr("√(1 − sin²A)", "sin A"), fr("sin A", "1 − sin²A"), "√(1 − sin²A)"], "tan A = sin A/cos A, and cos A = √(1 − sin²A)."],
+    ["sin A in terms of cot A", fr(1, "√(1 + cot²A)"), ["√(1 + cot²A)", fr("cot A", "√(1 + cot²A)"), fr(1, "1 + cot²A")], "sin A = 1/cosec A = 1/√(1 + cot²A)."],
+    ["tan A in terms of sec A", "√(sec²A − 1)", ["sec²A − 1", "√(sec²A + 1)", fr(1, "sec A")], "tan²A = sec²A − 1, so tan A = √(sec²A − 1)."]
+  ];
+  function m7(i){
+    if (i % 3 === 2){ const [q, right, wrong, why] = P(EXPRESS), opts = SH([right, ...wrong]);
+      return {html:`<p class="tw-q">Write <b>${q}</b>.</p>${choice(opts, "two tr")}`, mount(el, done){ bindChoice(el, opts.indexOf(right), done, why, "Expressing one ratio in terms of another"); }}; }
+    const [eh, ef] = P(EXPR), right = FORMS.find(([, g]) => same(ef, g));
+    if (!right) return m7(i);
+    const wrong = SH(FORMS.filter(([n, g]) => n !== right[0] && !same(ef, g))).slice(0, 3), opts = SH([right, ...wrong]);
+    const hint = /sec²A − 9 tan|sec²A − 1|1 − sin²A\) sec|cosec²A − cot|cosec²A − 1/.test(eh) ? "Use 1 + tan²A = sec²A and 1 + cot²A = cosec²A." : /cos²A\) cosec|sin A \+ cos A\)²|⁴/.test(eh) ? "Use sin²A + cos²A = 1." : "Rewrite everything in sin A and cos A, then simplify.";
+    return {html:`<p class="tw-q">Simplify</p><div class="tr-expr">${eh}</div>${choice(opts.map(o => o[0]), "two tr")}`,
+      mount(el, done){ bindChoice(el, opts.indexOf(right), done, `${eh} = <b>${right[0]}</b>. ${hint}`, "Simplifying with identities"); }};
+  }
+
+  // Mission 8: proof builder: tap the steps in the right order
+  const PROOFS = [
+    {goal:`sec A (1 − sin A)(sec A + tan A) = 1`, steps:[`${fr(1, "cos A")} (1 − sin A) · ${fr("1 + sin A", "cos A")}`, fr("1 − sin²A", "cos²A"), fr("cos²A", "cos²A"), "1"], key:"1 − sin²A = cos²A"},
+    {goal:`(cosec θ − cot θ)² = ${fr("1 − cos θ", "1 + cos θ")}`, steps:[`(${fr(1, "sin θ")} − ${fr("cos θ", "sin θ")})²`, fr("(1 − cos θ)²", "sin²θ"), fr("(1 − cos θ)²", "1 − cos²θ"), fr("(1 − cos θ)²", "(1 − cos θ)(1 + cos θ)"), fr("1 − cos θ", "1 + cos θ")], key:"sin²θ = 1 − cos²θ, then factorise a² − b²"},
+    {goal:`${fr("cos A", "1 + sin A")} + ${fr("1 + sin A", "cos A")} = 2 sec A`, steps:[fr("cos²A + (1 + sin A)²", "cos A (1 + sin A)"), fr("cos²A + 1 + 2 sin A + sin²A", "cos A (1 + sin A)"), fr("2 + 2 sin A", "cos A (1 + sin A)"), fr("2 (1 + sin A)", "cos A (1 + sin A)"), `${fr(2, "cos A")} = 2 sec A`], key:"sin²A + cos²A = 1"},
+    {goal:`√(${fr("1 + sin A", "1 − sin A")}) = sec A + tan A`, steps:[`√(${fr("(1 + sin A)²", "(1 − sin A)(1 + sin A)")})`, `√(${fr("(1 + sin A)²", "1 − sin²A")})`, `√(${fr("(1 + sin A)²", "cos²A")})`, fr("1 + sin A", "cos A"), "sec A + tan A"], key:"multiply top and bottom by (1 + sin A), then 1 − sin²A = cos²A"},
+    {goal:`(sin A + cosec A)² + (cos A + sec A)² = 7 + tan²A + cot²A`, steps:["sin²A + 2 + cosec²A + cos²A + 2 + sec²A", "(sin²A + cos²A) + 4 + cosec²A + sec²A", "1 + 4 + (1 + cot²A) + (1 + tan²A)", "7 + tan²A + cot²A"], key:"sin A · cosec A = 1, cos A · sec A = 1, and all three identities"},
+    {goal:`${fr("1 + tan²A", "1 + cot²A")} = tan²A`, steps:[fr("sec²A", "cosec²A"), `${fr(1, "cos²A")} × sin²A`, fr("sin²A", "cos²A"), "tan²A"], key:"1 + tan²A = sec²A and 1 + cot²A = cosec²A"},
+    {goal:`(cosec A − sin A)(sec A − cos A) = sin A cos A`, steps:[`${fr("1 − sin²A", "sin A")} · ${fr("1 − cos²A", "cos A")}`, `${fr("cos²A", "sin A")} · ${fr("sin²A", "cos A")}`, "sin A cos A"], key:"1 − sin²A = cos²A and 1 − cos²A = sin²A"},
+    {goal:`${fr("sin θ − 2 sin³θ", "2 cos³θ − cos θ")} = tan θ`, steps:[fr("sin θ (1 − 2 sin²θ)", "cos θ (2 cos²θ − 1)"), fr("sin θ (1 − 2 sin²θ)", "cos θ (2 (1 − sin²θ) − 1)"), fr("sin θ (1 − 2 sin²θ)", "cos θ (1 − 2 sin²θ)"), "tan θ"], key:"take out common factors, then cos²θ = 1 − sin²θ"}
+  ];
+  function m8(i){
+    const pf = P(PROOFS), order = pf.steps.map((s, k) => k), shown = SH(order.slice());
+    return {html:`<p class="tw-q">Prove: <b>${pf.goal}</b></p><div class="tr-proof" id="trP"><div class="tr-l">LHS</div></div><p class="tw-mini">Tap the steps in the correct order. Each line follows from the one above.</p>
+      <div class="tr-steps">${shown.map(k => `<button class="tr-step" type="button" data-k="${k}">= ${pf.steps[k]}</button>`).join("")}</div>`,
+      mount(el, done){ let at = 0, slips = 0; const box = el.querySelector("#trP");
+        el.querySelectorAll(".tr-step").forEach(b => b.onclick = () => { if (el.dataset.lock || b.disabled) return;
+          if (+b.dataset.k === at){ b.disabled = true; b.classList.add("ok"); box.insertAdjacentHTML("beforeend", `<div class="tr-l">= ${pf.steps[at]}</div>`); at++;
+            if (at === pf.steps.length){ el.dataset.lock = 1; done(slips <= 1, `${slips ? `${slips} slip${slips > 1 ? "s" : ""}. ` : "Flawless proof! "}Key idea: ${pf.key}. Start from the more complicated side and change one thing at a time.`, "Proving identities", slips ? 0 : 60); } }
+          else { slips++; b.classList.remove("no"); void b.offsetWidth; b.classList.add("no"); if (slips > 3){ el.dataset.lock = 1; done(false, `The proof goes: ${pf.steps.map(s => "= " + s).join("  ")}. Key idea: ${pf.key}.`, "Proving identities"); } } }); }};
+  }
+
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Name the Sides", goal:"Opposite, adjacent and hypotenuse: they depend on which angle you look from.", n:8},
+    {id:2, track:"foundation", name:"Build the Ratio", goal:"SOH-CAH-TOA and the reciprocal ratios: tap the right lengths.", n:8},
+    {id:3, track:"foundation", name:"One Ratio → All Ratios", goal:"Know one ratio? Use Pythagoras to find every other ratio.", n:7},
+    {id:4, track:"core", name:"Special Angles", goal:"The values at 0°, 30°, 45°, 60° and 90°, and why they are true.", n:8},
+    {id:5, track:"core", name:"Evaluate", goal:"Substitute special values and simplify expressions.", n:7},
+    {id:6, track:"core", name:"True or False?", goal:"Reason about ratios with a live angle explorer.", n:8},
+    {id:7, track:"advanced", name:"Identity Forge", goal:"sin²A + cos²A = 1, 1 + tan²A = sec²A, 1 + cot²A = cosec²A.", n:8},
+    {id:8, track:"advanced", name:"Proof Builder", goal:"Put the steps of a proof in order, line by line.", n:5},
+    {id:9, track:"advanced", name:"Trig Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m4, m4, m5, m6, m7])(5)};
+  return {MISSIONS, GEN, TABLE, V};
+})();
+
+const GTrig = CQ.quest({
+  key:"tr10c8_stars", missions:TRG.MISSIONS, gen:TRG.GEN, chapter:{std:10, part:"", ch:8},
+  desc:"Std 10 · NCERT Chapter 8. Master trigonometry in 9 missions, from naming the sides of a right triangle to building full proofs of identities.",
+  modes:{foundation:"Opposite/adjacent/hypotenuse, SOH-CAH-TOA, and finding every ratio from one", core:"Special angles 0°–90°, evaluating expressions, and true/false reasoning", advanced:"The three identities, step-by-step proofs, and the timed Trig Master"}
+});
+
+GAME_MODS["c7-geometric-twins"] = GTwins;
+GAME_MODS["c8-fractions-disguise"] = GFracDisguise;
+GAME_MODS["c10-trigonometry"] = GTrig;
 /* ===== Boot ===== */
 initGoogle();
 route();
