@@ -1761,6 +1761,9 @@ async function shareGame(g){
 const Stage = {
   run:0, g:null, mod:null, mode:null, keyFn:null, stops:[], clock:null, ended:false, quitAt:0,
   open(id){
+    // on the portal, every maths game opens on its own page: /games/<slug>/
+    const own = GL.concat(CH).find(g => g.id === id);
+    if (!CONFIG.SOLO && own && location.protocol !== "file:"){ location.href = gameURL(own); return; }
     const g = GL.concat(CH).find(x => x.id === id); if (!g) return;
     this.g = g; this.mod = GAME_MODS[id];
     $("#stage").className = "stage " + g.cls;
