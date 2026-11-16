@@ -4,9 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#070a14">
-<title>Learning Games</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Learning Games by Hinde Classes: maths arcade games, MHC Cricket, Dangerous Dev and multiplayer party games, with XP, ranks, daily missions and a prize leaderboard.">
+<title>Learning Games · Hinde Classes</title>
+<meta name="description" content="Learning Games by Hinde Classes: maths arcade games, chapter games for Class 7–10, MHC Cricket, Dangerous Dev and multiplayer party games, with XP, ranks, daily missions and a prize leaderboard.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Hinde Classes Learning Games">
+<meta property="og:title" content="Learning Games · Hinde Classes">
+<meta property="og:description" content="Learning Games by Hinde Classes: maths arcade games, chapter games for Class 7–10, MHC Cricket, Dangerous Dev and multiplayer party games, with XP, ranks, daily missions and a prize leaderboard.">
+<meta property="og:url" content="https://www.hindeclasses.com/games/">
+<link rel="canonical" href="https://www.hindeclasses.com/games/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;600;700;800&display=swap">
@@ -247,7 +252,8 @@ details.how[open] summary .i{transform:rotate(90deg)}
   background-image:radial-gradient(520px 360px at 50% -8%,color-mix(in srgb,var(--a1) 26%,transparent),transparent 70%),radial-gradient(520px 340px at 50% 110%,color-mix(in srgb,var(--a2) 22%,transparent),transparent 70%),radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.2px);background-size:auto,auto,22px 22px}
 .stage-in{flex:1;min-width:0;max-width:560px;margin:0 auto;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .sbar{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:8px;align-items:center}
-.stitle{display:flex;align-items:center;gap:10px;min-width:0}
+.stitle{display:flex;align-items:center;gap:10px;min-width:0;flex:1 1 auto;overflow:hidden}
+.stitle > span{min-width:0;overflow:hidden}
 .stitle .gicon{width:36px;height:36px;border-radius:11px;flex:none}
 .stitle .gicon svg{width:22px;height:22px;stroke-width:4.5}
 .stitle b{font-family:var(--f-disp);font-weight:700;font-size:16px;display:block;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -526,6 +532,7 @@ main{position:relative;z-index:1;padding-bottom:calc(var(--nav-h) + 44px + env(s
 .brand{display:flex;align-items:center;justify-content:center;gap:9px;font-size:19px;color:var(--text);text-shadow:none}
 .brand .logo{width:28px;height:28px;flex:none;border-radius:9px;display:grid;place-items:center;background:conic-gradient(from 210deg,var(--violet),var(--cyan),var(--lime),var(--violet));box-shadow:0 0 18px rgba(139,108,255,.55)}
 .brand .logo svg{width:16px;height:16px;fill:none;stroke:#07101f;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:370px){.brand{font-size:16px;gap:6px}.brand .logo{width:24px;height:24px}}
 .brand span b{background:linear-gradient(90deg,#d9ceff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 .acct a{text-decoration:none}
 .flash{background:linear-gradient(100deg,rgba(139,108,255,.22),rgba(63,213,245,.14),rgba(182,243,106,.12));box-shadow:inset 0 0 0 1px rgba(160,140,255,.3)}
@@ -782,6 +789,19 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .tw-mis .st{color:var(--gold);font-size:16px;letter-spacing:2px;white-space:nowrap}
 .tw-mis.locked{opacity:.45}
 .tw-mis.locked .no{background:rgba(255,255,255,.12);color:var(--muted)}
+/* game area scrolls when its content is taller than the screen (small phones, landscape) */
+#sEnd,#sIntro{scroll-padding-bottom:96px}
+.res-acts .btn{white-space:nowrap}
+@media (max-width:370px){.rgrid small{font-size:9px;letter-spacing:0}.rgrid b{font-size:16px}.res-acts{gap:6px}.res-acts .btn{padding-inline:12px;font-size:14px}.hs b{font-size:17px}.hs.hc b{font-size:21px}.tw-head b{font-size:17px}}
+@media (max-height:500px){.tw-head small{display:none}.tw-head{margin-bottom:6px}.hud{margin-top:6px}.hs{padding:4px 6px}.hs em{min-height:0}}
+.share-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:2px 0}
+.share-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:14px;color:var(--text);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;min-height:40px}
+.share-btn .i{width:17px;height:17px}.share-btn:hover{box-shadow:inset 0 0 0 1px var(--a1,#7c8cff)}
+.share-btn.ghost{background:transparent}
+#gRoot > *{flex-shrink:0}
+@media (max-height:500px){.nx-area{min-height:280px}.ax-zone{min-height:150px}}
+@media (max-height:640px){.ps-orb{width:min(40vw,22vh)}.ps-orb span{font-size:clamp(28px,9vw,40px)}.ps-keys{gap:8px;margin-top:8px}#gRoot .tip{min-height:0;padding:7px 12px;font-size:13.5px;margin-top:8px}.pl-seq{gap:6px}.pl-k{height:40px;font-size:20px}.pl-pad{gap:6px;margin-top:8px}.pl-wrap{min-height:120px;gap:8px}.pl-t{padding:7px 6px;min-width:38px}.pl-in{padding:6px 16px;font-size:26px}.ps-top{min-height:150px;gap:10px;padding-top:14px}.ss-q{min-height:120px}.ax-zone{min-height:120px}.ps-key{height:56px}.ss-opt{height:68px}}
+#gRoot{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;margin-inline:-4px;padding:0 4px 10px;scroll-padding-bottom:12px}
 .tw-head{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}
 .tw-badge{align-self:flex-start;font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
 .tw-head b{font-family:var(--f-disp);font-size:19px}
@@ -834,9 +854,9 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 /* ===== Fractions in Disguise ===== */
 .g-fdis{--a1:#ffb547;--a2:#ff5f8f}
 .g-trig{--a1:#6ee7b7;--a2:#3b82f6}
-.tr-svg{max-height:200px}
+.tr-svg{max-height:200px}.tr-svg text{pointer-events:none}
 .tw-opts.tr .tw-b{font-size:17px;font-family:var(--f-disp)}.tw-opts.tr .fr{font-size:.95em}
-.tr-side{cursor:pointer}.tr-side:hover{stroke:rgba(255,255,255,.18)}
+.tr-side{cursor:pointer}.tr-side:hover{fill:rgba(255,255,255,.12)}
 .tr-build{display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--f-disp);font-size:24px;margin:4px 0 8px}
 .tr-build .fr{font-size:1em}.tr-slot i{min-width:1.6em;text-align:center;color:var(--cyan)}
 .tr-cell{display:flex;justify-content:center;margin:2px 0 10px}.tr-cell span{font-family:var(--f-disp);font-size:26px;padding:10px 22px;border-radius:14px;background:var(--glass-2);border:1px dashed var(--gl-edge)}
@@ -966,6 +986,8 @@ const CONFIG = {
   GOOGLE_CLIENT_ID: "572990500681-12u9hv4cg632ichlkutnjnet58t7vb83.apps.googleusercontent.com", // same Client ID as hindeclasses.com/app
   API_URL: "https://script.google.com/macros/s/AKfycbxqnCASk2-M3f-44n8LjoGJQXV2Q59TeYGHEkrBqUK_mF-q8jsMuL5PtlFmaWSg44RV/exec",
   HOME_URL: "https://www.hindeclasses.com/",
+  PORTAL_URL: "/games/",                    // the full games portal
+  SOLO: null,  // set on a game's own page: open that game straight away
   REWARD_AT: "2026-11-21T00:00:00+05:30",  // prize countdown target (IST)
   CRICKET_URL: "/games/cricket/",           // MHC Cricket
   DEV_URL: "/games/dangerous-dev/",         // Dangerous Dev
@@ -1131,7 +1153,7 @@ var HG = (function () {
 
 </script>
 <script>
-/* ===== Common helpers ===== */
+/* ===== Common helpers shared by every game ===== */
 const R = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
 const pick = a => a[Math.floor(Math.random() * a.length)];
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -1143,306 +1165,35 @@ const isPrime = n => { if (n < 2) return false; for (let i = 2; i * i <= n; i++)
 const fact = n => n <= 1 ? 1 : n * fact(n - 1);
 const nCr = (n, r) => Math.round(fact(n) / (fact(r) * fact(n - r)));
 
-/* ===== Sigma Sprint question bank ===== */
-const SS = {
-  add10(){ const a=R(1,8), b=R(1,10-a); return {q:`${a} + ${b}`, a:a+b, t:"Addition", tip:`Start at <b>${a}</b> and count on ${b}: ${a+b}.`}; },
-  sub20(){ const a=R(8,20), b=R(1,a-1); return {q:`${a} ${MINUS} ${b}`, a:a-b, t:"Subtraction", tip:`Start at <b>${a}</b> and count back ${b}: ${a-b}.`}; },
-  missing(){ const b=R(2,12), s=R(b+1,b+15); return {q:`<span class="qm">?</span> + ${b} = ${s}`, a:s-b, t:"Missing number", tip:`Undo the adding: <b>${s} ${MINUS} ${b} = ${s-b}</b>.`}; },
-  addsub50(){
-    if (Math.random()<.5){ const a=R(11,39), b=R(5,50-a), t=b-b%10, o=b%10;
-      return {q:`${a} + ${b}`, a:a+b, t:"Addition", tip: t ? `Tens first: ${a} + ${t} = ${a+t}, then + ${o} = <b>${a+b}</b>.` : `${a} + ${b} = <b>${a+b}</b>.`}; }
-    const a=R(20,50), b=R(5,a-5), t=b-b%10, o=b%10;
-    return {q:`${a} ${MINUS} ${b}`, a:a-b, t:"Subtraction", tip: t ? `Tens first: ${a} ${MINUS} ${t} = ${a-t}, then ${MINUS} ${o} = <b>${a-b}</b>.` : `${a} ${MINUS} ${b} = <b>${a-b}</b>.`};
-  },
-  addsub100(){
-    if (Math.random()<.5){ const a=R(25,80), b=R(11,99-a), t=b-b%10, o=b%10;
-      return {q:`${a} + ${b}`, a:a+b, t:"Addition", tip:`Tens first: ${a} + ${t} = ${a+t}, then + ${o} = <b>${a+b}</b>.`}; }
-    const a=R(40,99), b=R(11,a-10), t=b-b%10, o=b%10;
-    return {q:`${a} ${MINUS} ${b}`, a:a-b, t:"Subtraction", tip:`Tens first: ${a} ${MINUS} ${t} = ${a-t}, then ${MINUS} ${o} = <b>${a-b}</b>.`};
-  },
-  sides(){ const [n,s] = pick([["triangle",3],["square",4],["pentagon",5],["hexagon",6],["octagon",8],["decagon",10]]);
-    return {q:`Sides of a ${n}?`, a:s, t:"Shapes", tip:`A ${n} has <b>${s}</b> straight sides.`, long:true, near:[s+1, s-1, s+2]}; },
-  units(){ const N=R(2,5), [txt,k,why] = pick([["Minutes in "+N+" hours",60,"1 hour = 60 minutes"],["Days in "+N+" weeks",7,"1 week = 7 days"],["Hours in "+N+" days",24,"1 day = 24 hours"],["Months in "+N+" years",12,"1 year = 12 months"]]);
-    return {q:txt, a:N*k, t:"Measurement", tip:`${why}, so ${N} × ${k} = <b>${N*k}</b>.`, long:true, near:[N*k+k, N*k-k, N*10]}; },
-  doubles(){ const n=R(6,30); return {q:`Double ${n}`, a:2*n, t:"Doubles & halves", tip:`Double means add it to itself: ${n} + ${n} = <b>${2*n}</b>.`, long:true}; },
-  halves(){ const n=R(3,30)*2; return {q:`Half of ${n}`, a:n/2, t:"Doubles & halves", tip:`Half means share between 2: ${n} ÷ 2 = <b>${n/2}</b>.`, long:true}; },
-  _tab(lo,hi,top){ const a=R(lo,hi), b=R(2,top); return {q:`${a} × ${b}`, a:a*b, t:"Times tables", tip:`${a} × ${b-1} = ${a*(b-1)}, add one more ${a}: <b>${a*b}</b>.`, near:[a*(b+1), a*(b-1), a+b]}; },
-  tables25(){ return SS._tab(2,5,10); },
-  tables210(){ return SS._tab(2,10,10); },
-  tables(){ return SS._tab(3,12,12); },
-  div(){ const b=R(2,12), k=R(2,12); return {q:`${b*k} ÷ ${b}`, a:k, t:"Division", tip:`Think backwards: ${b} × <b>${k}</b> = ${b*k}.`}; },
-  squares(){ const n=R(4,20); return {q:`${n}<sup>2</sup>`, a:n*n, t:"Squares", tip:`Square means ${n} × ${n} = <b>${n*n}</b> (not ${n} × 2).`, near:[2*n, n*n+n, n*n-n]}; },
-  sqrt(){ const n=R(4,20); return {q:`√${n*n}`, a:n, t:"Square roots", tip:`Which number times itself makes ${n*n}? <b>${n}</b> × ${n}.`, near:[n*2, Math.round(n*n/2)]}; },
-  angles(){ const v=R(0,2);
-    if (v===0){ const a=R(20,160); return {q:`Supplement of ${a}°`, a:180-a, t:"Angles", tip:`Supplementary angles add to 180°: 180 ${MINUS} ${a} = <b>${180-a}°</b>.`, long:true, near:[90-a>0?90-a:200-a, 360-a]}; }
-    if (v===1){ const a=R(10,80); return {q:`Complement of ${a}°`, a:90-a, t:"Angles", tip:`Complementary angles add to 90°: 90 ${MINUS} ${a} = <b>${90-a}°</b>.`, long:true, near:[180-a]}; }
-    const a=R(30,90), b=R(20,150-a); return {q:`Triangle: ${a}°, ${b}°, ?`, a:180-a-b, t:"Angles", tip:`Angles in a triangle add to 180°: 180 ${MINUS} ${a} ${MINUS} ${b} = <b>${180-a-b}°</b>.`, long:true, near:[360-a-b, 90-(a+b)%90]}; },
-  fracOf(){ const d=pick([2,3,4,5,8,10]), nu=R(1,d-1), k=R(2,12), N=d*k;
-    return {q:`<sup>${nu}</sup>⁄<sub>${d}</sub> of ${N}`, a:nu*k, t:"Fractions", tip:`Divide by the bottom, multiply by the top: ${N} ÷ ${d} = ${k}, × ${nu} = <b>${nu*k}</b>.`, near:[k, N-nu*k]}; },
-  percent(){ const p=pick([10,20,25,50,75,5,15]), unit=100/gcd(p,100), base=unit*R(1,Math.max(2,Math.floor(200/unit))), a=p*base/100;
-    const tips={10:`10% means ÷ 10: ${base} ÷ 10 = <b>${a}</b>.`,20:`10% of ${base} is ${fmt(base/10)}; double it: <b>${a}</b>.`,25:`25% is ¼: ${base} ÷ 4 = <b>${a}</b>.`,50:`50% is ½: ${base} ÷ 2 = <b>${a}</b>.`,75:`75% is ¾: ${base} ÷ 4 = ${base/4}, × 3 = <b>${a}</b>.`,5:`10% is ${fmt(base/10)}; half of that is <b>${a}</b>.`,15:`10% (${fmt(base/10)}) + 5% (${fmt(base/20)}) = <b>${a}</b>.`};
-    return {q:`${p}% of ${base}`, a, t:"Percentages", tip:tips[p], near:[base-a, a*2, Math.round(a/2)]}; },
-  integers(){ const a=R(-15,15), b=-R(1,15);
-    if (Math.random()<.5) return {q:`${fmt(a)} + ${par(b)}`, a:a+b, t:"Integers", tip:`Adding ${fmt(b)} means moving ${-b} steps left from ${fmt(a)}: <b>${fmt(a+b)}</b>.`, neg:true, near:[-(a+b), a-b]};
-    return {q:`${fmt(a)} ${MINUS} ${par(b)}`, a:a-b, t:"Integers", tip:`Subtracting a negative is adding: ${fmt(a)} + ${-b} = <b>${fmt(a-b)}</b>.`, neg:true, near:[a+b, -(a-b)]}; },
-  bodmas(){ const a=R(2,20), b=R(2,9), c=R(2,9), v=R(0,2);
-    if (v===0) return {q:`${a} + ${b} × ${c}`, a:a+b*c, t:"BODMAS", tip:`Multiply before adding: ${b} × ${c} = ${b*c}, then + ${a} = <b>${a+b*c}</b>.`, near:[(a+b)*c]};
-    if (v===1) return {q:`(${a} + ${b}) × ${c}`, a:(a+b)*c, t:"BODMAS", tip:`Brackets first: ${a} + ${b} = ${a+b}, then × ${c} = <b>${(a+b)*c}</b>.`, near:[a+b*c]};
-    const x=R(Math.max(2,Math.ceil((c+1)/b)),12); return {q:`${x} × ${b} ${MINUS} ${c}`, a:x*b-c, t:"BODMAS", tip:`Multiply first: ${x} × ${b} = ${x*b}, then ${MINUS} ${c} = <b>${x*b-c}</b>.`, near:[x*(b-c)].filter(n=>n>0)}; },
-  lcm(){ let a=R(2,12), b=R(2,12); while(b===a) b=R(2,12); const l=a*b/gcd(a,b);
-    return {q:`LCM(${a}, ${b})`, a:l, t:"LCM", tip:`Count in ${Math.max(a,b)}s until ${Math.min(a,b)} divides it: <b>${l}</b>.`, near:[a*b===l?l+Math.max(a,b):a*b, gcd(a,b)]}; },
-  hcf(){ const k=R(2,12); let x=R(1,9), y=R(1,9); while (y===x) y=R(1,9); const a=k*x, b=k*y, h=gcd(a,b);
-    return {q:`HCF(${a}, ${b})`, a:h, t:"HCF", tip:`The biggest number that divides both ${a} and ${b} is <b>${h}</b> (${a} = ${h} × ${a/h}, ${b} = ${h} × ${b/h}).`, near:[a*b/h, Math.min(a,b), h*2]}; },
-  ratio(){ const p=R(1,5); let q=R(1,6); while(q===p) q=R(1,6); const k=R(2,12), T=(p+q)*k;
-    return {q:`Split ${T} in ${p} : ${q}. Bigger part?`, a:Math.max(p,q)*k, t:"Ratio", tip:`${p} + ${q} = ${p+q} parts; ${T} ÷ ${p+q} = ${k} each; bigger share ${Math.max(p,q)} × ${k} = <b>${Math.max(p,q)*k}</b>.`, long:true, near:[Math.min(p,q)*k, k, T-k]}; },
-  mul21(){ const a=R(12,99), b=R(3,9), t=a-a%10, o=a%10;
-    return {q:`${a} × ${b}`, a:a*b, t:"Multiplication", tip:`Split it: ${t} × ${b} = ${t*b}, ${o} × ${b} = ${o*b}, total <b>${a*b}</b>.`, near:[a*b+10, a*b-10, t*b]}; },
-  sq5(){ const t=R(1,9), n=10*t+5; return {q:`${n}<sup>2</sup>`, a:n*n, t:"Squares ending in 5", tip:`${t} × ${t+1} = ${t*(t+1)}, then write 25: <b>${fmt(n*n)}</b>.`, near:[t*t*100+25, n*n+100, n*n-100]}; },
-  x11(){ const a=R(12,99), d1=Math.floor(a/10), d2=a%10, s=d1+d2;
-    return {q:`${a} × 11`, a:a*11, t:"× 11 trick", tip: s<10 ? `Put ${d1} + ${d2} = ${s} in the middle: <b>${d1}${s}${d2}</b>.` : `${d1} + ${d2} = ${s}, so carry 1: <b>${fmt(a*11)}</b>.`, near:[d1*100+s*10+d2, a*11+100, a*11-11]}; },
-  cubes(){ const n=R(2,12); return {q:`${n}<sup>3</sup>`, a:n**3, t:"Cubes", tip:`${n} × ${n} = ${n*n}, × ${n} = <b>${fmt(n**3)}</b>.`, near:[n*3, n*n, n**3+n*n]}; },
-  powers(){ const [b,e]=pick([[2,R(5,10)],[3,R(3,6)],[4,R(2,5)],[5,R(2,4)]]);
-    return {q:`${b}<sup>${e}</sup>`, a:b**e, t:"Powers", tip:`${b}<sup>${e-1}</sup> = ${fmt(b**(e-1))}, × ${b} = <b>${fmt(b**e)}</b>.`, near:[b*e, b**(e-1), b**(e+1)]}; },
-  expLaw(){ const b=pick(["2","3","a","x"]), m=R(2,7), n=R(2,6), v=R(0,2);
-    if (v===0) return {q:`${b}<sup>${m}</sup> × ${b}<sup>${n}</sup> = ${b}<sup>?</sup>`, a:m+n, t:"Laws of indices", tip:`Same base, multiply → add the powers: ${m} + ${n} = <b>${m+n}</b>.`, near:[m*n, Math.abs(m-n)]};
-    if (v===1){ const M=m+n; return {q:`${b}<sup>${M}</sup> ÷ ${b}<sup>${n}</sup> = ${b}<sup>?</sup>`, a:m, t:"Laws of indices", tip:`Same base, divide → subtract the powers: ${M} ${MINUS} ${n} = <b>${m}</b>.`, near:[M+n, M*n%20+1]}; }
-    return {q:`(${b}<sup>${m}</sup>)<sup>${n}</sup> = ${b}<sup>?</sup>`, a:m*n, t:"Laws of indices", tip:`Power of a power → multiply: ${m} × ${n} = <b>${m*n}</b>.`, near:[m+n, m*n+1]}; },
-  logs(){ const [b,e] = pick([[2,R(2,10)],[3,R(2,5)],[10,R(1,6)],[5,R(2,4)]]);
-    return {q:`log<sub>${b}</sub> ${fmt(b**e)}`, a:e, t:"Logarithms", tip:`log<sub>${b}</sub> asks “${b} to what power?” ${b}<sup>${e}</sup> = ${fmt(b**e)}, so <b>${e}</b>.`, near:[e+1, e-1, Math.round(b**e/b)]}; },
-  linear(){ const a=R(2,9); let x=R(-6,12); if(!x) x=4; let b=R(-20,20); if(!b) b=7; const c=a*x+b;
-    return {q:`${a}x ${b<0?MINUS:"+"} ${Math.abs(b)} = ${fmt(c)}`, a:x, t:"Linear equations", tip:`Move ${fmt(b)} across: ${a}x = ${fmt(c-b)}, so x = ${fmt(c-b)} ÷ ${a} = <b>${fmt(x)}</b>.`, neg:true, near:[-x, x+1, x-1], long:true}; },
-  quadRoot(){ let r1=R(-9,9), r2=R(-9,9); if (!r1) r1=3; if (!r2 || r2===r1) r2 = r1>0 ? -R(1,9) : R(1,9);
-    const B=-(r1+r2), C=r1*r2, big=Math.max(r1,r2), small=Math.min(r1,r2);
-    const term = B===0 ? "" : ` ${B<0?MINUS:"+"} ${Math.abs(B)===1?"":Math.abs(B)}x`;
-    const fac = r => r>0 ? `(x ${MINUS} ${r})` : `(x + ${-r})`;
-    return {q:`x²${term} ${C<0?MINUS:"+"} ${Math.abs(C)} = 0<br><small>bigger root?</small>`, a:big, t:"Quadratics", tip:`Find two numbers that multiply to ${fmt(C)} and add to ${fmt(-B)}: ${fac(r1)}${fac(r2)} = 0, so x = ${fmt(small)} or <b>${fmt(big)}</b>.`, neg:true, near:[small, -big, -small], long:true}; },
-  ncr(){ if (Math.random()<.35){ const n=R(3,7); return {q:`${n}!`, a:fact(n), t:"Factorials", tip:`${n}! = ${Array.from({length:n},(_,i)=>n-i).join(" × ")} = <b>${fact(n)}</b>.`, near:[fact(n-1), n*n, fact(n)+n]}; }
-    const n=R(4,10), r=R(2,Math.min(4,n-2)), v=nCr(n,r);
-    return {q:`<sup>${n}</sup>C<sub>${r}</sub>`, a:v, t:"Combinations", tip:`ⁿCᵣ = n! ÷ (r!(n${MINUS}r)!): ${Array.from({length:r},(_,i)=>n-i).join("×")} ÷ ${r}! = <b>${v}</b>.`, near:[n*r, v*2, nCr(n,r-1)===v?v+n:nCr(n,r-1)]}; },
-  pctchg(){ const base=R(2,25)*20, p=pick([5,10,20,25,50]), up=Math.random()<.5, d=base*p/100, a=up?base+d:base-d;
-    return {q:`${base} ${up?"increased":"decreased"} by ${p}%`, a, t:"Percent change", tip:`${p}% of ${base} = ${d}; ${base} ${up?"+":MINUS} ${d} = <b>${a}</b>.`, near:[up?base-d:base+d, d], long:true}; },
-  si(){ const P=pick([1000,1500,2000,2500,4000,5000]), r=pick([5,8,10,12]), t=R(2,5), a=P*r*t/100;
-    return {q:`Simple interest on ₹${fmt(P)} at ${r}% for ${t} years`, a, t:"Simple interest", tip:`SI = P × R × T ÷ 100 = ${fmt(P)} × ${r} × ${t} ÷ 100 = <b>₹${fmt(a)}</b>.`, near:[P*r/100, P+a, a*2], long:true}; },
-  avg(){ const n=[R(10,60),R(10,60),R(10,60),R(10,60)]; const s0=n.reduce((x,y)=>x+y,0); n[3]+=(4-s0%4)%4; const s=n.reduce((x,y)=>x+y,0);
-    return {q:`Average of ${n.join(", ")}`, a:s/4, t:"Averages", tip:`Add them: ${s}. Share by 4: ${s} ÷ 4 = <b>${s/4}</b>.`, near:[s/4+1, s/4-1, Math.round(s/3)], long:true}; }
-};
 
-const SS_POOLS = {
-  foundation: [["add10","sides"],["add10","sub20","missing"],["addsub50","missing","doubles"],["tables25","doubles","halves","units"],["tables210","addsub100","missing","halves","units"]],
-  core:       [["tables","div"],["squares","sqrt","angles"],["fracOf","bodmas","hcf"],["percent","integers","ratio"],["percent","integers","bodmas","lcm","hcf","ratio","angles"]],
-  advanced:   [["mul21","x11","sq5"],["cubes","powers","expLaw"],["linear","logs","ncr"],["quadRoot","pctchg","si"],["quadRoot","logs","expLaw","ncr","pctchg","avg"]]
-};
-
-function ssQuestion(mode, level, lastQ){
-  let item, tries = 0;
-  do { item = SS[pick(SS_POOLS[mode][level-1])](); } while (item.q === lastQ && ++tries < 8);
-  const ok = n => Number.isInteger(n) && n !== item.a && (item.neg || n >= 0);
-  const set = new Set();
-  const cands = shuffle([...(item.near||[]), item.a+1, item.a-1, item.a+2, item.a-2, item.a+10, item.a-10, item.a+5, item.a-5]);
-  for (const c of cands) if (set.size < 3 && ok(c)) set.add(c);
-  let spread = 3;
-  while (set.size < 3) { const c = item.a + R(-spread, spread); if (ok(c)) set.add(c); spread++; }
-  const opts = shuffle([item.a, ...set]);
-  return {...item, opts, correct: opts.indexOf(item.a)};
-}
-
-</script>
-<script>
-/* ===== Nexus core (no DOM) ===== */
-const NX_COLS = 6, NX_ROWS = 8;
-const NX_CFG = {
-  foundation: {vals:[1,2,3,4,5],         w:[3,3,3,2,2],         len:[2,3], prod:0,   rise:14, minRise:7,   start:3},
-  core:       {vals:[1,2,3,4,5,6,7,8,9], w:[2,3,3,3,3,3,3,2,2], len:[2,4], prod:0,   rise:11, minRise:5,   start:4},
-  advanced:   {vals:[1,2,3,4,5,6,7,8,9], w:[1,3,3,3,3,3,3,3,3], len:[2,3], prod:.45, rise:10, minRise:4.5, start:4}
-};
-let nxNid = 1;
-function nxRandVal(cfg){ const tot = cfg.w.reduce((a,b)=>a+b,0); let x = Math.random()*tot; for (let i=0;i<cfg.vals.length;i++){ x -= cfg.w[i]; if (x < 0) return cfg.vals[i]; } return cfg.vals[0]; }
-function nxTile(K, fresh){ return {id:nxNid++, v:nxRandVal(K.cfg), sp: !!fresh && Math.random() < .05, fresh:!!fresh}; }
-function nxNew(mode){
-  const cfg = NX_CFG[mode];
-  const K = {mode, cfg, cols:Array.from({length:NX_COLS}, ()=>[]), path:[], target:0, op:"+", tpath:[], prevTarget:0,
-    score:0, combo:1, lastClear:-1e9, clears:0, overs:0, factorFails:0, longest:0, bestCombo:1, level:1,
-    riseMax:cfg.rise, riseT:cfg.rise, hints:3, over:false, lock:false, eqs:[]};
-  for (let r=0; r<cfg.start; r++) for (let c=0; c<NX_COLS; c++) K.cols[c].push(nxTile(K, false));
-  nxNewTarget(K);
-  return K;
-}
-function nxPos(K, id){ for (let c=0;c<NX_COLS;c++){ const r = K.cols[c].findIndex(t=>t.id===id); if (r>=0) return {c, r, t:K.cols[c][r]}; } return null; }
-const nxAdj = (a, b) => !!a && !!b && Math.abs(a.c-b.c)<=1 && Math.abs(a.r-b.r)<=1 && !(a.c===b.c && a.r===b.r);
-function nxNeighbors(K, p){ const out=[]; for (let dc=-1;dc<=1;dc++) for (let dr=-1;dr<=1;dr++){ if (!dc && !dr) continue; const t = K.cols[p.c+dc]?.[p.r+dr]; if (t) out.push({c:p.c+dc, r:p.r+dr, t}); } return out; }
-function nxNewTarget(K){
-  const all = []; K.cols.forEach((col,c)=>col.forEach((t,r)=>all.push({c, r, t})));
-  if (all.length < 2) { K.target = 0; K.tpath = []; return false; }
-  let best = null;
-  for (let tries=0; tries<80; tries++){
-    const op = Math.random() < K.cfg.prod ? "×" : "+";
-    const L = R(K.cfg.len[0], K.cfg.len[1] + (K.level >= 4 && op === "+" ? 1 : 0));
-    let cur = pick(all); if (op === "×" && cur.t.v === 1) continue;
-    const walk = [cur], seen = new Set([cur.t.id]);
-    while (walk.length < L){
-      let nb = nxNeighbors(K, cur).filter(n => !seen.has(n.t.id));
-      if (op === "×"){ const nb2 = nb.filter(n => n.t.v > 1); if (nb2.length) nb = nb2; }
-      if (!nb.length) break;
-      cur = pick(nb); walk.push(cur); seen.add(cur.t.id);
-    }
-    if (walk.length < 2) continue;
-    const vals = walk.map(w=>w.t.v);
-    const val = op === "+" ? vals.reduce((a,b)=>a+b,0) : vals.reduce((a,b)=>a*b,1);
-    if (op === "×" && (val > 100 || val < 4)) continue;
-    const cand = {target:val, op, tpath:walk.map(w=>w.t.id)};
-    if (val !== K.prevTarget){ best = cand; break; }
-    if (!best) best = cand;
-  }
-  if (!best){ for (const a of all){ const n = nxNeighbors(K, a)[0]; if (n){ best = {target:a.t.v+n.t.v, op:"+", tpath:[a.t.id, n.t.id]}; break; } } }
-  if (!best){ K.target = 0; K.tpath = []; return false; }
-  Object.assign(K, best); K.prevTarget = best.target;
-  return true;
-}
-function nxVals(K, ids){ return ids.map(id => nxPos(K, id).t.v); }
-function nxVal(K, ids){ const v = nxVals(K, ids); return K.op === "+" ? v.reduce((a,b)=>a+b,0) : v.reduce((a,b)=>a*b,1); }
-function nxExpr(K, ids){ return nxVals(K, ids).join(K.op === "+" ? " + " : " × "); }
-function nxStatus(K){
-  const n = K.path.length; if (!n) return "empty";
-  const v = nxVal(K, K.path);
-  if (v === K.target) return n >= 2 ? "match" : "single";
-  if (K.op === "+") return v > K.target ? "over" : "partial";
-  return (v > K.target || K.target % v !== 0) ? "over" : "partial";
-}
-function nxFactors(n){ const f=[]; for (let i=1;i*i<=n;i++) if (n%i===0) f.push(i*i===n ? `${i}×${i}` : `${i}×${n/i}`); return f; }
-function nxCommit(K, now){
-  const ids = [...K.path];
-  const eq = `${nxExpr(K, ids)} = ${K.target}`;
-  const rm = new Set(ids); let rowBonus = 0;
-  ids.forEach(id => { const p = nxPos(K, id); if (p.t.sp) K.cols.forEach(col => { const t = col[p.r]; if (t && !rm.has(t.id)){ rm.add(t.id); rowBonus++; } }); });
-  K.combo = now - K.lastClear < 4000 ? Math.min(5, K.combo + 1) : 1;
-  K.lastClear = now; K.bestCombo = Math.max(K.bestCombo, K.combo);
-  const pts = K.target * ids.length * K.combo + rowBonus * 20;
-  K.score += pts; K.clears++; K.longest = Math.max(K.longest, ids.length);
-  K.eqs.push({eq, len:ids.length, op:K.op});
-  K.cols = K.cols.map(col => col.filter(t => !rm.has(t.id)));
-  K.path = []; K.riseT = Math.min(K.riseMax, K.riseT + 1.5);
-  let lvl = false;
-  if (K.clears % 6 === 0){ K.level++; K.riseMax = Math.max(K.cfg.minRise, K.riseMax - .8); lvl = true; }
-  const empty = K.cols.every(c => !c.length); if (empty) K.score += 500;
-  return {pts, removed:[...rm], eq, rowBonus, lvl, empty};
-}
-function nxRise(K){
-  K.cols.forEach(col => col.unshift(nxTile(K, true)));
-  K.riseT = K.riseMax;
-  if (K.cols.some(col => col.length > NX_ROWS)) K.over = true;
-  return K.over;
-}
-
-</script>
-<script>
-/* ===== Axis: place a number on the line ===== */
+/* ===== Formatting helpers ===== */
 const FR = (n, d) => `<span class="fr"><i>${n}</i><i>${d}</i></span>`;
 const dp = (v, p = 2) => fmt(Math.round(v * 10 ** p) / 10 ** p);
 const SUPS = {"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"};
 const sup = n => String(n).split("").map(c => SUPS[c] || c).join("");
-const AXI = (o) => Object.assign({mid:null, t:"Number sense"}, o);
 
-const AX = {
-  foundation: [
-    [ () => { const v = R(1,9); return AXI({label:`${v}`, v, lo:0, hi:10, mid:"label", t:"Counting", explain:`${v} is ${v} of the 10 equal steps from 0 to 10.`}); },
-      () => { let v = R(1,19); if (v===10) v = 13; return AXI({label:`${v}`, v, lo:0, hi:20, mid:"label", t:"Counting", explain:`10 is halfway. ${v} is ${Math.abs(v-10)} step${Math.abs(v-10)>1?"s":""} ${v<10?"before":"after"} it.`}); } ],
-    [ () => { const v = 10*R(1,9); return AXI({label:`${v}`, v, lo:0, hi:100, mid:"label", t:"Tens", explain:`${v} is ${v/10} tens. Each ten is one tenth of the line.`}); },
-      () => { let v = R(3,97); if (v===50) v = 63; return AXI({label:`${v}`, v, lo:0, hi:100, mid:"label", t:"Place value", explain:`${v} is ${Math.floor(v/10)} tens and ${v%10} ones, ${v<50?"less":"more"} than halfway (50).`}); } ],
-    [ () => { const n = R(0,9), v = n + .5; return AXI({label:`${n||""}½`, v, lo:0, hi:10, mid:"label", t:"Halves", explain:`${n||""}½ sits exactly halfway between ${n} and ${n+1}.`}); },
-      () => { const [n,d] = pick([[1,4],[3,4],[1,2],[1,4],[3,4]]); return AXI({label:FR(n,d), v:n/d, lo:0, hi:1, mid:"label", t:"Fractions", explain:`${n}/${d} means ${n} of ${d} equal parts: ${dp(n/d)}.`}); } ]
-  ],
-  core: [
-    [ () => { const d = pick([3,4,5,8,10]), n = R(1,d-1); return AXI({label:FR(n,d), v:n/d, lo:0, hi:1, mid:"tick", t:"Fractions", explain:`${n} ÷ ${d} = ${dp(n/d,3)}, so it sits ${Math.round(100*n/d)}% of the way from 0 to 1.`}); },
-      () => { let h = R(5,95); if (h===50) h = 35; const v = h/100; return AXI({label:`0.${String(h).padStart(2,"0")}`, v, lo:0, hi:1, mid:"tick", t:"Decimals", explain:`0.${String(h).padStart(2,"0")} = ${h} hundredths = ${h}%.`}); },
-      () => { const p = 5*R(1,19); return AXI({label:`${p}%`, v:p/100, lo:0, hi:1, mid:"tick", t:"Percentages", explain:`${p}% = ${p}/100 = ${dp(p/100)}.`}); } ],
-    [ () => { let v = R(-9,9); if (!v) v = -4; return AXI({label:fmt(v), v, lo:-10, hi:10, mid:"label", t:"Integers", explain:`${fmt(v)} is ${Math.abs(v)} steps ${v<0?"left":"right"} of 0.`}); },
-      () => { let v = 10*R(1,99); if (v===500) v = 730; return AXI({label:fmt(v), v, lo:0, hi:1000, mid:"tick", t:"Large numbers", explain:`${fmt(v)} ÷ 1,000 = ${dp(v/1000,2)}, so it is ${Math.round(v/10)}% of the way along.`}); } ],
-    [ () => { const w = R(1,4), d = pick([2,3,4,5]), n = R(1,d-1), v = w + n/d; return AXI({label:`${w}${FR(n,d)}`, v, lo:0, hi:5, mid:"tick", t:"Mixed numbers", explain:`${w} and ${n}/${d} = ${dp(v)}.`}); },
-      () => { const d = pick([2,3,4,5]); let n = R(d+1, 3*d-1); if (n%d===0) n++; const v = n/d; return AXI({label:FR(n,d), v, lo:0, hi:3, mid:"tick", t:"Improper fractions", explain:`${n}/${d} = ${Math.floor(v)} whole${Math.floor(v)>1?"s":""} and ${n%d}/${d} = ${dp(v)}.`}); },
-      () => { let v = R(-9,9)/10; if (!v) v = -.6; return AXI({label:fmt(v).replace(/^(−?)0\./,"$10."), v, lo:-1, hi:1, mid:"label", t:"Negative decimals", explain:`${fmt(v)} is ${Math.abs(v)*10} tenths ${v<0?"left":"right"} of 0.`}); } ]
-  ],
-  advanced: [
-    [ () => { let n; do { n = R(2,99); } while (Number.isInteger(Math.sqrt(n))); const a = Math.floor(Math.sqrt(n)); return AXI({label:`√${n}`, v:Math.sqrt(n), lo:0, hi:10, t:"Square roots", explain:`${a}² = ${a*a} and ${a+1}² = ${(a+1)**2}, so √${n} is between ${a} and ${a+1}: ≈ ${dp(Math.sqrt(n))}.`}); },
-      () => { const [n,d] = pick([[1,7],[2,9],[5,12],[3,7],[4,9],[5,6],[7,12],[1,6],[2,7]]); return AXI({label:FR(n,d), v:n/d, lo:0, hi:1, t:"Fractions", explain:`${n} ÷ ${d} ≈ ${dp(n/d,3)}.`}); },
-      () => { const [l,v,hi,why] = pick([["π",Math.PI,5,"π ≈ 3.14"],["e",Math.E,5,"e ≈ 2.72"],["√2",Math.SQRT2,2,"√2 ≈ 1.41 (1.41² ≈ 2)"],["√3",Math.sqrt(3),2,"√3 ≈ 1.73 (1.73² ≈ 3)"],["φ",(1+Math.sqrt(5))/2,2,"φ, the golden ratio, ≈ 1.618"],["π/2",Math.PI/2,2,"π/2 ≈ 3.14 ÷ 2 ≈ 1.57"]]); return AXI({label:l, v, lo:0, hi, t:"Famous constants", explain:`${why}.`}); } ],
-    [ () => { const x = pick([2,3,5,20,30,50,200,300,500]), v = Math.log10(x), k = Math.floor(v); return AXI({label:`log ${x}`, v, lo:0, hi:3, t:"Logarithms", explain:`10${sup(k)} = ${10**k} and 10${sup(k+1)} = ${10**(k+1)}, so log ${x} is between ${k} and ${k+1}: ≈ ${dp(v)}.`}); },
-      () => { const k = R(5,9); return AXI({label:`2<sup>${k}</sup>`, v:2**k, lo:0, hi:1000, t:"Powers", explain:`2${sup(k)} = ${2**k}.`}); },
-      () => { const m = R(11,99)/10, v = m*1e5; return AXI({label:`${m} × 10<sup>5</sup>`, v, lo:0, hi:1e6, t:"Standard form", explain:`${m} × 10⁵ = ${fmt(v)}, which is ${Math.round(m*10)}% of 10 lakh.`}); } ],
-    [ () => { const [l,v,why] = pick([["sin 30°",.5,"sin 30° = ½"],["sin 45°",Math.SQRT1_2,"sin 45° = 1/√2 ≈ 0.707"],["sin 60°",Math.sqrt(3)/2,"sin 60° = √3/2 ≈ 0.866"],["cos 60°",.5,"cos 60° = ½"],["cos 30°",Math.sqrt(3)/2,"cos 30° = √3/2 ≈ 0.866"],["tan 30°",1/Math.sqrt(3),"tan 30° = 1/√3 ≈ 0.577"]]); return AXI({label:l, v, lo:0, hi:1, t:"Trigonometry", explain:`${why}.`}); },
-      () => { const d = pick([2,3,4,5]); let n = R(1,2*d-1); if (n%d===0) n++; const v = -n/d; return AXI({label:`${MINUS}${FR(n,d)}`, v, lo:-2, hi:2, mid:"label", t:"Negative fractions", explain:`${MINUS}${n}/${d} = ${fmt(v)}: ${dp(n/d)} to the left of 0.`}); },
-      () => { const [l,v] = pick([["2π/3",2*Math.PI/3],["3π/4",3*Math.PI/4],["π/3",Math.PI/3],["5π/6",5*Math.PI/6],["π/4",Math.PI/4]]); return AXI({label:l, v, lo:0, hi:4, t:"Radians", explain:`π ≈ 3.14, so ${l} ≈ ${dp(v)}.`}); },
-      () => { const x = pick([10,20,50,100,6,12]), v = Math.log2(x), k = Math.floor(v); return AXI({label:`log<sub>2</sub> ${x}`, v, lo:0, hi:8, t:"Logarithms", explain:`2${sup(k)} = ${2**k} and 2${sup(k+1)} = ${2**(k+1)}, so log₂ ${x} ≈ ${dp(v)}.`}); } ]
-  ]
-};
-function axItem(mode, idx){ const tier = Math.min(2, Math.floor(idx / 4)); const it = pick(AX[mode][tier])(); it.loL = it.loL || fmt(it.lo); it.hiL = it.hiL || fmt(it.hi); return it; }
-function axScore(guess, it, timeFrac){
-  const err = Math.abs(guess - it.v) / (it.hi - it.lo);
-  const acc = err <= .01 ? 100 : err >= .15 ? 0 : Math.round(100 * (1 - (err - .01) / .14));
-  return {err, acc, bull: err <= .01 ? 25 : 0, speed: acc > 0 ? Math.round(30 * Math.max(0, Math.min(1, timeFrac))) : 0};
+/* ================= shared fraction helpers ================= */
+const fGcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b){ [a, b] = [b, a % b]; } return a || 1; };
+const fLcm = (a, b) => a / fGcd(a, b) * b;
+const fNorm = (n, d) => { if (d < 0){ n = -n; d = -d; } const g = fGcd(n, d); return [n/g, d/g]; };
+const fAdd = (a, b) => fNorm(a[0]*b[1] + b[0]*a[1], a[1]*b[1]);
+const fCmp = (a, b) => a[0]*b[1] - b[0]*a[1];
+const fVal = f => f[0] / f[1];
+const rI = (a, b) => a + Math.floor(Math.random()*(b - a + 1));
+function fracHTML(f, opt = {}){
+  let [n, d] = f; const neg = n < 0; n = Math.abs(n);
+  const sg = neg ? `<span class="fsg">${MINUS}</span>` : opt.plus ? `<span class="fsg">+</span>` : "";
+  if (d === 1) return `${sg}<span class="fwhole">${n}</span>`;
+  if (opt.mixed && n > d){ const w = Math.floor(n/d), r = n % d; return `${sg}<span class="fwhole">${w}</span>${r ? `<span class="fr"><i>${r}</i><i>${d}</i></span>` : ""}`; }
+  return `${sg}<span class="fr"><i>${n}</i><i>${d}</i></span>`;
 }
+const fText = f => (f[0] < 0 ? MINUS : "") + (f[1] === 1 ? Math.abs(f[0]) : `${Math.abs(f[0])}/${f[1]}`);
+const DEC_DENS = [1, 2, 4, 5, 10, 20, 25, 50, 100];
+const fDecimal = f => DEC_DENS.includes(f[1]) ? (f[0]/f[1]).toString().replace("-", MINUS) : null;
 
-/* ===== Prime Split: break numbers into primes ===== */
-const PS_KEYS = {foundation:[2,3,5], core:[2,3,5,7], advanced:[2,3,5,7,11,13]};
-const PS_BAG  = {foundation:[2,2,2,3,3,5], core:[2,2,2,3,3,5,7], advanced:[2,2,3,3,5,7,11,13]};
-const PS_CNT  = {foundation:[[2,2],[2,3],[3,3],[3,4],[4,4],[4,5]], core:[[2,3],[3,3],[3,4],[4,4],[4,5],[5,5]], advanced:[[3,4],[4,5],[4,5],[5,6],[5,6],[6,7]]};
-const PS_CAP  = {foundation:120, core:800, advanced:6000};
-const PS_PRIME_P = {foundation:0, core:.12, advanced:.16};
-function psNumber(mode, level, last){
-  const bag = PS_BAG[mode], cnt = PS_CNT[mode][Math.min(level,6)-1], cap = PS_CAP[mode];
-  for (let t = 0; t < 200; t++){
-    if (Math.random() < PS_PRIME_P[mode]){
-      let p;
-      if (Math.random() < .5){ do { p = mode === "core" ? R(11,97) : R(29,499); } while (!isPrime(p)); if (p !== last) return {n:p, factors:[p]}; }
-      else { do { p = R(17, mode === "core" ? 47 : 97); } while (!isPrime(p)); const k = pick(bag); const n = k*p; if (n <= cap && n !== last) return {n, factors:[k,p].sort((a,b)=>a-b)}; }
-      continue;
-    }
-    const c = R(cnt[0], cnt[1]), f = Array.from({length:c}, () => pick(bag)).sort((a,b)=>a-b), n = f.reduce((a,b)=>a*b,1);
-    if (n <= cap && n >= 4 && n !== last) return {n, factors:f};
-  }
-  return {n:12, factors:[2,2,3]};
-}
-function psIndexForm(fs){ const m = {}; fs.forEach(f => m[f] = (m[f]||0)+1); return Object.keys(m).map(Number).sort((a,b)=>a-b).map(p => m[p] > 1 ? `${p}<sup>${m[p]}</sup>` : `${p}`).join(" × "); }
-function psSmallest(n){ for (let i = 2; i*i <= n; i++) if (n % i === 0) return i; return n; }
-function psTip(n, d){
-  if (d === "P"){ const s = psSmallest(n); return `${n} isn't prime: ${n} = ${s} × ${n/s}.`; }
-  const q = Math.floor(n/d), r = n % d;
-  const rule = {2:`Even numbers end in 0, 2, 4, 6 or 8. ${n} ends in ${n%10}.`, 3:`Digit sum is ${String(n).split("").reduce((a,b)=>a+ +b,0)}, not a multiple of 3.`, 5:`Multiples of 5 end in 0 or 5.`, 11:`For 11, the alternating digit sum must be a multiple of 11.`}[d] || "";
-  return `${n} ÷ ${d} isn't whole: ${d} × ${q} = ${d*q}, remainder ${r}. ${rule}`;
-}
 
-/* ===== Pattern Lock: crack the sequence ===== */
-const PRIMES = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79];
-const seqOf = (n, f) => Array.from({length:n}, (_, i) => f(i));
-const PL = {
-  count(ds){ const d = pick(ds), s = R(0,20); return {terms:seqOf(6, i => s + d*i), rule:`Add ${d} each time.`, t:"Counting on"}; },
-  down(ds){ const d = pick(ds), s = R(6*d, 6*d+25); return {terms:seqOf(6, i => s - d*i), rule:`Take away ${d} each time.`, t:"Counting back"}; },
-  tables(){ const n = R(2,10), k = R(1,4); return {terms:seqOf(6, i => n*(k+i)), rule:`The ${n} times table: add ${n} each time.`, t:"Times tables"}; },
-  doubles(){ const s = pick([1,2,3,5]); return {terms:seqOf(6, i => s*2**i), rule:`Double each time.`, t:"Doubling"}; },
-  arith(){ let d = R(-9,12); if (Math.abs(d) < 2) d = 7; const s = R(-10,30); return {terms:seqOf(6, i => s + d*i), rule: d > 0 ? `Add ${d} each time.` : `Subtract ${-d} each time.`, t:"Arithmetic sequence"}; },
-  geo(){ const r = pick([2,3]), s = R(1,5); return {terms:seqOf(6, i => s*r**i), rule:`Multiply by ${r} each time.`, t:"Geometric sequence"}; },
-  squares(){ const k = R(1,6); return {terms:seqOf(6, i => (k+i)**2), rule:`Square numbers: ${k}², ${k+1}², ${k+2}², …`, t:"Square numbers"}; },
-  tri(){ const s = R(1,10), d0 = R(1,4); let v = s; return {terms:seqOf(6, i => { const out = v; v += d0 + i; return out; }), rule:`The gap grows by 1 each time: +${d0}, +${d0+1}, +${d0+2}, …`, t:"Growing differences"}; },
-  alt(){ const a = R(1,6); let b = R(2,9); if (b === a) b++; const s = R(0,15); return {terms:seqOf(6, i => s + a*Math.ceil(i/2) + b*Math.floor(i/2)), rule:`Add ${a}, then add ${b}, and repeat.`, t:"Alternating rule"}; },
-  cubes(){ const k = R(1,4); return {terms:seqOf(6, i => (k+i)**3), rule:`Cube numbers: ${k}³, ${k+1}³, ${k+2}³, …`, t:"Cube numbers"}; },
-  quad(){ const a = R(1,2), b = R(-3,4), c = R(-5,5); return {terms:seqOf(6, i => a*(i+1)**2 + b*(i+1) + c), rule:`The differences grow by ${2*a} each time (second difference ${2*a}).`, t:"Quadratic sequence"}; },
-  geoNeg(){ const r = pick([-2,-3]), s = R(1,4); return {terms:seqOf(6, i => s*r**i), rule:`Multiply by ${fmt(r)} each time, so the sign flips.`, t:"Negative ratio"}; },
-  fib(){ const a = R(1,5), b = R(a,8), t = [a,b]; while (t.length < 6) t.push(t[t.length-1] + t[t.length-2]); return {terms:t, rule:`Each term is the sum of the two before it.`, t:"Fibonacci-type"}; },
-  primes(){ const i = R(0,14); return {terms:PRIMES.slice(i, i+6), rule:`Prime numbers in order.`, t:"Prime numbers"}; },
-  factorial(){ const k = R(1,2); return {terms:seqOf(6, i => fact(k+i)), rule:`Multiply by ${k+1}, then ${k+2}, then ${k+3}, … (factorials).`, t:"Factorials"}; },
-  pow2(){ return Math.random() < .5 ? {terms:seqOf(6, i => 2**(i+1)-1), rule:`Double, then add 1 (each term is 2ⁿ − 1).`, t:"Powers of 2"} : {terms:seqOf(6, i => 2**(i+1)+1), rule:`Double, then subtract 1 (each term is 2ⁿ + 1).`, t:"Powers of 2"}; },
-  interleave(){ const a = R(1,9), da = R(2,5), b = R(10,30), db = pick([5,10,-3,-2]); return {terms:seqOf(7, i => i%2 ? b + db*((i-1)/2) : a + da*(i/2)), rule:`Two patterns take turns: ${a}, ${a+da}, ${a+2*da}, … (add ${da}) and ${b}, ${b+db}, … (${db>0?"add":"subtract"} ${Math.abs(db)}).`, t:"Interleaved sequences"}; },
-  cubePlus(){ const c = pick([-1,1,2,-2,3]), k = R(1,3); return {terms:seqOf(6, i => (k+i)**3 + c), rule:`Cube numbers ${c>0?"+":MINUS} ${Math.abs(c)}: ${k}³${c>0?"+":MINUS}${Math.abs(c)}, ${k+1}³${c>0?"+":MINUS}${Math.abs(c)}, …`, t:"Cubes with a twist"}; }
-};
-const PL_POOLS = {
-  foundation: [[()=>PL.count([1,2])], [()=>PL.count([2,5,10]), ()=>PL.down([1,2])], [()=>PL.tables(), ()=>PL.down([5,10])], [()=>PL.doubles(), ()=>PL.count([3,4])], [()=>PL.tables(), ()=>PL.doubles(), ()=>PL.down([2,5,10]), ()=>PL.count([3,4,5])]],
-  core:       [[()=>PL.arith()], [()=>PL.geo(), ()=>PL.squares()], [()=>PL.tri(), ()=>PL.alt()], [()=>PL.cubes(), ()=>PL.arith(), ()=>PL.geo()], [()=>PL.tri(), ()=>PL.alt(), ()=>PL.cubes(), ()=>PL.squares(), ()=>PL.arith()]],
-  advanced:   [[()=>PL.quad(), ()=>PL.geoNeg()], [()=>PL.fib(), ()=>PL.pow2()], [()=>PL.primes(), ()=>PL.factorial()], [()=>PL.interleave(), ()=>PL.cubePlus()], [()=>PL.quad(), ()=>PL.fib(), ()=>PL.primes(), ()=>PL.interleave(), ()=>PL.cubePlus(), ()=>PL.geoNeg()]]
-};
-function plSeq(mode, level, last){
-  let s, tries = 0;
-  do { s = pick(PL_POOLS[mode][Math.min(level,5)-1])(); } while (s.terms.join() === last && ++tries < 8);
-  return {shown: s.terms.slice(0,-1), ans: s.terms[s.terms.length-1], rule: s.rule, t: s.t, key: s.terms.join()};
-}
+/* ===== Game registry: every game file adds itself here ===== */
+const GAME_MODS = {};
 
 </script>
 <script>
@@ -1737,6 +1488,8 @@ const CH = [
   {id:"c8-fractions-disguise", cls:"g-fdis", std:8, book:"Ganita Prakash · Part 2", chn:1, name:"Fractions in Disguise", tag:"Percentages: the FDP trio, part & whole, increase/decrease, profit, discount, GST and compound interest", missions:9, key:"fd8c1_stars"},
   {id:"c10-trigonometry", cls:"g-trig", std:10, book:"NCERT", chn:8, name:"Introduction to Trigonometry", tag:"Sides, SOH-CAH-TOA, one ratio → all ratios, special angles 0°–90°, identities and step-by-step proofs", missions:9, key:"tr10c8_stars"}
 ];
+// each game's own page lives at /games/<slug>/ (built by build.py)
+const GAME_SLUGS = {"c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry"};
 const CH_CLASSES = [7, 8, 9, 10];
 const ALLG = () => GL.concat(CH, XG);
 const modeName = m => (MODES[m] || XMODES[m])?.name || "";
@@ -1971,7 +1724,8 @@ function renderAll(){
 }
 function route(){
   const h = location.hash.slice(1);
-  if (h.startsWith("play-") && GL.some(g => "play-" + g.id === h)){ Stage.open(h.slice(5)); return; }
+  if (CONFIG.SOLO){ if (h === "leaders" || h === "me"){ location.href = CONFIG.PORTAL_URL + "#" + h; return; } Stage.open(CONFIG.SOLO); return; }
+  if (h.startsWith("play-") && GL.concat(CH).some(g => "play-" + g.id === h)){ Stage.open(h.slice(5)); return; }
   view = ["leaders","me"].includes(h) ? h : "home";
   ["home","leaders","me"].forEach(k => $("#v-" + k).hidden = k !== view);
   document.querySelectorAll(".nav a").forEach(a => a.setAttribute("aria-current", a.dataset.v === view ? "page" : "false"));
@@ -1994,6 +1748,15 @@ function tickCountdown(){
 }
 setInterval(tickCountdown, 1000);
 
+/* ===== Sharing: every game has its own page at /games/<slug>/ ===== */
+function gameURL(g){ return location.origin + CONFIG.PORTAL_URL + (GAME_SLUGS[g.id] || g.id) + "/"; }
+async function shareGame(g){
+  const url = gameURL(g), text = `Play ${g.name} on Hinde Classes Learning Games 🎮`;
+  try { if (navigator.share){ await navigator.share({title:g.name, text, url}); return; } } catch (e){ if (e && e.name === "AbortError") return; }
+  try { await navigator.clipboard.writeText(url); toast("Link copied: " + url.replace(/^https?:\/\//, "")); }
+  catch { prompt("Copy this link", url); }
+}
+
 /* ===== Game stage ===== */
 const Stage = {
   run:0, g:null, mod:null, mode:null, keyFn:null, stops:[], clock:null, ended:false, quitAt:0,
@@ -2015,8 +1778,10 @@ const Stage = {
       <div class="modes">${Object.entries(m.modeNames || MODES).map(([k, md]) => `<button class="mode" type="button" data-m="${k}">
         <span class="mn">${md.name}<small>${md.ages}</small></span><span class="mx">${m.modes[k]}</span>
         <span class="mb">${p.best[g.id]?.mode === k ? "Your best<b>" + fmt(p.best[g.id].score) + "</b>" : k === "foundation" ? "×1.0 XP" : k === "core" ? "×1.15 XP" : "×1.3 XP"}</span></button>`).join("")}</div>
+      <div class="share-row"><button class="share-btn" type="button" id="sShare"><svg class="i" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>Share this game</button>${CONFIG.SOLO ? `<a class="share-btn ghost" href="${CONFIG.PORTAL_URL}">All games</a>` : ""}</div>
       <div class="card"><div class="howto">${m.howto.map(([a, b]) => `<div><b>${a}</b><span>${b}</span></div>`).join("")}</div></div></div>`;
     $("#sIntro").querySelectorAll(".mode").forEach(b => b.onclick = () => { audioInit(); this.start(b.dataset.m); });
+    $("#sShare").onclick = () => shareGame(g);
     this.view("sIntro");
   },
   start(mode){ const go = () => this._start(mode); if (!user) openLogin(go); else go(); },
@@ -2036,7 +1801,7 @@ const Stage = {
     this.stops.forEach(f => { try { f(); } catch {} }); this.stops = []; this.keyFn = null;
     document.querySelector(".count")?.remove();
   },
-  close(){ this.stopRun(); $("#stage").hidden = true; document.body.style.overflow = ""; if (location.hash.startsWith("#play-")) history.replaceState(null, "", "#home"); route(); },
+  close(){ if (CONFIG.SOLO){ this.stopRun(); location.href = CONFIG.PORTAL_URL; return; } this.stopRun(); $("#stage").hidden = true; document.body.style.overflow = ""; if (location.hash.startsWith("#play-")) history.replaceState(null, "", "#home"); route(); },
   playing(){ return !$("#sPlay").hidden && !this.ended; },
   api(run, mode){
     const self = this, alive = () => self.run === run && !self.ended;
@@ -2092,7 +1857,7 @@ const Stage = {
     if (isPB) setTimeout(() => show(4), 300);
     $("#rAgain").onclick = () => { audioInit(); this._start(mode); };
     $("#rLevels").onclick = () => this.intro();
-    $("#rBoard").onclick = () => { lb.tab = "week"; lb.shown = 10; this.close(); location.hash = "#leaders"; };
+    $("#rBoard").onclick = () => { if (CONFIG.SOLO){ location.href = CONFIG.PORTAL_URL + "#leaders"; return; } lb.tab = "week"; lb.shown = 10; this.close(); location.hash = "#leaders"; };
 
     const out = await recordRound(rd);
     if (this.run !== run) return;
@@ -2145,6 +1910,217 @@ addEventListener("keydown", e => { if (!$("#stage").hidden && Stage.keyFn && Sta
 
 </script>
 <script>
+/* ================= Chapter-game engine =================
+   Every textbook chapter becomes a mastery quest: 3 tracks (Learn / Apply / Master) × 3 missions,
+   3 lives per mission, instant "why" feedback after every answer, stars that unlock the next mission,
+   and a chapter mastery %. A chapter only supplies its missions and question generators.            */
+const CQ = (() => {
+  const P = a => a[Math.floor(Math.random()*a.length)];
+  const SH = a => { for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const R = (a, b) => a + Math.floor(Math.random()*(b - a + 1));
+  const choice = (opts, cls = "") => `<div class="tw-opts ${cls}">${opts.map((o, i) => `<button class="tw-b" type="button" data-i="${i}">${o}</button>`).join("")}</div>`;
+  // one-tap multiple choice; correct = index (or array of indexes)
+  function bindChoice(el, correct, done, why, topic, okWhy){
+    const C = Array.isArray(correct) ? correct : [correct];
+    el.querySelectorAll(".tw-opts .tw-b").forEach(b => b.onclick = () => {
+      if (el.dataset.lock) return; el.dataset.lock = 1; const ok = C.includes(+b.dataset.i);
+      b.classList.add(ok ? "ok" : "no"); if (!ok) el.querySelectorAll(".tw-opts .tw-b").forEach(x => { if (C.includes(+x.dataset.i)) x.classList.add("ok"); });
+      done(ok, ok ? (okWhy || why) : why, topic); });
+  }
+  // numeric keypad answer; tol = allowed error; pre/post = unit shown around the number (₹, %, km …)
+  const padHTML = (pre = "", post = "") => `<div class="tw-ans">${pre ? `<b>${pre}</b>` : ""}<span id="twIn">?</span>${post ? `<b>${post}</b>` : ""}</div>
+    <div class="tw-pad">${[1,2,3,4,5,6,7,8,9,".",0,"⌫"].map(k => `<button class="tw-b k" type="button" data-k="${k}">${k}</button>`).join("")}<button class="tw-b k go" type="button" data-k="✓" style="grid-column:1/-1">Check ✓</button></div>`;
+  function bindPad(el, ans, tol, done, why, topic, okWhy){
+    let s = ""; const inp = el.querySelector("#twIn");
+    const press = k => { if (el.dataset.lock) return;
+      if (k === "⌫") s = s.slice(0, -1);
+      else if (k === "✓"){ if (!s || s === ".") return; el.dataset.lock = 1; const v = parseFloat(s), ok = Math.abs(v - ans) <= tol + 1e-9;
+        inp.parentElement.classList.add(ok ? "ok" : "no"); done(ok, ok ? (okWhy || why) : why, topic); return; }
+      else if (k === "." ){ if (!s.includes(".") && s.length < 9) s += s ? "." : "0."; }
+      else if (s.length < 9) s = (s === "0" ? "" : s) + k;
+      inp.textContent = s || "?"; };
+    el.querySelectorAll(".tw-pad .k").forEach(b => b.onclick = () => press(b.dataset.k));
+    el._key = k => { if (/^[0-9.]$/.test(k)) press(k); else if (k === "Backspace") press("⌫"); else if (k === "Enter") press("✓"); else return false; return true; };
+  }
+  const n2 = x => { const r = Math.round(x*100)/100; return (Math.abs(r - Math.round(r)) < 1e-9 ? Math.round(r) : r).toLocaleString("en-IN", {maximumFractionDigits:2}); };
+  const rs = x => "₹" + n2(x);
+
+  function quest(cfg){
+    const ALL = cfg.missions, TOT = ALL.length*3;
+    return {
+      timed:false, chapter:cfg.chapter, modeNames:cfg.modeNames || {foundation:{name:"Learn", ages:"Missions 1–3"}, core:{name:"Apply", ages:"Missions 4–6"}, advanced:{name:"Master", ages:"Missions 7–9"}},
+      desc:cfg.desc, modes:cfg.modes, howto:cfg.howto || [["Missions","Each track has 3 missions. Earn stars to unlock the next one. Finish all 9 to master the chapter."],["Learn","Every answer shows why, so mistakes teach you something."],["Lives","Missions 1–8 give you 3 lives. The last mission is a timed mix of everything."],["Stars","★★★ = no mistakes. Replay any mission to improve your stars and score."]],
+      start(api){
+        const q = s => api.root.querySelector(s), KEY = cfg.key;
+        const stars = (() => { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { return {}; } })();
+        const save = () => { try { localStorage.setItem(KEY, JSON.stringify(stars)); } catch {} };
+        const list = ALL.filter(m => m.track === api.mode), total = ALL.reduce((a, m) => a + (stars[m.id] || 0), 0);
+        const unlocked = m => m.id === list[0].id || (stars[m.id - 1] || 0) > 0;
+        api.hud({a:["Score", 0], b:["Stars", `${total}/${TOT}`, ""], c:["Mission", "–", ""]});
+        api.root.innerHTML = `<div class="tw-map"><p class="tw-q">Choose a mission <span class="tw-mini">${total}/${TOT} stars · chapter mastery ${Math.round(total/TOT*100)}%</span></p>
+          ${list.map(m => { const st = stars[m.id] || 0, open = unlocked(m);
+            return `<button class="tw-mis${open ? "" : " locked"}" type="button" data-m="${m.id}" ${open ? "" : "disabled"}><span class="no">${m.id}</span><span class="tx"><b>${m.name}</b><small>${m.goal}</small></span><span class="st">${open ? "★".repeat(st) + "☆".repeat(3 - st) : "🔒"}</span></button>`; }).join("")}
+          <p class="tw-mini">${api.mode === "foundation" ? "Start here: Learn builds the basic ideas." : api.mode === "core" ? "Tip: finish the Learn track first." : "Tip: finish Learn and Apply first. The last mission mixes everything."}</p></div>`;
+        api.root.querySelectorAll(".tw-mis").forEach(b => b.onclick = () => play(ALL.find(m => m.id === +b.dataset.m)));
+
+        function play(M){
+          const S = {score:0, streak:0, best:0, right:0, wrong:0, lives:3, i:0, miss:{}, good:{}}, timed = !!M.timed;
+          const hud = () => api.hud({a:["Score", fmt(S.score)], b: timed ? ["Time", Math.ceil(api.clock.remaining ? api.clock.remaining() : M.timed), ""] : ["Lives", "♥".repeat(S.lives) + "<span style='opacity:.25'>" + "♥".repeat(3 - S.lives) + "</span>", ""], c:["Mission", `${M.id}`, timed ? `${S.right} right` : `${Math.min(S.i + 1, M.n)}/${M.n}`]});
+          api.root.innerHTML = `<div class="tw-head"><span class="tw-badge">Mission ${M.id}</span><b>${M.name}</b><small>${M.goal}</small><div class="tw-prog"><i id="twPg"></i></div></div><div class="tw-card" id="twC"></div><div class="tw-fb" id="twF" hidden></div>`;
+          const next = () => {
+            if (!api.alive()) return;
+            if (!timed && (S.i >= M.n || S.lives <= 0)) return end();
+            const it = cfg.gen[M.id](S.i), c = q("#twC"); delete c.dataset.lock; c.innerHTML = it.html; c._key = null; q("#twF").hidden = true; S.tq = Date.now();
+            c.classList.remove("in"); void c.offsetWidth; c.classList.add("in");
+            it.mount(c, onAnswer); api.root.scrollTop = 0; hud(); if (!timed) q("#twPg").style.width = (S.i/M.n*100) + "%";
+          };
+          const onAnswer = (ok, why, topic, bonus = 0) => {
+            const fb = q("#twF"), secs = (Date.now() - S.tq)/1000;
+            if (ok){ S.right++; S.streak++; S.best = Math.max(S.best, S.streak); S.good[topic] = 1;
+              const pts = 100 + 20*Math.min(5, S.streak - 1) + (secs < 8 ? 30 : secs < 15 ? 15 : 0) + bonus; S.score += pts;
+              api.float(q("#twC"), "+" + pts); api.chime(1 + .05*Math.min(4, S.streak)); api.buzz(8); if (timed) api.clock.add(2); }
+            else { S.wrong++; S.streak = 0; S.miss[topic] = (S.miss[topic] || 0) + 1; if (!timed) S.lives--; else api.clock.add(-3);
+              api.tone(150, .2, "sawtooth", .06); api.buzz([20, 30, 20]); }
+            S.i++; hud();
+            fb.className = "tw-fb " + (ok ? "good" : "teach"); fb.hidden = false;
+            fb.innerHTML = `<div><b>${ok ? P(["Correct!", "Exactly!", "Spot on!", "Brilliant!"]) : "Learn this"}</b> ${why}</div><button class="tw-b go" type="button" id="twN">${!timed && (S.i >= M.n || S.lives <= 0) ? "Finish" : "Next →"}</button>`;
+            q("#twN").onclick = next; q("#twN").focus({preventScroll:true});
+            requestAnimationFrame(() => fb.scrollIntoView({block:"end", behavior:"smooth"}));
+            setTimeout(() => { const n = q("#twN"); if (!n || !api.alive()) return; const r = n.getBoundingClientRect(), gr = api.root.getBoundingClientRect(); if (r.bottom > gr.bottom - 4 || r.top < gr.top) api.root.scrollTop += r.bottom - gr.bottom + 16; }, 450);
+            if (ok && timed) setTimeout(() => { if (api.alive() && !q("#twF").hidden && api.clock.remaining() > 0) next(); }, 900);
+          };
+          api.onKey(k => { const c = q("#twC"); if (c && c._key && c._key(k)) return true;
+            if ((k === "Enter" || k === " ") && q("#twF") && !q("#twF").hidden){ q("#twN").click(); return true; }
+            const n = +k; if (c && n >= 1 && n <= 6){ const sets = c.querySelectorAll(".tw-opts"); const set = sets.length ? sets[sets.length - 1].querySelectorAll(".tw-b") : []; if (set[n - 1]){ set[n - 1].click(); return true; } } });
+          if (timed){ next(); api.countdown().then(() => api.clock.start(M.timed, end)); } else next();
+          function end(){
+            if (S.ended) return; S.ended = true;
+            const done = timed || S.lives > 0, st = timed ? (S.right >= 18 ? 3 : S.right >= 12 ? 2 : S.right >= 6 ? 1 : 0) : !done ? 0 : S.wrong === 0 ? 3 : S.wrong <= 1 ? 2 : 1;
+            if (st > (stars[M.id] || 0)){ stars[M.id] = st; save(); }
+            const tot = S.right + S.wrong, now = ALL.reduce((a, m) => a + (stars[m.id] || 0), 0);
+            api.finish({score:S.score, correct:S.right, wrong:S.wrong,
+              stats:[["Mission", `${M.id} · ${"★".repeat(st)}${"☆".repeat(3 - st)}`], ["Accuracy", (tot ? Math.round(100*S.right/tot) : 0) + "%"], ["Best streak", S.best], ["Mastered", Math.round(now/TOT*100) + "%"]],
+              learn:{good:{title: done ? `Mission ${M.id} ${st ? "complete" : "played"}: you practised` : "Out of lives: you practised", items:Object.keys(S.good)}, goodCls:"plain",
+                     work:{title:"Practise next", items:Object.entries(S.miss).sort((a, b) => b[1] - a[1]).map(([k]) => k)}}});
+          }
+        }
+      }
+    };
+  }
+  return {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, rs, quest};
+})();
+
+</script>
+<script>
+/* ============================================================
+   Sigma Sprint
+   Mental-maths sprint: question bank + game
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
+/* ===== Sigma Sprint question bank ===== */
+const SS = {
+  add10(){ const a=R(1,8), b=R(1,10-a); return {q:`${a} + ${b}`, a:a+b, t:"Addition", tip:`Start at <b>${a}</b> and count on ${b}: ${a+b}.`}; },
+  sub20(){ const a=R(8,20), b=R(1,a-1); return {q:`${a} ${MINUS} ${b}`, a:a-b, t:"Subtraction", tip:`Start at <b>${a}</b> and count back ${b}: ${a-b}.`}; },
+  missing(){ const b=R(2,12), s=R(b+1,b+15); return {q:`<span class="qm">?</span> + ${b} = ${s}`, a:s-b, t:"Missing number", tip:`Undo the adding: <b>${s} ${MINUS} ${b} = ${s-b}</b>.`}; },
+  addsub50(){
+    if (Math.random()<.5){ const a=R(11,39), b=R(5,50-a), t=b-b%10, o=b%10;
+      return {q:`${a} + ${b}`, a:a+b, t:"Addition", tip: t ? `Tens first: ${a} + ${t} = ${a+t}, then + ${o} = <b>${a+b}</b>.` : `${a} + ${b} = <b>${a+b}</b>.`}; }
+    const a=R(20,50), b=R(5,a-5), t=b-b%10, o=b%10;
+    return {q:`${a} ${MINUS} ${b}`, a:a-b, t:"Subtraction", tip: t ? `Tens first: ${a} ${MINUS} ${t} = ${a-t}, then ${MINUS} ${o} = <b>${a-b}</b>.` : `${a} ${MINUS} ${b} = <b>${a-b}</b>.`};
+  },
+  addsub100(){
+    if (Math.random()<.5){ const a=R(25,80), b=R(11,99-a), t=b-b%10, o=b%10;
+      return {q:`${a} + ${b}`, a:a+b, t:"Addition", tip:`Tens first: ${a} + ${t} = ${a+t}, then + ${o} = <b>${a+b}</b>.`}; }
+    const a=R(40,99), b=R(11,a-10), t=b-b%10, o=b%10;
+    return {q:`${a} ${MINUS} ${b}`, a:a-b, t:"Subtraction", tip:`Tens first: ${a} ${MINUS} ${t} = ${a-t}, then ${MINUS} ${o} = <b>${a-b}</b>.`};
+  },
+  sides(){ const [n,s] = pick([["triangle",3],["square",4],["pentagon",5],["hexagon",6],["octagon",8],["decagon",10]]);
+    return {q:`Sides of a ${n}?`, a:s, t:"Shapes", tip:`A ${n} has <b>${s}</b> straight sides.`, long:true, near:[s+1, s-1, s+2]}; },
+  units(){ const N=R(2,5), [txt,k,why] = pick([["Minutes in "+N+" hours",60,"1 hour = 60 minutes"],["Days in "+N+" weeks",7,"1 week = 7 days"],["Hours in "+N+" days",24,"1 day = 24 hours"],["Months in "+N+" years",12,"1 year = 12 months"]]);
+    return {q:txt, a:N*k, t:"Measurement", tip:`${why}, so ${N} × ${k} = <b>${N*k}</b>.`, long:true, near:[N*k+k, N*k-k, N*10]}; },
+  doubles(){ const n=R(6,30); return {q:`Double ${n}`, a:2*n, t:"Doubles & halves", tip:`Double means add it to itself: ${n} + ${n} = <b>${2*n}</b>.`, long:true}; },
+  halves(){ const n=R(3,30)*2; return {q:`Half of ${n}`, a:n/2, t:"Doubles & halves", tip:`Half means share between 2: ${n} ÷ 2 = <b>${n/2}</b>.`, long:true}; },
+  _tab(lo,hi,top){ const a=R(lo,hi), b=R(2,top); return {q:`${a} × ${b}`, a:a*b, t:"Times tables", tip:`${a} × ${b-1} = ${a*(b-1)}, add one more ${a}: <b>${a*b}</b>.`, near:[a*(b+1), a*(b-1), a+b]}; },
+  tables25(){ return SS._tab(2,5,10); },
+  tables210(){ return SS._tab(2,10,10); },
+  tables(){ return SS._tab(3,12,12); },
+  div(){ const b=R(2,12), k=R(2,12); return {q:`${b*k} ÷ ${b}`, a:k, t:"Division", tip:`Think backwards: ${b} × <b>${k}</b> = ${b*k}.`}; },
+  squares(){ const n=R(4,20); return {q:`${n}<sup>2</sup>`, a:n*n, t:"Squares", tip:`Square means ${n} × ${n} = <b>${n*n}</b> (not ${n} × 2).`, near:[2*n, n*n+n, n*n-n]}; },
+  sqrt(){ const n=R(4,20); return {q:`√${n*n}`, a:n, t:"Square roots", tip:`Which number times itself makes ${n*n}? <b>${n}</b> × ${n}.`, near:[n*2, Math.round(n*n/2)]}; },
+  angles(){ const v=R(0,2);
+    if (v===0){ const a=R(20,160); return {q:`Supplement of ${a}°`, a:180-a, t:"Angles", tip:`Supplementary angles add to 180°: 180 ${MINUS} ${a} = <b>${180-a}°</b>.`, long:true, near:[90-a>0?90-a:200-a, 360-a]}; }
+    if (v===1){ const a=R(10,80); return {q:`Complement of ${a}°`, a:90-a, t:"Angles", tip:`Complementary angles add to 90°: 90 ${MINUS} ${a} = <b>${90-a}°</b>.`, long:true, near:[180-a]}; }
+    const a=R(30,90), b=R(20,150-a); return {q:`Triangle: ${a}°, ${b}°, ?`, a:180-a-b, t:"Angles", tip:`Angles in a triangle add to 180°: 180 ${MINUS} ${a} ${MINUS} ${b} = <b>${180-a-b}°</b>.`, long:true, near:[360-a-b, 90-(a+b)%90]}; },
+  fracOf(){ const d=pick([2,3,4,5,8,10]), nu=R(1,d-1), k=R(2,12), N=d*k;
+    return {q:`<sup>${nu}</sup>⁄<sub>${d}</sub> of ${N}`, a:nu*k, t:"Fractions", tip:`Divide by the bottom, multiply by the top: ${N} ÷ ${d} = ${k}, × ${nu} = <b>${nu*k}</b>.`, near:[k, N-nu*k]}; },
+  percent(){ const p=pick([10,20,25,50,75,5,15]), unit=100/gcd(p,100), base=unit*R(1,Math.max(2,Math.floor(200/unit))), a=p*base/100;
+    const tips={10:`10% means ÷ 10: ${base} ÷ 10 = <b>${a}</b>.`,20:`10% of ${base} is ${fmt(base/10)}; double it: <b>${a}</b>.`,25:`25% is ¼: ${base} ÷ 4 = <b>${a}</b>.`,50:`50% is ½: ${base} ÷ 2 = <b>${a}</b>.`,75:`75% is ¾: ${base} ÷ 4 = ${base/4}, × 3 = <b>${a}</b>.`,5:`10% is ${fmt(base/10)}; half of that is <b>${a}</b>.`,15:`10% (${fmt(base/10)}) + 5% (${fmt(base/20)}) = <b>${a}</b>.`};
+    return {q:`${p}% of ${base}`, a, t:"Percentages", tip:tips[p], near:[base-a, a*2, Math.round(a/2)]}; },
+  integers(){ const a=R(-15,15), b=-R(1,15);
+    if (Math.random()<.5) return {q:`${fmt(a)} + ${par(b)}`, a:a+b, t:"Integers", tip:`Adding ${fmt(b)} means moving ${-b} steps left from ${fmt(a)}: <b>${fmt(a+b)}</b>.`, neg:true, near:[-(a+b), a-b]};
+    return {q:`${fmt(a)} ${MINUS} ${par(b)}`, a:a-b, t:"Integers", tip:`Subtracting a negative is adding: ${fmt(a)} + ${-b} = <b>${fmt(a-b)}</b>.`, neg:true, near:[a+b, -(a-b)]}; },
+  bodmas(){ const a=R(2,20), b=R(2,9), c=R(2,9), v=R(0,2);
+    if (v===0) return {q:`${a} + ${b} × ${c}`, a:a+b*c, t:"BODMAS", tip:`Multiply before adding: ${b} × ${c} = ${b*c}, then + ${a} = <b>${a+b*c}</b>.`, near:[(a+b)*c]};
+    if (v===1) return {q:`(${a} + ${b}) × ${c}`, a:(a+b)*c, t:"BODMAS", tip:`Brackets first: ${a} + ${b} = ${a+b}, then × ${c} = <b>${(a+b)*c}</b>.`, near:[a+b*c]};
+    const x=R(Math.max(2,Math.ceil((c+1)/b)),12); return {q:`${x} × ${b} ${MINUS} ${c}`, a:x*b-c, t:"BODMAS", tip:`Multiply first: ${x} × ${b} = ${x*b}, then ${MINUS} ${c} = <b>${x*b-c}</b>.`, near:[x*(b-c)].filter(n=>n>0)}; },
+  lcm(){ let a=R(2,12), b=R(2,12); while(b===a) b=R(2,12); const l=a*b/gcd(a,b);
+    return {q:`LCM(${a}, ${b})`, a:l, t:"LCM", tip:`Count in ${Math.max(a,b)}s until ${Math.min(a,b)} divides it: <b>${l}</b>.`, near:[a*b===l?l+Math.max(a,b):a*b, gcd(a,b)]}; },
+  hcf(){ const k=R(2,12); let x=R(1,9), y=R(1,9); while (y===x) y=R(1,9); const a=k*x, b=k*y, h=gcd(a,b);
+    return {q:`HCF(${a}, ${b})`, a:h, t:"HCF", tip:`The biggest number that divides both ${a} and ${b} is <b>${h}</b> (${a} = ${h} × ${a/h}, ${b} = ${h} × ${b/h}).`, near:[a*b/h, Math.min(a,b), h*2]}; },
+  ratio(){ const p=R(1,5); let q=R(1,6); while(q===p) q=R(1,6); const k=R(2,12), T=(p+q)*k;
+    return {q:`Split ${T} in ${p} : ${q}. Bigger part?`, a:Math.max(p,q)*k, t:"Ratio", tip:`${p} + ${q} = ${p+q} parts; ${T} ÷ ${p+q} = ${k} each; bigger share ${Math.max(p,q)} × ${k} = <b>${Math.max(p,q)*k}</b>.`, long:true, near:[Math.min(p,q)*k, k, T-k]}; },
+  mul21(){ const a=R(12,99), b=R(3,9), t=a-a%10, o=a%10;
+    return {q:`${a} × ${b}`, a:a*b, t:"Multiplication", tip:`Split it: ${t} × ${b} = ${t*b}, ${o} × ${b} = ${o*b}, total <b>${a*b}</b>.`, near:[a*b+10, a*b-10, t*b]}; },
+  sq5(){ const t=R(1,9), n=10*t+5; return {q:`${n}<sup>2</sup>`, a:n*n, t:"Squares ending in 5", tip:`${t} × ${t+1} = ${t*(t+1)}, then write 25: <b>${fmt(n*n)}</b>.`, near:[t*t*100+25, n*n+100, n*n-100]}; },
+  x11(){ const a=R(12,99), d1=Math.floor(a/10), d2=a%10, s=d1+d2;
+    return {q:`${a} × 11`, a:a*11, t:"× 11 trick", tip: s<10 ? `Put ${d1} + ${d2} = ${s} in the middle: <b>${d1}${s}${d2}</b>.` : `${d1} + ${d2} = ${s}, so carry 1: <b>${fmt(a*11)}</b>.`, near:[d1*100+s*10+d2, a*11+100, a*11-11]}; },
+  cubes(){ const n=R(2,12); return {q:`${n}<sup>3</sup>`, a:n**3, t:"Cubes", tip:`${n} × ${n} = ${n*n}, × ${n} = <b>${fmt(n**3)}</b>.`, near:[n*3, n*n, n**3+n*n]}; },
+  powers(){ const [b,e]=pick([[2,R(5,10)],[3,R(3,6)],[4,R(2,5)],[5,R(2,4)]]);
+    return {q:`${b}<sup>${e}</sup>`, a:b**e, t:"Powers", tip:`${b}<sup>${e-1}</sup> = ${fmt(b**(e-1))}, × ${b} = <b>${fmt(b**e)}</b>.`, near:[b*e, b**(e-1), b**(e+1)]}; },
+  expLaw(){ const b=pick(["2","3","a","x"]), m=R(2,7), n=R(2,6), v=R(0,2);
+    if (v===0) return {q:`${b}<sup>${m}</sup> × ${b}<sup>${n}</sup> = ${b}<sup>?</sup>`, a:m+n, t:"Laws of indices", tip:`Same base, multiply → add the powers: ${m} + ${n} = <b>${m+n}</b>.`, near:[m*n, Math.abs(m-n)]};
+    if (v===1){ const M=m+n; return {q:`${b}<sup>${M}</sup> ÷ ${b}<sup>${n}</sup> = ${b}<sup>?</sup>`, a:m, t:"Laws of indices", tip:`Same base, divide → subtract the powers: ${M} ${MINUS} ${n} = <b>${m}</b>.`, near:[M+n, M*n%20+1]}; }
+    return {q:`(${b}<sup>${m}</sup>)<sup>${n}</sup> = ${b}<sup>?</sup>`, a:m*n, t:"Laws of indices", tip:`Power of a power → multiply: ${m} × ${n} = <b>${m*n}</b>.`, near:[m+n, m*n+1]}; },
+  logs(){ const [b,e] = pick([[2,R(2,10)],[3,R(2,5)],[10,R(1,6)],[5,R(2,4)]]);
+    return {q:`log<sub>${b}</sub> ${fmt(b**e)}`, a:e, t:"Logarithms", tip:`log<sub>${b}</sub> asks “${b} to what power?” ${b}<sup>${e}</sup> = ${fmt(b**e)}, so <b>${e}</b>.`, near:[e+1, e-1, Math.round(b**e/b)]}; },
+  linear(){ const a=R(2,9); let x=R(-6,12); if(!x) x=4; let b=R(-20,20); if(!b) b=7; const c=a*x+b;
+    return {q:`${a}x ${b<0?MINUS:"+"} ${Math.abs(b)} = ${fmt(c)}`, a:x, t:"Linear equations", tip:`Move ${fmt(b)} across: ${a}x = ${fmt(c-b)}, so x = ${fmt(c-b)} ÷ ${a} = <b>${fmt(x)}</b>.`, neg:true, near:[-x, x+1, x-1], long:true}; },
+  quadRoot(){ let r1=R(-9,9), r2=R(-9,9); if (!r1) r1=3; if (!r2 || r2===r1) r2 = r1>0 ? -R(1,9) : R(1,9);
+    const B=-(r1+r2), C=r1*r2, big=Math.max(r1,r2), small=Math.min(r1,r2);
+    const term = B===0 ? "" : ` ${B<0?MINUS:"+"} ${Math.abs(B)===1?"":Math.abs(B)}x`;
+    const fac = r => r>0 ? `(x ${MINUS} ${r})` : `(x + ${-r})`;
+    return {q:`x²${term} ${C<0?MINUS:"+"} ${Math.abs(C)} = 0<br><small>bigger root?</small>`, a:big, t:"Quadratics", tip:`Find two numbers that multiply to ${fmt(C)} and add to ${fmt(-B)}: ${fac(r1)}${fac(r2)} = 0, so x = ${fmt(small)} or <b>${fmt(big)}</b>.`, neg:true, near:[small, -big, -small], long:true}; },
+  ncr(){ if (Math.random()<.35){ const n=R(3,7); return {q:`${n}!`, a:fact(n), t:"Factorials", tip:`${n}! = ${Array.from({length:n},(_,i)=>n-i).join(" × ")} = <b>${fact(n)}</b>.`, near:[fact(n-1), n*n, fact(n)+n]}; }
+    const n=R(4,10), r=R(2,Math.min(4,n-2)), v=nCr(n,r);
+    return {q:`<sup>${n}</sup>C<sub>${r}</sub>`, a:v, t:"Combinations", tip:`ⁿCᵣ = n! ÷ (r!(n${MINUS}r)!): ${Array.from({length:r},(_,i)=>n-i).join("×")} ÷ ${r}! = <b>${v}</b>.`, near:[n*r, v*2, nCr(n,r-1)===v?v+n:nCr(n,r-1)]}; },
+  pctchg(){ const base=R(2,25)*20, p=pick([5,10,20,25,50]), up=Math.random()<.5, d=base*p/100, a=up?base+d:base-d;
+    return {q:`${base} ${up?"increased":"decreased"} by ${p}%`, a, t:"Percent change", tip:`${p}% of ${base} = ${d}; ${base} ${up?"+":MINUS} ${d} = <b>${a}</b>.`, near:[up?base-d:base+d, d], long:true}; },
+  si(){ const P=pick([1000,1500,2000,2500,4000,5000]), r=pick([5,8,10,12]), t=R(2,5), a=P*r*t/100;
+    return {q:`Simple interest on ₹${fmt(P)} at ${r}% for ${t} years`, a, t:"Simple interest", tip:`SI = P × R × T ÷ 100 = ${fmt(P)} × ${r} × ${t} ÷ 100 = <b>₹${fmt(a)}</b>.`, near:[P*r/100, P+a, a*2], long:true}; },
+  avg(){ const n=[R(10,60),R(10,60),R(10,60),R(10,60)]; const s0=n.reduce((x,y)=>x+y,0); n[3]+=(4-s0%4)%4; const s=n.reduce((x,y)=>x+y,0);
+    return {q:`Average of ${n.join(", ")}`, a:s/4, t:"Averages", tip:`Add them: ${s}. Share by 4: ${s} ÷ 4 = <b>${s/4}</b>.`, near:[s/4+1, s/4-1, Math.round(s/3)], long:true}; }
+};
+
+const SS_POOLS = {
+  foundation: [["add10","sides"],["add10","sub20","missing"],["addsub50","missing","doubles"],["tables25","doubles","halves","units"],["tables210","addsub100","missing","halves","units"]],
+  core:       [["tables","div"],["squares","sqrt","angles"],["fracOf","bodmas","hcf"],["percent","integers","ratio"],["percent","integers","bodmas","lcm","hcf","ratio","angles"]],
+  advanced:   [["mul21","x11","sq5"],["cubes","powers","expLaw"],["linear","logs","ncr"],["quadRoot","pctchg","si"],["quadRoot","logs","expLaw","ncr","pctchg","avg"]]
+};
+
+function ssQuestion(mode, level, lastQ){
+  let item, tries = 0;
+  do { item = SS[pick(SS_POOLS[mode][level-1])](); } while (item.q === lastQ && ++tries < 8);
+  const ok = n => Number.isInteger(n) && n !== item.a && (item.neg || n >= 0);
+  const set = new Set();
+  const cands = shuffle([...(item.near||[]), item.a+1, item.a-1, item.a+2, item.a-2, item.a+10, item.a-10, item.a+5, item.a-5]);
+  for (const c of cands) if (set.size < 3 && ok(c)) set.add(c);
+  let spread = 3;
+  while (set.size < 3) { const c = item.a + R(-spread, spread); if (ok(c)) set.add(c); spread++; }
+  const opts = shuffle([item.a, ...set]);
+  return {...item, opts, correct: opts.indexOf(item.a)};
+}
+
+
 /* ================= Sigma Sprint ================= */
 const GSigma = {
   timed:true,
@@ -2199,6 +2175,101 @@ const GSigma = {
     }
   }
 };
+
+GAME_MODS["sigma-sprint"] = GSigma;
+
+</script>
+<script>
+/* ============================================================
+   Nexus
+   Link tiles that add up to the target: grid core + game
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
+/* ===== Nexus core (no DOM) ===== */
+const NX_COLS = 6, NX_ROWS = 8;
+const NX_CFG = {
+  foundation: {vals:[1,2,3,4,5],         w:[3,3,3,2,2],         len:[2,3], prod:0,   rise:14, minRise:7,   start:3},
+  core:       {vals:[1,2,3,4,5,6,7,8,9], w:[2,3,3,3,3,3,3,2,2], len:[2,4], prod:0,   rise:11, minRise:5,   start:4},
+  advanced:   {vals:[1,2,3,4,5,6,7,8,9], w:[1,3,3,3,3,3,3,3,3], len:[2,3], prod:.45, rise:10, minRise:4.5, start:4}
+};
+let nxNid = 1;
+function nxRandVal(cfg){ const tot = cfg.w.reduce((a,b)=>a+b,0); let x = Math.random()*tot; for (let i=0;i<cfg.vals.length;i++){ x -= cfg.w[i]; if (x < 0) return cfg.vals[i]; } return cfg.vals[0]; }
+function nxTile(K, fresh){ return {id:nxNid++, v:nxRandVal(K.cfg), sp: !!fresh && Math.random() < .05, fresh:!!fresh}; }
+function nxNew(mode){
+  const cfg = NX_CFG[mode];
+  const K = {mode, cfg, cols:Array.from({length:NX_COLS}, ()=>[]), path:[], target:0, op:"+", tpath:[], prevTarget:0,
+    score:0, combo:1, lastClear:-1e9, clears:0, overs:0, factorFails:0, longest:0, bestCombo:1, level:1,
+    riseMax:cfg.rise, riseT:cfg.rise, hints:3, over:false, lock:false, eqs:[]};
+  for (let r=0; r<cfg.start; r++) for (let c=0; c<NX_COLS; c++) K.cols[c].push(nxTile(K, false));
+  nxNewTarget(K);
+  return K;
+}
+function nxPos(K, id){ for (let c=0;c<NX_COLS;c++){ const r = K.cols[c].findIndex(t=>t.id===id); if (r>=0) return {c, r, t:K.cols[c][r]}; } return null; }
+const nxAdj = (a, b) => !!a && !!b && Math.abs(a.c-b.c)<=1 && Math.abs(a.r-b.r)<=1 && !(a.c===b.c && a.r===b.r);
+function nxNeighbors(K, p){ const out=[]; for (let dc=-1;dc<=1;dc++) for (let dr=-1;dr<=1;dr++){ if (!dc && !dr) continue; const t = K.cols[p.c+dc]?.[p.r+dr]; if (t) out.push({c:p.c+dc, r:p.r+dr, t}); } return out; }
+function nxNewTarget(K){
+  const all = []; K.cols.forEach((col,c)=>col.forEach((t,r)=>all.push({c, r, t})));
+  if (all.length < 2) { K.target = 0; K.tpath = []; return false; }
+  let best = null;
+  for (let tries=0; tries<80; tries++){
+    const op = Math.random() < K.cfg.prod ? "×" : "+";
+    const L = R(K.cfg.len[0], K.cfg.len[1] + (K.level >= 4 && op === "+" ? 1 : 0));
+    let cur = pick(all); if (op === "×" && cur.t.v === 1) continue;
+    const walk = [cur], seen = new Set([cur.t.id]);
+    while (walk.length < L){
+      let nb = nxNeighbors(K, cur).filter(n => !seen.has(n.t.id));
+      if (op === "×"){ const nb2 = nb.filter(n => n.t.v > 1); if (nb2.length) nb = nb2; }
+      if (!nb.length) break;
+      cur = pick(nb); walk.push(cur); seen.add(cur.t.id);
+    }
+    if (walk.length < 2) continue;
+    const vals = walk.map(w=>w.t.v);
+    const val = op === "+" ? vals.reduce((a,b)=>a+b,0) : vals.reduce((a,b)=>a*b,1);
+    if (op === "×" && (val > 100 || val < 4)) continue;
+    const cand = {target:val, op, tpath:walk.map(w=>w.t.id)};
+    if (val !== K.prevTarget){ best = cand; break; }
+    if (!best) best = cand;
+  }
+  if (!best){ for (const a of all){ const n = nxNeighbors(K, a)[0]; if (n){ best = {target:a.t.v+n.t.v, op:"+", tpath:[a.t.id, n.t.id]}; break; } } }
+  if (!best){ K.target = 0; K.tpath = []; return false; }
+  Object.assign(K, best); K.prevTarget = best.target;
+  return true;
+}
+function nxVals(K, ids){ return ids.map(id => nxPos(K, id).t.v); }
+function nxVal(K, ids){ const v = nxVals(K, ids); return K.op === "+" ? v.reduce((a,b)=>a+b,0) : v.reduce((a,b)=>a*b,1); }
+function nxExpr(K, ids){ return nxVals(K, ids).join(K.op === "+" ? " + " : " × "); }
+function nxStatus(K){
+  const n = K.path.length; if (!n) return "empty";
+  const v = nxVal(K, K.path);
+  if (v === K.target) return n >= 2 ? "match" : "single";
+  if (K.op === "+") return v > K.target ? "over" : "partial";
+  return (v > K.target || K.target % v !== 0) ? "over" : "partial";
+}
+function nxFactors(n){ const f=[]; for (let i=1;i*i<=n;i++) if (n%i===0) f.push(i*i===n ? `${i}×${i}` : `${i}×${n/i}`); return f; }
+function nxCommit(K, now){
+  const ids = [...K.path];
+  const eq = `${nxExpr(K, ids)} = ${K.target}`;
+  const rm = new Set(ids); let rowBonus = 0;
+  ids.forEach(id => { const p = nxPos(K, id); if (p.t.sp) K.cols.forEach(col => { const t = col[p.r]; if (t && !rm.has(t.id)){ rm.add(t.id); rowBonus++; } }); });
+  K.combo = now - K.lastClear < 4000 ? Math.min(5, K.combo + 1) : 1;
+  K.lastClear = now; K.bestCombo = Math.max(K.bestCombo, K.combo);
+  const pts = K.target * ids.length * K.combo + rowBonus * 20;
+  K.score += pts; K.clears++; K.longest = Math.max(K.longest, ids.length);
+  K.eqs.push({eq, len:ids.length, op:K.op});
+  K.cols = K.cols.map(col => col.filter(t => !rm.has(t.id)));
+  K.path = []; K.riseT = Math.min(K.riseMax, K.riseT + 1.5);
+  let lvl = false;
+  if (K.clears % 6 === 0){ K.level++; K.riseMax = Math.max(K.cfg.minRise, K.riseMax - .8); lvl = true; }
+  const empty = K.cols.every(c => !c.length); if (empty) K.score += 500;
+  return {pts, removed:[...rm], eq, rowBonus, lvl, empty};
+}
+function nxRise(K){
+  K.cols.forEach(col => col.unshift(nxTile(K, true)));
+  K.riseT = K.riseMax;
+  if (K.cols.some(col => col.length > NX_ROWS)) K.over = true;
+  return K.over;
+}
+
 
 /* ================= Nexus ================= */
 const GNexus = {
@@ -2358,6 +2429,58 @@ const GNexus = {
   }
 };
 
+GAME_MODS["nexus"] = GNexus;
+
+</script>
+<script>
+/* ============================================================
+   Axis
+   Place numbers on the number line: question bank + game
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
+/* ===== Axis: place a number on the line ===== */
+const AXI = (o) => Object.assign({mid:null, t:"Number sense"}, o);
+
+const AX = {
+  foundation: [
+    [ () => { const v = R(1,9); return AXI({label:`${v}`, v, lo:0, hi:10, mid:"label", t:"Counting", explain:`${v} is ${v} of the 10 equal steps from 0 to 10.`}); },
+      () => { let v = R(1,19); if (v===10) v = 13; return AXI({label:`${v}`, v, lo:0, hi:20, mid:"label", t:"Counting", explain:`10 is halfway. ${v} is ${Math.abs(v-10)} step${Math.abs(v-10)>1?"s":""} ${v<10?"before":"after"} it.`}); } ],
+    [ () => { const v = 10*R(1,9); return AXI({label:`${v}`, v, lo:0, hi:100, mid:"label", t:"Tens", explain:`${v} is ${v/10} tens. Each ten is one tenth of the line.`}); },
+      () => { let v = R(3,97); if (v===50) v = 63; return AXI({label:`${v}`, v, lo:0, hi:100, mid:"label", t:"Place value", explain:`${v} is ${Math.floor(v/10)} tens and ${v%10} ones, ${v<50?"less":"more"} than halfway (50).`}); } ],
+    [ () => { const n = R(0,9), v = n + .5; return AXI({label:`${n||""}½`, v, lo:0, hi:10, mid:"label", t:"Halves", explain:`${n||""}½ sits exactly halfway between ${n} and ${n+1}.`}); },
+      () => { const [n,d] = pick([[1,4],[3,4],[1,2],[1,4],[3,4]]); return AXI({label:FR(n,d), v:n/d, lo:0, hi:1, mid:"label", t:"Fractions", explain:`${n}/${d} means ${n} of ${d} equal parts: ${dp(n/d)}.`}); } ]
+  ],
+  core: [
+    [ () => { const d = pick([3,4,5,8,10]), n = R(1,d-1); return AXI({label:FR(n,d), v:n/d, lo:0, hi:1, mid:"tick", t:"Fractions", explain:`${n} ÷ ${d} = ${dp(n/d,3)}, so it sits ${Math.round(100*n/d)}% of the way from 0 to 1.`}); },
+      () => { let h = R(5,95); if (h===50) h = 35; const v = h/100; return AXI({label:`0.${String(h).padStart(2,"0")}`, v, lo:0, hi:1, mid:"tick", t:"Decimals", explain:`0.${String(h).padStart(2,"0")} = ${h} hundredths = ${h}%.`}); },
+      () => { const p = 5*R(1,19); return AXI({label:`${p}%`, v:p/100, lo:0, hi:1, mid:"tick", t:"Percentages", explain:`${p}% = ${p}/100 = ${dp(p/100)}.`}); } ],
+    [ () => { let v = R(-9,9); if (!v) v = -4; return AXI({label:fmt(v), v, lo:-10, hi:10, mid:"label", t:"Integers", explain:`${fmt(v)} is ${Math.abs(v)} steps ${v<0?"left":"right"} of 0.`}); },
+      () => { let v = 10*R(1,99); if (v===500) v = 730; return AXI({label:fmt(v), v, lo:0, hi:1000, mid:"tick", t:"Large numbers", explain:`${fmt(v)} ÷ 1,000 = ${dp(v/1000,2)}, so it is ${Math.round(v/10)}% of the way along.`}); } ],
+    [ () => { const w = R(1,4), d = pick([2,3,4,5]), n = R(1,d-1), v = w + n/d; return AXI({label:`${w}${FR(n,d)}`, v, lo:0, hi:5, mid:"tick", t:"Mixed numbers", explain:`${w} and ${n}/${d} = ${dp(v)}.`}); },
+      () => { const d = pick([2,3,4,5]); let n = R(d+1, 3*d-1); if (n%d===0) n++; const v = n/d; return AXI({label:FR(n,d), v, lo:0, hi:3, mid:"tick", t:"Improper fractions", explain:`${n}/${d} = ${Math.floor(v)} whole${Math.floor(v)>1?"s":""} and ${n%d}/${d} = ${dp(v)}.`}); },
+      () => { let v = R(-9,9)/10; if (!v) v = -.6; return AXI({label:fmt(v).replace(/^(−?)0\./,"$10."), v, lo:-1, hi:1, mid:"label", t:"Negative decimals", explain:`${fmt(v)} is ${Math.abs(v)*10} tenths ${v<0?"left":"right"} of 0.`}); } ]
+  ],
+  advanced: [
+    [ () => { let n; do { n = R(2,99); } while (Number.isInteger(Math.sqrt(n))); const a = Math.floor(Math.sqrt(n)); return AXI({label:`√${n}`, v:Math.sqrt(n), lo:0, hi:10, t:"Square roots", explain:`${a}² = ${a*a} and ${a+1}² = ${(a+1)**2}, so √${n} is between ${a} and ${a+1}: ≈ ${dp(Math.sqrt(n))}.`}); },
+      () => { const [n,d] = pick([[1,7],[2,9],[5,12],[3,7],[4,9],[5,6],[7,12],[1,6],[2,7]]); return AXI({label:FR(n,d), v:n/d, lo:0, hi:1, t:"Fractions", explain:`${n} ÷ ${d} ≈ ${dp(n/d,3)}.`}); },
+      () => { const [l,v,hi,why] = pick([["π",Math.PI,5,"π ≈ 3.14"],["e",Math.E,5,"e ≈ 2.72"],["√2",Math.SQRT2,2,"√2 ≈ 1.41 (1.41² ≈ 2)"],["√3",Math.sqrt(3),2,"√3 ≈ 1.73 (1.73² ≈ 3)"],["φ",(1+Math.sqrt(5))/2,2,"φ, the golden ratio, ≈ 1.618"],["π/2",Math.PI/2,2,"π/2 ≈ 3.14 ÷ 2 ≈ 1.57"]]); return AXI({label:l, v, lo:0, hi, t:"Famous constants", explain:`${why}.`}); } ],
+    [ () => { const x = pick([2,3,5,20,30,50,200,300,500]), v = Math.log10(x), k = Math.floor(v); return AXI({label:`log ${x}`, v, lo:0, hi:3, t:"Logarithms", explain:`10${sup(k)} = ${10**k} and 10${sup(k+1)} = ${10**(k+1)}, so log ${x} is between ${k} and ${k+1}: ≈ ${dp(v)}.`}); },
+      () => { const k = R(5,9); return AXI({label:`2<sup>${k}</sup>`, v:2**k, lo:0, hi:1000, t:"Powers", explain:`2${sup(k)} = ${2**k}.`}); },
+      () => { const m = R(11,99)/10, v = m*1e5; return AXI({label:`${m} × 10<sup>5</sup>`, v, lo:0, hi:1e6, t:"Standard form", explain:`${m} × 10⁵ = ${fmt(v)}, which is ${Math.round(m*10)}% of 10 lakh.`}); } ],
+    [ () => { const [l,v,why] = pick([["sin 30°",.5,"sin 30° = ½"],["sin 45°",Math.SQRT1_2,"sin 45° = 1/√2 ≈ 0.707"],["sin 60°",Math.sqrt(3)/2,"sin 60° = √3/2 ≈ 0.866"],["cos 60°",.5,"cos 60° = ½"],["cos 30°",Math.sqrt(3)/2,"cos 30° = √3/2 ≈ 0.866"],["tan 30°",1/Math.sqrt(3),"tan 30° = 1/√3 ≈ 0.577"]]); return AXI({label:l, v, lo:0, hi:1, t:"Trigonometry", explain:`${why}.`}); },
+      () => { const d = pick([2,3,4,5]); let n = R(1,2*d-1); if (n%d===0) n++; const v = -n/d; return AXI({label:`${MINUS}${FR(n,d)}`, v, lo:-2, hi:2, mid:"label", t:"Negative fractions", explain:`${MINUS}${n}/${d} = ${fmt(v)}: ${dp(n/d)} to the left of 0.`}); },
+      () => { const [l,v] = pick([["2π/3",2*Math.PI/3],["3π/4",3*Math.PI/4],["π/3",Math.PI/3],["5π/6",5*Math.PI/6],["π/4",Math.PI/4]]); return AXI({label:l, v, lo:0, hi:4, t:"Radians", explain:`π ≈ 3.14, so ${l} ≈ ${dp(v)}.`}); },
+      () => { const x = pick([10,20,50,100,6,12]), v = Math.log2(x), k = Math.floor(v); return AXI({label:`log<sub>2</sub> ${x}`, v, lo:0, hi:8, t:"Logarithms", explain:`2${sup(k)} = ${2**k} and 2${sup(k+1)} = ${2**(k+1)}, so log₂ ${x} ≈ ${dp(v)}.`}); } ]
+  ]
+};
+function axItem(mode, idx){ const tier = Math.min(2, Math.floor(idx / 4)); const it = pick(AX[mode][tier])(); it.loL = it.loL || fmt(it.lo); it.hiL = it.hiL || fmt(it.hi); return it; }
+function axScore(guess, it, timeFrac){
+  const err = Math.abs(guess - it.v) / (it.hi - it.lo);
+  const acc = err <= .01 ? 100 : err >= .15 ? 0 : Math.round(100 * (1 - (err - .01) / .14));
+  return {err, acc, bull: err <= .01 ? 25 : 0, speed: acc > 0 ? Math.round(30 * Math.max(0, Math.min(1, timeFrac))) : 0};
+}
+
+
 /* ================= Axis ================= */
 const GAxis = {
   timed:false,
@@ -2461,6 +2584,45 @@ const GAxis = {
   }
 };
 
+GAME_MODS["axis"] = GAxis;
+
+</script>
+<script>
+/* ============================================================
+   Prime Split
+   Break numbers into primes: question bank + game
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
+/* ===== Prime Split: break numbers into primes ===== */
+const PS_KEYS = {foundation:[2,3,5], core:[2,3,5,7], advanced:[2,3,5,7,11,13]};
+const PS_BAG  = {foundation:[2,2,2,3,3,5], core:[2,2,2,3,3,5,7], advanced:[2,2,3,3,5,7,11,13]};
+const PS_CNT  = {foundation:[[2,2],[2,3],[3,3],[3,4],[4,4],[4,5]], core:[[2,3],[3,3],[3,4],[4,4],[4,5],[5,5]], advanced:[[3,4],[4,5],[4,5],[5,6],[5,6],[6,7]]};
+const PS_CAP  = {foundation:120, core:800, advanced:6000};
+const PS_PRIME_P = {foundation:0, core:.12, advanced:.16};
+function psNumber(mode, level, last){
+  const bag = PS_BAG[mode], cnt = PS_CNT[mode][Math.min(level,6)-1], cap = PS_CAP[mode];
+  for (let t = 0; t < 200; t++){
+    if (Math.random() < PS_PRIME_P[mode]){
+      let p;
+      if (Math.random() < .5){ do { p = mode === "core" ? R(11,97) : R(29,499); } while (!isPrime(p)); if (p !== last) return {n:p, factors:[p]}; }
+      else { do { p = R(17, mode === "core" ? 47 : 97); } while (!isPrime(p)); const k = pick(bag); const n = k*p; if (n <= cap && n !== last) return {n, factors:[k,p].sort((a,b)=>a-b)}; }
+      continue;
+    }
+    const c = R(cnt[0], cnt[1]), f = Array.from({length:c}, () => pick(bag)).sort((a,b)=>a-b), n = f.reduce((a,b)=>a*b,1);
+    if (n <= cap && n >= 4 && n !== last) return {n, factors:f};
+  }
+  return {n:12, factors:[2,2,3]};
+}
+function psIndexForm(fs){ const m = {}; fs.forEach(f => m[f] = (m[f]||0)+1); return Object.keys(m).map(Number).sort((a,b)=>a-b).map(p => m[p] > 1 ? `${p}<sup>${m[p]}</sup>` : `${p}`).join(" × "); }
+function psSmallest(n){ for (let i = 2; i*i <= n; i++) if (n % i === 0) return i; return n; }
+function psTip(n, d){
+  if (d === "P"){ const s = psSmallest(n); return `${n} isn't prime: ${n} = ${s} × ${n/s}.`; }
+  const q = Math.floor(n/d), r = n % d;
+  const rule = {2:`Even numbers end in 0, 2, 4, 6 or 8. ${n} ends in ${n%10}.`, 3:`Digit sum is ${String(n).split("").reduce((a,b)=>a+ +b,0)}, not a multiple of 3.`, 5:`Multiples of 5 end in 0 or 5.`, 11:`For 11, the alternating digit sum must be a multiple of 11.`}[d] || "";
+  return `${n} ÷ ${d} isn't whole: ${d} × ${q} = ${d*q}, remainder ${r}. ${rule}`;
+}
+
+
 /* ================= Prime Split ================= */
 const GPrime = {
   timed:true,
@@ -2532,6 +2694,50 @@ const GPrime = {
   }
 };
 
+GAME_MODS["prime-split"] = GPrime;
+
+</script>
+<script>
+/* ============================================================
+   Pattern Lock
+   Crack the sequence: question bank + game
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
+/* ===== Pattern Lock: crack the sequence ===== */
+const PRIMES = [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79];
+const seqOf = (n, f) => Array.from({length:n}, (_, i) => f(i));
+const PL = {
+  count(ds){ const d = pick(ds), s = R(0,20); return {terms:seqOf(6, i => s + d*i), rule:`Add ${d} each time.`, t:"Counting on"}; },
+  down(ds){ const d = pick(ds), s = R(6*d, 6*d+25); return {terms:seqOf(6, i => s - d*i), rule:`Take away ${d} each time.`, t:"Counting back"}; },
+  tables(){ const n = R(2,10), k = R(1,4); return {terms:seqOf(6, i => n*(k+i)), rule:`The ${n} times table: add ${n} each time.`, t:"Times tables"}; },
+  doubles(){ const s = pick([1,2,3,5]); return {terms:seqOf(6, i => s*2**i), rule:`Double each time.`, t:"Doubling"}; },
+  arith(){ let d = R(-9,12); if (Math.abs(d) < 2) d = 7; const s = R(-10,30); return {terms:seqOf(6, i => s + d*i), rule: d > 0 ? `Add ${d} each time.` : `Subtract ${-d} each time.`, t:"Arithmetic sequence"}; },
+  geo(){ const r = pick([2,3]), s = R(1,5); return {terms:seqOf(6, i => s*r**i), rule:`Multiply by ${r} each time.`, t:"Geometric sequence"}; },
+  squares(){ const k = R(1,6); return {terms:seqOf(6, i => (k+i)**2), rule:`Square numbers: ${k}², ${k+1}², ${k+2}², …`, t:"Square numbers"}; },
+  tri(){ const s = R(1,10), d0 = R(1,4); let v = s; return {terms:seqOf(6, i => { const out = v; v += d0 + i; return out; }), rule:`The gap grows by 1 each time: +${d0}, +${d0+1}, +${d0+2}, …`, t:"Growing differences"}; },
+  alt(){ const a = R(1,6); let b = R(2,9); if (b === a) b++; const s = R(0,15); return {terms:seqOf(6, i => s + a*Math.ceil(i/2) + b*Math.floor(i/2)), rule:`Add ${a}, then add ${b}, and repeat.`, t:"Alternating rule"}; },
+  cubes(){ const k = R(1,4); return {terms:seqOf(6, i => (k+i)**3), rule:`Cube numbers: ${k}³, ${k+1}³, ${k+2}³, …`, t:"Cube numbers"}; },
+  quad(){ const a = R(1,2), b = R(-3,4), c = R(-5,5); return {terms:seqOf(6, i => a*(i+1)**2 + b*(i+1) + c), rule:`The differences grow by ${2*a} each time (second difference ${2*a}).`, t:"Quadratic sequence"}; },
+  geoNeg(){ const r = pick([-2,-3]), s = R(1,4); return {terms:seqOf(6, i => s*r**i), rule:`Multiply by ${fmt(r)} each time, so the sign flips.`, t:"Negative ratio"}; },
+  fib(){ const a = R(1,5), b = R(a,8), t = [a,b]; while (t.length < 6) t.push(t[t.length-1] + t[t.length-2]); return {terms:t, rule:`Each term is the sum of the two before it.`, t:"Fibonacci-type"}; },
+  primes(){ const i = R(0,14); return {terms:PRIMES.slice(i, i+6), rule:`Prime numbers in order.`, t:"Prime numbers"}; },
+  factorial(){ const k = R(1,2); return {terms:seqOf(6, i => fact(k+i)), rule:`Multiply by ${k+1}, then ${k+2}, then ${k+3}, … (factorials).`, t:"Factorials"}; },
+  pow2(){ return Math.random() < .5 ? {terms:seqOf(6, i => 2**(i+1)-1), rule:`Double, then add 1 (each term is 2ⁿ − 1).`, t:"Powers of 2"} : {terms:seqOf(6, i => 2**(i+1)+1), rule:`Double, then subtract 1 (each term is 2ⁿ + 1).`, t:"Powers of 2"}; },
+  interleave(){ const a = R(1,9), da = R(2,5), b = R(10,30), db = pick([5,10,-3,-2]); return {terms:seqOf(7, i => i%2 ? b + db*((i-1)/2) : a + da*(i/2)), rule:`Two patterns take turns: ${a}, ${a+da}, ${a+2*da}, … (add ${da}) and ${b}, ${b+db}, … (${db>0?"add":"subtract"} ${Math.abs(db)}).`, t:"Interleaved sequences"}; },
+  cubePlus(){ const c = pick([-1,1,2,-2,3]), k = R(1,3); return {terms:seqOf(6, i => (k+i)**3 + c), rule:`Cube numbers ${c>0?"+":MINUS} ${Math.abs(c)}: ${k}³${c>0?"+":MINUS}${Math.abs(c)}, ${k+1}³${c>0?"+":MINUS}${Math.abs(c)}, …`, t:"Cubes with a twist"}; }
+};
+const PL_POOLS = {
+  foundation: [[()=>PL.count([1,2])], [()=>PL.count([2,5,10]), ()=>PL.down([1,2])], [()=>PL.tables(), ()=>PL.down([5,10])], [()=>PL.doubles(), ()=>PL.count([3,4])], [()=>PL.tables(), ()=>PL.doubles(), ()=>PL.down([2,5,10]), ()=>PL.count([3,4,5])]],
+  core:       [[()=>PL.arith()], [()=>PL.geo(), ()=>PL.squares()], [()=>PL.tri(), ()=>PL.alt()], [()=>PL.cubes(), ()=>PL.arith(), ()=>PL.geo()], [()=>PL.tri(), ()=>PL.alt(), ()=>PL.cubes(), ()=>PL.squares(), ()=>PL.arith()]],
+  advanced:   [[()=>PL.quad(), ()=>PL.geoNeg()], [()=>PL.fib(), ()=>PL.pow2()], [()=>PL.primes(), ()=>PL.factorial()], [()=>PL.interleave(), ()=>PL.cubePlus()], [()=>PL.quad(), ()=>PL.fib(), ()=>PL.primes(), ()=>PL.interleave(), ()=>PL.cubePlus(), ()=>PL.geoNeg()]]
+};
+function plSeq(mode, level, last){
+  let s, tries = 0;
+  do { s = pick(PL_POOLS[mode][Math.min(level,5)-1])(); } while (s.terms.join() === last && ++tries < 8);
+  return {shown: s.terms.slice(0,-1), ans: s.terms[s.terms.length-1], rule: s.rule, t: s.t, key: s.terms.join()};
+}
+
+
 /* ================= Pattern Lock ================= */
 const GPattern = {
   timed:true,
@@ -2600,26 +2806,15 @@ const GPattern = {
   }
 };
 
+GAME_MODS["pattern-lock"] = GPattern;
 
-/* ================= shared fraction helpers ================= */
-const fGcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b){ [a, b] = [b, a % b]; } return a || 1; };
-const fLcm = (a, b) => a / fGcd(a, b) * b;
-const fNorm = (n, d) => { if (d < 0){ n = -n; d = -d; } const g = fGcd(n, d); return [n/g, d/g]; };
-const fAdd = (a, b) => fNorm(a[0]*b[1] + b[0]*a[1], a[1]*b[1]);
-const fCmp = (a, b) => a[0]*b[1] - b[0]*a[1];
-const fVal = f => f[0] / f[1];
-const rI = (a, b) => a + Math.floor(Math.random()*(b - a + 1));
-function fracHTML(f, opt = {}){
-  let [n, d] = f; const neg = n < 0; n = Math.abs(n);
-  const sg = neg ? `<span class="fsg">${MINUS}</span>` : opt.plus ? `<span class="fsg">+</span>` : "";
-  if (d === 1) return `${sg}<span class="fwhole">${n}</span>`;
-  if (opt.mixed && n > d){ const w = Math.floor(n/d), r = n % d; return `${sg}<span class="fwhole">${w}</span>${r ? `<span class="fr"><i>${r}</i><i>${d}</i></span>` : ""}`; }
-  return `${sg}<span class="fr"><i>${n}</i><i>${d}</i></span>`;
-}
-const fText = f => (f[0] < 0 ? MINUS : "") + (f[1] === 1 ? Math.abs(f[0]) : `${Math.abs(f[0])}/${f[1]}`);
-const DEC_DENS = [1, 2, 4, 5, 10, 20, 25, 50, 100];
-const fDecimal = f => DEC_DENS.includes(f[1]) ? (f[0]/f[1]).toString().replace("-", MINUS) : null;
-
+</script>
+<script>
+/* ============================================================
+   Vinculum
+   Fractions: fill the bar exactly
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
 /* ================= Vinculum (fractions) ================= */
 const GVinc = {
   timed:true,
@@ -2728,6 +2923,15 @@ const GVinc = {
   }
 };
 
+GAME_MODS["vinculum"] = GVinc;
+
+</script>
+<script>
+/* ============================================================
+   Equilibrium
+   Linear equations on a balance
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
 /* ================= Equilibrium (equations) ================= */
 const eqT = (a, v = "x") => a === 1 ? v : a === -1 ? MINUS + v : (a < 0 ? MINUS : "") + Math.abs(a) + v;
 const eqN = n => (n < 0 ? MINUS : "") + Math.abs(n);
@@ -2872,106 +3076,15 @@ const GEqui = {
   }
 };
 
-const GAME_MODS = {"sigma-sprint":GSigma, "nexus":GNexus, "axis":GAxis, "prime-split":GPrime, "pattern-lock":GPattern, "vinculum":GVinc, "equilibrium":GEqui};
+GAME_MODS["equilibrium"] = GEqui;
 
-/* ================= Chapter-game engine =================
-   Every textbook chapter becomes a mastery quest: 3 tracks (Learn / Apply / Master) × 3 missions,
-   3 lives per mission, instant "why" feedback after every answer, stars that unlock the next mission,
-   and a chapter mastery %. A chapter only supplies its missions and question generators.            */
-const CQ = (() => {
-  const P = a => a[Math.floor(Math.random()*a.length)];
-  const SH = a => { for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-  const R = (a, b) => a + Math.floor(Math.random()*(b - a + 1));
-  const choice = (opts, cls = "") => `<div class="tw-opts ${cls}">${opts.map((o, i) => `<button class="tw-b" type="button" data-i="${i}">${o}</button>`).join("")}</div>`;
-  // one-tap multiple choice; correct = index (or array of indexes)
-  function bindChoice(el, correct, done, why, topic, okWhy){
-    const C = Array.isArray(correct) ? correct : [correct];
-    el.querySelectorAll(".tw-opts .tw-b").forEach(b => b.onclick = () => {
-      if (el.dataset.lock) return; el.dataset.lock = 1; const ok = C.includes(+b.dataset.i);
-      b.classList.add(ok ? "ok" : "no"); if (!ok) el.querySelectorAll(".tw-opts .tw-b").forEach(x => { if (C.includes(+x.dataset.i)) x.classList.add("ok"); });
-      done(ok, ok ? (okWhy || why) : why, topic); });
-  }
-  // numeric keypad answer; tol = allowed error; pre/post = unit shown around the number (₹, %, km …)
-  const padHTML = (pre = "", post = "") => `<div class="tw-ans">${pre ? `<b>${pre}</b>` : ""}<span id="twIn">?</span>${post ? `<b>${post}</b>` : ""}</div>
-    <div class="tw-pad">${[1,2,3,4,5,6,7,8,9,".",0,"⌫"].map(k => `<button class="tw-b k" type="button" data-k="${k}">${k}</button>`).join("")}<button class="tw-b k go" type="button" data-k="✓" style="grid-column:1/-1">Check ✓</button></div>`;
-  function bindPad(el, ans, tol, done, why, topic, okWhy){
-    let s = ""; const inp = el.querySelector("#twIn");
-    const press = k => { if (el.dataset.lock) return;
-      if (k === "⌫") s = s.slice(0, -1);
-      else if (k === "✓"){ if (!s || s === ".") return; el.dataset.lock = 1; const v = parseFloat(s), ok = Math.abs(v - ans) <= tol + 1e-9;
-        inp.parentElement.classList.add(ok ? "ok" : "no"); done(ok, ok ? (okWhy || why) : why, topic); return; }
-      else if (k === "." ){ if (!s.includes(".") && s.length < 9) s += s ? "." : "0."; }
-      else if (s.length < 9) s = (s === "0" ? "" : s) + k;
-      inp.textContent = s || "?"; };
-    el.querySelectorAll(".tw-pad .k").forEach(b => b.onclick = () => press(b.dataset.k));
-    el._key = k => { if (/^[0-9.]$/.test(k)) press(k); else if (k === "Backspace") press("⌫"); else if (k === "Enter") press("✓"); else return false; return true; };
-  }
-  const n2 = x => { const r = Math.round(x*100)/100; return (Math.abs(r - Math.round(r)) < 1e-9 ? Math.round(r) : r).toLocaleString("en-IN", {maximumFractionDigits:2}); };
-  const rs = x => "₹" + n2(x);
-
-  function quest(cfg){
-    const ALL = cfg.missions, TOT = ALL.length*3;
-    return {
-      timed:false, chapter:cfg.chapter, modeNames:cfg.modeNames || {foundation:{name:"Learn", ages:"Missions 1–3"}, core:{name:"Apply", ages:"Missions 4–6"}, advanced:{name:"Master", ages:"Missions 7–9"}},
-      desc:cfg.desc, modes:cfg.modes, howto:cfg.howto || [["Missions","Each track has 3 missions. Earn stars to unlock the next one. Finish all 9 to master the chapter."],["Learn","Every answer shows why, so mistakes teach you something."],["Lives","Missions 1–8 give you 3 lives. The last mission is a timed mix of everything."],["Stars","★★★ = no mistakes. Replay any mission to improve your stars and score."]],
-      start(api){
-        const q = s => api.root.querySelector(s), KEY = cfg.key;
-        const stars = (() => { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { return {}; } })();
-        const save = () => { try { localStorage.setItem(KEY, JSON.stringify(stars)); } catch {} };
-        const list = ALL.filter(m => m.track === api.mode), total = ALL.reduce((a, m) => a + (stars[m.id] || 0), 0);
-        const unlocked = m => m.id === list[0].id || (stars[m.id - 1] || 0) > 0;
-        api.hud({a:["Score", 0], b:["Stars", `${total}/${TOT}`, ""], c:["Mission", "–", ""]});
-        api.root.innerHTML = `<div class="tw-map"><p class="tw-q">Choose a mission <span class="tw-mini">${total}/${TOT} stars · chapter mastery ${Math.round(total/TOT*100)}%</span></p>
-          ${list.map(m => { const st = stars[m.id] || 0, open = unlocked(m);
-            return `<button class="tw-mis${open ? "" : " locked"}" type="button" data-m="${m.id}" ${open ? "" : "disabled"}><span class="no">${m.id}</span><span class="tx"><b>${m.name}</b><small>${m.goal}</small></span><span class="st">${open ? "★".repeat(st) + "☆".repeat(3 - st) : "🔒"}</span></button>`; }).join("")}
-          <p class="tw-mini">${api.mode === "foundation" ? "Start here: Learn builds the basic ideas." : api.mode === "core" ? "Tip: finish the Learn track first." : "Tip: finish Learn and Apply first. The last mission mixes everything."}</p></div>`;
-        api.root.querySelectorAll(".tw-mis").forEach(b => b.onclick = () => play(ALL.find(m => m.id === +b.dataset.m)));
-
-        function play(M){
-          const S = {score:0, streak:0, best:0, right:0, wrong:0, lives:3, i:0, miss:{}, good:{}}, timed = !!M.timed;
-          const hud = () => api.hud({a:["Score", fmt(S.score)], b: timed ? ["Time", Math.ceil(api.clock.remaining ? api.clock.remaining() : M.timed), ""] : ["Lives", "♥".repeat(S.lives) + "<span style='opacity:.25'>" + "♥".repeat(3 - S.lives) + "</span>", ""], c:["Mission", `${M.id}`, timed ? `${S.right} right` : `${Math.min(S.i + 1, M.n)}/${M.n}`]});
-          api.root.innerHTML = `<div class="tw-head"><span class="tw-badge">Mission ${M.id}</span><b>${M.name}</b><small>${M.goal}</small><div class="tw-prog"><i id="twPg"></i></div></div><div class="tw-card" id="twC"></div><div class="tw-fb" id="twF" hidden></div>`;
-          const next = () => {
-            if (!api.alive()) return;
-            if (!timed && (S.i >= M.n || S.lives <= 0)) return end();
-            const it = cfg.gen[M.id](S.i), c = q("#twC"); delete c.dataset.lock; c.innerHTML = it.html; c._key = null; q("#twF").hidden = true; S.tq = Date.now();
-            c.classList.remove("in"); void c.offsetWidth; c.classList.add("in");
-            it.mount(c, onAnswer); hud(); if (!timed) q("#twPg").style.width = (S.i/M.n*100) + "%";
-          };
-          const onAnswer = (ok, why, topic, bonus = 0) => {
-            const fb = q("#twF"), secs = (Date.now() - S.tq)/1000;
-            if (ok){ S.right++; S.streak++; S.best = Math.max(S.best, S.streak); S.good[topic] = 1;
-              const pts = 100 + 20*Math.min(5, S.streak - 1) + (secs < 8 ? 30 : secs < 15 ? 15 : 0) + bonus; S.score += pts;
-              api.float(q("#twC"), "+" + pts); api.chime(1 + .05*Math.min(4, S.streak)); api.buzz(8); if (timed) api.clock.add(2); }
-            else { S.wrong++; S.streak = 0; S.miss[topic] = (S.miss[topic] || 0) + 1; if (!timed) S.lives--; else api.clock.add(-3);
-              api.tone(150, .2, "sawtooth", .06); api.buzz([20, 30, 20]); }
-            S.i++; hud();
-            fb.className = "tw-fb " + (ok ? "good" : "teach"); fb.hidden = false;
-            fb.innerHTML = `<div><b>${ok ? P(["Correct!", "Exactly!", "Spot on!", "Brilliant!"]) : "Learn this"}</b> ${why}</div><button class="tw-b go" type="button" id="twN">${!timed && (S.i >= M.n || S.lives <= 0) ? "Finish" : "Next →"}</button>`;
-            q("#twN").onclick = next; q("#twN").focus({preventScroll:true});
-            fb.scrollIntoView({block:"nearest", behavior:"smooth"});
-            if (ok && timed) setTimeout(() => { if (api.alive() && !q("#twF").hidden && api.clock.remaining() > 0) next(); }, 900);
-          };
-          api.onKey(k => { const c = q("#twC"); if (c && c._key && c._key(k)) return true;
-            if ((k === "Enter" || k === " ") && q("#twF") && !q("#twF").hidden){ q("#twN").click(); return true; }
-            const n = +k; if (c && n >= 1 && n <= 6){ const sets = c.querySelectorAll(".tw-opts"); const set = sets.length ? sets[sets.length - 1].querySelectorAll(".tw-b") : []; if (set[n - 1]){ set[n - 1].click(); return true; } } });
-          if (timed){ next(); api.countdown().then(() => api.clock.start(M.timed, end)); } else next();
-          function end(){
-            if (S.ended) return; S.ended = true;
-            const done = timed || S.lives > 0, st = timed ? (S.right >= 18 ? 3 : S.right >= 12 ? 2 : S.right >= 6 ? 1 : 0) : !done ? 0 : S.wrong === 0 ? 3 : S.wrong <= 1 ? 2 : 1;
-            if (st > (stars[M.id] || 0)){ stars[M.id] = st; save(); }
-            const tot = S.right + S.wrong, now = ALL.reduce((a, m) => a + (stars[m.id] || 0), 0);
-            api.finish({score:S.score, correct:S.right, wrong:S.wrong,
-              stats:[["Mission", `${M.id} · ${"★".repeat(st)}${"☆".repeat(3 - st)}`], ["Accuracy", (tot ? Math.round(100*S.right/tot) : 0) + "%"], ["Best streak", S.best], ["Chapter", Math.round(now/TOT*100) + "% mastered"]],
-              learn:{good:{title: done ? `Mission ${M.id} ${st ? "complete" : "played"}: you practised` : "Out of lives: you practised", items:Object.keys(S.good)}, goodCls:"plain",
-                     work:{title:"Practise next", items:Object.entries(S.miss).sort((a, b) => b[1] - a[1]).map(([k]) => k)}}});
-          }
-        }
-      }
-    };
-  }
-  return {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, rs, quest};
-})();
+</script>
+<script>
+/* ============================================================
+   Class 7 · Geometric Twins (Ganita Prakash Part 2, Ch 1)
+   Chapter game: 9 missions
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
 /* ================= Chapter game: Std 7 (Part 2) Ch 1 · Geometric Twins (congruence) =================
    A mastery quest in 3 tracks x 3 missions. Each mission teaches one idea of the chapter with instant feedback:
    Learn  : 1 Twin or Not?  2 Superimpose  3 What fixes a shape?
@@ -3356,6 +3469,16 @@ const GTwins = CQ.quest({
   modes:{foundation:"Twin or not, superimposing, and what fixes a shape", core:"The ≅ convention and the 5 congruence rules (plus the SSA and AAA traps)", advanced:"Hidden twins in figures, isosceles angles, and the timed Twin Master"},
   howto:[["Missions","Each track has 3 missions. Earn stars to unlock the next one. Finish all 9 to master the chapter."],["Learn","Every answer shows why, so mistakes teach you something."],["Lives","Missions 1–8 give you 3 lives. Twin Master is 90 seconds of everything."],["Stars","★★★ = no mistakes. Replay any mission to improve your stars and score."]]
 });
+
+GAME_MODS["c7-geometric-twins"] = GTwins;
+
+</script>
+<script>
+/* ============================================================
+   Class 8 · Fractions in Disguise (Ganita Prakash Part 2, Ch 1)
+   Chapter game: 9 missions
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
 /* ================= Chapter game: Std 8 (Part 2) Ch 1 · Fractions in Disguise (percentages) =================
    Learn  : 1 Unmask the Disguise (FDP trio)  2 Bar Estimator  3 Mental Shortcuts
    Apply  : 4 Part & Whole  5 Fair Compare  6 Change Detector (increase/decrease, >100%)
@@ -3585,6 +3708,16 @@ const GFracDisguise = CQ.quest({
   desc:"Std 8 · Ganita Prakash Part 2 · Chapter 1. Percentages are fractions in disguise. Master them in 9 missions, from unmasking 3/4 = 75% to compound interest.",
   modes:{foundation:"The FDP trio, estimating on a bar, and mental percentages", core:"Part & whole, fair comparisons, increase/decrease and more than 100%", advanced:"Profit, loss, discount and GST; interest, depreciation and the timed Disguise Master"}
 });
+
+GAME_MODS["c8-fractions-disguise"] = GFracDisguise;
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · Introduction to Trigonometry (NCERT Ch 8)
+   Chapter game: 9 missions
+   Registers itself in GAME_MODS. Needs lib/common.js (and lib/chapter-engine.js for chapter games).
+   ============================================================ */
 /* ================= Chapter game: Std 10 · Ch 8 · Introduction to Trigonometry =================
    Learn  : 1 Name the Sides  2 Build the Ratio  3 One Ratio → All Ratios
    Apply  : 4 Special Angles  5 Evaluate  6 True or False? (with a live angle explorer)
@@ -3628,7 +3761,9 @@ const TRG = (() => {
       const rr = 22; s += `<path d="M${P0[0] + rr*Math.cos(t1)} ${P0[1] + rr*Math.sin(t1)} A${rr} ${rr} 0 0 ${d > 0 ? 1 : 0} ${P0[0] + rr*Math.cos(t1 + d)} ${P0[1] + rr*Math.sin(t1 + d)}" fill="rgba(255,207,90,.25)" stroke="#ffcf5a" stroke-width="2.4"/>`;
       if (o.theta){ const m = [P0[0] + 34*Math.cos(t1 + d/2), P0[1] + 34*Math.sin(t1 + d/2)]; s += `<text x="${m[0]}" y="${m[1] + 5}" text-anchor="middle" class="tw-al" style="fill:#ffcf5a">${o.theta}</text>`; } }
     Object.entries(side).forEach(([k, [p, q2]]) => {
-      if (o.clickable) s += `<line class="tr-side" data-s="${k}" x1="${p[0]}" y1="${p[1]}" x2="${q2[0]}" y2="${q2[1]}" stroke="transparent" stroke-width="26" stroke-linecap="round"/>`;
+      if (o.clickable){ const L = Math.hypot(q2[0] - p[0], q2[1] - p[1]) || 1, nx = -(q2[1] - p[1])/L*14, ny = (q2[0] - p[0])/L*14, ex = (q2[0] - p[0])/L*6, ey = (q2[1] - p[1])/L*6;
+        const a1 = [p[0] + ex, p[1] + ey], a2 = [q2[0] - ex, q2[1] - ey];
+        s += `<polygon class="tr-side" data-s="${k}" points="${[[a1[0] + nx, a1[1] + ny], [a2[0] + nx, a2[1] + ny], [a2[0] - nx, a2[1] - ny], [a1[0] - nx, a1[1] - ny]].map(z => z.join(",")).join(" ")}" fill="transparent"/>`; }
       const lb = (o.labels || {})[k]; if (lb){ const m = out(mid(p, q2), c, 18); s += `<text x="${m[0]}" y="${m[1] + 5}" text-anchor="middle" class="tw-sl" ${o.tapLen ? `data-len="${k}" style="cursor:pointer"` : ""}>${lb}</text>`; }
     });
     ["A", "B", "C"].forEach((k, i) => { const p = out(V[k], c, 16); s += `<text x="${p[0]}" y="${p[1] + 5}" text-anchor="middle" class="tw-vl">${nm[i]}</text>`; });
@@ -3646,7 +3781,7 @@ const TRG = (() => {
     return {html:`<p class="tw-q">Tap the side <b>${WORD[role].toUpperCase()}</b> to <b>∠${atName}</b>.</p>${triSVG(T, {mark:at, clickable:true})}<p class="tw-mini">Right angle at ${nm[1]}. Tap directly on a side.</p>`,
       mount(el, done){ el.querySelectorAll(".tr-side").forEach(l => l.addEventListener("click", () => {
         if (el.dataset.lock) return; el.dataset.lock = 1; const ok = l.dataset.s === want;
-        l.setAttribute("stroke", ok ? "rgba(182,243,106,.55)" : "rgba(255,91,110,.55)"); if (!ok) el.querySelector(`.tr-side[data-s="${want}"]`).setAttribute("stroke", "rgba(182,243,106,.55)");
+        l.setAttribute("fill", ok ? "rgba(182,243,106,.5)" : "rgba(255,91,110,.5)"); if (!ok) el.querySelector(`.tr-side[data-s="${want}"]`).setAttribute("fill", "rgba(182,243,106,.5)");
         done(ok, `For ∠${atName}: the <b>hypotenuse</b> ${sideName(rl.hyp, nm)} is opposite the right angle (always the longest side); the <b>opposite</b> side is ${sideName(rl.opp, nm)}; the <b>adjacent</b> side is ${sideName(rl.adj, nm)} (it touches ∠${atName} but isn't the hypotenuse). Opposite and adjacent swap when you change the angle!`, "Naming opposite, adjacent and hypotenuse"); })); }};
   }
 
@@ -3858,9 +3993,10 @@ const GTrig = CQ.quest({
   modes:{foundation:"Opposite/adjacent/hypotenuse, SOH-CAH-TOA, and finding every ratio from one", core:"Special angles 0°–90°, evaluating expressions, and true/false reasoning", advanced:"The three identities, step-by-step proofs, and the timed Trig Master"}
 });
 
-GAME_MODS["c7-geometric-twins"] = GTwins;
-GAME_MODS["c8-fractions-disguise"] = GFracDisguise;
 GAME_MODS["c10-trigonometry"] = GTrig;
+
+</script>
+<script>
 /* ===== Boot ===== */
 initGoogle();
 route();
