@@ -611,6 +611,9 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 @keyframes fBall{0%{transform:translate(30px,-30px) scale(.6)}55%{transform:translate(-6px,40px) scale(.95)}68%{transform:translate(-10px,30px)}100%{transform:translate(-140px,-60px) scale(1.5);opacity:0}}
 /* Dangerous Dev art: pixel scene */
 .f-dev{--a1:#ffd23a;--a2:#e8402a}
+.f-ink{--a1:#7cf0ff;--a2:#b9a4ff}
+.f-ink .art{background:linear-gradient(180deg,#121a36,#0b1022);background-image:linear-gradient(rgba(140,160,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(140,160,255,.12) 1px,transparent 1px),linear-gradient(180deg,#121a36,#0b1022);background-size:20px 20px,20px 20px,auto}
+.f-ink .art svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 8px rgba(124,240,255,.35))}
 .f-dev .art{image-rendering:pixelated;background:linear-gradient(180deg,#5fb8e6 0 36%,#3f9a35 36% 41%,#a5482b 41% 100%)}
 .f-dev .art::before{content:"";position:absolute;inset:36% 0 auto;height:5%;background:repeating-linear-gradient(90deg,transparent 0 10px,rgba(0,0,0,.18) 10px 12px)}
 .f-dev .art::after{content:"";position:absolute;left:0;right:0;top:41%;bottom:0;background:repeating-linear-gradient(0deg,transparent 0 14px,rgba(0,0,0,.18) 14px 16px),repeating-linear-gradient(90deg,transparent 0 30px,rgba(0,0,0,.14) 30px 32px)}
@@ -991,6 +994,7 @@ const CONFIG = {
   REWARD_AT: "2026-11-21T00:00:00+05:30",  // prize countdown target (IST)
   CRICKET_URL: "/games/cricket/",           // MHC Cricket
   DEV_URL: "/games/dangerous-dev/",         // Dangerous Dev
+  INK_URL: "/games/inklab/",                // InkLab physics puzzles
   STREET_URL: "/games/street-math/",        // Street Math Showdown (same-screen multiplayer)
   BLOX_URL: "/games/fourblox/"              // FourBlox (same-screen multiplayer)
 };
@@ -1517,6 +1521,14 @@ function devTile(p){
       <p>A 15-level Goa treasure hunt with maths locks and a boss fight. Just for fun: no XP, best scores on the Records board.</p>
       <span class="meta"><span class="fbest">${b ? "Best " + fmt(b.score) : "15 levels · real Goan places"}</span><span class="goarrow">${ICO.play}</span></span></span></a>`;
 }
+function inkTile(){
+  let st = 0, done = 0; try { const s = JSON.parse(localStorage.getItem("inklab_v1") || "{}").lv || {}; for (const k in s){ st += s[k].stars || 0; done++; } } catch (e) {}
+  return `<a class="bt feat f-ink b2" href="${CONFIG.INK_URL}" target="_top" aria-label="Play InkLab physics puzzles">
+    <span class="art" aria-hidden="true"><svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice"><path d="M20 160 Q140 60 250 120" stroke="#7cf0ff" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M200 40 l40 0" stroke="#ffd166" stroke-width="9" stroke-linecap="round"/><circle cx="300" cy="96" r="18" fill="#ff5b6e"/><path d="M270 178h120" stroke="#6f7fd6" stroke-width="10" stroke-linecap="round"/><rect x="330" y="128" width="46" height="40" rx="4" fill="none" stroke="#5eead4" stroke-width="6"/></svg></span>
+    <span class="ft"><span class="eyebrow">New · Physics puzzles · Play &amp; learn</span><h3>InkLab</h3>
+      <p>Draw shapes that come alive with real physics: levers, pendulums, friction, floating, magnets, gravity and more, across 18 boards.</p>
+      <span class="meta"><span class="fbest">${done ? `★ ${st} · ${done} solved` : "Draw · Drop · Solve"}</span><span class="goarrow">${ICO.play}</span></span></span></a>`;
+}
 const gIcon = (id, cls) => `<span class="gicon ${cls || ""}">${GICON[id]}</span>`;
 
 /* ===== Views ===== */
@@ -1621,13 +1633,14 @@ function renderHome(){
       <span><h3>${m.name}</h3><p style="margin-top:6px">${m.tag}</p></span>
       ${m.id === "street" ? m.art : `<span class="tagrow"><span>Integers</span><span>Fractions</span><span>Algebra</span></span>`}</a>`;
   v.innerHTML = `<div class="bento">
-    <section class="bt hero ball"><div><span class="eyebrow">Hinde Classes · ${ALLG().length - 1 + MP.length} games</span>
+    <section class="bt hero ball"><div><span class="eyebrow">Hinde Classes · ${ALLG().length + MP.length} games</span>
       <h1>Play smart. <span>Learn faster.</span></h1>
       <p>Maths arcade games for every age, from fractions to equations. Earn XP, keep your streak and climb the leaderboard, plus cricket, a retro Goa adventure and party games just for fun.</p>
       <div class="chips"><span>${GL.length} maths games</span><span>3 levels each</span><span>Weekly prizes</span><span>Free</span></div></div>${side}</section>
     ${stats}
     ${cricketTile(p)}
     ${devTile(p)}
+    ${inkTile()}
     <div class="bt lbp b2" id="lbPrev"><h2 class="tt">This week's leaders <a class="more" href="#leaders">All ${ICO.chev}</a></h2><div class="top3"><div class="empty">Loading…</div></div></div>
     <div class="sec-label"><h2><i></i>Maths arcade</h2><span>Tap a game to play</span></div>
     ${gtile(GL[5], true)}${gtile(GL[6], true)}${gtile(GL[0])}${gtile(GL[1])}${gtile(GL[2])}${gtile(GL[3])}${gtile(GL[4])}
