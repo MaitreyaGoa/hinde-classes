@@ -904,6 +904,89 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .tw-pad .k{font-size:18px;padding:8px;min-height:44px}
 .tw-ans{font-size:26px;padding:6px 16px;margin:2px auto 8px}
 
+/* ===== Tense Time Machine (English) ===== */
+.g-tense{--a1:#fbbf24;--a2:#f472b6}
+.tn-lbl{margin:0 2px 6px;font-size:11.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
+.tn-sent{margin:2px 2px 6px;font-size:17px;line-height:1.6}
+.tn-sent.tn-big{font-family:var(--f-disp);font-size:24px;text-align:center}
+.tn-blank{display:inline-block;min-width:5.2em;height:1.05em;border-bottom:3px solid #fbbf24;vertical-align:-2px;margin:0 2px}
+.tn-hint{color:var(--muted);font-size:.86em;font-style:italic}
+.tn-sent mark,.tn-steps mark,.tw-fb mark{background:rgba(251,191,36,.22);color:#ffe7a3;border-radius:5px;padding:0 3px}
+.tn-vg{color:#7cf0ff;border-bottom:2px solid #7cf0ff}
+.tn-ans{color:#b6f36a}
+.tw-opts.tn-long .tw-b{text-align:left;font-weight:700;font-size:14px;line-height:1.35}
+.tn-yours{margin:0 0 8px;padding:8px 10px;border-radius:12px;background:rgba(255,91,110,.12);border:1px solid rgba(255,91,110,.35);font-size:13.5px;line-height:1.45}
+.tn-yours b{color:#ffb4bd}
+.tn-steps{margin:6px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px;font-size:14px;line-height:1.5}
+.tn-steps li::marker{color:#fbbf24;font-weight:900}
+.tn-fbx{display:flex;flex-direction:column;gap:6px}
+.tn-fbt{font-family:var(--f-disp);font-size:16px}
+.tn-brow{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.tn-brow .tw-b{min-width:110px}
+.tn-hrow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tn-lb{padding:6px 10px;border-radius:999px;font-weight:800;font-size:12.5px;color:var(--text);background:var(--glass-2);border:1px solid var(--gl-edge)}
+/* word tiles */
+.tn-slot{display:inline-flex;flex-wrap:wrap;gap:5px;align-items:center;min-width:7em;min-height:2em;padding:3px 6px;border-radius:12px;border:2px dashed rgba(251,191,36,.6);vertical-align:middle;margin:2px}
+.tn-slot.ok{border-style:solid;border-color:var(--lime)}.tn-slot.no{border-style:solid;border-color:#ff5b6e;animation:shake .35s}
+.tn-ph{color:var(--muted);font-size:12.5px}
+.tn-tiles{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0 10px}
+.tn-tile{padding:10px 14px;border-radius:12px;font-weight:800;font-size:15.5px;color:var(--text);background:var(--glass-2);border:1px solid var(--gl-edge);transition:transform .12s,opacity .2s}
+.tn-tile:active{transform:scale(.94)}
+.tn-tile:disabled{opacity:.25}
+.tn-tile.in{padding:5px 10px;font-size:15px;background:rgba(251,191,36,.18);border-color:rgba(251,191,36,.6)}
+/* tense doctor */
+.tn-words{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;font-size:17px;margin:4px 0 6px}
+.tn-w{padding:6px 9px;border-radius:10px;font-size:16px;font-weight:700;color:var(--text);background:var(--glass-2);border:1px solid var(--gl-edge)}
+.tn-w.bad{background:rgba(251,191,36,.18);border-color:#fbbf24}
+.tn-w.ok{background:rgba(182,243,106,.22);border-color:var(--lime)}.tn-w.no{background:rgba(255,91,110,.2);border-color:#ff5b6e}
+.tn-w:disabled{opacity:1}
+/* timeline */
+.tn-tline{display:block;width:100%;max-width:420px;height:auto;margin:4px auto 6px}
+.tn-tl{fill:rgba(231,234,255,.7);font:800 10.5px var(--f-ui);letter-spacing:.06em}
+/* tense map grid */
+.tn-maph{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.tn-grid{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:6px;align-items:stretch;margin:4px 0 4px}
+.tn-gh{text-align:center;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tn-gr{display:flex;align-items:center;font-size:10.5px;font-weight:800;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;justify-content:center}
+.tn-cell{display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;padding:8px 4px;border-radius:12px;background:var(--glass-2);border:1px solid var(--gl-edge);color:var(--text);min-height:68px}
+.tn-cell b{font-size:13px;line-height:1.2}
+.tn-cell small{font-size:10px;color:var(--muted);line-height:1.2}
+.tn-cell i{font-style:normal;font-size:11px;color:var(--gold);letter-spacing:1px}
+.tn-cell.got{border-color:rgba(251,191,36,.55);background:rgba(251,191,36,.08)}
+/* lessons */
+.tn-lesson h3{margin:2px 0 6px;font-family:var(--f-disp);font-size:21px}
+.tn-lesson h4{margin:12px 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan)}
+.tn-ltag{font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#fbbf24}
+.tn-form{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.tn-form>div{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid var(--gl-edge);font-size:14px;font-weight:700}
+.tn-k{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:8px;color:#07101f;font-size:16px}
+.tn-k.p{background:#b6f36a}.tn-k.n{background:#ff8fa0}.tn-k.q{background:#7cf0ff}
+.tn-ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px;line-height:1.5}
+.tn-ul.ex b,.tn-tab b,.tn-ul b{color:#ffe7a3}
+.tn-sig{display:flex;flex-wrap:wrap;gap:6px}
+.tn-sig span{padding:5px 10px;border-radius:999px;font-size:12.5px;font-weight:800;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.4)}
+.tn-tip{margin-top:12px;padding:10px 12px;border-radius:14px;background:rgba(244,114,182,.1);border:1px solid rgba(244,114,182,.4);font-size:13.5px;line-height:1.5}
+.tn-tip>b:first-child{display:block;color:#f9a8d4;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.tn-p{margin:6px 0;font-size:14px;line-height:1.55}
+.tn-tab{width:100%;border-collapse:separate;border-spacing:0 5px;font-size:13.5px}
+.tn-tab td{padding:7px 8px;background:rgba(255,255,255,.04);vertical-align:top}
+.tn-tab td:first-child{border-radius:10px 0 0 10px;font-weight:800;color:#c7d2fe}
+.tn-tab td:last-child{border-radius:0 10px 10px 0;color:var(--muted)}
+.tn-ol{margin:4px 0;padding-left:20px;display:flex;flex-direction:column;gap:5px;font-size:14px}
+.tn-ol s{color:#ff9fae}
+/* overlay (lesson / Tense Book) */
+.tn-ov{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-end;justify-content:center;background:rgba(4,6,14,.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.tn-ovb{width:min(640px,100%);max-height:min(88vh,88dvh);display:flex;flex-direction:column;border-radius:22px 22px 0 0;background:#0e1326;border:1px solid var(--gl-edge);box-shadow:0 -20px 60px rgba(0,0,0,.5);animation:twIn .3s}
+.tn-ovh{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-bottom:1px solid var(--gl-edge)}
+.tn-ovh b{font-family:var(--f-disp);font-size:17px}
+.tn-ovc{overflow:auto;padding:12px 14px calc(18px + env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.tn-btabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px;scrollbar-width:none}
+.tn-bt{flex:none;padding:7px 11px;border-radius:999px;font-size:12.5px;font-weight:800;color:var(--text);background:var(--glass-2);border:1px solid var(--gl-edge);white-space:nowrap}
+.tn-bt.on{color:#07101f;background:linear-gradient(135deg,#fde68a,#f9a8d4);border-color:transparent}
+@media (min-width:720px){.tn-ov{align-items:center}.tn-ovb{border-radius:22px}}
+@media (max-width:380px){.tn-sent{font-size:16px}.tn-cell b{font-size:11.5px}.tn-cell small{display:none}.tn-tile{padding:9px 11px;font-size:14.5px}}
+.tn-intro .tn-lesson>h3:nth-child(2){display:none}
+
 </style>
 </head>
 <body>
@@ -1015,6 +1098,8 @@ var HG = (function () {
     'c7-geometric-twins': { name: 'Geometric Twins', div: 8, max: 60000, good: 1000 },
     'c8-fractions-disguise': { name: 'Fractions in Disguise', div: 8, max: 60000, good: 1000 },
     'c10-trigonometry': { name: 'Introduction to Trigonometry', div: 8, max: 60000, good: 1000 },
+    // English games
+    'en-tenses': { name: 'Tense Time Machine', div: 8, max: 60000, good: 1000 },
     // Fun games: scores go on the Records board, but they earn no XP and don't count for missions.
     'cricket-12':   { name: 'MHC Cricket (12 overs)', div: .5, max: 600, good: 100, maxSecs: 2700, noXp: true },
     'cricket-2':    { name: 'MHC Cricket (2 overs)', div: .3, max: 120, good: 30, maxSecs: 600, noXp: true },
@@ -1236,6 +1321,7 @@ const GICON = {
   "prime-split":'<svg viewBox="0 0 64 64"><path d="M32 18L18 38M32 18l14 20M46 38l-8 14M46 38l8 14"/><circle cx="32" cy="14" r="6" fill="#fff"/><circle cx="18" cy="42" r="5" fill="#fff"/><circle cx="46" cy="38" r="4" fill="#fff"/></svg>',
   "c7-geometric-twins":'<svg viewBox="0 0 64 64"><path d="M8 50L22 18l14 32z"/><path d="M30 50l14-32 14 32z" stroke-dasharray="5 4"/><path d="M13 36l4 2M47 36l4 2"/></svg>',
   "c10-trigonometry":'<svg viewBox="0 0 64 64"><path d="M12 52H52V14Z"/><path d="M44 52v-8h8"/><path d="M24 52a12 12 0 0 0-2-7"/></svg>',
+  "en-tenses":'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M32 18v14l9 6"/><path d="M6 32h6M52 32h6"/><path d="M48 12l6-2-1 6"/></svg>',
   "c8-fractions-disguise":'<svg viewBox="0 0 64 64"><circle cx="20" cy="18" r="7"/><circle cx="44" cy="46" r="7"/><path d="M48 12L16 52"/></svg>',
   "vinculum":'<svg viewBox="0 0 64 64"><rect x="22" y="8" width="20" height="16" rx="4"/><path d="M10 32h44"/><rect x="22" y="40" width="20" height="16" rx="4"/></svg>',
   "equilibrium":'<svg viewBox="0 0 64 64"><path d="M32 10v44M20 54h24M12 20h40"/><path d="M12 20l-7 16h14zM52 20l-7 16h14z"/><circle cx="32" cy="10" r="3" fill="#fff"/></svg>',
@@ -1493,9 +1579,14 @@ const CH = [
   {id:"c10-trigonometry", cls:"g-trig", std:10, book:"NCERT", chn:8, name:"Introduction to Trigonometry", tag:"Sides, SOH-CAH-TOA, one ratio → all ratios, special angles 0°–90°, identities and step-by-step proofs", missions:9, key:"tr10c8_stars"}
 ];
 // each game's own page lives at /games/<slug>/ (built by build.py)
-const GAME_SLUGS = {"c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry"};
+const GAME_SLUGS = {"en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry"};
 const CH_CLASSES = [7, 8, 9, 10];
-const ALLG = () => GL.concat(CH, XG);
+/* English games */
+const EN = [
+  {id:"en-tenses", cls:"g-tense", name:"Tense Time Machine", eyebrow:"English grammar · Std 5–10", tag:"All 12 tenses with lessons, timelines, V1-V2-V3 verbs and step-by-step explanations for every mistake", missions:18, key:"tense_tm_v1"}
+];
+const PLAY = () => GL.concat(CH, EN);
+const ALLG = () => GL.concat(CH, EN, XG);
 const modeName = m => (MODES[m] || XMODES[m])?.name || "";
 /* Same-screen multiplayer games (no scores, so they don't touch XP or the leaderboard) */
 const MP = [
@@ -1611,6 +1702,15 @@ function chapterBlock(p){
     ${tiles || `<div class="bt ball chsoon"><b>Std ${chTab} chapter games are on the way.</b><span>One game for every maths chapter, built to make the whole unit click.</span></div>`}
     ${list.length && list.length < 2 ? `<div class="bt chsoon b2"><b>More Std ${chTab} chapters coming</b><span>Each chapter gets its own mastery game, in textbook order.</span></div>` : ""}`;
 }
+function englishBlock(p){
+  const starsOf = c => { try { return Object.values(JSON.parse(localStorage.getItem(c.key) || "{}")).reduce((a, b) => a + b, 0); } catch { return 0; } };
+  return EN.map(c => { const b = p.best[c.id], pct = Math.round(starsOf(c)/(c.missions*3)*100);
+    return `<button class="bt chg ${c.cls} b2" type="button" data-g="${c.id}" aria-label="Play ${c.name}">
+      <span class="head"><span class="eyebrow">${c.eyebrow}</span>${gIcon(c.id)}</span>
+      <span><h3>${c.name}</h3><p>${c.tag}</p></span>
+      <span class="foot"><span class="mastery"><i style="width:${pct}%"></i></span><span class="lvp"><b>${pct}%</b> mastered · ${c.missions} missions</span>${b ? `<span class="fbest">Best ${fmt(b.score)}</span>` : ""}</span></button>`; }).join("")
+    + `<div class="bt chsoon b2"><b>Parts of Speech is next</b><span>Nouns, verbs, adjectives and all eight parts of speech, in the same learn-as-you-play style.</span></div>`;
+}
 function renderHome(){
   const v = $("#v-home"), p = player();
   const side = !user
@@ -1647,6 +1747,8 @@ function renderHome(){
     ${user ? `<div class="b2 md-b4" style="display:contents">${missionsHTML(p).replace('class="card"', 'class="card b2"')}</div>` : ""}
     <div class="sec-label"><h2><i></i>Chapter games</h2><span>One game per textbook chapter</span></div>
     ${chapterBlock(p)}
+    <div class="sec-label"><h2><i></i>English games</h2><span>Grammar you can play</span></div>
+    ${englishBlock(p)}
     <div class="sec-label"><h2><i></i>Play together</h2><span>Pass-and-play · no sign-in needed</span></div>
     ${MP.map(mtile).join("")}
     <div class="ball">${howHTML(false)}</div>
@@ -1738,7 +1840,7 @@ function renderAll(){
 function route(){
   const h = location.hash.slice(1);
   if (CONFIG.SOLO){ if (h === "leaders" || h === "me"){ location.href = CONFIG.PORTAL_URL + "#" + h; return; } Stage.open(CONFIG.SOLO); return; }
-  if (h.startsWith("play-") && GL.concat(CH).some(g => "play-" + g.id === h)){ Stage.open(h.slice(5)); return; }
+  if (h.startsWith("play-") && PLAY().some(g => "play-" + g.id === h)){ Stage.open(h.slice(5)); return; }
   view = ["leaders","me"].includes(h) ? h : "home";
   ["home","leaders","me"].forEach(k => $("#v-" + k).hidden = k !== view);
   document.querySelectorAll(".nav a").forEach(a => a.setAttribute("aria-current", a.dataset.v === view ? "page" : "false"));
@@ -1775,9 +1877,9 @@ const Stage = {
   run:0, g:null, mod:null, mode:null, keyFn:null, stops:[], clock:null, ended:false, quitAt:0,
   open(id){
     // on the portal, every maths game opens on its own page: /games/<slug>/
-    const own = GL.concat(CH).find(g => g.id === id);
+    const own = PLAY().find(g => g.id === id);
     if (!CONFIG.SOLO && own && location.protocol !== "file:"){ location.href = gameURL(own); return; }
-    const g = GL.concat(CH).find(x => x.id === id); if (!g) return;
+    const g = PLAY().find(x => x.id === id); if (!g) return;
     this.g = g; this.mod = GAME_MODS[id];
     $("#stage").className = "stage " + g.cls;
     $("#sIcon").innerHTML = GICON[id]; $("#sName").textContent = g.name;
@@ -1805,7 +1907,7 @@ const Stage = {
     this.stopRun();
     this.mode = mode; this.ended = false; this.t0 = Date.now();
     const run = ++this.run;
-    $("#sMode").textContent = MODES[mode].name;
+    $("#sMode").textContent = ((this.mod.modeNames || MODES)[mode] || MODES[mode]).name;
     ["hA","hB","hC"].forEach(id => { const e = $("#" + id); e.classList.remove("low"); e.querySelector("small").textContent = ""; e.querySelector("b").textContent = ""; e.querySelector("em").textContent = ""; });
     $("#tbar").hidden = !this.mod.timed; $("#tbar").classList.remove("low"); $("#tfill").style.transform = "scaleX(1)";
     $("#gRoot").innerHTML = "";
@@ -1862,7 +1964,7 @@ const Stage = {
     const list = (o, cls) => o && o.items && o.items.length ? `<div class="${cls}"><h4>${o.title}</h4><ul>${o.items.map(x => `<li>${x}</li>`).join("")}</ul></div>` : "";
     this.view("sEnd");
     $("#sEnd").innerHTML = `<div class="res">
-      <div class="res-head"><div class="eyebrow">${MODES[mode].name} · ${title}</div><div class="big" id="rScore">0</div>
+      <div class="res-head"><div class="eyebrow">${((this.mod.modeNames || MODES)[mode] || MODES[mode]).name} · ${title}</div><div class="big" id="rScore">0</div>
         ${isPB ? `<span class="badge">New personal best!</span>` : prevBest ? `<div class="sub">Your best: ${fmt(prevBest)}</div>` : ""}</div>
       <div class="rgrid">${res.stats.map(([l, v]) => `<div><b>${v}</b><small>${l}</small></div>`).join("")}</div>
       <div class="card xpcard" id="rXp"><div class="xptotal"><span style="font-weight:800">XP earned</span><b>…</b></div><p class="xpnote">Adding up your points…</p></div>
@@ -4010,6 +4112,1117 @@ const GTrig = CQ.quest({
 });
 
 GAME_MODS["c10-trigonometry"] = GTrig;
+
+</script>
+<script>
+/* ============================================================
+   English · Tense Time Machine (all 12 tenses)
+   18 missions in 3 tracks: Present · Past · Future & Mastery.
+   Every mission opens with a lesson; every answer explains HOW to get it:
+   spot the clue → pick the tense → use the formula → apply it to the subject.
+   Self-contained (needs only lib/common.js). Registers GAME_MODS["en-tenses"].
+   ============================================================ */
+const TNS = (() => {
+  const P = a => a[Math.floor(Math.random()*a.length)];
+  const SH = a => { for (let i = a.length - 1; i > 0; i--){ const j = Math.floor(Math.random()*(i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const uniq = a => [...new Set(a)];
+
+  /* ---------------- The 12 tenses ---------------- */
+  // id: p/a/f = present/past/future · S/C/P/PC = simple/continuous/perfect/perfect continuous
+  const T = {
+    pS:  {name:"Simple Present", time:"present", asp:"S", f:"V1 / V1 + s, es", m:1},
+    pC:  {name:"Present Continuous", time:"present", asp:"C", f:"am / is / are + V-ing", m:2},
+    pP:  {name:"Present Perfect", time:"present", asp:"P", f:"has / have + V3", m:3},
+    pPC: {name:"Present Perfect Continuous", time:"present", asp:"PC", f:"has / have + been + V-ing", m:4},
+    aS:  {name:"Simple Past", time:"past", asp:"S", f:"V2", m:7},
+    aC:  {name:"Past Continuous", time:"past", asp:"C", f:"was / were + V-ing", m:8},
+    aP:  {name:"Past Perfect", time:"past", asp:"P", f:"had + V3", m:9},
+    aPC: {name:"Past Perfect Continuous", time:"past", asp:"PC", f:"had + been + V-ing", m:10},
+    fS:  {name:"Simple Future", time:"future", asp:"S", f:"will + V1", m:13},
+    fC:  {name:"Future Continuous", time:"future", asp:"C", f:"will + be + V-ing", m:14},
+    fP:  {name:"Future Perfect", time:"future", asp:"P", f:"will + have + V3", m:15},
+    fPC: {name:"Future Perfect Continuous", time:"future", asp:"PC", f:"will + have + been + V-ing", m:16}
+  };
+  const IDS = Object.keys(T);
+  const GROUP = {present:["pS","pC","pP","pPC"], past:["aS","aC","aP","aPC"], future:["fS","fC","fP","fPC"]};
+  const ASPN = {S:"Simple", C:"Continuous", P:"Perfect", PC:"Perfect Continuous"};
+  const USE = { // one line: what the tense is for (used when explaining a wrong choice)
+    pS:"habits, routines and facts", pC:"an action happening right now", pP:"a finished action whose result matters now (just, already, ever, yet)",
+    pPC:"an action that started in the past and is still going on (for / since)", aS:"a finished action at a finished past time (yesterday, ago, last…)",
+    aC:"an action in progress at a moment in the past", aP:"an action completed before another past action", aPC:"how long an action had been going on before a past moment",
+    fS:"a future action, promise or prediction", fC:"an action that will be in progress at a moment in the future", fP:"an action that will be complete before a future time (by…)",
+    fPC:"how long an action will have been going on by a future moment"
+  };
+
+  /* ---------------- Subjects ---------------- */
+  // p: I / you / he (any he-she-it) / we / they · g: m, f, n (for his / her)
+  const SUBJ = [
+    ["I","I"],["You","you"],["We","we"],["They","they"],["He","he","m"],["She","she","f"],
+    ["Riya","he","f"],["Arjun","he","m"],["Meera","he","f"],["Kabir","he","m"],["Sana","he","f"],["Rohan","he","m"],["Anaya","he","f"],["Dev","he","m"],
+    ["Priya","he","f"],["Aarav","he","m"],["Tanvi","he","f"],["Omkar","he","m"],["Siddhi","he","f"],["Pranav","he","m"],["Mrs Desai","he","f"],["Mr Naik","he","m"],
+    ["my sister","he","f"],["my uncle","he","m"],["our teacher","he","f"],["my grandfather","he","m"],
+    ["my parents","they"],["the children","they"],["Riya and Kabir","they"],["my friends","they"],["the students","they"],["Meera and her brother","they"]
+  ].map(([t, p, g]) => ({t, p: p === "she" ? "he" : p, g: g || (p === "she" ? "f" : p === "he" ? "m" : "n"), pro: t === "He" || t === "She"}));
+  const PRON = s => s.p === "I" ? "I" : s.p === "you" ? "you" : s.p === "we" ? "we" : s.p === "they" ? "they" : s.g === "f" ? "she" : "he";
+  const OBJ = s => ({I:"me", you:"you", we:"us", they:"them"})[s.p] || (s.g === "f" ? "her" : "him");
+  const POSS = s => ({I:"my", you:"your", we:"our", they:"their"})[s.p] || (s.g === "f" ? "her" : "his");
+  const BE = s => s.p === "I" ? "am" : s.p === "he" ? "is" : "are";
+  const WAS = s => s.p === "I" || s.p === "he" ? "was" : "were";
+  const HAS = s => s.p === "he" ? "has" : "have";
+  const DO = s => s.p === "he" ? "does" : "do";
+  const sing = s => s.p === "he";
+  const subjText = s => s.t; // as written in the middle of a sentence
+  const who = s => s.p === "I" ? "‘I’" : s.p === "you" ? "‘you’" : s.p === "we" || s.p === "they" ? `‘${s.t.replace(/^./, c => c.toLowerCase())}’ (plural, like ‘they’)` : `‘${s.t}’ (one person: he / she)`;
+
+  /* ---------------- Verb bank ----------------
+     base|V2|V3|a: habit/now complements|d: duration complements|r: result complements|flags
+     V2/V3 empty = regular. "-" = none, "~" = no complement needed. {P} = his/her/their… */
+  const VERBS_RAW = `begin|began|begun|{P} day with yoga|-|the new chapter
+bring|brought|brought|lunch from home|-|{P} lunch box;the books
+build|built|built|sandcastles|a model rocket;a sandcastle|a treehouse;a model bridge
+break|broke|broken|-|-|the window;{P} pencil
+buy|bought|bought|fresh vegetables;the newspaper|-|a new bicycle;tickets for the match
+catch|caught|caught|the school bus|-|a big fish;the last train
+choose|chose|chosen|-|-|a new book;the team captain
+come|came|come|home late|-|home
+cut|cut|cut|vegetables|vegetables|the birthday cake
+do|did|done|{P} homework;yoga|{P} homework;yoga|{P} homework;the dishes
+draw|drew|drawn|cartoons|a picture of the beach|a map of Goa;a beautiful rangoli
+drink|drank|drunk|a glass of milk;coconut water|-|all the juice
+drive|drove|driven|to work|the school van|three hundred kilometres
+eat|ate|eaten|idli for breakfast;fruit|-|all the mangoes;{P} lunch
+fall|fell|fallen|-|-|off {P} bicycle
+find|found|found|-|-|{P} lost keys;a gold coin
+fly|flew|flown|kites|a kite|a drone
+forget|forgot|forgotten|{P} umbrella|-|{P} password;the answer
+get|got|got|up early|-|a prize;full marks
+give|gave|given|food to stray dogs|-|a speech;a gift to {P} teacher
+go|went|gone|to school by bus;for a walk|-|to the market
+grow|grew|grown|vegetables|tomatoes in the backyard|a mango tree
+hang|hung|hung|-|-|the painting on the wall
+hide|hid|hidden|-|-|the chocolates
+hit|hit|hit|the ball hard|-|the ball out of the ground
+hold|held|held|-|-|a meeting
+keep|kept|kept|{P} room clean|-|{P} promise
+lay|laid|laid|the table|-|the table
+lead|led|led|the school assembly|-|the team to victory
+learn|learnt|learnt|Konkani|French;to swim|the poem by heart
+leave|left|left|home early|-|the office
+lend|lent|lent|-|-|{P} notes to a friend
+light|lit|lit|a diya|-|the lamps
+lose|lost|lost|-|-|{P} wallet;the match
+make|made|made|tea for everyone;paper boats|a model|a cake;a paper boat
+meet|met|met|{P} friends at the park|-|the principal
+pay|paid|paid|the bills|-|the electricity bill
+put|put|put|-|-|the books on the shelf
+read|read|read|the newspaper|a novel;comics|three chapters;that book
+ride|rode|ridden|{P} bicycle to school|{P} bicycle|a horse
+ring|rang|rung|the bell|-|the bell
+run|ran|run|in the park|around the ground|five kilometres
+see|saw|seen|-|-|the Taj Mahal;that film
+sell|sold|sold|fruit at the market|-|{P} old scooter
+send|sent|sent|emails to {P} friends|-|the invitation;a parcel
+set|set|set|-|-|a new record
+shake|shook|shaken|-|-|hands with the chief guest
+show|showed|shown|-|-|{P} drawings to the class
+shut|shut|shut|-|-|the door
+sing|sang|sung|in the school choir|songs|the national anthem
+sit|sat|sat|in the front row|in the sun|-
+sleep|slept|slept|early|~|-
+speak|spoke|spoken|Konkani at home|to the principal|to the principal
+spend|spent|spent|weekends at the beach|-|all {P} pocket money
+stand|stood|stood|in the queue|in the queue|-
+sweep|swept|swept|the floor|the courtyard|the room
+swim|swam|swum|in the pool|in the pool|across the river
+take|took|taken|the bus to school|-|{P} medicine;a photo of the sunset
+teach|taught|taught|maths|maths;English|-
+tear|tore|torn|-|-|the paper
+tell|told|told|bedtime stories|stories|the truth
+throw|threw|thrown|-|-|the old newspapers away
+wake|woke|woken|up early|-|up
+wear|wore|worn|a uniform to school|-|-
+win|won|won|every match|-|the quiz;a gold medal
+write|wrote|written|in {P} diary|a story;letters|a letter to {P} grandmother;three poems
+feed|fed|fed|the stray cats|-|the cat
+dig|dug|dug|-|a hole in the garden|a well
+blow|blew|blown|-|-|out the candles
+beat|beat|beaten|-|-|the champion
+forgive|forgave|forgiven|-|-|{P} friend
+understand|understood|understood|-|-|-|st
+know|knew|known|-|-|-|st
+play|||cricket;the guitar;chess|cricket;chess;football|the final match
+watch|||cartoons;the news|TV;a cricket match|that film
+cook|||dinner;breakfast|dinner;biryani|fish curry for the guests
+clean|||{P} room|the kitchen|the whole house
+dance|||at the festival|on the stage|-
+help|||{P} mother in the kitchen|the old man|the new student
+listen|||to music|to music;to the radio|-
+open|||the shop|-|the windows
+paint|||pictures|the wall|the gate
+practise|||the piano;yoga|the song;the piano|-
+study|||science;maths|for the exam;science|-
+talk|||to {P} grandparents|on the phone|-
+travel|||to Panaji by bus|across India|to many countries
+visit|||{P} grandparents|-|the Basilica of Bom Jesus;Dudhsagar Falls
+wait|||for the bus|for the bus;for the doctor|-
+walk|||to school|in the park|ten kilometres
+work|||in a bank|on the project|-
+wash|||the dishes|the car|{P} clothes
+finish|||work early|-|{P} homework;the project
+complete|||-|-|the assignment
+carry|||a heavy bag|-|the boxes upstairs
+try|||new recipes|-|Goan fish curry
+arrive|||at school on time|-|at the station
+answer|||questions in class|-|all the questions
+ask|||questions in class|-|a question
+call|||{P} grandmother|-|the doctor
+change|||-|-|{P} clothes
+climb|||the hill|the hill|the tallest tree in the garden
+collect|||stamps|shells on the beach|all the answer sheets
+cross|||the road carefully|-|the bridge
+deliver|||newspapers|-|the parcel
+explain|||the rules|the lesson|the problem
+fix|||broken toys|the fan|the leaking tap
+follow|||the rules|-|-
+invite|||-|-|all {P} friends
+join|||-|-|the school band
+jump|||-|on the trampoline|-
+live|||in Bicholim|in Bicholim;in Goa|-
+look|||after {P} little brother|for {P} keys|-
+miss|||the bus|-|the bus;the train
+move|||-|-|to a new house
+order|||-|-|pizza for everyone
+pack|||-|{P} bags|{P} bag for the trip
+plant|||trees|saplings|a coconut tree
+prepare|||for the exam|for the exam|a delicious meal;the report
+print|||-|-|the tickets
+reach|||school early|-|the station
+repair|||bicycles|the old radio|the roof
+return|||home late|-|the library books
+save|||money|money for a new bicycle|enough money
+start|||work early|-|a new course
+stay|||with {P} cousins|at a hotel in Calangute|-
+stop|||-|-|the car
+plan|||-|the trip|a surprise party
+shop|||at the Saturday market|for new clothes|-
+borrow|||books from the library|-|a book from the library
+use|||a laptop|the computer|all the glue
+water|||the plants|the plants|the garden
+cry|||-|~|-
+reply|||-|-|to the email
+kick|||the ball|-|the ball into the goal
+knock|||-|-|on the door
+celebrate|||-|-|{P} birthday
+type|||-|the report|the report
+bake|||bread|a cake|a chocolate cake
+brush|||{P} teeth|-|{P} teeth
+enjoy|||rainy days|the holidays|the trip
+attend|||classes|the workshop|the meeting
+check|||{P} emails|the answers|the answers
+count|||the money|the votes|the money
+decorate|||-|the classroom|the house for Diwali
+discuss|||-|the plan|the plan
+drop|||-|-|{P} phone
+fill|||-|-|the bottle with water
+guess|||-|-|the answer
+improve|||-|-|{P} handwriting
+mark|||-|the test papers|the test papers
+offer|||-|-|help to the new student
+park|||-|-|the car
+post|||-|-|the letter
+rest|||after lunch|~|-
+score|||-|-|a century
+serve|||lunch|lunch|lunch
+share|||{P} snacks|-|{P} notes
+sign|||-|-|the form
+solve|||puzzles|the sum|the puzzle
+thank|||-|-|the volunteers
+train|||-|for the race|-
+turn|||-|-|off the lights
+wipe|||-|-|the board
+record|||-|a song|a song
+rescue|||-|-|a puppy
+search|||-|for {P} phone|-
+tidy|||-|-|{P} desk
+recite|||-|-|the poem
+mop|||-|the floor|the floor
+jog|||in the morning|in the park|-
+chat|||with friends|with {P} cousin|-
+like|||-|-|-|st
+love|||-|-|-|st
+want|||-|-|-|st
+need|||-|-|-|st
+own|||-|-|-|st
+believe|||-|-|-|st
+remember|||-|-|-|st
+prefer|||-|-|-|st
+hate|||-|-|-|st`;
+
+  // British spelling (as in Indian schools): travelling, travelled.
+  const DOUBLE = new Set(["run","swim","sit","get","begin","stop","plan","shop","cut","put","hit","forget","win","travel","dig","set","shut","mop","jog","chat","drop","prefer","jog"]);
+  const sForm = v => v === "have" ? "has" : /(s|sh|ch|x|z|o)$/.test(v) ? v + "es" : /[^aeiou]y$/.test(v) ? v.slice(0, -1) + "ies" : v + "s";
+  const sRule = v => v === "have" ? "‘have’ is special: he has" : /(s|sh|ch|x|z|o)$/.test(v) ? `ends in ${v.match(/(sh|ch|s|x|z|o)$/)[1]} → add -es` : /[^aeiou]y$/.test(v) ? "consonant + y → change y to i and add -es" : /[aeiou]y$/.test(v) ? "vowel + y → just add -s" : "most verbs → just add -s";
+  const ingForm = v => DOUBLE.has(v) ? v + v.slice(-1) + "ing" : /ie$/.test(v) ? v.slice(0, -2) + "ying" : /[^aeioy]e$/.test(v) || v === "type" ? v.slice(0, -1) + "ing" : v + "ing";
+  const ingRule = v => DOUBLE.has(v) ? (v === "travel" ? "British spelling doubles the final l: travelling" : "short vowel + one consonant at the end → double the consonant") : /ie$/.test(v) ? "ends in -ie → change ie to y, then add -ing" : (/[^aeioy]e$/.test(v) || v === "type") ? "ends in a silent e → drop the e, then add -ing" : "just add -ing";
+  const edForm = v => DOUBLE.has(v) ? v + v.slice(-1) + "ed" : /e$/.test(v) ? v + "d" : /[^aeiou]y$/.test(v) ? v.slice(0, -1) + "ied" : v + "ed";
+  const edRule = v => DOUBLE.has(v) ? (v === "travel" ? "British spelling doubles the final l: travelled" : "short vowel + one consonant → double it, then add -ed") : /e$/.test(v) ? "ends in e → just add -d" : /[^aeiou]y$/.test(v) ? "consonant + y → change y to i and add -ed" : "regular verb → add -ed";
+
+  const VERBS = VERBS_RAW.trim().split("\n").map(line => {
+    const [b, v2, v3, a, d, r, fl] = line.split("|");
+    const L = s => !s || s === "-" ? [] : s.split(";").map(x => x === "~" ? "" : x);
+    const reg = !v2;
+    return {b, s: sForm(b), ing: ingForm(b), v2: reg ? edForm(b) : v2, v3: reg ? edForm(b) : v3, reg, a: L(a), d: L(d), r: L(r), st: fl === "st"};
+  });
+  const VB = Object.fromEntries(VERBS.map(v => [v.b, v]));
+  const ACTION = VERBS.filter(v => !v.st);
+  const IRREG = VERBS.filter(v => !v.reg && !["learn"].includes(v.b));
+  // stative verbs (not normally used in -ing forms) with ready complements
+  const STATIVE = [
+    ["know","the answer","Mr Naik"], ["like","mangoes","cricket"], ["love","rainy days","music"], ["want","a new phone","a puppy"],
+    ["understand","the lesson",null], ["need","some help",null], ["own","a big house","that shop"], ["believe","{P} story",null],
+    ["remember","the answer",null], ["prefer","tea to coffee",null], ["hate","loud music",null]
+  ].map(([b, now, dur]) => ({v: VB[b], now, dur}));
+
+  /* ---------------- Sentence frames: one clue → one tense ----------------
+     {S} subject · {s} he/she/they… · {obj} him/her… · {P} his/her… · {was} was/were · {is} am/is/are
+     {V} the verb group · {O} complement · k: which complement list (a habit/now, d duration, r result)
+     clue: the words that decide the tense · why: what the clue tells us
+     ok: every tense that would ALSO be grammatical here (never offered as a wrong option)
+     adv: adverb that goes inside the verb group (has just finished) · neg: the blank is negative
+     q: can be turned into a negative / question · no: subjects (I, you, we…) this frame doesn't suit */
+  const F = (t, s, clue, why, o = {}) => ({t, s, clue, why, k: o.k || "a", ok: o.ok || [t], adv: o.adv, neg: o.neg, q: o.q, no: o.no || []});
+  const FRAMES = [
+    // Simple Present
+    F("pS", "{S} {V} {O} every day.", "every day", "a habit: something done again and again", {q:1}),
+    F("pS", "{S} {V} {O} every Sunday.", "every Sunday", "a routine that repeats every week", {q:1}),
+    F("pS", "{S} {V} {O} twice a week.", "twice a week", "how often something happens: a routine", {q:1}),
+    F("pS", "Every morning, {S} {V} {O}.", "Every morning", "a daily routine"),
+    F("pS", "{S} usually {V} {O} after school.", "usually", "what normally happens: a habit"),
+    F("pS", "{S} often {V} {O} in the evening.", "often", "something that happens many times: a habit"),
+    F("pS", "{S} always {V} {O} on weekends.", "always", "every time: a habit"),
+    // Present Continuous
+    F("pC", "Look! {S} {V} {O}.", "Look!", "it is happening in front of us, right now", {k:"d", no:["I"]}),
+    F("pC", "{S} {V} {O} right now.", "right now", "an action in progress at this very moment", {k:"d", q:1}),
+    F("pC", "{S} {V} {O} at the moment.", "at the moment", "happening now and not finished yet", {k:"d", q:1}),
+    F("pC", "Please don't disturb {obj}; {s} {V} {O}.", "don't disturb", "the action is going on now, so don't interrupt", {k:"d"}),
+    F("pC", "{S} {V} {O} now.", "now", "in progress at the time of speaking", {k:"d", q:1}),
+    // Present Perfect
+    F("pP", "{S} {V} {O}.", "just", "a moment ago, and the result is here now", {k:"r", adv:"just", ok:["pP"]}),
+    F("pP", "{S} {V} {O}.", "already", "finished before now, earlier than expected", {k:"r", adv:"already"}),
+    F("pP", "{S} {V} {O} before.", "never … before", "in your whole life up to now: an experience", {k:"r", adv:"never"}),
+    F("pP", "{S} {V} {O} yet.", "not … yet", "it was expected, but it has not happened up to now", {k:"r", neg:1}),
+    F("pP", "{S} {V} {O} three times so far.", "so far", "‘so far’ = from the past up to now", {k:"a", q:1}),
+    F("pP", "{S} {V} {O} twice this month, and the month is not over.", "twice this month … not over", "a time period that is still going on (up to now)", {k:"a"}),
+    // Present Perfect Continuous
+    F("pPC", "{S} {V} {O} for two hours now.", "for two hours now", "‘for’ + a length of time + ‘now’: it started in the past and is still going on", {k:"d", ok:["pPC","pP"], q:1}),
+    F("pPC", "{S} {V} {O} since 7 o'clock this morning.", "since 7 o'clock", "‘since’ + the starting point: it began then and is still going on", {k:"d", ok:["pPC","pP","aPC","aP"]}),
+    F("pPC", "{S} {V} {O} for the last three weeks.", "for the last three weeks", "a length of time up to now, and it is still going on", {k:"d", ok:["pPC","pP"]}),
+    F("pPC", "{S} {is} tired because {s} {V} {O} all afternoon.", "is tired because … all afternoon", "an activity that went on and on up to now, and we can see its effect now", {k:"d", ok:["pPC","pP","aS","aC"]}),
+    // Simple Past
+    F("aS", "{S} {V} {O} yesterday.", "yesterday", "a finished time in the past", {q:1, ok:["aS","aC"]}),
+    F("aS", "{S} {V} {O} last Sunday.", "last Sunday", "‘last …’ points to a finished past time", {q:1, ok:["aS","aC"]}),
+    F("aS", "{S} {V} {O} two days ago.", "two days ago", "‘ago’ always points to a finished past time", {q:1, ok:["aS","aC"]}),
+    F("aS", "{S} {V} {O} an hour ago.", "an hour ago", "‘ago’ always points to a finished past time", {k:"r", q:1, ok:["aS","aC"]}),
+    F("aS", "When {S} {was} young, {s} {V} {O} every day.", "When … was young", "a habit in a finished past period", {ok:["aS","aC"]}),
+    F("aS", "{S} {V} {O} last night.", "last night", "a finished time in the past", {q:1, ok:["aS","aC"]}),
+    // Past Continuous
+    F("aC", "At 8 o'clock last night, {S} {V} {O}.", "At 8 o'clock last night", "a moment in the past: the action was in progress at that moment", {k:"d", ok:["aC","aS"]}),
+    F("aC", "{S} {V} {O} when the lights went out.", "when the lights went out", "a longer action in progress, interrupted by a short one", {k:"d", ok:["aC","aS","aP","aPC"]}),
+    F("aC", "The phone rang while {S} {V} {O}.", "while", "‘while’ shows a longer action that was going on", {k:"d", ok:["aC","aS","aPC"]}),
+    F("aC", "{S} {V} {O} when I called {obj}, so {s} did not answer.", "when I called … did not answer", "the action was going on at the moment of the call", {k:"d", ok:["aC","aPC"], no:["I"]}),
+    F("aC", "At this time yesterday, {S} {V} {O}.", "At this time yesterday", "a moment in the past: the action was in progress then", {k:"d"}),
+    F("aC", "{S} {V} {O} at 10 o'clock last night.", "at 10 o'clock last night", "a moment in the past: the action was in progress then", {k:"d", q:1, ok:["aC","aS"]}),
+    // Past Perfect
+    F("aP", "By the time the guests arrived, {S} {V} {O}.", "By the time the guests arrived", "this action was complete before another past action", {k:"r"}),
+    F("aP", "{S} {V} {O} before the guests arrived.", "before the guests arrived", "the earlier of two past actions", {k:"r", ok:["aP","aS"]}),
+    F("aP", "When we reached, {S} {V} {O}.", "When we reached … already", "it was finished before we reached (the earlier past)", {k:"r", adv:"already", no:["we"]}),
+    F("aP", "{S} {V} {O} before, so {s} {was} excited.", "never … before … was excited", "no experience up to that past moment", {k:"r", adv:"never"}),
+    F("aP", "After {S} {V} {O}, {s} went to bed.", "After … went to bed", "the first of two past actions", {k:"r", ok:["aP","aS"]}),
+    // Past Perfect Continuous
+    F("aPC", "{S} {V} {O} for two hours when the rain started.", "for two hours when the rain started", "how long it had been going on up to a moment in the past", {k:"d", ok:["aPC","aP"]}),
+    F("aPC", "{S} {was} tired because {s} {V} {O} all day.", "was tired because … all day", "a long activity before a past moment, with a visible effect then", {k:"d", ok:["aPC","aP","aS","aC"]}),
+    F("aPC", "By the time the bus came, {S} {V} {O} for forty minutes.", "By the time the bus came … for forty minutes", "a length of time up to a past moment", {k:"d", ok:["aPC","aP"]}),
+    F("aPC", "{S} {V} {O} since morning, so {s} {was} exhausted by evening.", "since morning … was exhausted", "it went on from a starting point up to a past moment", {k:"d", ok:["aPC","aP"]}),
+    // Simple Future
+    F("fS", "{S} {V} {O} tomorrow.", "tomorrow", "a time in the future", {q:1, ok:["fS","fC","pC"]}),
+    F("fS", "I think {S} {V} {O} next week.", "I think … next week", "an opinion or prediction about the future", {ok:["fS","fC"]}),
+    F("fS", "{S} {V} {O} next year.", "probably … next year", "a prediction about the future", {adv:"probably", ok:["fS","fC"]}),
+    F("fS", "Don't worry, {S} {V} {O} soon.", "soon", "a promise about the near future", {ok:["fS","fC","pC"]}),
+    F("fS", "{S} {V} {O} next month.", "next month", "a time in the future", {q:1, ok:["fS","fC","pC"]}),
+    // Future Continuous
+    F("fC", "At this time tomorrow, {S} {V} {O}.", "At this time tomorrow", "a moment in the future: the action will be in progress then", {k:"d"}),
+    F("fC", "{S} {V} {O} at this time tomorrow.", "at this time tomorrow", "a moment in the future: the action will be in progress then", {k:"d", q:1, ok:["fC","fS"]}),
+    F("fC", "Don't call {obj} at 9 tonight; {s} {V} {O} then.", "at 9 tonight … then", "at that future moment the action will be going on", {k:"d", ok:["fC","fS"]}),
+    F("fC", "When you arrive, {S} {V} {O}.", "When you arrive", "the action will already be in progress when you arrive", {k:"d", ok:["fC","fS"], no:["you"]}),
+    F("fC", "This time next week, {S} {V} {O}.", "This time next week", "a moment in the future: in progress then", {k:"d"}),
+    // Future Perfect
+    F("fP", "By next Monday, {S} {V} {O}.", "By next Monday", "‘by’ + a future time: it will be complete before then", {k:"r", ok:["fP","fS"]}),
+    F("fP", "By the time you come back, {S} {V} {O}.", "By the time you come back", "it will be complete before that future moment", {k:"r", ok:["fP","fS"], no:["you"]}),
+    F("fP", "{S} {V} {O} by the end of this year.", "by the end of this year", "‘by’ + a future time: complete before then", {k:"r", ok:["fP","fS"], q:1}),
+    F("fP", "Don't worry, {S} {V} {O} before the exam starts.", "before the exam starts", "it will be complete before a future event", {k:"r", ok:["fP","fS"]}),
+    // Future Perfect Continuous
+    F("fPC", "By next June, {S} {V} {O} for five years.", "By next June … for five years", "how long it will have been going on at a future moment", {k:"d", ok:["fPC","fP"]}),
+    F("fPC", "By 6 o'clock, {S} {V} {O} for three hours.", "By 6 o'clock … for three hours", "length of time up to a future moment", {k:"d", ok:["fPC","fP"]}),
+    F("fPC", "When the guests arrive, {S} {V} {O} for an hour.", "When the guests arrive … for an hour", "it will have been going on for an hour at that future moment", {k:"d", ok:["fPC","fP"]}),
+    F("fPC", "By the end of this month, {S} {V} {O} for a whole year.", "By the end of this month … for a whole year", "duration up to a future point", {k:"d", ok:["fPC","fP"]})
+  ];
+  // Facts, truths and timetables (always Simple Present)
+  const FACTS = [
+    ["Water", "boil", "at 100 °C"], ["The sun", "rise", "in the east"], ["The Earth", "move", "around the Sun"], ["Bees", "make", "honey", 1],
+    ["The Mandovi", "flow", "into the Arabian Sea"], ["Plants", "need", "sunlight to make food", 1], ["Light", "travel", "faster than sound"],
+    ["A week", "have", "seven days"], ["The moon", "go", "around the Earth"], ["The Madgaon train", "leave", "at 6:15 every morning"],
+    ["Cows", "eat", "grass", 1], ["Ice", "melt", "in the heat"], ["The monsoon", "reach", "Goa in June"], ["Birds", "build", "nests", 1]
+  ].map(([S, v, O, pl]) => ({S, v, O, pl: !!pl}));
+
+  /* ---------------- Time expressions and the tenses they can go with ---------------- */
+  const CLUES = [
+    {c:"every day", k:"a", right:["pS"], ok:["pS","aS","fS","pC","aC","fC","pPC","aPC","fPC","pP"]},
+    {c:"twice a week", k:"a", right:["pS"], ok:["pS","aS","fS","pC","aC","fC","pPC","aPC","fPC"]},
+    {c:"right now", k:"a", right:["pC"], ok:["pC","fS"]},
+    {c:"at the moment", k:"a", right:["pC"], ok:["pC"]},
+    {c:"three times so far", k:"a", right:["pP"], ok:["pP"]},
+    {c:"since 2020", k:"d", right:["pPC"], ok:["pP","pPC","aP","aPC"]},
+    {c:"for two hours now", k:"d", right:["pPC"], ok:["pPC","pP"]},
+    {c:"yesterday", k:"a", right:["aS","aC"], ok:["aS","aC","aP","aPC"]},
+    {c:"two days ago", k:"a", right:["aS"], ok:["aS","aC","aP","aPC"]},
+    {c:"last Sunday", k:"a", right:["aS","aC"], ok:["aS","aC","aP","aPC"]},
+    {c:"when the lights went out", k:"a", right:["aC"], ok:["aC","aS","aP","aPC"]},
+    {c:"at this time yesterday", k:"a", right:["aC"], ok:["aC"]},
+    {c:"by the time the guests arrived", k:"r", right:["aP"], ok:["aP","aPC","aC","aS"]},
+    {c:"for an hour when the rain started", k:"d", right:["aPC"], ok:["aPC","aP","aS","aC"]},
+    {c:"tomorrow", k:"a", right:["fS","fC"], ok:["fS","fC","fP","fPC","pC","pS"]},
+    {c:"next week", k:"a", right:["fS"], ok:["fS","fC","fP","fPC","pC","pS"]},
+    {c:"at this time tomorrow", k:"a", right:["fC"], ok:["fC","fS"]},
+    {c:"by next Monday", k:"r", right:["fP"], ok:["fP","fPC","fS","fC"]},
+    {c:"for five years by next June", k:"d", right:["fPC"], ok:["fPC","fP"]}
+  ];
+  const CLUE_WHY = {"every day":"a habit", "twice a week":"a routine", "right now":"happening this moment", "at the moment":"happening now", "three times so far":"up to now (experience)",
+    "since 2020":"from a starting point up to now", "for two hours now":"a length of time up to now", "yesterday":"a finished past time", "two days ago":"‘ago’ = finished past time",
+    "last Sunday":"a finished past time", "when the lights went out":"interrupted in the past", "at this time yesterday":"a moment in the past", "by the time the guests arrived":"before another past action",
+    "for an hour when the rain started":"duration up to a past moment", "tomorrow":"future", "next week":"future", "at this time tomorrow":"a moment in the future",
+    "by next Monday":"complete before a future time", "for five years by next June":"duration up to a future moment"};
+
+  /* ---------------- Classic mistakes for the Tense Doctor ----------------
+     w: sentence words · bad: indexes of the wrong word(s) · fix: correct replacement for those words · alt: wrong fixes · why */
+  const CLASSICS = [
+    ["He don't like spicy food.", [1], "doesn't", ["didn't", "not"], "With he / she / it, the Simple Present negative is ‘does not / doesn't’ + V1."],
+    ["She has went to Mapusa.", [2], "gone", ["go", "goes"], "After has / have we need V3 (past participle). go → went (V2) → gone (V3)."],
+    ["I am knowing the answer.", [1, 2], "know", ["knew", "am know"], "‘know’ is a state verb. State verbs (know, like, want, own…) are not used in the -ing form."],
+    ["We have finished the project yesterday.", [1, 2], "finished", ["have finish", "had finish"], "‘yesterday’ is a finished time → Simple Past. The Present Perfect never goes with yesterday, ago, last…"],
+    ["I have been living here since five years.", [5], "for", ["from", "ago"], "‘five years’ is a length of time → for. ‘since’ needs a starting point (since 2019)."],
+    ["When he will come, we will start the game.", [2, 3], "comes", ["came", "will be coming"], "After when / if / as soon as / before / until about the future, use the Simple Present: When he comes…"],
+    ["Did you went to the party?", [2], "go", ["gone", "going"], "‘did’ already shows the past, so the main verb goes back to V1: Did you go?"],
+    ["She is play the violin now.", [2], "playing", ["plays", "played"], "Present Continuous = am / is / are + V-ing: she is playing."],
+    ["They was watching TV when I called.", [1], "were", ["is", "are"], "‘They’ is plural → were. was = I / he / she / it."],
+    ["I didn't saw him at the market.", [2], "see", ["seen", "seeing"], "After did / didn't use V1: I didn't see him."],
+    ["Does she plays the tabla?", [2], "play", ["playing", "played"], "In a question with does, the -s moves to does: Does she play?"],
+    ["He has been working here since three years.", [5], "for", ["from", "before"], "three years = a length of time → for three years."],
+    ["I am living in Goa since 2015.", [1, 2], "have been living", ["was living", "live"], "‘since 2015’ = from a past point up to now → Present Perfect Continuous: I have been living."],
+    ["I will call you when I will reach home.", [6, 7], "reach", ["reached", "am reaching"], "Time clause about the future (when…) → Simple Present: when I reach home."],
+    ["She was knowing the truth.", [1, 2], "knew", ["knows", "has knowing"], "‘know’ is a state verb, so no -ing: she knew the truth."],
+    ["The Earth is moving around the Sun.", [2, 3], "moves", ["moved", "will move"], "A scientific fact → Simple Present: The Earth moves around the Sun."],
+    ["I have seen him two days ago.", [1, 2], "saw", ["had seen", "see"], "‘two days ago’ is a finished time → Simple Past: I saw him two days ago."],
+    ["If it will rain, we will stay at home.", [2, 3], "rains", ["rained", "is raining"], "In an ‘if’ clause about the future, use the Simple Present: If it rains…"],
+    ["My father is having a car.", [2, 3], "has", ["had", "have"], "‘have’ meaning ‘own’ is a state verb → no -ing: My father has a car."],
+    ["They didn't went to school.", [2], "go", ["gone", "goes"], "didn't + V1: They didn't go."],
+    ["Water is boiling at 100 °C.", [1, 2], "boils", ["boiled", "has boiled"], "A fact that is always true → Simple Present: Water boils at 100 °C."],
+    ["By next year, she will completed the course.", [4, 5], "will have completed", ["will completing", "has completed"], "‘By next year’ → Future Perfect: will have + V3."],
+    ["The train had left before we reach the station.", [6], "reached", ["reaches", "had reach"], "The story is in the past: the later action is Simple Past (reached), the earlier one Past Perfect (had left)."],
+    ["She has finished her homework last night.", [1, 2], "finished", ["has finish", "had finishing"], "‘last night’ is a finished time → Simple Past: she finished it last night."],
+    ["Listen! The baby cries.", [3], "is crying", ["cried", "has cry"], "‘Listen!’ means it is happening now → Present Continuous: The baby is crying."],
+    ["I will be finishing the report by 5 o'clock.", [1, 2, 3], "will have finished", ["will finished", "have finished"], "‘by 5 o'clock’ = complete before that time → Future Perfect: will have finished."],
+    ["Riya have been studying for two hours.", [1], "has", ["had been", "is"], "Riya = he / she → has been studying."],
+    ["We had been waited for an hour when the bus came.", [3], "waiting", ["wait", "waits"], "Perfect Continuous needs V-ing after been: had been waiting."]
+  ].map(([s, bad, fix, alt, why]) => ({w: s.replace(/[.?]$/, "").split(" "), end: s.slice(-1), bad, fix, alt, why}));
+
+  /* ---------------- Lessons (shown before each mission and in the Tense Book) ---------------- */
+  const LESSON = {
+    pS: {use:["Habits and routines: <i>I <b>walk</b> to school every day.</i>", "Facts and general truths: <i>Water <b>boils</b> at 100 °C.</i>", "Timetables: <i>The Madgaon train <b>leaves</b> at 6:15.</i>"],
+      form:[["+", "Subject + V1 &nbsp;(he / she / it: V1 + s / es)"], ["−", "Subject + do / does + not + V1"], ["?", "Do / Does + subject + V1 …?"]],
+      sig:["every day", "usually", "always", "often", "sometimes", "never", "on Sundays", "twice a week"],
+      ex:["Riya <b>plays</b> chess every Sunday.", "My parents <b>do not drink</b> tea.", "<b>Does</b> Kabir <b>go</b> to school by bus?"],
+      tip:"He / she / it adds -s or -es: she watch<b>es</b>, he stud<b>ies</b>. But after does / doesn't, the verb goes back to V1: Does she <b>play</b>? ✔ (not Does she plays ✘)"},
+    pC: {use:["An action happening right now: <i>Look! It <b>is raining</b>.</i>", "Something going on around now: <i>I <b>am reading</b> a novel these days.</i>", "A fixed plan for the near future: <i>We <b>are visiting</b> Panaji tomorrow.</i>"],
+      form:[["+", "Subject + am / is / are + V-ing"], ["−", "Subject + am / is / are + not + V-ing"], ["?", "Am / Is / Are + subject + V-ing …?"]],
+      sig:["now", "right now", "at the moment", "Look!", "Listen!", "currently", "these days"],
+      ex:["Meera <b>is painting</b> the gate now.", "The children <b>are not sleeping</b>.", "<b>Are</b> you <b>listening</b> to me?"],
+      tip:"I → am, he / she / it → is, you / we / they → are. State verbs (know, like, want, own, understand) are NOT used in -ing form: I <b>know</b> the answer ✔ (not I am knowing ✘)"},
+    pP: {use:["A finished action whose result matters now: <i>I <b>have lost</b> my keys</i> (I can't get in now).", "Life experience (ever / never): <i>She <b>has never seen</b> snow.</i>", "Just / already / yet: <i>He <b>has just left</b>.</i>"],
+      form:[["+", "Subject + has / have + V3"], ["−", "Subject + has / have + not + V3"], ["?", "Has / Have + subject + V3 …?"]],
+      sig:["just", "already", "yet", "ever", "never", "so far", "recently", "this week (not over)"],
+      ex:["Arjun <b>has just finished</b> his homework.", "We <b>have not seen</b> that film yet.", "<b>Have</b> you ever <b>visited</b> Dudhsagar Falls?"],
+      tip:"Never use it with a finished time (yesterday, ago, last week, in 2019). Then you need the Simple Past: I <b>saw</b> him yesterday ✔ (not I have seen him yesterday ✘)"},
+    pPC: {use:["An action that started in the past and is still going on: <i>She <b>has been studying</b> for two hours.</i>", "A long activity that just stopped, with a visible effect: <i>Your eyes are red. <b>Have</b> you <b>been crying</b>?</i>"],
+      form:[["+", "Subject + has / have + been + V-ing"], ["−", "Subject + has / have + not + been + V-ing"], ["?", "Has / Have + subject + been + V-ing …?"]],
+      sig:["for two hours", "since 2020", "since morning", "all day", "how long…?", "for the last three weeks"],
+      ex:["It <b>has been raining</b> since morning.", "My parents <b>have been living</b> in Bicholim for twenty years.", "How long <b>have</b> you <b>been waiting</b>?"],
+      tip:"<b>for</b> + a length of time (for two hours, for ten years). <b>since</b> + the starting point (since 7 o'clock, since 2020). Never: I am waiting since morning ✘ → I have been waiting since morning ✔"},
+    aS: {use:["A finished action at a finished time: <i>I <b>visited</b> Old Goa last Sunday.</i>", "A series of past actions: <i>He <b>came</b> in, <b>sat</b> down and <b>opened</b> his book.</i>", "A past habit: <i>When she was young, she <b>walked</b> to school.</i>"],
+      form:[["+", "Subject + V2"], ["−", "Subject + did + not + V1"], ["?", "Did + subject + V1 …?"]],
+      sig:["yesterday", "last week", "two days ago", "in 2019", "when I was young", "last night"],
+      ex:["Kabir <b>won</b> the quiz yesterday.", "We <b>did not go</b> to the market.", "<b>Did</b> you <b>see</b> the match?"],
+      tip:"Regular verbs add -ed (play → played). Irregular verbs change (go → went, buy → bought). After did / didn't use V1: Did you <b>go</b>? ✔ (not Did you went ✘)"},
+    aC: {use:["An action in progress at a moment in the past: <i>At 8 pm I <b>was having</b> dinner.</i>", "A longer action interrupted by a short one: <i>I <b>was cooking</b> when the phone rang.</i>", "Two actions going on at the same time: <i>While Dad <b>was reading</b>, Mum <b>was cooking</b>.</i>"],
+      form:[["+", "Subject + was / were + V-ing"], ["−", "Subject + was / were + not + V-ing"], ["?", "Was / Were + subject + V-ing …?"]],
+      sig:["at 8 pm yesterday", "at this time yesterday", "when …", "while …", "all evening"],
+      ex:["Sana <b>was swimming</b> when it started to rain.", "They <b>were not listening</b> to the teacher.", "<b>Were</b> you <b>sleeping</b> at 10 last night?"],
+      tip:"I / he / she / it → was, you / we / they → were. The long action is Past Continuous, the short one that interrupts is Simple Past: I <b>was walking</b> home when I <b>saw</b> him."},
+    aP: {use:["An action finished before another past action: <i>When we reached the station, the train <b>had left</b>.</i>", "‘By the time …’ in the past: <i>By the time the guests arrived, she <b>had cooked</b> dinner.</i>"],
+      form:[["+", "Subject + had + V3"], ["−", "Subject + had + not + V3"], ["?", "Had + subject + V3 …?"]],
+      sig:["by the time …", "before …", "after …", "already (in the past)", "never … before (in the past)"],
+      ex:["Riya <b>had finished</b> her homework before dinner.", "I <b>had never seen</b> the sea before that trip.", "<b>Had</b> they <b>left</b> when you called?"],
+      tip:"Think of two past actions on a timeline. The EARLIER one takes had + V3, the later one takes the Simple Past: The film <b>had started</b> when we <b>arrived</b>."},
+    aPC: {use:["How long an action had been going on before a moment in the past: <i>She <b>had been waiting</b> for an hour when the bus came.</i>", "The cause of a past situation: <i>He was tired because he <b>had been running</b>.</i>"],
+      form:[["+", "Subject + had + been + V-ing"], ["−", "Subject + had + not + been + V-ing"], ["?", "Had + subject + been + V-ing …?"]],
+      sig:["for … when …", "since … (in the past)", "by the time … for …", "all day (before a past moment)"],
+      ex:["We <b>had been playing</b> for two hours when it started to rain.", "Omkar was wet because he <b>had been swimming</b>.", "How long <b>had</b> you <b>been living</b> there?"],
+      tip:"It is the Present Perfect Continuous moved one step into the past: has been → <b>had been</b>. ‘had’ is the same for every subject."},
+    fS: {use:["A future action or fact: <i>I <b>will meet</b> you tomorrow.</i>", "A promise, offer or quick decision: <i>Don't worry, I <b>will help</b> you.</i>", "A prediction or opinion: <i>I think it <b>will rain</b> tonight.</i>"],
+      form:[["+", "Subject + will + V1"], ["−", "Subject + will + not (won't) + V1"], ["?", "Will + subject + V1 …?"]],
+      sig:["tomorrow", "next week", "soon", "in 2030", "I think …", "probably", "perhaps"],
+      ex:["Dev <b>will travel</b> to Pune next week.", "We <b>will not be</b> late.", "<b>Will</b> you <b>help</b> me?"],
+      tip:"After will, always use V1: she will <b>play</b> ✔ (not will plays / will played ✘). But after when / if / as soon as about the future, use the Simple Present: When he <b>comes</b>, I will tell him."},
+    fC: {use:["An action that will be in progress at a moment in the future: <i>At 9 tomorrow I <b>will be writing</b> my exam.</i>", "Something that will be going on when another thing happens: <i>When you arrive, we <b>will be having</b> dinner.</i>"],
+      form:[["+", "Subject + will + be + V-ing"], ["−", "Subject + will + not + be + V-ing"], ["?", "Will + subject + be + V-ing …?"]],
+      sig:["at this time tomorrow", "this time next week", "at 9 tonight", "when you arrive …"],
+      ex:["This time next week, Priya <b>will be flying</b> to Delhi.", "I <b>will not be using</b> the laptop tonight.", "<b>Will</b> you <b>be waiting</b> at the gate?"],
+      tip:"It is the same for every subject: will be + V-ing. Picture the future moment and ask: ‘Will the action be going ON at that moment?’ If yes → Future Continuous."},
+    fP: {use:["An action that will be complete before a certain future time: <i>By next Monday, I <b>will have finished</b> the project.</i>"],
+      form:[["+", "Subject + will + have + V3"], ["−", "Subject + will + not + have + V3"], ["?", "Will + subject + have + V3 …?"]],
+      sig:["by next Monday", "by the time …", "by 2030", "by the end of …", "before …"],
+      ex:["By 2030, they <b>will have built</b> the new bridge.", "She <b>will not have reached</b> by 6.", "<b>Will</b> you <b>have completed</b> it by Friday?"],
+      tip:"The key word is <b>by</b> + a future time. After will it is always <b>have</b>, never has: she will <b>have</b> finished ✔ (not will has finished ✘)"},
+    fPC: {use:["How long an action will have been going on at a future moment: <i>By next June, she <b>will have been teaching</b> for ten years.</i>"],
+      form:[["+", "Subject + will + have + been + V-ing"], ["−", "Subject + will + not + have + been + V-ing"], ["?", "Will + subject + have + been + V-ing …?"]],
+      sig:["by … for …", "for five years by next June", "when … for an hour"],
+      ex:["By 6 pm, we <b>will have been travelling</b> for ten hours.", "By March, Mr Naik <b>will have been working</b> here for 25 years."],
+      tip:"Look for TWO clues together: a future point (by next June) AND a length of time (for five years). Four words in the verb group: will + have + been + V-ing."}
+  };
+  const SPECIAL = {
+    5: {title:"The four Present tenses", html:`<p class="tn-p">Same verb, four different pictures of the present:</p>
+      <table class="tn-tab"><tr><td>Simple Present</td><td>She <b>plays</b> chess every day.</td><td>habit / fact</td></tr>
+      <tr><td>Present Continuous</td><td>She <b>is playing</b> chess now.</td><td>happening now</td></tr>
+      <tr><td>Present Perfect</td><td>She <b>has</b> just <b>played</b> a game.</td><td>finished, result now</td></tr>
+      <tr><td>Present Perfect Continuous</td><td>She <b>has been playing</b> for two hours.</td><td>started earlier, still going</td></tr></table>
+      <p class="tn-p"><b>How to choose:</b> Is it a habit or a fact? → Simple. Is it happening right now? → Continuous. Is it finished, with just / already / ever / yet? → Perfect. Does it say how long, with for / since? → Perfect Continuous.</p>`},
+    6: {title:"Read the verb group like a code", html:`<p class="tn-p">To name a tense, ignore everything else and look only at the <b>verb group</b>:</p>
+      <table class="tn-tab"><tr><td>V1 / V1+s</td><td>plays</td><td>Simple Present</td></tr><tr><td>am / is / are + V-ing</td><td>is playing</td><td>Present Continuous</td></tr>
+      <tr><td>has / have + V3</td><td>has played</td><td>Present Perfect</td></tr><tr><td>has / have + been + V-ing</td><td>has been playing</td><td>Present Perfect Continuous</td></tr></table>
+      <p class="tn-p"><b>since</b> + a starting point (since Monday) · <b>for</b> + a length of time (for three days).<br><b>State verbs</b> (know, like, love, want, need, own, believe, understand) don't take -ing.</p>`},
+    11: {title:"The four Past tenses", html:`<table class="tn-tab"><tr><td>Simple Past</td><td>I <b>cooked</b> dinner yesterday.</td><td>finished at a past time</td></tr>
+      <tr><td>Past Continuous</td><td>I <b>was cooking</b> when the lights went out.</td><td>in progress in the past</td></tr>
+      <tr><td>Past Perfect</td><td>I <b>had cooked</b> before the guests came.</td><td>the earlier past</td></tr>
+      <tr><td>Past Perfect Continuous</td><td>I <b>had been cooking</b> for an hour when they came.</td><td>how long, up to a past moment</td></tr></table>
+      <p class="tn-p"><b>Present Perfect or Simple Past?</b> A finished time (yesterday, ago, last…, in 2019) → Simple Past. No finished time, or up to now (just, already, yet, ever, so far) → Present Perfect.</p>`},
+    12: {title:"V1 · V2 · V3", html:`<p class="tn-p"><b>V1</b> = base form (go) · <b>V2</b> = simple past (went) · <b>V3</b> = past participle, used after has / have / had (gone).</p>
+      <table class="tn-tab"><tr><td>Regular</td><td>play – played – played</td><td>add -ed</td></tr>
+      <tr><td>A–A–A</td><td>cut – cut – cut</td><td>all the same</td></tr><tr><td>A–B–B</td><td>buy – bought – bought</td><td>V2 = V3</td></tr>
+      <tr><td>A–B–C</td><td>write – wrote – written</td><td>all different</td></tr></table>
+      <p class="tn-p"><b>-ed spelling:</b> stop → stopped (double), study → studied (y → ied), like → liked (just -d), play → played.<br><b>Rule of thumb:</b> did + V1 · has / have / had + V3.</p>`},
+    17: {title:"The Tense Doctor's notes", html:`<p class="tn-p">The mistakes examiners see most often:</p>
+      <ol class="tn-ol"><li>Agreement: <s>He don't</s> → He doesn't · <s>They was</s> → They were</li>
+      <li>V2 after has / did: <s>has went</s> → has gone · <s>did not saw</s> → did not see</li>
+      <li>Present Perfect with a finished time: <s>I have seen him yesterday</s> → I saw him yesterday</li>
+      <li>since / for: <s>since five years</s> → for five years</li>
+      <li>-ing with state verbs: <s>I am knowing</s> → I know</li>
+      <li>will in time clauses: <s>when he will come</s> → when he comes</li></ol>
+      <p class="tn-p">Tap the wrong word first, then choose the fix.</p>`},
+    18: {title:"All 12 tenses", html:`<p class="tn-p">Every tense is a <b>time</b> (past · present · future) plus an <b>aspect</b> (simple · continuous · perfect · perfect continuous). Learn the 4 patterns once and they work in all three times:</p>
+      <table class="tn-tab"><tr><td>Simple</td><td>V1 / V2 / will + V1</td></tr><tr><td>Continuous</td><td>be + V-ing</td></tr><tr><td>Perfect</td><td>have + V3</td></tr><tr><td>Perfect Continuous</td><td>have + been + V-ing</td></tr></table>
+      <p class="tn-p">120 seconds. Right answers add time, wrong ones take time away.</p>`}
+  };
+
+  /* ---------------- Grammar engine ---------------- */
+  const KIDS = /school|homework|exam|class|pocket money|lunch box|teacher|band|grand|mother|little brother|cousin/;
+  const EXP = new Set(["see", "visit", "ride", "fly", "try", "win", "climb", "swim", "travel", "score", "bake", "cook", "build", "catch", "give", "drive", "run", "write", "play", "watch", "draw", "grow", "plant", "rescue", "sing", "set"]);
+  const ADULT = new Set(["drive", "pay", "work", "teach", "sell", "mark", "park", "hold", "deliver", "sign"]);
+  const ADULTS = new Set(["Mrs Desai", "Mr Naik", "my uncle", "our teacher", "my grandfather", "my parents"]);
+  const BOTH = new Set(["I", "You", "We", "They", "He", "She"]);
+  const fits = (s, v, o) => (!ADULT.has(v.b) || ADULTS.has(s.t) || BOTH.has(s.t)) && (!KIDS.test(o) || !ADULTS.has(s.t));
+  const mid = s => s.p === "I" ? "I" : (s.pro || ["You", "We", "They"].includes(s.t)) ? s.t.toLowerCase() : s.t;
+  const cap = x => x.replace(/^([^A-Za-z]*)([a-z])/, (m, a, b) => a + b.toUpperCase());
+  const capAll = x => cap(x).replace(/([.!?] )([a-z])/g, (m, a, b) => a + b.toUpperCase());
+
+  // the verb group as a list of words
+  function vp(t, s, v, o = {}){
+    const neg = !!o.neg, adv = o.adv;
+    let w;
+    switch (t){
+      case "pS": w = neg ? [DO(s), "not", v.b] : [sing(s) ? v.s : v.b]; break;
+      case "pC": w = [BE(s), v.ing]; break;
+      case "pP": w = [HAS(s), v.v3]; break;
+      case "pPC": w = [HAS(s), "been", v.ing]; break;
+      case "aS": w = neg ? ["did", "not", v.b] : [v.v2]; break;
+      case "aC": w = [WAS(s), v.ing]; break;
+      case "aP": w = ["had", v.v3]; break;
+      case "aPC": w = ["had", "been", v.ing]; break;
+      case "fS": w = ["will", v.b]; break;
+      case "fC": w = ["will", "be", v.ing]; break;
+      case "fP": w = ["will", "have", v.v3]; break;
+      case "fPC": w = ["will", "have", "been", v.ing]; break;
+    }
+    if (neg && !["pS", "aS"].includes(t)) w.splice(1, 0, "not");
+    if (adv) w.length === 1 ? w.unshift(adv) : w.splice(1, 0, adv);
+    return w;
+  }
+  const vps = (t, s, v, o) => vp(t, s, v, o).join(" ");
+  // question word order: first helper + subject + the rest
+  function vq(t, s, v){
+    if (t === "pS") return [cap(DO(s)), mid(s), v.b];
+    if (t === "aS") return ["Did", mid(s), v.b];
+    const w = vp(t, s, v); return [cap(w[0]), mid(s), ...w.slice(1)];
+  }
+
+  // typical wrong forms of a tense, each with the rule it breaks
+  function errs(t, s, v, o = {}){
+    const out = [], one = sing(s) || s.p === "I", plural = !sing(s) && s.p !== "I";
+    const W = vp(t, s, v, o), add = (w, why) => out.push({w: w.join(" "), why});
+    const swapAux = {is:"are", are:"is", am:"is", has:"have", have:"has", was:"were", were:"was", does:"do", do:"does"};
+    const repl = (i, x) => { const c = W.slice(); c[i] = x; return c; };
+    const mainI = W.length - 1;
+    if (t === "pS" && !o.neg){
+      if (sing(s)) add(repl(mainI, v.b), `${who(s)} needs V1 + s / es in the Simple Present: <b>${v.s}</b>, not ${v.b}.`);
+      else add(repl(mainI, v.s), `${who(s)} does not take -s. Only he / she / it adds -s: <b>${v.b}</b>.`);
+      add([BE(s), v.b], `‘${BE(s)} + V1’ is never correct. The Simple Present positive has no helping verb: <b>${W.join(" ")}</b>.`);
+    }
+    if (t === "pS" && o.neg) add([DO(s), "not", v.s], `After do / does, the verb goes back to V1: does not <b>${v.b}</b>, not does not ${v.s}.`);
+    if (t === "aS" && !o.neg && !v.reg && edForm(v.b) !== v.v2) add(repl(mainI, edForm(v.b)), `‘${v.b}’ is irregular: its V2 is <b>${v.v2}</b>, not ${edForm(v.b)}.`);
+    if (t === "aS" && o.neg && v.v2 !== v.b) add(["did", "not", v.v2], `‘did’ already shows the past, so the main verb stays V1: did not <b>${v.b}</b>.`);
+    // helper agreement (is/are, has/have, was/were)
+    const ai = W.findIndex(x => swapAux[x]);
+    if (ai >= 0 && t !== "aS"){
+      const wrong = swapAux[W[ai]], need = W[ai];
+      add(repl(ai, wrong), `${who(s)} takes <b>${need}</b>, not ${wrong}. (${["is", "are", "am"].includes(need) ? "I → am · he / she / it → is · you / we / they → are" : ["was", "were"].includes(need) ? "I / he / she / it → was · you / we / they → were" : ["do", "does"].includes(need) ? "he / she / it → does · I / you / we / they → do" : "he / she / it → has · I / you / we / they → have"})`);
+    }
+    // wrong main-verb form
+    if (W[mainI] === v.ing && v.b !== v.ing) add(repl(mainI, v.b), `After ${W[mainI - 1]} in a continuous tense, the verb needs -ing: <b>${v.ing}</b>.`);
+    if (W[mainI] === v.v3 && ["pP", "aP", "fP"].includes(t)){
+      if (v.v2 !== v.v3) add(repl(mainI, v.v2), `After ${W[mainI - 1]} we need V3 (past participle). ${v.b} → ${v.v2} (V2) → <b>${v.v3}</b> (V3).`);
+      else if (v.b !== v.v3) add(repl(mainI, v.b), `After ${W[mainI - 1]} we need V3: <b>${v.v3}</b>, not the base form ${v.b}.`);
+    }
+    if (t === "pPC" || t === "aPC" || t === "fPC"){ const bi = W.indexOf("been"); add(repl(bi, "being"), `Perfect Continuous uses <b>been</b> (not being) + V-ing.`); }
+    if (t === "fS"){ add(repl(mainI, v.s), `After will, always use V1: will <b>${v.b}</b> (no -s).`); if (v.v2 !== v.b) add(repl(mainI, v.v2), `After will, always use V1: will <b>${v.b}</b>, not ${v.v2}.`); }
+    if (t === "fC") add(["will", "being", v.ing], `Future Continuous = will + <b>be</b> + V-ing (not being).`);
+    if (t === "fP" || t === "fPC"){ const hi = W.indexOf("have"); add(repl(hi, "has"), `After will, it is always <b>have</b>, never has, for every subject.`); }
+    return uniq(out.map(x => x.w)).map(w => out.find(x => x.w === w)).filter(x => x.w !== W.join(" "));
+  }
+
+  // explain how to build the verb group, step by step
+  function howForm(t, s, v, o = {}){
+    const W = vp(t, s, v, o), sw = who(s);
+    const vf = (form) => form === "ing" ? `${v.b} → V-ing = <b>${v.ing}</b>${ingRule(v.b) !== "just add -ing" ? ` (${ingRule(v.b)})` : ""}`
+      : form === "v3" ? `V3 of ${v.b} = <b>${v.v3}</b>${v.reg ? " (regular: -ed)" : ""}` : form === "v2" ? `V2 of ${v.b} = <b>${v.v2}</b>${v.reg ? " (regular: add -ed)" : " (irregular)"}` : `V1 = <b>${v.b}</b>`;
+    switch (t){
+      case "pS": return o.neg ? `${sw} → <b>${DO(s)} not</b> + V1 → ${vf("v1")}` : sing(s) ? `${sw} → V1 + s / es: ${v.b} → <b>${v.s}</b> (${sRule(v.b)})` : `${sw} → V1 with no -s: <b>${v.b}</b>`;
+      case "pC": return `${sw} → <b>${BE(s)}</b>; ${vf("ing")}`;
+      case "pP": return `${sw} → <b>${HAS(s)}</b>; ${vf("v3")}`;
+      case "pPC": return `${sw} → <b>${HAS(s)} been</b>; ${vf("ing")}`;
+      case "aS": return o.neg ? `negative → <b>did not</b> + V1 (did already shows the past) → ${vf("v1")}` : vf("v2");
+      case "aC": return `${sw} → <b>${WAS(s)}</b>; ${vf("ing")}`;
+      case "aP": return `<b>had</b> (same for every subject); ${vf("v3")}`;
+      case "aPC": return `<b>had been</b> (same for every subject); ${vf("ing")}`;
+      case "fS": return `<b>will</b> + V1 (same for every subject) → ${vf("v1")}`;
+      case "fC": return `<b>will be</b> (same for every subject); ${vf("ing")}`;
+      case "fP": return `<b>will have</b> (always have after will); ${vf("v3")}`;
+      case "fPC": return `<b>will have been</b>; ${vf("ing")}`;
+    }
+    return W.join(" ");
+  }
+  // the pattern that identifies a tense from its verb group
+  const PATTERN = {pS:"V1 or V1 + s / es (do / does in negatives)", pC:"am / is / are + V-ing", pP:"has / have + V3", pPC:"has / have + been + V-ing",
+    aS:"V2 (did in negatives)", aC:"was / were + V-ing", aP:"had + V3", aPC:"had + been + V-ing", fS:"will + V1", fC:"will + be + V-ing", fP:"will + have + V3", fPC:"will + have + been + V-ing"};
+
+  /* ---------------- Sentence builder ---------------- */
+  function render(fr, s, o, V){
+    let x = fr.s.replace("{O}", o).replace(/\{P\}/g, POSS(s)).replace("{obj}", OBJ(s)).replace("{was}", WAS(s)).replace("{is}", BE(s))
+      .replace("{S}", mid(s)).replace("{s}", PRON(s));
+    x = x.replace(/\s+([.,;?!])/g, "$1").replace(/\s{2,}/g, " ");
+    x = capAll(x);
+    return x.replace("{V}", V);
+  }
+  const compl = (fr, v) => v[fr.k] || [];
+  const SUB_W = SUBJ.flatMap(s => s.p === "he" ? [s, s] : [s]); // a bit more he / she, the trickiest agreement
+  function pickFor(fr, tries = 80){
+    for (let i = 0; i < tries; i++){
+      const v = P(ACTION), list = compl(fr, v); if (!list.length) continue;
+      const s = P(SUB_W); if (fr.no.includes(s.p) || (fr.no.includes("I") && s.p === "I")) continue;
+      const o = P(list).replace(/\{P\}/g, POSS(s)); if (!fits(s, v, o)) continue;
+      if (fr.adv === "never" && !EXP.has(v.b)) continue;
+      return {s, v, o};
+    }
+    return null;
+  }
+  const framesOf = t => FRAMES.filter(f => f.t === t);
+  function makeItem(t, fr){
+    fr = fr || P(framesOf(t)); const pk = pickFor(fr); if (!pk) return makeItem(t);
+    const {s, v, o} = pk, opt = {neg: fr.neg, adv: fr.adv};
+    return {t, fr, s, v, o, opt, ans: vps(t, s, v, opt), sent: V => render(fr, s, o, V)};
+  }
+  const hl = (text, clue) => { const c = clue.split(" … ")[0]; const i = text.toLowerCase().indexOf(c.toLowerCase()); return i < 0 ? text : text.slice(0, i) + `<mark>${text.slice(i, i + c.length)}</mark>` + text.slice(i + c.length); };
+
+  /* ---------------- Timeline pictures ---------------- */
+  function timeline(t, small){
+    const W = 320, H = small ? 64 : 84, y = H/2 + 6, now = 160, ref = T[t].time === "past" ? 78 : T[t].time === "future" ? 242 : now, asp = T[t].asp;
+    const ink = "#ffd166", soft = "rgba(255,209,102,.25)";
+    let g = `<line x1="14" y1="${y}" x2="306" y2="${y}" stroke="rgba(231,234,255,.45)" stroke-width="2"/><path d="M300 ${y - 5} 308 ${y} 300 ${y + 5}" fill="none" stroke="rgba(231,234,255,.45)" stroke-width="2"/>
+      <line x1="${now}" y1="${y - 16}" x2="${now}" y2="${y + 16}" stroke="#7cf0ff" stroke-width="2"/><text x="${now}" y="${y + 30}" text-anchor="middle" class="tn-tl">NOW</text>
+      <text x="22" y="${y + 30}" class="tn-tl">PAST</text><text x="298" y="${y + 30}" text-anchor="end" class="tn-tl">FUTURE</text>`;
+    if (ref !== now) g += `<line x1="${ref}" y1="${y - 12}" x2="${ref}" y2="${y + 12}" stroke="#ff9fbd" stroke-width="2" stroke-dasharray="3 3"/><text x="${ref}" y="${y - 18}" text-anchor="middle" class="tn-tl" style="fill:#ff9fbd">${T[t].time === "past" ? "then (past)" : "then (future)"}</text>`;
+    const wave = (a, b) => { let d = `M${a} ${y}`; for (let x = a; x < b; x += 8) d += ` q4 -9 8 0`; return `<path d="${d}" fill="none" stroke="${ink}" stroke-width="3" stroke-linecap="round"/>`; };
+    if (asp === "S"){ if (t === "pS") [70, 115, 160, 205, 250].forEach(x => g += `<path d="M${x - 5} ${y - 5}l10 10M${x + 5} ${y - 5}l-10 10" stroke="${ink}" stroke-width="3" stroke-linecap="round"/>`);
+      else g += `<path d="M${ref - 7} ${y - 7}l14 14M${ref + 7} ${y - 7}l-14 14" stroke="${ink}" stroke-width="3.5" stroke-linecap="round"/>`; }
+    if (asp === "C") g += `<rect x="${ref - 34}" y="${y - 10}" width="68" height="20" rx="10" fill="${soft}"/>` + wave(ref - 30, ref + 30);
+    if (asp === "P") g += `<circle cx="${ref - 58}" cy="${y}" r="5" fill="${ink}"/><path d="M${ref - 52} ${y - 14} Q${ref - 26} ${y - 28} ${ref - 4} ${y - 8}" fill="none" stroke="${ink}" stroke-width="2.5"/><path d="M${ref - 11} ${y - 13} ${ref - 3} ${y - 7} ${ref - 12} ${y - 4}" fill="none" stroke="${ink}" stroke-width="2.5"/>`;
+    if (asp === "PC") g += `<rect x="${ref - 64}" y="${y - 10}" width="${64}" height="20" rx="10" fill="${soft}"/>` + wave(ref - 60, ref - 2) + `<circle cx="${ref - 62}" cy="${y}" r="4" fill="${ink}"/>`;
+    return `<svg class="tn-tline" viewBox="0 0 ${W} ${H}" role="img" aria-label="timeline for ${T[t].name}">${g}</svg>`;
+  }
+  const TL_SAY = {S:"a single point (×) = a complete action", C:"a wavy band around the moment = in progress", P:"an arrow from an earlier point to the moment = completed before it", PC:"a wavy band that runs up to the moment = going on until then"};
+
+  /* ---------------- Question generators ----------------
+     Each returns {html, mount(el, done)}; done(ok, explanationHTML, topic, bonus). */
+  const BL = `<span class="tn-blank">&nbsp;</span>`;
+  const hint = (v, o = {}) => ` <span class="tn-hint">(${o.neg ? "not / " : ""}${o.adv ? o.adv + " / " : ""}${v.b})</span>`;
+  const esc = x => String(x);
+  const yours = (txt, why) => `<p class="tn-yours"><b>✘ ${esc(txt)}</b> ${why}</p>`;
+  const steps = list => `<ol class="tn-steps">${list.map(x => `<li>${x}</li>`).join("")}</ol>`;
+  let TEST = null; try { TEST = /tntest/.test(location.search) ? (window.__tn = {}) : null; } catch (e) {}
+  const mark = a => { if (TEST) TEST.ans = a; };
+
+  // generic multiple choice: opts = [{t: text, why: reason it's wrong}], first one is correct
+  function mc(head, opts, topic, explain, o = {}){
+    const order = SH(opts.map((x, i) => i)), ci = order.indexOf(0);
+    return {html:`${head}<div class="tw-opts ${o.cls || ""}">${order.map((k, i) => `<button class="tw-b tn-o" type="button" data-i="${i}">${opts[k].t}</button>`).join("")}</div>`,
+      mount(el, done){ mark(ci);
+        el.querySelectorAll(".tn-o").forEach(b => b.onclick = () => { if (el.dataset.lock) return; el.dataset.lock = 1; const i = +b.dataset.i, ok = i === ci;
+          b.classList.add(ok ? "ok" : "no"); if (!ok) el.querySelectorAll(".tn-o")[ci].classList.add("ok");
+          done(ok, explain(ok, opts[order[i]]), topic, o.bonus || 0); }); }};
+  }
+  // choose wrong tenses for a sentence: never one that would also be correct
+  function rivals(t, ok, pool, n){
+    const c = IDS.filter(x => x !== t && !ok.includes(x)).map(x => ({x, w:(pool && pool.includes(x) ? 6 : 0) + (T[x].time === T[t].time ? 2 : 0) + (T[x].asp === T[t].asp ? 2 : 0) + Math.random()*3}));
+    return c.sort((a, b) => b.w - a.w).slice(0, n).map(a => a.x);
+  }
+  const tenseWhy = (x, extra) => `that is the <b>${T[x].name}</b> (${T[x].f}), used for ${USE[x]}${extra || ""}.`;
+
+  /* 1. Fill the blank with the right verb group */
+  function fillQ(t, o = {}){
+    const it = o.item || makeItem(t, o.fr), {s, v, opt, fr} = it, ans = it.ans;
+    const errors = SH(errs(t, s, v, opt)), wantErr = o.pool && o.pool.length > 2 ? (Math.random() < .3 ? 1 : 0) : errors.length ? (Math.random() < .8 ? 1 : 0) : 0;
+    const opts = [{t: ans}], seen = new Set([ans]);
+    const push = (txt, why) => { if (!seen.has(txt) && opts.length < 4){ seen.add(txt); opts.push({t: txt, why}); } };
+    errors.slice(0, wantErr).forEach(e => push(e.w, e.why));
+    rivals(t, fr.ok, o.pool, 6).forEach(x => push(vps(x, s, v, opt), tenseWhy(x, `, but the clue ‘${fr.clue}’ shows ${fr.why}`)));
+    errors.forEach(e => push(e.w, e.why));
+    const done = it.sent(`<b class="tn-ans">${ans}</b>`);
+    return mc(`<p class="tn-lbl">Fill in the blank</p><p class="tn-sent">${hl(it.sent(BL + hint(v, opt)), fr.clue)}</p>`, opts, T[t].name, (ok, ch) =>
+      ok ? `Clue <mark>${fr.clue}</mark> → ${fr.why} → <b>${T[t].name}</b> (${T[t].f}). ${done}`
+         : yours(ch.t, ch.why) + steps([`Find the clue: <mark>${fr.clue}</mark> → ${fr.why}.`, `So we need the <b>${T[t].name}</b>: ${T[t].f}${opt.neg ? ", made negative with not" : ""}.`,
+             `Build it: ${howForm(t, s, v, opt)}${opt.adv ? `; ‘${opt.adv}’ goes after the first helping verb` : ""}.`, `Answer: ${done}`]));
+  }
+
+  /* 2. Facts and timetables are Simple Present */
+  const XV = {boil:[], rise:["rose", "risen"], melt:[], flow:[], have:["had", "had"], move:[]};
+  const verbObj = b => VB[b] || (() => { const x = XV[b] || []; return {b, s: sForm(b), ing: ingForm(b), v2: x[0] || edForm(b), v3: x[1] || edForm(b), reg: !x[0]}; })();
+  function factQ(){
+    const f = P(FACTS), v = verbObj(f.v), s = {t: f.S, p: f.pl ? "they" : "he", g: "n"}, ans = sing(s) ? v.s : v.b;
+    const opts = [{t: ans}], seen = new Set([ans]); const push = (x, why) => { if (!seen.has(x) && opts.length < 4){ seen.add(x); opts.push({t: x, why}); } };
+    push(sing(s) ? v.b : v.s, sing(s) ? `‘${f.S}’ is one thing (it), so the verb needs -s / -es: <b>${v.s}</b>.` : `‘${f.S}’ is plural (they): no -s.`);
+    SH(["pC", "aS", "fS", "pP"]).forEach(x => push(vps(x, s, v), tenseWhy(x, ", but a fact is always true, not tied to one time")));
+    const sent = x => `${f.S} ${x} ${f.O}.`;
+    return mc(`<p class="tn-lbl">Facts and timetables</p><p class="tn-sent">${sent(BL + hint(v))}</p>`, opts, "Simple Present: facts", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`This is a <mark>${/train/.test(f.S) ? "timetable" : "fact that is always true"}</mark>.`, `Facts, general truths and timetables always use the <b>Simple Present</b>.`, howForm("pS", s, v), `Answer: ${sent(`<b class="tn-ans">${ans}</b>`)}`]));
+  }
+
+  /* 3. Spelling: he / she / it + s, es, ies */
+  const S_POOL = {es:["watch", "wash", "fix", "finish", "catch", "miss", "go", "do", "brush", "cross"], ies:["study", "carry", "try", "cry", "fly"], ys:["play", "pay", "enjoy", "stay", "buy"], s:["eat", "read", "write", "help", "visit", "drink", "make", "run", "cook"]};
+  function sFormQ(){
+    const b = P(P([S_POOL.es, S_POOL.ies, S_POOL.ys, S_POOL.s])), v = VB[b], ol = v.a.length ? v.a : [""];
+    let s, o; for (let i = 0; i < 50; i++){ s = P(SUBJ.filter(x => x.p === "he")); o = P(ol).replace(/\{P\}/g, POSS(s)); if (fits(s, v, o)) break; }
+    const ans = v.s;
+    const cands = uniq([b + "s", b + "es", b.replace(/y$/, "ies"), b.replace(/y$/, "ys"), b.replace(/y$/, "yes"), b]).filter(x => x !== ans);
+    const opts = [{t: ans}, ...SH(cands).slice(0, 3).map(x => ({t: x, why: x === b ? `${who(s)} needs -s / -es in the Simple Present.` : `Not the right spelling. Rule: ${sRule(b)}.`}))];
+    const sent = x => cap(`${mid(s)} ${x} ${o} every day.`.replace(/\s+/g, " ").replace(" .", "."));
+    return mc(`<p class="tn-lbl">He / she / it: add -s or -es?</p><p class="tn-sent">${sent(BL + hint(v))}</p>`, opts, "-s / -es spelling", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`${who(s)} + Simple Present → the verb takes -s / -es.`, `Spelling rule for ‘${b}’: <b>${sRule(b)}</b>.`, `Answer: ${sent(`<b class="tn-ans">${ans}</b>`)}`]), {cls:"two"});
+  }
+
+  /* 4. Spelling: -ing */
+  const ING_POOL = {double:["run", "swim", "sit", "get", "begin", "stop", "plan", "shop", "travel", "jog", "chat", "dig", "win", "forget", "cut", "put"], drop:["make", "write", "dance", "ride", "come", "take", "practise", "arrive", "bake", "use", "prepare", "leave", "hide", "save", "change", "give", "wake"], ie:["lie", "die", "tie"], plain:["play", "read", "eat", "see", "study", "fly", "carry", "visit", "open", "listen", "fix", "go"]};
+  function ingQ(){
+    const cat = P(["double", "double", "drop", "drop", "ie", "plain"]), b = P(ING_POOL[cat]), ans = ingForm(b);
+    const cands = uniq([b + "ing", b + b.slice(-1) + "ing", b.replace(/e$/, "") + "ing", b.replace(/ie$/, "y") + "ing", b.slice(0, -1) + "ing", b + "eing"]).filter(x => x !== ans);
+    const pool = SH(cands).slice(0, 3);
+    const opts = [{t: ans}, ...pool.map(x => ({t: x, why: `Spelling rule for ‘${b}’: ${ingRule(b)}.`}))];
+    return mc(`<p class="tn-lbl">Spell the -ing form</p><p class="tn-sent tn-big">${b} → ${BL}</p><p class="tw-mini">Continuous tenses need V-ing (is <i>___</i>, was <i>___</i>, will be <i>___</i>).</p>`, opts, "-ing spelling", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`Rule: <b>${ingRule(b)}</b>.`, `${b} → <b class="tn-ans">${ans}</b>`, `More like it: ${ING_POOL[cat].filter(x => x !== b).slice(0, 3).map(x => `${x} → ${ingForm(x)}`).join(", ")}.`]), {cls:"two"});
+  }
+
+  /* 5. V2 and V3 of irregular verbs */
+  function formQ(which){
+    const v = P(IRREG.filter(x => x.b !== "sleep" && (x.r.length || x.a.length) && (which === "v2" ? edForm(x.b) !== x.v2 : (x.v3 !== x.v2 || edForm(x.b) !== x.v3)))), ans = v[which];
+    let s, o; for (let i = 0; i < 50; i++){ s = P(SUBJ.filter(x => x.p !== "I")); o = P(v.r.length ? v.r : v.a).replace(/\{P\}/g, POSS(s)); if (fits(s, v, o)) break; }
+    const wrong = uniq([which === "v2" ? v.v3 : v.v2, edForm(v.b), v.b, which === "v3" ? v.b + "en" : v.s, v.ing]).filter(x => x !== ans);
+    const opts = [{t: ans}, ...SH(wrong).slice(0, 3).map(x => ({t: x, why: x === edForm(v.b) ? `‘${v.b}’ is irregular, so it doesn't just add -ed.` : x === v.v2 ? `${x} is V2 (simple past). After has / have / had we need V3.` : x === v.v3 ? `${x} is V3 (past participle). It needs has / have / had in front. On its own, the past is V2.` : x === v.b ? `${x} is V1 (the base form).` : `${x} is not a form of ‘${v.b}’.`}))];
+    const sent = x => which === "v2" ? cap(`${mid(s)} ${x} ${o} yesterday.`) : cap(`${mid(s)} ${HAS(s)} already ${x} ${o}.`);
+    const grp = v.b === v.v2 && v.v2 === v.v3 ? "A–A–A" : v.v2 === v.v3 ? "A–B–B" : "A–B–C";
+    return mc(`<p class="tn-lbl">${which === "v2" ? "Simple Past: use V2" : "After has / have / had: use V3"}</p><p class="tn-sent">${sent(BL + hint(v)).replace(/\s+\./, ".")}</p>`, opts, which === "v2" ? "Irregular V2" : "Irregular V3", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([which === "v2" ? `<mark>yesterday</mark> → Simple Past → V2.` : `<mark>${HAS(s)}</mark> → Present Perfect → V3.`, `<b>${v.b} – ${v.v2} – ${v.v3}</b> (V1 – V2 – V3, pattern ${grp}).`, `Answer: ${sent(`<b class="tn-ans">${ans}</b>`).replace(/\s+\./, ".")}`]), {cls:"two"});
+  }
+  /* 6. Regular -ed spelling */
+  const ED_POOL = ["stop", "plan", "shop", "travel", "study", "carry", "try", "reply", "cry", "arrive", "dance", "bake", "play", "enjoy", "stay", "visit", "open", "jog", "chat", "mop", "drop", "prefer", "tidy", "use"];
+  function edQ(){
+    const b = P(ED_POOL), ans = edForm(b), s = P(SUBJ.filter(x => !ADULTS.has(x.t)));
+    const cands = uniq([b + "ed", b + b.slice(-1) + "ed", b.replace(/y$/, "ied"), b.replace(/e$/, "") + "ed", b + "d", b.replace(/y$/, "yed")]).filter(x => x !== ans && x !== b && !(x === b + "d" && !/e$/.test(b)));
+    const opts = [{t: ans}, ...SH(cands).slice(0, 3).map(x => ({t: x, why: `Spelling rule for ‘${b}’: ${edRule(b)}.`}))];
+    return mc(`<p class="tn-lbl">Regular verbs: spell the -ed form</p><p class="tn-sent tn-big">${b} → ${BL}</p>`, opts, "-ed spelling", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`Rule: <b>${edRule(b)}</b>.`, `${b} → <b class="tn-ans">${ans}</b> (V2 and V3 are the same for regular verbs).`]), {cls:"two"});
+  }
+  /* 7. Which pattern? A–A–A, A–B–B, A–B–C, regular */
+  const PATTERNS = [["AAA", "A–A–A (all three the same)"], ["ABB", "A–B–B (V2 = V3)"], ["ABC", "A–B–C (all different)"], ["REG", "Regular (add -ed)"]];
+  function groupQ(){
+    const all = VERBS.filter(v => !["learn", "know", "understand", "come", "run", "beat"].includes(v.b));
+    const kind = v => v.reg ? "REG" : v.b === v.v2 && v.v2 === v.v3 ? "AAA" : v.v2 === v.v3 ? "ABB" : v.b !== v.v2 && v.v2 !== v.v3 && v.b !== v.v3 ? "ABC" : "X";
+    const want = P(["AAA", "ABB", "ABB", "ABC", "ABC", "REG"]), v = P(all.filter(x => kind(x) === want));
+    const opts = [{t: PATTERNS.find(p => p[0] === want)[1]}, ...PATTERNS.filter(p => p[0] !== want).map(p => ({t: p[1], why: `Check all three forms: ${v.b} – ${v.v2} – ${v.v3}.`}))];
+    const like = all.filter(x => kind(x) === want && x !== v).slice(0, 40); const ex = SH(like).slice(0, 3).map(x => `${x.b} – ${x.v2} – ${x.v3}`).join(" · ");
+    return mc(`<p class="tn-lbl">Which pattern does this verb follow?</p><p class="tn-sent tn-big">${v.b}</p>`, opts, "Verb patterns", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`<b>${v.b} – ${v.v2} – ${v.v3}</b>`, `Pattern: <b>${opts[0].t}</b>.`, `Same pattern: ${ex}.`]));
+  }
+
+  /* 8. The right helping verb: am / is / are, has / have, was / were, do / does */
+  function helperQ(t){
+    const neg = t === "pS"; const tt = neg ? "pS" : t;
+    const fr = P(FRAMES.filter(f => f.t === tt && f.q)) || P(framesOf(tt)), it = makeItem(tt, fr), {s, v, o} = it, W = vp(tt, s, v, {neg});
+    const set = {pC:["am", "is", "are"], pPC:["has", "have"], pP:["has", "have"], aC:["was", "were"], pS:["do", "does"]}[t];
+    const ans = W[0], rest = W.slice(1).join(" ");
+    const sent = x => render(fr, s, o, `${x} ${rest}`);
+    const rule = {pC:"I → am · he / she / it → is · you / we / they → are", pPC:"he / she / it → has · I / you / we / they → have", pP:"he / she / it → has · I / you / we / they → have", aC:"I / he / she / it → was · you / we / they → were", pS:"he / she / it → does · I / you / we / they → do"}[t];
+    const opts = [{t: ans}, ...set.filter(x => x !== ans).map(x => ({t: x, why: `${who(s)} does not take ‘${x}’.`}))];
+    return mc(`<p class="tn-lbl">Choose the helping verb</p><p class="tn-sent">${sent(BL)}</p>`, opts, "Helping verbs (agreement)", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`The subject is ${who(s)}.`, `Rule: ${rule}.`, `Answer: ${sent(`<b class="tn-ans">${ans}</b>`)}`]), {cls: set.length === 3 ? "six" : "two"});
+  }
+
+  /* 9. State verbs don't take -ing */
+  function stativeQ(){
+    const useDur = Math.random() < .45, st = P(STATIVE.filter(x => !useDur || x.dur)), v = st.v, s = P(SUB_W.filter(x => !ADULTS.has(x.t) || st.v.b !== "want"));
+    const comp = (useDur ? st.dur : st.now).replace(/\{P\}/g, POSS(s));
+    const sentence = x => useDur ? cap(`${mid(s)} ${x} ${comp} for ten years.`) : cap(`${mid(s)} ${x} ${comp} now.`);
+    const t = useDur ? "pP" : "pS", ans = vps(t, s, v);
+    const opts = [{t: ans}], seen = new Set([ans]); const push = (x, why) => { if (!seen.has(x) && opts.length < 4){ seen.add(x); opts.push({t: x, why}); } };
+    const sw = `‘${v.b}’ is a state verb, so it doesn't take -ing.`;
+    if (useDur){ push(vps("pPC", s, v), sw + ` Use has / have + V3 instead: <b>${ans}</b>.`); push(vps("pC", s, v), sw); push(vps("pS", s, v), `‘for ten years’ means from the past up to now, so we need the Present Perfect.`); }
+    else { push(vps("pC", s, v), sw + " Even when we mean ‘now’, use the Simple Present."); push(sing(s) ? v.b : v.s, `${who(s)}: check the -s. ${sing(s) ? "he / she / it needs -s." : "Only he / she / it adds -s."}`); push(v.ing, sw); }
+    return mc(`<p class="tn-lbl">State verbs</p><p class="tn-sent">${sentence(BL + hint(v))}</p>`, opts, "State verbs (no -ing)", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`‘${v.b}’ is a <b>state verb</b> (mind, feeling or owning): know, like, love, want, need, own, believe, understand, remember, prefer.`, `State verbs are not used in continuous (-ing) forms.`, useDur ? `‘for ten years’ (up to now) → <b>Present Perfect</b>: ${howForm("pP", s, v)}.` : `‘now’ + state verb → <b>Simple Present</b>: ${howForm("pS", s, v)}.`, `Answer: ${sentence(`<b class="tn-ans">${ans}</b>`)}`]));
+  }
+
+  /* 10. Make it negative / make it a question */
+  function transformQ(t, kind){
+    kind = kind || P(["neg", "q"]); if (t === "pP" || t === "pPC") kind = "q";
+    const fr = P(FRAMES.filter(f => f.t === t && f.q)), it = makeItem(t, fr), {s, v, o} = it;
+    const tail = fr.s.split("{O}")[1].replace(/\.$/, ""), base = render(fr, s, o, vps(t, s, v));
+    const W = vp(t, s, v), subj = cap(mid(s)), rest = `${o}${tail}`.trim();
+    const line = (subjFirst, words, end) => (subjFirst ? `${subj} ${words.join(" ")}` : words.join(" ")) + (rest ? " " + rest : "") + end;
+    let ans, wrong = [], rule;
+    if (kind === "neg"){
+      ans = line(true, vp(t, s, v, {neg: 1}), ".");
+      if (t === "pS"){ wrong.push([line(true, [DO(s), "not", v.s], "."), "After does / do, the verb goes back to V1 (no -s)."], [line(true, ["not", sing(s) ? v.s : v.b], "."), "English needs a helping verb before not: do / does not."], [line(true, [sing(s) ? "do" : "does", "not", v.b], "."), `${who(s)} takes ${DO(s)}, not ${sing(s) ? "do" : "does"}.`], [line(true, [BE(s), "not", v.b], "."), `‘${BE(s)} not + V1’ is never correct.`]);
+        rule = `The Simple Present has no helping verb in the positive, so for the negative we bring in <b>do / does</b> + not + V1.`; }
+      else if (t === "aS"){ wrong.push([line(true, ["did", "not", v.v2], "."), "did already shows the past, so the verb goes back to V1."], [line(true, ["not", v.v2], "."), "English needs a helping verb before not: did not."], [line(true, [WAS(s), "not", v.b], "."), `‘${WAS(s)} not + V1’ is never correct.`]);
+        rule = `The Simple Past has no helping verb in the positive, so for the negative we use <b>did not</b> + V1 (for every subject).`; }
+      else { wrong.push([line(true, ["not", ...W], "."), "not comes AFTER the first helping verb."], [line(true, [W[0], "not", ...W.slice(1, -1), v.b], "."), `The main verb keeps its form: ${W[W.length - 1]}.`]);
+        const sw = errs(t, s, v).find(e => e.w.split(" ")[0] !== W[0]); if (sw){ const ww = sw.w.split(" "); wrong.push([line(true, [ww[0], "not", ...ww.slice(1)], "."), sw.why]); }
+        rule = `Put <b>not</b> straight after the first helping verb: ${W[0]} → <b>${W[0]} not</b>.`; }
+    } else {
+      ans = line(false, vq(t, s, v), "?");
+      if (t === "pS"){ wrong.push([line(false, [cap(DO(s)), mid(s), v.s], "?"), "In a question with do / does, the verb goes back to V1 (no -s)."], [line(false, [sing(s) ? "Do" : "Does", mid(s), v.b], "?"), `${who(s)} takes ${DO(s)}.`], [line(true, W, "?"), "A question needs a helping verb in front of the subject."], [line(false, [cap(BE(s)), mid(s), v.b], "?"), `‘${BE(s)} + V1’ is never correct.`]);
+        rule = `Simple Present questions start with <b>Do / Does</b>, and the verb goes back to V1.`; }
+      else if (t === "aS"){ wrong.push([line(false, ["Did", mid(s), v.v2], "?"), "After did, use V1: did already shows the past."], [line(true, W, "?"), "A question needs did in front of the subject."], [line(false, [cap(WAS(s)), mid(s), v.b], "?"), `‘${WAS(s)} + V1’ is never correct.`]);
+        rule = `Simple Past questions start with <b>Did</b> + subject + V1.`; }
+      else { wrong.push([line(true, W, "?"), "In a question the first helping verb moves in front of the subject."]);
+        if (W.length > 2) wrong.push([line(false, [cap(W[0]), ...W.slice(1, -1), mid(s), W[W.length - 1]], "?"), "Only the FIRST helping verb goes before the subject; the rest stay after it."]);
+        wrong.push([line(false, [cap(W[0]), mid(s), ...W.slice(1, -1), v.b], "?"), `The main verb keeps its form: ${W[W.length - 1]}.`]);
+        const sw = errs(t, s, v).find(e => e.w.split(" ")[0] !== W[0]); if (sw){ const ww = sw.w.split(" "); wrong.push([line(false, [cap(ww[0]), mid(s), ...ww.slice(1)], "?"), sw.why]); }
+        rule = `Move the <b>first helping verb</b> (${W[0]}) in front of the subject.`; }
+    }
+    const opts = [{t: ans}], seen = new Set([ans]); SH(wrong).forEach(([x, why]) => { if (!seen.has(x) && opts.length < 4){ seen.add(x); opts.push({t: x, why}); } });
+    return mc(`<p class="tn-lbl">${kind === "neg" ? "Make it negative" : "Make it a question"}</p><p class="tn-sent">${base}</p>`, opts, kind === "neg" ? "Negatives" : "Questions", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`The verb group is <b>${W.join(" ")}</b> → <b>${T[t].name}</b>.`, rule, `Answer: <b class="tn-ans">${ans}</b>`]), {cls:"tn-long"});
+  }
+
+  /* 11. Which time expression fits? */
+  function clueQ(t){
+    const good = CLUES.filter(c => c.right.includes(t)), c = P(good);
+    const bad = SH(CLUES.filter(x => !x.ok.includes(t))).filter((x, i, a) => a.findIndex(y => y.c === x.c) === i).slice(0, 3);
+    let pk = null; for (let i = 0; i < 60 && !pk; i++){ const v = P(ACTION), list = v[c.k]; if (!list.length) continue; const s = P(SUB_W), o = P(list).replace(/\{P\}/g, POSS(s)); if (fits(s, v, o)) pk = {s, v, o}; }
+    const {s, v, o} = pk, W = vps(t, s, v), sent = x => cap(`${mid(s)} ${W} ${o} ${x}.`.replace(/\s+/g, " ").replace(" .", "."));
+    const fitsList = x => x.right.map(r => T[r].name).join(" or ");
+    const opts = [{t: c.c}, ...bad.map(x => ({t: x.c, why: `‘${x.c}’ = ${CLUE_WHY[x.c]}. It goes with the ${fitsList(x)}, not with ‘${W}’.`}))];
+    return mc(`<p class="tn-lbl">Which time expression fits?</p><p class="tn-sent">${sent(BL)}</p>`, opts, "Time expressions", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`The verb group <b>${W}</b> is the <b>${T[t].name}</b> (${T[t].f}).`, `It is used for ${USE[t]}.`, `‘${c.c}’ = ${CLUE_WHY[c.c]} → it fits.`, `Answer: ${sent(`<mark>${c.c}</mark>`)}`]));
+  }
+
+  /* 12. Name the tense */
+  function nameQ(t, pool){
+    const it = makeItem(t), {s, v, opt, fr} = it, W = it.ans;
+    const others = rivals(t, [t], pool, 3);
+    const opts = [{t: T[t].name}, ...others.map(x => ({t: T[x].name, why: `The ${T[x].name} would be <b>${PATTERN[x]}</b> (here: ${vps(x, s, v, opt)}).`}))];
+    return mc(`<p class="tn-lbl">Name the tense</p><p class="tn-sent">${it.sent(`<b class="tn-vg">${W}</b>`)}</p>`, opts, "Naming tenses", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`Look only at the verb group: <b>${W}</b>.`, `Pattern: <b>${PATTERN[t]}</b> → <b>${T[t].name}</b>.`, `The clue agrees: <mark>${fr.clue}</mark> → ${fr.why}.`]));
+  }
+
+  /* 13. Build the verb group from word tiles */
+  function buildQ(t){
+    const it = makeItem(t), {s, v, opt, fr} = it, W = vp(t, s, v, opt);
+    const swap = {is:"are", are:"is", am:"is", has:"have", have:"has", was:"were", were:"was", will:"would"};
+    let ex = [];
+    if (swap[W[0]]) ex.push(swap[W[0]]);
+    if (W.includes("been")) ex.push("being"); else if (W.includes("be")) ex.push("been");
+    const main = W[W.length - 1]; ex.push(main === v.ing ? (v.v3 !== v.ing ? v.v3 : v.b) : main === v.v3 ? (v.v2 !== v.v3 ? v.v2 : v.ing) : v.ing);
+    ex.push(...SH(["will", "had", "has", "is", "was", "been", "have", "be", "did", v.b, v.s]));
+    ex = uniq(ex).filter(x => !W.includes(x)).slice(0, Math.max(3, 7 - W.length));
+    const tiles = SH([...W, ...ex]);
+    const html = `<p class="tn-lbl">Build the verb group: ${T[t].name}</p><p class="tn-sent">${hl(it.sent(`<span class="tn-slot" id="tnSlot"><i class="tn-ph">tap the tiles in order</i></span>` + hint(v, opt)), fr.clue)}</p>
+      <div class="tn-tiles">${tiles.map((x, i) => `<button class="tn-tile" type="button" data-i="${i}">${x}</button>`).join("")}</div>
+      <div class="tn-brow"><button class="tw-b sm" type="button" id="tnClr">Clear</button><button class="tw-b go sm" type="button" id="tnChk" disabled>Check ✓</button></div>`;
+    return {html, mount(el, done){
+      const pick = [], slot = el.querySelector("#tnSlot"), chk = el.querySelector("#tnChk"); mark(W.join(" "));
+      if (TEST) TEST.tiles = tiles;
+      const draw = () => { slot.innerHTML = pick.length ? pick.map(i => `<button class="tn-tile in" type="button" data-p="${i}">${tiles[i]}</button>`).join("") : `<i class="tn-ph">tap the tiles in order</i>`;
+        el.querySelectorAll(".tn-tiles .tn-tile").forEach(b => b.disabled = pick.includes(+b.dataset.i)); chk.disabled = !pick.length;
+        slot.querySelectorAll("[data-p]").forEach(b => b.onclick = () => { if (el.dataset.lock) return; pick.splice(pick.indexOf(+b.dataset.p), 1); draw(); }); };
+      el.querySelectorAll(".tn-tiles .tn-tile").forEach(b => b.onclick = () => { if (el.dataset.lock || pick.includes(+b.dataset.i)) return; pick.push(+b.dataset.i); draw(); });
+      el.querySelector("#tnClr").onclick = () => { if (el.dataset.lock) return; pick.length = 0; draw(); };
+      chk.onclick = () => { if (el.dataset.lock || !pick.length) return; el.dataset.lock = 1; const got = pick.map(i => tiles[i]).join(" "), ok = got === W.join(" ");
+        slot.classList.add(ok ? "ok" : "no"); el.querySelectorAll(".tn-tile").forEach(b => b.disabled = true);
+        done(ok, (ok ? "" : yours(got, `The ${T[t].name} needs <b>${T[t].f}</b>${opt.neg ? " with not after the first helper" : ""}.`)) + steps([`Clue <mark>${fr.clue}</mark> → ${fr.why} → <b>${T[t].name}</b>.`, `Formula: <b>${T[t].f}</b>${opt.adv ? `; ‘${opt.adv}’ goes after the first helping verb` : ""}.`, howForm(t, s, v, opt), `Answer: ${it.sent(`<b class="tn-ans">${W.join(" ")}</b>`)}`]), "Building " + T[t].name, ok ? 20 : 0); };
+      el._key = k => { if (k === "Backspace"){ pick.pop(); draw(); return true; } if (k === "Enter"){ chk.click(); return true; } const n = +k; if (n >= 1 && n <= tiles.length){ el.querySelectorAll(".tn-tiles .tn-tile")[n - 1].click(); return true; } return false; };
+    }};
+  }
+
+  /* 14. since or for? */
+  const FOR_T = ["two hours", "ten minutes", "forty minutes", "an hour", "half an hour", "three hours"], FOR_L = ["five years", "a long time", "six months", "ten years", "ages"];
+  const SINCE_T = ["7 o'clock", "morning", "10 am", "lunchtime", "breakfast", "4 pm"], SINCE_L = ["2018", "last summer", "January", "Diwali", "childhood", "2020"];
+  function sinceForQ(){
+    const useFor = Math.random() < .5, t = P(["pPC", "pPC", "pP"]), x = P(useFor ? (t === "pP" ? FOR_L : FOR_T) : (t === "pP" ? SINCE_L : SINCE_T));
+    let pk = null; for (let i = 0; i < 60 && !pk; i++){ const v = P(ACTION), list = t === "pP" ? [] : v.d; if (t === "pPC" && !list.length) continue; const s = P(SUB_W), o = t === "pP" ? null : P(list).replace(/\{P\}/g, POSS(s)); if (t === "pP" || fits(s, v, o)) pk = {s, v, o}; }
+    let {s, v, o} = pk, W;
+    if (t === "pP"){ const st = P(STATIVE.filter(z => z.dur)); v = st.v; o = st.dur.replace(/\{P\}/g, POSS(s)); }
+    W = vps(t, s, v); const sent = y => cap(`${mid(s)} ${W} ${o} ${y} ${x}.`.replace(/\s+/g, " "));
+    const ans = useFor ? "for" : "since", other = useFor ? "since" : "for";
+    const opts = [{t: ans}, {t: other, why: useFor ? `‘${x}’ is a length of time, not a starting point.` : `‘${x}’ is a starting point (a moment), not a length of time.`}, {t: "from", why: "‘from’ needs ‘to / till’ (from 9 to 5). With the perfect tenses use since or for."}, {t: "ago", why: "‘ago’ comes after the time (two days ago) and goes with the Simple Past."}];
+    return mc(`<p class="tn-lbl">since or for?</p><p class="tn-sent">${sent(BL)}</p>`, opts, "since / for", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`<b>for</b> + a length of time (for two hours, for five years). <b>since</b> + the starting point (since 2018, since Monday).`, `‘${x}’ is ${useFor ? "a length of time" : "a starting point"} → <b>${ans}</b>.`, `Answer: ${sent(`<b class="tn-ans">${ans}</b>`)}`]), {cls:"two"});
+  }
+
+  /* 15. Which tense does this timeline show? */
+  function timelineQ(t, pool){
+    const others = pool ? pool.filter(x => x !== t) : rivals(t, [t], null, 3);
+    const opts = [{t: T[t].name}, ...SH(others).slice(0, 3).map(x => ({t: T[x].name, why: `The ${T[x].name} looks different: ${TL_SAY[T[x].asp]}${T[x].time !== T[t].time ? `, placed in the ${T[x].time}` : ""}.`}))];
+    return mc(`<p class="tn-lbl">Read the timeline</p>${timeline(t)}<p class="tw-mini" style="text-align:center">Which tense does this picture show?</p>`, opts, "Timelines", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`Where is the action? Around <b>${T[t].time === "present" ? "NOW" : T[t].time === "past" ? "a moment in the past" : "a moment in the future"}</b> → ${T[t].time}.`, `What does it look like? ${TL_SAY[T[t].asp]} → ${ASPN[T[t].asp]}.`, `So: <b>${T[t].name}</b> (${T[t].f}), e.g. ${LESSON[t].ex[0]}`]), {cls:"two"});
+  }
+
+  /* 16. Future time clauses: When he comes… */
+  const TC = [["When", "reach", "home", "we will start dinner"], ["As soon as", "finish", "{P} homework", "we will go to the beach"], ["If", "win", "the match", "the whole school will celebrate"],
+    ["Before", "leave", "the house", "Mum will check the windows"], ["After", "come", "back", "we will have lunch"], ["When", "get", "the results", "we will tell everyone"], ["Until", "arrive", "", "we will wait here"], ["If", "miss", "the bus", "Dad will drop us at school"]];
+  function timeClauseQ(){
+    const [cj, b, comp, main] = P(TC), v = VB[b], s = P(SUB_W.filter(x => x.p !== "we")), o = comp.replace(/\{P\}/g, POSS(s)), ans = vps("pS", s, v);
+    const sent = x => `${cj} ${mid(s)} ${x}${o ? " " + o : ""}, ${main}.`;
+    const opts = [{t: ans}, {t: vps("fS", s, v), why: `After ‘${cj.toLowerCase()}’, we don't use will for the future. ‘will’ only goes in the main part: ${main}.`}, {t: vps("aS", s, v), why: "This is about the future, so the past form doesn't fit."}, {t: vps("pC", s, v), why: "It is a single future event, not an action in progress."}];
+    return mc(`<p class="tn-lbl">Future time clause</p><p class="tn-sent">${sent(BL + hint(v))}</p>`, opts, "Time clauses (when / if + present)", (ok, ch) =>
+      (ok ? "" : yours(ch.t, ch.why)) + steps([`The sentence is about the future (${main}).`, `But after <mark>${cj.toLowerCase()}</mark> (and when, if, as soon as, before, after, until) we use the <b>Simple Present</b>, not will.`, howForm("pS", s, v), `Answer: ${sent(`<b class="tn-ans">${ans}</b>`)}`]));
+  }
+
+  /* 17. Tense Doctor: tap the mistake, then fix it */
+  const CLASH = {aS:["pP"], pC:["pS"], pPC:["pC"], aP:["aS"], fC:["pC"], pS:["pC"]};
+  function doctorItem(scope){
+    if (Math.random() < .55){ const c = P(CLASSICS); return {w: c.w.slice(), end: c.end, bad: c.bad, fix: c.fix, alt: c.alt, why: c.why}; }
+    for (let k = 0; k < 40; k++){
+      const t = P(scope || IDS), it = makeItem(t), {s, v, opt, fr} = it, W = vp(t, s, v, opt);
+      let wrong, why;
+      if (CLASH[t] && Math.random() < .45){ const x = P(CLASH[t]); if (fr.ok.includes(x)) continue; wrong = vps(x, s, v, opt); why = `The clue ‘${fr.clue}’ shows ${fr.why}, so we need the <b>${T[t].name}</b> (${T[t].f}), not the ${T[x].name}.`; }
+      else { const e = P(errs(t, s, v, opt)); if (!e) continue; wrong = e.w; why = e.why; }
+      if (wrong === W.join(" ")) continue;
+      const words = it.sent("§").split(" "), at = words.findIndex(x => x.includes("§")), tailP = words[at].replace("§", "");
+      const ww = wrong.split(" "); ww[ww.length - 1] += tailP;
+      const out = [...words.slice(0, at), ...ww, ...words.slice(at + 1)], end = out[out.length - 1].slice(-1); out[out.length - 1] = out[out.length - 1].replace(/[.?]$/, "");
+      const alts = uniq([...errs(t, s, v, opt).map(e => e.w), ...rivals(t, fr.ok, null, 3).map(x => vps(x, s, v, opt))]).filter(x => x !== wrong && x !== W.join(" "));
+      return {w: out, end, bad: ww.map((x, i) => at + i), fix: W.join(" ") + tailP, alt: SH(alts).slice(0, 2).map(x => x + tailP), why: why + ` Correct: <b>${W.join(" ")}</b>.`};
+    }
+    return doctorItem();
+  }
+  function doctorQ(scope){
+    const d = doctorItem(scope), fixes = SH([d.fix, ...d.alt]);
+    const html = `<p class="tn-lbl">Tense Doctor · Step 1: tap the word that is wrong</p><p class="tn-words">${d.w.map((x, i) => `<button class="tn-w" type="button" data-i="${i}">${x}</button>`).join(" ")}${d.end}</p><div id="tnFix" hidden></div>`;
+    return {html, mount(el, done){
+      let tapOK = null; mark({bad: d.bad, fix: fixes.indexOf(d.fix)});
+      el.querySelectorAll(".tn-w").forEach(b => b.onclick = () => { if (tapOK !== null || el.dataset.lock) return; const i = +b.dataset.i; tapOK = d.bad.includes(i);
+        b.classList.add(tapOK ? "ok" : "no"); d.bad.forEach(k => el.querySelectorAll(".tn-w")[k].classList.add("bad")); el.querySelectorAll(".tn-w").forEach(x => x.disabled = true);
+        const f = el.querySelector("#tnFix"); f.hidden = false;
+        f.innerHTML = `<p class="tn-lbl" style="margin-top:10px">${tapOK ? "Found it!" : "The mistake is the highlighted part."} Step 2: choose the fix</p><div class="tw-opts">${fixes.map((x, i) => `<button class="tw-b tn-o" type="button" data-i="${i}">${x.replace(/[,.]$/, "")}</button>`).join("")}</div>`;
+        f.querySelectorAll(".tn-o").forEach(c => c.onclick = () => { if (el.dataset.lock) return; el.dataset.lock = 1; const ok = fixes[+c.dataset.i] === d.fix;
+          c.classList.add(ok ? "ok" : "no"); if (!ok) f.querySelectorAll(".tn-o")[fixes.indexOf(d.fix)].classList.add("ok");
+          const tp = (d.w[d.bad[d.bad.length - 1]].match(/[,;]$/) || [""])[0], fx = /[,;.]$/.test(d.fix) ? d.fix : d.fix + tp;
+          const fixed = d.w.map((x, i) => d.bad[0] === i ? `<b class="tn-ans">${fx}</b>` : d.bad.includes(i) ? null : x).filter(x => x !== null).join(" ") + d.end;
+          done(ok && tapOK, (tapOK ? "" : `<p class="tn-yours"><b>✘ Wrong word tapped.</b> The mistake was in <s>${d.bad.map(k => d.w[k]).join(" ")}</s>.</p>`) + (!ok ? `<p class="tn-yours"><b>✘ ${fixes[+c.dataset.i].replace(/[,.]$/, "")}</b> is not the right fix.</p>` : "") + steps([d.why, `Corrected: ${fixed}`]), "Spotting mistakes", tapOK && ok ? 30 : 0); });
+        if (TEST) TEST.stage = 2; });
+    }};
+  }
+
+  /* ---------------- Missions ---------------- */
+  const PRES = GROUP.present, PAST = GROUP.past, FUT = GROUP.future;
+  const rep = (n, f) => Array.from({length: n}, () => f);
+  const M = (id, track, t, name, goal, plan, o = {}) => ({id, track, t, name, goal, plan, n: plan.length, ...o});
+  const MISSIONS = [
+    M(1, "foundation", "pS", "Simple Present", "Habits, routines and facts: plays, watches, does not play.", [() => fillQ("pS"), ...rep(3, () => fillQ("pS")), factQ, sFormQ, sFormQ, () => transformQ("pS", "neg"), () => transformQ("pS", "q"), () => clueQ("pS")]),
+    M(2, "foundation", "pC", "Present Continuous", "Happening right now: am / is / are + V-ing.", [() => fillQ("pC"), ...rep(3, () => fillQ("pC")), ingQ, ingQ, () => helperQ("pC"), stativeQ, () => transformQ("pC"), () => buildQ("pC")]),
+    M(3, "foundation", "pP", "Present Perfect", "Just, already, ever, never, yet: has / have + V3.", [() => fillQ("pP"), ...rep(3, () => fillQ("pP")), () => formQ("v3"), () => formQ("v3"), () => helperQ("pP"), () => buildQ("pP"), () => transformQ("pP", "q"), () => clueQ("pP")]),
+    M(4, "foundation", "pPC", "Present Perfect Continuous", "For two hours, since morning: has / have been + V-ing.", [() => fillQ("pPC"), ...rep(3, () => fillQ("pPC")), () => buildQ("pPC"), () => buildQ("pPC"), sinceForQ, sinceForQ, () => helperQ("pPC"), () => nameQ("pPC", PRES)]),
+    M(5, "foundation", null, "Present Mix-up", "All four present tenses side by side. Choose the right one.", [() => fillQ(P(PRES), {pool: PRES}), ...rep(4, () => fillQ(P(PRES), {pool: PRES})), stativeQ, () => timelineQ(P(PRES), PRES), () => nameQ(P(PRES), PRES), () => nameQ(P(PRES), PRES), () => buildQ(P(PRES))]),
+    M(6, "foundation", null, "Present Detective", "Name the tense, pick the time words and spot the mistakes.", [() => nameQ(P(PRES), PRES), () => nameQ(P(PRES), PRES), () => nameQ(P(PRES), PRES), () => clueQ(P(PRES)), () => clueQ(P(PRES)), sinceForQ, () => doctorQ(PRES), () => doctorQ(PRES), stativeQ, () => timelineQ(P(PRES), PRES)]),
+    M(7, "core", "aS", "Simple Past", "Yesterday, ago, last…: V2, and did + V1 in negatives and questions.", [() => fillQ("aS"), ...rep(3, () => fillQ("aS")), () => formQ("v2"), () => formQ("v2"), edQ, () => transformQ("aS", "neg"), () => transformQ("aS", "q"), () => clueQ("aS")]),
+    M(8, "core", "aC", "Past Continuous", "In progress at a past moment: was / were + V-ing.", [() => fillQ("aC"), ...rep(3, () => fillQ("aC")), () => helperQ("aC"), () => buildQ("aC"), () => transformQ("aC", "neg"), () => transformQ("aC", "q"), () => clueQ("aC"), () => nameQ("aC", PAST)]),
+    M(9, "core", "aP", "Past Perfect", "The earlier of two past actions: had + V3.", [() => fillQ("aP"), ...rep(3, () => fillQ("aP")), () => formQ("v3"), () => buildQ("aP"), () => buildQ("aP"), () => nameQ("aP", PAST), () => clueQ("aP"), () => timelineQ("aP", PAST)]),
+    M(10, "core", "aPC", "Past Perfect Continuous", "How long, up to a past moment: had been + V-ing.", [() => fillQ("aPC"), ...rep(3, () => fillQ("aPC")), () => buildQ("aPC"), () => buildQ("aPC"), () => nameQ("aPC", PAST), () => timelineQ("aPC", PAST), () => clueQ("aPC"), () => fillQ(P(["aP", "aPC"]), {pool: PAST})]),
+    M(11, "core", null, "Past Mix-up", "All four past tenses, plus Present Perfect vs Simple Past.", [() => fillQ(P(PAST), {pool: PAST}), ...rep(3, () => fillQ(P(PAST), {pool: PAST})), ...rep(3, () => fillQ(P(["pP", "aS"]), {pool: ["pP", "aS"]})), () => timelineQ(P(PAST), PAST), () => nameQ(P(PAST), PAST), () => nameQ(P(PAST), PAST)]),
+    M(12, "core", null, "Verb Forge", "V1 · V2 · V3: irregular verbs, -ed spelling and patterns.", [() => formQ("v2"), () => formQ("v2"), () => formQ("v2"), () => formQ("v3"), () => formQ("v3"), () => formQ("v3"), groupQ, groupQ, edQ, edQ, () => transformQ("aS", "neg"), () => fillQ("pP")]),
+    M(13, "advanced", "fS", "Simple Future", "Tomorrow, next week, I think…: will + V1.", [() => fillQ("fS"), ...rep(3, () => fillQ("fS")), () => transformQ("fS", "neg"), () => transformQ("fS", "q"), () => buildQ("fS"), () => clueQ("fS"), () => nameQ("fS", FUT), timeClauseQ]),
+    M(14, "advanced", "fC", "Future Continuous", "In progress at a future moment: will be + V-ing.", [() => fillQ("fC"), ...rep(3, () => fillQ("fC")), () => buildQ("fC"), () => buildQ("fC"), () => clueQ("fC"), () => nameQ("fC", FUT), () => timelineQ("fC", FUT), () => transformQ("fC")]),
+    M(15, "advanced", "fP", "Future Perfect", "Complete by a future time: will have + V3.", [() => fillQ("fP"), ...rep(3, () => fillQ("fP")), () => buildQ("fP"), () => buildQ("fP"), () => formQ("v3"), () => clueQ("fP"), () => nameQ("fP", FUT), () => transformQ("fP")]),
+    M(16, "advanced", "fPC", "Future Perfect Continuous", "How long, by a future moment: will have been + V-ing.", [() => fillQ("fPC"), ...rep(3, () => fillQ("fPC")), () => buildQ("fPC"), () => buildQ("fPC"), () => nameQ("fPC", FUT), () => timelineQ("fPC", FUT), () => clueQ("fPC"), () => fillQ(P(FUT), {pool: FUT})]),
+    M(17, "advanced", null, "Tense Doctor", "Find the mistake, then fix it. All 12 tenses.", rep(10, () => doctorQ())),
+    M(18, "advanced", null, "Tense Master", "120 seconds. Every tense, every question type.", [], {timed: 120})
+  ];
+  MISSIONS[17].gen = () => P([() => fillQ(P(IDS)), () => fillQ(P(IDS)), () => fillQ(P(IDS)), () => nameQ(P(IDS)), () => nameQ(P(IDS)), () => buildQ(P(IDS)), () => clueQ(P(IDS)), () => timelineQ(P(IDS)), stativeQ, timeClauseQ, () => formQ(P(["v2", "v3"]))])();
+  const lessonOf = m => m.t ? {title: T[m.t].name, t: m.t, ...LESSON[m.t]} : SPECIAL[m.id];
+
+  /* ---------------- Lesson and Tense Book ---------------- */
+  function lessonHTML(L){
+    if (!L.t) return `<div class="tn-lesson"><h3>${L.title}</h3>${L.html}</div>`;
+    const t = L.t;
+    return `<div class="tn-lesson"><div class="tn-ltag">${T[t].time} · ${ASPN[T[t].asp].toLowerCase()}</div><h3>${T[t].name}</h3>
+      ${timeline(t)}
+      <div class="tn-form">${L.form.map(([k, f]) => `<div><b class="tn-k ${k === "+" ? "p" : k === "−" ? "n" : "q"}">${k}</b><span>${f}</span></div>`).join("")}</div>
+      <h4>Use it for</h4><ul class="tn-ul">${L.use.map(x => `<li>${x}</li>`).join("")}</ul>
+      <h4>Clue words</h4><div class="tn-sig">${L.sig.map(x => `<span>${x}</span>`).join("")}</div>
+      <h4>Examples</h4><ul class="tn-ul ex">${L.ex.map(x => `<li>${x}</li>`).join("")}</ul>
+      <div class="tn-tip"><b>Watch out</b> ${L.tip}</div></div>`;
+  }
+  const GRID_EX = {pS:"plays", pC:"is playing", pP:"has played", pPC:"has been playing", aS:"played", aC:"was playing", aP:"had played", aPC:"had been playing", fS:"will play", fC:"will be playing", fP:"will have played", fPC:"will have been playing"};
+  function gridHTML(stars, tap){
+    const row = asp => ["past", "present", "future"].map(tm => { const t = IDS.find(x => T[x].time === tm && T[x].asp === asp), st = stars[T[t].m] || 0;
+      return `<button class="tn-cell${st ? " got" : ""}" type="button" data-t="${t}"><b>${GRID_EX[t]}</b><small>${T[t].name}</small><i>${"★".repeat(st)}${"☆".repeat(3 - st)}</i></button>`; }).join("");
+    return `<div class="tn-grid"><span></span><span class="tn-gh">Past</span><span class="tn-gh">Present</span><span class="tn-gh">Future</span>
+      ${["S", "C", "P", "PC"].map(a => `<span class="tn-gr">${ASPN[a].replace("Perfect Continuous", "Perf. Cont.")}</span>${row(a)}`).join("")}</div>`;
+  }
+
+  /* ---------------- The game ---------------- */
+  const KEY = "tense_tm_v1", TOT = MISSIONS.length*3;
+  return {
+    timed: false,
+    modeNames: {foundation: {name: "Present", ages: "Missions 1–6"}, core: {name: "Past", ages: "Missions 7–12"}, advanced: {name: "Future & Master", ages: "Missions 13–18"}},
+    desc: "All 12 English tenses in 18 missions. Every mission starts with a short lesson, and every wrong answer shows you how to reach the right one: find the clue, pick the tense, use the formula.",
+    modes: {foundation: "Simple Present, Present Continuous, Present Perfect, Present Perfect Continuous, then a mix-up and a detective round",
+      core: "Simple Past and irregular verbs, Past Continuous, Past Perfect, Past Perfect Continuous, a past mix-up and the Verb Forge",
+      advanced: "The four future tenses, the Tense Doctor (find and fix mistakes) and the timed Tense Master"},
+    howto: [["Learn", "Each mission opens with a lesson: timeline, formula, clue words and examples. Open the Tense Book any time."], ["Think", "Wrong answers show the steps: clue → tense → formula → answer."], ["Lives", "3 lives per mission. Earn a star to unlock the next one."], ["Stars", "★★★ = no mistakes. All 54 stars = Tense Master."]],
+    lesson: lessonHTML, lessonOf, MISSIONS, T, IDS, VERBS, FRAMES, CLASSICS, fillQ, nameQ, buildQ, clueQ, transformQ, doctorQ, timelineQ, factQ, sFormQ, ingQ, formQ, edQ, groupQ, helperQ, stativeQ, sinceForQ, timeClauseQ, errs, vp, makeItem, SUBJ, LESSON,
+    start(api){
+      const q = s => api.root.querySelector(s);
+      const stars = (() => { try { return JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { return {}; } })();
+      const save = () => { try { localStorage.setItem(KEY, JSON.stringify(stars)); } catch (e) {} };
+      const total = () => MISSIONS.reduce((a, m) => a + (stars[m.id] || 0), 0);
+      let ov = null; const closeOv = () => { if (ov){ ov.remove(); ov = null; } };
+      api.onStop(closeOv);
+      function overlay(inner, title){
+        closeOv(); ov = document.createElement("div"); ov.className = "tn-ov";
+        ov.innerHTML = `<div class="tn-ovb" role="dialog" aria-label="${title}"><div class="tn-ovh"><b>${title}</b><button class="tw-b sm" type="button" data-x>Close ✕</button></div><div class="tn-ovc">${inner}</div></div>`;
+        (document.getElementById("stage") || document.body).appendChild(ov);
+        ov.addEventListener("click", e => { if (e.target === ov || e.target.closest("[data-x]")) closeOv(); });
+        return ov;
+      }
+      function book(t){
+        const tabs = IDS.map(x => `<button class="tn-bt${x === t ? " on" : ""}" type="button" data-b="${x}">${GRID_EX[x]}</button>`).join("");
+        const o = overlay(`<div class="tn-btabs">${tabs}<button class="tn-bt${!t ? " on" : ""}" type="button" data-b="">All 12</button></div><div id="tnBk">${t ? lessonHTML({title: T[t].name, t, ...LESSON[t]}) : gridHTML(stars) + lessonHTML(SPECIAL[18]).replace(/<p class="tn-p">120 seconds.*?<\/p>/, "")}</div>`, "Tense Book");
+        o.querySelectorAll("[data-b]").forEach(b => b.onclick = () => book(b.dataset.b || null));
+        o.querySelectorAll(".tn-cell").forEach(b => b.onclick = () => book(b.dataset.t));
+        const on = o.querySelector(".tn-bt.on"); if (on) on.scrollIntoView({inline: "center", block: "nearest"});
+      }
+      const list = MISSIONS.filter(m => m.track === api.mode), unlocked = m => m.id === list[0].id || (stars[m.id - 1] || 0) > 0;
+      api.hud({a: ["Score", 0], b: ["Stars", `${total()}/${TOT}`, ""], c: ["Mission", "–", ""]});
+      api.root.innerHTML = `<div class="tw-map"><div class="tn-maph"><p class="tw-q" style="margin:0">Choose a mission <span class="tw-mini">${total()}/${TOT} stars · ${Math.round(total()/TOT*100)}% of the tenses mastered</span></p><button class="tw-b sm" type="button" id="tnBook">📖 Tense Book</button></div>
+        ${list.map(m => { const st = stars[m.id] || 0, open = unlocked(m);
+          return `<button class="tw-mis${open ? "" : " locked"}" type="button" data-m="${m.id}" ${open ? "" : "disabled"}><span class="no">${m.id}</span><span class="tx"><b>${m.name}</b><small>${m.goal}</small></span><span class="st">${open ? "★".repeat(st) + "☆".repeat(3 - st) : "🔒"}</span></button>`; }).join("")}
+        <p class="tw-q" style="margin:10px 2px 0">All 12 tenses at a glance <span class="tw-mini">Tap any tense to open its lesson.</span></p>
+        ${gridHTML(stars)}
+        <p class="tw-mini">${api.mode === "foundation" ? "Start here: the present tenses are the base for all the others." : api.mode === "core" ? "Tip: finish the Present track first. The past works the same way, one step back in time." : "Tip: the future tenses use the same four patterns with will. Missions 17 and 18 mix all 12."}</p></div>`;
+      q("#tnBook").onclick = () => book(null);
+      api.root.querySelectorAll(".tn-cell").forEach(b => b.onclick = () => book(b.dataset.t));
+      api.root.querySelectorAll(".tw-mis").forEach(b => b.onclick = () => intro(MISSIONS.find(m => m.id === +b.dataset.m)));
+
+      function intro(Mi){
+        const L = lessonOf(Mi);
+        api.root.innerHTML = `<div class="tw-head"><span class="tw-badge">Mission ${Mi.id} · Lesson</span><b>${Mi.name}</b><small>${Mi.goal}</small></div>
+          <div class="tw-card in tn-intro">${lessonHTML(L)}</div>
+          <div class="tn-brow" style="margin-top:12px"><button class="tw-b" type="button" id="tnMap">← Missions</button><button class="tw-b go" type="button" id="tnGo">${Mi.timed ? "Start the clock ⏱" : `Start mission (${Mi.n} questions) →`}</button></div>`;
+        api.root.scrollTop = 0; q("#tnGo").onclick = () => play(Mi); q("#tnMap").onclick = () => api.root.isConnected && GAME_MODS["en-tenses"].start(api);
+        q("#tnGo").focus({preventScroll: true});
+      }
+
+      function play(Mi){
+        const S = {score: 0, streak: 0, best: 0, right: 0, wrong: 0, lives: 3, i: 0, miss: {}, good: {}}, timed = !!Mi.timed;
+        const order = Mi.plan.length ? [Mi.plan[0], ...SH(Mi.plan.slice(1))] : [];
+        const hud = () => api.hud({a: ["Score", fmt(S.score)], b: timed ? ["Time", Math.ceil(api.clock.remaining ? api.clock.remaining() : Mi.timed), ""] : ["Lives", "♥".repeat(S.lives) + "<span style='opacity:.25'>" + "♥".repeat(3 - S.lives) + "</span>", ""], c: ["Mission", `${Mi.id}`, timed ? `${S.right} right` : `${Math.min(S.i + 1, Mi.n)}/${Mi.n}`]});
+        api.root.innerHTML = `<div class="tw-head"><span class="tw-badge">Mission ${Mi.id}</span><div class="tn-hrow"><b>${Mi.name}</b><button class="tn-lb" type="button" id="tnLes">📖 Lesson</button></div><div class="tw-prog"><i id="twPg"></i></div></div><div class="tw-card" id="twC"></div><div class="tw-fb" id="twF" hidden></div>`;
+        q("#tnLes").onclick = () => overlay(lessonHTML(lessonOf(Mi)), "Lesson: " + Mi.name);
+        const next = () => {
+          if (!api.alive()) return;
+          if (!timed && (S.i >= Mi.n || S.lives <= 0)) return end();
+          let it; for (let k = 0; k < 5 && !it; k++){ try { it = timed ? Mi.gen() : order[S.i](); } catch (e) { console.error(e); } }
+          const c = q("#twC"); delete c.dataset.lock; c.innerHTML = it.html; c._key = null; q("#twF").hidden = true; S.tq = Date.now();
+          c.classList.remove("in"); void c.offsetWidth; c.classList.add("in");
+          it.mount(c, onAnswer); api.root.scrollTop = 0; hud(); if (!timed) q("#twPg").style.width = (S.i/Mi.n*100) + "%";
+        };
+        const onAnswer = (ok, why, topic, bonus = 0) => {
+          const fb = q("#twF"), secs = (Date.now() - S.tq)/1000;
+          if (ok){ S.right++; S.streak++; S.best = Math.max(S.best, S.streak); S.good[topic] = 1;
+            const pts = 100 + 20*Math.min(5, S.streak - 1) + (secs < 10 ? 30 : secs < 20 ? 15 : 0) + bonus; S.score += pts;
+            api.float(q("#twC"), "+" + pts); api.chime(1 + .05*Math.min(4, S.streak)); api.buzz(8); if (timed) api.clock.add(2); }
+          else { S.wrong++; S.streak = 0; S.miss[topic] = (S.miss[topic] || 0) + 1; if (!timed) S.lives--; else api.clock.add(-3);
+            api.tone(150, .2, "sawtooth", .06); api.buzz([20, 30, 20]); }
+          S.i++; hud();
+          const last = !timed && (S.i >= Mi.n || S.lives <= 0);
+          fb.className = "tw-fb " + (ok ? "good" : "teach"); fb.hidden = false;
+          fb.innerHTML = `<div class="tn-fbx"><b class="tn-fbt">${ok ? P(["Correct!", "Exactly!", "Spot on!", "Brilliant!", "Well reasoned!"]) : "Let's work it out"}</b>${why}</div>
+            <div class="tn-brow">${ok ? "" : `<button class="tw-b sm" type="button" id="tnL2">📖 Lesson</button>`}<button class="tw-b go" type="button" id="twN">${last ? "Finish" : "Next →"}</button></div>`;
+          q("#twN").onclick = next; const l2 = q("#tnL2"); if (l2) l2.onclick = () => overlay(lessonHTML(lessonOf(Mi)), "Lesson: " + Mi.name);
+          q("#twN").focus({preventScroll: true});
+          requestAnimationFrame(() => fb.scrollIntoView({block: "end", behavior: "smooth"}));
+          setTimeout(() => { const n = q("#twN"); if (!n || !api.alive()) return; const r = n.getBoundingClientRect(), gr = api.root.getBoundingClientRect(); if (r.bottom > gr.bottom - 4 || r.top < gr.top) api.root.scrollTop += r.bottom - gr.bottom + 16; }, 450);
+          if (ok && timed) setTimeout(() => { if (api.alive() && !q("#twF").hidden && api.clock.remaining() > 0) next(); }, 1100);
+        };
+        api.onKey(k => { if (ov){ if (k === "Escape"){ closeOv(); return true; } return false; }
+          const c = q("#twC"); if (c && c._key && !c.dataset.lock && c._key(k)) return true;
+          if ((k === "Enter" || k === " ") && q("#twF") && !q("#twF").hidden){ q("#twN").click(); return true; }
+          const n = +k; if (c && n >= 1 && n <= 6){ const sets = [...c.querySelectorAll(".tw-opts")].filter(x => x.offsetParent !== null); const set = sets.length ? sets[sets.length - 1].querySelectorAll(".tw-b") : []; if (set[n - 1]){ set[n - 1].click(); return true; } } });
+        if (timed){ next(); api.countdown().then(() => api.clock.start(Mi.timed, end)); } else next();
+        function end(){
+          if (S.ended) return; S.ended = true; closeOv();
+          const done = timed || S.lives > 0, st = timed ? (S.right >= 20 ? 3 : S.right >= 13 ? 2 : S.right >= 7 ? 1 : 0) : !done ? 0 : S.wrong === 0 ? 3 : S.wrong <= 2 ? 2 : 1;
+          if (st > (stars[Mi.id] || 0)){ stars[Mi.id] = st; save(); }
+          const tot = S.right + S.wrong, now = total();
+          api.finish({score: S.score, correct: S.right, wrong: S.wrong,
+            stats: [["Mission", `${Mi.id} · ${"★".repeat(st)}${"☆".repeat(3 - st)}`], ["Accuracy", (tot ? Math.round(100*S.right/tot) : 0) + "%"], ["Best streak", S.best], ["Tenses mastered", Math.round(now/TOT*100) + "%"]],
+            learn: {good: {title: done ? `Mission ${Mi.id} ${st ? "complete" : "played"}: you practised` : "Out of lives: you practised", items: Object.keys(S.good)}, goodCls: "plain",
+                    work: {title: "Practise next (open the Tense Book for these)", items: Object.entries(S.miss).sort((a, b) => b[1] - a[1]).map(([k]) => k)}}});
+        }
+      }
+    }
+  };
+})();
+
+GAME_MODS["en-tenses"] = TNS;
 
 </script>
 <script>
