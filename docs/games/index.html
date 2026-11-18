@@ -991,6 +991,9 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .f-dead .art{background:radial-gradient(120% 90% at 50% 0%,#1d2a55,#070b18 70%)}
 .f-dead .art svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 0 10px rgba(255,209,102,.25))}
 .g-dead{--a1:#b6f36a;--a2:#5ee7ff}
+.f-swish{--a1:#ffd23f;--a2:#ff3fa4}
+.f-swish .art svg{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.g-hoops{--a1:#ffd23f;--a2:#ff3fa4}
 
 </style>
 </head>
@@ -1084,6 +1087,7 @@ const CONFIG = {
   DEV_URL: "/games/dangerous-dev/",         // Dangerous Dev
   INK_URL: "/games/inklab/",                // InkLab physics puzzles
   DEADBALL_URL: "/games/dead-ball/",        // Dead Ball penalties & free kicks
+  SWISH_URL: "/games/swish/",               // Swish retro basketball
   STREET_URL: "/games/street-math/",        // Street Math Showdown (same-screen multiplayer)
   BLOX_URL: "/games/fourblox/"              // FourBlox (same-screen multiplayer)
 };
@@ -1110,7 +1114,8 @@ var HG = (function () {
     'cricket-12':   { name: 'MHC Cricket (12 overs)', div: .5, max: 600, good: 100, maxSecs: 2700, noXp: true },
     'cricket-2':    { name: 'MHC Cricket (2 overs)', div: .3, max: 120, good: 30, maxSecs: 600, noXp: true },
     'dangerous-dev':{ name: 'Dangerous Dev', div: 60, max: 300000, good: 8000, maxSecs: 7200, noXp: true },
-    'deadball':     { name: 'Dead Ball (Shootout Cup)', div: 10, max: 30000, good: 2500, maxSecs: 3600, noXp: true }
+    'deadball':     { name: 'Dead Ball (Shootout Cup)', div: 10, max: 30000, good: 2500, maxSecs: 3600, noXp: true },
+    'hoops':        { name: 'Swish (Arcade)', div: 1, max: 1500, good: 80, maxSecs: 600, noXp: true }
   };
   /* Playtime XP: every minute played earns XP, and each hour in a day pays more per minute than the last.
      Hour chests at 1, 2 and 3 hours. After 3 hours a day, "rest mode" quarters all XP until midnight IST,
@@ -1321,6 +1326,7 @@ const ICO = {
 const GICON = {
   "dangerous-dev":'<svg viewBox="0 0 64 64"><path d="M18 50V30h28v20"/><path d="M14 30h36M24 30v-8h16v8"/><circle cx="32" cy="16" r="5" fill="#fff"/></svg>',
   "cricket-12":'<svg viewBox="0 0 64 64"><path d="M46 8l10 10-26 26-10-10z"/><path d="M22 36l-8 8"/><circle cx="17" cy="20" r="7" fill="#fff"/></svg>',
+  "hoops":'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20"/><path d="M12 32h40M32 12v40"/></svg>',
   "deadball":'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M32 20l10 7-4 12H26l-4-12z" fill="#fff"/></svg>',
   "cricket-2":'<svg viewBox="0 0 64 64"><path d="M46 8l10 10-26 26-10-10z"/><path d="M22 36l-8 8"/><circle cx="17" cy="20" r="7" fill="#fff"/></svg>',
   "sigma-sprint":'<svg viewBox="0 0 64 64"><path d="M46 14H18l15 18-15 18h28"/></svg>',
@@ -1578,9 +1584,10 @@ const XG = [
   {id:"cricket-12", cls:"g-cricket", name:"MHC Cricket · 12 overs"},
   {id:"cricket-2",  cls:"g-cricket", name:"MHC Cricket · 2 overs"},
   {id:"dangerous-dev", cls:"g-dev", name:"Dangerous Dev"},
-  {id:"deadball", cls:"g-dead", name:"Dead Ball · Shootout Cup"}
+  {id:"deadball", cls:"g-dead", name:"Dead Ball · Shootout Cup"},
+  {id:"hoops", cls:"g-hoops", name:"Swish · Arcade"}
 ];
-const XMODES = {classic:{name:"12 overs"}, quick:{name:"2 overs"}, story:{name:"Story"}, tournament:{name:"Shootout Cup"}};
+const XMODES = {classic:{name:"12 overs"}, quick:{name:"2 overs"}, story:{name:"Story"}, tournament:{name:"Shootout Cup"}, arcade:{name:"Arcade"}};
 /* Chapter games: one game per textbook chapter, grouped by class */
 const CH = [
   {id:"c7-geometric-twins", cls:"g-twins", std:7, book:"Ganita Prakash · Part 2", chn:1, name:"Geometric Twins", tag:"Congruence: superimposing, SSS, SAS, ASA, AAS, RHS, and isosceles angles", missions:9, key:"tw7c1_stars"},
@@ -1628,6 +1635,14 @@ function inkTile(){
     <span class="ft"><span class="eyebrow">New · Physics puzzles · Play &amp; learn</span><h3>InkLab</h3>
       <p>Draw shapes that come alive with real physics: levers, pendulums, friction, floating, magnets, gravity and more, across 18 boards.</p>
       <span class="meta"><span class="fbest">${done ? `★ ${st} · ${done} solved` : "Draw · Drop · Solve"}</span><span class="goarrow">${ICO.play}</span></span></span></a>`;
+}
+function swishTile(){
+  let best = 0, st = 0; try { best = JSON.parse(localStorage.getItem("sw_best") || "0") || 0; st = Object.values(JSON.parse(localStorage.getItem("sw_lv") || "{}")).reduce((a, b) => a + b, 0); } catch (e) {}
+  return `<a class="bt feat f-swish b2" href="${CONFIG.SWISH_URL}" target="_top" aria-label="Play Swish retro basketball">
+    <span class="art" aria-hidden="true"><svg viewBox="0 0 200 100" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges"><rect width="200" height="100" fill="#2a0a4a"/><rect y="40" width="200" height="30" fill="#6a1060"/><rect y="70" width="200" height="12" fill="#c0206a"/><rect x="70" y="52" width="40" height="30" fill="#ffd23f"/><rect x="70" y="60" width="40" height="3" fill="#2a0a4a"/><rect x="70" y="68" width="40" height="4" fill="#2a0a4a"/><rect y="82" width="200" height="18" fill="#100420"/><rect x="150" y="20" width="3" height="62" fill="#3ff7ff"/><rect x="142" y="14" width="4" height="26" fill="#fff"/><rect x="124" y="30" width="18" height="3" fill="#ff8a3f"/><path d="M126 33h14l-3 10h-8z" fill="none" stroke="#3ff7ff" stroke-width="1"/><rect x="96" y="12" width="8" height="8" fill="#e8651c"/><rect x="40" y="18" width="2" height="2" fill="#fff"/><rect x="56" y="14" width="2" height="2" fill="#fff"/><rect x="74" y="12" width="2" height="2" fill="#fff"/><rect x="88" y="11" width="2" height="2" fill="#fff"/><rect x="110" y="14" width="2" height="2" fill="#fff"/></svg></span>
+    <span class="ft"><span class="eyebrow">New · Retro pixel hoops</span><h3>Swish!</h3>
+      <p>Old-school basketball with real bounces off the rim and backboard. 40 levels in 5 worlds, plus a 60-second arcade.</p>
+      <span class="meta"><span class="fbest">${best ? `Best ${fmt(best)}` : st ? `★ ${st}` : "Drag · Shoot · Swish"}</span><span class="goarrow">${ICO.play}</span></span></span></a>`;
 }
 function deadTile(){
   let best = 0; try { best = JSON.parse(localStorage.getItem("db_best") || "0") || 0; } catch (e) {}
@@ -1758,6 +1773,7 @@ function renderHome(){
     ${cricketTile(p)}
     ${devTile(p)}
     ${deadTile()}
+    ${swishTile()}
     ${inkTile()}
     <div class="bt lbp b2" id="lbPrev"><h2 class="tt">This week's leaders <a class="more" href="#leaders">All ${ICO.chev}</a></h2><div class="top3"><div class="empty">Loading…</div></div></div>
     <div class="sec-label"><h2><i></i>Maths arcade</h2><span>Tap a game to play</span></div>
