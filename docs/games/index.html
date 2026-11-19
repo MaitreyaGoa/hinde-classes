@@ -1034,6 +1034,15 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .g-ap10{--a1:#f472b6;--a2:#8b5cf6}
 .chgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 @media (min-width:760px){.chgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}}
+/* Class 10 NCERT chapters 6–14 */
+.g-tri10{--a1:#f97316;--a2:#f43f5e}
+.g-coo10{--a1:#22d3ee;--a2:#3b82f6}
+.g-hgt10{--a1:#facc15;--a2:#fb923c}
+.g-cir10{--a1:#a78bfa;--a2:#ec4899}
+.g-arc10{--a1:#34d399;--a2:#facc15}
+.g-sol10{--a1:#60a5fa;--a2:#14b8a6}
+.g-sta10{--a1:#f472b6;--a2:#a855f7}
+.g-prb10{--a1:#4ade80;--a2:#06b6d4}
 
 </style>
 </head>
@@ -1148,6 +1157,14 @@ var HG = (function () {
     'c7-geometric-twins': { name: 'Geometric Twins', div: 8, max: 60000, good: 1000 },
     'c8-fractions-disguise': { name: 'Fractions in Disguise', div: 8, max: 60000, good: 1000 },
     'c10-trigonometry': { name: 'Introduction to Trigonometry', div: 8, max: 60000, good: 1000 },
+    'c10-triangles': { name: 'Triangles', div: 8, max: 60000, good: 1000 },
+    'c10-coordinate': { name: 'Coordinate Geometry', div: 8, max: 60000, good: 1000 },
+    'c10-heights': { name: 'Some Applications of Trigonometry', div: 8, max: 60000, good: 1000 },
+    'c10-circles': { name: 'Circles', div: 8, max: 60000, good: 1000 },
+    'c10-circle-areas': { name: 'Areas Related to Circles', div: 8, max: 60000, good: 1000 },
+    'c10-solids': { name: 'Surface Areas and Volumes', div: 8, max: 60000, good: 1000 },
+    'c10-statistics': { name: 'Statistics', div: 8, max: 60000, good: 1000 },
+    'c10-probability': { name: 'Probability', div: 8, max: 60000, good: 1000 },
     'c7-integers': { name: 'Operations with Integers', div: 8, max: 60000, good: 1000 },
     'c7-common-ground': { name: 'Finding Common Ground', div: 8, max: 60000, good: 1000 },
     'c7-decimals': { name: 'Another Peek Beyond the Point', div: 8, max: 60000, good: 1000 },
@@ -1394,6 +1411,14 @@ const GICON = {
   "c10-linear-pair":'<svg viewBox="0 0 64 64"><path d="M8 52L56 12M8 16l48 32"/><circle cx="32" cy="32" r="4"/></svg>',
   "c10-quadratic":'<svg viewBox="0 0 64 64"><path d="M6 44H58"/><path d="M10 10q22 70 44 0"/><circle cx="20" cy="44" r="3"/><circle cx="44" cy="44" r="3"/></svg>',
   "c10-ap":'<svg viewBox="0 0 64 64"><path d="M8 54h10v-8H8zM22 54h10V38H22zM36 54h10V30H36zM50 54h8V22h-8z"/></svg>',
+  "c10-triangles":'<svg viewBox="0 0 64 64"><path d="M32 8L6 56h52z"/><path d="M19 32h26"/></svg>',
+  "c10-coordinate":'<svg viewBox="0 0 64 64"><path d="M32 6v52M6 32h52"/><circle cx="44" cy="20" r="4"/><circle cx="18" cy="44" r="4"/><path d="M18 44L44 20"/></svg>',
+  "c10-heights":'<svg viewBox="0 0 64 64"><path d="M6 56h52"/><path d="M48 56V12"/><path d="M10 56L48 12"/><path d="M22 56a12 12 0 0 0-3-9"/></svg>',
+  "c10-circles":'<svg viewBox="0 0 64 64"><circle cx="26" cy="32" r="16"/><path d="M58 32L30 16M58 32L30 48"/><circle cx="26" cy="32" r="2"/></svg>',
+  "c10-circle-areas":'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24"/><path d="M32 32V8A24 24 0 0 1 53 44z"/></svg>',
+  "c10-solids":'<svg viewBox="0 0 64 64"><path d="M32 6L18 30h28z"/><path d="M18 30a14 14 0 0 0 28 0"/><path d="M14 44h36v14H14z"/></svg>',
+  "c10-statistics":'<svg viewBox="0 0 64 64"><path d="M8 56h48"/><path d="M12 56V40h8v16M24 56V24h8v32M36 56V30h8v26M48 56V44h6v12"/></svg>',
+  "c10-probability":'<svg viewBox="0 0 64 64"><rect x="8" y="14" width="26" height="26" rx="5"/><rect x="30" y="26" width="26" height="26" rx="5"/><circle cx="21" cy="27" r="2.5"/><circle cx="37" cy="33" r="2.5"/><circle cx="49" cy="45" r="2.5"/><circle cx="43" cy="39" r="2.5"/></svg>',
   "c10-trigonometry":'<svg viewBox="0 0 64 64"><path d="M12 52H52V14Z"/><path d="M44 52v-8h8"/><path d="M24 52a12 12 0 0 0-2-7"/></svg>',
   "en-tenses":'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M32 18v14l9 6"/><path d="M6 32h6M52 32h6"/><path d="M48 12l6-2-1 6"/></svg>',
   "c8-fractions-disguise":'<svg viewBox="0 0 64 64"><circle cx="20" cy="18" r="7"/><circle cx="44" cy="46" r="7"/><path d="M48 12L16 52"/></svg>',
@@ -1653,6 +1678,14 @@ const CH = [
   {id:"c7-geometric-twins", cls:"g-twins", std:7, book:"Ganita Prakash · Part 2", chn:1, name:"Geometric Twins", tag:"Congruence: superimposing, SSS, SAS, ASA, AAS, RHS, and isosceles angles", missions:9, key:"tw7c1_stars"},
   {id:"c8-fractions-disguise", cls:"g-fdis", std:8, book:"Ganita Prakash · Part 2", chn:1, name:"Fractions in Disguise", tag:"Percentages: the FDP trio, part & whole, increase/decrease, profit, discount, GST and compound interest", missions:9, key:"fd8c1_stars"},
   {id:"c10-trigonometry", cls:"g-trig", std:10, book:"NCERT", chn:8, name:"Introduction to Trigonometry", tag:"Sides, SOH-CAH-TOA, one ratio → all ratios, special angles 0°–90°, identities and step-by-step proofs", missions:9, key:"tr10c8_stars"},
+  {id:"c10-triangles", cls:"g-tri10", std:10, book:"NCERT", chn:6, name:"Triangles", tag:"Similar figures, the BPT and its converse, AA/SSS/SAS, matching vertices, shadows and proofs", missions:9, key:"si10c6_stars"},
+  {id:"c10-coordinate", cls:"g-coo10", std:10, book:"NCERT", chn:7, name:"Coordinate Geometry", tag:"Distance formula, classifying triangles and quadrilaterals, mid-points and the section formula", missions:9, key:"co10c7_stars"},
+  {id:"c10-heights", cls:"g-hgt10", std:10, book:"NCERT", chn:9, name:"Some Applications of Trigonometry", tag:"Angles of elevation and depression, towers, kites, lighthouses and moving observers", missions:9, key:"hd10c9_stars"},
+  {id:"c10-circles", cls:"g-cir10", std:10, book:"NCERT", chn:10, name:"Circles", tag:"Tangent ⟂ radius, equal tangents, tangent angles, concentric circles and circles inside polygons", missions:9, key:"ci10c10_stars"},
+  {id:"c10-circle-areas", cls:"g-arc10", std:10, book:"NCERT", chn:11, name:"Areas Related to Circles", tag:"Arc length, sectors, clocks and quadrants, segments, wipers and grazing horses", missions:9, key:"ar10c11_stars"},
+  {id:"c10-solids", cls:"g-sol10", std:10, book:"NCERT", chn:12, name:"Surface Areas and Volumes", tag:"Combined solids: toys, capsules, tents, cavities, gulab jamuns and recasting", missions:9, key:"sv10c12_stars"},
+  {id:"c10-statistics", cls:"g-sta10", std:10, book:"NCERT", chn:13, name:"Statistics", tag:"Class marks, mean by three methods, mode, cumulative frequency, median and the empirical relation", missions:9, key:"st10c13_stars"},
+  {id:"c10-probability", cls:"g-prb10", std:10, book:"NCERT", chn:14, name:"Probability", tag:"Basic rules, bags, dice, cards, coins, two dice, equally likely outcomes and chance puzzles", missions:9, key:"pb10c14_stars"},
   {id:"c7-integers", cls:"g-int7", std:7, book:"Ganita Prakash · Part 2", chn:2, name:"Operations with Integers", tag:"Number-line moves, the token model, Brahmagupta’s sign rules, properties and real-life integers", missions:9, key:"in7c2_stars"},
   {id:"c7-common-ground", cls:"g-hcf7", std:7, book:"Ganita Prakash · Part 2", chn:3, name:"Finding Common Ground", tag:"Prime factorisation, HCF and LCM, the ladder method, word problems and number puzzles", missions:9, key:"cg7c3_stars"},
   {id:"c7-decimals", cls:"g-dec7", std:7, book:"Ganita Prakash · Part 2", chn:4, name:"Another Peek Beyond the Point", tag:"Decimal multiplication and division, bigger-or-smaller traps, repeating decimals and the leap-year puzzle", missions:9, key:"dp7c4_stars"},
@@ -1665,7 +1698,7 @@ const CH = [
   {id:"c10-ap", cls:"g-ap10", std:10, book:"NCERT", chn:5, name:"Arithmetic Progressions", tag:"Common difference, the nth term, term detective, sums of n terms and APs in real life", missions:9, key:"ap10c5_stars"}
 ];
 // each game's own page lives at /games/<slug>/ (built by build.py)
-const GAME_SLUGS = {"en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
+const GAME_SLUGS = {"en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
 const CH_CLASSES = [7, 8, 9, 10];
 /* English games */
 const EN = [
@@ -4245,6 +4278,1419 @@ const GTrig = CQ.quest({
 });
 
 GAME_MODS["c10-trigonometry"] = GTrig;
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · NCERT Mathematics · Ch 6 · Triangles (similarity)
+   Chapter game "Similar Shapes": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Similar or Not?  2 The BPT  3 Parallel or Not? (converse)
+   Apply  : 4 Which Criterion?  5 Match the Vertices  6 Scale It
+   Master : 7 Shadows & Heights  8 Similarity Proofs  9 Triangle Master (timed)
+   ============================================================ */
+const TRI10 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, fr, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  const svg = (w, h, g, mh = 180) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const T = (x, y, s, c = "#e8ecff", fs = 14) => `<text x="${x}" y="${y}" text-anchor="middle" style="font-size:${fs}px;font-weight:800;fill:${c}">${s}</text>`;
+
+  // triangle ABC with DE ∥ BC at fraction t of AB from A; labels: {AD, DB, AE, EC} strings
+  function bpt(t, lab, names = ["A", "B", "C", "D", "E"]){
+    const A = [150, 14], B = [26, 170], C = [282, 170], D = [A[0] + (B[0] - A[0])*t, A[1] + (B[1] - A[1])*t], E = [A[0] + (C[0] - A[0])*t, A[1] + (C[1] - A[1])*t];
+    let g = `<polygon points="${[A, B, C].map(p => p.join(",")).join(" ")}" fill="#5aa9ff14" stroke="#e8ecff" stroke-width="2.2"/>`;
+    g += `<line x1="${D[0]}" y1="${D[1]}" x2="${E[0]}" y2="${E[1]}" stroke="#ffcf5a" stroke-width="2.6"/>`;
+    g += T(A[0], 12, names[0]) + T(B[0] - 12, B[1] + 6, names[1]) + T(C[0] + 12, C[1] + 6, names[2]) + T(D[0] - 14, D[1] + 4, names[3]) + T(E[0] + 14, E[1] + 4, names[4]);
+    const mid = (p, q) => [(p[0] + q[0])/2, (p[1] + q[1])/2];
+    const m1 = mid(A, D), m2 = mid(D, B), m3 = mid(A, E), m4 = mid(E, C);
+    if (lab.AD) g += T(m1[0] - 26, m1[1] + 4, lab.AD, "#b6f36a", 13); if (lab.DB) g += T(m2[0] - 26, m2[1] + 4, lab.DB, "#b6f36a", 13);
+    if (lab.AE) g += T(m3[0] + 26, m3[1] + 4, lab.AE, "#9cc8ff", 13); if (lab.EC) g += T(m4[0] + 26, m4[1] + 4, lab.EC, "#9cc8ff", 13);
+    return svg(310, 186, g, 190);
+  }
+
+  /* ---------- Mission 1: Similar or Not? ---------- */
+  const SIMF = [
+    ["Any two circles", true, "All circles have the same shape; only the radius changes. So all circles are similar."],
+    ["Any two squares", true, "All angles are 90° and all sides are in one ratio, so all squares are similar."],
+    ["Any two equilateral triangles", true, "All angles are 60°, so any two equilateral triangles are similar."],
+    ["Any two isosceles triangles", false, "Angles can differ (e.g. 30°-75°-75° and 100°-40°-40°), so they need not be similar."],
+    ["Any two rectangles", false, "A 2×1 rectangle and a 5×1 rectangle have equal angles but sides not in one ratio."],
+    ["Any two rhombuses", false, "A square and a ‘flat’ rhombus have proportional sides but different angles."],
+    ["Any two right triangles", false, "A 30°-60°-90° and a 45°-45°-90° triangle are both right triangles but not similar."],
+    ["Any two regular hexagons", true, "Regular polygons with the same number of sides have equal angles and proportional sides."],
+    ["Two congruent triangles", true, "Congruent figures are similar with ratio 1 : 1 (but similar figures need not be congruent)."],
+    ["A photo and its enlargement", true, "An enlargement keeps the shape and scales every length by the same factor."]
+  ];
+  function m1(i){
+    const t = i % 3;
+    if (t === 2){ const it = SH(SIMF.slice()).slice(0, 5), cor = it.map((x, k) => x[1] ? k : -1).filter(k => k >= 0); if (!cor.length) return m1(i);
+      return {html:`<p class="tw-q">Select <b>all</b> pairs that are <b>always similar</b>.</p>${multiHTML(it.map(x => x[0]))}`,
+        mount(el, done){ bindMulti(el, cor, done, it.map(x => `<b>${x[0]}</b>: ${x[2]}`).join("<br>"), "Similar figures"); }}; }
+    if (t === 1){ const o = ["Their corresponding angles are equal AND their corresponding sides are proportional", "Their corresponding angles are equal", "Their corresponding sides are proportional", "They have the same area"];
+      const sh = SH(o.slice());
+      return {html:`<p class="tw-q">Two polygons with the same number of sides are similar if…</p>${choice(sh)}`,
+        mount(el, done){ bindChoice(el, sh.indexOf(o[0]), done, `<b>Both</b> conditions are needed for polygons. A square and a rectangle have equal angles but sides not proportional; a square and a rhombus have proportional sides but unequal angles. (Triangles are special: one condition is enough!)`, "Similar polygons"); }}; }
+    const [s, tv, why] = P(SIMF);
+    return {html:`<p class="tw-q">Are these <b>always similar</b>?</p><div class="tw-ex" style="font-size:18px">${s}</div>${choice(["Yes, always similar", "No, not always"], "two")}`,
+      mount(el, done){ bindChoice(el, tv ? 0 : 1, done, `<b>${tv ? "Yes" : "No"}</b>. ${why}`, "Similar figures"); }};
+  }
+
+  /* ---------- Mission 2: The Basic Proportionality Theorem ---------- */
+  function m2(i){
+    const a = R(1, 6), b = R(1, 6), k = P([1, 1.5, 2, 0.5]), AD = a*k, DB = b*k, m = P([1, 2, 3, 0.5, 1.5]), AE = a*m, EC = b*m, t = a/(a + b), ask = i % 3;
+    if (a === b) return m2(i + 1);
+    if (ask === 0) return {html:`<p class="tw-q">In △ABC, DE ∥ BC. Find <b>EC</b>.</p>${bpt(t, {AD:AD, DB:DB, AE:AE, EC:"?"})}${padHTML("EC =", "cm", {dec:true})}`,
+      mount(el, done){ bindPad(el, EC, 0.01, done, `BPT (Thales): AD/DB = AE/EC → ${n2(AD)}/${n2(DB)} = ${n2(AE)}/EC → EC = ${n2(AE)} × ${n2(DB)} ÷ ${n2(AD)} = <b>${n2(EC)} cm</b>.`, "Basic Proportionality Theorem"); }};
+    if (ask === 1) return {html:`<p class="tw-q">In △ABC, DE ∥ BC. Find <b>AD</b>.</p>${bpt(t, {AD:"?", DB:DB, AE:AE, EC:EC})}${padHTML("AD =", "cm", {dec:true})}`,
+      mount(el, done){ bindPad(el, AD, 0.01, done, `AD/DB = AE/EC → AD = ${n2(DB)} × ${n2(AE)} ÷ ${n2(EC)} = <b>${n2(AD)} cm</b>. The parallel line cuts both sides in the <b>same ratio</b> ${a} : ${b}.`, "Basic Proportionality Theorem"); }};
+    const AB = AD + DB, right = `${n2(AE + EC)} cm`, o = opts4(right, [`${n2(AE + EC + 1)} cm`, `${n2(AB)} cm`, `${n2(EC)} cm`, `${n2((AE + EC)*AD/AB + 1)} cm`]);
+    return {html:`<p class="tw-q">In △ABC, DE ∥ BC with AD = ${n2(AD)} cm, AB = ${n2(AB)} cm and AE = ${n2(AE)} cm. Find <b>AC</b>.</p>${bpt(t, {AD:AD, AE:AE})}${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `BPT also gives AD/AB = AE/AC → AC = ${n2(AE)} × ${n2(AB)} ÷ ${n2(AD)} = <b>${right}</b>.`, "Basic Proportionality Theorem"); }};
+  }
+
+  /* ---------- Mission 3: Parallel or Not? (converse of BPT) ---------- */
+  function m3(i){
+    const yes = Math.random() < .5, a = R(2, 9), b = R(2, 9), k = P([0.3, 0.5, 1, 1.2, 2]), m = P([0.4, 0.6, 1.5, 2, 3]);
+    const PE = +(a*k).toFixed(2), EQ = +(b*k).toFixed(2), PF = +(a*m).toFixed(2), FR = yes ? +(b*m).toFixed(2) : +(b*m + P([0.5, 1, -0.5])).toFixed(2);
+    if (a === b || FR <= 0) return m3(i + 1);
+    const ok = Math.abs(PE*FR - EQ*PF) < 1e-9;
+    if (i % 3 === 2){ const right = "If a line divides two sides of a triangle in the same ratio, it is parallel to the third side.", o = SH([right, "If a line is parallel to one side of a triangle, it bisects the other two sides.", "A line joining any two points on two sides of a triangle is parallel to the third side.", "If two triangles are similar, their areas are equal."]);
+      return {html:`<p class="tw-q">Which statement is the <b>converse of the BPT</b> (Theorem 6.2)?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `BPT: parallel ⇒ same ratio. <b>Converse</b>: same ratio ⇒ parallel. It is the tool for proving lines parallel.`, "Converse of the BPT"); }}; }
+    return {html:`<p class="tw-q">E and F lie on PQ and PR of △PQR with <b>PE = ${PE}</b>, <b>EQ = ${EQ}</b>, <b>PF = ${PF}</b>, <b>FR = ${FR}</b> (cm). Is EF ∥ QR?</p>${bpt(0.45, {AD:PE, DB:EQ, AE:PF, EC:FR}, ["P", "Q", "R", "E", "F"])}${choice(["Yes, EF ∥ QR", "No"], "two")}`,
+      mount(el, done){ bindChoice(el, ok ? 0 : 1, done, `PE/EQ = ${PE}/${EQ} = ${(PE/EQ).toFixed(3)}, PF/FR = ${PF}/${FR} = ${(PF/FR).toFixed(3)}. ${ok ? "Equal → by the converse of BPT, <b>EF ∥ QR</b>." : "Not equal → EF is <b>not</b> parallel to QR."} (The picture is not to scale: trust the ratios!)`, "Converse of the BPT"); }};
+  }
+
+  /* ---------- Mission 4: Which Criterion? ---------- */
+  function m4(i){
+    const kind = R(0, 4), K = ["AA", "SSS", "SAS", "Not similar", "Not similar"][kind];
+    let txt;
+    if (kind === 0){ const A = R(30, 80), B = R(30, 150 - A), C = 180 - A - B; txt = `△ABC: ∠A = ${A}°, ∠B = ${B}°.<br>△PQR: ∠P = ${A}°, ∠R = ${C}°.`; }
+    else if (kind === 1){ const s = [R(2, 6), R(3, 7), R(4, 8)].sort((a, b) => a - b); if (s[0] + s[1] <= s[2]) return m4(i); const k = P([2, 3, 1.5, 2.5]); txt = `△ABC: sides ${s.join(", ")} cm.<br>△PQR: sides ${s.map(x => +(x*k).toFixed(1)).reverse().join(", ")} cm.`; }
+    else if (kind === 2){ const a = R(2, 8), b = R(2, 8), k = P([2, 3, 1.5]), A = R(35, 120); txt = `△ABC: AB = ${a}, AC = ${b}, ∠A = ${A}°.<br>△PQR: PQ = ${+(a*k).toFixed(1)}, PR = ${+(b*k).toFixed(1)}, ∠P = ${A}°.`; }
+    else if (kind === 3){ const a = R(2, 8), b = R(2, 8), k = P([2, 3]), A = R(35, 80), B = A + R(10, 30); txt = `△ABC: AB = ${a}, AC = ${b}, ∠B = ${A}°.<br>△PQR: PQ = ${a*k}, PR = ${b*k}, ∠P = ${A}°.`; }
+    else { const s = [R(3, 6), R(4, 7), R(5, 8)].sort((x, y) => x - y); if (s[0] + s[1] <= s[2]) return m4(i); txt = `△ABC: sides ${s.join(", ")}.<br>△PQR: sides ${s.map((x, k) => x*2 + (k === 2 ? 1 : 0)).join(", ")}.`; }
+    const o = ["AA", "SSS", "SAS", "Not similar"];
+    const why = {AA:"Two pairs of equal angles are enough (the third angles are then equal too, since angles add to 180°).", SSS:"All three pairs of sides are in the same ratio (compare smallest with smallest, largest with largest).", SAS:"One equal angle, and the sides <b>including</b> that angle are proportional.",
+      "Not similar":kind === 3 ? "The equal angle (∠B = ∠P) is <b>not between</b> the proportional sides: SAS needs the included angle, so we cannot conclude similarity." : "The three side ratios are not all equal, so the triangles are not similar."}[K];
+    return {html:`<p class="tw-q">Which criterion proves these triangles similar?</p><div class="tw-ex" style="font-size:16px;text-align:left">${txt}</div>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(K), done, `<b>${K}</b>. ${why}`, "Similarity criteria"); }};
+  }
+
+  /* ---------- Mission 5: Match the Vertices ---------- */
+  function m5(i){
+    const t = i % 3;
+    if (t === 0){ const BOC = R(100, 140), CDO = R(40, 180 - BOC + 30); const DOC = 180 - BOC, DCO = 180 - DOC - CDO; if (DCO <= 10) return m5(i + 3);
+      const ask = P(["DOC", "DCO", "OAB"]), val = {DOC, DCO, OAB:DCO}[ask];
+      return {html:`<p class="tw-q">Diagonals AC and BD meet at O, and <b>△ODC ~ △OBA</b>. ∠BOC = ${BOC}° and ∠CDO = ${CDO}°. Find <b>∠${ask}</b>.</p>${padHTML("", "°", {dec:false})}`,
+        mount(el, done){ bindPad(el, val, 0, done, `∠DOC = 180° − ${BOC}° = ${DOC}° (linear pair). ∠DCO = 180° − ${DOC}° − ${CDO}° = ${DCO}°. In △ODC ~ △OBA the order matches O↔O, D↔B, C↔A, so ∠OAB = ∠OCD = ${DCO}°. Answer: <b>${val}°</b>.`, "Corresponding parts"); }}; }
+    const perm = SH(["P", "Q", "R"]), map = {A:perm[0], B:perm[1], C:perm[2]};
+    if (t === 1){ const side = P(["AB", "BC", "CA"]), right = map[side[0]] + map[side[1]], o = opts4(right, ["PQ", "QR", "RP", "QP", "RQ", "PR"].filter(s => s !== right && s !== right[1] + right[0]));
+      return {html:`<p class="tw-q">△ABC ~ △${perm.join("")}. Which side corresponds to <b>${side}</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `The order of letters tells the matching: A↔${map.A}, B↔${map.B}, C↔${map.C}. So ${side} ↔ <b>${right}</b>. Always read similarity statements letter by letter!`, "Writing similarity correctly"); }}; }
+    const A = R(40, 80), B = R(30, 140 - A), C = 180 - A - B, ang = {A, B, C}, q = P(["A", "B", "C"]), name = map[q];
+    return {html:`<p class="tw-q">△ABC ~ △${perm.join("")} with ∠A = ${A}°, ∠B = ${B}°. Find <b>∠${name}</b>.</p>${padHTML("", "°", {dec:false})}`,
+      mount(el, done){ bindPad(el, ang[q], 0, done, `${name} matches ${q} (same position in the name). ∠C = 180° − ${A}° − ${B}° = ${C}°. So ∠${name} = ∠${q} = <b>${ang[q]}°</b>.`, "Corresponding angles"); }};
+  }
+
+  /* ---------- Mission 6: Scale It ---------- */
+  function m6(i){
+    const s = [R(3, 9), R(4, 10), R(5, 12)]; if (s[0] + s[1] <= s[2]) return m6(i + 1);
+    const k = P([2, 3, 1.5, 2.5, 0.5]), t = i % 3;
+    if (t === 0){ const j = R(1, 2); return {html:`<p class="tw-q">△ABC ~ △DEF with AB = ${s[0]}, BC = ${s[1]}, CA = ${s[2]} cm and DE = ${n2(s[0]*k)} cm. Find <b>${["EF", "FD"][j - 1]}</b>.</p>${padHTML("", "cm", {dec:true})}`,
+      mount(el, done){ bindPad(el, s[j]*k, 0.01, done, `Scale factor = DE/AB = ${n2(s[0]*k)}/${s[0]} = ${k}. ${["EF = BC", "FD = CA"][j - 1]} × ${k} = ${s[j]} × ${k} = <b>${n2(s[j]*k)} cm</b>.`, "Proportional sides"); }}; }
+    if (t === 1){ const per = s[0] + s[1] + s[2]; return {html:`<p class="tw-q">△ABC ~ △DEF. The sides of △ABC are ${s.join(", ")} cm, and DE = ${n2(s[0]*k)} cm (DE ↔ AB). Perimeter of △DEF?</p>${padHTML("", "cm", {dec:true})}`,
+      mount(el, done){ bindPad(el, per*k, 0.01, done, `Every length scales by ${k}, so perimeters do too: ${per} × ${k} = <b>${n2(per*k)} cm</b>.`, "Ratio of perimeters"); }}; }
+    const right = `${k}`, o = opts4(right, [`${n2(1/k)}`, `${n2(k*k)}`, `${n2(k + 1)}`]);
+    return {html:`<p class="tw-q">△ABC ~ △DEF, AB = ${s[0]} cm and DE = ${n2(s[0]*k)} cm. The <b>median</b> AM of △ABC is ${s[1]} cm. The ratio DN : AM (DN is the median of △DEF) is…</p>${choice(o.map(x => x + " : 1"), "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `In similar triangles all corresponding lengths (sides, medians, altitudes, perimeters) have the same ratio as the sides: <b>${k} : 1</b>. (Areas would be ${n2(k*k)} : 1, but that is a later topic.)`, "Ratio of corresponding lengths"); }};
+  }
+
+  /* ---------- Mission 7: Shadows & Heights ---------- */
+  function shadowPic(){
+    let g = `<line x1="0" y1="120" x2="300" y2="120" stroke="#cfd6ff88"/><circle cx="268" cy="22" r="13" fill="#ffcf5a"/>`;
+    g += `<rect x="40" y="70" width="6" height="50" fill="#9cc8ff"/><polygon points="43,120 90,120 43,70" fill="#ffcf5a22"/><rect x="160" y="20" width="16" height="100" fill="#3ccf7a"/><polygon points="168,120 262,120 168,20" fill="#ffcf5a22"/>`;
+    return svg(300, 130, g, 130); }
+  function m7(i){
+    const t = i % 3;
+    if (t === 2){ const h = P([1.2, 1.5, 1.6, 1.8]), L = P([3.6, 4.5, 4.8, 6]), sp = P([0.9, 1.2, 1.5]), tm = P([2, 3, 4]), d = sp*tm, sh = d*h/(L - h);
+      return {html:`<p class="tw-q">A girl <b>${h} m</b> tall walks away from a lamp-post at <b>${sp} m/s</b>. The bulb is <b>${L} m</b> high. How long is her shadow after <b>${tm} s</b>?</p>${padHTML("", "m", {dec:true})}`,
+        mount(el, done){ bindPad(el, +sh.toFixed(2), 0.015, done, `She is ${sp} × ${tm} = ${n2(d)} m from the post. The girl and the post make similar triangles with the shadow tip: s/${h} = (s + ${n2(d)})/${L} → s(${L} − ${h}) = ${h} × ${n2(d)} → s ≈ <b>${n2(sh)} m</b>.`, "Similar triangles in real life"); }}; }
+    const p = R(2, 8), ps = P([1, 2, 3, 4, 5]), k = R(3, 12), H = p*k, S = ps*k, askH = t === 0;
+    return {html:`<p class="tw-q">A <b>${p} m</b> pole casts a <b>${ps} m</b> shadow. At the same time a tower casts a <b>${askH ? S + " m" : "?"}</b> shadow${askH ? "" : ` and is <b>${H} m</b> tall`}. ${askH ? "How tall is the tower?" : "How long is its shadow?"}</p>${shadowPic()}${padHTML("", "m", {dec:false})}`,
+      mount(el, done){ bindPad(el, askH ? H : S, 0, done, `The sun’s rays make the same angle at the same time, so the two triangles are similar (AA): height/shadow is the same. ${askH ? `h/${S} = ${p}/${ps} → h = <b>${H} m</b>` : `${H}/s = ${p}/${ps} → s = <b>${S} m</b>`}.`, "Similar triangles in real life"); }};
+  }
+
+  /* ---------- Mission 8: Similarity Proofs ---------- */
+  function m8(i){
+    const t = i % 4;
+    if (t === 0){ const AB = R(6, 16), CD = R(3, AB - 1), OC = R(2, 8), AO = AB*OC/CD; if (!Number.isInteger(AO*2)) return m8(i + 4);
+      return {html:`<p class="tw-q">ABCD is a trapezium with AB ∥ DC. Its diagonals meet at O. AB = ${AB}, DC = ${CD} and OC = ${OC} cm. Find <b>OA</b>.</p>${padHTML("OA =", "cm", {dec:true})}`,
+        mount(el, done){ bindPad(el, AO, 0.01, done, `∠OAB = ∠OCD and ∠OBA = ∠ODC (alternate angles, AB ∥ DC), so △OAB ~ △OCD (AA). OA/OC = AB/CD → OA = ${OC} × ${AB}/${CD} = <b>${n2(AO)} cm</b>.`, "Trapezium diagonals"); }}; }
+    if (t === 1){ const CD = R(2, 9), CB = R(CD + 2, 20), CA = Math.sqrt(CB*CD); if (!Number.isInteger(CA)) return m8(i + 4);
+      return {html:`<p class="tw-q">D is on BC of △ABC with ∠ADC = ∠BAC. If CB = ${CB} cm and CD = ${CD} cm, find <b>CA</b>.</p>${padHTML("CA =", "cm", {dec:false})}`,
+        mount(el, done){ bindPad(el, CA, 0, done, `△ADC ~ △BAC (∠ADC = ∠BAC and ∠C is common: AA). So CA/CB = CD/CA → CA² = CB·CD = ${CB*CD} → CA = <b>${CA} cm</b>.`, "Proving CA² = CB·CD"); }}; }
+    if (t === 2){ const ord = ["∠ADE = ∠ABC (corresponding angles, DE ∥ BC)", "∠AED = ∠ACB (corresponding angles)", "△ADE ~ △ABC (AA criterion)", "AD/AB = AE/AC (corresponding sides of similar triangles)"];
+      const o = SH(ord.slice()), right = ord[2];
+      return {html:`<p class="tw-q">Proof step: DE ∥ BC in △ABC. After noting ∠ADE = ∠ABC and ∠AED = ∠ACB, what follows <b>next</b>?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Two pairs of equal angles → <b>△ADE ~ △ABC (AA)</b>. Only then can we write the ratio of sides. A proof must go: reasons → similarity → ratios.`, "Writing a similarity proof"); }}; }
+    const facts = [["A line through the mid-point of one side, parallel to another side, bisects the third side.", true], ["The line joining the mid-points of two sides is parallel to the third side.", true], ["If two triangles have proportional sides, their angles may still differ.", false], ["AAA and AA criteria are equivalent for triangles.", true], ["SSA (two sides and a non-included angle) is a similarity criterion.", false], ["Similar triangles must be congruent.", false]];
+    const it = SH(facts.slice()).slice(0, 4), cor = it.map((f, k) => f[1] ? k : -1).filter(k => k >= 0); if (!cor.length) return m8(i);
+    return {html:`<p class="tw-q">Select <b>all</b> true statements.</p>${multiHTML(it.map(f => f[0]))}`,
+      mount(el, done){ bindMulti(el, cor, done, `Midpoint facts follow from BPT and its converse. Proportional sides force equal angles (SSS). AA is enough because the third angle is fixed. SSA is <b>not</b> a criterion. Similar ≠ congruent.`, "Similarity facts"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Similar or Not?", goal:"Same shape, not necessarily same size.", n:8,
+      learn:L("Similar figures", "Similar figures have the same shape. For polygons with the same number of sides: corresponding <b>angles equal</b> AND corresponding <b>sides proportional</b>. All circles, squares and equilateral triangles are similar.", "Congruent ⇒ similar, but similar ⇏ congruent")},
+    {id:2, track:"foundation", name:"The BPT", goal:"A line parallel to one side cuts the other two in the same ratio.", n:8,
+      learn:L("Thales’ theorem (BPT)", "If DE ∥ BC in △ABC (D on AB, E on AC), then <b>AD/DB = AE/EC</b>. Also AD/AB = AE/AC.", "AD = 1.5, DB = 3, AE = 1 → EC = 1 × 3 ÷ 1.5 = <b>2 cm</b>")},
+    {id:3, track:"foundation", name:"Parallel or Not?", goal:"Use the converse of BPT to test for parallel lines.", n:8,
+      learn:L("The converse", "If a line divides two sides of a triangle in the <b>same ratio</b>, it is parallel to the third side. Compare PE/EQ with PF/FR.", "PE = 4, EQ = 4.5, PF = 8, FR = 9: 4/4.5 = 8/9 → EF ∥ QR")},
+    {id:4, track:"core", name:"Which Criterion?", goal:"AA, SSS or SAS, or not similar.", n:8,
+      learn:L("Three tests for triangles", "<b>AA</b>: two pairs of equal angles. <b>SSS</b>: all three sides in the same ratio. <b>SAS</b>: one equal angle with the sides <b>including it</b> proportional.", "SSA is not a test: the angle must be between the two sides")},
+    {id:5, track:"core", name:"Match the Vertices", goal:"Read similarity statements letter by letter.", n:8,
+      learn:L("Order matters", "△ABC ~ △PQR means A↔P, B↔Q, C↔R. So ∠B = ∠Q and AB/PQ = BC/QR = CA/RP.", "△ODC ~ △OBA: ∠OCD = ∠OAB")},
+    {id:6, track:"core", name:"Scale It", goal:"Find sides, perimeters and medians from a scale factor.", n:8,
+      learn:L("One scale factor", "If △DEF is k times △ABC, every length (side, perimeter, median, altitude) is multiplied by k.", "AB = 4, DE = 6 → k = 1.5; BC = 5 → EF = 7.5")},
+    {id:7, track:"advanced", name:"Shadows & Heights", goal:"Poles, towers and lamp-posts.", n:8,
+      learn:L("Same sun, same angle", "At the same time, the sun’s rays meet the ground at the same angle, so object and shadow triangles are similar: height/shadow is constant.", "6 m pole, 4 m shadow; tower shadow 28 m → tower 42 m")},
+    {id:8, track:"advanced", name:"Similarity Proofs", goal:"Trapezium diagonals, CA² = CB·CD and proof logic.", n:8,
+      learn:L("Look for AA", "Most proofs find two equal angles (vertically opposite, alternate, common angle), conclude similarity, then write the ratio of sides.", "Trapezium AB ∥ DC: △OAB ~ △OCD → OA/OC = OB/OD")},
+    {id:9, track:"advanced", name:"Triangle Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m5, m6, m7])(R(0, 5))};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c10-triangles"] = CQ.quest({
+  key:"si10c6_stars", missions:TRI10.MISSIONS, gen:TRI10.GEN, chapter:{std:10, part:"", ch:6},
+  desc:"Class 10 · NCERT · Chapter 6. Master similar triangles in 9 missions: similar figures, the BPT and its converse, AA/SSS/SAS, corresponding parts, shadows and proofs.",
+  modes:{foundation:"Similar figures, the Basic Proportionality Theorem and its converse", core:"Similarity criteria, matching vertices and scale factors", advanced:"Shadows and heights, similarity proofs and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · NCERT Mathematics · Ch 7 · Coordinate Geometry
+   Chapter game "Grid Navigator": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Read the Grid  2 Distance Formula  3 Triangle Check
+   Apply  : 4 Name the Quadrilateral  5 Mid-point  6 Section Formula
+   Master : 7 Find the Ratio  8 Hidden Points  9 Coordinate Master (timed)
+   ============================================================ */
+const COO10 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, fr, neg, par} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const gcd = (a, b) => b ? gcd(b, a % b) : Math.abs(a);
+  const pt = (x, y) => `(${neg(x)}, ${neg(y)})`;
+  const d2 = (A, B) => (A[0] - B[0])**2 + (A[1] - B[1])**2;
+  const surd = n => { if (n === 0) return "0"; let o = 1, r = n; for (let k = 2; k*k <= r; k++) while (r % (k*k) === 0){ o *= k; r /= k*k; } return r === 1 ? "" + o : (o > 1 ? o : "") + "√" + r; };
+  const TRIP = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [8, 6, 10], [4, 3, 5], [12, 5, 13], [9, 12, 15], [0, 7, 7], [6, 0, 6]];
+  function grid(pts, opt = {}){
+    const S = 14, N = 9, W = 2*N*S + 20, X = x => 10 + (x + N)*S, Y = y => 10 + (N - y)*S; let g = "";
+    for (let k = -N; k <= N; k++) g += `<line x1="${X(k)}" y1="${Y(-N)}" x2="${X(k)}" y2="${Y(N)}" stroke="#cfd6ff${k ? "14" : "88"}"/><line x1="${X(-N)}" y1="${Y(k)}" x2="${X(N)}" y2="${Y(k)}" stroke="#cfd6ff${k ? "14" : "88"}"/>`;
+    for (let k = -8; k <= 8; k += 2) if (k) g += `<text x="${X(k)}" y="${Y(0) + 11}" text-anchor="middle" style="font-size:10px;fill:#cfd6ffaa">${k}</text><text x="${X(0) - 4}" y="${Y(k) + 3}" text-anchor="end" style="font-size:10px;fill:#cfd6ffaa">${k}</text>`;
+    if (opt.poly) g += `<polygon points="${pts.map(p => X(p[1][0]) + "," + Y(p[1][1])).join(" ")}" fill="#5aa9ff22" stroke="#9cc8ff" stroke-width="2"/>`;
+    if (opt.seg) g += `<line x1="${X(pts[0][1][0])}" y1="${Y(pts[0][1][1])}" x2="${X(pts[1][1][0])}" y2="${Y(pts[1][1][1])}" stroke="#9cc8ff" stroke-width="2"/>`;
+    pts.forEach(([n, [x, y], c]) => { g += `<circle cx="${X(x)}" cy="${Y(y)}" r="6" fill="${c || "#ffcf5a"}"/><text x="${X(x) + 7}" y="${Y(y) - 6}" style="font-size:15px;font-weight:900;fill:${c || "#ffcf5a"}">${n}</text>`; });
+    return `<svg class="tw-svg" viewBox="0 0 ${W} ${W}" style="max-height:270px">${g}</svg>`;
+  }
+
+  /* ---------- Mission 1: Read the Grid ---------- */
+  function m1(i){
+    const t = i % 4;
+    if (t === 0){ let x, y; do { x = R(-8, 8); y = R(-8, 8); } while (!x && !y);
+      const right = pt(x, y), o = opts4(right, [pt(y, x), pt(-x, y), pt(x, -y), pt(-y, -x)]);
+      return {html:`<p class="tw-q">What are the coordinates of point <b>P</b>?</p>${grid([["P", [x, y]]])}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `First go <b>across</b> (x = ${neg(x)}), then <b>up/down</b> (y = ${neg(y)}): P = <b>${right}</b>. (x, y) order matters!`, "Reading coordinates"); }}; }
+    if (t === 1){ const x = R(-9, 9), y = R(-9, 9); if (!x || !y) return m1(i + 4); const q = x > 0 ? (y > 0 ? "I" : "IV") : (y > 0 ? "II" : "III"), o = ["I", "II", "III", "IV"];
+      return {html:`<p class="tw-q">In which quadrant does <b>${pt(x, y)}</b> lie?</p>${choice(o.map(s => "Quadrant " + s), "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(q), done, `x ${x > 0 ? "> 0 (right)" : "< 0 (left)"}, y ${y > 0 ? "> 0 (up)" : "< 0 (down)"} → <b>Quadrant ${q}</b>. Signs: I (+, +), II (−, +), III (−, −), IV (+, −).`, "Quadrants"); }}; }
+    if (t === 2){ const [a, b, c] = P(TRIP.slice(0, 7)), x = a*P([1, -1]), y = b*P([1, -1]);
+      return {html:`<p class="tw-q">How far is <b>${pt(x, y)}</b> from the origin?</p>${padHTML("", "units", {dec:false})}`,
+        mount(el, done){ bindPad(el, c, 0, done, `Distance from O = √(x² + y²) = √(${x*x} + ${y*y}) = √${c*c} = <b>${c}</b>.`, "Distance from the origin"); }}; }
+    const v = R(-9, 9), onX = Math.random() < .5, o = ["On the x-axis", "On the y-axis", "In Quadrant I", "At the origin"], right = v === 0 ? 3 : onX ? 0 : 1;
+    return {html:`<p class="tw-q">Where is the point <b>${onX ? pt(v, 0) : pt(0, v)}</b>?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, right, done, v === 0 ? "Both coordinates are 0 → the <b>origin</b>." : onX ? "y = 0 → the point is <b>on the x-axis</b>. Every point on the x-axis looks like (x, 0)." : "x = 0 → the point is <b>on the y-axis</b>. Every point on the y-axis looks like (0, y).", "Points on the axes"); }};
+  }
+
+  /* ---------- Mission 2: Distance Formula ---------- */
+  function m2(i){
+    const t = i % 3, [a, b, c] = P(TRIP.slice(0, 7)), x1 = R(-6, 6), y1 = R(-6, 6), sx = P([1, -1]), sy = P([1, -1]), x2 = x1 + sx*a, y2 = y1 + sy*b;
+    if (t === 0) return {html:`<p class="tw-q">Find the distance between <b>A${pt(x1, y1)}</b> and <b>B${pt(x2, y2)}</b>.</p>${padHTML("AB =", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, c, 0, done, `AB = √[(x₂ − x₁)² + (y₂ − y₁)²] = √[(${neg(x2)} − ${par(x1)})² + (${neg(y2)} − ${par(y1)})²] = √(${a*a} + ${b*b}) = √${c*c} = <b>${c}</b>.`, "Distance formula"); }};
+    if (t === 1){ const p = R(-5, 5), q = R(-5, 5), r = R(-5, 5), s = R(-5, 5), D = (r - p)**2 + (s - q)**2; if (!D || Number.isInteger(Math.sqrt(D))) return m2(i + 3);
+      const right = surd(D), o = opts4(right, [surd((r - p)**2 + (s + q)**2 || 2), surd(Math.abs((r - p)**2 - (s - q)**2) || 3), "" + (Math.abs(r - p) + Math.abs(s - q)), surd(D + 2)]);
+      return {html:`<p class="tw-q">Distance between <b>${pt(p, q)}</b> and <b>${pt(r, s)}</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `(${neg(r)} − ${par(p)})² + (${neg(s)} − ${par(q)})² = ${(r - p)**2} + ${(s - q)**2} = ${D}, so the distance is √${D}${right !== "√" + D ? " = " + right : ""} ≈ ${Math.sqrt(D).toFixed(2)}. Not ${Math.abs(r - p) + Math.abs(s - q)}: that would be walking along the grid lines.`, "Distance formula"); }}; }
+    // find unknown coordinate
+    const ys = [y2, y1 - sy*b].sort((u, v) => u - v);
+    return {html:`<p class="tw-q">The distance between P${pt(x1, y1)} and Q(${neg(x2)}, y) is <b>${c}</b>. Find the <b>${y2 === ys[1] ? "larger" : "smaller"}</b> value of y.</p>${padHTML("y =", "", {neg:true, dec:false})}`,
+      mount(el, done){ bindPad(el, y2, 0, done, `(${neg(x2)} − ${par(x1)})² + (y − ${par(y1)})² = ${c*c} → (y − ${par(y1)})² = ${c*c - a*a} → y − ${par(y1)} = ±${b} → y = ${neg(ys[0])} or ${neg(ys[1])}. Answer: <b>${neg(y2)}</b>.`, "Unknown coordinate from a distance"); }};
+  }
+
+  /* ---------- Mission 3: Triangle Check ---------- */
+  function m3(i){
+    const t = i % 3;
+    if (t === 0){ const x = R(-4, 3), y = R(-4, 3), dx = R(1, 3), dy = R(-3, 3), col = Math.random() < .5, k = R(2, 3);
+      const A = [x, y], B = [x + dx, y + dy], C = col ? [x + k*dx, y + k*dy] : [x + k*dx, y + k*dy + P([1, -1, 2])];
+      const ab = Math.sqrt(d2(A, B)), bc = Math.sqrt(d2(B, C)), ac = Math.sqrt(d2(A, C));
+      return {html:`<p class="tw-q">Are <b>A${pt(...A)}</b>, <b>B${pt(...B)}</b> and <b>C${pt(...C)}</b> collinear?</p>${choice(["Yes, collinear", "No, they form a triangle"], "two")}`,
+        mount(el, done){ bindChoice(el, col ? 0 : 1, done, `AB ≈ ${ab.toFixed(3)}, BC ≈ ${bc.toFixed(3)}, AC ≈ ${ac.toFixed(3)}. ${col ? `AB + BC = AC, so the points lie on <b>one line</b>.` : `AB + BC ≠ AC, so they <b>form a triangle</b>.`} Points are collinear when the two shorter distances add up to the longest.`, "Collinearity with distances"); }}; }
+    const kind = R(0, 2); let A, B, C;
+    const x = R(-4, 2), y = R(-4, 2);
+    if (kind === 0){ const a = R(1, 4), b = R(1, 4); A = [x, y]; B = [x + a, y + b]; C = [x + 2*a, y]; if (b === 0) return m3(i); }   // isosceles (AB = BC)
+    else if (kind === 1){ const [a, b] = P([[3, 4], [4, 3], [2, 5], [1, 3]]); A = [x, y]; B = [x + a, y]; C = [x, y + b]; }                         // right at A
+    else { A = [x, y]; B = [x + R(2, 4), y + 1]; C = [x + 1, y + R(3, 5)]; }                                                                       // scalene
+    const s = [d2(A, B), d2(B, C), d2(A, C)].sort((p, q) => p - q), isI = s[0] === s[1] || s[1] === s[2], isR = s[0] + s[1] === s[2];
+    const right = isR && isI ? "Right isosceles" : isR ? "Right-angled" : isI ? "Isosceles" : "Scalene", o = ["Isosceles", "Right-angled", "Scalene", "Equilateral"];
+    if (!o.includes(right)) return m3(i + 1);
+    return {html:`<p class="tw-q">What kind of triangle has vertices <b>A${pt(...A)}</b>, <b>B${pt(...B)}</b>, <b>C${pt(...C)}</b>?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `AB² = ${d2(A, B)}, BC² = ${d2(B, C)}, CA² = ${d2(A, C)}. ${isI ? "Two sides are equal → <b>isosceles</b>." : ""} ${isR ? `The two smaller squares add to the largest (${s[0]} + ${s[1]} = ${s[2]}) → <b>right-angled</b>.` : ""} ${!isI && !isR ? "All different, no right angle → <b>scalene</b>." : ""}`, "Classifying triangles"); }};
+  }
+
+  /* ---------- Mission 4: Name the Quadrilateral ---------- */
+  function m4(i){
+    const kind = R(0, 3), x = R(-5, 0), y = R(-5, 0); let V;
+    if (kind === 0){ const a = R(2, 4), b = R(-2, 2) || 1; V = [[x, y], [x + a, y + b], [x + a - b, y + b + a], [x - b, y + a]]; }           // square
+    else if (kind === 1){ const a = R(2, 4), b = R(1, 3); V = [[x, y + b], [x + a, y], [x + 2*a, y + b], [x + a, y + 2*b]]; if (a === b) return m4(i); }  // rhombus
+    else if (kind === 2){ const a = R(2, 6), b = R(2, 5); if (a === b) return m4(i); V = [[x, y], [x + a, y], [x + a, y + b], [x, y + b]]; }      // rectangle
+    else { const a = R(3, 5), b = R(2, 4), s = R(1, 2); V = [[x, y], [x + a, y], [x + a + s, y + b], [x + s, y + b]]; }                           // parallelogram
+    const names = ["Square", "Rhombus", "Rectangle", "Parallelogram"], why = ["All four sides equal AND diagonals equal → <b>square</b>.", "All four sides equal but diagonals unequal → <b>rhombus</b>.", "Opposite sides equal and diagonals equal (sides not all equal) → <b>rectangle</b>.", "Opposite sides equal, diagonals unequal → <b>parallelogram</b>."][kind];
+    const S = [0, 1, 2, 3].map(k => d2(V[k], V[(k + 1) % 4])), Dg = [d2(V[0], V[2]), d2(V[1], V[3])];
+    return {html:`<p class="tw-q">ABCD has A${pt(...V[0])}, B${pt(...V[1])}, C${pt(...V[2])}, D${pt(...V[3])}. What is it?</p>${grid(V.map((v, k) => ["ABCD"[k], v]), {poly:true})}${choice(names, "two")}`,
+      mount(el, done){ bindChoice(el, kind, done, `Sides² AB, BC, CD, DA = ${S.join(", ")}; diagonals² AC, BD = ${Dg.join(", ")}. ${why} Use the distance formula on all sides AND both diagonals.`, "Classifying quadrilaterals"); }};
+  }
+
+  /* ---------- Mission 5: Mid-point ---------- */
+  function m5(i){
+    const t = i % 3, x1 = R(-8, 8), y1 = R(-8, 8), x2 = x1 + 2*R(-5, 5), y2 = y1 + 2*R(-5, 5), M = [(x1 + x2)/2, (y1 + y2)/2];
+    if (t === 0){ const right = pt(...M), o = opts4(right, [pt((x2 - x1)/2, (y2 - y1)/2), pt(M[1], M[0]), pt(x1 + x2, y1 + y2), pt(M[0], -M[1]), pt(M[0] + 1, M[1]), pt(M[0], M[1] - 1), pt(M[0] - 2, M[1] + 1)]);
+      return {html:`<p class="tw-q">Mid-point of <b>${pt(x1, y1)}</b> and <b>${pt(x2, y2)}</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Average the coordinates: ((${neg(x1)} + ${par(x2)})/2, (${neg(y1)} + ${par(y2)})/2) = <b>${right}</b>. Add, then halve (don’t subtract).`, "Mid-point formula"); }}; }
+    if (t === 1){ const ask = Math.random() < .5 ? "x" : "y";
+      return {html:`<p class="tw-q">The centre of a circle is <b>${pt(...M)}</b> and one end of a diameter is <b>${pt(x1, y1)}</b>. Find the <b>${ask}</b>-coordinate of the other end.</p>${padHTML(ask + " =", "", {neg:true, dec:false})}`,
+        mount(el, done){ bindPad(el, ask === "x" ? x2 : y2, 0, done, `The centre is the mid-point of the diameter: (${neg(x1)} + x)/2 = ${neg(M[0])} and (${neg(y1)} + y)/2 = ${neg(M[1])}. So the other end is ${pt(x2, y2)}: <b>${ask} = ${neg(ask === "x" ? x2 : y2)}</b>. Shortcut: other end = 2 × centre − known end.`, "Using the mid-point backwards"); }}; }
+    const A = [R(-4, 4), R(-4, 4)], B = [A[0] + R(2, 5), A[1] + R(-3, 3)], Dd = [A[0] + R(-3, 1), A[1] + R(2, 5)], C = [B[0] + Dd[0] - A[0], B[1] + Dd[1] - A[1]], ask = Math.random() < .5 ? 0 : 1;
+    return {html:`<p class="tw-q">A${pt(...A)}, B${pt(...B)}, C(x, y) and D${pt(...Dd)} are the vertices of parallelogram ABCD, in order. Find <b>${"xy"[ask]}</b>.</p>${padHTML("xy"[ask] + " =", "", {neg:true, dec:false})}`,
+      mount(el, done){ bindPad(el, C[ask], 0, done, `Diagonals of a parallelogram bisect each other, so mid-point of AC = mid-point of BD: A + C = B + D → C = B + D − A = ${pt(...C)}. Answer <b>${neg(C[ask])}</b>.`, "Parallelogram vertex"); }};
+  }
+
+  /* ---------- Mission 6: Section Formula ---------- */
+  function m6(i){
+    const t = i % 3, m = R(1, 4), n = R(1, 4), s = m + n, x1 = R(-6, 6), y1 = R(-6, 6), x2 = x1 + s*R(-3, 3), y2 = y1 + s*R(-3, 3);
+    if (x1 === x2 && y1 === y2) return m6(i + 1);
+    const Px = (m*x2 + n*x1)/s, Py = (m*y2 + n*y1)/s;
+    if (t === 0){ const right = pt(Px, Py), o = opts4(right, [pt((n*x2 + m*x1)/s, (n*y2 + m*y1)/s), pt((x1 + x2)/2, (y1 + y2)/2), pt(Py, Px), pt((m*x2 - n*x1)/s, (m*y2 - n*y1)/s), pt(Px + 1, Py), pt(Px, Py - 1), pt(Px - 1, Py + 1)]);
+      return {html:`<p class="tw-q">Find the point dividing the join of <b>A${pt(x1, y1)}</b> and <b>B${pt(x2, y2)}</b> in the ratio <b>${m} : ${n}</b>.</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `P = ((m₁x₂ + m₂x₁)/(m₁ + m₂), (m₁y₂ + m₂y₁)/(m₁ + m₂)) = ((${m}×${par(x2)} + ${n}×${par(x1)})/${s}, (${m}×${par(y2)} + ${n}×${par(y1)})/${s}) = <b>${right}</b>. Note: m₁ multiplies the <b>far</b> end B.`, "Section formula"); }}; }
+    if (t === 1){ const ask = Math.random() < .5 ? 0 : 1;
+      return {html:`<p class="tw-q">P divides A${pt(x1, y1)}B${pt(x2, y2)} in the ratio ${m} : ${n}. Find the <b>${"xy"[ask]}</b>-coordinate of P.</p>${padHTML("xy"[ask] + " =", "", {neg:true, dec:false})}`,
+        mount(el, done){ bindPad(el, ask ? Py : Px, 0, done, `${"xy"[ask]} = (${m}×${par(ask ? y2 : x2)} + ${n}×${par(ask ? y1 : x1)})/${s} = <b>${neg(ask ? Py : Px)}</b>.`, "Section formula"); }}; }
+    // trisection / four equal parts
+    const parts = P([3, 4]), k = R(1, parts - 1), X1 = R(-6, 6), Y1 = R(-6, 6), X2 = X1 + parts*R(-3, 3), Y2 = Y1 + parts*R(-3, 3), Q = [X1 + k*(X2 - X1)/parts, Y1 + k*(Y2 - Y1)/parts];
+    if (X1 === X2 && Y1 === Y2) return m6(i + 3);
+    const right = pt(...Q), o = opts4(right, [pt(X1 + (parts - k)*(X2 - X1)/parts, Y1 + (parts - k)*(Y2 - Y1)/parts), pt((X1 + X2)/2 + 1, (Y1 + Y2)/2), pt(Q[1], Q[0]), pt(Q[0] + 1, Q[1] - 1)]);
+    return {html:`<p class="tw-q">AB is divided into <b>${parts} equal parts</b>, A${pt(X1, Y1)}, B${pt(X2, Y2)}. Which is the ${["", "first", "second", "third"][k]} division point from A?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `It divides AB in the ratio ${k} : ${parts - k}. Section formula → <b>${right}</b>. (Each step from A adds 1/${parts} of (B − A) = ${pt((X2 - X1)/parts, (Y2 - Y1)/parts)}.)`, "Points of trisection / quadrisection"); }};
+  }
+
+  /* ---------- Mission 7: Find the Ratio ---------- */
+  function m7(i){
+    const m = R(1, 5), n = R(1, 5), g = gcd(m, n), s = m + n, x1 = R(-6, 6), y1 = R(-8, 8), x2 = x1 + s*R(-2, 3), y2 = y1 + s*R(-3, 3);
+    if (x1 === x2 || m/g === n/g && Math.random() < .5) return m7(i + 1);
+    const Px = (m*x2 + n*x1)/s, Py = (m*y2 + n*y1)/s, right = `${m/g} : ${n/g}`;
+    if (i % 2 === 0){ const o = opts4(right, [`${n/g} : ${m/g}`, `${m/g + 1} : ${n/g}`, `${m/g} : ${n/g + 1}`, `1 : ${s/g}`]);
+      return {html:`<p class="tw-q">In what ratio does <b>P${pt(Px, Py)}</b> divide the join of A${pt(x1, y1)} and B${pt(x2, y2)}?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Let the ratio be k : 1. Then ${neg(Px)} = (k×${par(x2)} + ${par(x1)})/(k + 1) → k = ${neg(Px - x1)}/${neg(x2 - Px)} = ${m/g}/${n/g}. Ratio AP : PB = <b>${right}</b>. Check with the y-coordinates too!`, "Finding the ratio"); }}; }
+    // divided by x-axis: y = 0 → ratio = −y1 : y2
+    let a, b, c, d; do { a = R(-6, 6); b = R(1, 9)*P([1, -1]); c = R(-6, 6); d = R(1, 9)*(b > 0 ? -1 : 1); } while (false);
+    const G = gcd(Math.abs(b), Math.abs(d)), rr = `${Math.abs(b)/G} : ${Math.abs(d)/G}`, o = opts4(rr, [`${Math.abs(d)/G} : ${Math.abs(b)/G}`, `${Math.abs(a) + 1} : ${Math.abs(c) + 1}`, `1 : 1`, `${Math.abs(b)/G + 1} : ${Math.abs(d)/G}`, `${Math.abs(b)/G} : ${Math.abs(d)/G + 1}`, `${Math.abs(b)/G + 2} : ${Math.abs(d)/G}`, `1 : 2`, `2 : 1`]);
+    return {html:`<p class="tw-q">In what ratio does the <b>x-axis</b> divide the join of A${pt(a, b)} and B${pt(c, d)}?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(rr), done, `On the x-axis y = 0. With ratio k : 1: (k×${par(d)} + ${par(b)})/(k + 1) = 0 → k = ${neg(-b)}/${par(d)} = ${Math.abs(b)}/${Math.abs(d)}. Ratio <b>${rr}</b>. Shortcut: |y₁| : |y₂|.`, "Division by an axis"); }};
+  }
+
+  /* ---------- Mission 8: Hidden Points ---------- */
+  function m8(i){
+    const t = i % 3;
+    if (t === 0){ // point on x-axis equidistant from A and B
+      const VEC = {5:[[3, 4], [4, 3], [5, 0]], 10:[[6, 8], [8, 6], [10, 0]], 13:[[5, 12], [12, 5], [13, 0]], 25:[[7, 24], [24, 7], [15, 20], [20, 15]]}, Rr = P([5, 5, 10, 13]);
+      let x, a, b, c, d; do { x = R(-5, 5); const v = SH(VEC[Rr].flatMap(([p, q]) => [[p, q], [-p, q], [p, -q], [-p, -q]])); a = x + v[0][0]; b = v[0][1]; c = x + v[1][0]; d = v[1][1]; } while (a === c || !b || !d || Math.abs(b) > 12 || Math.abs(d) > 12);
+      return {html:`<p class="tw-q">Find the point on the <b>x-axis</b> equidistant from A${pt(a, b)} and B${pt(c, d)}. Type its x-coordinate.</p>${padHTML("x =", "", {neg:true, dec:false})}`,
+        mount(el, done){ bindPad(el, x, 0, done, `Let P = (x, 0). PA² = PB²: (x − ${par(a)})² + ${b*b} = (x − ${par(c)})² + ${d*d}. The x² cancels, leaving a linear equation → x = <b>${neg(x)}</b>. P = ${pt(x, 0)}.`, "Equidistant points"); }}; }
+    if (t === 1){ let x1, y1, x2, y2, k; do { x1 = R(-5, 5); y1 = R(-5, 5); x2 = R(-5, 5); y2 = R(-5, 5); k = P([3, 4, 5, 7]); } while ((x2 - x1) % k || (y2 - y1) % k || (x1 === x2 && y1 === y2));
+      const j = R(1, k - 1), Q = [x1 + j*(x2 - x1)/k, y1 + j*(y2 - y1)/k], ask = R(0, 1);
+      return {html:`<p class="tw-q">A${pt(x1, y1)}, B${pt(x2, y2)}. P lies on AB with <b>AP = ${j}/${k} AB</b>. Find the <b>${"xy"[ask]}</b>-coordinate of P.</p>${padHTML("xy"[ask] + " =", "", {neg:true, dec:false})}`,
+        mount(el, done){ bindPad(el, Q[ask], 0, done, `AP = ${j}/${k} AB means AP : PB = ${j} : ${k - j}. Section formula: P = ${pt(...Q)} → <b>${neg(Q[ask])}</b>.`, "Fraction of a segment"); }}; }
+    // relation equidistant from two points: answer in form ax + by = c
+    const a = R(-4, 4), b = R(-4, 4), c = R(-4, 4), d = R(-4, 4); if (a === c && b === d) return m8(i + 3);
+    const A = 2*(c - a), B = 2*(d - b), C = c*c + d*d - a*a - b*b, G = gcd(gcd(Math.abs(A), Math.abs(B)), Math.abs(C)) || 1;
+    const fmt = (p, q, r) => `${p ? neg(p) + "x" : ""}${q ? (q < 0 ? " − " : p ? " + " : "") + Math.abs(q) + "y" : ""} = ${neg(r)}`.replace(/(^|[ −+] )1([xy])/g, "$1$2").replace(/^−1x/, "−x");
+    const right = fmt(A/G, B/G, C/G), o = opts4(right, [fmt(A/G, -B/G, C/G), fmt(B/G, A/G, C/G), fmt(A/G, B/G, -C/G), fmt(-A/G, B/G, C/G)]);
+    return {html:`<p class="tw-q">Find the relation between x and y if (x, y) is equidistant from <b>${pt(a, b)}</b> and <b>${pt(c, d)}</b>.</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `(x − ${par(a)})² + (y − ${par(b)})² = (x − ${par(c)})² + (y − ${par(d)})². Expand: x² and y² cancel → <b>${right}</b>. (It is a straight line: the perpendicular bisector!)`, "Locus of equidistant points"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Read the Grid", goal:"Coordinates, quadrants, axes and distance from O.", n:8,
+      learn:L("(x, y): across, then up", "x is the horizontal distance from the y-axis, y the vertical distance from the x-axis. Points on the x-axis are (x, 0); on the y-axis (0, y). Distance from O = √(x² + y²).", "(−3, 4) is in Quadrant II, 5 units from O")},
+    {id:2, track:"foundation", name:"Distance Formula", goal:"√[(x₂ − x₁)² + (y₂ − y₁)²].", n:8,
+      learn:L("It’s Pythagoras", "The horizontal gap and the vertical gap are the legs of a right triangle; the distance is the hypotenuse.", "(2, 3), (4, 1): √(2² + 2²) = √8 = <b>2√2</b>")},
+    {id:3, track:"foundation", name:"Triangle Check", goal:"Collinear, isosceles, right-angled or scalene.", n:8,
+      learn:L("Compare the three distances", "Collinear: two distances add to the third. Isosceles: two equal. Right-angled: the squares satisfy a² + b² = c².", "(1, 5), (2, 3), (−2, −11): 2.24 + 14.56 ≠ 16.76 → not collinear")},
+    {id:4, track:"core", name:"Name the Quadrilateral", goal:"Use all 4 sides and both diagonals.", n:8,
+      learn:L("Sides and diagonals", "Square: 4 equal sides, equal diagonals. Rhombus: 4 equal sides, unequal diagonals. Rectangle: opposite sides equal, equal diagonals. Parallelogram: opposite sides equal.", "Never decide from the picture: calculate!")},
+    {id:5, track:"core", name:"Mid-point", goal:"Average the coordinates; use it backwards.", n:8,
+      learn:L("Add and halve", "Mid-point of (x₁, y₁) and (x₂, y₂) = ((x₁ + x₂)/2, (y₁ + y₂)/2). Diagonals of a parallelogram share a mid-point.", "Centre (2, −3), end (1, 4) → other end (3, −10)")},
+    {id:6, track:"core", name:"Section Formula", goal:"The point dividing a segment in m₁ : m₂.", n:8,
+      learn:L("Weighted average", "P = ((m₁x₂ + m₂x₁)/(m₁ + m₂), (m₁y₂ + m₂y₁)/(m₁ + m₂)). The ratio m₁ multiplies the coordinates of the <b>second</b> point.", "(−1, 7), (4, −3) in 2 : 3 → (1, 3)")},
+    {id:7, track:"advanced", name:"Find the Ratio", goal:"Use k : 1 to find an unknown ratio.", n:8,
+      learn:L("Let the ratio be k : 1", "Put the known point into the section formula with ratio k : 1 and solve for k. The x-axis divides a segment where y = 0: ratio |y₁| : |y₂|.", "(−1, 6) divides (−3, 10)–(6, −8) in 2 : 7")},
+    {id:8, track:"advanced", name:"Hidden Points", goal:"Equidistant points, fractions of a segment, loci.", n:8,
+      learn:L("Set distances equal, square both sides", "For points equidistant from A and B, write PA² = PB². The squared terms cancel, leaving a linear equation.", "On x-axis equidistant from (2, −5), (−2, 9): (−7, 0)")},
+    {id:9, track:"advanced", name:"Coordinate Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m5, m5, m6, m7])(R(0, 5))};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c10-coordinate"] = CQ.quest({
+  key:"co10c7_stars", missions:COO10.MISSIONS, gen:COO10.GEN, chapter:{std:10, part:"", ch:7},
+  desc:"Class 10 · NCERT · Chapter 7. Master coordinate geometry in 9 missions: reading points, the distance formula, classifying triangles and quadrilaterals, mid-points and the section formula.",
+  modes:{foundation:"Reading the grid, the distance formula and classifying triangles", core:"Quadrilaterals, mid-points and the section formula", advanced:"Finding ratios, hidden points and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · NCERT Mathematics · Ch 9 · Some Applications of Trigonometry
+   Chapter game "Angle Watch": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Elevation or Depression?  2 Pick the Ratio  3 How Tall?
+   Apply  : 4 How Long?  5 From the Top  6 On the Move
+   Master : 7 Towers on Towers  8 Find the Angle  9 Heights Master (timed)
+   ============================================================ */
+const HGT10 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const S3 = Math.sqrt(3);
+  const TAN = {30:"1/√3", 45:"1", 60:"√3"}, SIN = {30:"1/2", 45:"1/√2", 60:"√3/2"}, COS = {30:"√3/2", 45:"1/√2", 60:"1/2"};
+  // k√3 pretty
+  const r3 = k => k === 0 ? "0" : (k === 1 ? "" : k === -1 ? "−" : n2(k)) + "√3";
+  const svg = (g, mh = 170) => `<svg class="tw-svg" viewBox="0 0 320 170" style="max-height:${mh}px">${g}</svg>`;
+  const txt = (x, y, s, c = "#e8ecff", fs = 13, a = "middle") => `<text x="${x}" y="${y}" text-anchor="${a}" style="font-size:${fs}px;font-weight:800;fill:${c}">${s}</text>`;
+  // scene: tower of height label at right, observer at left on ground, line of sight to top; mode "elev" or "dep"
+  function scene(o){
+    const gy = 150, tx = o.towerX || 250, top = o.top || 30, ox = o.obsX || 50; let g = `<line x1="0" y1="${gy}" x2="320" y2="${gy}" stroke="#cfd6ff88"/>`;
+    g += `<rect x="${tx - 9}" y="${top}" width="18" height="${gy - top}" fill="#5aa9ff55" stroke="#9cc8ff"/>`;
+    if (o.base) g += `<rect x="${tx - 14}" y="${o.base}" width="28" height="${gy - o.base}" fill="#3ccf7a44" stroke="#3ccf7a"/>`;
+    if (o.dep){ g += `<line x1="${tx}" y1="${top}" x2="${ox}" y2="${gy}" stroke="#ffcf5a" stroke-width="2" stroke-dasharray="5 4"/><line x1="${tx}" y1="${top}" x2="${tx - 120}" y2="${top}" stroke="#cfd6ff66" stroke-dasharray="3 3"/>`;
+      g += txt(tx - 46, top + 16, o.ang + "°", "#ffcf5a"); g += `<circle cx="${ox}" cy="${gy - 5}" r="5" fill="#ff8fa0"/>`; }
+    else { g += `<line x1="${ox}" y1="${gy}" x2="${tx}" y2="${top}" stroke="#ffcf5a" stroke-width="2" stroke-dasharray="5 4"/>` + txt(ox + 40, gy - 6, o.ang + "°", "#ffcf5a");
+      if (o.ang2) g += `<line x1="${o.obs2}" y1="${gy}" x2="${tx}" y2="${top}" stroke="#ff8fa0" stroke-width="2" stroke-dasharray="5 4"/>` + txt(o.obs2 + 30, gy - 6, o.ang2 + "°", "#ff8fa0");
+      if (o.baseAng) g += `<line x1="${ox}" y1="${gy}" x2="${tx}" y2="${o.base}" stroke="#3ccf7a" stroke-width="2" stroke-dasharray="5 4"/>` + txt(ox + 92, gy - 30, o.baseAng + "°", "#3ccf7a");
+      g += `<circle cx="${ox}" cy="${gy - 5}" r="5" fill="#ff8fa0"/>`; if (o.obs2) g += `<circle cx="${o.obs2}" cy="${gy - 5}" r="5" fill="#ff8fa0"/>`; }
+    (o.labels || []).forEach(l => g += txt(...l));
+    return svg(g);
+  }
+
+  /* ---------- Mission 1: Elevation or Depression? ---------- */
+  const ED = [
+    ["A boy on the ground looks up at a kite.", "Angle of elevation", "The line of sight goes <b>up</b> from the horizontal → elevation."],
+    ["A pilot looks down at the runway.", "Angle of depression", "The line of sight goes <b>down</b> from the pilot’s horizontal → depression."],
+    ["A person on a balcony looks at a flower pot on the ground.", "Angle of depression", "Looking <b>down</b> from a height → depression."],
+    ["A student on the ground looks at the top of the Qutub Minar.", "Angle of elevation", "Looking <b>up</b> at an object → elevation."],
+    ["A lighthouse keeper watches a ship at sea.", "Angle of depression", "From the top of the lighthouse, the ship is <b>below</b> eye level → depression."],
+    ["A sailor on a ship looks at the top of a lighthouse.", "Angle of elevation", "From the ship, the top is <b>above</b> eye level → elevation."]
+  ];
+  function m1(i){
+    if (i % 3 === 2){ const a = P([30, 45, 60, 35, 50]), o = opts4(`${a}°`, [`${90 - a}°`, `${180 - a}°`, `${a/2}°`]);
+      return {html:`<p class="tw-q">From the top of a tower, the angle of depression of a car is <b>${a}°</b>. What is the angle of elevation of the top of the tower from the car?</p>${scene({dep:true, ang:a, obsX:60})}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(`${a}°`), done, `The horizontal at the top is parallel to the ground, so the angle of depression and the angle of elevation are <b>alternate angles</b>: both <b>${a}°</b>.`, "Depression = elevation"); }}; }
+    const [s, r, why] = P(ED), o = ["Angle of elevation", "Angle of depression"];
+    return {html:`<p class="tw-q">Which angle is formed?</p><div class="tw-ex" style="font-size:17px">${s}</div>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(r), done, `<b>${r}</b>. ${why} Both are measured from the <b>horizontal</b> through the eye.`, "Elevation and depression"); }};
+  }
+
+  /* ---------- Mission 2: Pick the Ratio ---------- */
+  function m2(i){
+    const cases = [["the height (opposite)", "the distance on the ground (adjacent)", "tan θ"], ["the height (opposite)", "the length of the rope/ladder (hypotenuse)", "sin θ"], ["the distance on the ground (adjacent)", "the length of the ladder (hypotenuse)", "cos θ"]];
+    if (i % 2 === 0){ const [a, b, r] = P(cases), sw = Math.random() < .5, o = ["tan θ", "sin θ", "cos θ", "sec θ"];
+      return {html:`<p class="tw-q">You know <b>${sw ? b : a}</b> and want <b>${sw ? a : b}</b>, with angle θ at the ground. Which ratio links them?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(r), done, `${r} = ${r === "tan θ" ? "opposite/adjacent" : r === "sin θ" ? "opposite/hypotenuse" : "adjacent/hypotenuse"}: it uses exactly the known and the unknown sides. Pick the ratio that contains both!`, "Choosing a trig ratio"); }}; }
+    const a = P([30, 45, 60]), f = P(["tan", "sin", "cos"]), val = {tan:TAN, sin:SIN, cos:COS}[f][a], o = opts4(val, ["1/2", "√3/2", "1/√3", "√3", "1", "1/√2"]);
+    return {html:`<p class="tw-q">Quick recall: <b>${f} ${a}°</b> = ?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(val), done, `${f} ${a}° = <b>${val}</b>. Table: sin 30° = cos 60° = 1/2, sin 60° = cos 30° = √3/2, tan 30° = 1/√3, tan 45° = 1, tan 60° = √3.`, "Standard values"); }};
+  }
+
+  /* ---------- Mission 3: How Tall? ---------- */
+  function m3(i){
+    const a = P([30, 45, 60]), d = P([10, 15, 20, 24, 30, 36, 45, 60]);
+    // h = d tan a
+    const right = a === 45 ? `${d} m` : a === 60 ? `${r3(d)} m` : (d % 3 === 0 ? `${r3(d/3)} m` : `${d}/√3 m`);
+    if (a === 45 || i % 2 === 1){ const val = d*Math.tan(a*Math.PI/180);
+      return {html:`<p class="tw-q">The angle of elevation of the top of a tower from a point <b>${d} m</b> from its foot is <b>${a}°</b>. Height of the tower? ${a !== 45 ? "(use √3 = 1.732, answer to 2 decimals)" : ""}</p>${scene({ang:a, labels:[[150, 165, d + " m", "#b6f36a"], [276, 95, "h", "#9cc8ff", 15]]})}${padHTML("h =", "m", {dec:true})}`,
+        mount(el, done){ bindPad(el, +val.toFixed(2), 0.02, done, `tan ${a}° = h/${d} → h = ${d} × ${TAN[a]} = <b>${right}</b>${a !== 45 ? ` ≈ ${val.toFixed(2)} m` : ""}.`, "Finding a height"); }}; }
+    const o = opts4(right, [a === 60 ? `${d}/√3 m` : `${r3(d)} m`, `${d/2} m`, `${2*d} m`, `${d} m`]);
+    return {html:`<p class="tw-q">From a point <b>${d} m</b> away, the top of a tower is seen at <b>${a}°</b>. Height (exact)?</p>${scene({ang:a, labels:[[150, 165, d + " m", "#b6f36a"], [276, 95, "h", "#9cc8ff", 15]]})}${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `tan ${a}° = h/${d} → h = ${d} × ${TAN[a]} = <b>${right}</b>.${a === 30 && d % 3 === 0 ? ` (${d}/√3 = ${d}√3/3 = ${r3(d/3)})` : ""}`, "Finding a height"); }};
+  }
+
+  /* ---------- Mission 4: How Long? ---------- */
+  function m4(i){
+    const t = i % 4;
+    if (t === 0){ const L = P([10, 12, 16, 20, 24, 30]); return {html:`<p class="tw-q">A circus artist climbs a <b>${L} m</b> rope stretched from the top of a pole to the ground, making <b>30°</b> with the ground. Height of the pole?</p>${padHTML("", "m", {dec:false})}`,
+      mount(el, done){ bindPad(el, L/2, 0, done, `The rope is the hypotenuse: sin 30° = h/${L} → h = ${L} × 1/2 = <b>${L/2} m</b>.`, "Using sine"); }}; }
+    if (t === 1){ const h = P([1.5, 2, 2.5, 3, 4]); return {html:`<p class="tw-q">A slide reaches a height of <b>${h} m</b> and is inclined at <b>30°</b> to the ground. How long is the slide?</p>${padHTML("", "m", {dec:true})}`,
+      mount(el, done){ bindPad(el, 2*h, 0.001, done, `sin 30° = ${h}/L → L = ${h} ÷ 1/2 = <b>${2*h} m</b>.`, "Using sine"); }}; }
+    if (t === 2){ const h = P([30, 45, 60, 75, 90]); const right = `${r3(2*h/3)} m`, o = opts4(right, [`${r3(h)} m`, `${2*h} m`, `${h/2} m`, `${r3(h/3)} m`]);
+      return {html:`<p class="tw-q">A kite flies <b>${h} m</b> high. Its string makes <b>60°</b> with the ground. Length of the string?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `sin 60° = ${h}/L → L = ${h} × 2/√3 = ${2*h}/√3 = <b>${right}</b> (rationalise: multiply top and bottom by √3).`, "Using sine"); }}; }
+    const d = P([8, 10, 12, 15]), right = `${r3(d)} m`, o = opts4(right, [`${2*d} m`, `${r3(2*d)} m`, `${d} m`, `${3*d} m`]);
+    return {html:`<p class="tw-q">A tree breaks in a storm; its top touches the ground at <b>30°</b>, <b>${d} m</b> from the foot. What was the <b>full height</b> of the tree?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `Standing part = ${d} tan 30° = ${d}/√3. Broken part (hypotenuse) = ${d}/cos 30° = ${2*d}/√3. Total = ${3*d}/√3 = <b>${right}</b>.`, "Broken tree"); }};
+  }
+
+  /* ---------- Mission 5: From the Top (depression) ---------- */
+  function m5(i){
+    const t = i % 3, h = P([30, 45, 60, 75, 90, 100]), a = P([30, 45, 60]);
+    if (t === 2){ // two ships one behind the other: 30° and 45°
+      const right = `${h}(√3 − 1) m`, o = opts4(right, [`${h}(√3 + 1) m`, `${h}√3 m`, `${h} m`, `${h}(√3 − 1)/2 m`]);
+      return {html:`<p class="tw-q">From the top of a <b>${h} m</b> lighthouse, the angles of depression of two ships (one behind the other, same side) are <b>30°</b> and <b>45°</b>. Distance between the ships?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Near ship (45°): d₁ = ${h}/tan 45° = ${h}. Far ship (30°): d₂ = ${h}/tan 30° = ${h}√3. Gap = ${h}√3 − ${h} = <b>${right}</b> ≈ ${n2(h*(S3 - 1))} m. Smaller depression angle → farther away.`, "Two objects below"); }}; }
+    const dist = h/Math.tan(a*Math.PI/180), right = a === 45 ? `${h} m` : a === 30 ? `${r3(h)} m` : (h % 3 === 0 ? `${r3(h/3)} m` : `${h}/√3 m`);
+    if (t === 0 && a === 45) return {html:`<p class="tw-q">From the top of a <b>${h} m</b> cliff, the angle of depression of a boat is <b>45°</b>. How far is the boat from the foot of the cliff?</p>${scene({dep:true, ang:45, obsX:60, labels:[[285, 95, h + " m", "#9cc8ff"]]})}${padHTML("", "m", {dec:false})}`,
+      mount(el, done){ bindPad(el, h, 0, done, `Angle of elevation from the boat = 45° (alternate angles). tan 45° = ${h}/d → d = <b>${h} m</b>.`, "Angle of depression"); }};
+    const o = opts4(right, [`${r3(h)} m`, `${h} m`, a === 30 ? `${h}/√3 m` : `${2*h} m`, `${h/2} m`]);
+    return {html:`<p class="tw-q">From the top of a <b>${h} m</b> lighthouse, the angle of depression of a ship is <b>${a}°</b>. Distance of the ship from the foot?</p>${scene({dep:true, ang:a, obsX:60, labels:[[285, 95, h + " m", "#9cc8ff"]]})}${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `Use the alternate angle at the ship: tan ${a}° = ${h}/d → d = ${h}/${TAN[a]} = <b>${right}</b>${a !== 45 ? ` ≈ ${n2(dist)} m` : ""}.`, "Angle of depression"); }};
+  }
+
+  /* ---------- Mission 6: On the Move ---------- */
+  function m6(i){
+    const t = i % 3;
+    if (t === 0){ const H = P([30, 45, 60, 90]), eye = P([0, 1.5]), h = H - eye, right = `${r3(2*h/3)} m`, o = opts4(right, [`${r3(h)} m`, `${r3(h/3)} m`, `${2*h} m`, `${h} m`]);
+      return {html:`<p class="tw-q">${eye ? `A 1.5 m tall boy` : "A girl"} walks towards a <b>${H} m</b> building. The angle of elevation of its top ${eye ? "from his eyes " : ""}changes from <b>30°</b> to <b>60°</b>. How far did ${eye ? "he" : "she"} walk?</p>${scene({ang:30, obsX:30, ang2:60, obs2:170, top:30, labels:[[100, 165, "x", "#b6f36a"]]})}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `${eye ? `Height above eye level = ${H} − 1.5 = ${h} m. ` : ""}At 60°: distance = ${h}/√3. At 30°: distance = ${h}√3. Walked = ${h}√3 − ${h}/√3 = ${2*h}/√3 = <b>${right}</b>.`, "Moving observer"); }}; }
+    if (t === 1){ const w = P([20, 30, 40, 50]), right = `${r3(w/2)} m`, o = opts4(right, [`${r3(w)} m`, `${w/2} m`, `${w} m`, `${r3(w/4)} m`]);
+      return {html:`<p class="tw-q">A TV tower stands on one bank of a canal. From the opposite bank its top is at <b>60°</b>; from a point <b>${w} m</b> further back it is at <b>30°</b>. Height of the tower?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Let width = x. h = x√3 and h = (x + ${w})/√3 → 3x = x + ${w} → x = ${w/2} m. h = ${w/2}√3 = <b>${right}</b>.`, "Two observation points"); }}; }
+    return {html:`<p class="tw-q">From the top of a tower, a car approaching the tower is seen at a depression of <b>30°</b>; <b>6 seconds</b> later it is at <b>60°</b>. How many <b>more seconds</b> will the car take to reach the tower (same speed)?</p>${padHTML("", "s", {dec:false})}`,
+      mount(el, done){ bindPad(el, 3, 0, done, `With height h: distance at 30° = h√3, at 60° = h/√3. In 6 s it covered h√3 − h/√3 = 2h/√3. The remaining h/√3 is half of that → <b>3 s</b>. (The height doesn’t matter!)`, "Moving object"); }};
+  }
+
+  /* ---------- Mission 7: Towers on Towers ---------- */
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ const b = P([10, 20, 30, 40]), right = `${b}(√3 − 1) m`, o = opts4(right, [`${b}(√3 + 1) m`, `${r3(b)} m`, `${b} m`, `${b}/√3 m`]);
+      return {html:`<p class="tw-q">A transmission tower stands on a <b>${b} m</b> building. From a point on the ground, the angles of elevation of the bottom and top of the tower are <b>45°</b> and <b>60°</b>. Height of the tower?</p>${scene({ang:60, baseAng:45, base:95, top:30, obsX:60})}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `45° to the building top → distance = ${b} m. 60° to the tower top → total height = ${b}√3. Tower = ${b}√3 − ${b} = <b>${right}</b> ≈ ${n2(b*(S3 - 1))} m.`, "Tower on a building"); }}; }
+    if (t === 1){ const s = P([1.6, 2, 3, 4]), right = `${n2(s/2)}(√3 + 1) m`, o = opts4(right, [`${n2(s/2)}(√3 − 1) m`, `${n2(s)}(√3 + 1) m`, `${r3(s)} m`, `${n2(s)} m`]);
+      return {html:`<p class="tw-q">A <b>${s} m</b> statue stands on a pedestal. From a point on the ground, the top of the statue is at <b>60°</b> and the top of the pedestal at <b>45°</b>. Height of the pedestal?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Let pedestal = p. 45° → distance = p. 60° → p + ${s} = p√3 → p = ${s}/(√3 − 1) = ${s}(√3 + 1)/2 = <b>${right}</b> ≈ ${n2(s*(S3 + 1)/2)} m.`, "Statue on a pedestal"); }}; }
+    const T = P([30, 45, 60, 90]), right = `${n2(T/3)} m`, o = opts4(right, [`${T/2} m`, `${r3(T/3)} m`, `${T} m`, `${n2(2*T/3)} m`]);
+    return {html:`<p class="tw-q">The angle of elevation of the top of a building from the foot of a tower is <b>30°</b>; the top of the tower from the foot of the building is at <b>60°</b>. The tower is <b>${T} m</b> high. Height of the building?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `Distance between them: d = ${T}/tan 60° = ${T}/√3. Building = d tan 30° = (${T}/√3)(1/√3) = ${T}/3 = <b>${right}</b>.`, "Two buildings"); }};
+  }
+
+  /* ---------- Mission 8: Find the Angle ---------- */
+  function m8(i){
+    const a = P([30, 45, 60]), h = P([5, 8, 10, 12, 20]), t = i % 2;
+    const shadow = a === 45 ? `${h} m` : a === 30 ? `${r3(h)} m` : `${h}/√3 m`, o = ["30°", "45°", "60°", "90°"];
+    if (t === 0) return {html:`<p class="tw-q">A <b>${h} m</b> pole casts a shadow <b>${shadow}</b> long. What is the Sun’s altitude (angle of elevation of the Sun)?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(a + "°"), done, `tan θ = height/shadow = ${h}/${shadow.replace(" m", "")} = ${TAN[a]} → θ = <b>${a}°</b>. Longer shadow → lower Sun.`, "Finding an angle"); }};
+    const L = P([10, 12, 20]), ht = a === 30 ? `${L/2} m` : a === 60 ? `${r3(L/2)} m` : `${L}/√2 m`;
+    return {html:`<p class="tw-q">A <b>${L} m</b> ladder reaches <b>${ht}</b> up a wall. What angle does it make with the ground?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(a + "°"), done, `sin θ = height/ladder = ${ht.replace(" m", "")}/${L} = ${SIN[a]} → θ = <b>${a}°</b>.`, "Finding an angle"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Elevation or Depression?", goal:"Angles measured from the horizontal line of sight.", n:8,
+      learn:L("Up or down from the horizontal", "<b>Elevation</b>: looking up at an object above eye level. <b>Depression</b>: looking down at an object below. Both are measured from the horizontal through the eye, and they are equal (alternate angles).", "Depression of a boat from a cliff = elevation of the cliff top from the boat")},
+    {id:2, track:"foundation", name:"Pick the Ratio", goal:"tan, sin or cos? And the standard values.", n:8,
+      learn:L("Use the ratio with both sides", "Height & ground distance → <b>tan</b>. Height & slant length → <b>sin</b>. Ground & slant length → <b>cos</b>.", "tan 30° = 1/√3 · tan 45° = 1 · tan 60° = √3 · sin 30° = 1/2")},
+    {id:3, track:"foundation", name:"How Tall?", goal:"Height = distance × tan θ.", n:8,
+      learn:L("Draw, label, tan", "Draw the right triangle: tower (opposite), ground (adjacent), line of sight (hypotenuse). tan θ = h/d.", "30 m away at 30°: h = 30/√3 = <b>10√3 ≈ 17.32 m</b>")},
+    {id:4, track:"core", name:"How Long?", goal:"Ropes, slides, kites and broken trees.", n:8,
+      learn:L("Slant lengths need sin", "If the slant length L (rope, string, slide) is involved with the height: sin θ = h/L.", "Kite 60 m high, string at 60°: L = 60 ÷ (√3/2) = <b>40√3 m</b>")},
+    {id:5, track:"core", name:"From the Top", goal:"Angles of depression: lighthouses and cliffs.", n:8,
+      learn:L("Move the angle to the ground", "The angle of depression at the top equals the angle of elevation at the object. Then d = h/tan θ.", "75 m lighthouse, ships at 45° and 30°: 75 m and 75√3 m away")},
+    {id:6, track:"core", name:"On the Move", goal:"Two angles from two points: subtract distances.", n:8,
+      learn:L("Two triangles, one height", "Write the distance from each point in terms of h, then subtract (or set up equations).", "30° → 60°: walked h√3 − h/√3 = 2h/√3")},
+    {id:7, track:"advanced", name:"Towers on Towers", goal:"Towers on buildings, statues on pedestals.", n:7,
+      learn:L("Same distance, two angles", "Both lines of sight start from the same ground point, so they share the same horizontal distance.", "20 m building, angles 45° and 60° → tower = 20(√3 − 1) m")},
+    {id:8, track:"advanced", name:"Find the Angle", goal:"Work backwards from lengths to the angle.", n:8,
+      learn:L("Ratio → angle", "Compute the ratio, then match it with the table: 1/√3 ↔ 30°, 1 ↔ 45°, √3 ↔ 60° for tan.", "Shadow = √3 × height → tan θ = 1/√3 → θ = 30°")},
+    {id:9, track:"advanced", name:"Heights Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m5, m8, m8])(R(0, 5))};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c10-heights"] = CQ.quest({
+  key:"hd10c9_stars", missions:HGT10.MISSIONS, gen:HGT10.GEN, chapter:{std:10, part:"", ch:9},
+  desc:"Class 10 · NCERT · Chapter 9. Master heights and distances in 9 missions: angles of elevation and depression, choosing the right ratio, towers, kites, lighthouses and moving observers.",
+  modes:{foundation:"Elevation vs depression, choosing a ratio and finding heights", core:"Slant lengths, angles of depression and moving observers", advanced:"Towers on buildings, finding angles and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · NCERT Mathematics · Ch 10 · Circles (tangents)
+   Chapter game "Tangent Tactics": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Lines & Circles  2 Tangent ⟂ Radius  3 Equal Tangents
+   Apply  : 4 Tangent Angles  5 Concentric Chords  6 Circumscribed Quadrilaterals
+   Master : 7 Circle in a Triangle  8 Tangent Proofs  9 Tangent Master (timed)
+   ============================================================ */
+const CIR10 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const TRIP = [[3, 4, 5], [5, 12, 13], [6, 8, 10], [8, 15, 17], [7, 24, 25], [9, 12, 15], [12, 16, 20], [20, 21, 29]];
+  const txt = (x, y, s, c = "#e8ecff", fs = 13) => `<text x="${x}" y="${y}" text-anchor="middle" style="font-size:${fs}px;font-weight:800;fill:${c}">${s}</text>`;
+  // circle centre O with two tangents from external point T; lab: {r, d, t, ang, cen}
+  function tangents(lab = {}, one = false){
+    const cx = 100, cy = 90, r = 52, Tx = 262, Ty = 90, d = Tx - cx, th = Math.acos(r/d);
+    const P1 = [cx + r*Math.cos(th), cy - r*Math.sin(th)], P2 = [cx + r*Math.cos(th), cy + r*Math.sin(th)];
+    let g = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#5aa9ff14" stroke="#9cc8ff" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="3" fill="#e8ecff"/>`;
+    g += `<line x1="${Tx}" y1="${Ty}" x2="${P1[0]}" y2="${P1[1]}" stroke="#ffcf5a" stroke-width="2.4"/>` + (one ? "" : `<line x1="${Tx}" y1="${Ty}" x2="${P2[0]}" y2="${P2[1]}" stroke="#ffcf5a" stroke-width="2.4"/>`);
+    g += `<line x1="${cx}" y1="${cy}" x2="${P1[0]}" y2="${P1[1]}" stroke="#b6f36a" stroke-width="2"/>` + (one ? "" : `<line x1="${cx}" y1="${cy}" x2="${P2[0]}" y2="${P2[1]}" stroke="#b6f36a" stroke-width="2"/>`);
+    if (lab.d !== undefined) g += `<line x1="${cx}" y1="${cy}" x2="${Tx}" y2="${Ty}" stroke="#ff8fa0" stroke-width="1.8" stroke-dasharray="5 4"/>`;
+    g += txt(cx - 10, cy + 4, "O") + txt(Tx + 10, Ty + 5, "T") + txt(P1[0] - 4, P1[1] - 8, "P") + (one ? "" : txt(P2[0] - 4, P2[1] + 18, "Q"));
+    if (lab.r !== undefined) g += txt((cx + P1[0])/2 - 10, (cy + P1[1])/2 - 2, lab.r, "#b6f36a");
+    if (lab.t !== undefined) g += txt((Tx + P1[0])/2 + 6, (Ty + P1[1])/2 - 8, lab.t, "#ffcf5a");
+    if (lab.d !== undefined) g += txt((cx + Tx)/2 + 20, cy + 16, lab.d, "#ff8fa0");
+    if (lab.ang !== undefined) g += txt(Tx - 30, Ty + 4, lab.ang, "#ffcf5a", 12);
+    if (lab.cen !== undefined) g += txt(cx + 22, cy + 4, lab.cen, "#b6f36a", 12);
+    // right-angle mark at P
+    const ux = (cx - P1[0])/r, uy = (cy - P1[1])/r, vx = (Tx - P1[0])/Math.hypot(Tx - P1[0], Ty - P1[1]), vy = (Ty - P1[1])/Math.hypot(Tx - P1[0], Ty - P1[1]), s = 9;
+    g += `<polyline points="${P1[0] + ux*s},${P1[1] + uy*s} ${P1[0] + ux*s + vx*s},${P1[1] + uy*s + vy*s} ${P1[0] + vx*s},${P1[1] + vy*s}" fill="none" stroke="#e8ecff" stroke-width="1.3"/>`;
+    return `<svg class="tw-svg" viewBox="0 0 290 180" style="max-height:175px">${g}</svg>`;
+  }
+
+  /* ---------- Mission 1: Lines & Circles ---------- */
+  const QA = [
+    ["How many tangents can a circle have?", "Infinitely many", ["One", "Two", "Infinitely many", "None"], "There is a tangent at <b>every</b> point of the circle, and a circle has infinitely many points."],
+    ["A tangent meets a circle in how many points?", "Exactly one", ["Exactly one", "Two", "None", "Infinitely many"], "A tangent touches the circle at <b>one</b> point only: the point of contact."],
+    ["A line meeting a circle in two points is called a…", "Secant", ["Secant", "Tangent", "Chord", "Diameter"], "A line through two points of the circle is a <b>secant</b>; the part inside is a chord."],
+    ["At most how many tangents can be parallel to a given line?", "Two", ["One", "Two", "Three", "Infinitely many"], "There are exactly <b>two</b> tangents parallel to any direction: at the two ends of a diameter."],
+    ["How many tangents can be drawn from a point INSIDE a circle?", "None", ["None", "One", "Two", "Infinitely many"], "Every line through an inside point cuts the circle twice, so <b>no tangent</b> passes through it."],
+    ["How many tangents from a point ON the circle?", "One", ["None", "One", "Two", "Infinitely many"], "Exactly <b>one</b>: the line perpendicular to the radius at that point."],
+    ["How many tangents from a point OUTSIDE the circle?", "Two", ["None", "One", "Two", "Infinitely many"], "Exactly <b>two</b>, and they are equal in length."],
+    ["The common point of a tangent and the circle is called the…", "Point of contact", ["Point of contact", "Centre", "Secant point", "Vertex"], "It is the <b>point of contact</b>; the tangent ‘touches’ the circle there."]
+  ];
+  function m1(i){
+    if (i % QA.length === 0) SH(QA); const [q, r, o0, why] = QA[i % QA.length], o = SH(o0.slice());
+    return {html:`<p class="tw-q">${q}</p>${choice(o, "two")}`, mount(el, done){ bindChoice(el, o.indexOf(r), done, `<b>${r}</b>. ${why}`, "Tangents and secants"); }};
+  }
+
+  /* ---------- Mission 2: Tangent ⟂ Radius ---------- */
+  function m2(i){
+    const [a, b, c] = P(TRIP), t = i % 3, sw = Math.random() < .5, r = sw ? a : b, tl = sw ? b : a;
+    if (t === 0) return {html:`<p class="tw-q">A tangent PT touches a circle of radius <b>${r} cm</b> at P. OT = <b>${c} cm</b>. Find the length of the tangent PT.</p>${tangents({r:r, d:c, t:"?"}, true)}${padHTML("PT =", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, tl, 0, done, `The tangent is ⟂ to the radius OP, so △OPT is right-angled at P: PT² = OT² − OP² = ${c*c} − ${r*r} = ${tl*tl} → PT = <b>${tl} cm</b>.`, "Tangent ⟂ radius"); }};
+    if (t === 1) return {html:`<p class="tw-q">From a point T, the tangent to a circle is <b>${tl} cm</b> long and T is <b>${c} cm</b> from the centre. Radius?</p>${tangents({t:tl, d:c, r:"?"}, true)}${padHTML("r =", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, r, 0, done, `OP ⟂ PT: r² = OT² − PT² = ${c*c} − ${tl*tl} = ${r*r} → r = <b>${r} cm</b>.`, "Tangent ⟂ radius"); }};
+    const right = `${c} cm`, o = opts4(right, [`${a + b} cm`, `${Math.abs(b - a)} cm`, `${n2(Math.sqrt(Math.abs(b*b - a*a)))} cm`]);
+    return {html:`<p class="tw-q">Radius <b>${r} cm</b>, tangent length <b>${tl} cm</b>. How far is the external point from the centre?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `OT is the hypotenuse: OT = √(${r}² + ${tl}²) = √${c*c} = <b>${right}</b>.`, "Tangent ⟂ radius"); }};
+  }
+
+  /* ---------- Mission 3: Equal Tangents ---------- */
+  function m3(i){
+    const t = i % 3;
+    if (t === 0){ const x = R(4, 20); return {html:`<p class="tw-q">TP and TQ are tangents from T. TP = <b>${x} cm</b>. Find TQ.</p>${tangents({t:x})}${padHTML("TQ =", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, x, 0, done, `Tangents from an external point are <b>equal</b> (Theorem 10.2): TQ = TP = <b>${x} cm</b>. Proof: △OPT ≅ △OQT (RHS: OP = OQ, OT common, right angles at P and Q).`, "Equal tangents"); }}; }
+    if (t === 1){ const a = P([40, 50, 60, 70, 80, 100]), base = (180 - a)/2;
+      return {html:`<p class="tw-q">TP and TQ are tangents with <b>∠PTQ = ${a}°</b>. Find <b>∠TPQ</b>.</p>${tangents({ang:a + "°"})}${padHTML("", "°", {dec:false})}`,
+        mount(el, done){ bindPad(el, base, 0, done, `TP = TQ, so △TPQ is isosceles: ∠TPQ = ∠TQP = (180° − ${a}°)/2 = <b>${base}°</b>. (Also ∠OPQ = 90° − ${base}° = ${90 - base}° = ½∠PTQ.)`, "Isosceles tangent triangle"); }}; }
+    const right = "RHS congruence of △OPT and △OQT", o = SH([right, "SSS similarity of the two radii", "Because OT bisects the circle", "AA similarity of △OPT and △OQT only"]);
+    return {html:`<p class="tw-q">Why are two tangents from an external point equal?</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `In △OPT and △OQT: ∠P = ∠Q = 90° (tangent ⟂ radius), hypotenuse OT is common, OP = OQ (radii). So <b>RHS</b> gives congruence and TP = TQ.`, "Equal tangents"); }};
+  }
+
+  /* ---------- Mission 4: Tangent Angles ---------- */
+  function m4(i){
+    const t = i % 3, a = P([40, 50, 60, 70, 80, 100, 110, 120]);
+    if (t === 0) return {html:`<p class="tw-q">TP and TQ are tangents and <b>∠POQ = ${a}°</b>. Find <b>∠PTQ</b>.</p>${tangents({cen:a + "°"})}${padHTML("", "°", {dec:false})}`,
+      mount(el, done){ bindPad(el, 180 - a, 0, done, `In quadrilateral OPTQ, ∠OPT = ∠OQT = 90°. Angles add to 360°: ∠PTQ = 360° − 90° − 90° − ${a}° = <b>${180 - a}°</b>. The two angles are <b>supplementary</b>.`, "Angle between tangents"); }};
+    if (t === 1) return {html:`<p class="tw-q">Tangents TA and TB are inclined at <b>${a}°</b>. Find <b>∠TOA</b>.</p>${padHTML("", "°", {dec:false})}`,
+      mount(el, done){ bindPad(el, 90 - a/2, 0, done, `OT bisects ∠ATB, so ∠OTA = ${a/2}°. In △OAT, ∠OAT = 90°: ∠TOA = 90° − ${a/2}° = <b>${90 - a/2}°</b>.`, "Angles at the centre"); }};
+    const right = `${180 - a}°`, o = opts4(right, [`${a}°`, `${90 - a/2}°`, `${360 - a}°`, `${a/2}°`]);
+    return {html:`<p class="tw-q">The angle between two tangents from T is <b>${a}°</b>. The angle between the radii to the points of contact is…</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `∠POQ + ∠PTQ = 180° → ∠POQ = <b>${right}</b>.`, "Angle between tangents"); }};
+  }
+
+  /* ---------- Mission 5: Concentric Chords ---------- */
+  function m5(i){
+    const [a, b, c] = P(TRIP), t = i % 2;
+    if (t === 0) return {html:`<p class="tw-q">Two concentric circles have radii <b>${c} cm</b> and <b>${a} cm</b>. Find the length of the chord of the larger circle that <b>touches</b> the smaller circle.</p>${padHTML("", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, 2*b, 0, done, `The chord is tangent to the small circle, so the radius ${a} is ⟂ to it and bisects it. Half-chord = √(${c}² − ${a}²) = ${b}. Chord = 2 × ${b} = <b>${2*b} cm</b>.`, "Concentric circles"); }};
+    return {html:`<p class="tw-q">A chord of length <b>${2*b} cm</b> in a circle of radius <b>${c} cm</b> touches a smaller concentric circle. Radius of the smaller circle?</p>${padHTML("", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, a, 0, done, `Half-chord = ${b}. Small radius ⟂ chord: r = √(${c}² − ${b}²) = √${a*a} = <b>${a} cm</b>.`, "Concentric circles"); }};
+  }
+
+  /* ---------- Mission 6: Circumscribed Quadrilaterals ---------- */
+  function quadPic(L){ // labels around a tangential quadrilateral
+    let g = `<polygon points="40,20 250,30 270,160 20,150" fill="#5aa9ff10" stroke="#e8ecff" stroke-width="2"/><circle cx="145" cy="90" r="62" fill="none" stroke="#9cc8ff" stroke-width="2"/>`;
+    g += txt(30, 16, "A") + txt(262, 26, "B") + txt(280, 172, "C") + txt(12, 164, "D");
+    g += txt(145, 18, L[0], "#ffcf5a") + txt(296, 98, L[1], "#ffcf5a") + txt(145, 172, L[2], "#ffcf5a") + txt(-8, 90, L[3], "#ffcf5a");
+    return `<svg class="tw-svg" viewBox="-36 0 366 180" style="max-height:170px">${g}</svg>`; }
+  function m6(i){
+    const p = R(2, 8), q = R(2, 8), r = R(2, 8), s = R(2, 8), AB = p + q, BC = q + r, CD = r + s, DA = s + p, t = i % 3;
+    if (t === 0){ const hide = R(0, 3), sides = [AB, BC, CD, DA], lab = sides.map((v, k) => k === hide ? "?" : v + " cm");
+      return {html:`<p class="tw-q">ABCD is drawn to circumscribe a circle. Find the missing side.</p>${quadPic(lab)}${padHTML("", "cm", {dec:false})}`,
+        mount(el, done){ bindPad(el, sides[hide], 0, done, `Tangents from each vertex are equal, so <b>AB + CD = AD + BC</b> (= ${AB + CD}). Missing side = <b>${sides[hide]} cm</b>.`, "Tangential quadrilateral"); }}; }
+    if (t === 1){ const a = R(5, 12), right = "a rhombus", o = SH([right, "a rectangle", "a square only", "any parallelogram"]);
+      return {html:`<p class="tw-q">A parallelogram circumscribes a circle. It must be…</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `AB + CD = AD + BC and opposite sides are equal (AB = CD, AD = BC) → 2AB = 2BC → all sides equal: <b>a rhombus</b>. (A square is a special rhombus, but not the only possibility.)`, "Parallelogram around a circle"); }}; }
+    return {html:`<p class="tw-q">A quadrilateral circumscribes a circle with AB = ${AB}, BC = ${BC}, CD = ${CD} cm. Find its <b>perimeter</b>.</p>${padHTML("", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, 2*(AB + CD), 0, done, `AD = AB + CD − BC = ${DA}. Perimeter = 2(AB + CD) = <b>${2*(AB + CD)} cm</b>.`, "Tangential quadrilateral"); }};
+  }
+
+  /* ---------- Mission 7: Circle in a Triangle ---------- */
+  function m7(i){
+    const x = R(2, 9), y = R(2, 9), z = R(2, 9), a = y + z, b = z + x, c = x + y, t = i % 3;   // tangent lengths from A = x, B = y, C = z; BC = a, CA = b, AB = c
+    if (t === 0) return {html:`<p class="tw-q">A circle is inscribed in △ABC, touching BC at D, CA at E, AB at F. AF = <b>${x}</b>, BD = <b>${y}</b>, CE = <b>${z}</b> cm. Find the <b>perimeter</b>.</p>${padHTML("", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, 2*(x + y + z), 0, done, `Equal tangents: AE = AF = ${x}, BF = BD = ${y}, CD = CE = ${z}. Perimeter = 2(${x} + ${y} + ${z}) = <b>${2*(x + y + z)} cm</b>.`, "Incircle tangent lengths"); }};
+    if (t === 1) return {html:`<p class="tw-q">The incircle of △ABC touches BC at D. AB = <b>${c}</b>, BC = <b>${a}</b>, CA = <b>${b}</b> cm. Find <b>BD</b>.</p>${padHTML("BD =", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, y, 0, done, `Let the tangent lengths from A, B, C be x, y, z: x + y = ${c}, y + z = ${a}, z + x = ${b}. Adding: x + y + z = ${x + y + z}. BD = y = ${x + y + z} − ${b} = <b>${y} cm</b> (semi-perimeter minus the opposite side).`, "Incircle tangent lengths"); }};
+    return {html:`<p class="tw-q">Incircle touches BC at D with BD = <b>${y}</b>, DC = <b>${z}</b>, and AB = <b>${c}</b> cm. Find <b>AC</b>.</p>${padHTML("AC =", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, b, 0, done, `BF = BD = ${y}, so AF = ${c} − ${y} = ${x}. AE = AF = ${x}, CE = CD = ${z}. AC = ${x} + ${z} = <b>${b} cm</b>.`, "Incircle tangent lengths"); }};
+  }
+
+  /* ---------- Mission 8: Tangent Proofs ---------- */
+  const TF = [
+    ["Tangents at the ends of a diameter are parallel.", true, "Both are ⟂ to the same diameter, so they are parallel."],
+    ["The perpendicular to a tangent at its point of contact passes through the centre.", true, "The radius is the only line ⟂ to the tangent at that point."],
+    ["The angle between two tangents from a point and the angle at the centre are supplementary.", true, "In OPTQ two angles are 90°, so the other two add to 180°."],
+    ["Two tangents from an external point always make a 90° angle.", false, "The angle depends on how far the point is: it can be any value between 0° and 180°."],
+    ["The tangent at a point of a circle can pass through the centre.", false, "It is ⟂ to the radius at the point of contact, so it never reaches the centre."],
+    ["For two parallel tangents XY, X′Y′ and a third tangent AB, ∠AOB = 90°.", true, "OA and OB bisect two angles that add to 180°, so ∠AOB = 90°."],
+    ["Opposite sides of a quadrilateral circumscribing a circle subtend supplementary angles at the centre.", true, "The 8 angles at O pair up equally and total 360°, so each opposite pair adds to 180°."],
+    ["A secant and a tangent are the same thing.", false, "A secant cuts the circle at two points; a tangent touches at one."]
+  ];
+  function m8(i){
+    if (i % 2 === 0){ const it = SH(TF.slice()).slice(0, 4), cor = it.map((x, k) => x[1] ? k : -1).filter(k => k >= 0); if (!cor.length) return m8(i);
+      return {html:`<p class="tw-q">Select <b>all</b> true statements.</p>${multiHTML(it.map(x => x[0]))}`,
+        mount(el, done){ bindMulti(el, cor, done, it.map(x => `${x[1] ? "✓" : "✗"} ${x[2]}`).join("<br>"), "Tangent properties"); }}; }
+    const [s, tv, why] = P(TF);
+    return {html:`<p class="tw-q">True or false?</p><div class="tw-ex" style="font-size:16px">${s}</div>${choice(["True", "False"], "two")}`,
+      mount(el, done){ bindChoice(el, tv ? 0 : 1, done, `<b>${tv ? "True" : "False"}</b>. ${why}`, "Tangent properties"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Lines & Circles", goal:"Tangents, secants and how many tangents a point has.", n:8,
+      learn:L("Touch or cut?", "A line can miss a circle, <b>touch</b> it once (tangent) or <b>cut</b> it twice (secant). From an inside point: 0 tangents; on the circle: 1; outside: 2.", "A circle has infinitely many tangents, but at most 2 parallel to a given line")},
+    {id:2, track:"foundation", name:"Tangent ⟂ Radius", goal:"Theorem 10.1 + Pythagoras.", n:8,
+      learn:L("Theorem 10.1", "The tangent at any point is <b>perpendicular to the radius</b> through the point of contact. So O, P and T form a right triangle: OT² = OP² + PT².", "r = 5, OT = 12 → PT = √(144 − 25) = √119 cm")},
+    {id:3, track:"foundation", name:"Equal Tangents", goal:"Theorem 10.2: tangents from an external point are equal.", n:8,
+      learn:L("Theorem 10.2", "The two tangents from an external point T are equal: TP = TQ (RHS congruence). So △TPQ is isosceles and OT bisects ∠PTQ.", "∠PTQ = 50° → ∠TPQ = 65°")},
+    {id:4, track:"core", name:"Tangent Angles", goal:"∠PTQ + ∠POQ = 180° and friends.", n:8,
+      learn:L("Quadrilateral OPTQ", "It has two right angles (at P and Q), so ∠PTQ + ∠POQ = 180°. OT bisects both angles.", "∠POQ = 110° → ∠PTQ = 70° · tangents at 80° → ∠POA = 50°")},
+    {id:5, track:"core", name:"Concentric Chords", goal:"A chord of the big circle that touches the small one.", n:7,
+      learn:L("Radius bisects the chord", "The small radius is ⟂ to the chord (it’s a tangent), so it bisects it. Half-chord = √(R² − r²).", "R = 5, r = 3 → chord = 2 × 4 = <b>8 cm</b>")},
+    {id:6, track:"core", name:"Circumscribed Quadrilaterals", goal:"AB + CD = AD + BC.", n:8,
+      learn:L("Pair up the tangents", "Each vertex sends two equal tangents. Adding them: <b>AB + CD = AD + BC</b>. A parallelogram around a circle is a rhombus.", "AB = 6, BC = 7, CD = 4 → AD = 3")},
+    {id:7, track:"advanced", name:"Circle in a Triangle", goal:"Tangent lengths from each vertex of a triangle.", n:8,
+      learn:L("x, y, z", "Let the tangents from A, B, C be x, y, z. Then the sides are x + y, y + z, z + x and the perimeter is 2(x + y + z). Each tangent length = semi-perimeter − opposite side.", "BD = 8, DC = 6 → BC = 14")},
+    {id:8, track:"advanced", name:"Tangent Proofs", goal:"Which properties are true, and why.", n:8,
+      learn:L("Proof toolkit", "Radius ⟂ tangent · equal tangents · RHS congruence · angles in a quadrilateral add to 360° · parallel lines.", "Tangents at the ends of a diameter are parallel")},
+    {id:9, track:"advanced", name:"Tangent Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m4, m5, m6, m7])(R(0, 7))};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c10-circles"] = CQ.quest({
+  key:"ci10c10_stars", missions:CIR10.MISSIONS, gen:CIR10.GEN, chapter:{std:10, part:"", ch:10},
+  desc:"Class 10 · NCERT · Chapter 10. Master tangents to a circle in 9 missions: tangent ⟂ radius, equal tangents, tangent angles, concentric circles and circles inside polygons.",
+  modes:{foundation:"Tangents and secants, tangent ⟂ radius and equal tangents", core:"Tangent angles, concentric chords and circumscribed quadrilaterals", advanced:"Incircles of triangles, tangent proofs and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · NCERT Mathematics · Ch 11 · Areas Related to Circles
+   Chapter game "Slice of Pi": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Arc Length  2 Sector Area  3 Clocks & Quadrants
+   Apply  : 4 Major & Minor  5 Segments  6 Sectors in Life
+   Master : 7 Formula Sense  8 Wire & Design  9 Pi Master (timed)
+   ============================================================ */
+const ARC10 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, fr} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const PI7 = 22/7, r2 = x => Math.round(x*100)/100, TL = x => Math.max(0.011, Math.abs(x)*0.003);   // allow small rounding differences
+  const ANG = [30, 45, 60, 72, 90, 120, 135, 150, 180, 40, 80, 100];
+  const R7 = [7, 14, 21, 28, 35, 3.5, 10.5, 42];
+  const PAD = (post) => padHTML("", post, {dec:true});
+  function sector(theta, lab = {}, seg = false){
+    const cx = 110, cy = 95, r = 80, a0 = -Math.PI/2 - theta*Math.PI/360, a1 = a0 + theta*Math.PI/180, L = theta > 180 ? 1 : 0;
+    const p0 = [cx + r*Math.cos(a0), cy + r*Math.sin(a0)], p1 = [cx + r*Math.cos(a1), cy + r*Math.sin(a1)];
+    let g = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="#5aa9ff10" stroke="#9cc8ff66" stroke-width="2"/>`;
+    g += seg ? `<path d="M${p0[0]} ${p0[1]} A${r} ${r} 0 ${L} 1 ${p1[0]} ${p1[1]} Z" fill="#ffcf5a55" stroke="#ffcf5a" stroke-width="2"/><path d="M${cx} ${cy} L${p0[0]} ${p0[1]} M${cx} ${cy} L${p1[0]} ${p1[1]}" stroke="#b6f36a" stroke-width="1.6" stroke-dasharray="4 3"/>`
+             : `<path d="M${cx} ${cy} L${p0[0]} ${p0[1]} A${r} ${r} 0 ${L} 1 ${p1[0]} ${p1[1]} Z" fill="#ffcf5a44" stroke="#ffcf5a" stroke-width="2"/>`;
+    g += `<circle cx="${cx}" cy="${cy}" r="3" fill="#e8ecff"/><text x="${cx}" y="${cy + 18}" text-anchor="middle" style="font-size:13px;font-weight:800;fill:#ffcf5a">${theta}°</text>`;
+    if (lab.r) g += `<text x="${(cx + p1[0])/2 + 14}" y="${(cy + p1[1])/2 + 4}" style="font-size:13px;font-weight:800;fill:#b6f36a">${lab.r}</text>`;
+    return `<svg class="tw-svg" viewBox="0 0 220 185" style="max-height:165px">${g}</svg>`;
+  }
+
+  /* ---------- Mission 1: Arc Length ---------- */
+  function m1(i){
+    const th = P(ANG), r = P(R7), len = th/360*2*PI7*r;
+    if (i % 3 === 2){ const right = `θ/360 × 2πr`, o = SH([right, "θ/360 × πr²", "θ/180 × 2πr", "θ × r"]);
+      return {html:`<p class="tw-q">Which formula gives the <b>length of an arc</b> of angle θ (in degrees)?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `An arc is the fraction θ/360 of the whole circumference 2πr: <b>l = θ/360 × 2πr</b>. (θ/360 × πr² is the sector’s area.)`, "Arc length"); }}; }
+    return {html:`<p class="tw-q">Find the length of the arc of a circle of radius <b>${n2(r)} cm</b> subtending <b>${th}°</b> at the centre. (π = 22/7, 2 decimals)</p>${sector(th, {r:n2(r)})}${PAD("cm")}`,
+      mount(el, done){ bindPad(el, r2(len), TL(len), done, `l = ${th}/360 × 2 × 22/7 × ${n2(r)} = <b>${n2(len)} cm</b>. The arc is ${th}/360 of the full circumference (${n2(2*PI7*r)} cm).`, "Arc length"); }};
+  }
+
+  /* ---------- Mission 2: Sector Area ---------- */
+  function m2(i){
+    const th = P(ANG), r = P(R7), A = th/360*PI7*r*r;
+    if (i % 3 === 2){ const l = th/360*2*PI7*r;
+      return {html:`<p class="tw-q">A sector of radius <b>${n2(r)} cm</b> has arc length <b>${n2(l)} cm</b>. Find its area using A = ½ × l × r.</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, r2(A), TL(A), done, `A = ½ × ${n2(l)} × ${n2(r)} = <b>${n2(A)} cm²</b>. This works because θ/360 × πr² = ½ × (θ/360 × 2πr) × r.`, "Sector area from arc length"); }}; }
+    return {html:`<p class="tw-q">Area of a sector of radius <b>${n2(r)} cm</b> and angle <b>${th}°</b>? (π = 22/7, 2 decimals)</p>${sector(th, {r:n2(r)})}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, r2(A), TL(A), done, `A = θ/360 × πr² = ${th}/360 × 22/7 × ${n2(r)}² = <b>${n2(A)} cm²</b> (the whole circle is ${n2(PI7*r*r)} cm²).`, "Area of a sector"); }};
+  }
+
+  /* ---------- Mission 3: Clocks & Quadrants ---------- */
+  function m3(i){
+    const t = i % 3;
+    if (t === 0){ const L = P([7, 14, 21, 10.5]), mins = P([5, 10, 15, 20, 25, 35, 40]), th = mins*6, A = th/360*PI7*L*L;
+      return {html:`<p class="tw-q">The minute hand of a clock is <b>${n2(L)} cm</b> long. What area does it sweep in <b>${mins} minutes</b>? (π = 22/7)</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, r2(A), TL(A), done, `60 minutes = 360°, so 1 minute = 6°. ${mins} min = ${th}°. Area = ${th}/360 × 22/7 × ${n2(L)}² = <b>${n2(A)} cm²</b>.`, "Clock problems"); }}; }
+    if (t === 1){ const C = P([22, 44, 88, 66, 132]), r = C/(2*PI7), A = PI7*r*r/4;
+      return {html:`<p class="tw-q">Find the area of a <b>quadrant</b> of a circle whose circumference is <b>${C} cm</b>. (π = 22/7)</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, r2(A), TL(A), done, `2πr = ${C} → r = ${C} × 7/44 = ${n2(r)} cm. Quadrant = ¼πr² = ¼ × 22/7 × ${n2(r)}² = <b>${n2(A)} cm²</b>.`, "Quadrant"); }}; }
+    const hrs = P([1, 2, 3, 4, 5]), L = P([7, 14]), th = hrs*30, l = th/360*2*PI7*L;
+    return {html:`<p class="tw-q">The hour hand (<b>${L} cm</b>) moves from 12 to ${hrs}. How far does its tip travel? (π = 22/7)</p>${PAD("cm")}`,
+      mount(el, done){ bindPad(el, r2(l), TL(l), done, `The hour hand turns 30° per hour: ${hrs} h = ${th}°. Arc = ${th}/360 × 2 × 22/7 × ${L} = <b>${n2(l)} cm</b>.`, "Clock problems"); }};
+  }
+
+  /* ---------- Mission 4: Major & Minor ---------- */
+  function m4(i){
+    const th = P([60, 90, 120, 45, 30, 72]), r = P([7, 14, 21, 3.5]), maj = 360 - th, t = i % 3;
+    if (t === 0) return {html:`<p class="tw-q">A minor sector has angle <b>${th}°</b>, radius <b>${n2(r)} cm</b>. Area of the <b>major</b> sector? (π = 22/7)</p>${sector(maj)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, r2(maj/360*PI7*r*r), TL(maj/360*PI7*r*r), done, `Major sector angle = 360° − ${th}° = ${maj}°. Area = ${maj}/360 × 22/7 × ${n2(r)}² = <b>${n2(maj/360*PI7*r*r)} cm²</b>. (Or: circle − minor sector.)`, "Major sector"); }};
+    if (t === 1) return {html:`<p class="tw-q">Length of the <b>major arc</b> when the minor arc subtends <b>${th}°</b> in a circle of radius <b>${n2(r)} cm</b>? (π = 22/7)</p>${PAD("cm")}`,
+      mount(el, done){ bindPad(el, r2(maj/360*2*PI7*r), TL(maj/360*2*PI7*r), done, `Major arc angle = ${maj}°: ${maj}/360 × 2 × 22/7 × ${n2(r)} = <b>${n2(maj/360*2*PI7*r)} cm</b>.`, "Major arc"); }};
+    const right = `${maj}°`, o = opts4(right, [`${th}°`, `${180 - th}°`, `${360 + th}°`]);
+    return {html:`<p class="tw-q">A minor sector has angle <b>${th}°</b>. What is the angle of the corresponding <b>major</b> sector?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `Minor + major = the full turn 360° → major = <b>${right}</b>.`, "Major sector"); }};
+  }
+
+  /* ---------- Mission 5: Segments ---------- */
+  function m5(i){
+    const t = i % 3;
+    if (t === 0){ const r = P([10, 20, 14, 12, 8]), sec = 3.14*r*r/4, tri = r*r/2, seg = sec - tri;
+      return {html:`<p class="tw-q">A chord of a circle of radius <b>${r} cm</b> subtends a <b>right angle</b> at the centre. Area of the <b>minor segment</b>? (π = 3.14)</p>${sector(90, {}, true)}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, r2(seg), TL(seg), done, `Segment = sector − triangle = (90/360 × 3.14 × ${r}²) − (½ × ${r} × ${r}) = ${n2(sec)} − ${n2(tri)} = <b>${n2(seg)} cm²</b>.`, "Area of a segment"); }}; }
+    if (t === 1){ const r = P([15, 10, 12, 20, 21]), sec = 60/360*3.14*r*r, tri = 1.73/4*r*r, seg = sec - tri;
+      return {html:`<p class="tw-q">A chord of a circle of radius <b>${r} cm</b> subtends <b>60°</b> at the centre. Area of the minor segment? (π = 3.14, √3 = 1.73)</p>${sector(60, {}, true)}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, r2(seg), TL(seg), done, `With 60° the triangle is <b>equilateral</b>: area = √3/4 × ${r}² = ${n2(tri)}. Sector = 60/360 × 3.14 × ${r}² = ${n2(sec)}. Segment = <b>${n2(seg)} cm²</b>.`, "Area of a segment"); }}; }
+    const r = P([12, 6, 10, 21]), sec = 120/360*3.14*r*r, tri = 1.73/4*r*r, seg = sec - tri;
+    return {html:`<p class="tw-q">A chord of a circle of radius <b>${r} cm</b> subtends <b>120°</b> at the centre. Area of the segment? (π = 3.14, √3 = 1.73)</p>${sector(120, {}, true)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, r2(seg), TL(seg), done, `Triangle OAB with angle 120°: area = ½r² sin 120° = √3/4 × ${r}² = ${n2(tri)} (drop the altitude: height r/2, base r√3). Sector = 120/360 × 3.14 × ${r}² = ${n2(sec)}. Segment = <b>${n2(seg)} cm²</b>.`, "Area of a segment"); }};
+  }
+
+  /* ---------- Mission 6: Sectors in Life ---------- */
+  const LIFE = [
+    () => { const L = P([21, 25, 28, 14]), a = P([115, 120, 90, 100]), A = 2*a/360*PI7*L*L; return [`A car has two wipers that do not overlap. Each blade is <b>${L} cm</b> and sweeps <b>${a}°</b>. Total area cleaned in each sweep? (π = 22/7)`, A, `Each wiper sweeps a sector: ${a}/360 × 22/7 × ${L}². Two wipers: <b>${n2(A)} cm²</b>.`, "cm²"]; },
+    () => { const r = P([45, 42, 35, 28]), n = P([8, 10, 6, 12]), A = PI7*r*r/n; return [`An umbrella has <b>${n}</b> equally spaced ribs. Treating it as a flat circle of radius <b>${r} cm</b>, find the area between two consecutive ribs. (π = 22/7)`, A, `${n} ribs make ${n} equal sectors of ${360/n}°: πr²/${n} = <b>${n2(A)} cm²</b>.`, "cm²"]; },
+    () => { const a = P([80, 60, 90, 45]), d = P([16.5, 10, 12, 20]), A = a/360*3.14*d*d; return [`A lighthouse spreads red light over a sector of <b>${a}°</b> to a distance of <b>${d} km</b>. Area of sea warned? (π = 3.14)`, A, `${a}/360 × 3.14 × ${d}² = <b>${n2(A)} km²</b>.`, "km²"]; },
+    () => { const L = P([5, 7, 10, 14]), A = 3.14*L*L/4; return [`A horse is tied to a corner peg of a large square field with a <b>${L} m</b> rope. Area it can graze? (π = 3.14)`, A, `At a corner the angle is 90°, so it grazes a <b>quadrant</b>: ¼ × 3.14 × ${L}² = <b>${n2(A)} m²</b>.`, "m²"]; },
+    () => { const a = P([5, 7]), b = 2*a, A = 3.14*(b*b - a*a)/4; return [`A horse tied at a corner of a square field (rope ${a} m) gets a longer rope of <b>${b} m</b>. By how much does its grazing area increase? (π = 3.14)`, A, `Increase = ¼ × 3.14 × (${b}² − ${a}²) = <b>${n2(A)} m²</b>. Doubling the rope makes the area 4 times as big!`, "m²"]; }
+  ];
+  function m6(i){
+    const [q, a, why, u] = LIFE[i % LIFE.length]();
+    return {html:`<p class="tw-q">${q}</p>${PAD(u)}`, mount(el, done){ bindPad(el, r2(a), TL(a), done, why, "Sectors in daily life"); }};
+  }
+
+  /* ---------- Mission 7: Formula Sense ---------- */
+  function m7(i){
+    const t = i % 4;
+    if (t === 0){ const right = "p/360 × πR²", o = SH([right, "p/180 × 2πR", "p/360 × 2πR", "p/720 × 2πR²"]);
+      return {html:`<p class="tw-q">The area of a sector of angle <b>p°</b> in a circle of radius R is…</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Area = p/360 × πR². (NCERT also accepts p/720 × 2πR², which is the same thing written differently, but p/360 × 2πR is the arc length.)`, "Sector formula"); }}; }
+    if (t === 1){ const k = P([2, 3]), what = P(["area", "arc length"]), right = what === "area" ? `${k*k} times` : `${k} times`, o = opts4(right, [`${k} times`, `${k*k} times`, `${k*k*k} times`, "the same"]);
+      return {html:`<p class="tw-q">The radius of a sector is multiplied by <b>${k}</b> (angle unchanged). Its <b>${what}</b> becomes…</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, what === "area" ? `Area ∝ r²: (${k}r)² = ${k*k}r² → <b>${k*k} times</b>.` : `Arc length ∝ r → <b>${k} times</b>.`, "How sectors scale"); }}; }
+    if (t === 2){ const k = P([2, 3, 4]), right = `${k} times`, o = opts4(right, [`${k*k} times`, `${k} times`, "the same", `${k + 1} times`]);
+      return {html:`<p class="tw-q">The angle of a sector is multiplied by <b>${k}</b> (radius unchanged). Its area becomes…</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Area = θ/360 × πr² is proportional to θ → <b>${k} times</b>.`, "How sectors scale"); }}; }
+    const r = P([7, 14, 21]), th = P([60, 90, 120, 45]), per = 2*r + th/360*2*PI7*r;
+    return {html:`<p class="tw-q">Find the <b>perimeter</b> of a sector of radius <b>${r} cm</b> and angle <b>${th}°</b>. (π = 22/7)</p>${PAD("cm")}`,
+      mount(el, done){ bindPad(el, r2(per), TL(per), done, `Perimeter = two radii + arc = 2 × ${r} + ${n2(th/360*2*PI7*r)} = <b>${n2(per)} cm</b>. Don’t forget the two straight edges!`, "Perimeter of a sector"); }};
+  }
+
+  /* ---------- Mission 8: Wire & Design ---------- */
+  function m8(i){
+    const t = i % 3;
+    if (t === 0){ const d = P([35, 28, 42, 21]), n = P([5, 4, 3]), W = PI7*d + n*d;
+      return {html:`<p class="tw-q">A brooch is a circle of silver wire with diameter <b>${d} mm</b>, plus <b>${n} diameters</b> dividing it into ${2*n} equal sectors. Total wire? (π = 22/7)</p>${PAD("mm")}`,
+        mount(el, done){ bindPad(el, r2(W), TL(W), done, `Circumference = πd = 22/7 × ${d} = ${n2(PI7*d)} mm. Diameters: ${n} × ${d} = ${n*d}. Total = <b>${n2(W)} mm</b>.`, "Wire length"); }}; }
+    if (t === 1){ const d = P([35, 28, 42]), n = P([10, 8, 6]), A = PI7*(d/2)**2/n;
+      return {html:`<p class="tw-q">A circular brooch of diameter <b>${d} mm</b> is divided into <b>${n}</b> equal sectors. Area of each sector? (π = 22/7)</p>${PAD("mm²")}`,
+        mount(el, done){ bindPad(el, r2(A), TL(A), done, `r = ${d/2}. Circle area = 22/7 × ${n2(d/2)}² = ${n2(PI7*(d/2)**2)}. Each sector = ÷ ${n} = <b>${n2(A)} mm²</b>.`, "Equal sectors"); }}; }
+    const r = P([10, 15, 20]), th = P([60, 90]), sec = th/360*3.14*r*r, tri = th === 90 ? r*r/2 : 1.73/4*r*r, minor = sec - tri, major = 3.14*r*r - minor;
+    return {html:`<p class="tw-q">A chord subtends <b>${th}°</b> at the centre of a circle of radius <b>${r} cm</b>. Area of the <b>major segment</b>? (π = 3.14${th === 60 ? ", √3 = 1.73" : ""})</p>${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, r2(major), TL(major), done, `Minor segment = ${n2(sec)} − ${n2(tri)} = ${n2(minor)}. Major segment = circle − minor = ${n2(3.14*r*r)} − ${n2(minor)} = <b>${n2(major)} cm²</b>.`, "Major segment"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Arc Length", goal:"l = θ/360 × 2πr.", n:8,
+      learn:L("A fraction of the circumference", "An arc of angle θ is θ/360 of the whole circle, so its length is <b>θ/360 × 2πr</b>.", "r = 21, θ = 60° → 1/6 × 2 × 22/7 × 21 = <b>22 cm</b>")},
+    {id:2, track:"foundation", name:"Sector Area", goal:"A = θ/360 × πr².", n:8,
+      learn:L("A fraction of the area", "A sector is θ/360 of the circle’s area: <b>A = θ/360 × πr²</b>. Also A = ½ × arc length × r.", "r = 6, θ = 60° → 1/6 × 22/7 × 36 = <b>18.86 cm²</b>")},
+    {id:3, track:"foundation", name:"Clocks & Quadrants", goal:"Minute hands, hour hands and quarter circles.", n:8,
+      learn:L("Turn time into angles", "Minute hand: 6° per minute. Hour hand: 30° per hour. A quadrant is a 90° sector (¼ circle).", "14 cm minute hand, 5 min = 30° → 1/12 × 22/7 × 196 = <b>51.33 cm²</b>")},
+    {id:4, track:"core", name:"Major & Minor", goal:"The bigger part uses 360° − θ.", n:8,
+      learn:L("Minor + major = whole", "The major sector’s angle is 360° − θ. Its area = circle − minor sector.", "Minor 90° → major 270° (three quarters of the circle)")},
+    {id:5, track:"core", name:"Segments", goal:"Segment = sector − triangle.", n:8,
+      learn:L("Cut off the triangle", "Segment area = sector area − area of triangle OAB. For 90°: triangle = r²/2. For 60°: equilateral, √3/4 r². For 120°: also √3/4 r².", "r = 10, 90°: 78.5 − 50 = <b>28.5 cm²</b>")},
+    {id:6, track:"core", name:"Sectors in Life", goal:"Wipers, umbrellas, lighthouses, grazing horses.", n:8,
+      learn:L("Spot the sector", "A sweeping blade, a beam of light or a tethered animal at a corner all cover sectors. Find r and θ, then use the formula.", "Horse at a square corner, 5 m rope → quadrant = <b>19.625 m²</b>")},
+    {id:7, track:"advanced", name:"Formula Sense", goal:"Choose formulas and predict how areas change.", n:8,
+      learn:L("Proportional thinking", "Area ∝ r² and ∝ θ. Arc length ∝ r and ∝ θ. Perimeter of a sector = 2r + arc.", "Double the radius → 4× area, 2× arc")},
+    {id:8, track:"advanced", name:"Wire & Design", goal:"Brooches, equal sectors and major segments.", n:7,
+      learn:L("Add the pieces", "Wire = circumference + all the straight pieces. Major segment = circle − minor segment.", "Brooch d = 35 mm, 5 diameters: 110 + 175 = <b>285 mm</b>")},
+    {id:9, track:"advanced", name:"Pi Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m7, m7])(R(0, 5))};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c10-circle-areas"] = CQ.quest({
+  key:"ar10c11_stars", missions:ARC10.MISSIONS, gen:ARC10.GEN, chapter:{std:10, part:"", ch:11},
+  desc:"Class 10 · NCERT · Chapter 11. Master areas related to circles in 9 missions: arc length, sector area, clocks and quadrants, segments and real-life sectors.",
+  modes:{foundation:"Arc length, sector area, clocks and quadrants", core:"Major and minor sectors, segments and real-life sectors", advanced:"Formula sense, wire designs and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · NCERT Mathematics · Ch 12 · Surface Areas and Volumes
+   Chapter game "Solid Builder": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Formula Match  2 Which Surfaces Show?  3 Surface Area of Combinations
+   Apply  : 4 Volume of Combinations  5 Hollowed Out  6 Solids in Life
+   Master : 7 Drop & Fill  8 Scale Sense  9 Solid Master (timed)
+   ============================================================ */
+const SOL10 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const PI = 22/7, r2 = x => Math.round(x*100)/100, TL = x => Math.max(0.011, Math.abs(x)*0.003);
+  const PAD = u => padHTML("", u, {dec:true});
+  const pad = (el, v, done, why, topic) => bindPad(el, r2(v), TL(v), done, why, topic);
+  // simple side-view pictures of combined solids
+  function pic(kind){
+    const st = `fill="#5aa9ff33" stroke="#9cc8ff" stroke-width="2"`, st2 = `fill="#ffcf5a33" stroke="#ffcf5a" stroke-width="2"`; let g = "";
+    if (kind === "toy") g = `<polygon points="70,20 40,90 100,90" ${st2}/><path d="M40 90 A30 30 0 0 0 100 90 Z" ${st}/>`;
+    if (kind === "capsule") g = `<path d="M50 40 H110 A25 25 0 0 1 110 90 H50 A25 25 0 0 1 50 40 Z" ${st}/><line x1="50" y1="40" x2="50" y2="90" stroke="#ffcf5a" stroke-dasharray="3 3"/><line x1="110" y1="40" x2="110" y2="90" stroke="#ffcf5a" stroke-dasharray="3 3"/>`;
+    if (kind === "tent") g = `<polygon points="80,10 30,50 130,50" ${st2}/><rect x="30" y="50" width="100" height="50" ${st}/>`;
+    if (kind === "cubehemi") g = `<rect x="45" y="55" width="70" height="70" ${st}/><path d="M50 55 A30 30 0 0 1 110 55 Z" ${st2}/>`;
+    if (kind === "vessel") g = `<rect x="40" y="20" width="80" height="50" ${st}/><path d="M40 70 A40 40 0 0 0 120 70 Z" ${st2}/>`;
+    if (kind === "rocket") g = `<polygon points="30,65 50,40 50,90" ${st2}/><rect x="50" y="40" width="70" height="50" ${st}/><polygon points="140,65 120,40 120,90" ${st2}/>`;
+    if (kind === "cubes") g = `<rect x="25" y="45" width="55" height="55" ${st}/><rect x="80" y="45" width="55" height="55" ${st}/>`;
+    if (kind === "cavity") g = `<rect x="45" y="20" width="70" height="90" ${st}/><polygon points="45,110 115,110 80,20" fill="#0b1020" stroke="#ffcf5a" stroke-width="2" stroke-dasharray="4 3"/>`;
+    return `<svg class="tw-svg" viewBox="0 0 160 130" style="max-height:120px">${g}</svg>`;
+  }
+
+  /* ---------- Mission 1: Formula Match ---------- */
+  const F = [["Curved surface area of a cylinder", "2πrh"], ["Total surface area of a cylinder", "2πr(r + h)"], ["Volume of a cylinder", "πr²h"], ["Curved surface area of a cone", "πrl"], ["Volume of a cone", "⅓πr²h"],
+    ["Surface area of a sphere", "4πr²"], ["Volume of a sphere", "⁴⁄₃πr³"], ["Curved surface area of a hemisphere", "2πr²"], ["Total surface area of a solid hemisphere", "3πr²"], ["Volume of a hemisphere", "⅔πr³"], ["Slant height of a cone", "√(r² + h²)"]];
+  function m1(i){
+    const [nm, f] = P(F), o = opts4(f, F.map(x => x[1]));
+    return {html:`<p class="tw-q"><b>${nm}</b> = ?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(f), done, `${nm} = <b>${f}</b>. ${nm.includes("hemisphere") ? "A hemisphere is half a sphere; a solid one also has a flat circular face πr²." : nm.includes("cone") ? "A cone is ⅓ of the cylinder with the same base and height." : ""}`, "Formulas"); }};
+  }
+
+  /* ---------- Mission 2: Which Surfaces Show? ---------- */
+  const COMBO = [
+    ["toy", "A toy: cone on a hemisphere (same radius)", "CSA of cone + CSA of hemisphere", ["CSA of cone + CSA of hemisphere", "TSA of cone + TSA of hemisphere", "CSA of cone + TSA of hemisphere", "TSA of cone + CSA of hemisphere"], "The flat circles where they join are hidden inside, so only the two curved surfaces count."],
+    ["capsule", "A capsule: cylinder with a hemisphere at each end", "CSA of cylinder + 2 × CSA of hemisphere", ["CSA of cylinder + 2 × CSA of hemisphere", "TSA of cylinder + 2 × CSA of hemisphere", "CSA of cylinder + 2 × TSA of hemisphere", "TSA of cylinder + TSA of sphere"], "Both flat ends of the cylinder are covered by hemispheres; it equals CSA of cylinder + area of a full sphere."],
+    ["tent", "A tent: cone on a cylinder (no floor)", "CSA of cylinder + CSA of cone", ["CSA of cylinder + CSA of cone", "TSA of cylinder + CSA of cone", "TSA of cylinder + TSA of cone", "CSA of cylinder + TSA of cone"], "The tent has no floor and the joint is hidden: only the two curved surfaces are canvas."],
+    ["cubehemi", "A cube with a hemisphere on top", "6a² − πr² + 2πr²", ["6a² − πr² + 2πr²", "6a² + 2πr²", "6a² + 3πr²", "5a² + 2πr²"], "The hemisphere covers a circle πr² of the top face but adds its curved surface 2πr². Net: 6a² + πr²."],
+    ["vessel", "A hollow vessel: hemisphere with a cylinder on top (inner surface)", "CSA of hemisphere + CSA of cylinder", ["CSA of hemisphere + CSA of cylinder", "TSA of hemisphere + CSA of cylinder", "CSA of hemisphere + TSA of cylinder", "Volume of hemisphere + volume of cylinder"], "Inside a hollow vessel you only touch the curved walls."],
+    ["cavity", "A cylinder with a cone of the same base and height scooped out", "CSA of cylinder + area of top circle + CSA of cone", ["CSA of cylinder + area of top circle + CSA of cone", "TSA of cylinder − CSA of cone", "TSA of cylinder + TSA of cone", "CSA of cylinder + CSA of cone"], "The base where the cone opens is removed, but the cone’s curved inside becomes new surface; the other flat end stays."]
+  ];
+  function m2(i){
+    const [k, nm, right, o0, why] = P(COMBO), o = SH(o0.slice());
+    return {html:`<p class="tw-q">Total surface area of <b>${nm}</b> = ?</p>${pic(k)}${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `<b>${right}</b>. ${why} Rule: count only the surfaces you could paint from outside.`, "Surfaces of combined solids"); }};
+  }
+
+  /* ---------- Mission 3: Surface Area of Combinations ---------- */
+  function m3(i){
+    const t = i % 5;
+    if (t === 0){ const a = P([4, 5, 6, 8, 10]); return {html:`<p class="tw-q">Two cubes, each of volume <b>${a**3} cm³</b>, are joined end to end. Surface area of the cuboid?</p>${pic("cubes")}${PAD("cm²")}`,
+      mount(el, done){ pad(el, 10*a*a, done, `Edge = ∛${a**3} = ${a} cm. The cuboid is ${2*a} × ${a} × ${a}: 2(${2*a}×${a} + ${a}×${a} + ${a}×${2*a}) = 10a² = <b>${10*a*a} cm²</b>. (Not 12a²: two faces are hidden.)`, "Joined cubes"); }}; }
+    if (t === 1){ const r = P([3.5, 7, 1.75]), H = P([15.5, 20, 12]), h = H - r, l = Math.sqrt(r*r + h*h); const A = 2*PI*r*r + PI*r*l;
+      return {html:`<p class="tw-q">A toy is a cone of radius <b>${r} cm</b> on a hemisphere of the same radius. Total height <b>${H} cm</b>. Total surface area? (π = 22/7, 2 decimals)</p>${pic("toy")}${PAD("cm²")}`,
+        mount(el, done){ pad(el, A, done, `Cone height = ${H} − ${r} = ${n2(h)}. Slant l = √(${r}² + ${n2(h)}²) ≈ ${n2(l)}. Area = 2πr² + πrl = ${n2(2*PI*r*r)} + ${n2(PI*r*l)} = <b>${n2(A)} cm²</b>.`, "Cone on a hemisphere"); }}; }
+    if (t === 2){ const d = P([5, 7, 3.5, 14]), Lt = d*P([2, 2.8, 3]), r = d/2, h = Lt - d, A = 4*PI*r*r + 2*PI*r*h;
+      return {html:`<p class="tw-q">A capsule (cylinder with two hemispherical ends) is <b>${n2(Lt)} mm</b> long with diameter <b>${d} mm</b>. Surface area? (π = 22/7)</p>${pic("capsule")}${PAD("mm²")}`,
+        mount(el, done){ pad(el, A, done, `r = ${n2(r)}, cylinder length = ${n2(Lt)} − ${d} = ${n2(h)}. Area = 2 × 2πr² + 2πrh = ${n2(4*PI*r*r)} + ${n2(2*PI*r*h)} = <b>${n2(A)} mm²</b>.`, "Capsule"); }}; }
+    if (t === 3){ const a = P([7, 14, 10.5]), r = a/2, A = 6*a*a + PI*r*r;
+      return {html:`<p class="tw-q">A cube of side <b>${a} cm</b> is topped by the <b>largest possible</b> hemisphere. Surface area of the solid? (π = 22/7)</p>${pic("cubehemi")}${PAD("cm²")}`,
+        mount(el, done){ pad(el, A, done, `Largest hemisphere: diameter = ${a}, r = ${n2(r)}. Area = 6a² − πr² + 2πr² = 6a² + πr² = ${n2(6*a*a)} + ${n2(PI*r*r)} = <b>${n2(A)} cm²</b>.`, "Cube with a hemisphere"); }}; }
+    const [d, l] = P([[4, 2.8], [7, 5], [14, 10], [6, 5], [3.5, 3.5]]), r = d/2, h = P([2.1, 3, 3.5]), A = 2*PI*r*h + PI*r*l;   // slant height always longer than the radius
+    return {html:`<p class="tw-q">A tent is a cylinder (height <b>${h} m</b>, diameter <b>${d} m</b>) with a conical top of slant height <b>${l} m</b>. Canvas needed (no floor)? (π = 22/7)</p>${pic("tent")}${PAD("m²")}`,
+      mount(el, done){ pad(el, A, done, `Canvas = 2πrh + πrl = ${n2(2*PI*r*h)} + ${n2(PI*r*l)} = <b>${n2(A)} m²</b>.`, "Tent"); }};
+  }
+
+  /* ---------- Mission 4: Volume of Combinations ---------- */
+  function m4(i){
+    const t = i % 3;
+    if (t === 0){ const r = P([1, 3.5, 7, 2.1]), h = P([r, 2*r, 3*r]), V = PI*r*r*h/3 + 2/3*PI*r**3;
+      return {html:`<p class="tw-q">A solid is a cone standing on a hemisphere, both of radius <b>${r} cm</b>; the cone’s height is <b>${n2(h)} cm</b>. Volume? (π = 22/7)</p>${pic("toy")}${PAD("cm³")}`,
+        mount(el, done){ pad(el, V, done, `V = ⅓πr²h + ⅔πr³ = ${n2(PI*r*r*h/3)} + ${n2(2/3*PI*r**3)} = <b>${n2(V)} cm³</b>.`, "Volume of a combination"); }}; }
+    if (t === 1){ const d = P([3, 7, 14]), r = d/2, Lt = P([12, 20, 28]), hc = P([2, 3.5]), h = Lt - 2*hc, V = PI*r*r*h + 2*PI*r*r*hc/3;
+      return {html:`<p class="tw-q">A model is a cylinder with a cone at each end: diameter <b>${d} cm</b>, total length <b>${Lt} cm</b>, each cone <b>${hc} cm</b> high. Volume? (π = 22/7)</p>${pic("rocket")}${PAD("cm³")}`,
+        mount(el, done){ pad(el, V, done, `Cylinder length = ${Lt} − 2 × ${hc} = ${n2(h)}. V = πr²h + 2 × ⅓πr²h₁ = ${n2(PI*r*r*h)} + ${n2(2*PI*r*r*hc/3)} = <b>${n2(V)} cm³</b>.`, "Cylinder with cones"); }}; }
+    const [d, Lt] = P([[2.8, 5], [2.8, 4], [1.4, 4], [4.2, 6], [2.8, 6]]), r = d/2, h = Lt - d, V = PI*r*r*h + 4/3*PI*r**3;
+    return {html:`<p class="tw-q">A gulab jamun is a cylinder with hemispherical ends: length <b>${Lt} cm</b>, diameter <b>${d} cm</b>. Volume of one? (π = 22/7)</p>${pic("capsule")}${PAD("cm³")}`,
+      mount(el, done){ pad(el, V, done, `Cylinder part = ${Lt} − ${d} = ${n2(h)} cm. Two hemispheres = one sphere. V = πr²h + ⁴⁄₃πr³ = ${n2(PI*r*r*h)} + ${n2(4/3*PI*r**3)} = <b>${n2(V)} cm³</b>.`, "Cylinder with hemispheres"); }};
+  }
+
+  /* ---------- Mission 5: Hollowed Out ---------- */
+  function m5(i){
+    const t = i % 3;
+    if (t === 0){ const L = 15, B = 10, H = 3.5, n = 4, r = 0.5, dp = 1.4, V = L*B*H - n*PI*r*r*dp/3;
+      return {html:`<p class="tw-q">A wooden pen stand is a cuboid <b>15 × 10 × 3.5 cm</b> with <b>4 conical depressions</b> (radius 0.5 cm, depth 1.4 cm). Volume of wood? (π = 22/7)</p>${PAD("cm³")}`,
+        mount(el, done){ pad(el, V, done, `Cuboid = 525 cm³. Each cone = ⅓ × 22/7 × 0.25 × 1.4 = 0.367; four = 1.47. Wood = 525 − 1.47 = <b>${n2(V)} cm³</b>.`, "Removing volume"); }}; }
+    if (t === 1){ const [r, h] = P([[3.5, 10], [3.5, 14], [7, 20], [2.1, 10], [3.5, 7]]), A = 2*PI*r*h + 2*2*PI*r*r;   // height ≥ 2r so both hollows fit
+      return {html:`<p class="tw-q">A hemisphere is scooped out of <b>each end</b> of a solid cylinder (height <b>${h} cm</b>, radius <b>${r} cm</b>). Total surface area of what remains? (π = 22/7)</p>${PAD("cm²")}`,
+        mount(el, done){ pad(el, A, done, `Outside: CSA of cylinder 2πrh = ${n2(2*PI*r*h)}. The flat ends are gone, replaced by two hemispherical hollows: 2 × 2πr² = ${n2(4*PI*r*r)}. Total = <b>${n2(A)} cm²</b>.`, "Scooped cylinder"); }}; }
+    const R0 = 60, Hc = 180, hcone = 120, V = PI*R0*R0*Hc - (PI*R0*R0*hcone/3 + 2/3*PI*R0**3);
+    return {html:`<p class="tw-q">A solid made of a cone (height 120 cm, radius 60 cm) on a hemisphere (radius 60 cm) is placed in a cylinder of radius 60 cm, height 180 cm, <b>full of water</b>. Volume of water left (in m³)? (π = 22/7)</p>${PAD("m³")}`,
+      mount(el, done){ pad(el, V/1e6, done, `Cylinder = πr²h = ${n2(PI*R0*R0*Hc)} cm³. Solid = ⅓πr²(120) + ⅔πr³ = ${n2(PI*R0*R0*hcone/3 + 2/3*PI*R0**3)}. Left = ${n2(V)} cm³ = <b>${n2(V/1e6)} m³</b> (1 m³ = 10⁶ cm³).`, "Displaced water"); }};
+  }
+
+  /* ---------- Mission 6: Solids in Life ---------- */
+  function m6(i){
+    const t = i % 3;
+    if (t === 0){ const d = 4, r = 2, h = 2.1, l = 2.8, rate = P([500, 400, 300]), A = 2*PI*r*h + PI*r*l;
+      return {html:`<p class="tw-q">A tent: cylinder 2.1 m high, diameter 4 m, conical top with slant height 2.8 m. Canvas costs <b>₹${rate} per m²</b>. Total cost? (π = 22/7)</p>${padHTML("₹", "", {dec:true})}`,
+        mount(el, done){ pad(el, A*rate, done, `Canvas = 2πrh + πrl = 26.4 + 17.6 = 44 m². Cost = 44 × ${rate} = <b>₹${n2(A*rate)}</b>.`, "Costing"); }}; }
+    if (t === 1){ const n = P([45, 30, 20]), pc = P([30, 25]), V1 = PI*1.4*1.4*2.2 + 4/3*PI*1.4**3, S = n*V1*pc/100;
+      return {html:`<p class="tw-q">A gulab jamun (length 5 cm, diameter 2.8 cm, cylinder with hemispherical ends) is <b>${pc}%</b> syrup. How much syrup in <b>${n}</b> gulab jamuns? (π = 22/7)</p>${PAD("cm³")}`,
+        mount(el, done){ pad(el, S, done, `One: cylinder (h = 2.2) + sphere (r = 1.4) = ${n2(V1)} cm³. ${n} × ${n2(V1)} × ${pc}% = <b>${n2(S)} cm³</b>.`, "Syrup"); }}; }
+    const V = 3.14*12*12*220 + 3.14*8*8*60, m = V*8/1000;
+    return {html:`<p class="tw-q">An iron pole: a cylinder (height 220 cm, base diameter 24 cm) topped by another (height 60 cm, radius 8 cm). 1 cm³ of iron ≈ 8 g. Mass in <b>kg</b>? (π = 3.14)</p>${PAD("kg")}`,
+      mount(el, done){ pad(el, m, done, `V = 3.14 × 12² × 220 + 3.14 × 8² × 60 = ${n2(V)} cm³. Mass = ${n2(V)} × 8 g = ${n2(V*8)} g = <b>${n2(m)} kg</b>.`, "Mass from volume"); }};
+  }
+
+  /* ---------- Mission 7: Drop & Fill ---------- */
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ const h = 8, R0 = 5, rs = 0.5, Vc = PI*R0*R0*h/3, out = Vc/4, n = Math.round(out/(4/3*PI*rs**3));
+      return {html:`<p class="tw-q">An inverted cone (height 8 cm, top radius 5 cm) is full of water. Lead shots (spheres of radius 0.5 cm) are dropped in until <b>one-fourth</b> of the water flows out. How many shots?</p>${padHTML("", "shots", {dec:false})}`,
+        mount(el, done){ bindPad(el, n, 0, done, `Water out = ¼ × ⅓π × 5² × 8 = 50π/3 ≈ ${n2(out)} cm³. One shot = ⁴⁄₃π(0.5)³. Number = (50π/3) ÷ (π/6) = <b>${n}</b> (π cancels!).`, "Displacement"); }}; }
+    if (t === 1){ const rS = P([3, 6, 9]), rC = P([2, 3, 6]), hC = 4*rS**3/(3*rC*rC); if (!Number.isInteger(hC*100)) return m7(i + 3);
+      return {html:`<p class="tw-q">A metal sphere of radius <b>${rS} cm</b> is melted and recast into a cylinder of radius <b>${rC} cm</b>. Height of the cylinder?</p>${PAD("cm")}`,
+        mount(el, done){ pad(el, hC, done, `Volume stays the same: ⁴⁄₃π × ${rS}³ = π × ${rC}² × h → h = 4 × ${rS**3} ÷ (3 × ${rC*rC}) = <b>${n2(hC)} cm</b>.`, "Recasting"); }}; }
+    const [Rr, r] = P([[6, 1], [6, 2], [6, 3], [9, 3], [12, 2], [12, 3], [12, 4], [8, 2], [10, 5]]), n = Rr**3/r**3;
+    return {html:`<p class="tw-q">How many spheres of radius <b>${r} cm</b> can be made by melting a sphere of radius <b>${Rr} cm</b>?</p>${padHTML("", "spheres", {dec:false})}`,
+      mount(el, done){ bindPad(el, n, 0, done, `n × ⁴⁄₃πr³ = ⁴⁄₃πR³ → n = (R/r)³ = (${Rr}/${r})³ = <b>${n}</b>.`, "Recasting"); }};
+  }
+
+  /* ---------- Mission 8: Scale Sense ---------- */
+  function m8(i){
+    const t = i % 4;
+    if (t === 0){ const o = SH(["1 : 3", "3 : 1", "1 : 2", "1 : 1"]);
+      return {html:`<p class="tw-q">A cone and a cylinder have the same base and height. Ratio of their volumes (cone : cylinder)?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf("1 : 3"), done, `⅓πr²h : πr²h = <b>1 : 3</b>. Three cones of water fill the cylinder.`, "Comparing volumes"); }}; }
+    if (t === 1){ const o = SH(["1 : 2 : 3", "1 : 3 : 2", "3 : 2 : 1", "1 : 1 : 1"]);
+      return {html:`<p class="tw-q">A cone, a hemisphere and a cylinder have equal radius r and equal height r. Ratio of volumes (cone : hemisphere : cylinder)?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf("1 : 2 : 3"), done, `⅓πr³ : ⅔πr³ : πr³ = <b>1 : 2 : 3</b>, a famous Archimedes result.`, "Comparing volumes"); }}; }
+    if (t === 2){ const k = P([2, 3]), what = P(["volume", "surface area"]), right = what === "volume" ? `${k**3} times` : `${k*k} times`, o = opts4(right, [`${k} times`, `${k*k} times`, `${k**3} times`, `${2*k} times`]);
+      return {html:`<p class="tw-q">The radius of a sphere is multiplied by <b>${k}</b>. Its <b>${what}</b> becomes…</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, what === "volume" ? `Volume ∝ r³ → ${k}³ = <b>${k**3} times</b>.` : `Surface area ∝ r² → ${k}² = <b>${k*k} times</b>.`, "Scaling solids"); }}; }
+    const it = SH([["A solid hemisphere’s total surface area is 3πr²", true], ["Two equal cubes joined have surface area 12a²", false], ["The slant height of a cone is always longer than its height", true], ["Melting and recasting keeps the surface area the same", false], ["Melting and recasting keeps the volume the same", true], ["Joining two solids always adds their total surface areas", false]]).slice(0, 4);
+    const cor = it.map((x, k) => x[1] ? k : -1).filter(k => k >= 0); if (!cor.length) return m8(i);
+    return {html:`<p class="tw-q">Select <b>all</b> true statements.</p>${multiHTML(it.map(x => x[0]))}`,
+      mount(el, done){ bindMulti(el, cor, done, `Hemisphere TSA = 2πr² + πr² = 3πr². Joined cubes hide 2 faces (10a²). l = √(r² + h²) > h. Recasting keeps <b>volume</b>, not surface area. Joining hides the touching faces.`, "Solid facts"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Formula Match", goal:"CSA, TSA and volume of the basic solids.", n:8,
+      learn:L("The toolkit", "Cylinder: 2πrh, πr²h. Cone: πrl, ⅓πr²h, l = √(r² + h²). Sphere: 4πr², ⁴⁄₃πr³. Hemisphere: 2πr² (curved), 3πr² (total), ⅔πr³.", "Cone = ⅓ cylinder · hemisphere = ½ sphere")},
+    {id:2, track:"foundation", name:"Which Surfaces Show?", goal:"Only the outside surfaces count.", n:8,
+      learn:L("Paint test", "When solids are joined, the faces that touch are hidden. Add only the surfaces you could paint.", "Toy (cone on hemisphere) = πrl + 2πr² — no flat circles")},
+    {id:3, track:"foundation", name:"Surface Area of Combinations", goal:"Cubes, toys, capsules, tents.", n:8,
+      learn:L("Add the visible parts", "Find each visible part separately, then add. Remember to work out slant heights and hidden lengths first.", "Two 4 cm cubes joined: 10 × 16 = <b>160 cm²</b>")},
+    {id:4, track:"core", name:"Volume of Combinations", goal:"Volumes always just add.", n:8,
+      learn:L("Volumes add up", "Unlike surface area, the volume of a combined solid is simply the sum of the parts.", "Cone (h = 1) on hemisphere (r = 1): π/3 + 2π/3 = <b>π cm³</b>")},
+    {id:5, track:"core", name:"Hollowed Out", goal:"Cavities, scoops and water left over.", n:7,
+      learn:L("Subtract volume, but add surface", "Removing material subtracts volume. For surface area, the cavity’s inner wall is <b>new</b> surface.", "Pen stand: 525 − 4 cones = 523.53 cm³")},
+    {id:6, track:"core", name:"Solids in Life", goal:"Tents, gulab jamuns, iron poles.", n:7,
+      learn:L("Area → cost, volume → mass", "Canvas, paint and tiles depend on surface area; syrup, water and mass depend on volume.", "44 m² canvas at ₹500/m² = ₹22000")},
+    {id:7, track:"advanced", name:"Drop & Fill", goal:"Displacement and recasting keep volume.", n:7,
+      learn:L("Volume is conserved", "Melting, recasting or dropping objects into water: total volume before = total volume after.", "Sphere r = 6 into spheres r = 2: (6/2)³ = 27 spheres")},
+    {id:8, track:"advanced", name:"Scale Sense", goal:"Ratios of volumes and the effect of scaling.", n:8,
+      learn:L("Powers of the scale", "Lengths × k → areas × k², volumes × k³. Cone : hemisphere : cylinder (same r and h = r) = 1 : 2 : 3.", "Double the radius of a ball → 8 times the volume")},
+    {id:9, track:"advanced", name:"Solid Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m1, m2, m2, m3, m4, m7, m8])(R(0, 7))};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c10-solids"] = CQ.quest({
+  key:"sv10c12_stars", missions:SOL10.MISSIONS, gen:SOL10.GEN, chapter:{std:10, part:"", ch:12},
+  desc:"Class 10 · NCERT · Chapter 12. Master surface areas and volumes of combined solids in 9 missions: formulas, visible surfaces, toys, capsules, tents, cavities and recasting.",
+  modes:{foundation:"Formulas, visible surfaces and surface areas of combinations", core:"Volumes of combinations, hollowed solids and real-life problems", advanced:"Displacement and recasting, scale sense and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · NCERT Mathematics · Ch 13 · Statistics (grouped data)
+   Chapter game "Data Detective": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Class Marks & Sizes  2 Mean: Direct  3 Mean: Shortcuts
+   Apply  : 4 Mode  5 Cumulative Frequency  6 Median
+   Master : 7 Missing Pieces  8 Choose the Measure  9 Statistics Master (timed)
+   ============================================================ */
+const STA10 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const r2 = x => Math.round(x*100)/100, TL = x => Math.max(0.011, Math.abs(x)*0.002);
+  const PAD = (u = "") => padHTML("", u, {dec:true});
+  const THEMES = [["Marks", "students"], ["Daily wages (₹)", "workers"], ["Age (years)", "patients"], ["Height (cm)", "girls"], ["Runs scored", "matches"], ["Pocket money (₹)", "children"], ["Weight (kg)", "people"], ["Monthly units used", "consumers"]];
+  // random grouped table; opts: k classes, peak inside for a clear mode
+  function table(o = {}){
+    const h = o.h || P([5, 10, 10, 20]), k = o.k || R(5, 6), lo = (o.lo !== undefined ? o.lo : R(0, 4)*h), cls = [], f = [], th = P(THEMES);
+    const peak = R(1, k - 2);
+    for (let j = 0; j < k; j++){ cls.push([lo + j*h, lo + (j + 1)*h]); f.push(Math.max(1, R(2, 9) + (j === peak ? R(8, 14) : 0) - Math.abs(j - peak)*R(0, 2))); }
+    const x = cls.map(c => (c[0] + c[1])/2), n = f.reduce((a, b) => a + b, 0);
+    return {h, k, cls, f, x, n, th, lo};
+  }
+  function show(T, cols = [], hl = -1){
+    return `<table class="tw-tbl"><tr><th>${T.th[0]}</th><th>f</th>${cols.map(c => `<th>${c[0]}</th>`).join("")}</tr>${T.cls.map((c, j) => `<tr><td${j === hl ? ' class="q"' : ""}>${c[0]} – ${c[1]}</td><td>${T.f[j] === null ? "?" : T.f[j]}</td>${cols.map(col => `<td>${col[1][j]}</td>`).join("")}</tr>`).join("")}</table>`;
+  }
+  const mean = T => T.f.reduce((s, f, j) => s + f*T.x[j], 0)/T.n;
+  function mode(T){ const m = T.f.indexOf(Math.max(...T.f)), f1 = T.f[m], f0 = T.f[m - 1] || 0, f2 = T.f[m + 1] || 0; return {m, f0, f1, f2, l:T.cls[m][0], val:T.cls[m][0] + (f1 - f0)/(2*f1 - f0 - f2)*T.h}; }
+  function median(T){ let cf = 0, j = 0; const half = T.n/2; for (; j < T.k; j++){ if (cf + T.f[j] >= half) break; cf += T.f[j]; } return {j, cf, f:T.f[j], l:T.cls[j][0], half, val:T.cls[j][0] + (half - cf)/T.f[j]*T.h}; }
+  const cum = T => { let s = 0; return T.f.map(f => s += f); };
+
+  /* ---------- Mission 1: Class Marks & Sizes ---------- */
+  function m1(i){
+    const t = i % 4, T = table();
+    if (t === 0){ const j = R(0, T.k - 1); return {html:`<p class="tw-q">What is the <b>class mark</b> of the class <b>${T.cls[j][0]} – ${T.cls[j][1]}</b>?</p>${PAD()}`,
+      mount(el, done){ bindPad(el, T.x[j], 0.001, done, `Class mark = (lower limit + upper limit)/2 = (${T.cls[j][0]} + ${T.cls[j][1]})/2 = <b>${T.x[j]}</b>. In grouped data, each class is represented by its mid-point.`, "Class mark"); }}; }
+    if (t === 1) return {html:`<p class="tw-q">What is the <b>class size</b> (width) in this table?</p>${show(T)}${PAD()}`,
+      mount(el, done){ bindPad(el, T.h, 0, done, `Class size = upper limit − lower limit = ${T.cls[0][1]} − ${T.cls[0][0]} = <b>${T.h}</b>.`, "Class size"); }};
+    if (t === 2){ const a = R(1, 6)*10, w = P([9, 4, 19]), right = `${a - 0.5} – ${a + w + 0.5}`, o = opts4(right, [`${a} – ${a + w}`, `${a - 1} – ${a + w + 1}`, `${a + 0.5} – ${a + w - 0.5}`]);
+      return {html:`<p class="tw-q">Classes are written <b>${a} – ${a + w}</b>, <b>${a + w + 1} – ${a + 2*w + 1}</b>, … To make them continuous, the first class becomes…</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `The gap between ${a + w} and ${a + w + 1} is 1, so subtract 0.5 from every lower limit and add 0.5 to every upper limit: <b>${right}</b>. Mode and median formulas need continuous classes!`, "Making classes continuous"); }}; }
+    const right = n2(T.n);
+    return {html:`<p class="tw-q">How many ${T.th[1]} are there in total (n = Σf)?</p>${show(T)}${PAD()}`,
+      mount(el, done){ bindPad(el, T.n, 0, done, `Σf = ${T.f.join(" + ")} = <b>${T.n}</b>.`, "Total frequency"); }};
+  }
+
+  /* ---------- Mission 2: Mean — Direct Method ---------- */
+  function m2(i){
+    const T = table({k:R(4, 5)}), M = mean(T), fx = T.f.map((f, j) => f*T.x[j]), S = fx.reduce((a, b) => a + b, 0);
+    if (i % 3 === 0) return {html:`<p class="tw-q">Complete the f·x column and find <b>Σfᵢxᵢ</b>.</p>${show(T, [["x", T.x], ["f·x", fx.map((v, j) => j === 0 ? "?" : v)]])}${PAD()}`,
+      mount(el, done){ bindPad(el, S, 0.001, done, `${fx.map((v, j) => `${T.f[j]}×${T.x[j]}`).join(" + ")} = ${fx.join(" + ")} = <b>${S}</b>.`, "Direct method"); }};
+    return {html:`<p class="tw-q">Find the <b>mean</b> ${T.th[0].toLowerCase()} (direct method, 2 decimals).</p>${show(T, i % 3 === 1 ? [["x", T.x]] : [])}${PAD()}`,
+      mount(el, done){ bindPad(el, r2(M), TL(M), done, `Class marks x = ${T.x.join(", ")}. Σfx = ${S}, Σf = ${T.n}. Mean = Σfx/Σf = ${S}/${T.n} = <b>${n2(M)}</b>.`, "Direct method"); }};
+  }
+
+  /* ---------- Mission 3: Mean — Assumed Mean & Step Deviation ---------- */
+  function m3(i){
+    const T = table({k:5, h:P([10, 20])}), a = T.x[2], d = T.x.map(x => x - a), u = d.map(v => v/T.h), M = mean(T), t = i % 3;
+    const Sfu = T.f.reduce((s, f, j) => s + f*u[j], 0), Sfd = Sfu*T.h;
+    if (t === 0) return {html:`<p class="tw-q">Assumed mean a = <b>${a}</b>, h = ${T.h}. Find <b>Σfᵢuᵢ</b>, where uᵢ = (xᵢ − a)/h.</p>${show(T, [["x", T.x], ["u", u]])}${padHTML("", "", {neg:true, dec:false})}`,
+      mount(el, done){ bindPad(el, Sfu, 0, done, `Σfu = ${T.f.map((f, j) => `${f}×(${u[j]})`).join(" + ")} = <b>${Sfu}</b>.`, "Step-deviation method"); }};
+    if (t === 1) return {html:`<p class="tw-q">Using the step-deviation method with a = <b>${a}</b>, h = ${T.h}, Σfu = <b>${Sfu}</b>, Σf = <b>${T.n}</b>. Find the mean (2 decimals).</p>${PAD()}`,
+      mount(el, done){ bindPad(el, r2(M), TL(M), done, `x̄ = a + h × Σfu/Σf = ${a} + ${T.h} × ${Sfu}/${T.n} = <b>${n2(M)}</b>.`, "Step-deviation method"); }};
+    const o = opts4(n2(M), [n2(a + Sfd/T.n/T.h), n2(a + Sfu/T.n), n2(a - Sfd/T.n), n2(Sfd/T.n), n2(a + T.h/2), n2(a - T.h/2), n2(a + 1.5)]);
+    return {html:`<p class="tw-q">With assumed mean a = <b>${a}</b>, the deviations dᵢ = xᵢ − a give <b>Σfᵢdᵢ = ${Sfd}</b> and Σf = <b>${T.n}</b>. The mean is…</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(n2(M)), done, `x̄ = a + Σfd/Σf = ${a} + ${Sfd}/${T.n} = <b>${n2(M)}</b>. All three methods give the same mean; shortcuts just make the numbers smaller.`, "Assumed mean method"); }};
+  }
+
+  /* ---------- Mission 4: Mode ---------- */
+  function m4(i){
+    let T; do { T = table(); } while (T.f.filter(f => f === Math.max(...T.f)).length > 1 || mode(T).m === 0 || mode(T).m === T.k - 1);
+    const Mo = mode(T), t = i % 3;
+    if (t === 0){ const o = SH(T.cls.map(c => `${c[0]} – ${c[1]}`)).slice(0, 4), right = `${T.cls[Mo.m][0]} – ${T.cls[Mo.m][1]}`; if (!o.includes(right)) o[0] = right; SH(o);
+      return {html:`<p class="tw-q">Which is the <b>modal class</b>?</p>${show(T)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `The modal class has the <b>highest frequency</b> (${Mo.f1}): <b>${right}</b>. Not the class with the biggest numbers!`, "Modal class"); }}; }
+    return {html:`<p class="tw-q">Find the <b>mode</b> (2 decimals).</p>${show(T, [], Mo.m)}${t === 1 ? `<p class="tw-mini">Mode = l + (f₁ − f₀)/(2f₁ − f₀ − f₂) × h</p>` : ""}${PAD()}`,
+      mount(el, done){ bindPad(el, r2(Mo.val), TL(Mo.val), done, `Modal class ${T.cls[Mo.m][0]}–${T.cls[Mo.m][1]}: l = ${Mo.l}, f₁ = ${Mo.f1}, f₀ = ${Mo.f0}, f₂ = ${Mo.f2}, h = ${T.h}. Mode = ${Mo.l} + (${Mo.f1} − ${Mo.f0})/(${2*Mo.f1} − ${Mo.f0} − ${Mo.f2}) × ${T.h} = <b>${n2(Mo.val)}</b>.`, "Mode of grouped data"); }};
+  }
+
+  /* ---------- Mission 5: Cumulative Frequency ---------- */
+  function m5(i){
+    const T = table(), C = cum(T), Me = median(T), t = i % 3;
+    if (t === 0){ const j = R(1, T.k - 1); return {html:`<p class="tw-q">Find the <b>cumulative frequency</b> of the class <b>${T.cls[j][0]} – ${T.cls[j][1]}</b>.</p>${show(T, [["cf", C.map((c, k) => k < j ? c : k === j ? "?" : "")]])}${PAD()}`,
+      mount(el, done){ bindPad(el, C[j], 0, done, `cf = sum of all frequencies up to and including this class: ${T.f.slice(0, j + 1).join(" + ")} = <b>${C[j]}</b>.`, "Cumulative frequency"); }}; }
+    const right = `${T.cls[Me.j][0]} – ${T.cls[Me.j][1]}`, o = opts4(right, T.cls.map(c => `${c[0]} – ${c[1]}`));
+    return {html:`<p class="tw-q">n = ${T.n}. Which is the <b>median class</b>?</p>${show(T, [["cf", C]])}${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `n/2 = ${n2(T.n/2)}. The median class is the first class whose cf is ≥ n/2: cf reaches ${C[Me.j]} there. Median class = <b>${right}</b>.`, "Median class"); }};
+  }
+
+  /* ---------- Mission 6: Median ---------- */
+  function m6(i){
+    const T = table(), C = cum(T), Me = median(T);
+    return {html:`<p class="tw-q">Find the <b>median</b> (2 decimals).</p>${show(T, i % 2 ? [] : [["cf", C]], Me.j)}${i % 2 ? `<p class="tw-mini">Median = l + (n/2 − cf)/f × h</p>` : ""}${PAD()}`,
+      mount(el, done){ bindPad(el, r2(Me.val), TL(Me.val), done, `n = ${T.n}, n/2 = ${n2(Me.half)}. Median class ${T.cls[Me.j][0]}–${T.cls[Me.j][1]}: l = ${Me.l}, cf (before it) = ${Me.cf}, f = ${Me.f}, h = ${T.h}. Median = ${Me.l} + (${n2(Me.half)} − ${Me.cf})/${Me.f} × ${T.h} = <b>${n2(Me.val)}</b>. (cf is of the class <b>before</b> the median class!)`, "Median of grouped data"); }};
+  }
+
+  /* ---------- Mission 7: Missing Pieces ---------- */
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ // missing frequency from the mean (clean mean)
+      let T, j, M, tries = 0; do { T = table({k:5}); j = R(1, 3); M = mean(T); tries++; } while ((Math.round(M*100) !== M*100 || T.x[j] === M) && tries < 400);
+      if (Math.round(M*100) !== M*100) return m7(i + 3);
+      const fj = T.f[j], S = {...T, f:T.f.map((f, k) => k === j ? null : f)};
+      return {html:`<p class="tw-q">The mean of this distribution is <b>${n2(M)}</b>. Find the missing frequency.</p>${show(S)}${padHTML("f =", "", {dec:false})}`,
+        mount(el, done){ const sfx = T.f.reduce((s, f, k) => k === j ? s : s + f*T.x[k], 0), sf = T.n - fj;
+          bindPad(el, fj, 0, done, `Σfx = ${sfx} + ${T.x[j]}f and Σf = ${sf} + f. (${sfx} + ${T.x[j]}f)/(${sf} + f) = ${n2(M)} → f = (${n2(M)} × ${sf} − ${sfx})/(${T.x[j]} − ${n2(M)}) = <b>${fj}</b>.`, "Missing frequency"); }}; }
+    if (t === 1){ const mo = R(20, 60), me = mo + P([2, 3, 4, 6]), mn = (3*me - mo)/2, ask = P(["mean", "mode", "median"]);
+      const known = {mean:[`median = ${me}`, `mode = ${mo}`], mode:[`median = ${me}`, `mean = ${n2(mn)}`], median:[`mode = ${mo}`, `mean = ${n2(mn)}`]}[ask], ans = {mean:mn, mode:mo, median:me}[ask];
+      return {html:`<p class="tw-q">For a moderately skewed distribution, ${known.join(" and ")}. Find the <b>${ask}</b>.</p>${PAD()}`,
+        mount(el, done){ bindPad(el, ans, 0.001, done, `Empirical relation: <b>3 Median = Mode + 2 Mean</b>. 3 × ${me} = ${mo} + 2 × ${n2(mn)} ✓ → ${ask} = <b>${n2(ans)}</b>.`, "Empirical relation"); }}; }
+    const T = table(), Me = median(T), C = cum(T), right = n2(Me.cf);
+    const o = opts4(right, [n2(C[Me.j]), n2(Me.f), n2(Me.cf + 1), n2(Math.round(T.n/2))]);
+    return {html:`<p class="tw-q">In the median formula l + (n/2 − cf)/f × h for this table, what is <b>cf</b>?</p>${show(T, [["cf", C]])}${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `cf is the cumulative frequency of the class <b>preceding</b> the median class (${T.cls[Me.j][0]}–${T.cls[Me.j][1]}): <b>${right}</b>. Using the median class’s own cf (${C[Me.j]}) is a very common mistake.`, "Reading the median formula"); }};
+  }
+
+  /* ---------- Mission 8: Choose the Measure ---------- */
+  const CHO = [
+    ["A shoe shop wants to know which size to stock the most.", "Mode", "The most frequent value (size) is the mode."],
+    ["Average marks of a class, using every student’s score.", "Mean", "The mean uses every value in the data."],
+    ["House prices where a few mansions are extremely expensive.", "Median", "The median is not pulled up by a few extreme values."],
+    ["The ‘middle’ salary in a company with a very high CEO salary.", "Median", "Extreme values distort the mean; the median stays central."],
+    ["The most popular TV programme in a survey.", "Mode", "Choosing the most common answer → mode."],
+    ["Average rainfall over a month to compare with last year.", "Mean", "Every day’s rainfall counts → mean."],
+    ["The commonest blood group among donors.", "Mode", "Categories: only the mode makes sense."]
+  ];
+  function m8(i){
+    if (i % 3 === 2){ const T = table(), M = mean(T), Me = median(T), Mo = mode(T), o = ["Mean", "Median", "Mode"], vals = [M, Me.val, Mo.val], big = vals.indexOf(Math.max(...vals));
+      return {html:`<p class="tw-q">For this data: mean = ${n2(M)}, median = ${n2(Me.val)}, mode = ${n2(Mo.val)}. Which is the <b>largest</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, big, done, `Just compare: <b>${o[big]}</b> (${n2(vals[big])}). The three measures differ because they summarise the data in different ways.`, "Comparing measures"); }}; }
+    const [s, r, why] = P(CHO), o = ["Mean", "Median", "Mode"];
+    return {html:`<p class="tw-q">Which measure of central tendency is most suitable?</p><div class="tw-ex" style="font-size:16px">${s}</div>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(r), done, `<b>${r}</b>. ${why}`, "Choosing a measure"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Class Marks & Sizes", goal:"Read grouped tables: class marks, widths, totals.", n:8,
+      learn:L("Mid-points stand in for classes", "Class mark = (lower + upper)/2. Class size h = upper − lower. For inclusive classes like 10–19, 20–29, subtract/add 0.5 to make them continuous.", "Class 20–30: mark 25, size 10")},
+    {id:2, track:"foundation", name:"Mean: Direct", goal:"x̄ = Σfx / Σf.", n:8,
+      learn:L("Direct method", "Multiply each class mark by its frequency, add them up, divide by the total frequency.", "Marks 10, 20, 30 with f 2, 5, 3: (20 + 100 + 90)/10 = <b>21</b>")},
+    {id:3, track:"foundation", name:"Mean: Shortcuts", goal:"Assumed mean and step deviation.", n:8,
+      learn:L("Smaller numbers, same answer", "Assumed mean: x̄ = a + Σfd/Σf with d = x − a. Step deviation: u = (x − a)/h and x̄ = a + h × Σfu/Σf.", "a = 50, h = 10, Σfu = −6, Σf = 30 → x̄ = 50 − 2 = <b>48</b>")},
+    {id:4, track:"core", name:"Mode", goal:"Modal class and the mode formula.", n:8,
+      learn:L("Mode = l + (f₁ − f₀)/(2f₁ − f₀ − f₂) × h", "Modal class = the class with the highest frequency f₁; f₀ is the class before, f₂ the class after, l the lower limit.", "l = 40, f₁ = 7, f₀ = 3, f₂ = 6, h = 10 → 40 + 4/5 × 10 = <b>48</b>")},
+    {id:5, track:"core", name:"Cumulative Frequency", goal:"Running totals and the median class.", n:8,
+      learn:L("Keep adding", "The cumulative frequency (cf) of a class = sum of frequencies up to that class. The median class is the first one whose cf ≥ n/2.", "f: 5, 8, 12 → cf: 5, 13, 25")},
+    {id:6, track:"core", name:"Median", goal:"Median = l + (n/2 − cf)/f × h.", n:8,
+      learn:L("The median formula", "l = lower limit of the median class, cf = cf of the class <b>before</b> it, f = its frequency, h = class size.", "n = 60, class 30–40, cf before = 22, f = 15 → 30 + 8/15 × 10 = <b>35.33</b>")},
+    {id:7, track:"advanced", name:"Missing Pieces", goal:"Missing frequencies, empirical relation, formula traps.", n:8,
+      learn:L("Work backwards", "Put the unknown frequency f into Σfx/Σf = mean and solve. For skewed data: <b>3 Median = Mode + 2 Mean</b>.", "Median 30, mode 24 → mean = (90 − 24)/2 = 33")},
+    {id:8, track:"advanced", name:"Choose the Measure", goal:"Mean, median or mode: which fits the question?", n:7,
+      learn:L("Right tool for the job", "Mode: most common (sizes, choices). Median: middle value, robust to extremes (incomes, prices). Mean: uses all values (averages).", "Most-sold shoe size → mode")},
+    {id:9, track:"advanced", name:"Statistics Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m1, m4, m5, m5, m7, m8, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c10-statistics"] = CQ.quest({
+  key:"st10c13_stars", missions:STA10.MISSIONS, gen:STA10.GEN, chapter:{std:10, part:"", ch:13},
+  desc:"Class 10 · NCERT · Chapter 13. Master statistics for grouped data in 9 missions: class marks, mean by three methods, mode, cumulative frequency, median and the empirical relation.",
+  modes:{foundation:"Class marks, the direct mean and the shortcut methods", core:"Mode, cumulative frequency and the median", advanced:"Missing frequencies, the empirical relation and choosing a measure"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 10 · NCERT Mathematics · Ch 14 · Probability
+   Chapter game "Chance Lab": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Probability Basics  2 Bags & Boxes  3 One Die
+   Apply  : 4 Deck of Cards  5 Coins  6 Two Dice
+   Master : 7 Fair or Not?  8 Chance Puzzles  9 Probability Master (timed)
+   ============================================================ */
+const PRB10 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, fr, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const gcd = (a, b) => b ? gcd(b, a % b) : a;
+  // probability as simplified fraction string (HTML) and a plain key for comparing
+  const F = (n, d) => { if (n === 0) return "0"; if (n === d) return "1"; const g = gcd(n, d); return fr(n/g, d/g); };
+  const K = (n, d) => { if (n === 0) return "0"; const g = gcd(n, d); return `${n/g}/${d/g}`; };
+  // options: right n/d plus distractor pairs; returns {o: html[], idx}
+  function fopts(n, d, wrongs){
+    const keys = [K(n, d)], out = [F(n, d)];
+    for (const [a, b] of SH(wrongs.slice())){ if (b <= 0 || a < 0 || a > b) continue; const k = K(a, b); if (!keys.includes(k)){ keys.push(k); out.push(F(a, b)); } if (out.length === 4) break; }
+    const idx = SH(out.map((_, i) => i)); return {o:idx.map(i => out[i]), idx:idx.indexOf(0)};
+  }
+  const die = v => { const pts = {1:[[2, 2]], 2:[[1, 1], [3, 3]], 3:[[1, 1], [2, 2], [3, 3]], 4:[[1, 1], [3, 1], [1, 3], [3, 3]], 5:[[1, 1], [3, 1], [2, 2], [1, 3], [3, 3]], 6:[[1, 1], [3, 1], [1, 2], [3, 2], [1, 3], [3, 3]]}[v];
+    return `<svg viewBox="0 0 40 40" style="width:34px;height:34px"><rect x="2" y="2" width="36" height="36" rx="7" fill="#e8ecff"/>${pts.map(([x, y]) => `<circle cx="${x*10}" cy="${y*10}" r="3.4" fill="#0b1630"/>`).join("")}</svg>`; };
+
+  /* ---------- Mission 1: Probability Basics ---------- */
+  function m1(i){
+    const t = i % 4;
+    if (t === 0){ const pe = P([0.05, 0.2, 0.35, 0.72, 0.9, 0.125]), ans = +(1 - pe).toFixed(3);
+      return {html:`<p class="tw-q">If P(E) = <b>${pe}</b>, what is P(not E)?</p>${padHTML("", "", {dec:true})}`,
+        mount(el, done){ bindPad(el, ans, 0.0001, done, `P(E) + P(not E) = 1 → P(not E) = 1 − ${pe} = <b>${ans}</b>. E and ‘not E’ are complementary events.`, "Complementary events"); }}; }
+    if (t === 1){ const cand = SH([["2/3", true], ["−1.5", false], ["15%", true], ["0.7", true], ["1.2", false], ["0", true], ["5/4", false], ["1", true], ["−0.1", false], ["110%", false]]).slice(0, 4);
+      const cor = cand.map((c, k) => c[1] ? -1 : k).filter(k => k >= 0); if (!cor.length) return m1(i);
+      return {html:`<p class="tw-q">Select <b>all</b> numbers that <b>cannot</b> be the probability of an event.</p>${multiHTML(cand.map(c => c[0]))}`,
+        mount(el, done){ bindMulti(el, cor, done, `A probability always satisfies <b>0 ≤ P(E) ≤ 1</b> (0% to 100%). Negative values or values above 1 are impossible.`, "Range of probability"); }}; }
+    if (t === 2){ const it = P([["A bag has only lemon candies. P(orange candy)?", "0", "Impossible event: probability 0."], ["A bag has only lemon candies. P(lemon candy)?", "1", "Sure (certain) event: probability 1."], ["P(getting 7 on an ordinary die)?", "0", "No face shows 7 → impossible → 0."], ["P(a number less than 7 on a die)?", "1", "Every face is less than 7 → certain → 1."], ["Sum of probabilities of all elementary events of an experiment?", "1", "The elementary events cover every outcome, so their probabilities add to 1."]]);
+      const o = SH(["0", "1", "½", "Cannot say"]); return {html:`<p class="tw-q">${it[0]}</p>${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(it[1]), done, `<b>${it[1]}</b>. ${it[2]}`, "Sure and impossible events"); }}; }
+    const p = P([0.992, 0.88, 0.95]), ans = +(1 - p).toFixed(3);
+    return {html:`<p class="tw-q">The probability that 2 students do <b>not</b> share a birthday is <b>${p}</b>. Probability that they <b>do</b>?</p>${padHTML("", "", {dec:true})}`,
+      mount(el, done){ bindPad(el, ans, 0.0001, done, `‘Same birthday’ is the complement: 1 − ${p} = <b>${ans}</b>.`, "Complementary events"); }};
+  }
+
+  /* ---------- Mission 2: Bags & Boxes ---------- */
+  function m2(i){
+    const c = [["red", R(2, 9)], ["white", R(2, 9)], ["green", R(2, 9)]], N = c[0][1] + c[1][1] + c[2][1], t = i % 3, j = R(0, 2);
+    const bag = `<div style="display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-width:300px;margin:6px auto">${c.flatMap(([col, n]) => Array(n).fill(`<span style="width:16px;height:16px;border-radius:50%;background:${{red:"#ff5b6e", white:"#e8ecff", green:"#3ccf7a"}[col]}"></span>`)).join("")}</div>`;
+    if (t === 0){ const {o, idx} = fopts(c[j][1], N, [[c[j][1], N - c[j][1]], [1, c[j][1]], [N - c[j][1], N], [c[j][1], N - 1], [1, 3]]);
+      return {html:`<p class="tw-q">A box has ${c.map(x => `<b>${x[1]} ${x[0]}</b>`).join(", ")} marbles. One is taken at random. P(<b>${c[j][0]}</b>)?</p>${bag}${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, idx, done, `Favourable = ${c[j][1]}, total = ${N}. P = ${fr(c[j][1], N)} = <b>${F(c[j][1], N)}</b>. (Not ${c[j][1]}/${N - c[j][1]}: divide by the <b>total</b>, not the others.)`, "Classical probability"); }}; }
+    if (t === 1){ const {o, idx} = fopts(N - c[j][1], N, [[c[j][1], N], [1, 3], [2, 3], [N - c[j][1], c[j][1]], [N - c[j][1] - 1, N], [c[j][1] + 1, N], [N - c[j][1], N + 1]]);
+      return {html:`<p class="tw-q">Same idea: ${c.map(x => `${x[1]} ${x[0]}`).join(", ")} marbles. P(<b>not ${c[j][0]}</b>)?</p>${bag}${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, idx, done, `P(not ${c[j][0]}) = 1 − ${fr(c[j][1], N)} = ${fr(N - c[j][1], N)} = <b>${F(N - c[j][1], N)}</b>.`, "Complementary events"); }}; }
+    const g = R(100, 160), d = P([12, 16, 20, 24]), T = g + d, {o, idx} = fopts(g, T, [[d, T], [g, d], [g - 1, T], [1, 2]]);
+    return {html:`<p class="tw-q">${d} defective pens are mixed with ${g} good ones. One pen is taken at random. P(good)?</p>${choice(o, "two tr")}`,
+      mount(el, done){ bindChoice(el, idx, done, `Total = ${T}. P(good) = ${fr(g, T)} = <b>${F(g, T)}</b>.`, "Classical probability"); }};
+  }
+
+  /* ---------- Mission 3: One Die ---------- */
+  const DIE = [["a prime number", [2, 3, 5]], ["an odd number", [1, 3, 5]], ["a number between 2 and 6", [3, 4, 5]], ["a number greater than 4", [5, 6]], ["a multiple of 3", [3, 6]], ["an even number", [2, 4, 6]], ["a number less than 3", [1, 2]], ["a factor of 6", [1, 2, 3, 6]], ["a perfect square", [1, 4]], ["a number greater than 6", []]];
+  function m3(i){
+    const [nm, fav] = P(DIE), {o, idx} = fopts(fav.length, 6, [[fav.length, 5], [fav.length + 1, 6], [6 - fav.length, 6], [1, fav.length || 2], [fav.length, 12]]);
+    return {html:`<p class="tw-q">A die is thrown once. P(<b>${nm}</b>)?</p><div style="text-align:center">${[1, 2, 3, 4, 5, 6].map(die).join(" ")}</div>${choice(o, "two tr")}`,
+      mount(el, done){ bindChoice(el, idx, done, `Outcomes: 1–6 (6 equally likely). Favourable: ${fav.length ? fav.join(", ") : "none"} → ${fav.length}/6 = <b>${F(fav.length, 6)}</b>.${nm.includes("between") ? " ‘Between 2 and 6’ excludes 2 and 6." : ""}${nm.includes("prime") ? " Remember: 1 is not prime." : ""}`, "One die"); }};
+  }
+
+  /* ---------- Mission 4: Deck of Cards ---------- */
+  const CARDS = [["a king of red colour", 2, "2 red kings (♥, ♦)"], ["a face card", 12, "J, Q, K in 4 suits = 12"], ["a red face card", 6, "J, Q, K of ♥ and ♦ = 6"], ["the jack of hearts", 1, "only one"], ["a spade", 13, "13 spades"], ["the queen of diamonds", 1, "only one"], ["an ace", 4, "4 aces"], ["a black card", 26, "26 black cards (♠, ♣)"], ["a card that is not a face card", 40, "52 − 12 = 40"], ["a red ace", 2, "A♥ and A♦"], ["a king or a queen", 8, "4 + 4 = 8"], ["a heart or a spade", 26, "13 + 13 = 26"]];
+  function m4(i){
+    if (i % 4 === 3){ const right = "12", o = SH(["12", "16", "13", "4"]);
+      return {html:`<p class="tw-q">How many <b>face cards</b> are in a standard deck of 52?</p>${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Face cards are jacks, queens and kings: 3 per suit × 4 suits = <b>12</b>. Aces are not face cards.`, "The deck of 52"); }}; }
+    const [nm, n, why] = P(CARDS), {o, idx} = fopts(n, 52, [[n, 13], [n + 4, 52], [n, 26], [n - 1 > 0 ? n - 1 : 3, 52], [4, 52]]);
+    return {html:`<p class="tw-q">One card is drawn from a well-shuffled deck of 52. P(<b>${nm}</b>)?</p>${choice(o, "two tr")}`,
+      mount(el, done){ bindChoice(el, idx, done, `Favourable: ${why}. P = ${n}/52 = <b>${F(n, 52)}</b>. Deck: 4 suits × 13 cards; ♥ ♦ red, ♠ ♣ black.`, "Playing cards"); }};
+  }
+
+  /* ---------- Mission 5: Coins ---------- */
+  function m5(i){
+    const t = i % 3;
+    if (t === 0){ const ev = P([["two heads", 1], ["at least one head", 3], ["exactly one head", 2], ["no head", 1], ["at most one head", 3]]), {o, idx} = fopts(ev[1], 4, [[ev[1], 3], [1, 3], [ev[1] + 1, 4], [1, 2]]);
+      return {html:`<p class="tw-q">Two coins are tossed together. P(<b>${ev[0]}</b>)?</p>${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, idx, done, `Outcomes: HH, HT, TH, TT (4, not 3: HT and TH are different!). Favourable for “${ev[0]}”: ${ev[1]} → <b>${F(ev[1], 4)}</b>.`, "Two coins"); }}; }
+    if (t === 1){ const {o, idx} = fopts(6, 8, [[2, 8], [1, 8], [1, 2], [3, 8]]);
+      return {html:`<p class="tw-q">Hanif tosses a coin 3 times. He wins if all three results are the same (HHH or TTT). P(Hanif <b>loses</b>)?</p>${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, idx, done, `There are 2³ = 8 outcomes. Winning: HHH, TTT (2). Losing: 8 − 2 = 6 → 6/8 = <b>¾</b>.`, "Three coins"); }}; }
+    const n = P([2, 3]), ev = n === 2 ? ["at least one tail", 3, 4] : P([["exactly two heads", 3, 8], ["at least one head", 7, 8], ["no tails", 1, 8]]), {o, idx} = fopts(ev[1], ev[2], [[ev[1], ev[2] - 1], [1, 2], [ev[1] - 1 || 2, ev[2]], [1, ev[2]]]);
+    return {html:`<p class="tw-q">${n} coins are tossed. P(<b>${ev[0]}</b>)?</p>${choice(o, "two tr")}`,
+      mount(el, done){ bindChoice(el, idx, done, `${n} coins → 2^${n} = ${2**n} equally likely outcomes. Favourable = ${ev[1]} → <b>${F(ev[1], ev[2])}</b>.`, "Several coins"); }};
+  }
+
+  /* ---------- Mission 6: Two Dice ---------- */
+  function m6(i){
+    const t = i % 4, all = []; for (let a = 1; a <= 6; a++) for (let b = 1; b <= 6; b++) all.push([a, b]);
+    const evs = [["sum 8", ([a, b]) => a + b === 8], ["sum 7", ([a, b]) => a + b === 7], ["a doublet (same number)", ([a, b]) => a === b], ["sum 13", ([a, b]) => a + b === 13], ["sum at most 3", ([a, b]) => a + b <= 3], ["5 not coming up either time", ([a, b]) => a !== 5 && b !== 5], ["5 at least once", ([a, b]) => a === 5 || b === 5], ["a product of 6", ([a, b]) => a*b === 6], ["sum greater than 10", ([a, b]) => a + b > 10], ["sum 2", ([a, b]) => a + b === 2]];
+    const [nm, f] = P(evs), n = all.filter(f).length;
+    if (t === 3){ const s = R(2, 12), cnt = 6 - Math.abs(7 - s);
+      return {html:`<p class="tw-q">Two dice are thrown. In how many of the 36 outcomes is the <b>sum ${s}</b>?</p>${padHTML("", "outcomes", {dec:false})}`,
+        mount(el, done){ bindPad(el, cnt, 0, done, `${all.filter(([a, b]) => a + b === s).map(([a, b]) => `(${a},${b})`).join(" ")} → <b>${cnt}</b>. Sums near 7 have the most ways; 2 and 12 have only one.`, "Two dice"); }}; }
+    const {o, idx} = fopts(n, 36, [[n, 11], [n, 12], [n + 1, 36], [n, 6], [Math.max(1, n - 1), 36], [1, 36], [1, 12], [n + 2, 36]]);
+    return {html:`<p class="tw-q">Two dice are thrown at the same time. P(<b>${nm}</b>)?</p>${choice(o, "two tr")}`,
+      mount(el, done){ bindChoice(el, idx, done, `6 × 6 = 36 equally likely ordered pairs. Favourable: ${n ? all.filter(f).map(([a, b]) => `(${a},${b})`).join(" ") : "none"} → ${n}/36 = <b>${F(n, 36)}</b>.`, "Two dice"); }};
+  }
+
+  /* ---------- Mission 7: Fair or Not? ---------- */
+  const EQ = [
+    ["A driver tries to start a car: it starts or it does not.", false, "Not equally likely: it depends on the car’s condition."],
+    ["A player shoots a basketball: scores or misses.", false, "Depends on skill, not equally likely."],
+    ["A guess at a true/false question: right or wrong.", true, "Equally likely when the answer is a pure guess."],
+    ["A fair coin lands heads or tails.", true, "A fair coin has two equally likely outcomes, which is why a toss is a fair way to decide."],
+    ["Tomorrow it rains or it does not.", false, "Weather outcomes are not equally likely in general."],
+    ["A fair die shows an even or an odd number.", true, "3 even and 3 odd faces → equally likely."]
+  ];
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ const [s, tv, why] = P(EQ); return {html:`<p class="tw-q">Are the outcomes <b>equally likely</b>?</p><div class="tw-ex" style="font-size:16px">${s}</div>${choice(["Yes", "No"], "two")}`,
+      mount(el, done){ bindChoice(el, tv ? 0 : 1, done, `<b>${tv ? "Yes" : "No"}</b>. ${why} The formula P = favourable/total only works for equally likely outcomes.`, "Equally likely outcomes"); }}; }
+    if (t === 1){ const o = SH(["No: sums are not equally likely (7 has 6 ways, 2 has 1 way)", "Yes: there are 11 possible sums", "Yes: each sum is equally likely", "No: there are 12 possible sums"]);
+      return {html:`<p class="tw-q">A student says: “Two dice give sums 2 to 12, that’s 11 outcomes, so each has probability 1/11.” Is this right?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.findIndex(x => x.startsWith("No: sums")), done, `The 11 sums are <b>not equally likely</b>. P(sum 7) = 6/36 but P(sum 2) = 1/36. Count the 36 equally likely ordered pairs instead.`, "Equally likely outcomes"); }}; }
+    const o = SH(["½ each time", "Less than ½ for heads", "More than ½ for heads", "It depends on the last toss"]);
+    return {html:`<p class="tw-q">A fair coin showed tails 5 times in a row. Probability of heads on the next toss?</p>${choice(o, "two tr")}`,
+      mount(el, done){ bindChoice(el, o.indexOf("½ each time"), done, `Coins have no memory: each toss is independent, so P(head) is still <b>½</b>. Thinking “heads is due” is the gambler’s fallacy.`, "Independent trials"); }};
+  }
+
+  /* ---------- Mission 8: Chance Puzzles ---------- */
+  function m8(i){
+    const t = i % 4;
+    if (t === 0){ const N = P([90, 100, 50, 60]), ev = P([["a two-digit number", n => n >= 10 && n <= 99], ["a perfect square", n => Number.isInteger(Math.sqrt(n))], ["a number divisible by 5", n => n % 5 === 0], ["a multiple of 7", n => n % 7 === 0]]);
+      const c = Array.from({length: N}, (_, k) => k + 1).filter(ev[1]).length, {o, idx} = fopts(c, N, [[c + 1, N], [c - 1, N], [c, N - 1], [1, 10]]);
+      return {html:`<p class="tw-q">A box has discs numbered <b>1 to ${N}</b>. One is drawn at random. P(<b>${ev[0]}</b>)?</p>${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, idx, done, `Count the favourable numbers from 1 to ${N}: <b>${c}</b>. P = ${c}/${N} = <b>${F(c, N)}</b>.`, "Numbered discs"); }}; }
+    if (t === 1){ const tot = 20, d = 4, {o, idx} = fopts(15, 19, [[16, 20], [15, 20], [4, 19], [16, 19]]);
+      return {html:`<p class="tw-q">A lot of 20 bulbs has 4 defective ones. One bulb is drawn and it is <b>not defective</b>; it is <b>not replaced</b>. P(the next bulb is not defective)?</p>${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, idx, done, `After removing one good bulb: 19 bulbs remain, 15 good. P = <b>15/19</b>. Without replacement, the total and the favourable count both change.`, "Without replacement"); }}; }
+    if (t === 2){ const {o, idx} = fopts(1, 4, [[1, 5], [2, 5], [1, 3], [3, 4]]);
+      return {html:`<p class="tw-q">Five cards (10, J, Q, K, A of diamonds) are shuffled face down. The <b>queen</b> is drawn and put aside. P(the next card is an <b>ace</b>)?</p>${choice(o, "two tr")}`,
+        mount(el, done){ bindChoice(el, idx, done, `4 cards remain, one is the ace → <b>¼</b>. (And P(queen) now is 0: it was set aside.)`, "Without replacement"); }}; }
+    const L = 3, Wd = 2, r = 0.5, p = Math.PI*r*r/(L*Wd), o = SH(["π/24", "π/6", "1/6", "π/12"]);
+    return {html:`<p class="tw-q">A die is dropped at random on a <b>3 m × 2 m</b> rectangle containing a circle of diameter <b>1 m</b>. P(it lands inside the circle)?</p>${choice(o, "two tr")}`,
+      mount(el, done){ bindChoice(el, o.indexOf("π/24"), done, `Geometric probability = area of circle ÷ area of rectangle = π(½)² ÷ 6 = (π/4)/6 = <b>π/24</b> ≈ ${p.toFixed(3)}.`, "Geometric probability"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Probability Basics", goal:"0 ≤ P(E) ≤ 1, sure and impossible events, complements.", n:8,
+      learn:L("The rules", "P(E) = favourable outcomes ÷ total outcomes (equally likely). Impossible event: 0. Sure event: 1. P(E) + P(not E) = 1.", "P(E) = 0.05 → P(not E) = 0.95")},
+    {id:2, track:"foundation", name:"Bags & Boxes", goal:"Marbles, balls and pens.", n:8,
+      learn:L("Divide by the total", "Count what you want, count everything, divide. ‘Not red’ = 1 − P(red).", "3 red, 5 black: P(red) = 3/8, P(not red) = 5/8")},
+    {id:3, track:"foundation", name:"One Die", goal:"Primes, odds, ‘between’ and more.", n:8,
+      learn:L("Six equally likely faces", "List the faces that fit, then divide by 6. 1 is not prime; ‘between 2 and 6’ means 3, 4, 5.", "P(prime) = 3/6 = ½ (2, 3, 5)")},
+    {id:4, track:"core", name:"Deck of Cards", goal:"Suits, colours and face cards.", n:8,
+      learn:L("Know the deck", "52 cards: 4 suits (♠ ♣ black, ♥ ♦ red) × 13 (A, 2–10, J, Q, K). Face cards: J, Q, K → 12.", "P(red face card) = 6/52 = 3/26")},
+    {id:5, track:"core", name:"Coins", goal:"Two and three coins: list every outcome.", n:8,
+      learn:L("2ⁿ outcomes", "Two coins: HH, HT, TH, TT (HT ≠ TH). Three coins: 8 outcomes.", "P(at least one head with 2 coins) = 3/4")},
+    {id:6, track:"core", name:"Two Dice", goal:"36 ordered pairs.", n:8,
+      learn:L("Use the 6 × 6 grid", "Throwing a die twice = throwing two dice: 36 equally likely pairs. Count the pairs that fit.", "Sum 8: (2,6)(3,5)(4,4)(5,3)(6,2) → 5/36")},
+    {id:7, track:"advanced", name:"Fair or Not?", goal:"Equally likely outcomes and common fallacies.", n:7,
+      learn:L("Only for equally likely outcomes", "favourable/total works only when every outcome is equally likely. Past results don’t change a fair coin.", "11 possible sums of two dice are NOT equally likely")},
+    {id:8, track:"advanced", name:"Chance Puzzles", goal:"Numbered discs, no replacement, geometric probability.", n:8,
+      learn:L("Update after each draw", "Without replacement, both the total and the favourable count change. For regions, probability = favourable area ÷ total area.", "20 bulbs, 4 bad; one good removed → P(good) = 15/19")},
+    {id:9, track:"advanced", name:"Probability Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m3, m3, m4, m5, m6, m8])(R(0, 5))};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c10-probability"] = CQ.quest({
+  key:"pb10c14_stars", missions:PRB10.MISSIONS, gen:PRB10.GEN, chapter:{std:10, part:"", ch:14},
+  desc:"Class 10 · NCERT · Chapter 14. Master probability in 9 missions: basic rules, bags, dice, cards, coins, two dice, equally likely outcomes and chance puzzles.",
+  modes:{foundation:"Basic rules, bags and boxes, and one die", core:"Playing cards, coins and two dice", advanced:"Equally likely outcomes, fallacies, puzzles and the timed master round"}
+});
 
 </script>
 <script>
