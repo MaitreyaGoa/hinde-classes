@@ -1043,6 +1043,13 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .g-sol10{--a1:#60a5fa;--a2:#14b8a6}
 .g-sta10{--a1:#f472b6;--a2:#a855f7}
 .g-prb10{--a1:#4ade80;--a2:#06b6d4}
+/* Std 7 & 8 Part 2 chapters 5–7 */
+.g-dat7{--a1:#38bdf8;--a2:#f472b6}
+.g-con7{--a1:#fbbf24;--a2:#22c55e}
+.g-unk7{--a1:#a78bfa;--a2:#38bdf8}
+.g-dtl8{--a1:#2dd4bf;--a2:#f97316}
+.g-alg8{--a1:#e879f9;--a2:#fbbf24}
+.g-ar8{--a1:#4ade80;--a2:#60a5fa}
 
 </style>
 </head>
@@ -1157,6 +1164,12 @@ var HG = (function () {
     'c7-geometric-twins': { name: 'Geometric Twins', div: 8, max: 60000, good: 1000 },
     'c8-fractions-disguise': { name: 'Fractions in Disguise', div: 8, max: 60000, good: 1000 },
     'c10-trigonometry': { name: 'Introduction to Trigonometry', div: 8, max: 60000, good: 1000 },
+    'c7-data': { name: 'Connecting the Dots…', div: 8, max: 60000, good: 1000 },
+    'c7-constructions': { name: 'Constructions and Tilings', div: 8, max: 60000, good: 1000 },
+    'c7-unknown': { name: 'Finding the Unknown', div: 8, max: 60000, good: 1000 },
+    'c8-dots-lines': { name: 'Tales by Dots and Lines', div: 8, max: 60000, good: 1000 },
+    'c8-algebra-play': { name: 'Algebra Play', div: 8, max: 60000, good: 1000 },
+    'c8-area': { name: 'Area', div: 8, max: 60000, good: 1000 },
     'c10-triangles': { name: 'Triangles', div: 8, max: 60000, good: 1000 },
     'c10-coordinate': { name: 'Coordinate Geometry', div: 8, max: 60000, good: 1000 },
     'c10-heights': { name: 'Some Applications of Trigonometry', div: 8, max: 60000, good: 1000 },
@@ -1419,6 +1432,12 @@ const GICON = {
   "c10-solids":'<svg viewBox="0 0 64 64"><path d="M32 6L18 30h28z"/><path d="M18 30a14 14 0 0 0 28 0"/><path d="M14 44h36v14H14z"/></svg>',
   "c10-statistics":'<svg viewBox="0 0 64 64"><path d="M8 56h48"/><path d="M12 56V40h8v16M24 56V24h8v32M36 56V30h8v26M48 56V44h6v12"/></svg>',
   "c10-probability":'<svg viewBox="0 0 64 64"><rect x="8" y="14" width="26" height="26" rx="5"/><rect x="30" y="26" width="26" height="26" rx="5"/><circle cx="21" cy="27" r="2.5"/><circle cx="37" cy="33" r="2.5"/><circle cx="49" cy="45" r="2.5"/><circle cx="43" cy="39" r="2.5"/></svg>',
+  "c7-data":'<svg viewBox="0 0 64 64"><path d="M6 52h52"/><circle cx="16" cy="44" r="4"/><circle cx="28" cy="44" r="4"/><circle cx="28" cy="34" r="4"/><circle cx="40" cy="44" r="4"/><circle cx="40" cy="34" r="4"/><circle cx="40" cy="24" r="4"/><circle cx="52" cy="44" r="4"/></svg>',
+  "c7-constructions":'<svg viewBox="0 0 64 64"><path d="M32 8L20 56M32 8l12 48"/><circle cx="32" cy="8" r="3"/><path d="M14 40a22 22 0 0 0 36 0"/></svg>',
+  "c7-unknown":'<svg viewBox="0 0 64 64"><path d="M32 10v40M12 18h40"/><path d="M12 18l-8 16h16zM52 18l-8 16h16z"/><path d="M22 56h20"/></svg>',
+  "c8-dots-lines":'<svg viewBox="0 0 64 64"><path d="M6 50L20 34l12 8 12-20 14 6"/><circle cx="20" cy="34" r="3"/><circle cx="32" cy="42" r="3"/><circle cx="44" cy="22" r="3"/><path d="M6 58h52"/></svg>',
+  "c8-algebra-play":'<svg viewBox="0 0 64 64"><rect x="24" y="8" width="16" height="12" rx="2"/><rect x="14" y="26" width="16" height="12" rx="2"/><rect x="34" y="26" width="16" height="12" rx="2"/><rect x="4" y="44" width="16" height="12" rx="2"/><rect x="24" y="44" width="16" height="12" rx="2"/><rect x="44" y="44" width="16" height="12" rx="2"/></svg>',
+  "c8-area":'<svg viewBox="0 0 64 64"><path d="M8 52L20 16h36L44 52z"/><path d="M20 16v36" stroke-dasharray="4 4"/></svg>',
   "c10-trigonometry":'<svg viewBox="0 0 64 64"><path d="M12 52H52V14Z"/><path d="M44 52v-8h8"/><path d="M24 52a12 12 0 0 0-2-7"/></svg>',
   "en-tenses":'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M32 18v14l9 6"/><path d="M6 32h6M52 32h6"/><path d="M48 12l6-2-1 6"/></svg>',
   "c8-fractions-disguise":'<svg viewBox="0 0 64 64"><circle cx="20" cy="18" r="7"/><circle cx="44" cy="46" r="7"/><path d="M48 12L16 52"/></svg>',
@@ -1678,6 +1697,12 @@ const CH = [
   {id:"c7-geometric-twins", cls:"g-twins", std:7, book:"Ganita Prakash · Part 2", chn:1, name:"Geometric Twins", tag:"Congruence: superimposing, SSS, SAS, ASA, AAS, RHS, and isosceles angles", missions:9, key:"tw7c1_stars"},
   {id:"c8-fractions-disguise", cls:"g-fdis", std:8, book:"Ganita Prakash · Part 2", chn:1, name:"Fractions in Disguise", tag:"Percentages: the FDP trio, part & whole, increase/decrease, profit, discount, GST and compound interest", missions:9, key:"fd8c1_stars"},
   {id:"c10-trigonometry", cls:"g-trig", std:10, book:"NCERT", chn:8, name:"Introduction to Trigonometry", tag:"Sides, SOH-CAH-TOA, one ratio → all ratios, special angles 0°–90°, identities and step-by-step proofs", missions:9, key:"tr10c8_stars"},
+  {id:"c7-data", cls:"g-dat7", std:7, book:"Ganita Prakash · Part 2", chn:5, name:"Connecting the Dots…", tag:"Mean as fair share, median, dot plots, missing data, comparing groups and double bar graphs", missions:9, key:"cd7c5_stars"},
+  {id:"c7-constructions", cls:"g-con7", std:7, book:"Ganita Prakash · Part 2", chn:6, name:"Constructions and Tilings", tag:"Perpendicular bisectors, construction steps, constructible angles, hexagons, domino puzzles and tilings", missions:9, key:"ct7c6_stars"},
+  {id:"c7-unknown", cls:"g-unk7", std:7, book:"Ganita Prakash · Part 2", chn:7, name:"Finding the Unknown", tag:"Balance scales, framing and solving equations, mind-the-mistake, word puzzles and magic tricks", missions:9, key:"fu7c7_stars"},
+  {id:"c8-dots-lines", cls:"g-dtl8", std:8, book:"Ganita Prakash · Part 2", chn:5, name:"Tales by Dots and Lines", tag:"Mean as a balance point, how new values move mean and median, line graphs and proofs about averages", missions:9, key:"tl8c5_stars"},
+  {id:"c8-algebra-play", cls:"g-alg8", std:8, book:"Ganita Prakash · Part 2", chn:6, name:"Algebra Play", tag:"Think-of-a-number tricks, the date trick, number pyramids, calendar magic, divisibility tricks and puzzles", missions:9, key:"ap8c6_stars"},
+  {id:"c8-area", cls:"g-ar8", std:8, book:"Ganita Prakash · Part 2", chn:7, name:"Area", tag:"Triangles and altitudes, quadrilaterals by diagonals, parallelograms, rhombuses, trapeziums and Śulba shape-shifting", missions:9, key:"ar8c7_stars"},
   {id:"c10-triangles", cls:"g-tri10", std:10, book:"NCERT", chn:6, name:"Triangles", tag:"Similar figures, the BPT and its converse, AA/SSS/SAS, matching vertices, shadows and proofs", missions:9, key:"si10c6_stars"},
   {id:"c10-coordinate", cls:"g-coo10", std:10, book:"NCERT", chn:7, name:"Coordinate Geometry", tag:"Distance formula, classifying triangles and quadrilaterals, mid-points and the section formula", missions:9, key:"co10c7_stars"},
   {id:"c10-heights", cls:"g-hgt10", std:10, book:"NCERT", chn:9, name:"Some Applications of Trigonometry", tag:"Angles of elevation and depression, towers, kites, lighthouses and moving observers", missions:9, key:"hd10c9_stars"},
@@ -1698,7 +1723,7 @@ const CH = [
   {id:"c10-ap", cls:"g-ap10", std:10, book:"NCERT", chn:5, name:"Arithmetic Progressions", tag:"Common difference, the nth term, term detective, sums of n terms and APs in real life", missions:9, key:"ap10c5_stars"}
 ];
 // each game's own page lives at /games/<slug>/ (built by build.py)
-const GAME_SLUGS = {"en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
+const GAME_SLUGS = {"en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c7-data":"class-7-connecting-the-dots", "c7-constructions":"class-7-constructions-and-tilings", "c7-unknown":"class-7-finding-the-unknown", "c8-dots-lines":"class-8-tales-by-dots-and-lines", "c8-algebra-play":"class-8-algebra-play", "c8-area":"class-8-area", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
 const CH_CLASSES = [7, 8, 9, 10];
 /* English games */
 const EN = [
@@ -4278,6 +4303,1071 @@ const GTrig = CQ.quest({
 });
 
 GAME_MODS["c10-trigonometry"] = GTrig;
+
+</script>
+<script>
+/* ============================================================
+   Class 7 · Ganita Prakash Part 2 · Ch 5 · Connecting the Dots…
+   Chapter game "Dot Detective": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Mean = Fair Share  2 The Middle Value  3 Read the Dot Plot
+   Apply  : 4 Dot Plot Averages  5 Missing & Tricky Data  6 Compare Groups
+   Master : 7 Double Bar Graphs  8 Data Reasoning  9 Data Master (timed)
+   ============================================================ */
+const DAT7 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const r2 = x => Math.round(x*100)/100;
+  const sum = a => a.reduce((s, v) => s + v, 0), mean = a => sum(a)/a.length;
+  const med = a => { const b = a.slice().sort((x, y) => x - y), n = b.length; return n % 2 ? b[(n - 1)/2] : (b[n/2 - 1] + b[n/2])/2; };
+  const CTX = [["bounces of a ball on a bat", "bounces"], ["flowers that bloomed each day", "flowers"], ["runs scored in each over", "runs"], ["goals in each match", "goals"], ["books read each month", "books"], ["minutes spent reading each day", "minutes"]];
+  const data = (n, lo, hi) => Array.from({length: n}, () => R(lo, hi));
+  // dot plot: values (integers), axis lo..hi
+  function dots(vals, lo, hi, mark = {}){
+    const W = 320, X = v => 18 + (v - lo)*(W - 36)/(hi - lo), cnt = {}; let g = `<line x1="10" y1="120" x2="${W - 10}" y2="120" stroke="#cfd6ff88" stroke-width="1.5"/>`;
+    const step = hi - lo > 20 ? 5 : hi - lo > 10 ? 2 : 1; for (let v = lo; v <= hi; v++) if ((v - lo) % step === 0) g += `<line x1="${X(v)}" y1="117" x2="${X(v)}" y2="123" stroke="#cfd6ff"/><text x="${X(v)}" y="136" text-anchor="middle" style="font-size:10px;fill:#cfd6ffaa">${v}</text>`;
+    vals.forEach(v => { cnt[v] = (cnt[v] || 0) + 1; g += `<circle cx="${X(v)}" cy="${120 - cnt[v]*11}" r="4.6" fill="#5aa9ff"/>`; });
+    if (mark.mean !== undefined) g += `<line x1="${X(mark.mean)}" y1="10" x2="${X(mark.mean)}" y2="122" stroke="#ffcf5a" stroke-dasharray="4 3"/><text x="${X(mark.mean)}" y="10" text-anchor="middle" style="font-size:10px;font-weight:800;fill:#ffcf5a">mean</text>`;
+    return `<svg class="tw-svg" viewBox="0 0 ${W} 142" style="max-height:150px">${g}</svg>`; }
+
+  /* ---------- Mission 1: Mean = Fair Share ---------- */
+  function m1(i){
+    const t = i % 3, [ctx, u] = P(CTX);
+    if (t === 2){ const n = R(3, 6), each = R(3, 12), tot = n*each, a = data(n - 1, 1, each*2 - 1), last = tot - sum(a); if (last < 0) return m1(i + 3);
+      return {html:`<p class="tw-q">${n} friends share sweets equally and each gets <b>${each}</b>. They had brought ${a.join(", ")} and one more friend’s bag. How many were in that bag?</p>${padHTML("", "sweets", {dec:false})}`,
+        mount(el, done){ bindPad(el, last, 0, done, `Mean × count = total: ${each} × ${n} = ${tot}. The others brought ${sum(a)}, so the last bag had ${tot} − ${sum(a)} = <b>${last}</b>.`, "Mean as fair share"); }}; }
+    const n = R(5, 9), a = data(n, 1, 12), M = mean(a);
+    return {html:`<p class="tw-q">Data on ${ctx}: <b>${a.join(", ")}</b>. Find the mean (2 decimals if needed).</p>${padHTML("", u, {dec:true})}`,
+      mount(el, done){ bindPad(el, r2(M), 0.011, done, `Mean = sum ÷ count = ${sum(a)} ÷ ${n} = <b>${n2(M)}</b>. It is the <b>fair share</b>: what each value would be if the total were shared out equally.`, "Arithmetic mean"); }};
+  }
+
+  /* ---------- Mission 2: The Middle Value ---------- */
+  function m2(i){
+    const n = R(5, 10), a = data(n, 10, 60), Md = med(a), s = a.slice().sort((x, y) => x - y), t = i % 3;
+    if (t === 2){ const o = SH(["Sort the data first", "Take the value in the middle of the list as given", "Add all values and divide by 2", "Take the most frequent value"]);
+      return {html:`<p class="tw-q">What is the <b>first</b> step to find the median of ${a.join(", ")}?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf("Sort the data first"), done, `The median is the middle of the <b>sorted</b> data: ${s.join(", ")} → median ${n2(Md)}. Taking the middle of the unsorted list is a very common mistake.`, "Median"); }}; }
+    return {html:`<p class="tw-q">Find the <b>median</b> of: <b>${a.join(", ")}</b></p>${padHTML("", "", {dec:true})}`,
+      mount(el, done){ bindPad(el, Md, 0.001, done, `Sorted: ${s.join(", ")} (${n} values). ${n % 2 ? `Odd count → the middle (${(n + 1)/2}th) value: <b>${Md}</b>.` : `Even count → average of the ${n/2}th and ${n/2 + 1}th values: (${s[n/2 - 1]} + ${s[n/2]})/2 = <b>${n2(Md)}</b>.`}`, "Median"); }};
+  }
+
+  /* ---------- Mission 3: Read the Dot Plot ---------- */
+  function m3(i){
+    const n = R(10, 16), lo = R(0, 5)*2, a = data(n, lo + 1, lo + 14), t = i % 4, mx = Math.max(...a), mn = Math.min(...a);
+    const q = [["maximum", mx, `The rightmost dot is at <b>${mx}</b>.`], ["minimum", mn, `The leftmost dot is at <b>${mn}</b>.`], ["range (max − min)", mx - mn, `Range = ${mx} − ${mn} = <b>${mx - mn}</b>: how spread out the data is.`], ["number of values", n, `Count the dots: <b>${n}</b>.`]][t];
+    return {html:`<p class="tw-q">From the dot plot, find the <b>${q[0]}</b>.</p>${dots(a, lo, lo + 15)}${padHTML("", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, q[1], 0, done, q[2] + " Dot plots show at a glance where data clusters and how it spreads.", "Reading dot plots"); }};
+  }
+
+  /* ---------- Mission 4: Dot Plot Averages ---------- */
+  function m4(i){
+    const n = R(7, 12), a = data(n, 2, 12), t = i % 3;
+    if (t === 0){ const c = {}; a.forEach(v => c[v] = (c[v] || 0) + 1); const best = Math.max(...Object.values(c)), modes = Object.keys(c).filter(k => c[k] === best).map(Number); if (modes.length > 1) return m4(i + 3);
+      return {html:`<p class="tw-q">Which value occurs <b>most often</b>?</p>${dots(a, 0, 15)}${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, modes[0], 0, done, `The tallest stack of dots is at <b>${modes[0]}</b> (${best} dots).`, "Reading dot plots"); }}; }
+    if (t === 1) return {html:`<p class="tw-q">Find the <b>median</b> from the dot plot.</p>${dots(a, 0, 15)}${padHTML("", "", {dec:true})}`,
+      mount(el, done){ bindPad(el, med(a), 0.001, done, `Read the dots left to right (already sorted!): ${a.slice().sort((x, y) => x - y).join(", ")}. Median = <b>${n2(med(a))}</b>.`, "Median from a dot plot"); }};
+    return {html:`<p class="tw-q">Find the <b>mean</b> from the dot plot (2 decimals if needed).</p>${dots(a, 0, 15)}${padHTML("", "", {dec:true})}`,
+      mount(el, done){ bindPad(el, r2(mean(a)), 0.011, done, `Total = ${sum(a)} (stacks: value × number of dots), count = ${n}. Mean = <b>${n2(mean(a))}</b>.`, "Mean from a dot plot"); }};
+  }
+
+  /* ---------- Mission 5: Missing & Tricky Data ---------- */
+  function m5(i){
+    const t = i % 3;
+    if (t === 0){ const g = [R(5, 20), R(5, 20), R(5, 20)], miss = R(0, 3), pts = [R(5, 20), ...g].slice(0, 4), shown = pts.map((v, k) => k === miss ? "Did not play" : v), played = pts.filter((_, k) => k !== miss);
+      return {html:`<p class="tw-q">A player’s points in four games: <b>${shown.join(", ")}</b>. Mean points per game played?</p>${padHTML("", "points", {dec:true})}`,
+        mount(el, done){ bindPad(el, r2(mean(played)), 0.011, done, `Divide by the number of games <b>actually played</b> (3), not 4: ${sum(played)} ÷ 3 = <b>${n2(mean(played))}</b>. A missing value is not a zero! (But a real score of 0 does count.)`, "Missing data"); }}; }
+    if (t === 1){ const a = data(R(5, 8), 3, 20), mn = Math.min(...a), mx = Math.max(...a), v = P([mn - R(2, 5), mx + R(2, 6), Math.round((mn + mx)/2)]), ok = v >= mn && v <= mx;
+      return {html:`<p class="tw-q">Data: <b>${a.join(", ")}</b>. Could the mean be <b>${v < 0 ? "−" + (-v) : v}</b>?</p>${choice(["Possible", "Impossible"], "two")}`,
+        mount(el, done){ bindChoice(el, ok ? 0 : 1, done, `The mean (and the median) always lie between the minimum (${mn}) and maximum (${mx}). ${ok ? `${v} is inside this range, so it could be (the actual mean is ${n2(mean(a))}).` : `${v < 0 ? "−" + (-v) : v} is outside, so it is <b>impossible</b>.`}`, "Where averages lie"); }}; }
+    const a = [0, 1, 0, 4, 8, 0, 0, 2, 1, 1, 5, 3, 4, 0, 0, 10, 25, 2, 2, 4], M = mean(a), Md = med(a), o = SH(["The median, because a few large values (25, 10) pull the mean up", "The mean, because it uses every value", "Both are equally good", "Neither"]);
+    return {html:`<p class="tw-q">Pets per student: 0, 1, 0, 4, 8, 0, 0, 2, 1, 1, 5, 3, 4, 0, 0, 10, 25, 2, 2, 4. Mean = ${n2(M)}, median = ${n2(Md)}. Which better describes a <b>typical</b> student?</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.findIndex(x => x.startsWith("The median")), done, `One student with 25 pets pulls the mean up to ${n2(M)}, but most students have 0–4. The median (${n2(Md)}) is not affected by such extreme values.`, "Mean vs median"); }};
+  }
+
+  /* ---------- Mission 6: Compare Groups ---------- */
+  function m6(i){
+    const n = 7, A = data(n, 15, 20), B = data(n, 15, 20), t = i % 3;
+    if (Math.abs(mean(A) - mean(B)) < 1e-9) return m6(i + 1);
+    if (t === 0){ const fast = mean(A) < mean(B) ? "Nikhil" : "Sunil";
+      return {html:`<p class="tw-q">100 m race times (seconds) over a week. Nikhil: <b>${A.join(", ")}</b>. Sunil: <b>${B.join(", ")}</b>. Who ran <b>quicker</b> on average?</p>${choice(["Nikhil", "Sunil"], "two")}`,
+        mount(el, done){ bindChoice(el, fast === "Nikhil" ? 0 : 1, done, `Means: Nikhil ${n2(mean(A))} s, Sunil ${n2(mean(B))} s. In a race, a <b>smaller</b> time is quicker → <b>${fast}</b>.`, "Comparing with means"); }}; }
+    if (t === 1){ const X = data(9, 40, 95), Y = data(9, 40, 95), better = med(X) > med(Y) ? 0 : med(X) < med(Y) ? 1 : 2;
+      return {html:`<p class="tw-q">Quiz marks. Group 1: ${X.join(", ")}. Group 2: ${Y.join(", ")}. Which group has the higher <b>median</b>?</p>${choice(["Group 1", "Group 2", "Equal"], "")}`,
+        mount(el, done){ bindChoice(el, better, done, `Medians: Group 1 = ${med(X)}, Group 2 = ${med(Y)} (sort each group, take the middle). Means: ${n2(mean(X))} and ${n2(mean(Y))}.`, "Comparing with medians"); }}; }
+    const a = data(6, 1, 9), b = a.map(v => v + R(1, 3)), st = [["Every value in B is larger, so B’s mean is larger", true], ["B’s maximum is greater than A’s maximum", Math.max(...b) > Math.max(...a)], ["A’s range is larger than B’s range", (Math.max(...a) - Math.min(...a)) > (Math.max(...b) - Math.min(...b))], ["A and B have the same median", med(a) === med(b)]];
+    const cor = st.map((s, k) => s[1] ? k : -1).filter(k => k >= 0);
+    return {html:`<p class="tw-q">A: ${a.join(", ")}. B: ${b.join(", ")}. Select <b>all</b> true statements.</p>${multiHTML(st.map(s => s[0]))}`,
+      mount(el, done){ bindMulti(el, cor, done, `A: mean ${n2(mean(a))}, median ${n2(med(a))}, range ${Math.max(...a) - Math.min(...a)}. B: mean ${n2(mean(b))}, median ${n2(med(b))}, range ${Math.max(...b) - Math.min(...b)}.`, "Comparing groups"); }};
+  }
+
+  /* ---------- Mission 7: Double Bar Graphs ---------- */
+  const CATS = [["Cricket", "Basketball", "Swimming", "Hockey"], ["Aquatic", "Aerial", "Space", "None"], ["Jan", "Feb", "Mar", "Apr"], ["Maths", "Science", "English", "Art"]];
+  function bars(cats, A, B, la, lb){
+    const W = 320, H = 170, mx = Math.max(...A, ...B), sc = Math.ceil(mx/5/5)*5 || 1, top = sc*5, Y = v => 140 - v/top*120; let g = "";
+    for (let k = 0; k <= 5; k++) g += `<line x1="34" y1="${Y(k*sc)}" x2="${W - 6}" y2="${Y(k*sc)}" stroke="#cfd6ff22"/><text x="30" y="${Y(k*sc) + 3}" text-anchor="end" style="font-size:9px;fill:#cfd6ffaa">${k*sc}</text>`;
+    cats.forEach((c, k) => { const x = 46 + k*68; g += `<rect x="${x}" y="${Y(A[k])}" width="22" height="${140 - Y(A[k])}" fill="#5aa9ff"/><rect x="${x + 24}" y="${Y(B[k])}" width="22" height="${140 - Y(B[k])}" fill="#ffcf5a"/><text x="${x + 23}" y="154" text-anchor="middle" style="font-size:10px;fill:#e8ecff">${c}</text>`; });
+    g += `<rect x="40" y="160" width="10" height="8" fill="#5aa9ff"/><text x="54" y="168" style="font-size:10px;fill:#e8ecff">${la}</text><rect x="150" y="160" width="10" height="8" fill="#ffcf5a"/><text x="164" y="168" style="font-size:10px;fill:#e8ecff">${lb}</text>`;
+    return `<svg class="tw-svg" viewBox="0 0 ${W} ${H + 4}" style="max-height:190px">${g}</svg>`; }
+  function m7(i){
+    const ci = R(0, 3), cats = CATS[ci], [la, lb] = [["Watching", "Playing"], ["Grade 5", "Grade 9"], ["Yahapur", "Wahapur"], ["Boys", "Girls"]][ci], k = P([2, 5, 10]);
+    const A = cats.map(() => R(1, 9)*k), B = cats.map(() => R(1, 9)*k), t = i % 3, j = R(0, 3);
+    if (t === 0) return {html:`<p class="tw-q">How much <b>more</b> is <b>${la}</b> than <b>${lb}</b> for <b>${cats[j]}</b>? (negative if less)</p>${bars(cats, A, B, la, lb)}${padHTML("", "", {neg:true, dec:false})}`,
+      mount(el, done){ bindPad(el, A[j] - B[j], 0, done, `Read both bars for ${cats[j]}: ${la} = ${A[j]}, ${lb} = ${B[j]}. Difference = <b>${A[j] - B[j]}</b>. Use the scale on the left (each line = ${Math.ceil(Math.max(...A, ...B)/5/5)*5}).`, "Reading double bar graphs"); }};
+    if (t === 1){ const d = cats.map((_, q) => Math.abs(A[q] - B[q])), mx = Math.max(...d); if (d.filter(v => v === mx).length > 1) return m7(i + 3);
+      return {html:`<p class="tw-q">For which category is the <b>gap</b> between the two bars the largest?</p>${bars(cats, A, B, la, lb)}${choice(cats, "two")}`,
+        mount(el, done){ bindChoice(el, d.indexOf(mx), done, `Gaps: ${cats.map((c, q) => `${c} ${d[q]}`).join(", ")}. Largest: <b>${cats[d.indexOf(mx)]}</b>. Double bar graphs make side-by-side comparison easy.`, "Comparing with bar graphs"); }}; }
+    const tA = sum(A), tB = sum(B); if (tA === tB) return m7(i + 1);
+    return {html:`<p class="tw-q">Which group has the larger <b>total</b> over all categories?</p>${bars(cats, A, B, la, lb)}${choice([la, lb], "two")}`,
+      mount(el, done){ bindChoice(el, tA > tB ? 0 : 1, done, `${la}: ${A.join(" + ")} = ${tA}. ${lb}: ${B.join(" + ")} = ${tB}. Larger total: <b>${tA > tB ? la : lb}</b>.`, "Totals from bar graphs"); }};
+  }
+
+  /* ---------- Mission 8: Data Reasoning ---------- */
+  const TF = [
+    ["The mean can be greater than the maximum value.", false, "The mean is a fair share, so it lies between the smallest and largest values."],
+    ["The median must be one of the data values.", false, "With an even number of values, the median is the average of the two middle values, which may not be in the data."],
+    ["Adding a very large value changes the mean more than the median.", true, "The mean uses the size of every value; the median only moves by one position."],
+    ["Two data sets with the same mean must have the same range.", false, "5, 5, 5 and 1, 5, 9 both have mean 5 but ranges 0 and 8."],
+    ["If every value increases by 3, the mean increases by 3.", true, "The total increases by 3 × count, so the fair share goes up by 3."],
+    ["The range tells us how spread out the data is.", true, "Range = maximum − minimum, a simple measure of spread."],
+    ["A missing value should be counted as 0 when finding the mean.", false, "Missing is not zero: divide only by the values that exist."]
+  ];
+  function m8(i){
+    if (i % 3 === 2){ const a = data(5, 2, 10), M = mean(a), add = R(15, 40), na = [...a, add];
+      return {html:`<p class="tw-q">Data: ${a.join(", ")} (mean ${n2(M)}). A new value <b>${add}</b> is added. New mean?</p>${padHTML("", "", {dec:true})}`,
+        mount(el, done){ bindPad(el, r2(mean(na)), 0.011, done, `New total = ${sum(a)} + ${add} = ${sum(na)}, count = 6. Mean = <b>${n2(mean(na))}</b>: one large value pulled it up a lot. The median moved only from ${n2(med(a))} to ${n2(med(na))}.`, "Effect of a new value"); }}; }
+    const [s, tv, why] = P(TF);
+    return {html:`<p class="tw-q">True or false?</p><div class="tw-ex" style="font-size:16px">${s}</div>${choice(["True", "False"], "two")}`,
+      mount(el, done){ bindChoice(el, tv ? 0 : 1, done, `<b>${tv ? "True" : "False"}</b>. ${why}`, "Reasoning about data"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Mean = Fair Share", goal:"Arithmetic mean as equal sharing.", n:8,
+      learn:L("Share it out equally", "Mean = sum of all values ÷ number of values. It is what everyone would get if the total were shared equally.", "6, 2, 9, 5, 4, 6, 3, 5 → 40 ÷ 8 = <b>5</b> bounces")},
+    {id:2, track:"foundation", name:"The Middle Value", goal:"Sort first, then find the median.", n:8,
+      learn:L("Median", "Sort the data. Odd count: the middle value. Even count: the average of the two middle values.", "3, 7, 8, 12 → (7 + 8)/2 = <b>7.5</b>")},
+    {id:3, track:"foundation", name:"Read the Dot Plot", goal:"Minimum, maximum, range and count.", n:8,
+      learn:L("Dots on a line", "Each dot is one value. A dot plot shows the minimum, maximum, range (max − min) and where data clusters.", "Dots from 4 to 13 → range 9")},
+    {id:4, track:"core", name:"Dot Plot Averages", goal:"Mean, median and the most common value from a dot plot.", n:8,
+      learn:L("Dot plots are already sorted", "Read the dots from left to right to get sorted data, so the median is easy. For the mean, multiply each value by its number of dots.", "")},
+    {id:5, track:"core", name:"Missing & Tricky Data", goal:"Missing values, impossible means and outliers.", n:8,
+      learn:L("Think before computing", "Missing values are not zeros. The mean and median always lie between the minimum and maximum. Extreme values pull the mean but not the median.", "Did not play → divide by games played")},
+    {id:6, track:"core", name:"Compare Groups", goal:"Use means, medians and ranges to compare.", n:8,
+      learn:L("Compare like with like", "Compare groups using the same measure. For times, smaller is better!", "Nikhil 17.4 s vs Sunil 17.4 s → equal on average")},
+    {id:7, track:"advanced", name:"Double Bar Graphs", goal:"Read and compare clustered bars.", n:8,
+      learn:L("Two bars per category", "A double (clustered) bar graph places two groups side by side for each category. Check the scale before reading values.", "")},
+    {id:8, track:"advanced", name:"Data Reasoning", goal:"What changes the mean, the median and the range?", n:8,
+      learn:L("Effects of changes", "Adding the same number to every value shifts the mean and median by that number. One huge value moves the mean much more than the median.", "")},
+    {id:9, track:"advanced", name:"Data Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m3, m5, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c7-data"] = CQ.quest({
+  key:"cd7c5_stars", missions:DAT7.MISSIONS, gen:DAT7.GEN, chapter:{std:7, part:"Part 2", ch:5},
+  desc:"Std 7 · Ganita Prakash Part 2 · Chapter 5. Become a data detective in 9 missions: mean as fair share, median, dot plots, missing data, comparing groups and double bar graphs.",
+  modes:{foundation:"Mean, median and reading dot plots", core:"Averages from dot plots, tricky data and comparing groups", advanced:"Double bar graphs, data reasoning and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 7 · Ganita Prakash Part 2 · Ch 6 · Constructions and Tilings
+   Chapter game "Compass & Tiles": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 The Perpendicular Bisector  2 Construction Steps  3 Angle Maker
+   Apply  : 4 Bisect & Design  5 Hexagons & Triangles  6 Domino Logic
+   Master : 7 Tiling the Plane  8 Tile It Yourself  9 Construction Master (timed)
+   ============================================================ */
+const CON7 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, orderHTML, bindOrder, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const svg = (w, h, g, mh = 170) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const txt = (x, y, s, c = "#e8ecff", fs = 13) => `<text x="${x}" y="${y}" text-anchor="middle" style="font-size:${fs}px;font-weight:800;fill:${c}">${s}</text>`;
+
+  /* ---------- Mission 1: The Perpendicular Bisector ---------- */
+  function bisPic(){
+    let g = `<line x1="60" y1="100" x2="220" y2="100" stroke="#e8ecff" stroke-width="2.5"/>` + txt(52, 104, "X") + txt(230, 104, "Y");
+    g += `<path d="M95 40 A90 90 0 0 1 95 160" fill="none" stroke="#9cc8ff" stroke-dasharray="4 4"/><path d="M185 40 A90 90 0 0 0 185 160" fill="none" stroke="#9cc8ff" stroke-dasharray="4 4"/>`;
+    g += `<line x1="140" y1="18" x2="140" y2="182" stroke="#ffcf5a" stroke-width="2.2"/><circle cx="140" cy="31" r="4" fill="#ff8fa0"/><circle cx="140" cy="169" r="4" fill="#ff8fa0"/>` + txt(152, 30, "A", "#ff8fa0") + txt(152, 178, "B", "#ff8fa0") + txt(150, 116, "M", "#ffcf5a");
+    return svg(280, 190, g, 170); }
+  function m1(i){
+    const t = i % 4;
+    if (t === 0){ const L = R(4, 14)*2; return {html:`<p class="tw-q">XY = <b>${L} cm</b>. Its perpendicular bisector meets XY at M. How long is <b>XM</b>?</p>${bisPic()}${padHTML("XM =", "cm", {dec:true})}`,
+      mount(el, done){ bindPad(el, L/2, 0, done, `A bisector cuts XY into two <b>identical</b> parts, so XM = ${L} ÷ 2 = <b>${L/2} cm</b>. Constructing it is more accurate than measuring with a scale!`, "Bisection"); }}; }
+    if (t === 1){ const a = R(3, 9), sh = Math.random() < .5, b = sh ? a : a + R(1, 3);
+      return {html:`<p class="tw-q">A point P is <b>${a} cm</b> from X and <b>${b} cm</b> from Y. Does P lie on the perpendicular bisector of XY?</p>${choice(["Yes", "No"], "two")}`,
+        mount(el, done){ bindChoice(el, sh ? 0 : 1, done, `Points on the perpendicular bisector are exactly the points <b>equidistant</b> from X and Y. PX ${sh ? "=" : "≠"} PY, so ${sh ? "<b>yes</b>" : "<b>no</b>"}.`, "Equidistant points"); }}; }
+    if (t === 2){ const L = R(6, 12), right = `More than ${L/2} cm`, o = SH([right, `Exactly ${L/2} cm`, `Less than ${L/2} cm`, "Any radius at all"]);
+      return {html:`<p class="tw-q">To bisect a <b>${L} cm</b> segment XY, we draw arcs from X and from Y. What radius must the arcs have so that they <b>meet</b>?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Arcs from X and Y meet only if each radius is <b>more than half</b> of XY (${L/2} cm). Exactly half would just touch at M; less would never meet.`, "Arcs in constructions"); }}; }
+    const o = SH(["Yes — any two points equidistant from X and Y fix the line", "No — the radii must be the same everywhere", "No — the arcs must be on opposite sides", "Only if the radius equals XY"]);
+    return {html:`<p class="tw-q">Do the arcs above and below XY need the <b>same</b> radius, and must they be on <b>opposite</b> sides?</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.findIndex(x => x.startsWith("Yes")), done, `Each pair of intersecting arcs (same radius from X and from Y) gives one point equidistant from X and Y. Two such points fix the bisector, whatever the radius of each pair and on whichever side.`, "Why the construction works"); }};
+  }
+
+  /* ---------- Mission 2: Construction Steps (order) ---------- */
+  const STEPS = {
+    "the perpendicular bisector of XY":["Open the compass to more than half of XY", "Draw arcs above and below XY from X", "With the same radius, draw arcs from Y to cut them at A and B", "Join A and B: AB is the perpendicular bisector"],
+    "the bisector of ∠AOB":["With centre O, draw an arc cutting OA at P and OB at Q", "With centre P, draw an arc inside the angle", "With the same radius and centre Q, cut that arc at C", "Join OC: it bisects ∠AOB"],
+    "a 60° angle at O on line l":["Mark O on l and draw an arc from O cutting l at A", "With centre A and the same radius, cut the arc at B", "Join OB: △OAB is equilateral", "So ∠AOB = 60°"],
+    "a 90° angle at P on line l":["With centre P, mark points X and Y on l equally far from P", "Open the compass wider than PX", "Draw arcs from X and Y that meet at Q", "Join PQ: PQ ⟂ l"],
+    "a regular hexagon":["Draw a circle with centre O", "Keep the same radius and mark it 6 times around the circle", "Join consecutive marks", "Six equilateral triangles make a regular hexagon"]
+  };
+  function m2(i){
+    const k = Object.keys(STEPS)[i % 5], st = STEPS[k];
+    return {html:`<p class="tw-q">Put the steps for constructing <b>${k}</b> in order.</p>${orderHTML(st)}`,
+      mount(el, done){ bindOrder(el, st, done, st.map((s, j) => `${j + 1}. ${s}`).join("<br>"), "Construction steps"); }};
+  }
+
+  /* ---------- Mission 3: Angle Maker ---------- */
+  const CAN = {15:"half of 30°", 30:"bisect 60°", 45:"bisect 90°", 60:"equilateral triangle", 75:"60° + 15°", 90:"perpendicular", 105:"90° + 15°", 120:"60° + 60°", 135:"90° + 45°", 150:"180° − 30°", 22.5:"bisect 45°", 7.5:"bisect 15°", 165:"180° − 15°"};
+  const CANT = [65.5, 50, 40, 25, 10, 100, 35, 70, 80, 20];
+  function m3(i){
+    if (i % 3 === 2){ const pick = SH([...SH(Object.keys(CAN).map(Number)).slice(0, 3), ...SH(CANT.slice()).slice(0, 3)]), cor = pick.map((a, k) => CAN[a] ? k : -1).filter(k => k >= 0);
+      return {html:`<p class="tw-q">Select <b>all</b> angles that can be constructed with only a ruler and compass (using 60°, 90° and bisection).</p>${multiHTML(pick.map(a => a + "°"), "fd-three")}`,
+        mount(el, done){ bindMulti(el, cor, done, pick.map(a => `${a}°: ${CAN[a] ? CAN[a] : "not by these methods"}`).join("<br>"), "Constructible angles"); }}; }
+    const yes = Math.random() < .55, a = yes ? P(Object.keys(CAN).map(Number)) : P(CANT);
+    return {html:`<p class="tw-q">Can a <b>${a}°</b> angle be constructed with only a ruler and compass, using 60°, 90° and angle bisection?</p>${choice(["Yes", "No"], "two")}`,
+      mount(el, done){ bindChoice(el, yes ? 0 : 1, done, yes ? `<b>Yes</b>: ${CAN[a]}.` : `<b>No</b>. Starting from 60° and 90° and halving (or adding/subtracting) gives 30°, 15°, 45°, 75°, … but never ${a}°.`, "Constructible angles"); }};
+  }
+
+  /* ---------- Mission 4: Bisect & Design ---------- */
+  function m4(i){
+    const t = i % 3;
+    if (t === 0){ const n = P([4, 6, 8, 12, 16]); return {html:`<p class="tw-q">A flower design has <b>${n}</b> equally spaced lines through the centre (${n} petals). What angle is between two neighbouring lines?</p>${padHTML("", "°", {dec:true})}`,
+      mount(el, done){ bindPad(el, 360/n, 0.001, done, `${n} equal angles make a full turn: 360° ÷ ${n} = <b>${360/n}°</b>. ${n === 8 ? "To get 45°, bisect a right angle." : n === 12 ? "30° comes from bisecting 60°." : ""}`, "Designs from angles"); }}; }
+    if (t === 1){ const a = P([60, 90, 120, 80, 100, 140]), k = R(1, 3), ans = a/2**k, how = ["once", "twice (bisect, then bisect one half again)", "three times (always halving the newest small angle)"][k - 1];
+      return {html:`<p class="tw-q">An angle of <b>${a}°</b> is bisected ${how}. Size of the smallest angle?</p>${padHTML("", "°", {dec:true})}`,
+        mount(el, done){ bindPad(el, ans, 0.001, done, `Each bisection halves the angle: ${a}° → ${Array.from({length:k}, (_, j) => a/2**(j + 1) + "°").join(" → ")}. Answer <b>${ans}°</b>.`, "Repeated bisection"); }}; }
+    const right = "Copy the angle at B so that the corresponding angles are equal", o = SH([right, "Bisect the angle at A", "Draw a perpendicular at B", "Draw an arc of radius AB from A"]);
+    return {html:`<p class="tw-q">Line m and a transversal l meet at A. To draw a line through B (on l) <b>parallel</b> to m with ruler and compass, we…</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `Equal corresponding angles make lines parallel. So we <b>copy the angle</b> between l and m at B. (Copying an angle uses congruent triangles: equal arcs and equal chords.)`, "Constructing parallel lines"); }};
+  }
+
+  /* ---------- Mission 5: Hexagons & Triangles ---------- */
+  function hexPic(){ let g = ""; const c = [90, 85], r = 70, pts = [0, 1, 2, 3, 4, 5].map(k => [c[0] + r*Math.cos(Math.PI/3*k), c[1] + r*Math.sin(Math.PI/3*k)]);
+    g += `<polygon points="${pts.map(p => p.join(",")).join(" ")}" fill="#5aa9ff22" stroke="#9cc8ff" stroke-width="2.5"/>`; pts.forEach(p => g += `<line x1="${c[0]}" y1="${c[1]}" x2="${p[0]}" y2="${p[1]}" stroke="#ffcf5a" stroke-width="1.6"/>`);
+    return svg(180, 170, g, 150); }
+  function m5(i){
+    const t = i % 4, s = R(3, 9);
+    if (t === 0) return {html:`<p class="tw-q">A regular hexagon has side <b>${s} cm</b>. What is the distance from its centre to a vertex?</p>${hexPic()}${padHTML("", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, s, 0, done, `The hexagon splits into 6 <b>equilateral</b> triangles, so centre-to-vertex = side = <b>${s} cm</b>. That’s why we can mark the radius 6 times round a circle!`, "Hexagon from triangles"); }};
+    if (t === 1) return {html:`<p class="tw-q">Each interior angle of a regular hexagon is…</p>${hexPic()}${padHTML("", "°", {dec:false})}`,
+      mount(el, done){ bindPad(el, 120, 0, done, `At each vertex two equilateral-triangle angles meet: 60° + 60° = <b>120°</b>.`, "Hexagon angles"); }};
+    if (t === 2) return {html:`<p class="tw-q">The angle at the centre in each of the 6 triangles of a regular hexagon is…</p>${padHTML("", "°", {dec:false})}`,
+      mount(el, done){ bindPad(el, 60, 0, done, `360° ÷ 6 = <b>60°</b>, and with two equal sides (radii) the triangle is equilateral.`, "Hexagon from triangles"); }};
+    return {html:`<p class="tw-q">A regular hexagon is drawn in a circle of radius <b>${s} cm</b>. Its perimeter?</p>${padHTML("", "cm", {dec:false})}`,
+      mount(el, done){ bindPad(el, 6*s, 0, done, `Side = radius = ${s} cm, so perimeter = 6 × ${s} = <b>${6*s} cm</b>.`, "Hexagon from triangles"); }};
+  }
+
+  /* ---------- domino helpers ---------- */
+  function randomTiling(r, c){ for (let tries = 0; tries < 200; tries++){ const g = Array.from({length: r}, () => Array(c).fill(-1)), D = []; let ok = true;
+      for (let y = 0; y < r && ok; y++) for (let x = 0; x < c && ok; x++){ if (g[y][x] >= 0) continue; const opts = []; if (x + 1 < c && g[y][x + 1] < 0) opts.push([y, x + 1]); if (y + 1 < r) opts.push([y + 1, x]);
+        if (!opts.length){ ok = false; break; } const [yy, xx] = P(opts); g[y][x] = g[yy][xx] = D.length; D.push([[y, x], [yy, xx]]); }
+      if (ok) return D; } return null; }
+  function board(r, c, holes, opt = {}){ const s = 26; let g = "";
+    for (let y = 0; y < r; y++) for (let x = 0; x < c; x++){ const h = holes.some(([a, b]) => a === y && b === x), dark = (x + y) % 2 === 0;
+      g += `<rect x="${2 + x*s}" y="${2 + y*s}" width="${s}" height="${s}" fill="${h ? "transparent" : opt.colour ? (dark ? "#1e2a4a" : "#e8ecff") : "#5aa9ff33"}" stroke="${h ? "#ff8fa055" : "#9cc8ff"}" ${h ? 'stroke-dasharray="3 3"' : ""}/>`; }
+    return svg(c*s + 4, r*s + 4, g, 150); }
+
+  /* ---------- Mission 6: Domino Logic ---------- */
+  function m6(i){
+    const t = i % 3;
+    if (t === 0){ const r = R(2, 7), c = R(2, 7), ok = (r*c) % 2 === 0;
+      return {html:`<p class="tw-q">Can a <b>${r} × ${c}</b> grid be tiled with 2 × 1 dominoes (rotations allowed)?</p>${board(r, c, [])}${choice(["Yes", "No"], "two")}`,
+        mount(el, done){ bindChoice(el, ok ? 0 : 1, done, ok ? `<b>Yes</b>: ${r*c} squares is even, and with ${r % 2 === 0 ? r + " rows (even)" : c + " columns (even)"} we can fill every ${r % 2 === 0 ? "column with vertical" : "row with horizontal"} dominoes.` : `<b>No</b>: ${r} × ${c} = ${r*c} squares is odd, but each domino covers exactly 2 squares.`, "Domino tilings"); }}; }
+    // odd board minus one square: tileable iff removed square has the corner colour
+    const r = P([3, 5]), c = P([3, 5, 7]), y = R(0, r - 1), x = R(0, c - 1), ok = (x + y) % 2 === 0;
+    if (t === 1) return {html:`<p class="tw-q">One square is removed from a <b>${r} × ${c}</b> grid (coloured like a chessboard). Can the rest be tiled with dominoes?</p>${board(r, c, [[y, x]], {colour:true})}${choice(["Yes", "No"], "two")}`,
+      mount(el, done){ const dk = Math.ceil(r*c/2), lt = Math.floor(r*c/2), rem = ok ? [dk - 1, lt] : [dk, lt - 1];
+        bindChoice(el, ok ? 0 : 1, done, `Each domino covers one dark and one light square. The grid has ${dk} dark and ${lt} light. After removing a ${ok ? "dark" : "light"} square: ${rem[0]} dark, ${rem[1]} light. ${ok ? "Equal → it <b>can</b> be tiled." : "Unequal → it can <b>never</b> be tiled!"}`, "The colouring trick"); }};
+    const dk = R(4, 9), lt = dk + P([0, 0, 1, 2, -1]);
+    return {html:`<p class="tw-q">A region has <b>${dk}</b> dark and <b>${lt}</b> light squares (chessboard colouring). Which is true?</p>${choice(["It definitely cannot be tiled with dominoes", "It might be tileable — check further", "It can always be tiled"], "")}`,
+      mount(el, done){ bindChoice(el, dk === lt ? 1 : 0, done, dk === lt ? `Equal counts are <b>necessary</b>, but not always enough: the shape could still be awkward. So it <b>might</b> be tileable.` : `Every domino covers one dark + one light square, so a tileable region must have equal counts. ${dk} ≠ ${lt} → <b>impossible</b>.`, "The colouring trick"); }};
+  }
+
+  /* ---------- Mission 7: Tiling the Plane ---------- */
+  const INT = n => 180*(n - 2)/n;
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ const n = P([3, 4, 5, 6, 8, 10, 12]), ok = [3, 4, 6].includes(n);
+      return {html:`<p class="tw-q">Can copies of a regular <b>${n}-sided</b> polygon alone tile the whole plane?</p>${choice(["Yes", "No"], "two")}`,
+        mount(el, done){ bindChoice(el, ok ? 0 : 1, done, `Interior angle = ${+INT(n).toFixed(2)}°. At a vertex the angles must add to exactly 360°: 360 ÷ ${+INT(n).toFixed(2)} = ${+(360/INT(n)).toFixed(2)}. ${ok ? "A whole number → <b>yes</b>." : "Not a whole number → <b>no</b>. Only triangles, squares and hexagons work."}`, "Regular tilings"); }}; }
+    if (t === 1){ const n = P([3, 4, 5, 6, 8, 12]); return {html:`<p class="tw-q">Each interior angle of a regular <b>${n}-gon</b> is…</p>${padHTML("", "°", {dec:false})}`,
+      mount(el, done){ bindPad(el, INT(n), 0, done, `Angle sum = (${n} − 2) × 180° = ${(n - 2)*180}°, each = ${(n - 2)*180} ÷ ${n} = <b>${INT(n)}°</b>.`, "Interior angles"); }}; }
+    const combos = [["3, 3, 3, 3, 6", true], ["4, 8, 8", true], ["3, 12, 12", true], ["3, 6, 3, 6", true], ["3, 3, 4, 3, 4", true], ["5, 5, 10", true], ["4, 6, 12", true], ["5, 5, 5", false], ["4, 6, 8", false], ["3, 3, 8", false], ["6, 6, 6, 6", false]];
+    const [cmb, ok] = P(combos), ns = cmb.split(", ").map(Number), sum = ns.reduce((s, n) => s + INT(n), 0);
+    return {html:`<p class="tw-q">Regular polygons with <b>${cmb}</b> sides meet at one point. Do they fit exactly around it?</p>${choice(["Yes, the angles make 360°", "No"], "two")}`,
+      mount(el, done){ bindChoice(el, Math.abs(sum - 360) < 1e-9 ? 0 : 1, done, `${ns.map(n => +INT(n).toFixed(1) + "°").join(" + ")} = ${+sum.toFixed(1)}°. ${Math.abs(sum - 360) < 1e-9 ? "Exactly 360° → they fit." : "Not 360° → gap or overlap."}`, "Angles at a vertex"); }};
+  }
+
+  /* ---------- Mission 8: Tile It Yourself (interactive) ---------- */
+  function m8(i){
+    if (i % 3 === 2){ const facts = [["Bee hives use hexagonal cells, so no space is wasted.", true], ["Escher created tilings with animal shapes.", true], ["A new tiling shape was discovered as recently as 2023.", true], ["Regular pentagons tile the plane.", false], ["Every shape can tile the plane.", false], ["A 5 × 7 grid can be tiled with dominoes.", false]];
+      const it = SH(facts.slice()).slice(0, 4), cor = it.map((f, k) => f[1] ? k : -1).filter(k => k >= 0); if (!cor.length) return m8(i);
+      return {html:`<p class="tw-q">Select <b>all</b> true statements.</p>${multiHTML(it.map(f => f[0]))}`,
+        mount(el, done){ bindMulti(el, cor, done, `Hexagons in hives and Escher’s animals are real tilings, and the ‘hat’ shape found in 2023 is new. Regular pentagons leave gaps (108° doesn’t divide 360°) and 5 × 7 = 35 is odd.`, "Tilings around us"); }}; }
+    const [r, c] = P([[3, 4], [4, 4], [4, 5], [3, 6], [4, 6]]), D = randomTiling(r, c), imp = Math.random() < .35;
+    let holes, sol;
+    if (imp){ // remove two squares of the same colour → impossible
+      const same = []; for (let y = 0; y < r; y++) for (let x = 0; x < c; x++) if ((x + y) % 2 === 0) same.push([y, x]); holes = SH(same).slice(0, 2); sol = "imp"; }
+    else { const rem = SH(D.slice()).slice(0, R(1, 2)); holes = rem.flat(); sol = D.filter(d => !rem.includes(d)); }
+    const isHole = (y, x) => holes.some(([a, b]) => a === y && b === x);
+    let cells = ""; for (let y = 0; y < r; y++) for (let x = 0; x < c; x++) cells += isHole(y, x) ? `<span class="dm-h" style="width:44px;height:44px;border-radius:8px;border:2px dashed #ff8fa055"></span>` : `<button type="button" class="dm-c" data-y="${y}" data-x="${x}" style="width:44px;height:44px;border-radius:8px;border:2px solid #9cc8ff66;background:#1e2a4a;cursor:pointer;padding:0"></button>`;
+    const html = `<p class="tw-q">Tap two <b>neighbouring</b> squares to place a domino (tap a domino to remove it). Cover every square — or press <b>Impossible</b> if it can’t be done.</p>
+      <div class="dm-g" style="display:grid;grid-template-columns:repeat(${c},44px);gap:4px;justify-content:center;margin:10px auto">${cells}</div>
+      <div style="text-align:center"><button type="button" class="tw-b dm-imp" style="display:inline-block;padding:10px 18px">Impossible ✋</button></div>`;
+    return {html, mount(el, done){
+      const cols = ["#5aa9ff", "#ffcf5a", "#3ccf7a", "#ff8fa0", "#c49bff", "#5eead4", "#fb923c", "#a3e635", "#f472b6"]; let sel = null, n = 0, over = false; const placed = new Map();
+      const key = (y, x) => y + "," + x, btn = (y, x) => el.querySelector(`.dm-c[data-y="${y}"][data-x="${x}"]`);
+      const total = el.querySelectorAll(".dm-c").length;
+      const fin = ok => { if (over) return; over = true; el.dataset.lock = 1;
+        done(ok, sol === "imp" ? `Colour the board like a chessboard: two squares of the <b>same</b> colour are missing, so dark ≠ light, and every domino covers one of each. <b>Impossible</b>.` : `Every square is covered: ${ok ? "well tiled!" : "this one <b>can</b> be tiled (dark and light counts are equal), so “impossible” was not right."}`, "Tiling puzzles"); };
+      el.querySelectorAll(".dm-c").forEach(b => b.onclick = () => { if (over) return; const y = +b.dataset.y, x = +b.dataset.x, k = key(y, x);
+        if (placed.has(k)){ const id = placed.get(k); [...placed].filter(([, v]) => v === id).forEach(([kk]) => { placed.delete(kk); const [yy, xx] = kk.split(",").map(Number); const bb = btn(yy, xx); bb.style.background = "#1e2a4a"; }); return; }
+        if (!sel){ sel = [y, x]; b.style.outline = "3px solid #fff"; return; }
+        const [sy, sx] = sel; btn(sy, sx).style.outline = ""; sel = null;
+        if (Math.abs(sy - y) + Math.abs(sx - x) !== 1 || placed.has(key(sy, sx))) return;
+        const col = cols[n++ % cols.length]; [[sy, sx], [y, x]].forEach(([yy, xx]) => { placed.set(key(yy, xx), n); btn(yy, xx).style.background = col; });
+        if (placed.size === total) fin(true); });
+      el.querySelector(".dm-imp").onclick = () => fin(sol === "imp");
+      window.__X = () => { if (sol === "imp") el.querySelector(".dm-imp").click(); else sol.forEach(([[a, b2], [c2, d]]) => { btn(a, b2).click(); btn(c2, d).click(); }); };
+      window.__A = {t:"x"};
+    }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"The Perpendicular Bisector", goal:"Equidistant points and why the arcs work.", n:8,
+      learn:L("Equal distances", "Every point equally far from X and Y lies on the perpendicular bisector of XY. Arcs from X and Y with the same radius (more than half of XY) meet at such points; two of them fix the line.", "Midpoint by construction is more accurate than by measuring")},
+    {id:2, track:"foundation", name:"Construction Steps", goal:"Order the steps of classic constructions.", n:8,
+      learn:L("Only ruler and compass", "Perpendicular bisector, 90° at a point, angle bisector, 60° (equilateral triangle), copying an angle, parallel lines and the regular hexagon all use just arcs and straight lines.", "60°: arc from O, same radius from A → equilateral triangle")},
+    {id:3, track:"foundation", name:"Angle Maker", goal:"Which angles can we build from 60°, 90° and bisection?", n:8,
+      learn:L("Build from 60° and 90°", "Bisect to halve: 30°, 15°, 45°, 22.5°. Combine: 75° = 60° + 15°, 105° = 90° + 15°, 135° = 90° + 45°. Angles like 65.5° can’t be made this way.", "")},
+    {id:4, track:"core", name:"Bisect & Design", goal:"Petal designs, repeated bisection, parallel lines.", n:8,
+      learn:L("Equal angles around a point", "n equal angles around a point are 360°/n each. Copying an angle at a new point gives parallel lines (equal corresponding angles).", "8 petals → 45° → bisect a right angle")},
+    {id:5, track:"core", name:"Hexagons & Triangles", goal:"Six equilateral triangles make a regular hexagon.", n:8,
+      learn:L("Radius = side", "A regular hexagon is six equilateral triangles around the centre, so its side equals the circle’s radius and each angle is 120°.", "Mark the radius 6 times around a circle → hexagon")},
+    {id:6, track:"core", name:"Domino Logic", goal:"Parity and the chessboard colouring trick.", n:8,
+      learn:L("Colour to decide", "A domino covers 2 squares, so the area must be even. Colour like a chessboard: each domino covers one dark and one light square, so their counts must be equal.", "5 × 7 = 35 squares → impossible")},
+    {id:7, track:"advanced", name:"Tiling the Plane", goal:"Angles at a vertex must add to 360°.", n:8,
+      learn:L("360° at every corner", "A regular polygon tiles the plane alone only if its interior angle divides 360°: triangles (60°), squares (90°), hexagons (120°). Mixed tilings like 4-8-8 also add to 360°.", "Pentagon 108°: 360/108 is not whole → gaps")},
+    {id:8, track:"advanced", name:"Tile It Yourself", goal:"Place dominoes yourself, or prove it impossible.", n:7,
+      learn:L("Try, then think", "Place dominoes on the grid. If you get stuck, count dark and light squares: unequal counts mean it can never be done.", "")},
+    {id:9, track:"advanced", name:"Construction Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m3, m3, m4, m5, m6, m6, m7, m7])(R(0, 5))};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c7-constructions"] = CQ.quest({
+  key:"ct7c6_stars", missions:CON7.MISSIONS, gen:CON7.GEN, chapter:{std:7, part:"Part 2", ch:6},
+  desc:"Std 7 · Ganita Prakash Part 2 · Chapter 6. Master constructions and tilings in 9 missions: perpendicular bisectors, construction steps, constructible angles, hexagons, domino puzzles and tiling the plane.",
+  modes:{foundation:"Perpendicular bisectors, construction steps and constructible angles", core:"Designs with bisection, hexagons and the domino colouring trick", advanced:"Tiling the plane, tile-it-yourself puzzles and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 7 · Ganita Prakash Part 2 · Ch 7 · Finding the Unknown
+   Chapter game "Balance Quest": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Balance Scales  2 Frame the Equation  3 Guess & Check
+   Apply  : 4 Same on Both Sides  5 Solve It  6 Mind the Mistake
+   Master : 7 Word Puzzles  8 Machines & Magic  9 Unknown Master (timed)
+   ============================================================ */
+const UNK7 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, neg, par, orderHTML, bindOrder} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const nz = (a, b) => { let x; do { x = R(a, b); } while (!x); return x; };
+  // ax + b written nicely
+  const lin = (a, b, v = "x") => { const A = a === 1 ? v : a === -1 ? "−" + v : neg(a) + v; return a === 0 ? neg(b) : b === 0 ? A : `${A} ${b < 0 ? "−" : "+"} ${Math.abs(b)}`; };
+
+  /* ---------- pan balance picture ---------- */
+  // left/right: arrays of items {k:"w", v:number} weight block or {k:"s", v:label} sack
+  function scale(left, right){
+    const item = (it, x, y) => it.k === "w" ? `<rect x="${x - 15}" y="${y - 30}" width="30" height="30" rx="5" fill="#5aa9ff"/><text x="${x}" y="${y - 9}" text-anchor="middle" style="font-size:15px;font-weight:900;fill:#07101f">${it.v}</text>`
+      : `<path d="M${x - 15} ${y} Q${x - 17} ${y - 26} ${x - 6} ${y - 32} L${x + 6} ${y - 32} Q${x + 17} ${y - 26} ${x + 15} ${y} Z" fill="#ffcf5a"/><text x="${x}" y="${y - 10}" text-anchor="middle" style="font-size:15px;font-weight:900;fill:#07101f">${it.v}</text>`;
+    const row = (arr, cx) => { const n = arr.length, w = n > 3 ? 28 : 33; return arr.map((it, k) => item(it, cx - (n - 1)*w/2 + k*w, 92)).join(""); };
+    let g = `<polygon points="160,150 145,170 175,170" fill="#cfd6ff"/><line x1="160" y1="150" x2="160" y2="40" stroke="#cfd6ff" stroke-width="4"/><line x1="40" y1="40" x2="280" y2="40" stroke="#cfd6ff" stroke-width="4"/>`;
+    g += `<line x1="70" y1="40" x2="40" y2="94" stroke="#cfd6ff88"/><line x1="70" y1="40" x2="100" y2="94" stroke="#cfd6ff88"/><line x1="250" y1="40" x2="220" y2="94" stroke="#cfd6ff88"/><line x1="250" y1="40" x2="280" y2="94" stroke="#cfd6ff88"/>`;
+    g += `<path d="M10 94 H130 Q70 112 10 94 Z" fill="#9cc8ff55" stroke="#9cc8ff"/><path d="M190 94 H310 Q250 112 190 94 Z" fill="#9cc8ff55" stroke="#9cc8ff"/>`;
+    g += row(left, 70) + row(right, 250);
+    return `<svg class="tw-svg" viewBox="0 0 320 175" style="max-height:200px">${g}</svg>`;
+  }
+  const W = v => ({k:"w", v}), S = l => ({k:"s", v:l});
+  const rep = (n, f) => Array.from({length: n}, f);
+  // split a total into a few weight blocks
+  const blocks = t => { const out = []; let r = t; while (r > 0 && out.length < 3){ const b = out.length === 2 ? r : Math.min(r, P([1, 2, 5, 10, 4, 3].filter(x => x <= r))); out.push(b); r -= b; } if (r > 0) out[out.length - 1] += r; return out; };
+
+  /* ---------- Mission 1: Balance Scales ---------- */
+  function m1(i){
+    const t = i % 3, x = R(2, 9);
+    if (t === 0){ const n = R(2, 4), tot = n*x; return {html:`<p class="tw-q">The scale is balanced. Each sack weighs the same. How heavy is <b>one sack</b>?</p>${scale(rep(n, () => S("?")), blocks(tot).map(W))}${padHTML("", "kg", {dec:false})}`,
+      mount(el, done){ bindPad(el, x, 0, done, `${n} sacks = ${tot} kg, so ${n}s = ${tot} → s = ${tot} ÷ ${n} = <b>${x} kg</b>. Split the right side into ${n} equal parts!`, "Balance scales"); }}; }
+    if (t === 1){ const n = R(1, 3), c = R(1, 8), tot = n*x + c; return {html:`<p class="tw-q">Balanced scale. Find the weight of one sack.</p>${scale([...rep(n, () => S("?")), W(c)], blocks(tot).map(W))}${padHTML("", "kg", {dec:false})}`,
+      mount(el, done){ bindPad(el, x, 0, done, `${n === 1 ? "s" : n + "s"} + ${c} = ${tot}. Remove ${c} kg from <b>both</b> pans: ${n === 1 ? "s" : n + "s"} = ${tot - c} → s = <b>${x} kg</b>.`, "Balance scales"); }}; }
+    const a = R(3, 5), b = R(1, a - 1), c = R(1, 6), d = (a - b)*x + c;
+    return {html:`<p class="tw-q">Sacks on <b>both</b> sides. Find the weight of one sack.</p>${scale([...rep(a, () => S("?")), W(c)], [...rep(b, () => S("?")), W(d)])}${padHTML("", "kg", {dec:false})}`,
+      mount(el, done){ bindPad(el, x, 0, done, `${a}s + ${c} = ${b}s + ${d}. Remove ${b} sack${b > 1 ? "s" : ""} from each pan: ${a - b === 1 ? "s" : (a - b) + "s"} + ${c} = ${d}. Remove ${c}: ${a - b === 1 ? "s" : (a - b) + "s"} = ${d - c} → s = <b>${x} kg</b>.`, "Balance scales"); }};
+  }
+
+  /* ---------- Mission 2: Frame the Equation ---------- */
+  const FR = [
+    () => { const n = R(20, 80), k = P([2, 3, 4]), c = R(0, 2); return [`Matchstick pattern: position n uses ${k}n ${c ? "+ " + c : ""} sticks. Which position uses ${k*n + c} sticks?`, `${k}n${c ? " + " + c : ""} = ${k*n + c}`, [`${k}n${c ? " + " + c : ""} = ${n}`, `n + ${k}${c ? " + " + c : ""} = ${k*n + c}`, `${k*n + c}n = ${k}`]]; },
+    () => { const x = R(3, 15), m = R(2, 5), a = R(2, 9); return [`Think of a number, multiply it by ${m}, add ${a}: you get ${m*x + a}.`, `${m}x + ${a} = ${m*x + a}`, [`${m}(x + ${a}) = ${m*x + a}`, `x + ${m} + ${a} = ${m*x + a}`, `${m}x = ${m*x + a} + ${a}`]]; },
+    () => { const x = R(4, 20), a = R(2, 9); return [`${a} more than a number is three times the number.`, `x + ${a} = 3x`, [`3(x + ${a}) = x`, `x + 3 = ${a}x`, `${a}x = 3 + x`]]; },
+    () => { const p = R(2, 9); return [`One quarter of a number increased by ${p} gives the same number.`, `x/4 + ${p} = x`, [`(x + ${p})/4 = x`, `4x + ${p} = x`, `x/4 = x + ${p}`]]; },
+    () => { const s = R(30, 90); return [`The sum of two numbers is ${s}; one number is twice the other (x is the smaller).`, `x + 2x = ${s}`, [`x + 2 = ${s}`, `2x = ${s} + x`, `x × 2x = ${s}`]]; },
+    () => [`The weight of a brick is 1 kg more than half its weight.`, `w = w/2 + 1`, [`w/2 = w + 1`, `w + 1 = 2w`, `2w = w + 1/2`]]
+  ];
+  function m2(i){
+    if (i % 4 === 3){ const items = SH([[P(["3x + 4 = 7", "a/3 = 50", "2z + 4 = 5z − 14", "20 = y − 3"]), true], ...SH([["5y − 2", false], ["4 + 9 = 13", false], ["7m", false], ["3(p + 1)", false]]).slice(0, 3)]), o = items.map(x => x[0]);
+      return {html:`<p class="tw-q">Which of these is an <b>algebraic equation</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, items.map((x, k) => x[1] ? k : -1).filter(k => k >= 0), done, `An algebraic equation is an equality (=) between two expressions with an unknown letter-number. “5y − 2” and “7m” are only expressions; “4 + 9 = 13” has no unknown.`, "What is an equation?"); }}; }
+    const [s, right, wrong] = FR[i % FR.length](), o = opts4(right, wrong);
+    return {html:`<p class="tw-q">Which equation describes this?</p><div class="tw-ex" style="font-size:16px">${s}</div>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `<b>${right}</b>. Translate word by word: “is / gives / uses” becomes =, “more than” adds, “times / twice” multiplies.`, "Framing equations"); }};
+  }
+
+  /* ---------- Mission 3: Guess & Check ---------- */
+  function m3(i){
+    const a = R(2, 6), x = R(-5, 15), b = R(-9, 12), c = a*x + b, t = i % 3;
+    if (t === 0){ const g = x + P([0, 0, 1, -1, 2]), L = a*g + b;
+      return {html:`<p class="tw-q">Is <b>${g === 0 ? "x = 0" : "x = " + neg(g)}</b> a solution of</p><div class="tw-ex">${lin(a, b)} = ${neg(c)}</div>${choice(["Yes", "No"], "two")}`,
+        mount(el, done){ bindChoice(el, L === c ? 0 : 1, done, `Substitute: LHS = ${a} × ${par(g)} ${b < 0 ? "−" : "+"} ${Math.abs(b)} = ${neg(L)}. RHS = ${neg(c)}. ${L === c ? "LHS = RHS → <b>yes</b>." : "LHS ≠ RHS → <b>no</b>."}`, "Checking a solution"); }}; }
+    if (t === 1){ const o = opts4(neg(x), [neg(x + 1), neg(x - 1), neg(-x), neg(c - b)]);
+      return {html:`<p class="tw-q">Which value makes LHS = RHS?</p><div class="tw-ex">${lin(a, b)} = ${neg(c)}</div>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(neg(x)), done, `Try each: with x = ${neg(x)}, ${a} × ${par(x)} ${b < 0 ? "−" : "+"} ${Math.abs(b)} = ${neg(c)} ✓. Trial and error works, but it can be slow: a system is better.`, "Trial and error"); }}; }
+    const n = R(20, 70), L = 2*n + 1, guesses = [10, 30, 40, 50].map(v => `n = ${v} → ${2*v + 1}`).join("; ");
+    return {html:`<p class="tw-q">Jasmine’s pattern uses 2n + 1 sticks. She wants <b>${L}</b> sticks. Tries so far: ${guesses}. What is n?</p>${padHTML("n =", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, n, 0, done, `2n + 1 = ${L} → 2n = ${L - 1} → n = <b>${n}</b>. The guesses showed it lies between two tries; a system gets there at once.`, "Trial and error"); }};
+  }
+
+  /* ---------- Mission 4: Same on Both Sides ---------- */
+  function m4(i){
+    const t = i % 3;
+    if (t === 0){ const A = R(1000, 9999), B = R(100, 999), C = R(10, 99), add = R(10, 99), tot = A - B + C + add;
+      return {html:`<p class="tw-q">Given <b>${A} − ${B} + ${C} + ${add} = ${tot}</b>, find <b>${A} − ${B} + ${C}</b> without recalculating.</p>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, tot - add, 0, done, `Subtract ${add} from <b>both</b> sides: the LHS loses “+ ${add}” and the RHS becomes ${tot} − ${add} = <b>${tot - add}</b>. Equality is kept when we do the same to both sides.`, "Same operation on both sides"); }}; }
+    if (t === 1){ const p = [R(11, 40), R(11, 40), R(2, 9)], f = R(3, 9), tot = p[0]*p[1]*p[2]*f;
+      return {html:`<p class="tw-q">Given <b>${p.join(" × ")} × ${f} = ${tot.toLocaleString("en-IN")}</b>, find <b>${p.join(" × ")}</b>.</p>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, tot/f, 0, done, `Divide both sides by ${f} to remove the factor ${f}: ${tot.toLocaleString("en-IN")} ÷ ${f} = <b>${(tot/f).toLocaleString("en-IN")}</b>.`, "Same operation on both sides"); }}; }
+    const a = R(2, 7), b = R(2, 12), x = R(2, 12), c = a*x + b, steps = [`${a}x + ${b} = ${c}`, `${a}x = ${c} − ${b}`, `${a}x = ${c - b}`, `x = ${c - b} ÷ ${a}`, `x = ${x}`];
+    return {html:`<p class="tw-q">Put the steps of solving <b>${a}x + ${b} = ${c}</b> in order.</p>${orderHTML(steps)}`,
+      mount(el, done){ bindOrder(el, steps, done, `Undo in reverse: first remove the <b>+ ${b}</b> (subtract ${b} from both sides), then remove the <b>× ${a}</b> (divide both sides by ${a}).`, "Solving step by step"); }};
+  }
+
+  /* ---------- Mission 5: Solve It ---------- */
+  function m5(i){
+    const t = i % 5, x = R(-8, 12);
+    let q, why;
+    if (t === 0){ const a = nz(2, 9), b = nz(-15, 15), c = a*x + b; q = `${lin(a, b)} = ${neg(c)}`; why = `${a}x = ${neg(c)} − ${par(b)} = ${neg(c - b)} → x = ${neg(c - b)} ÷ ${a} = <b>${neg(x)}</b>.`; }
+    else if (t === 1){ const a = R(3, 9), b = R(1, a - 1), c = nz(-12, 12), d = (a - b)*x + c; q = `${lin(a, c)} = ${lin(b, d)}`; why = `Move ${b === 1 ? "x" : b + "x"} to the left and ${neg(c)} to the right: ${a - b === 1 ? "x" : (a - b) + "x"} = ${neg(d)} − ${par(c)} = ${neg(d - c)} → x = <b>${neg(x)}</b>.`; }
+    else if (t === 2){ const k = R(2, 5), p = R(-5, 8), c = R(1, 9), rhs = k*(x + p) - c; q = `${k}(x ${p < 0 ? "−" : "+"} ${Math.abs(p)}) − ${c} = ${neg(rhs)}`; if (!p) return m5(i + 1); why = `Open the bracket: ${k}x ${k*p < 0 ? "−" : "+"} ${Math.abs(k*p)} − ${c} = ${neg(rhs)} → ${k}x = ${neg(rhs + c - k*p)} → x = <b>${neg(x)}</b>. Multiply <b>every</b> term inside the bracket!`; }
+    else if (t === 3){ const d = P([2, 3, 4, 5, 15]), y = x*d; q = `x ÷ ${d} = ${neg(x)}`; why = `Multiply both sides by ${d}: x = ${neg(x)} × ${d} = <b>${neg(y)}</b>.`;
+      return {html:`<p class="tw-q">Solve</p><div class="tw-ex">${q}</div>${padHTML("x =", "", {neg:true, dec:false})}`, mount(el, done){ bindPad(el, y, 0, done, why, "Solving equations"); }}; }
+    else { const c = R(5, 20), xx = R(1, c - 1); q = `${c} − x = ${c - xx}`; why = `Add x to both sides and subtract ${c - xx}: x = ${c} − ${c - xx} = <b>${xx}</b>. Careful: −x = ${-xx}, so x = ${xx}.`;
+      return {html:`<p class="tw-q">Solve</p><div class="tw-ex">${q}</div>${padHTML("x =", "", {neg:true, dec:false})}`, mount(el, done){ bindPad(el, xx, 0, done, why, "Solving equations"); }}; }
+    return {html:`<p class="tw-q">Solve and check</p><div class="tw-ex">${q}</div>${padHTML("x =", "", {neg:true, dec:false})}`, mount(el, done){ bindPad(el, x, 0, done, why + " Check by substituting back!", "Solving equations"); }};
+  }
+
+  /* ---------- Mission 6: Mind the Mistake ---------- */
+  const MIS = [
+    () => { const a = R(2, 6), b = R(2, 9), x = R(1, 8), c = a*x + b; return [[`${a}x + ${b} = ${c}`, `${a}x = ${c} + ${b}`, `${a}x = ${c + b}`, `x = ${Number.isInteger((c + b)/a) ? (c + b)/a : (c + b) + "/" + a}`], 1, `Moving +${b} to the other side makes it <b>−${b}</b>: ${a}x = ${c} − ${b} = ${c - b}, so x = ${x}.`]; },
+    () => { const a = R(2, 8), b = R(1, 6), c = R(7, 15), x = (c - b)/a; return [[`${c} − ${a}z = ${b}`, `${a}z = ${c} − ${b}`, `${a}z = ${c - b}`, `z = ${Number.isInteger(x) ? x : (c - b) + "/" + a}`], -1, `All steps are correct! ${c} − ${a}z = ${b} → ${c} − ${b} = ${a}z.`]; },
+    () => { const v = R(3, 9), r = 2*v - 4; return [[`2v − 4 = ${r}`, `v − 4 = ${r} − 2`, `v − 4 = ${r - 2}`, `v = ${r + 2}`], 1, `“2v” means 2 × v, so we must <b>divide</b> by 2 (after adding 4): 2v = ${r + 4}, v = ${v}. Subtracting 2 is wrong.`]; },
+    () => { const q = R(2, 5), rhs = 4*(4*q + 2); return [[`4(4q + 2) = ${rhs}`, `4(4q) = ${rhs} − 2`, `16q = ${rhs - 2}`, `q = ${Number.isInteger((rhs - 2)/16) ? (rhs - 2)/16 : (rhs - 2) + "/16"}`], 1, `The 4 multiplies <b>both</b> terms in the bracket: 16q + 8 = ${rhs} → 16q = ${rhs - 8} → q = ${q}.`]; },
+    () => { const w = R(2, 6); return [[`15w − 4w = ${11*w}`, `15w = ${11*w} + 4w`, `15w = ${15*w}`, `w = ${w}`], 2, `${11*w} + 4w cannot be added to make ${15*w}: they are unlike terms. Instead 11w = ${11*w}, w = ${w} (same answer by luck here only because the step ‘15w = ${11*w} + 4w’ was not simplified properly).`]; },
+    () => { const z = R(1, 5); return [[`5z + 2 = 3z − 4`, `5z + 3z = −4 + 2`, `8z = −2`, `z = −1/4`], 1, `Moving +3z across makes it <b>−3z</b> and moving +2 makes it −2: 5z − 3z = −4 − 2 → 2z = −6 → z = −3.`]; }
+  ].filter((_, k) => k !== 4);
+  function m6(i){
+    const [st, bad, why] = MIS[i % MIS.length](), o = st.map((s, k) => k === 0 ? "No mistake" : `Step ${k}: ${s}`);
+    const right = bad < 0 ? 0 : bad;
+    return {html:`<p class="tw-q">Find the <b>first wrong step</b> (or say there is none).</p><div class="tw-ex" style="font-size:17px;text-align:left;line-height:1.7">${st.map((s, k) => `<div>${k === 0 ? "Given" : "Step " + k}: ${s}</div>`).join("")}</div>${choice(o)}`,
+      mount(el, done){ bindChoice(el, right, done, why, "Mind the mistake"); }};
+  }
+
+  /* ---------- Mission 7: Word Puzzles ---------- */
+  const WP = [
+    () => { const s = R(40, 120), k = P([2, 3, 4]); if (s % (k + 1)) return null; const x = s/(k + 1); return [`The sum of two numbers is <b>${s}</b>. One number is <b>${k} times</b> the other. The smaller number?`, x, `x + ${k}x = ${s} → ${k + 1}x = ${s} → x = <b>${x}</b> (the other is ${k*x}).`, ""]; },
+    () => { const pay = P([750, 900, 1050, 1200, 450]); return [`Ranju earns <b>₹${pay}</b> a day in ₹50 and ₹100 notes, with an <b>equal number</b> of each. How many ₹100 notes?`, pay/150, `n notes of each: 50n + 100n = ${pay} → 150n = ${pay} → n = <b>${pay/150}</b>.`, "notes"]; },
+    () => { const fee = P([800, 500, 600]), r = P([20, 15, 25]), km = R(30, 90), tot = fee + r*km; return [`A taxi charges <b>₹${fee}</b> per day plus <b>₹${r} per km</b>. The bill is <b>₹${tot}</b>. How many km?`, km, `${fee} + ${r}k = ${tot} → ${r}k = ${tot - fee} → k = <b>${km}</b> km.`, "km"]; },
+    () => [`A brick weighs 1 kg more than <b>half</b> its weight. What does it weigh?`, 2, `w = w/2 + 1 → w/2 = 1 → w = <b>2 kg</b>.`, "kg"],
+    () => { const p = R(2, 9); return [`One quarter of a number increased by <b>${p}</b> gives the same number. Find it.`, 4*p/3, `x/4 + ${p} = x → ${p} = 3x/4 → x = ${4*p}/3${4*p % 3 ? " ≈ " + (4*p/3).toFixed(2) : " = <b>" + 4*p/3 + "</b>"}.`, ""]; },
+    () => { const h = R(1, 6); const t = h + 3, u = h + 6; if (u > 9) return null; return [`A 3-digit number: hundreds digit is 3 less than the tens digit, tens digit is 3 less than the units digit, and the digits add to <b>${3*h + 9}</b>. The number?`, 100*h + 10*t + u, `Let hundreds = h: digits h, h + 3, h + 6. 3h + 9 = ${3*h + 9} → h = ${h}. Number = <b>${100*h + 10*t + u}</b>.`, ""]; },
+    () => { const dots = P([25, 31, 40, 22]), seen = P([1, 4, 7]), b = R(3, 6); if ((dots - seen) % b) return null; return [`${b} black blobs each hide the same number of dots; ${seen} dots are visible and there are <b>${dots}</b> dots in all. Dots under one blob?`, (dots - seen)/b, `${b}x + ${seen} = ${dots} → ${b}x = ${dots - seen} → x = <b>${(dots - seen)/b}</b>.`, "dots"]; }
+  ];
+  function m7(i){
+    let q; do { q = P(WP)(); } while (!q || !Number.isInteger(q[1]));
+    const [txt, a, why, u] = q;
+    return {html:`<p class="tw-q">${txt}</p>${padHTML("", u, {dec:false})}`, mount(el, done){ bindPad(el, a, 0, done, why, "Word problems"); }};
+  }
+
+  /* ---------- Mission 8: Machines & Magic ---------- */
+  function m8(i){
+    const t = i % 3;
+    if (t === 0){ const m = R(2, 6), a = R(1, 12), x = R(1, 15), out = m*x + a;
+      return {html:`<p class="tw-q">A machine does <b>× ${m}</b> then <b>+ ${a}</b>. The output is <b>${out}</b>. What was the input?</p><div class="tw-ex" style="font-size:18px">? → [× ${m}] → [+ ${a}] → ${out}</div>${padHTML("input =", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, x, 0, done, `Work backwards with inverse operations: ${out} − ${a} = ${out - a}, then ÷ ${m} = <b>${x}</b>. Equation: ${m}x + ${a} = ${out}.`, "Input-output machines"); }}; }
+    if (t === 1){ const a = P([10, 6, 8, 14, 20]), e = R(1, 9), res = a/2 + e;
+      return {html:`<p class="tw-q">Magic trick: think of a number, × 2, add ${a}, ÷ 2, subtract the number you thought of, add ${e}. What is the result <b>for every starting number</b>?</p>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, res, 0, done, `x → 2x → 2x + ${a} → x + ${a/2} → ${a/2} → ${a/2} + ${e} = <b>${res}</b>. The x cancels out, so the answer never depends on your number!`, "Why magic tricks work"); }}; }
+    const k = R(1, 9), a = R(2, 5), b = R(1, 9), v = a*k + b, ask = P([[`${2*a}k + ${2*b}`, 2*v, `double both sides`], [`${a}k`, v - b, `subtract ${b}`], ["k", k, `solve fully`], [`${a}k − ${b}`, v - 2*b, `subtract ${2*b}`]]);
+    return {html:`<p class="tw-q">Given <b>${a}k + ${b} = ${v}</b>, find the value of <b>${ask[0]}</b>.</p>${padHTML("", "", {neg:true, dec:false})}`,
+      mount(el, done){ bindPad(el, ask[1], 0, done, `No need to find k first: ${ask[2]} → <b>${ask[1]}</b>. (k = ${k}.)`, "Using a known equation"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Balance Scales", goal:"Find unknown weights by keeping the scale balanced.", n:8,
+      learn:L("Keep it balanced", "A balanced scale is an equation. Removing the <b>same</b> weight from both pans keeps it balanced. Split equal sacks into equal shares.", "3 sacks + 2 kg = 1 sack + 10 kg → remove 1 sack and 2 kg: 2 sacks = 8 kg → 1 sack = 4 kg")},
+    {id:2, track:"foundation", name:"Frame the Equation", goal:"Turn situations into equations.", n:8,
+      learn:L("An equation is an equality", "An algebraic equation says two expressions are equal: LHS = RHS, with a letter-number for the unknown.", "“Twice a number plus 1 is 99” → 2n + 1 = 99")},
+    {id:3, track:"foundation", name:"Guess & Check", goal:"Test values: does LHS equal RHS?", n:8,
+      learn:L("Substitute and compare", "A solution is a value that makes LHS = RHS. Trial and error can find it, but it can be slow.", "2n + 1 = 99: n = 50 gives 101 (too big), n = 49 gives 99 ✓")},
+    {id:4, track:"core", name:"Same on Both Sides", goal:"Add, subtract, multiply or divide both sides.", n:8,
+      learn:L("Do the same to both sides", "Equality stays if we do the same operation on both sides. Undo operations in the reverse order: first + and −, then × and ÷.", "11y − 5 = 61 → 11y = 66 → y = 6")},
+    {id:5, track:"core", name:"Solve It", goal:"Brackets, unknowns on both sides, negatives, division.", n:8,
+      learn:L("Transposing", "A term that moves to the other side changes to its inverse: + becomes −, × becomes ÷. Collect unknowns on one side and numbers on the other.", "6y + 7 = 4y + 21 → 2y = 14 → y = 7 · u/15 = 6 → u = 90")},
+    {id:6, track:"core", name:"Mind the Mistake", goal:"Spot and fix wrong steps in worked solutions.", n:7,
+      learn:L("Check each step", "Common slips: forgetting to change the sign when moving a term, subtracting instead of dividing, and multiplying only the first term of a bracket.", "4x + 6 = 10 → 4x = 10 + 6 ✗ (should be 10 − 6)")},
+    {id:7, track:"advanced", name:"Word Puzzles", goal:"Notes, taxis, digits, bricks and blobs.", n:8,
+      learn:L("Name, write, solve, check", "Choose a letter for the unknown, write the equation from the story, solve it, and check the answer in the story.", "Taxi: 800 + 20k = 2200 → k = 70 km")},
+    {id:8, track:"advanced", name:"Machines & Magic", goal:"Work backwards and explain magic tricks.", n:8,
+      learn:L("Algebra explains tricks", "Write the steps with x. If x cancels, the answer is the same for everyone. To reverse a machine, undo each step in reverse order.", "×2, +10, ÷2, −x, +3 → always 8 (bījagaṇita: the ‘seed’ x hides inside)")},
+    {id:9, track:"advanced", name:"Unknown Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m3, m3, m4, m5, m5, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c7-unknown"] = CQ.quest({
+  key:"fu7c7_stars", missions:UNK7.MISSIONS, gen:UNK7.GEN, chapter:{std:7, part:"Part 2", ch:7},
+  desc:"Std 7 · Ganita Prakash Part 2 · Chapter 7. Learn to find the unknown in 9 missions: balance scales, framing and checking equations, solving systematically, spotting mistakes, word puzzles and magic tricks.",
+  modes:{foundation:"Balance scales, framing equations and guess-and-check", core:"Same operation on both sides, solving equations and finding mistakes", advanced:"Word puzzles, machines, magic tricks and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 8 · Ganita Prakash Part 2 · Ch 5 · Tales by Dots and Lines
+   Chapter game "Balance & Trends": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 The Balancing Act  2 Mean Shortcuts  3 Moving the Mean
+   Apply  : 4 Moving the Median  5 Read the Line  6 Line Graph Stories
+   Master : 7 Build the Data  8 Proofs about Averages  9 Data Tales Master (timed)
+   ============================================================ */
+const DTL8 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const r2 = x => Math.round(x*100)/100, sum = a => a.reduce((s, v) => s + v, 0), mean = a => sum(a)/a.length;
+  const med = a => { const b = a.slice().sort((x, y) => x - y), n = b.length; return n % 2 ? b[(n - 1)/2] : (b[n/2 - 1] + b[n/2])/2; };
+  const data = (n, lo, hi) => Array.from({length: n}, () => R(lo, hi));
+  // balance-beam dot plot: dots above a beam with the fulcrum at the mean
+  function beam(vals, lo, hi, m, showFul = true, miss){
+    const W = 320, X = v => 20 + (v - lo)*(W - 40)/(hi - lo), c = {}; let g = `<line x1="12" y1="110" x2="${W - 12}" y2="110" stroke="#cfd6ff" stroke-width="3"/>`;
+    for (let v = lo; v <= hi; v++) g += `<text x="${X(v)}" y="140" text-anchor="middle" style="font-size:9px;fill:#cfd6ffaa">${v}</text>`;
+    vals.forEach(v => { c[v] = (c[v] || 0) + 1; g += `<circle cx="${X(v)}" cy="${110 - c[v]*11}" r="4.6" fill="#5aa9ff"/>`; });
+    if (miss !== undefined) g += `<circle cx="${X(miss)}" cy="99" r="5" fill="none" stroke="#ffcf5a" stroke-dasharray="2 2"/>`;
+    if (showFul) g += `<polygon points="${X(m)},112 ${X(m) - 9},128 ${X(m) + 9},128" fill="#ffcf5a"/>`;
+    return `<svg class="tw-svg" viewBox="0 0 ${W} 146" style="max-height:150px">${g}</svg>`; }
+
+  /* ---------- Mission 1: The Balancing Act ---------- */
+  function m1(i){
+    const t = i % 3;
+    if (t === 0){ let a, m; do { a = data(R(4, 7), 1, 14); m = mean(a); } while (!Number.isInteger(m));
+      const left = a.filter(v => v < m).map(v => m - v), right = a.filter(v => v > m).map(v => v - m);
+      return {html:`<p class="tw-q">Data: <b>${a.join(", ")}</b>, mean = <b>${m}</b>. Find the <b>sum of the distances</b> of the values to the <b>left</b> of the mean.</p>${beam(a, 0, 15, m)}${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, sum(left), 0, done, `Left distances: ${left.join(" + ") || "0"} = <b>${sum(left)}</b>. Right: ${right.join(" + ") || "0"} = ${sum(right)}. They are <b>equal</b>: the mean is the balance point of the data!`, "Mean as balance point"); }}; }
+    if (t === 1){ let a, m, miss; do { a = data(R(4, 6), 2, 14); m = R(5, 10); miss = m*(a.length + 1) - sum(a); } while (miss < 0 || miss > 15);
+      return {html:`<p class="tw-q">One value is missing from <b>${a.join(", ")}</b>. Where must it go so that the mean is <b>${m}</b>?</p>${beam(a, 0, 15, m)}${padHTML("missing =", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, miss, 0, done, `Total must be ${m} × ${a.length + 1} = ${m*(a.length + 1)}. The others add to ${sum(a)}, so the missing value is <b>${miss}</b>. Balance check: distances left = distances right.`, "Mean as balance point"); }}; }
+    const a = data(6, 2, 12), m = mean(a), c = r2(m), o = opts4(n2(c), [n2(c + 1), n2(med(a)), n2(c - 1.5), n2(Math.max(...a) - 1)]);
+    return {html:`<p class="tw-q">Where should the triangle (fulcrum) go so this beam balances?</p>${beam(a, 0, 15, m, false)}${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(n2(c)), done, `The beam balances at the <b>mean</b> = ${sum(a)} ÷ ${a.length} = <b>${n2(c)}</b>. That is where the left distances equal the right distances.`, "Mean as balance point"); }};
+  }
+
+  /* ---------- Mission 2: Mean Shortcuts ---------- */
+  function m2(i){
+    const t = i % 4, n = P([10, 20, 25, 50, 100]);
+    if (t === 0) return {html:`<p class="tw-q">Mean of the first <b>${n}</b> natural numbers?</p>${padHTML("", "", {dec:true})}`,
+      mount(el, done){ bindPad(el, (n + 1)/2, 0.001, done, `1, 2, …, ${n} are evenly spaced, so the mean is the middle: (first + last)/2 = (1 + ${n})/2 = <b>${(n + 1)/2}</b>.`, "Means of patterns"); }};
+    if (t === 1){ const k = P([2, 3, 4, 5]); return {html:`<p class="tw-q">Mean of the first <b>${n}</b> multiples of <b>${k}</b> (${k}, ${2*k}, ${3*k}, …)?</p>${padHTML("", "", {dec:true})}`,
+      mount(el, done){ bindPad(el, k*(n + 1)/2, 0.001, done, `Evenly spaced: (${k} + ${k*n})/2 = <b>${n2(k*(n + 1)/2)}</b>. (It is ${k} × the mean of 1…${n}.)`, "Means of patterns"); }}; }
+    if (t === 2) return {html:`<p class="tw-q">Mean of the first <b>${n}</b> odd numbers (1, 3, 5, …)?</p>${padHTML("", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, n, 0, done, `(1 + ${2*n - 1})/2 = <b>${n}</b>. The first n odd numbers always have mean n (their sum is n²).`, "Means of patterns"); }};
+    const m = r2(R(1400, 1600)/10), sh = P([1, 2, -1, 0.5]), o = opts4(n2(m - sh), [n2(m + sh), n2(m), "Need to measure everyone again", n2(m - 2*sh)]);
+    return {html:`<p class="tw-q">The class average height was <b>${n2(m)} cm</b>, but everyone wore shoes adding <b>${sh} cm</b>. Correct average?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(n2(m - sh)), done, `Every value drops by ${sh}, so the mean drops by ${sh}: ${n2(m)} − ${sh} = <b>${n2(m - sh)} cm</b>. No need to measure again!`, "Shifting all values"); }};
+  }
+
+  /* ---------- Mission 3: Moving the Mean ---------- */
+  function m3(i){
+    const a = data(R(5, 8), 10, 30), m = mean(a), t = i % 3;
+    if (t === 0){ const v = P([Math.round(m) + R(3, 10), Math.round(m) - R(3, 10), r2(m)]), o = ["Increase", "Decrease", "Stay the same"], k = v > m ? 0 : v < m ? 1 : 2;
+      return {html:`<p class="tw-q">Data with mean <b>${n2(m)}</b>. A new value <b>${n2(v)}</b> is added. The mean will…</p>${choice(o, "")}`,
+        mount(el, done){ bindChoice(el, Math.abs(v - m) < 1e-9 ? 2 : k, done, `A value ${v > m ? "greater than" : v < m ? "less than" : "equal to"} the mean ${v > m ? "pulls it up" : v < m ? "pulls it down" : "keeps the balance"}: the mean will <b>${o[Math.abs(v - m) < 1e-9 ? 2 : k].toLowerCase()}</b>.`, "Effect of new values on the mean"); }}; }
+    if (t === 1){ const n = R(20, 40), M = r2(R(1400, 1600)/10), v1 = Math.round(M) - R(1, 3), v2 = Math.round(2*M) - v1 + P([0, 0, 2, -2]), nm = (M*n + v1 + v2)/(n + 2);
+      const o = ["The average will increase", "The average will decrease", "The average will stay the same"], k = Math.abs(nm - M) < 1e-9 ? 2 : nm > M ? 0 : 1;
+      return {html:`<p class="tw-q">A class of ${n} has average height <b>${n2(M)} cm</b>. Two new students of heights <b>${v1} cm</b> and <b>${v2} cm</b> join. Which is true?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, k, done, `Their mean is (${v1} + ${v2})/2 = ${n2((v1 + v2)/2)}, which is ${(v1 + v2)/2 > M ? "above" : (v1 + v2)/2 < M ? "below" : "equal to"} ${n2(M)}. So the class average will <b>${["increase", "decrease", "stay the same"][k]}</b> (new mean ≈ ${n2(nm)}).`, "Effect of new values on the mean"); }}; }
+    const v = R(5, 40), na = [...a, v];
+    return {html:`<p class="tw-q">Data: ${a.join(", ")} (mean ${n2(m)}). The value <b>${v}</b> is added. New mean (2 decimals)?</p>${padHTML("", "", {dec:true})}`,
+      mount(el, done){ bindPad(el, r2(mean(na)), 0.011, done, `New total ${sum(a)} + ${v} = ${sum(na)}, count ${na.length} → <b>${n2(mean(na))}</b>. It ${v > m ? "went up" : v < m ? "went down" : "stayed"} because ${v} is ${v > m ? "above" : v < m ? "below" : "at"} the old mean.`, "Effect of new values on the mean"); }};
+  }
+
+  /* ---------- Mission 4: Moving the Median ---------- */
+  function m4(i){
+    const t = i % 3;
+    if (t === 0){ const a = data(2*R(3, 5) + 1, 5, 60).sort((x, y) => x - y), Md = med(a), add = [R(Md + 1, 80), R(0, Math.max(0, Md - 1))];
+      const v = P(add), na = [...a, v], o = ["Increase", "Decrease", "Stay the same"], nm = med(na), k = nm > Md ? 0 : nm < Md ? 1 : 2;
+      return {html:`<p class="tw-q">Sorted data: <b>${a.join(", ")}</b> (median ${Md}). If <b>${v}</b> is added, the median will…</p>${choice(o, "")}`,
+        mount(el, done){ bindChoice(el, k, done, `Now there are ${na.length} values (even), so the median is the average of the two middle ones: <b>${n2(nm)}</b>, which ${["is higher", "is lower", "is the same"][k]}. Adding a value above the median nudges it up; below nudges it down.`, "Effect of new values on the median"); }}; }
+    if (t === 1){ const a = [8, 10, 19, 23, 26, 34, 40, 41, 41, 48, 51, 55, 70, 84, 91, 92], Md = med(a), cands = SH([41, 41, 30, 60, 10, 90, 45]).slice(0, 4);
+      const cor = cands.map((v, k) => med([...a, v]) === Md ? k : -1).filter(k => k >= 0); if (!cor.length) return m4(i + 3);
+      return {html:`<p class="tw-q">8, 10, 19, 23, 26, 34, 40, 41, 41, 48, 51, 55, 70, 84, 91, 92 has median <b>${Md}</b>. Adding which single value keeps the median the same? Select all.</p>${multiHTML(cands.map(String))}`,
+        mount(el, done){ bindMulti(el, cor, done, `With 17 values the median becomes the 9th value. ${cor.length === cands.length ? `Surprise: the two middle values are <b>both 41</b>, so whichever single value we add, the new middle (9th) value is still 41. Every choice works!` : `Check each: ${cands.map(v => `${v} → ${n2(med([...a, v]))}`).join(", ")}.`}`, "Keeping the median"); }}; }
+    const a = data(7, 10, 50).sort((x, y) => x - y), big = a[6] + R(50, 200), b = a.slice(0, 6).concat(big), o = SH(["The mean changes a lot, the median stays the same", "Both change a lot", "The median changes, the mean stays the same", "Neither changes"]);
+    return {html:`<p class="tw-q">Data: ${a.join(", ")}. The largest value is changed to <b>${big}</b>. What happens?</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.findIndex(x => x.startsWith("The mean changes")), done, `Mean: ${n2(mean(a))} → ${n2(mean(b))}. Median: ${med(a)} → ${med(b)}. The median depends only on the middle position, so extreme values don’t move it.`, "Mean vs median"); }};
+  }
+
+  /* ---------- Mission 5 & 6: Line graphs ---------- */
+  const SER = [["Visiting", "Purchasing", ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"], "customers"], ["Port Blair", "Rameswaram", ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"], "rainy days"], ["2019", "2020", ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"], "births (lakh)"], ["City A", "City B", ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"], "°C"]];
+  function lines(xs, A, B, la, lb){
+    const W = 320, mx = Math.max(...A, ...(B || [])), top = Math.ceil(mx/5)*5 || 5, X = k => 40 + k*(W - 56)/(xs.length - 1), Y = v => 130 - v/top*115; let g = "";
+    for (let k = 0; k <= 5; k++){ const v = top*k/5; g += `<line x1="36" y1="${Y(v)}" x2="${W - 10}" y2="${Y(v)}" stroke="#cfd6ff22"/><text x="32" y="${Y(v) + 3}" text-anchor="end" style="font-size:9px;fill:#cfd6ffaa">${+v.toFixed(1)}</text>`; }
+    xs.forEach((x, k) => g += `<text x="${X(k)}" y="146" text-anchor="middle" style="font-size:9.5px;fill:#e8ecff">${x}</text>`);
+    const path = (S, c) => `<polyline points="${S.map((v, k) => X(k) + "," + Y(v)).join(" ")}" fill="none" stroke="${c}" stroke-width="2.5"/>` + S.map((v, k) => `<circle cx="${X(k)}" cy="${Y(v)}" r="3.4" fill="${c}"/>`).join("");
+    g += path(A, "#5aa9ff") + (B ? path(B, "#ffcf5a") : "");
+    g += `<rect x="44" y="154" width="10" height="4" fill="#5aa9ff"/><text x="58" y="160" style="font-size:10px;fill:#e8ecff">${la}</text>` + (B ? `<rect x="164" y="154" width="10" height="4" fill="#ffcf5a"/><text x="178" y="160" style="font-size:10px;fill:#e8ecff">${lb}</text>` : "");
+    return `<svg class="tw-svg" viewBox="0 0 ${W} 166" style="max-height:190px">${g}</svg>`; }
+  function series(){ const [la, lb, xs, u] = P(SER), k = P([1, 2, 5]); const A = xs.map(() => R(2, 9)*k), B = xs.map(() => R(1, 8)*k); return {la, lb, xs, u, A, B}; }
+  function m5(i){
+    const S = series(), t = i % 3, j = R(0, S.xs.length - 1);
+    if (t === 0) return {html:`<p class="tw-q">Read the graph: <b>${S.la}</b> in <b>${S.xs[j]}</b>?</p>${lines(S.xs, S.A, S.B, S.la, S.lb)}${padHTML("", S.u, {dec:false})}`,
+      mount(el, done){ bindPad(el, S.A[j], 0, done, `Go up from ${S.xs[j]} to the blue line, then across to the scale: <b>${S.A[j]}</b>.`, "Reading line graphs"); }};
+    if (t === 1){ const mx = Math.max(...S.A); if (S.A.filter(v => v === mx).length > 1) return m5(i + 3);
+      return {html:`<p class="tw-q">When is <b>${S.la}</b> the highest?</p>${lines(S.xs, S.A, S.B, S.la, S.lb)}${choice(S.xs.slice(0, 7), "fd-three")}`,
+        mount(el, done){ bindChoice(el, S.A.indexOf(mx), done, `The highest point of the blue line is at <b>${S.xs[S.A.indexOf(mx)]}</b> (${mx}).`, "Reading line graphs"); }}; }
+    return {html:`<p class="tw-q">In <b>${S.xs[j]}</b>, how much higher is <b>${S.la}</b> than <b>${S.lb}</b>? (negative if lower)</p>${lines(S.xs, S.A, S.B, S.la, S.lb)}${padHTML("", "", {neg:true, dec:false})}`,
+      mount(el, done){ bindPad(el, S.A[j] - S.B[j], 0, done, `${S.la} = ${S.A[j]}, ${S.lb} = ${S.B[j]} → difference <b>${S.A[j] - S.B[j]}</b>. The vertical gap between the lines shows this.`, "Comparing two lines"); }};
+  }
+  function m6(i){
+    const S = series(), t = i % 3, ch = S.A.slice(1).map((v, k) => v - S.A[k]);
+    if (t === 0){ const mx = Math.max(...ch); if (mx <= 0 || ch.filter(v => v === mx).length > 1) return m6(i + 3); const k = ch.indexOf(mx), o = S.xs.slice(1).map((x, q) => `${S.xs[q]} → ${x}`);
+      return {html:`<p class="tw-q">Between which two neighbouring points does <b>${S.la}</b> rise the most?</p>${lines(S.xs, S.A, null, S.la)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, k, done, `The steepest upward segment is <b>${o[k]}</b> (+${mx}). On a line graph, steeper = faster change.`, "Rate of change"); }}; }
+    if (t === 1) return {html:`<p class="tw-q">What is the <b>total</b> of ${S.la} over all ${S.xs.length} points?</p>${lines(S.xs, S.A, null, S.la)}${padHTML("", S.u, {dec:false})}`,
+      mount(el, done){ bindPad(el, sum(S.A), 0, done, `${S.A.join(" + ")} = <b>${sum(S.A)}</b>. Mean per point = ${n2(mean(S.A))}.`, "Totals from line graphs"); }};
+    const o = ["Line graph", "Bar graph", "Pie chart", "Dot plot"];
+    const sc = P([["How the temperature of a city changes each month of a year", 0], ["Comparing the number of students in five different clubs", 1], ["The share of a family budget spent on each item", 2], ["The heights of 25 students, showing clusters and spread", 3]]);
+    return {html:`<p class="tw-q">Which graph suits this best?</p><div class="tw-ex" style="font-size:16px">${sc[0]}</div>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, sc[1], done, `<b>${o[sc[1]]}</b>. Line graphs show change over time; bar graphs compare categories; pie charts show parts of a whole; dot plots show spread of single values.`, "Choosing a graph"); }};
+  }
+
+  /* ---------- Mission 7: Build the Data ---------- */
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ const kn = data(4, 2, 15), m = R(5, 12) + 0.5, n = 6, need = m*n - sum(kn);
+      if (need < 2) return m7(i + 3);
+      return {html:`<p class="tw-q">Fill two blanks so the mean of <b>${kn.slice(0, 2).join(", ")}, __, __, ${kn.slice(2).join(", ")}</b> is <b>${m}</b>. What must the two blanks <b>add up to</b>?</p>${padHTML("", "", {dec:true})}`,
+        mount(el, done){ bindPad(el, need, 0.001, done, `Total needed = ${m} × 6 = ${m*6}. Known values add to ${sum(kn)}. Blanks together = ${m*6} − ${sum(kn)} = <b>${need}</b>. Many pairs work (e.g. 1 + ${need - 1}).`, "Building data with a given mean"); }}; }
+    if (t === 1){ const g = [R(1, 12), R(1, 12), R(1, 12)], c = R(8, 14), x = 3*c - g[0] - g[1];
+      return {html:`<p class="tw-q">Mean grid: each row of 3 numbers must have mean <b>${c}</b>. A row has <b>${g[0]}</b> and <b>${g[1]}</b>. The third number?</p>${padHTML("", "", {neg:true, dec:false})}`,
+        mount(el, done){ bindPad(el, x, 0, done, `Row total = 3 × ${c} = ${3*c}. Third = ${3*c} − ${g[0]} − ${g[1]} = <b>${x}</b>.`, "Mean grids"); }}; }
+    const M = R(6, 12), A = [M - 3, M, M + 3], B = [M - 1, M - 1, M + 2], C = [M, M + 1, M + 3], cand = SH([[A, true], [B, true], [C, false], [[M, M, M], true]]);
+    const cor = cand.map((c, k) => c[1] ? k : -1).filter(k => k >= 0);
+    return {html:`<p class="tw-q">Select <b>all</b> sets of 3 numbers whose mean is <b>${M}</b>.</p>${multiHTML(cand.map(c => c[0].join(", ")))}`,
+      mount(el, done){ bindMulti(el, cor, done, `Mean ${M} means total ${3*M}. ${cand.map(c => `${c[0].join("+")} = ${sum(c[0])}`).join("; ")}. Many different data sets share the same mean.`, "Building data with a given mean"); }};
+  }
+
+  /* ---------- Mission 8: Proofs about Averages ---------- */
+  const TF = [
+    ["The average of two even numbers is always even.", false, "2 and 4 average to 3. (2a + 2b)/2 = a + b, which can be odd."],
+    ["The average of any two multiples of 5 is a multiple of 5.", false, "5 and 10 average to 7.5. (5a + 5b)/2 need not even be a whole number."],
+    ["The average of any 5 multiples of 5 is a whole number.", true, "(5a + 5b + 5c + 5d + 5e)/5 = a + b + c + d + e, a whole number (though not always a multiple of 5)."],
+    ["The average of 5 multiples of 5 is always a multiple of 5.", false, "5, 5, 5, 5, 10 → average 6. It equals a + b + c + d + e, which need not be a multiple of 5."],
+    ["If every value is doubled, the mean is doubled.", true, "The total doubles while the count stays the same."],
+    ["The mean always equals the median.", false, "1, 2, 9 has mean 4 but median 2."],
+    ["For evenly spaced data, the mean equals the median.", true, "The values pair up symmetrically around the middle."],
+    ["Removing a value equal to the mean leaves the mean unchanged.", true, "It was exactly at the balance point, so the balance is not disturbed."]
+  ];
+  function m8(i){
+    if (i % 2 === 0){ const it = SH(TF.slice()).slice(0, 4), cor = it.map((x, k) => x[1] ? k : -1).filter(k => k >= 0); if (!cor.length) return m8(i);
+      return {html:`<p class="tw-q">Select <b>all</b> true statements. Use algebra or a counterexample.</p>${multiHTML(it.map(x => x[0]))}`,
+        mount(el, done){ bindMulti(el, cor, done, it.map(x => `${x[1] ? "✓" : "✗"} ${x[2]}`).join("<br>"), "Reasoning about averages"); }}; }
+    const [s, tv, why] = P(TF);
+    return {html:`<p class="tw-q">True or false?</p><div class="tw-ex" style="font-size:16px">${s}</div>${choice(["True", "False"], "two")}`,
+      mount(el, done){ bindChoice(el, tv ? 0 : 1, done, `<b>${tv ? "True" : "False"}</b>. ${why}`, "Reasoning about averages"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"The Balancing Act", goal:"The mean is where the data balances.", n:8,
+      learn:L("Balance point", "Put the data on a beam. The mean is the point where it balances: the sum of distances of values on the left equals the sum on the right.", "2, 5, 11 → mean 6: left 4 + 1 = 5, right 5 ✓")},
+    {id:2, track:"foundation", name:"Mean Shortcuts", goal:"Evenly spaced data and shifting every value.", n:8,
+      learn:L("Shortcuts", "For evenly spaced data, mean = (first + last)/2. If every value goes up by k, the mean goes up by k.", "Mean of 1…50 = 25.5 · shoes add 1 cm → subtract 1 from the mean")},
+    {id:3, track:"foundation", name:"Moving the Mean", goal:"How new values change the mean.", n:8,
+      learn:L("Above pulls up, below pulls down", "Adding a value greater than the mean increases it; a smaller value decreases it; a value equal to the mean leaves it unchanged.", "Two new students 149 and 152 with class mean 150.2 → mean 150.5 > 150.2 → increases slightly")},
+    {id:4, track:"core", name:"Moving the Median", goal:"How new and changed values move the median.", n:8,
+      learn:L("The median only counts positions", "Adding values shifts the middle position. Changing the largest value doesn’t move the median at all, though it can move the mean a lot.", "")},
+    {id:5, track:"core", name:"Read the Line", goal:"Values, peaks and gaps on line graphs.", n:8,
+      learn:L("Line graphs show change over time", "Read a point by going up from the horizontal axis and across to the scale. Two lines on one graph make comparison easy.", "")},
+    {id:6, track:"core", name:"Line Graph Stories", goal:"Steepest rise, totals and choosing graphs.", n:8,
+      learn:L("Slope tells speed", "A steeper segment means faster change. Line graphs suit data over time; bar graphs compare categories.", "")},
+    {id:7, track:"advanced", name:"Build the Data", goal:"Create data with a given mean; mean grids.", n:8,
+      learn:L("Mean × count = total", "To get a target mean, first find the total needed, then fill the blanks to reach it.", "3, 11, __, __, 15, 6 with mean 6.5 → blanks add to 4")},
+    {id:8, track:"advanced", name:"Proofs about Averages", goal:"Prove or disprove statements about averages.", n:8,
+      learn:L("Algebra or a counterexample", "To show a statement is false, one counterexample is enough. To show it is true for all numbers, use algebra.", "Average of 2a and 2b is a + b: not always even")},
+    {id:9, track:"advanced", name:"Data Tales Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m5, m5, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c8-dots-lines"] = CQ.quest({
+  key:"tl8c5_stars", missions:DTL8.MISSIONS, gen:DTL8.GEN, chapter:{std:8, part:"Part 2", ch:5},
+  desc:"Std 8 · Ganita Prakash Part 2 · Chapter 5. Explore data in 9 missions: the mean as a balance point, mean shortcuts, how new values move the mean and median, line graphs and proofs about averages.",
+  modes:{foundation:"The mean as balance point, shortcuts and moving the mean", core:"Moving the median, reading and interpreting line graphs", advanced:"Building data, proofs about averages and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 8 · Ganita Prakash Part 2 · Ch 6 · Algebra Play
+   Chapter game "Algebra Magic": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Think of a Number  2 The Date Trick  3 Number Pyramids
+   Apply  : 4 Calendar Magic  5 Shape Grids  6 The Largest Product
+   Master : 7 Divisibility Tricks  8 Algebra Puzzles  9 Algebra Master (timed)
+   ============================================================ */
+const ALG8 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, neg, orderHTML, bindOrder} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const box = (v, hl) => `<span style="display:inline-flex;align-items:center;justify-content:center;min-width:44px;height:34px;margin:2px;border-radius:8px;font-weight:900;font-size:15px;background:${hl ? "#ffcf5a" : v === "?" ? "transparent" : "#1e2a4a"};color:${hl ? "#07101f" : "#e8ecff"};border:2px ${v === "?" ? "dashed #ffcf5a" : "solid #9cc8ff55"}">${v}</span>`;
+  // pyramid: rows top→bottom arrays; null = blank
+  const pyr = rows => `<div style="text-align:center;margin:8px 0">${rows.map(r => `<div>${r.map(v => box(v === null ? "?" : v)).join("")}</div>`).join("")}</div>`;
+  const build = bottom => { const rows = [bottom]; while (rows[0].length > 1){ const b = rows[0]; rows.unshift(b.slice(1).map((v, k) => b[k] + v)); } return rows; };
+  const binom = n => { let r = [1]; for (let k = 0; k < n - 1; k++) r = [1, ...r.slice(1).map((v, j) => v + r[j]), 1]; return r; };
+
+  /* ---------- Mission 1: Think of a Number ---------- */
+  function m1(i){
+    const t = i % 3;
+    if (t === 0){ const m = P([2, 3, 4, 5]), a = m*R(1, 6), b = R(1, 9), res = a/m + b;
+      return {html:`<p class="tw-q">Think of a number. Multiply by <b>${m}</b>. Add <b>${a}</b>. Divide by <b>${m}</b>. Subtract your number. Add <b>${b}</b>. The answer is always…</p>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, res, 0, done, `x → ${m}x → ${m}x + ${a} → x + ${a/m} → ${a/m} → ${a/m} + ${b} = <b>${res}</b>. The x disappears, so everyone gets ${res}!`, "Think-of-a-number tricks"); }}; }
+    if (t === 1){ const target = R(3, 9), right = `Add ${2*target}`, o = opts4(right, [`Add ${target}`, `Add ${target + 2}`, `Add ${2*target + 2}`]);
+      return {html:`<p class="tw-q">Trick: think of a number, double it, <b>???</b>, divide by 2, subtract your number. What should step 3 be so the answer is always <b>${target}</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `x → 2x → 2x + c → x + c/2 → c/2. We need c/2 = ${target}, so c = ${2*target}: <b>${right}</b>.`, "Designing a trick"); }}; }
+    const steps = ["x", "2x", "2x + 6", "x + 3", "3"];
+    return {html:`<p class="tw-q">Order the algebra for: think of a number, double it, add 6, halve it, subtract your number.</p>${orderHTML(steps)}`,
+      mount(el, done){ bindOrder(el, steps, done, `x → 2x → 2x + 6 → x + 3 → 3. The result is <b>3</b> for every x.`, "Think-of-a-number tricks"); }};
+  }
+
+  /* ---------- Mission 2: The Date Trick ---------- */
+  function m2(i){
+    const M = R(1, 12), D = R(1, [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][M - 1]), ans = 100*M + 165 + D, t = i % 3;
+    const MON = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    if (t === 0) return {html:`<p class="tw-q">Date trick: month × 5, + 6, × 4, + 9, × 5, + day. Your friend says <b>${ans}</b>. What is the <b>day</b>?</p>${padHTML("day =", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, D, 0, done, `The steps give 100M + 165 + D. ${ans} − 165 = ${ans - 165} = 100 × ${M} + ${D}. Last two digits = day <b>${D}</b>, the rest = month ${M} (${MON[M - 1]}).`, "Decoding the date trick"); }};
+    if (t === 1) return {html:`<p class="tw-q">Same trick. The answer is <b>${ans}</b>. Which <b>month</b> (number)?</p>${padHTML("month =", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, M, 0, done, `${ans} − 165 = ${ans - 165}. Remove the last two digits (the day, ${D}): month = <b>${M}</b> (${MON[M - 1]}).`, "Decoding the date trick"); }};
+    const right = "100M + 165 + D", o = opts4(right, ["100M + D", "20M + 33 + D", "5M + 6 + D", "100M + 165D"]);
+    return {html:`<p class="tw-q">Month M, day D. M × 5, + 6, × 4, + 9, × 5, + D gives…</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `5M → 5M + 6 → 20M + 24 → 20M + 33 → 100M + 165 → <b>100M + 165 + D</b>. Subtract 165 and the month and day appear side by side!`, "Decoding the date trick"); }};
+  }
+
+  /* ---------- Mission 3: Number Pyramids ---------- */
+  function m3(i){
+    const t = i % 4;
+    if (t === 0){ const b = [R(1, 15), R(1, 15), R(1, 15)], top = b[0] + 2*b[1] + b[2];
+      return {html:`<p class="tw-q">Each box is the sum of the two below it. Find the <b>top</b> without building the whole pyramid.</p>${pyr([[null], [null, null], b])}${padHTML("top =", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, top, 0, done, `With bottom a, b, c: the middle row is a + b and b + c, so the top is <b>a + 2b + c</b> = ${b[0]} + 2×${b[1]} + ${b[2]} = <b>${top}</b>.`, "Number pyramids"); }}; }
+    if (t === 1){ const b = [R(1, 12), R(1, 12), R(1, 12), R(1, 12)], top = b[0] + 3*b[1] + 3*b[2] + b[3];
+      return {html:`<p class="tw-q">A 4-row pyramid. Find the <b>top</b>.</p>${pyr([[null], [null, null], [null, null, null], b])}${padHTML("top =", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, top, 0, done, `Top = a + 3b + 3c + d (the numbers 1, 3, 3, 1 count the paths up from each box) = ${b[0]} + ${3*b[1]} + ${3*b[2]} + ${b[3]} = <b>${top}</b>.`, "Number pyramids"); }}; }
+    if (t === 2){ const a = R(5, 20), c = R(2, 15), e = R(2, 15), A = a + c, B = c + e, T = A + B;
+      return {html:`<p class="tw-q">Top = <b>${T}</b>, bottom row = <b>${a}, ?, ${e}</b>. Find the middle bottom number.</p>${pyr([[T], [null, null], [a, null, e]])}${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, c, 0, done, `Call it c. Then the middle row is ${a} + c and c + ${e}, and the top ${a} + 2c + ${e} = ${T} → 2c = ${T - a - e} → c = <b>${c}</b>.`, "Solving pyramids with algebra"); }}; }
+    const F = [1, 2, 3, 5, 8, 13], n = P([3, 4]), b = F.slice(0, n), top = build(b)[0][0];
+    return {html:`<p class="tw-q">The first ${n} Virahāṅka–Fibonacci numbers <b>${b.join(", ")}</b> form the bottom row. What is at the top?</p>${pyr(build(b).map((r, k) => k === 0 ? [null] : r))}${padHTML("", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, top, 0, done, `Building up: ${build(b).reverse().map(r => r.join(", ")).join(" → ")}. Top = <b>${top}</b>, and every number in the pyramid is a Virahāṅka–Fibonacci number!`, "Pyramids with Fibonacci numbers"); }};
+  }
+
+  /* ---------- Mission 4: Calendar Magic ---------- */
+  function m4(i){
+    const t = i % 3;
+    if (t === 0){ const a = R(1, 21), S = 4*a + 16;
+      return {html:`<p class="tw-q">A friend picks a 2 × 2 square on a calendar and says the 4 dates add to <b>${S}</b>. What is the <b>top-left</b> date?</p><div class="tw-ex" style="font-size:16px">a &nbsp; a+1<br>a+7 &nbsp; a+8</div>${padHTML("a =", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, a, 0, done, `a + (a + 1) + (a + 7) + (a + 8) = 4a + 16 = ${S} → 4a = ${S - 16} → a = <b>${a}</b>. The square is ${a}, ${a + 1}, ${a + 7}, ${a + 8}.`, "Calendar magic"); }}; }
+    if (t === 1){ const c = R(9, 22), S = 9*c;
+      return {html:`<p class="tw-q">The 9 dates in a 3 × 3 square of a calendar add to <b>${S}</b>. What is the <b>centre</b> date?</p>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, c, 0, done, `Around a centre c, the dates are c ± 1, c ± 7, c ± 6, c ± 8. They pair up to cancel, so the sum is 9c = ${S} → c = <b>${c}</b>.`, "Calendar magic"); }}; }
+    const a = R(1, 20), S = 3*a + 21;
+    return {html:`<p class="tw-q">Three dates in the same <b>column</b> (one below the other) add to <b>${S}</b>. The top date?</p>${padHTML("", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, a, 0, done, `Dates in a column differ by 7: a + (a + 7) + (a + 14) = 3a + 21 = ${S} → a = <b>${a}</b>.`, "Calendar magic"); }};
+  }
+
+  /* ---------- Mission 5: Shape Grids ---------- */
+  const SH3 = ["▲", "●", "■"];
+  function m5(i){
+    const v = [R(2, 12), R(2, 12), R(2, 12)], t = i % 2;
+    if (t === 0){ const r1 = [0, 0, 0], r2 = [1, 1, 0], ask = R(0, 1), s1 = 3*v[0], s2 = 2*v[1] + v[0];
+      return {html:`<p class="tw-q">Each shape stands for a number. Row sums are given. Find the value of <b>${SH3[ask]}</b>.</p><div class="tw-ex" style="font-size:20px;line-height:1.7">${SH3[0]} + ${SH3[0]} + ${SH3[0]} = ${s1}<br>${SH3[1]} + ${SH3[1]} + ${SH3[0]} = ${s2}</div>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, v[ask], 0, done, `Row 1: 3 × ${SH3[0]} = ${s1} → ${SH3[0]} = ${v[0]}. Row 2: 2 × ${SH3[1]} + ${v[0]} = ${s2} → ${SH3[1]} = ${v[1]}. Answer <b>${v[ask]}</b>.`, "Shape grids"); }}; }
+    const s1 = v[0] + v[1], s2 = v[1] + v[2], s3 = v[0] + v[2], ask = R(0, 2);
+    return {html:`<p class="tw-q">Find <b>${SH3[ask]}</b>.</p><div class="tw-ex" style="font-size:20px;line-height:1.7">${SH3[0]} + ${SH3[1]} = ${s1}<br>${SH3[1]} + ${SH3[2]} = ${s2}<br>${SH3[0]} + ${SH3[2]} = ${s3}</div>${padHTML("", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, v[ask], 0, done, `Add all three: 2(${SH3.join(" + ")}) = ${s1 + s2 + s3}, so ${SH3.join(" + ")} = ${(s1 + s2 + s3)/2}. Subtract the row without ${SH3[ask]}: <b>${v[ask]}</b>.`, "Shape grids"); }};
+  }
+
+  /* ---------- Mission 6: The Largest Product ---------- */
+  function m6(i){
+    const d = SH([1, 2, 3, 4, 5, 6, 7, 8, 9]).slice(0, 3).sort((a, b) => a - b);
+    const [p, q, r] = d, all = [[q*10 + r, p], [r*10 + q, p], [p*10 + r, q], [r*10 + p, q], [p*10 + q, r], [q*10 + p, r]], best = all.reduce((b, x) => x[0]*x[1] > b[0]*b[1] ? x : b), t = i % 3;
+    const fmt = x => `${x[0]} × ${x[1]}`;
+    if (t === 0){ const o = opts4(fmt(best), all.map(fmt));
+      return {html:`<p class="tw-q">Place <b>${SH(d.slice()).join(", ")}</b> in ▢▢ × ▢ (each once) to make the <b>largest</b> product.</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(fmt(best)), done, `Largest digit as the multiplier, the others in decreasing order: <b>${fmt(best)} = ${best[0]*best[1]}</b>. Algebra: qp × r vs rp × q differ by p(r − q) > 0.`, "Largest product"); }}; }
+    if (t === 1) return {html:`<p class="tw-q">Using <b>${d.join(", ")}</b> once each in ▢▢ × ▢, what is the <b>largest</b> product?</p>${padHTML("", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, best[0]*best[1], 0, done, `Best arrangement ${fmt(best)} = <b>${best[0]*best[1]}</b>. All six: ${all.map(x => `${fmt(x)} = ${x[0]*x[1]}`).join(", ")}.`, "Largest product"); }};
+    const worst = all.reduce((b, x) => x[0]*x[1] < b[0]*b[1] ? x : b);
+    return {html:`<p class="tw-q">Using <b>${d.join(", ")}</b> once each in ▢▢ × ▢, what is the <b>smallest</b> product?</p>${padHTML("", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, worst[0]*worst[1], 0, done, `Smallest: ${fmt(worst)} = <b>${worst[0]*worst[1]}</b> — the smallest digit as the multiplier, and the smaller remaining digit in the tens place.`, "Smallest product"); }};
+  }
+
+  /* ---------- Mission 7: Divisibility Tricks ---------- */
+  function m7(i){
+    const t = i % 4;
+    if (t === 0){ let a, b; do { a = R(1, 9); b = R(1, 9); } while (a === b); const n = 10*a + b, rv = 10*b + a, dif = Math.abs(n - rv);
+      return {html:`<p class="tw-q">Take <b>${n}</b>, reverse it (${rv}), subtract the smaller from the larger, and divide by 9. What do you get?</p>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, dif/9, 0, done, `(10b + a) − (10a + b) = 9(b − a). So the difference ÷ 9 = the difference of the digits: |${a} − ${b}| = <b>${dif/9}</b>.`, "Reverse-and-subtract trick"); }}; }
+    if (t === 1){ const a = R(1, 9), b = R(0, 9), n = 10*a + b, s = n + 10*b + a;
+      return {html:`<p class="tw-q">Add <b>${n}</b> to its reverse and divide by 11. Result?</p>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, s/11, 0, done, `(10a + b) + (10b + a) = 11(a + b), so the sum ÷ 11 = digit sum ${a} + ${b} = <b>${a + b}</b>.`, "Reverse-and-add trick"); }}; }
+    if (t === 2){ const a = R(1, 9), b = R(1, 9), c = R(1, 9), S = 111*(a + b + c);
+      return {html:`<p class="tw-q"><b>${a}${b}${c} + ${b}${c}${a} + ${c}${a}${b}</b> is always divisible by 37. Divide it by 37: what is the quotient?</p>${padHTML("", "", {dec:false})}`,
+        mount(el, done){ bindPad(el, S/37, 0, done, `Each digit appears once in each place, so the sum = 111(a + b + c) = 3 × 37 × (a + b + c). ÷ 37 → 3 × ${a + b + c} = <b>${S/37}</b>.`, "Cyclic sums"); }}; }
+    const n = R(100, 999), big = n*1001;
+    return {html:`<p class="tw-q">Write <b>${n}${n}</b> (repeat ${n}). Divide by 7, then by 11, then by 13. What do you get?</p>${padHTML("", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, n, 0, done, `abcabc = abc × 1001, and 1001 = 7 × 11 × 13. Dividing by all three gives back <b>${n}</b>.`, "The 1001 trick"); }};
+  }
+
+  /* ---------- Mission 8: Algebra Puzzles ---------- */
+  const PZ = [
+    () => { const h = R(10, 30), H = R(15, 40), heads = h + H, legs = 4*h + 2*H; return [`A farm has horses and hens: <b>${heads}</b> heads and <b>${legs}</b> legs. How many <b>horses</b>?`, h, `If all were hens: ${2*heads} legs. Extra ${legs - 2*heads} legs come from horses, 2 extra each → ${h} horses. (Algebra: 4x + 2(${heads} − x) = ${legs}.)`, "horses"]; },
+    () => { const [k1, yrs, k2] = P([[5, 6, 3], [4, 5, 3], [3, 10, 2], [5, 12, 3], [4, 6, 2]]), d = yrs*(k2 - 1)/(k1 - k2); return [`A mother is <b>${k1} times</b> her daughter’s age. In <b>${yrs} years</b> she will be <b>${k2} times</b> her daughter’s age. Daughter’s age now?`, d, `${k1}d + ${yrs} = ${k2}(d + ${yrs}) → ${k1 - k2}d = ${yrs*(k2 - 1)} → d = <b>${d}</b> (mother ${k1*d}).`, "years"]; },
+    () => { const g = P([3, 4, 5, 6, 7, 8]); return [`Naina has <b>twice</b> as many cows as Gauri. If Naina gives Gauri <b>${g}</b> cows, they will have the same. How many cows does <b>Gauri</b> have?`, 2*g, `2x − ${g} = x + ${g} → x = <b>${2*g}</b> (Naina has ${4*g}).`, "cows"]; },
+    () => { const c = P([8, 6, 10, 12]); return [`Karim’s coins double each time he walks round the tree, and he pays the genie <b>${c}</b> coins after each round. After 3 rounds he has nothing left. How many coins did he start with?`, 7*c/8, `x → 2x − ${c} → 4x − ${3*c} → 8x − ${7*c} = 0 → x = ${7*c}/8 = <b>${7*c/8}</b>.`, "coins"]; },
+    () => { const rent = 5000, cost = 10, profit = P([2000, 3000, 1000]), n = P([100, 200, 50]); return [`A dosa cart: rent ₹${rent}/day, each dosa costs ₹${cost} to make. Selling <b>${n}</b> dosas a day, what selling price gives a profit of <b>₹${profit}</b>?`, (rent + profit)/n + cost, `${n}p − ${n}×${cost} − ${rent} = ${profit} → ${n}p = ${n*cost + rent + profit} → p = <b>₹${(rent + profit)/n + cost}</b>.`, "₹"]; },
+    () => { const f = P([4, 8, 6, 2]); return [`Magic ponds double flowers. A devotee dips all flowers in pond 1 and offers <b>${f}</b> at shrine 1, dips the rest in pond 2 and offers ${f} at shrine 2, dips the rest in pond 3 and offers the remaining ${f} at shrine 3. How many did he start with?`, 7*f/8, `x → 2x − ${f} → 4x − ${3*f} → 8x − ${7*f} = 0 → x = <b>${7*f/8}</b>.`, "flowers"]; }
+  ];
+  function m8(i){
+    let q; do { q = P(PZ)(); } while (!q || !Number.isInteger(q[1]));
+    const [txt, a, why, u] = q;
+    return {html:`<p class="tw-q">${txt}</p>${padHTML(u === "₹" ? "₹" : "", u === "₹" ? "" : u, {dec:false})}`, mount(el, done){ bindPad(el, a, 0, done, why, "Algebra puzzles"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Think of a Number", goal:"Use x to see why tricks always work.", n:8,
+      learn:L("Let the number be x", "Write each step with x. If x cancels out, the final answer is the same for every starting number.", "x → 2x → 2x + 4 → x + 2 → 2")},
+    {id:2, track:"foundation", name:"The Date Trick", goal:"Decode 100M + 165 + D.", n:8,
+      learn:L("Hidden place value", "M × 5, + 6, × 4, + 9, × 5, + D = 100M + 165 + D. Subtract 165: the month sits in the hundreds, the day in the last two digits.", "Answer 291 → 126 → 26th of January")},
+    {id:3, track:"foundation", name:"Number Pyramids", goal:"Each box is the sum of the two below.", n:8,
+      learn:L("Top from the bottom", "3 rows: top = a + 2b + c. 4 rows: a + 3b + 3c + d. To fill missing boxes, call one unknown c and write equations.", "12, c, 8 with top 60: 20 + 2c = 60 → c = 20")},
+    {id:4, track:"core", name:"Calendar Magic", goal:"Find dates from their sums.", n:8,
+      learn:L("Neighbours differ by 1 and 7", "In a 2 × 2 square: a, a + 1, a + 7, a + 8, sum 4a + 16. In a 3 × 3 square the sum is 9 × the centre.", "Sum 36 → 4a + 16 = 36 → a = 5")},
+    {id:5, track:"core", name:"Shape Grids", goal:"Shapes are unknowns: solve row by row.", n:8,
+      learn:L("Start with the easiest row", "Find a row with only one kind of shape, solve it, then substitute into the other rows.", "▲ + ▲ + ▲ = 27 → ▲ = 9")},
+    {id:6, track:"core", name:"The Largest Product", goal:"Arrange digits in ▢▢ × ▢.", n:8,
+      learn:L("Algebra decides", "For digits p < q < r, the largest product is qp × r: the largest digit multiplies, the others go in decreasing order.", "2, 3, 5 → 32 × 5 = 160")},
+    {id:7, track:"advanced", name:"Divisibility Tricks", goal:"Reverse, add, cycle and repeat digits.", n:8,
+      learn:L("Write numbers as 10a + b", "ab − ba = 9(a − b) · ab + ba = 11(a + b) · abc + bca + cab = 111(a + b + c) · abcabc = abc × 1001 = abc × 7 × 11 × 13.", "")},
+    {id:8, track:"advanced", name:"Algebra Puzzles", goal:"Farms, ages, cows, genies and dosa carts.", n:7,
+      learn:L("Model, solve, interpret", "Choose a letter, model the story step by step, solve, and check that the answer makes sense.", "Genie: x → 2x − 8 → 4x − 24 → 8x − 56 = 0 → x = 7")},
+    {id:9, track:"advanced", name:"Algebra Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m3, m3, m4, m5, m7])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c8-algebra-play"] = CQ.quest({
+  key:"ap8c6_stars", missions:ALG8.MISSIONS, gen:ALG8.GEN, chapter:{std:8, part:"Part 2", ch:6},
+  desc:"Std 8 · Ganita Prakash Part 2 · Chapter 6. Play with algebra in 9 missions: think-of-a-number tricks, the date trick, number pyramids, calendar magic, shape grids, divisibility tricks and puzzles.",
+  modes:{foundation:"Number tricks, the date trick and number pyramids", core:"Calendar magic, shape grids and the largest product", advanced:"Divisibility tricks, algebra puzzles and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 8 · Ganita Prakash Part 2 · Ch 7 · Area
+   Chapter game "Area Architect": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Rectangles & Paths  2 Triangle Area  3 Find the Altitude
+   Apply  : 4 Quadrilaterals by Diagonals  5 Parallelograms  6 Rhombus & Trapezium
+   Master : 7 Shaded Regions  8 Śulba Shape-Shifting  9 Area Master (timed)
+   ============================================================ */
+const AREA8 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const PAD = u => padHTML("", u, {dec:true});
+  const svg = (g, w = 300, h = 170, mh = 170) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const T = (x, y, s, c = "#e8ecff", fs = 13) => `<text x="${x}" y="${y}" text-anchor="middle" style="font-size:${fs}px;font-weight:800;fill:${c}">${s}</text>`;
+  const fill = `fill="#5aa9ff26" stroke="#9cc8ff" stroke-width="2.2"`;
+  const dash = (x1, y1, x2, y2, c = "#ffcf5a") => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${c}" stroke-width="2" stroke-dasharray="5 4"/>`;
+  const sq = (x, y, s = 9) => `<polyline points="${x},${y - s} ${x + s},${y - s} ${x + s},${y}" fill="none" stroke="#e8ecff" stroke-width="1.3"/>`;
+
+  // triangle with base b, height h; obtuse: apex beyond the base
+  function triPic(b, h, obt){
+    const B = [40, 150], C = [200, 150], A = obt ? [250, 40] : [110, 40], F = [A[0], 150];
+    let g = `<polygon points="${B.join(",")} ${C.join(",")} ${A.join(",")}" ${fill}/>` + dash(A[0], A[1], F[0], F[1]) + sq(F[0], F[1]);
+    if (obt) g += dash(C[0], C[1], F[0], F[1], "#cfd6ff88");
+    g += T(120, 168, b, "#b6f36a") + T(A[0] + 14, 100, h, "#ffcf5a");
+    return svg(g, 290, 175); }
+  function paraPic(b, h, s){ const g = `<polygon points="40,140 200,140 250,40 90,40" ${fill}/>` + dash(90, 40, 90, 140) + sq(90, 140) + T(120, 158, b, "#b6f36a") + T(78, 95, h, "#ffcf5a") + (s ? T(238, 95, s, "#cfd6ff") : ""); return svg(g, 290, 165); }
+  function rhoPic(d1, d2){ const g = `<polygon points="145,15 255,90 145,165 35,90" ${fill}/>` + dash(35, 90, 255, 90) + dash(145, 15, 145, 165, "#b6f36a") + T(200, 84, d1, "#ffcf5a") + T(160, 135, d2, "#b6f36a"); return svg(g, 290, 175); }
+  function trapPic(a, b, h){ const g = `<polygon points="30,150 270,150 210,40 90,40" ${fill}/>` + dash(90, 40, 90, 150) + sq(90, 150) + T(150, 32, a, "#b6f36a") + T(150, 168, b, "#b6f36a") + T(76, 100, h, "#ffcf5a"); return svg(g, 300, 175); }
+  function quadPic(d, h1, h2){ const A = [30, 95], C = [270, 95], B = [120, 30], D = [190, 160];
+    const g = `<polygon points="${A} ${B} ${C} ${D}" ${fill}/>` + `<line x1="30" y1="95" x2="270" y2="95" stroke="#b6f36a" stroke-width="2"/>` + dash(120, 30, 120, 95) + dash(190, 95, 190, 160) + T(150, 112, d, "#b6f36a") + T(108, 66, h1, "#ffcf5a") + T(204, 132, h2, "#ffcf5a") + T(22, 99, "A") + T(120, 22, "B") + T(280, 99, "C") + T(190, 175, "D");
+    return svg(g, 300, 180); }
+
+  /* ---------- Mission 1: Rectangles & Paths ---------- */
+  function m1(i){
+    const t = i % 3;
+    if (t === 0){ const l = R(4, 12), w = R(2, 9), A = l*w, ask = P(["l", "w"]);
+      return {html:`<p class="tw-q">A rectangle has area <b>${A} cm²</b> and ${ask === "l" ? `width <b>${w} cm</b>` : `length <b>${l} cm</b>`}. Find the ${ask === "l" ? "length" : "width"}.</p>${PAD("cm")}`,
+        mount(el, done){ bindPad(el, ask === "l" ? l : w, 0.001, done, `Area = length × width → ${ask === "l" ? `l = ${A} ÷ ${w}` : `w = ${A} ÷ ${l}`} = <b>${ask === "l" ? l : w} cm</b>.`, "Area of a rectangle"); }}; }
+    if (t === 1){ const L = R(20, 60), W = R(15, 40), p = P([1, 2, 3]), A = (L + 2*p)*(W + 2*p) - L*W;
+      return {html:`<p class="tw-q">A park is <b>${L} m × ${W} m</b>. A path <b>${p} m</b> wide runs all around the <b>outside</b>. Area of the path?</p>${PAD("m²")}`,
+        mount(el, done){ bindPad(el, A, 0.001, done, `Outer rectangle: (${L} + ${2*p}) × (${W} + ${2*p}) = ${(L + 2*p)*(W + 2*p)}. Path = outer − park = ${(L + 2*p)*(W + 2*p)} − ${L*W} = <b>${A} m²</b>. (Width added on <b>both</b> sides!)`, "Area of a path"); }}; }
+    const a = R(3, 8), b = R(3, 8), A1 = a*b;
+    return {html:`<p class="tw-q">A big rectangle is split into smaller ones. One piece is <b>${a} cm</b> tall with area <b>${A1} cm²</b>. What is its width?</p>${PAD("cm")}`,
+      mount(el, done){ bindPad(el, b, 0.001, done, `Width = area ÷ height = ${A1} ÷ ${a} = <b>${b} cm</b>. Shared sides let you pass lengths from one piece to its neighbour.`, "Missing side lengths"); }};
+  }
+
+  /* ---------- Mission 2: Triangle Area ---------- */
+  function m2(i){
+    const t = i % 3, b = R(3, 16), h = R(2, 12), A = b*h/2;
+    if (t === 0) return {html:`<p class="tw-q">Find the area of the triangle (base ${b} cm, height ${h} cm).</p>${triPic(b + " cm", h + " cm", false)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, A, 0.001, done, `Area = ½ × base × height = ½ × ${b} × ${h} = <b>${n2(A)} cm²</b>. A triangle is half of a rectangle with the same base and height.`, "Area of a triangle"); }};
+    if (t === 1) return {html:`<p class="tw-q">An <b>obtuse</b> triangle: base ${b} cm, and its height (drawn <b>outside</b>, to the extended base) is ${h} cm. Area?</p>${triPic(b + " cm", h + " cm", true)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, A, 0.001, done, `Still ½ × base × height = ½ × ${b} × ${h} = <b>${n2(A)} cm²</b>. The height may fall outside, but it is still measured perpendicular to the base line.`, "Area of a triangle"); }};
+    const s = R(3, 10), ht = R(3, 10), A2 = s*ht, right = `${A2} sq. units`, o = opts4(right, [`${A2/2} sq. units`, `${2*A2} sq. units`, `${A2 + ht} sq. units`]);
+    return {html:`<p class="tw-q">△SUB is isosceles with SE ⟂ UB. Area of △SEB is <b>${A2/2}</b> sq. units. Area of △SUB?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `In an isosceles triangle, the altitude SE splits it into two equal halves (UE = EB). So △SUB = 2 × ${A2/2} = <b>${right}</b>.`, "Area of a triangle"); }};
+  }
+
+  /* ---------- Mission 3: Find the Altitude ---------- */
+  function m3(i){
+    const t = i % 2;
+    if (t === 0){ const b = R(4, 16), h = R(2, 12), A = b*h/2;
+      return {html:`<p class="tw-q">A triangle has area <b>${n2(A)} cm²</b> and base <b>${b} cm</b>. Find its height.</p>${PAD("cm")}`,
+        mount(el, done){ bindPad(el, h, 0.001, done, `½ × ${b} × h = ${n2(A)} → h = 2 × ${n2(A)} ÷ ${b} = <b>${h} cm</b>.`, "Finding the altitude"); }}; }
+    const b1 = P([6, 8, 10, 12]), h1 = P([4, 5, 6, 8]), A = b1*h1/2, b2 = P([5, 8, 10, 4, 12].filter(x => x !== b1)), h2 = 2*A/b2;
+    return {html:`<p class="tw-q">In △ABC, base BC = <b>${b1}</b> units has altitude <b>${h1}</b>. Side AC = <b>${b2}</b> units. Find the altitude <b>BY</b> to AC.</p>${PAD("units")}`,
+      mount(el, done){ bindPad(el, Math.round(h2*100)/100, 0.011, done, `The same triangle, two ways: ½ × ${b1} × ${h1} = ${n2(A)} = ½ × ${b2} × BY → BY = ${2*A} ÷ ${b2} = <b>${n2(h2)}</b>.`, "Two altitudes, one area"); }};
+  }
+
+  /* ---------- Mission 4: Quadrilaterals by Diagonals ---------- */
+  function m4(i){
+    const t = i % 3, d = R(10, 30), h1 = R(2, 9), h2 = R(2, 9), A = d*(h1 + h2)/2;
+    if (t === 0) return {html:`<p class="tw-q">Diagonal AC = <b>${d} cm</b>; perpendiculars from B and D to AC are <b>${h1} cm</b> and <b>${h2} cm</b>. Area of ABCD?</p>${quadPic(d + " cm", h1, h2)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, A, 0.001, done, `Split along AC into two triangles: ½ × ${d} × ${h1} + ½ × ${d} × ${h2} = ½ × ${d} × (${h1} + ${h2}) = <b>${n2(A)} cm²</b>.`, "Area of a quadrilateral"); }};
+    if (t === 1){ const n = P([5, 6, 7, 8, 10]), o = opts4(`${n - 2}`, [`${n}`, `${n - 1}`, `${n - 3}`, `${2*n}`]);
+      return {html:`<p class="tw-q">Joining one vertex of a <b>${n}-sided</b> polygon to all the others splits it into how many triangles?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(`${n - 2}`), done, `From one vertex you can draw ${n - 3} diagonals, giving <b>${n - 2}</b> triangles. Any polygon’s area = sum of the areas of these triangles.`, "Triangulating polygons"); }}; }
+    const o = SH(["One diagonal and the two perpendiculars to it", "All four sides only", "The perimeter", "Two adjacent sides only"]);
+    return {html:`<p class="tw-q">What measurements are enough to find the area of a general quadrilateral?</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.findIndex(x => x.startsWith("One diagonal")), done, `Sides alone don’t fix the area (a quadrilateral can be squashed). A diagonal and the two heights to it give two triangles: ½ d (h₁ + h₂).`, "Area of a quadrilateral"); }};
+  }
+
+  /* ---------- Mission 5: Parallelograms ---------- */
+  function m5(i){
+    const t = i % 3, b = R(4, 15), h = R(3, 10), s = h + R(1, 4);
+    if (t === 0) return {html:`<p class="tw-q">Find the area of the parallelogram: base <b>${b} cm</b>, height <b>${h} cm</b>, slanting side ${s} cm.</p>${paraPic(b + " cm", h + " cm", s + " cm")}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, b*h, 0.001, done, `Cut off the triangle on one side and move it to the other: a rectangle ${b} × ${h}. Area = base × height = <b>${b*h} cm²</b>. The slanting side (${s} cm) is <b>not</b> used!`, "Area of a parallelogram"); }};
+    if (t === 1){ const A = b*h; return {html:`<p class="tw-q">A parallelogram has area <b>${A} cm²</b> and base PQ = <b>${b} cm</b>. Find the height to PQ.</p>${PAD("cm")}`,
+      mount(el, done){ bindPad(el, h, 0.001, done, `Height = area ÷ base = ${A} ÷ ${b} = <b>${h} cm</b>.`, "Area of a parallelogram"); }}; }
+    const o = SH(["Same area, different perimeters", "Same area and same perimeter", "Different areas, same perimeter", "Different areas and perimeters"]);
+    return {html:`<p class="tw-q">Several parallelograms share the <b>same base</b> and lie between the <b>same two parallel lines</b>. Then they have…</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.indexOf("Same area, different perimeters"), done, `Same base and same height → <b>same area</b>. But the more slanted ones have longer sides, so their <b>perimeters differ</b> (the rectangle has the smallest).`, "Area vs perimeter"); }};
+  }
+
+  /* ---------- Mission 6: Rhombus & Trapezium ---------- */
+  function m6(i){
+    const t = i % 3;
+    if (t === 0){ const d1 = R(6, 24), d2 = R(4, 20); return {html:`<p class="tw-q">A rhombus has diagonals <b>${d1} cm</b> and <b>${d2} cm</b>. Area?</p>${rhoPic(d1 + " cm", d2 + " cm")}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, d1*d2/2, 0.001, done, `The diagonals are perpendicular and cut the rhombus into 4 right triangles (half of a ${d1} × ${d2} rectangle): ½ × ${d1} × ${d2} = <b>${n2(d1*d2/2)} cm²</b>.`, "Area of a rhombus"); }}; }
+    if (t === 1){ const a = R(4, 16), b = a + R(2, 14), h = R(3, 12); return {html:`<p class="tw-q">A trapezium has parallel sides <b>${a} m</b> and <b>${b} m</b>, and height <b>${h} m</b>. Area?</p>${trapPic(a + " m", b + " m", h + " m")}${PAD("m²")}`,
+      mount(el, done){ bindPad(el, (a + b)*h/2, 0.001, done, `Area = ½ × height × (sum of parallel sides) = ½ × ${h} × (${a} + ${b}) = <b>${n2((a + b)*h/2)} m²</b>. (Two copies make a parallelogram with base ${a + b}.)`, "Area of a trapezium"); }}; }
+    const a = R(4, 12), b = a + R(2, 10), h = R(3, 10), A = (a + b)*h/2;
+    return {html:`<p class="tw-q">A trapezium has area <b>${n2(A)} cm²</b>, height <b>${h} cm</b> and one parallel side <b>${a} cm</b>. The other parallel side?</p>${PAD("cm")}`,
+      mount(el, done){ bindPad(el, b, 0.001, done, `½ × ${h} × (${a} + x) = ${n2(A)} → ${a} + x = ${2*A/h} → x = <b>${b} cm</b>.`, "Area of a trapezium"); }};
+  }
+
+  /* ---------- Mission 7: Shaded Regions ---------- */
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ const L = R(10, 20), W = R(6, 12), g = svg(`<rect x="30" y="20" width="240" height="140" ${fill}/><polygon points="30,160 270,160 150,20" fill="#ffcf5a55" stroke="#ffcf5a" stroke-width="2"/>` + T(150, 176, L + " cm", "#b6f36a") + T(18, 94, W, "#b6f36a"), 300, 180);
+      return {html:`<p class="tw-q">A triangle is drawn inside a ${L} cm × ${W} cm rectangle, with the rectangle’s bottom side as base and its apex on the top side. What <b>fraction</b> of the rectangle is shaded?</p>${g}${choice(["½", "⅓", "¼", "⅔"], "two")}`,
+        mount(el, done){ bindChoice(el, 0, done, `Triangle = ½ × ${L} × ${W}, rectangle = ${L} × ${W}. The triangle is always <b>half</b>, wherever the apex is on the top side!`, "Triangles in rectangles"); }}; }
+    if (t === 1){ const L = R(14, 22), W = R(8, 12), a = R(3, 6), b = R(3, 6), A = L*W - a*b/2 - (L - a)*(W - b)/2;
+      return {html:`<p class="tw-q">Rectangle ABCD is <b>${L} × ${W}</b> cm. Two right triangles are cut off from its corners: one with legs <b>${a}</b> and <b>${b}</b>, the other with legs <b>${L - a}</b> and <b>${W - b}</b>. Area left?</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, A, 0.001, done, `${L*W} − ½ × ${a} × ${b} − ½ × ${L - a} × ${W - b} = ${L*W} − ${n2(a*b/2)} − ${n2((L - a)*(W - b)/2)} = <b>${n2(A)} cm²</b>. Subtract what is removed!`, "Shaded regions"); }}; }
+    const s = R(6, 14), A = s*s/2, g = svg(`<rect x="70" y="10" width="160" height="160" ${fill}/><polygon points="150,10 230,90 150,170 70,90" fill="#ffcf5a55" stroke="#ffcf5a" stroke-width="2"/>` + T(150, 182, s + " cm", "#b6f36a"), 300, 190);
+    return {html:`<p class="tw-q">The midpoints of the sides of a square of side <b>${s} cm</b> are joined. Area of the inner (yellow) square?</p>${g}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, A, 0.001, done, `The four corner triangles fold exactly onto the inner square, so it is <b>half</b> the big square: ${s*s} ÷ 2 = <b>${n2(A)} cm²</b>.`, "Halving an area"); }};
+  }
+
+  /* ---------- Mission 8: Śulba Shape-Shifting ---------- */
+  function m8(i){
+    const t = i % 3;
+    if (t === 0){ const L = R(4, 12), W = R(3, 8), o = SH([`Base ${2*L}, height ${W}`, `Base ${L}, height ${W}`, `Base ${L}, height ${W/2}`, `Base ${2*L}, height ${2*W}`]);
+      return {html:`<p class="tw-q">Śulba-sūtras: turn a <b>${L} × ${W}</b> rectangle into a triangle of <b>equal area</b>. Which triangle works?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(`Base ${2*L}, height ${W}`), done, `Rectangle = ${L*W}. Triangle with base ${2*L}, height ${W}: ½ × ${2*L} × ${W} = ${L*W} ✓. Double the base (or the height) to keep the area.`, "Equal-area transformations"); }}; }
+    if (t === 1){ const b = R(4, 14)*2, h = R(3, 10), o = SH([`${b/2} × ${h}`, `${b} × ${h}`, `${b} × ${h/2}`, `${b/2} × ${h/2}`]);
+      return {html:`<p class="tw-q">Turn a triangle with base <b>${b}</b> and height <b>${h}</b> into a rectangle of equal area. Which rectangle?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, [o.indexOf(`${b/2} × ${h}`), o.indexOf(`${b} × ${h/2}`)], done, `Triangle area = ½ × ${b} × ${h} = ${b*h/2}. A rectangle ${b/2} × ${h} (cut through the midpoint of the base) has the same area${o.includes(`${b} × ${h/2}`) ? ` — and so does ${b} × ${h/2}` : ""}.`, "Equal-area transformations"); }}; }
+    const facts = [["Two shapes with the same area must have the same perimeter.", false], ["Cutting a shape and rearranging the pieces keeps the area.", true], ["A rhombus and a square with equal sides always have equal areas.", false], ["Area of a parallelogram = base × height, the same as a rectangle with that base and height.", true], ["A trapezium can be converted into a rectangle of equal area by cutting and moving two triangles.", true]];
+    const it = SH(facts.slice()).slice(0, 4), cor = it.map((f, k) => f[1] ? k : -1).filter(k => k >= 0); if (!cor.length) return m8(i);
+    return {html:`<p class="tw-q">Select <b>all</b> true statements.</p>${multiHTML(it.map(f => f[0]))}`,
+      mount(el, done){ bindMulti(el, cor, done, `Cutting and rearranging (dissection) keeps area, which is how the Śulba-sūtras changed altar shapes. But equal area does not mean equal perimeter, and a squashed rhombus has less area than a square with the same sides.`, "Area reasoning"); }};
+  }
+
+  const L = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Rectangles & Paths", goal:"Missing sides and paths around parks.", n:8,
+      learn:L("Area = length × width", "Use the formula backwards for a missing side. For a path: area of the outer rectangle − area of the inner one.", "Park 40 × 30 with a 2 m path outside: 44 × 34 − 40 × 30 = 296 m²")},
+    {id:2, track:"foundation", name:"Triangle Area", goal:"½ × base × height, even when the height is outside.", n:8,
+      learn:L("Half a rectangle", "Every triangle is half of a rectangle (or parallelogram) with the same base and height: Area = ½ × b × h. The height is perpendicular to the base, sometimes outside the triangle.", "Base 5, height 3.2 → 8 cm²")},
+    {id:3, track:"foundation", name:"Find the Altitude", goal:"Work backwards from the area.", n:7,
+      learn:L("One area, three altitudes", "Any side can be the base. ½ × BC × AX = ½ × AC × BY lets you find a second altitude.", "Base 6, height 4 → area 12; other side 8 → its altitude 3")},
+    {id:4, track:"core", name:"Quadrilaterals by Diagonals", goal:"Split into triangles: ½ d (h₁ + h₂).", n:8,
+      learn:L("Triangulate", "A diagonal splits a quadrilateral into two triangles sharing that diagonal as a base. An n-gon splits into n − 2 triangles.", "AC = 22, heights 3 and 3 → ½ × 22 × 6 = 66 cm²")},
+    {id:5, track:"core", name:"Parallelograms", goal:"Base × height (not the slanting side!).", n:8,
+      learn:L("Cut and move", "Cut a triangle off one end and move it to the other: a rectangle with the same base and height. Area = b × h.", "Same base, same parallels → same area, different perimeters")},
+    {id:6, track:"core", name:"Rhombus & Trapezium", goal:"½ d₁ d₂ and ½ h (a + b).", n:8,
+      learn:L("Special formulas", "Rhombus = ½ × product of diagonals. Trapezium = ½ × height × (sum of parallel sides).", "Diagonals 20, 15 → 150 cm² · sides 10, 16, height 7 → 91 ft²")},
+    {id:7, track:"advanced", name:"Shaded Regions", goal:"Add and subtract areas; fractions of shapes.", n:7,
+      learn:L("Whole minus pieces", "Find the area of the big shape and subtract the unshaded parts, or add up the shaded parts.", "Joining midpoints of a square → inner square is half")},
+    {id:8, track:"advanced", name:"Śulba Shape-Shifting", goal:"Change shapes, keep the area.", n:7,
+      learn:L("Dissection keeps area", "The Śulba-sūtras transformed altar shapes by cutting and rearranging: rectangle ↔ triangle, trapezium → rectangle. Area stays; perimeter may change.", "")},
+    {id:9, track:"advanced", name:"Area Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m5, m6, m6])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c8-area"] = CQ.quest({
+  key:"ar8c7_stars", missions:AREA8.MISSIONS, gen:AREA8.GEN, chapter:{std:8, part:"Part 2", ch:7},
+  desc:"Std 8 · Ganita Prakash Part 2 · Chapter 7. Master area in 9 missions: rectangles and paths, triangles and altitudes, quadrilaterals by diagonals, parallelograms, rhombuses, trapeziums and Śulba-sūtra shape-shifting.",
+  modes:{foundation:"Rectangles and paths, triangle area and finding altitudes", core:"Quadrilaterals, parallelograms, rhombuses and trapeziums", advanced:"Shaded regions, equal-area transformations and the timed master round"}
+});
 
 </script>
 <script>
