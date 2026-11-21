@@ -1057,6 +1057,47 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .g-qud9{--a1:#fb923c;--a2:#a3e635}
 .g-tvl9{--a1:#38bdf8;--a2:#f43f5e}
 .g-spc9{--a1:#14b8a6;--a2:#c084fc}
+/* ---- Home v2: class-wise first ---- */
+.sec-label.sec-big h2{font-size:21px}
+.sec-label.sub{margin-top:4px}
+.sec-label.sub h2{font-size:15px}
+.sec-label.fun h2 i{background:linear-gradient(135deg,#ffb347,#ff5b6e);box-shadow:0 0 12px #ff8a5b}
+.sec-label .nox{padding:3px 10px;border-radius:999px;background:rgba(255,139,91,.12);border:1px solid rgba(255,139,91,.3);color:#ffc29e}
+.clsel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:760px){.clsel{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}}
+.clc{--c1:#8f7cff;--c2:#5ee7ff;display:flex;align-items:center;gap:12px;padding:14px;border-radius:22px;text-align:left;color:var(--text);
+  background:var(--glass);border:1px solid var(--gl-edge);transition:transform .18s,border-color .18s,background .18s}
+.clc:hover{transform:translateY(-2px)}
+.clc-7{--c1:#ff8a5b;--c2:#ffd166}.clc-8{--c1:#3ee6a4;--c2:#5ee7ff}.clc-9{--c1:#8f7cff;--c2:#ff7ad9}.clc-10{--c1:#4f8cff;--c2:#5ee7ff}
+.clc-n{flex:none;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;align-content:center;line-height:1;
+  font-family:var(--f-disp);font-size:26px;font-weight:800;color:#07101f;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 8px 24px -8px var(--c1)}
+.clc-n small{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.75;margin-bottom:2px}
+.clc-t{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.clc-t b{font-size:14px;font-weight:800}
+.clc-t em{font-style:normal;font-size:12px;color:var(--muted);font-weight:700}
+.clc-t .mastery{flex:none;height:5px;width:100%}
+.clc .mastery i{background:linear-gradient(90deg,var(--c1),var(--c2))}
+.clc[aria-selected="true"]{border-color:color-mix(in srgb,var(--c1) 70%,transparent);
+  background:linear-gradient(140deg,color-mix(in srgb,var(--c1) 22%,transparent),color-mix(in srgb,var(--c2) 10%,transparent)),var(--glass-2);
+  box-shadow:0 0 0 1px color-mix(in srgb,var(--c1) 40%,transparent),0 14px 40px -18px var(--c1)}
+.clc[aria-selected="true"] .mastery i{background:linear-gradient(90deg,var(--c1),var(--c2))}
+@media (max-width:420px){.clc{padding:11px;gap:9px}.clc-n{width:46px;height:46px;font-size:21px;border-radius:14px}.clc-t b{font-size:12.5px}}
+.howxp{gap:10px;justify-content:space-between;background:radial-gradient(120% 100% at 100% 0%,rgba(143,124,255,.22),transparent 60%),var(--glass)}
+.howxp h3{margin:0;font-family:var(--f-disp);font-size:21px;font-weight:700}
+.howxp p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
+.chsoon.f3{display:none}
+@media (min-width:1000px){
+  .chgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .chgrid .chg.b2{grid-column:span 1}
+  .chgrid .chsoon.f2{display:none}
+  .chgrid .chsoon.f3{display:flex;grid-column:span var(--span)}
+  .chgrid .chg h3{font-size:20px}
+}
+@media (max-width:520px){
+  .sec-label.sec-big h2{font-size:18px}
+  .sec-label.sec-big span{display:none}
+  .clc-t .hm{display:none}
+}
 
 </style>
 </head>
@@ -1883,9 +1924,12 @@ function chapterBlock(p){
       <span class="head"><span class="chno"><small>Ch</small>${c.chn}</span><span class="eyebrow">Std ${c.std} · ${c.book}</span>${gIcon(c.id)}</span>
       <span><h3>${c.name}</h3><p>${c.tag}</p></span>
       <span class="foot"><span class="mastery"><i style="width:${pct}%"></i></span><span class="lvp"><b>${pct}%</b> mastered · ${c.missions} missions</span>${b ? `<span class="fbest">Best ${fmt(b.score)}</span>` : ""}</span></button>`; }).join("");
-  return `<div class="ball chwrap"><div class="chtabs" role="tablist">${CH_CLASSES.map(s => `<button type="button" role="tab" aria-selected="${s === chTab}" data-std="${s}">Std ${s}</button>`).join("")}</div></div>
+  const clsCard = s => { const g = CH.filter(c => c.std === s), tot = g.length * 9 * 3, got = g.reduce((a, c) => a + starsOf(c), 0), pct = tot ? Math.round(got/tot*100) : 0;
+    return `<button type="button" role="tab" class="clc clc-${s}" aria-selected="${s === chTab}" data-std="${s}"><span class="clc-n"><small>Std</small>${s}</span><span class="clc-t"><b>${g.length} <span class="hm">chapter </span>games</b><em>${pct}% mastered</em><span class="mastery"><i style="width:${pct}%"></i></span></span></button>`; };
+  return `<div class="ball clsel" role="tablist" aria-label="Choose your class">${CH_CLASSES.map(clsCard).join("")}</div>
     <div class="ball chgrid">${tiles || `<div class="bt ball chsoon"><b>Std ${chTab} chapter games are on the way.</b><span>One game for every maths chapter, built to make the whole unit click.</span></div>`}
-    ${list.length % 2 ? `<div class="bt chsoon b2"><b>More Std ${chTab} chapters coming</b><span>Each chapter gets its own mastery game, in textbook order.</span></div>` : ""}</div>`;
+    ${list.length % 2 ? `<div class="bt chsoon b2 f2"><b>More Std ${chTab} chapters coming</b><span>Each chapter gets its own mastery game, in textbook order.</span></div>` : ""}
+    ${list.length % 3 ? `<div class="bt chsoon f3" style="--span:${3 - list.length % 3}"><b>More Std ${chTab} chapters coming</b><span>Each chapter gets its own mastery game, in textbook order.</span></div>` : ""}</div>`;
 }
 function englishBlock(p){
   const starsOf = c => { try { return Object.values(JSON.parse(localStorage.getItem(c.key) || "{}")).reduce((a, b) => a + b, 0); } catch { return 0; } };
@@ -1917,32 +1961,35 @@ function renderHome(){
       <span class="row"><span class="eyebrow">${m.eye}</span>${m.id === "street" ? `<span class="vs"><i style="background:#2f7de0">P1</i>vs<i style="background:#e0414f">P2</i></span>` : m.art}</span>
       <span><h3>${m.name}</h3><p style="margin-top:6px">${m.tag}</p></span>
       ${m.id === "street" ? m.art : `<span class="tagrow"><span>Integers</span><span>Fractions</span><span>Algebra</span></span>`}</a>`;
+  const lbTile = `<div class="bt lbp b2" id="lbPrev"><h2 class="tt">This week's leaders <a class="more" href="#leaders">All ${ICO.chev}</a></h2><div class="top3"><div class="empty">Loading…</div></div></div>`;
+  const xpTile = `<a class="bt howxp b2" href="#leaders"><span class="eyebrow">How XP works</span><h3>Every chapter mission earns XP</h3><p>Clear missions, collect up to 3 stars each, keep a daily streak for up to ×1.5 XP, and top the weekly board for prizes.</p><span class="tagrow"><span>9 missions per chapter</span><span>Learn cards</span><span>Explanations</span></span></a>`;
   v.innerHTML = `<div class="bento">
-    <section class="bt hero ball"><div><span class="eyebrow">Hinde Classes · ${ALLG().length + MP.length} games</span>
-      <h1>Play smart. <span>Learn faster.</span></h1>
-      <p>Maths arcade games for every age, from fractions to equations. Earn XP, keep your streak and climb the leaderboard, plus cricket, a retro Goa adventure and party games just for fun.</p>
-      <div class="chips"><span>${GL.length} maths games</span><span>3 levels each</span><span>Weekly prizes</span><span>Free</span></div></div>${side}</section>
+    <section class="bt hero ball"><div><span class="eyebrow">Hinde Classes · Std 7 to 10 · ${CH.length} chapter games</span>
+      <h1>Every chapter. <span>Now a game.</span></h1>
+      <p>Pick your class and play your textbook chapter by chapter. Each game teaches the idea, explains every answer and tracks your mastery. Then sharpen up in the maths arcade, and unwind with cricket, football and more.</p>
+      <div class="chips"><span>${CH.length} chapter games</span><span>${GL.length} maths arcade</span><span>Explanations for every answer</span><span>Free</span></div></div>${side}</section>
     ${stats}
+    <div class="sec-label sec-big"><h2><i></i>Class-wise chapter games</h2><span>Pick your class · earns XP</span></div>
+    ${chapterBlock(p)}
+    <div class="sec-label sub"><h2><i></i>English</h2><span>Grammar you can play · earns XP</span></div>
+    ${englishBlock(p)}
+    ${user ? `<div class="b2" style="display:contents">${missionsHTML(p).replace('class="card"', 'class="card b2"')}</div>` : xpTile}
+    ${lbTile}
+    <div class="sec-label"><h2><i></i>Maths arcade</h2><span>Mixed maths · earns XP</span></div>
+    ${gtile(GL[1], true)}${gtile(GL[6], true)}${gtile(GL[2], true)}${gtile(GL[5], true)}${gtile(GL[0], true)}${gtile(GL[3])}${gtile(GL[4])}
+    <div class="sec-label"><h2><i></i>Play together</h2><span>Pass-and-play · no sign-in needed</span></div>
+    ${MP.map(mtile).join("")}
+    <div class="sec-label fun"><h2><i></i>Just for fun</h2><span class="nox">No XP · best scores on Records</span></div>
     ${cricketTile(p)}
     ${devTile(p)}
     ${deadTile()}
     ${swishTile()}
     ${inkTile()}
-    <div class="bt lbp b2" id="lbPrev"><h2 class="tt">This week's leaders <a class="more" href="#leaders">All ${ICO.chev}</a></h2><div class="top3"><div class="empty">Loading…</div></div></div>
-    <div class="sec-label"><h2><i></i>Maths arcade</h2><span>Tap a game to play</span></div>
-    ${gtile(GL[5], true)}${gtile(GL[6], true)}${gtile(GL[0])}${gtile(GL[1])}${gtile(GL[2])}${gtile(GL[3])}${gtile(GL[4])}
-    ${user ? `<div class="b2 md-b4" style="display:contents">${missionsHTML(p).replace('class="card"', 'class="card b2 md-b4"')}</div>` : ""}
-    <div class="sec-label"><h2><i></i>Chapter games</h2><span>One game per textbook chapter</span></div>
-    ${chapterBlock(p)}
-    <div class="sec-label"><h2><i></i>English games</h2><span>Grammar you can play</span></div>
-    ${englishBlock(p)}
-    <div class="sec-label"><h2><i></i>Play together</h2><span>Pass-and-play · no sign-in needed</span></div>
-    ${MP.map(mtile).join("")}
     <div class="ball">${howHTML(false)}</div>
   </div>`;
   $("#hSign")?.addEventListener("click", () => openLogin());
   v.querySelectorAll("[data-g]").forEach(c => c.onclick = () => Stage.open(c.dataset.g));
-  v.querySelectorAll(".chtabs [data-std]").forEach(b => b.onclick = () => { chTab = +b.dataset.std; const y = scrollY; renderHome(); scrollTo(0, y); });
+  v.querySelectorAll(".clsel [data-std]").forEach(b => b.onclick = () => { chTab = +b.dataset.std; const y = scrollY; renderHome(); scrollTo(0, y); });
   fetchBoard("xp", "week").then(({rows, failed}) => {
     const box = $("#lbPrev .top3"); if (!box) return;
     if (!rows.length){ box.innerHTML = `<div class="empty">${failed ? "Couldn't load the leaderboard." : "No scores yet this week. Play a round to take the top spot!"}</div>`; return; }
