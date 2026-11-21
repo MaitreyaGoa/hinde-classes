@@ -1,0 +1,13 @@
+Upload into the hinde-classes repo, keeping these paths:
+
+docs/index.html            -> replaces the homepage (only change: PWA tags added in <head>)
+docs/app/index.html        -> replaces the student-portal page (same PWA tags)
+index.html (repo root)     -> Vite source for the portal, so the tags survive your next "npm run build"
+docs/manifest.webmanifest  -> NEW
+docs/sw.js                 -> NEW (must sit at the site root)
+docs/pwa.js                -> NEW
+docs/offline.html          -> NEW
+docs/icons/                -> NEW folder
+docs/games/                -> replace the whole folder (new home layout + PWA tags)
+
+No Apps Script change this time.
