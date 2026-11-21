@@ -1,0 +1,25 @@
+{
+  "id": "/",
+  "name": "Hinde Classes",
+  "short_name": "Hinde Classes",
+  "description": "Hinde Classes, Bicholim: chapter games, maths arcade, tests and the student portal for Std 5 to 12.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#004258",
+  "lang": "en-IN",
+  "categories": ["education", "games"],
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable"},
+    {"src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ],
+  "shortcuts": [
+    {"name": "Learning Games", "short_name": "Games", "url": "/games/?source=pwa", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Student Portal", "short_name": "Portal", "url": "/app/?source=pwa", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Online Tests", "short_name": "Tests", "url": "/tests/?source=pwa", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]}
+  ]
+}
