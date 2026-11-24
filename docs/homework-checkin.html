@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Task Check-in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: warm, clear, school-office friendly – a parent finishes it in 20 seconds on a phone
+   IDEA: a WhatsApp chat – the form writes the message live into a chat bubble
+   PICTURE: the green chat bubble preview, growing as each answer is tapped
+   COLOUR and TYPE: Hinde teal #0B4F4A dominant, coral #FF6B54 accent, gold #E0A93B support; Poppins headings, Inter body
+   LAYOUT: one calm column on phones; form left + sticky chat preview right above 860px */
+:root{color-scheme:light dark;--bg:light-dark(#fbf8f1,#0d1b1a);--card:light-dark(#ffffff,#132826);--ink:light-dark(#18302e,#e8f1ef);--mute:light-dark(#5d716f,#9fb5b2);
+--teal:#0B4F4A;--teal2:light-dark(#0B4F4A,#4fb3a8);--coral:#FF6B54;--gold:#E0A93B;--line:light-dark(#dbe6e3,#24403d);--chat:light-dark(#efe7dc,#0b1413);--bub:light-dark(#d9fdd3,#1f4d38)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,.brand{font-family:Poppins,system-ui,sans-serif}
+header{background:var(--teal);color:#fff;padding:18px max(5vw,16px) 22px}
+.brand{font-weight:700;font-size:20px;letter-spacing:.5px}
+.brand small{display:block;font:400 13px Inter,sans-serif;opacity:.85;letter-spacing:0}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.08;margin:14px 0 4px;text-wrap:balance}
+header p{margin:0;opacity:.9;max-width:60ch}
+main{max-width:1100px;margin:0 auto;padding:22px max(4vw,14px) 40px;display:grid;gap:22px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:860px){main{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}.side{position:sticky;top:16px;align-self:start}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.q{margin:0 0 18px}.q:last-child{margin-bottom:0}
+.q>label,.q>.lbl{display:block;font-weight:600;margin-bottom:8px}
+.lbl span,label span.opt{font-weight:400;color:var(--mute);font-size:14px}
+select,input,textarea{width:100%;font:16px Inter,sans-serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:11px 12px;min-height:46px}
+textarea{min-height:70px;resize:vertical}
+select:focus,input:focus,textarea:focus,.chip:focus-visible,.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:10px 16px;min-height:44px;font:500 15px Inter,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--teal2);border-color:var(--teal2);color:light-dark(#fff,#08201d)}
+.chip.bad[aria-pressed=true]{background:var(--coral);border-color:var(--coral);color:#fff}
+.row2{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.chat{background:var(--chat);border-radius:16px;padding:16px 14px 14px;border:1px solid var(--line)}
+.chathead{display:flex;align-items:center;gap:10px;margin:-4px 0 12px;font-weight:600}
+.av{width:36px;height:36px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font:700 14px Poppins,sans-serif;flex:none}
+.chathead small{display:block;font-weight:400;color:var(--mute);font-size:13px}
+.bubble{background:var(--bub);border-radius:12px 2px 12px 12px;padding:10px 12px 18px;margin-left:12%;white-space:pre-wrap;font-size:15px;line-height:1.5;position:relative;box-shadow:0 1px 1px rgb(0 0 0/.12)}
+.bubble .t{position:absolute;right:10px;bottom:3px;font-size:11px;color:var(--mute)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;border-radius:12px;border:0;font:600 17px Poppins,sans-serif;text-decoration:none;cursor:pointer;margin-top:14px}
+.wa{background:#1fa855;color:#fff}.wa[aria-disabled=true]{background:#9bb3a7;pointer-events:none}
+.copy{background:transparent;color:var(--teal2);border:1.5px solid var(--teal2);min-height:46px;font-size:15px}
+.need{color:var(--coral);font-size:14px;margin:8px 0 0;min-height:1em}
+.note{font-size:14px;color:var(--mute);margin:10px 0 0}
+.hist h2{font-size:18px;margin:0 0 10px}
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;text-align:center;font-size:12px;color:var(--mute)}
+.days b{display:grid;place-items:center;height:36px;border-radius:9px;background:var(--bg);border:1px solid var(--line);font:600 13px Inter,sans-serif;color:var(--mute);margin-top:4px}
+.days b.ok{background:var(--teal2);border-color:var(--teal2);color:light-dark(#fff,#08201d)}
+.days b.part{background:var(--gold);border-color:var(--gold);color:#2a1d00}
+ul.log{list-style:none;padding:0;margin:12px 0 0;font-size:14px}
+ul.log li{padding:7px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+footer{text-align:center;font-size:13px;color:var(--mute);padding:0 16px 28px}
+@media(prefers-reduced-motion:no-preference){.bubble{transition:background .3s}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">HINDE CLASSES<small>Empowering Futures Through Learning · Bicholim, Goa</small></div>
+  <h1>Home task check-in</h1>
+  <p>Parents: answer a few taps, then press <b>Send on WhatsApp</b>. The message goes to Hinde Classes and is your record that today's home task was checked.</p>
+</header>
+
+<main>
+  <form class="card" id="f" onsubmit="return false">
+    <div class="q"><label for="stu">Student</label><select id="stu"></select></div>
+    <div class="row2 q">
+      <div><label for="dt" class="lbl">Home task date</label><input type="date" id="dt"></div>
+      <div><label for="par" class="lbl">Parent name <span>(remembered)</span></label><input id="par" placeholder="e.g. Mrs. Naik" autocomplete="name"></div>
+    </div>
+    <div class="q"><div class="lbl" id="l-st">Worksheet completed?</div><div class="chips" role="group" aria-labelledby="l-st" data-k="status"></div></div>
+    <div class="q"><div class="lbl" id="l-tm">Time spent at home</div><div class="chips" role="group" aria-labelledby="l-tm" data-k="time"></div></div>
+    <div class="q"><div class="lbl" id="l-sp">Steps written in notebook?</div><div class="chips" role="group" aria-labelledby="l-sp" data-k="steps"></div></div>
+    <div class="q"><label for="hard">Difficult questions (★) <span class="opt">– e.g. B4, E6, or leave blank</span></label><input id="hard" placeholder="None"></div>
+    <div class="q"><label for="com">Comment for teacher <span class="opt">(optional)</span></label><textarea id="com" placeholder="Anything you'd like the teacher to know"></textarea></div>
+  </form>
+
+  <div class="side">
+    <div class="chat" aria-live="polite">
+      <div class="chathead"><div class="av">HC</div><div>Hinde Classes<small>+91 73584 25108</small></div></div>
+      <div class="bubble" id="msg"></div>
+    </div>
+    <a class="btn wa" id="send" href="#" target="_blank" rel="noopener" aria-disabled="true">Send on WhatsApp</a>
+    <p class="need" id="need"></p>
+    <button class="btn copy" id="cp" type="button">Copy message</button>
+    <p class="note">If WhatsApp doesn't open, copy the message and paste it in the Hinde Classes chat.</p>
+
+    <div class="card hist" style="margin-top:18px">
+      <h2 id="hh">This week on this phone</h2>
+      <div class="days" id="days"></div>
+      <ul class="log" id="log"></ul>
+      <p class="note">Only check-ins sent from this phone appear here.</p>
+    </div>
+  </div>
+</main>
+<footer>Hinde Classes · Bicholim, Goa · Maitreya Hinde | 7358425108</footer>
+
+<script>
+{
+const PHONE = "917358425108";
+const STUDENTS = [
+  ["Asir","Std 6 Goa Board"],["Yug","Std 7 ICSE"],["Avaneesh","Std 7 Goa Board"],["Advait","Std 7 Goa Board"],["Virat","Std 7 Goa Board"],["Vibhuti","Std 7 Goa Board"],
+  ["Samarth","Std 8 Goa Board"],["Ved","Std 8 Goa Board"],["Arib","Std 8 Goa Board"],["Safa","Std 8 Goa Board"],
+  ["Rafan","Std 9 Goa Board"],["Rigved","Std 9 Goa Board"],["Advait Turi","Std 9 CBSE"],["Siddhi","Std 10 Goa Board"],["Sanasi","Std 10 Goa Board"]];
+const OPTS = {
+  status:[["All done","✅"],["Most done","🟡"],["Partly done","🟠"],["Not done","❌"]],
+  time:[["Less than 1 hr"],["1 – 1½ hrs"],["1½ – 2 hrs"],["2 hrs or more"]],
+  steps:[["Yes"],["Some"],["No"]]};
+const BAD = {status:["Not done"],steps:["No"]};
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = {get(k,d){try{const v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},
+               set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const pick = {status:null,time:null,steps:null};
+
+const groups = {};
+STUDENTS.forEach(([n,c]) => (groups[c] = groups[c] || []).push(n));
+$("stu").innerHTML = '<option value="">Choose your child</option>' + Object.entries(groups).map(([c,ns]) =>
+  `<optgroup label="${esc(c)}">${ns.map(n=>`<option>${esc(n)}</option>`).join("")}</optgroup>`).join("");
+
+document.querySelectorAll(".chips").forEach(box => {
+  const k = box.dataset.k;
+  box.innerHTML = OPTS[k].map(([v]) => `<button type="button" class="chip${(BAD[k]||[]).includes(v)?" bad":""}" aria-pressed="false" data-v="${esc(v)}">${esc(v)}</button>`).join("");
+  box.addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if(!b) return;
+    pick[k] = b.dataset.v;
+    box.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b));
+    render();
+  });
+});
+
+const today = new Date(); const iso = d => new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const params = new URLSearchParams(location.search);
+const hashS = decodeURIComponent((location.hash||"").slice(1)).replace(/-/g," ");
+const want = params.get("s") || hashS;
+const match = STUDENTS.find(([n]) => n.toLowerCase() === (want||"").toLowerCase());
+$("stu").value = match ? match[0] : store.get("hc_student","");
+$("dt").value = /^\d{4}-\d{2}-\d{2}$/.test(params.get("d")||"") ? params.get("d") : iso(today);
+$("par").value = store.get("hc_parent","");
+
+const nice = s => new Date(s+"T12:00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short",year:"numeric"});
+const ref = (s,d) => { const x=new Date(d+"T12:00:00"); return "#HC" + x.getDate() + x.toLocaleDateString("en-IN",{month:"short"}) + "-" + s.replace(/\s+/g,""); };
+
+function text(){
+  const s=$("stu").value, d=$("dt").value, cls=(STUDENTS.find(x=>x[0]===s)||[,""])[1];
+  const icon=(OPTS.status.find(o=>o[0]===pick.status)||[,"✅"])[1];
+  const L=[`${icon} *HOME TASK CHECK – Hinde Classes*`,
+    `👤 Student: ${s||"—"}${cls?` (${cls})`:""}`,
+    `📅 Date: ${d?nice(d):"—"}`,
+    `📝 Worksheet: ${pick.status||"—"}`,
+    `⏱ Time spent: ${pick.time||"—"}`,
+    `✍️ Steps in notebook: ${pick.steps||"—"}`,
+    `★ Difficult questions: ${$("hard").value.trim()||"None"}`,
+    `👪 Parent: ${$("par").value.trim()||"—"}`];
+  const c=$("com").value.trim(); if(c) L.push(`💬 Comment: ${c}`);
+  if(s&&d) L.push("", `Ref: ${ref(s,d)}`);
+  return L.join("\n");
+}
+function missing(){
+  const m=[]; if(!$("stu").value)m.push("student"); if(!pick.status)m.push("worksheet status");
+  if(!pick.time)m.push("time spent"); if(!pick.steps)m.push("steps"); if(!$("par").value.trim())m.push("parent name"); return m;
+}
+function render(){
+  const t=text(); const m=missing();
+  $("msg").innerHTML = esc(t).replace(/\*(.+?)\*/g,"<b>$1</b>") + `<span class="t">${new Date().toLocaleTimeString("en-IN",{hour:"numeric",minute:"2-digit"})} ✓✓</span>`;
+  const a=$("send");
+  if(m.length){a.setAttribute("aria-disabled","true");a.href="#";$("need").textContent="Still to fill: "+m.join(", ")+".";}
+  else{a.setAttribute("aria-disabled","false");a.href=`https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;$("need").textContent="";}
+  hist();
+}
+function hist(){
+  const s=$("stu").value; const all=store.get("hc_log",[]); const mine=all.filter(x=>x.s===s);
+  $("hh").textContent = s ? `${s}'s week on this phone` : "This week on this phone";
+  const days=[]; for(let i=6;i>=0;i--){const d=new Date(today);d.setDate(d.getDate()-i);days.push(iso(d));}
+  $("days").innerHTML = days.map(d=>{const e=mine.find(x=>x.d===d);const cls=e?(e.st==="All done"?"ok":"part"):"";
+    return `<div>${new Date(d+"T12:00:00").toLocaleDateString("en-IN",{weekday:"short"})}<b class="${cls}">${e?(e.st==="All done"?"✓":"½"):new Date(d+"T12:00:00").getDate()}</b></div>`;}).join("");
+  $("log").innerHTML = mine.slice(-5).reverse().map(x=>`<li><span>${esc(nice(x.d))}</span><span>${esc(x.st)} · ${esc(x.t)}</span></li>`).join("") || '<li><span>No check-ins sent yet.</span><span></span></li>';
+}
+["stu","dt","par","hard","com"].forEach(id=>$(id).addEventListener("input",render));
+$("stu").addEventListener("change",()=>{store.set("hc_student",$("stu").value);render();});
+$("par").addEventListener("change",()=>store.set("hc_parent",$("par").value.trim()));
+$("send").addEventListener("click",()=>{
+  if(missing().length) return;
+  const all=store.get("hc_log",[]).filter(x=>!(x.s===$("stu").value&&x.d===$("dt").value));
+  all.push({s:$("stu").value,d:$("dt").value,st:pick.status,t:pick.time}); store.set("hc_log",all.slice(-200));
+  store.set("hc_parent",$("par").value.trim()); store.set("hc_student",$("stu").value); hist();
+});
+$("cp").addEventListener("click",async()=>{
+  try{await navigator.clipboard.writeText(text());$("cp").textContent="Copied ✓";}
+  catch(e){$("cp").textContent="Select the message above and copy it";}
+  setTimeout(()=>$("cp").textContent="Copy message",2500);
+});
+render();
+}
+</script>
+</body>
+</html>
