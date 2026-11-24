@@ -1,17 +1,49 @@
 {
- "days": {
-  "2026-11-24": {
-   "6GB": {
+ "version": 2,
+ "groups": {
+  "6GB": [
+   {
+    "id": "2026-11-24",
+    "ws": 1,
+    "seq": 1,
     "file": "ws/2026-11-24/6GB",
     "questions": 30,
     "minutes": 115,
     "subject": "Mathematics",
     "chapter": "Fractions",
     "std": "Std 6 · Goa Board",
-    "level": "Basic to Medium",
-    "due": "Thu, 26 Nov 2026"
+    "level": "Basic to Medium"
    },
-   "7GB": {
+   {
+    "id": "6GB-m-fractions-2",
+    "subject": "Mathematics",
+    "chapter": "Fractions",
+    "ws": 2,
+    "std": "Std 6 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/6GB/6GB-m-fractions-2",
+    "questions": 26,
+    "minutes": 120,
+    "seq": 2
+   },
+   {
+    "id": "6GB-m-fractions-3",
+    "subject": "Mathematics",
+    "chapter": "Fractions",
+    "ws": 3,
+    "std": "Std 6 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/6GB/6GB-m-fractions-3",
+    "questions": 22,
+    "minutes": 120,
+    "seq": 3
+   }
+  ],
+  "7GB": [
+   {
+    "id": "2026-11-24",
+    "ws": 1,
+    "seq": 1,
     "file": "ws/2026-11-24/7GB",
     "questions": 28,
     "minutes": 110,
@@ -19,7 +51,6 @@
     "chapter": "Working with Fractions (Multiplication and Division)",
     "std": "Std 7 · Goa Board",
     "level": "Basic to Medium",
-    "due": "Thu, 26 Nov 2026",
     "variants": {
      "x": {
       "file": "ws/2026-11-24/7GB-x",
@@ -28,37 +59,171 @@
      }
     }
    },
-   "7ICSE": {
+   {
+    "id": "7GB-m-fractions-2",
+    "subject": "Mathematics",
+    "chapter": "Working with Fractions",
+    "ws": 2,
+    "std": "Std 7 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/7GB/7GB-m-fractions-2",
+    "questions": 22,
+    "minutes": 100,
+    "variants": {
+     "x": {
+      "file": "ws/7GB/7GB-m-fractions-2-x",
+      "questions": 26,
+      "minutes": 120
+     }
+    },
+    "seq": 2
+   },
+   {
+    "id": "7GB-m-geometric-twins-1",
+    "subject": "Mathematics",
+    "chapter": "Geometric Twins (Congruence)",
+    "ws": 1,
+    "std": "Std 7 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/7GB/7GB-m-geometric-twins-1",
+    "questions": 21,
+    "minutes": 105,
+    "seq": 3
+   }
+  ],
+  "7ICSE": [
+   {
+    "id": "2026-11-24",
+    "ws": 1,
+    "seq": 1,
     "file": "ws/2026-11-24/7ICSE",
     "questions": 29,
     "minutes": 120,
     "subject": "Mathematics",
     "chapter": "Simple Linear Equations",
     "std": "Std 7 · ICSE",
-    "level": "Basic to Medium",
-    "due": "Thu, 26 Nov 2026"
+    "level": "Basic to Medium"
    },
-   "8GB": {
+   {
+    "id": "7ICSE-m-linear-equations-2",
+    "subject": "Mathematics",
+    "chapter": "Simple Linear Equations",
+    "ws": 2,
+    "std": "Std 7 · ICSE",
+    "level": "Basic to Medium",
+    "file": "ws/7ICSE/7ICSE-m-linear-equations-2",
+    "questions": 21,
+    "minutes": 110,
+    "seq": 2
+   },
+   {
+    "id": "7ICSE-m-linear-equations-3",
+    "subject": "Mathematics",
+    "chapter": "Simple Linear Equations",
+    "ws": 3,
+    "std": "Std 7 · ICSE",
+    "level": "Basic to Medium",
+    "file": "ws/7ICSE/7ICSE-m-linear-equations-3",
+    "questions": 19,
+    "minutes": 120,
+    "seq": 3
+   }
+  ],
+  "8GB": [
+   {
+    "id": "2026-11-24",
+    "ws": 1,
+    "seq": 1,
     "file": "ws/2026-11-24/8GB",
     "questions": 30,
     "minutes": 120,
     "subject": "Mathematics",
     "chapter": "We Distribute, Yet Things Multiply (Expansions and Identities)",
     "std": "Std 8 · Goa Board",
-    "level": "Basic to Medium",
-    "due": "Thu, 26 Nov 2026"
+    "level": "Basic to Medium"
    },
-   "9GB": {
+   {
+    "id": "8GB-m-we-distribute-2",
+    "subject": "Mathematics",
+    "chapter": "We Distribute, Yet Things Multiply",
+    "ws": 2,
+    "std": "Std 8 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/8GB/8GB-m-we-distribute-2",
+    "questions": 20,
+    "minutes": 100,
+    "variants": {
+     "x": {
+      "file": "ws/8GB/8GB-m-we-distribute-2-x",
+      "questions": 23,
+      "minutes": 120
+     }
+    },
+    "seq": 2
+   },
+   {
+    "id": "8GB-m-proportional-reasoning-1",
+    "subject": "Mathematics",
+    "chapter": "Proportional Reasoning – 1",
+    "ws": 1,
+    "std": "Std 8 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/8GB/8GB-m-proportional-reasoning-1",
+    "questions": 20,
+    "minutes": 95,
+    "variants": {
+     "x": {
+      "file": "ws/8GB/8GB-m-proportional-reasoning-1-x",
+      "questions": 23,
+      "minutes": 115
+     }
+    },
+    "seq": 3
+   }
+  ],
+  "9GB": [
+   {
+    "id": "2026-11-24",
+    "ws": 1,
+    "seq": 1,
     "file": "ws/2026-11-24/9GB",
     "questions": 27,
     "minutes": 120,
     "subject": "Mathematics",
     "chapter": "Surface Areas and Volumes (Cone, Sphere, Hemisphere)",
     "std": "Std 9 · Goa Board",
-    "level": "Basic to Medium",
-    "due": "Thu, 26 Nov 2026"
+    "level": "Basic to Medium"
    },
-   "9CBSE": {
+   {
+    "id": "9GB-m-surface-areas-volumes-2",
+    "subject": "Mathematics",
+    "chapter": "Surface Areas and Volumes",
+    "ws": 2,
+    "std": "Std 9 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/9GB/9GB-m-surface-areas-volumes-2",
+    "questions": 19,
+    "minutes": 110,
+    "seq": 2
+   },
+   {
+    "id": "9GB-m-statistics-1",
+    "subject": "Mathematics",
+    "chapter": "Statistics",
+    "ws": 1,
+    "std": "Std 9 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/9GB/9GB-m-statistics-1",
+    "questions": 16,
+    "minutes": 120,
+    "seq": 3
+   }
+  ],
+  "9CBSE": [
+   {
+    "id": "2026-11-24",
+    "ws": 1,
+    "seq": 1,
     "file": "ws/2026-11-24/9CBSE",
     "questions": 24,
     "minutes": 90,
@@ -66,7 +231,6 @@
     "chapter": "Coordinate Geometry and Linear Equations in Two Variables",
     "std": "Std 9 · CBSE",
     "level": "Basic to Medium",
-    "due": "Thu, 26 Nov 2026",
     "variants": {
      "x": {
       "file": "ws/2026-11-24/9CBSE-x",
@@ -75,26 +239,113 @@
      }
     }
    },
-   "10GB": {
+   {
+    "id": "9CBSE-m-two-variables-one-line-1",
+    "subject": "Mathematics",
+    "chapter": "Two Variables, One Line (Ganita Manjari Ch 13)",
+    "ws": 1,
+    "std": "Std 9 · CBSE",
+    "level": "Basic to Medium",
+    "file": "ws/9CBSE/9CBSE-m-two-variables-one-line-1",
+    "questions": 18,
+    "minutes": 120,
+    "variants": {
+     "x": {
+      "file": "ws/9CBSE/9CBSE-m-two-variables-one-line-1-x",
+      "questions": 21,
+      "minutes": 140
+     }
+    },
+    "seq": 2
+   },
+   {
+    "id": "9CBSE-m-two-variables-one-line-2",
+    "subject": "Mathematics",
+    "chapter": "Two Variables, One Line (Ganita Manjari Ch 13)",
+    "ws": 2,
+    "std": "Std 9 · CBSE",
+    "level": "Basic to Medium",
+    "file": "ws/9CBSE/9CBSE-m-two-variables-one-line-2",
+    "questions": 19,
+    "minutes": 125,
+    "seq": 3
+   }
+  ],
+  "10GB": [
+   {
+    "id": "2026-11-24",
+    "ws": 1,
+    "seq": 1,
     "file": "ws/2026-11-24/10GB",
     "questions": 30,
     "minutes": 120,
     "subject": "Mathematics",
     "chapter": "Quadratic Equations",
     "std": "Std 10 · Goa Board",
-    "level": "Basic to Medium",
-    "due": "Thu, 26 Nov 2026"
+    "level": "Basic to Medium"
    },
-   "10ADV": {
+   {
+    "id": "10GB-m-quadratic-equations-2",
+    "subject": "Mathematics",
+    "chapter": "Quadratic Equations",
+    "ws": 2,
+    "std": "Std 10 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/10GB/10GB-m-quadratic-equations-2",
+    "questions": 19,
+    "minutes": 120,
+    "seq": 2
+   },
+   {
+    "id": "10GB-m-arithmetic-progressions-1",
+    "subject": "Mathematics",
+    "chapter": "Arithmetic Progressions",
+    "ws": 1,
+    "std": "Std 10 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/10GB/10GB-m-arithmetic-progressions-1",
+    "questions": 20,
+    "minutes": 120,
+    "seq": 3
+   }
+  ],
+  "10ADV": [
+   {
+    "id": "2026-11-24",
+    "ws": 1,
+    "seq": 1,
     "file": "ws/2026-11-24/10ADV",
     "questions": 19,
     "minutes": 120,
     "subject": "Mathematics",
     "chapter": "Pair of Linear Equations and Quadratic Equations – Board Challenge",
     "std": "Std 10 · Goa Board",
+    "level": "Advanced (95%+ target)"
+   },
+   {
+    "id": "10ADV-m-arithmetic-progressions-1",
+    "subject": "Mathematics",
+    "chapter": "Arithmetic Progressions – Board Challenge",
+    "ws": 1,
+    "std": "Std 10 · Goa Board",
     "level": "Advanced (95%+ target)",
-    "due": "Thu, 26 Nov 2026"
+    "file": "ws/10ADV/10ADV-m-arithmetic-progressions-1",
+    "questions": 14,
+    "minutes": 120,
+    "seq": 2
+   },
+   {
+    "id": "10ADV-m-trigonometry-1",
+    "subject": "Mathematics",
+    "chapter": "Introduction to Trigonometry – Board Challenge",
+    "ws": 1,
+    "std": "Std 10 · Goa Board",
+    "level": "Advanced (95%+ target)",
+    "file": "ws/10ADV/10ADV-m-trigonometry-1",
+    "questions": 15,
+    "minutes": 120,
+    "seq": 3
    }
-  }
+  ]
  }
 }

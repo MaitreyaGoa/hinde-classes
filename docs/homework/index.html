@@ -135,7 +135,7 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const store = {get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}, del(k){try{localStorage.removeItem(k)}catch(e){}}};
 const istISO = (d = new Date()) => new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).format(d);
-const nice = iso => new Date(iso+"T12:00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
+const nice = iso => !/^\d{4}-\d{2}-\d{2}$/.test(iso||"") ? "" : new Date(iso+"T12:00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
 const addDays = (iso, n) => { const d = new Date(iso+"T12:00:00"); d.setDate(d.getDate()+n); return istISO(d); };
 const time = t => t ? new Date(t).toLocaleString("en-IN",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit",timeZone:"Asia/Kolkata"}) : "";
 const ago = t => { if (!t) return ""; const h = (Date.now() - new Date(t)) / 36e5; return h < 1 ? "just now" : h < 24 ? Math.round(h) + " h ago" : Math.round(h/24) + " d ago"; };
@@ -149,7 +149,7 @@ function toast(m, bad) { const d = document.createElement("div"); d.className = 
 
 const SKEY = DEMO ? "hc_hw_session_demo" : "hc_hw_session";
 let session = store.get(SKEY);
-let manifest = {days:{}};
+let manifest = {version:2, groups:{}};
 
 /* ---------- API ---------- */
 async function api(action, data = {}) {
@@ -168,16 +168,20 @@ async function api(action, data = {}) {
 }
 
 /* ---------- worksheets ---------- */
-function sheetFor(user, date) {
-  const e = manifest.days[date] && manifest.days[date][user.group];
+// Worksheets are topic-wise: manifest.groups[GROUP] = [{id, seq, subject, chapter, ws, file, questions, ...}].
+// The backend's "date" field holds the worksheet id (old dated sheets keep their date as id).
+function sheetFor(user, id) {
+  const e = (manifest.groups[user.group] || []).find(w => w.id === id);
   if (!e) return null;
   const v = user.variant && e.variants && e.variants[user.variant];
-  return Object.assign({date}, e, v || {});
+  return Object.assign({date: id}, e, v || {});
 }
+const wsTitle = w => `${w.chapter}${w.ws ? " · Worksheet " + w.ws : ""}`;
+const bySent = (a, b) => (a.sentAt || a.date || "").localeCompare(b.sentAt || b.date || "");
 const wsLink = (ws, name) => `${ws.file}.html?n=${encodeURIComponent(name||"")}`;
-const groupDates = g => Object.keys(manifest.days).filter(d => manifest.days[d][g]).sort();
+const groupDates = g => (manifest.groups[g] || []).slice().sort((a,b) => a.seq - b.seq).map(w => w.id);
 function taskMsg(s, ws) {
-  return `Dear Parent,\nGreetings from Hinde Classes! 🙏\n\n📘 *New Home Task for ${s.name}*\n${ws.subject}: ${ws.chapter}\n⏱ About 2 hours · ${ws.questions} questions\n\n📲 *Open it on the portal:* hindeclasses.com/homework\n   Username: *${s.username}* (password as given)\n\n✅ When finished, press *Submitted in class* or *Send photos on WhatsApp* in the portal (photos to 7358425108). The next worksheet is sent after this one is done.\n\nThank you for your support!\n– Maitreya Hinde\nHinde Classes, Bicholim | 7358425108`;
+  return `Dear Parent,\nGreetings from Hinde Classes! 🙏\n\n📘 *New Home Task for ${s.name}*\n${ws.subject}: ${wsTitle(ws)}\n⏱ About 2 hours · ${ws.questions} questions\n\n📲 *Open it on the portal:* hindeclasses.com/homework\n   Username: *${s.username}* (password as given)\n\n✅ When finished, press *Submitted in class* or *Send photos on WhatsApp* in the portal (photos to 7358425108). The next worksheet is sent after this one is done.\n\nThank you for your support!\n– Maitreya Hinde\nHinde Classes, Bicholim | 7358425108`;
 }
 const waTo = (phone, text) => `https://wa.me/${phone91(phone)}?text=${encodeURIComponent(text)}`;
 
@@ -226,15 +230,13 @@ async function myItems() {
   catch (e) {
     if (e.message !== "Unknown action") throw e;
     // Older backend: treat every published worksheet as sent.
-    const u = session.user, dates = groupDates(u.group).reverse().slice(0, 30);
-    const rows = dates.length ? (await api("myStatus", {from: dates[dates.length-1], to: istISO()})).rows : [];
-    return dates.map(d => Object.assign({date: d, status: "Pending"}, rows.find(r => r.date === d) || {}));
+    throw new Error("The portal was updated. Please ask your teacher to update the backend (Code.gs).");
   }
 }
 async function studentHome() {
   const u = session.user;
   let items; try { items = await myItems(); } catch (e) { return showErr(e); }
-  items = items.filter(it => sheetFor(u, it.date)).sort((a,b) => b.date.localeCompare(a.date));
+  items = items.filter(it => sheetFor(u, it.date)).sort((a,b) => bySent(b, a));
   const cur = items[0], ws = cur && sheetFor(u, cur.date);
   const done = items.filter(i => DONE.includes(i.status)).length;
   const pct = items.length ? Math.round(done / items.length * 100) : 0;
@@ -242,7 +244,7 @@ async function studentHome() {
   const lastRemark = items.find(i => i.remark || i.stars);
   const curTile = ws ? `<div class="glass tile s4 r2">
       <div class="kicker">${esc(ws.subject)} · sent ${esc(cur.sentAt ? ago(cur.sentAt) : nice(cur.date))}</div>
-      <h1>${esc(ws.chapter)}</h1>
+      <h1>${esc(wsTitle(ws))}</h1>
       <div class="facts"><div><b>${ws.questions}</b>questions</div><div><b>~${Math.round(ws.minutes/60*10)/10} h</b>time</div><div><b>${esc(GROUP_SHORT[u.group]||"")}</b>class</div></div>
       <div class="row"><a class="btn pri" href="${esc(wsLink(ws, u.name))}">Open worksheet</a></div>
       <p class="small mute" style="margin-bottom:0">Every section starts with "How to solve" and a worked example. Write all steps in your notebook.</p></div>`
@@ -266,7 +268,7 @@ function drawStamp(cur, ws) {
       ${cur.status === "Redo" ? `<div style="margin:6px 0">${chip("Redo")}</div><p class="small"><b>Teacher:</b> ${esc(cur.remark||"Please redo and submit again.")}</p>` : `<p class="small mute">Tell your teacher how you handed it in.</p>`}
       <div style="display:grid;gap:10px;margin-top:10px">
         <button class="btn pri" id="bClass">✅ Submitted in class</button>
-        <a class="btn wa" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${WA_TEACHER}?text=${encodeURIComponent(`Worksheet photos – ${session.user.name} – ${ws.subject}: ${ws.chapter}`)}">📷 Send photos on WhatsApp</a>
+        <a class="btn wa" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${WA_TEACHER}?text=${encodeURIComponent(`Worksheet photos – ${session.user.name} – ${ws.subject}: ${wsTitle(ws)}`)}">📷 Send photos on WhatsApp</a>
       </div><p class="small mute">Clear photos of every page to <b>7358425108</b>.</p><p class="err" id="se"></p>`;
     $("#bClass").onclick = () => submit(cur.date, "class");
     $("#bWa").addEventListener("click", () => setTimeout(() => submit(cur.date, "whatsapp"), 300));
@@ -287,7 +289,7 @@ function drawList(items, sel, empty) {
   $(sel).innerHTML = items.length ? items.map(it => {
     const ws = sheetFor(u, it.date);
     const can = it.status === "Pending" || it.status === "Redo";
-    return `<li><span><b>${esc(ws.subject)}</b>: <a href="${esc(wsLink(ws, u.name))}">${esc(ws.chapter)}</a><br>
+    return `<li><span><b>${esc(ws.subject)}</b>: <a href="${esc(wsLink(ws, u.name))}">${esc(wsTitle(ws))}</a><br>
       <span class="small mute">Sent ${esc(it.sentAt ? time(it.sentAt) : nice(it.date))}${it.remark ? " · Note: " + esc(it.remark) : ""}</span></span>
       <span class="row">${chip(it.status)}${it.stars ? `<span class="stars" style="font-size:15px">${starsTxt(Number(it.stars))}</span>` : ""}
       ${can ? `<button class="btn sec sm" data-late="${esc(it.date)}">Submitted in class</button>` : ""}</span></li>`;
@@ -297,7 +299,13 @@ function drawList(items, sel, empty) {
 async function studentHistory() {
   $("#app").innerHTML = `<div class="glass tile"><h2>All my worksheets</h2><ul class="list" id="all"><li class="mute">Loading…</li></ul></div>`;
   let items; try { items = await myItems(); } catch (e) { return showErr(e); }
-  drawList(items.filter(it => sheetFor(session.user, it.date)).sort((a,b) => b.date.localeCompare(a.date)), "#all", "No worksheets yet.");
+  items = items.filter(it => sheetFor(session.user, it.date)).sort((a,b) => bySent(b, a));
+  if (!items.length) return drawList([], "#all", "No worksheets yet.");
+  // group by chapter (topic), newest topic first
+  const order = [], by = {};
+  items.forEach(it => { const c = sheetFor(session.user, it.date); const k = c.subject + ": " + c.chapter; if (!by[k]) { by[k] = []; order.push(k); } by[k].push(it); });
+  $("#app").innerHTML = order.map((k, i) => `<div class="glass tile" style="margin-bottom:14px"><h2>${esc(k)}</h2><ul class="list" id="grp${i}"></ul></div>`).join("");
+  order.forEach((k, i) => drawList(by[k], "#grp" + i, ""));
 }
 
 /* ---------- admin / teacher ---------- */
@@ -307,11 +315,11 @@ async function loadOverview() {
   const r = await api("adminOverview");
   OV = r; OV.byUser = {};
   r.students.forEach(s => {
-    const asg = r.assignments.filter(a => a.username === s.username).sort((a,b) => a.date.localeCompare(b.date));
+    const asg = r.assignments.filter(a => a.username === s.username).sort(bySent);
     const items = asg.map(a => Object.assign({status:"Pending"}, r.status.find(x => x.username === s.username && x.date === a.date) || {}, a));
     const cur = items[items.length-1];
     const sent = new Set(asg.map(a => a.date));
-    const next = groupDates(s.group).filter(d => !sent.has(d) && (!cur || d > cur.date)).slice(0, 5);
+    const next = groupDates(s.group).filter(d => !sent.has(d)).slice(0, 5);
     const done = items.filter(i => DONE.includes(i.status)).length;
     let state;
     if (cur && cur.status === "Submitted") state = "To check";
@@ -339,7 +347,7 @@ async function adminHome() {
         <div class="row" style="gap:10px;flex-wrap:nowrap"><div class="av" style="background:${avCol(x.s.name)}">${esc(initials(x.s.name))}</div>
         <div style="min-width:0"><div class="nm">${esc(x.s.name)}</div><div class="small mute">${esc(GROUP_SHORT[x.s.group]||x.s.group)}${x.s.variant ? " · extra maths" : ""}</div></div></div>
         <div>${chip(st)} ${x.state === "Ready" ? `<span class="small mute">${x.next.length} queued</span>` : ""}</div>
-        <div class="small" style="min-height:2.6em">${ws ? `${esc(ws.subject)}: ${esc(ws.chapter)}<br><span class="mute">sent ${esc(ago(x.cur.sentAt) || nice(x.cur.date))}</span>` : `<span class="mute">No worksheet sent yet</span>`}</div>
+        <div class="small" style="min-height:2.6em">${ws ? `${esc(ws.subject)}: ${esc(wsTitle(ws))}<br><span class="mute">sent ${esc(ago(x.cur.sentAt) || nice(x.cur.date))}</span>` : `<span class="mute">No worksheet sent yet</span>`}</div>
         <div class="bar" title="${x.pct}% done"><i style="width:${x.pct}%"></i></div><div class="small mute">${x.done}/${x.items.length} done · ${x.pct}%</div></button>`;
     }).join("") || `<p class="mute">No students here.</p>`}</div>`;
   document.querySelectorAll("[data-f]").forEach(b => { const go = () => { filterKey = b.dataset.f; store.set("hc_hw_filter", filterKey); adminHome(); }; b.onclick = go; b.onkeydown = e => { if (e.key === "Enter") go(); }; });
@@ -351,7 +359,7 @@ async function adminStudent(slugName) {
   if (!x) { location.hash = "#home"; return; }
   const s = x.s, cur = x.cur, ws = cur && sheetFor(s, cur.date);
   const curDone = !cur || DONE.includes(cur.status) || cur.status === "Not done";
-  const remind = cur && waTo(s.parentPhone, `Dear Parent, a gentle reminder from Hinde Classes: ${s.name}'s home task (${ws ? ws.subject + ": " + ws.chapter : ""}) is not submitted yet. Please check hindeclasses.com/homework. Thank you! – Maitreya Hinde, 7358425108`);
+  const remind = cur && waTo(s.parentPhone, `Dear Parent, a gentle reminder from Hinde Classes: ${s.name}'s home task (${ws ? ws.subject + ": " + wsTitle(ws) : ""}) is not submitted yet. Please check hindeclasses.com/homework. Thank you! – Maitreya Hinde, 7358425108`);
   $("#app").innerHTML = `<div class="row" style="margin-bottom:12px"><a class="pill" href="#home">← All students</a></div>
   <div class="bento">
     <div class="glass tile s4">
@@ -364,7 +372,7 @@ async function adminStudent(slugName) {
       ${cur && !curDone ? `<a class="btn wa sm" target="_blank" rel="noopener" href="${esc(remind)}">Remind parent</a>` : `<span class="small mute">${s.parentPhone ? "" : "Add it in Accounts."}</span>`}</div>
     <div class="glass tile s3">
       <div class="kicker">Current worksheet</div>
-      ${ws ? `<h2 style="margin-top:6px">${esc(ws.subject)}: <a href="${esc(ws.file)}.html" target="_blank" rel="noopener">${esc(ws.chapter)}</a></h2>
+      ${ws ? `<h2 style="margin-top:6px">${esc(ws.subject)}: <a href="${esc(ws.file)}.html" target="_blank" rel="noopener">${esc(wsTitle(ws))}</a></h2>
         <div class="row">${chip(cur.status)}<span class="small mute">Sent ${esc(time(cur.sentAt) || nice(cur.date))}${cur.submittedAt ? " · submitted " + esc(time(cur.submittedAt)) + (cur.method ? " (" + esc(cur.method) + ")" : "") : ""}</span></div>
         <div class="acts">${["Checked","Redo","Not done"].map(k => `<button class="mark ${cur.status===k?"on":""}" data-set="${k}">${k==="Checked"?"✓ Checked":k==="Redo"?"↺ Redo":"✗ Not done"}</button>`).join("")}</div>
         <div class="acts"><span>${[1,2,3,4,5].map(n => `<button class="starbtn ${Number(cur.stars)>=n?"lit":""}" data-star="${n}" aria-label="${n} stars">★</button>`).join("")}</span></div>
@@ -374,10 +382,10 @@ async function adminStudent(slugName) {
     <div class="glass tile s3"><div class="kicker">Next ${x.next.length || ""} worksheets</div>
       ${x.next.length && !curDone ? `<div class="warn">${esc(s.name)} hasn't finished the current worksheet yet. Usually wait, or send anyway.</div>` : ""}
       <ul class="list q5" style="margin-top:6px">${x.next.map((d, i) => { const w = sheetFor(s, d); return `<li><span class="n">${i+1}</span>
-        <span style="flex:1"><b>${esc(w.subject)}</b>: ${esc(w.chapter)}<br><span class="small mute">${w.questions} questions · made ${esc(nice(d))} · <a href="${esc(w.file)}.html" target="_blank" rel="noopener">preview</a></span></span>
+        <span style="flex:1"><b>${esc(w.subject)}</b>: ${esc(wsTitle(w))}<br><span class="small mute">${w.questions} questions · ${w.minutes} min · <a href="${esc(w.file)}.html" target="_blank" rel="noopener">preview</a></span></span>
         ${i === 0 ? `<a class="btn ${curDone ? "wa" : "sec"} sm" data-send="${esc(d)}" target="_blank" rel="noopener" href="${esc(waTo(s.parentPhone, taskMsg(s, w)))}">${curDone ? "📲 Send" : "Send anyway"}</a>` : ""}</li>`; }).join("") || `<li class="mute">No new worksheets yet. New ones are made every working day around 1 pm.</li>`}</ul>
       <p class="small mute" style="margin-bottom:0">Send opens WhatsApp with the message to ${s.parentPhone ? "the parent" : "a contact you choose"} and puts the worksheet on ${esc(s.name)}'s portal.</p></div>
-    <div class="glass tile s6"><h2>All sent worksheets</h2><ul class="list">${x.items.slice().reverse().map(it => { const w = sheetFor(s, it.date); return w ? `<li><span><b>${esc(w.subject)}</b>: ${esc(w.chapter)}<br><span class="small mute">Sent ${esc(time(it.sentAt) || nice(it.date))}${it.remark ? " · " + esc(it.remark) : ""}</span></span>
+    <div class="glass tile s6"><h2>All sent worksheets</h2><ul class="list">${x.items.slice().reverse().map(it => { const w = sheetFor(s, it.date); return w ? `<li><span><b>${esc(w.subject)}</b>: ${esc(wsTitle(w))}<br><span class="small mute">Sent ${esc(time(it.sentAt) || nice(it.date))}${it.remark ? " · " + esc(it.remark) : ""}</span></span>
       <span class="row">${chip(it.status)}${it.stars ? `<span class="stars" style="font-size:15px">${starsTxt(Number(it.stars))}</span>` : ""}
       ${it !== cur && it.status === "Submitted" ? `<button class="btn sec sm" data-quick="${esc(it.date)}">✓ Checked</button>` : ""}
       ${it.status === "Pending" ? `<button class="btn sec sm" data-unsend="${esc(it.date)}" title="Take back a worksheet sent by mistake">Undo send</button>` : ""}</span></li>` : ""; }).join("") || `<li class="mute">Nothing sent yet.</li>`}</ul></div>
@@ -425,7 +433,7 @@ async function adminRegister() {
     const line = [x.s.name, GROUP_NAME[x.s.group]||x.s.group];
     for (let i = 0; i < cols; i++) { const it = its[i]; if (!it) { t += `<td class="c-none">–</td>`; line.push(""); continue; }
       const w = sheetFor(x.s, it.date); const [sy, c] = sym[it.status] || ["?",""];
-      t += `<td class="${c}" title="${esc((w ? w.subject + ": " + w.chapter : it.date) + " – " + it.status)}">${sy}</td>`; line.push(it.status); }
+      t += `<td class="${c}" title="${esc((w ? w.subject + ": " + wsTitle(w) : it.date) + " – " + it.status)}">${sy}</td>`; line.push(it.status); }
     t += `<td>${done}/${its.length}</td><td><b>${its.length ? pct + "%" : "–"}</b></td></tr>`; line.push(its.length, done, its.length ? pct : ""); csv.push(line);
   });
   $("#wk").innerHTML = t + `</tbody></table>`;
@@ -523,7 +531,7 @@ function mock2(b) {
     mockDB = {users: [{username:"demo.admin",name:"Demo Teacher",role:"admin",group:"",variant:"",pw:"admin123",active:true,teacherGroups:"*",parentPhone:""}]
       .concat(S.map(([u,n,g,v]) => ({username:u,name:n,role:"student",group:g,variant:v,pw:"demo123",active:true,parentPhone:"9800000000"}))),
       status: [], assign: [], sessions: {}};
-    const first = Object.keys(manifest.days).sort()[0];
+    const first = groupDates("7GB")[0];
     if (first) {
       const t = new Date(Date.now() - 20 * 36e5).toISOString();
       ["demo.student","aman.demo","riya.demo","kabir.demo","tara.demo"].forEach(u => mockDB.assign.push({date: first, username: u, sentAt: t, sentBy: "demo.admin"}));
