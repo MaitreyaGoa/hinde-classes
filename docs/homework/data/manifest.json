@@ -1,0 +1,100 @@
+{
+ "days": {
+  "2026-11-24": {
+   "6GB": {
+    "file": "ws/2026-11-24/6GB",
+    "questions": 30,
+    "minutes": 115,
+    "subject": "Mathematics",
+    "chapter": "Fractions",
+    "std": "Std 6 · Goa Board",
+    "level": "Basic to Medium",
+    "due": "Thu, 26 Nov 2026"
+   },
+   "7GB": {
+    "file": "ws/2026-11-24/7GB",
+    "questions": 28,
+    "minutes": 110,
+    "subject": "Mathematics",
+    "chapter": "Working with Fractions (Multiplication and Division)",
+    "std": "Std 7 · Goa Board",
+    "level": "Basic to Medium",
+    "due": "Thu, 26 Nov 2026",
+    "variants": {
+     "x": {
+      "file": "ws/2026-11-24/7GB-x",
+      "questions": 33,
+      "minutes": 130
+     }
+    }
+   },
+   "7ICSE": {
+    "file": "ws/2026-11-24/7ICSE",
+    "questions": 29,
+    "minutes": 120,
+    "subject": "Mathematics",
+    "chapter": "Simple Linear Equations",
+    "std": "Std 7 · ICSE",
+    "level": "Basic to Medium",
+    "due": "Thu, 26 Nov 2026"
+   },
+   "8GB": {
+    "file": "ws/2026-11-24/8GB",
+    "questions": 30,
+    "minutes": 120,
+    "subject": "Mathematics",
+    "chapter": "We Distribute, Yet Things Multiply (Expansions and Identities)",
+    "std": "Std 8 · Goa Board",
+    "level": "Basic to Medium",
+    "due": "Thu, 26 Nov 2026"
+   },
+   "9GB": {
+    "file": "ws/2026-11-24/9GB",
+    "questions": 27,
+    "minutes": 120,
+    "subject": "Mathematics",
+    "chapter": "Surface Areas and Volumes (Cone, Sphere, Hemisphere)",
+    "std": "Std 9 · Goa Board",
+    "level": "Basic to Medium",
+    "due": "Thu, 26 Nov 2026"
+   },
+   "9CBSE": {
+    "file": "ws/2026-11-24/9CBSE",
+    "questions": 24,
+    "minutes": 90,
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry and Linear Equations in Two Variables",
+    "std": "Std 9 · CBSE",
+    "level": "Basic to Medium",
+    "due": "Thu, 26 Nov 2026",
+    "variants": {
+     "x": {
+      "file": "ws/2026-11-24/9CBSE-x",
+      "questions": 29,
+      "minutes": 115
+     }
+    }
+   },
+   "10GB": {
+    "file": "ws/2026-11-24/10GB",
+    "questions": 30,
+    "minutes": 120,
+    "subject": "Mathematics",
+    "chapter": "Quadratic Equations",
+    "std": "Std 10 · Goa Board",
+    "level": "Basic to Medium",
+    "due": "Thu, 26 Nov 2026"
+   },
+   "10ADV": {
+    "file": "ws/2026-11-24/10ADV",
+    "questions": 19,
+    "minutes": 120,
+    "subject": "Mathematics",
+    "chapter": "Pair of Linear Equations and Quadratic Equations – Board Challenge",
+    "std": "Std 10 · Goa Board",
+    "level": "Advanced (95%+ target)",
+    "due": "Thu, 26 Nov 2026"
+   }
+  }
+ }
+}

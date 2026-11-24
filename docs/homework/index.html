@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home Task Portal – Hinde Classes</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm school office – clear for a 12-year-old and their parent, quick for the teacher
+   IDEA: a daily homework diary – today's page open, past pages stamped
+   PICTURE: the "today" card with a big status stamp; teacher sees a register of stamps
+   COLOUR and TYPE: Hinde teal #0B4F4A, coral #FF6B54, gold #E0A93B on warm paper; Poppins + Inter
+   LAYOUT: single column on phones, wider register table for the teacher */
+:root{color-scheme:light;--bg:#fbf8f1;--card:#fff;--ink:#18302e;--mute:#5d716f;--line:#dfe8e5;--teal:#0B4F4A;--teal2:#0e6a63;--coral:#FF6B54;--gold:#E0A93B;
+--ok:#1f8a4c;--okbg:#e3f5ea;--sub:#2463a6;--subbg:#e4eefa;--redo:#9a6b12;--redobg:#fdf1d8;--bad:#c2452f;--badbg:#fbe6e1;--pend:#6b7a78;--pendbg:#eef2f1}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3,.brand,.btn{font-family:Poppins,system-ui,sans-serif}
+a{color:var(--teal2)}
+header{background:var(--teal);color:#fff;padding:12px max(4vw,14px);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:18px;letter-spacing:.5px;margin-right:auto}
+.brand small{display:block;font:400 12px Inter,sans-serif;opacity:.85;letter-spacing:0}
+header .who{font-size:14px;opacity:.95}
+header button{background:transparent;color:#fff;border:1.5px solid rgb(255 255 255/.6);border-radius:9px;padding:7px 12px;font:600 14px Inter,sans-serif;cursor:pointer;min-height:38px}
+nav{display:flex;gap:6px;padding:10px max(4vw,14px) 0;flex-wrap:wrap;max-width:1100px;margin:0 auto}
+nav a{padding:9px 14px;border-radius:999px;text-decoration:none;color:var(--teal);font:600 14px Inter,sans-serif;border:1.5px solid var(--line);background:#fff}
+nav a.on{background:var(--teal);border-color:var(--teal);color:#fff}
+main{max-width:1100px;margin:0 auto;padding:16px max(4vw,14px) 48px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px}
+h1{font-size:clamp(24px,5vw,32px);line-height:1.1;margin:0 0 6px}
+h2{font-size:19px;margin:0 0 10px}
+.mute{color:var(--mute)}.small{font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:12px;border:0;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none}
+.btn.pri{background:var(--teal);color:#fff}.btn.sec{background:#fff;color:var(--teal);border:1.5px solid var(--teal)}
+.btn.wa{background:#1fa855;color:#fff}.btn.coral{background:var(--coral);color:#fff}
+.btn:disabled{opacity:.5;cursor:default}
+.btn:focus-visible,input:focus,select:focus,nav a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+input,select{font:16px Inter,sans-serif;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;min-height:46px;width:100%}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 6px}
+.err{color:var(--bad);font-size:14px;min-height:1.2em;margin:8px 0 0}
+.chip{display:inline-block;border-radius:999px;padding:3px 10px;font:600 13px Inter,sans-serif;white-space:nowrap}
+.s-Checked{background:var(--okbg);color:var(--ok)}.s-Submitted{background:var(--subbg);color:var(--sub)}
+.s-Redo{background:var(--redobg);color:var(--redo)}.s-Not.done,.s-Notdone{background:var(--badbg);color:var(--bad)}.s-Pending{background:var(--pendbg);color:var(--pend)}
+.today{display:grid;gap:16px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+@media(max-width:760px){.today{grid-template-columns:minmax(0,1fr)}}
+.ws{border-left:6px solid var(--coral)}
+.ws .subj{font:700 13px Inter,sans-serif;color:var(--coral);letter-spacing:.3px}
+.ws h1{margin-top:4px}
+.facts{display:flex;gap:18px;flex-wrap:wrap;margin:10px 0 16px;font-size:14px}
+.facts b{display:block;font:600 18px Poppins,sans-serif}
+.stamp{text-align:center;padding:22px 16px}
+.stamp .big{font:700 22px Poppins,sans-serif;margin:6px 0}
+.stars{color:var(--gold);font-size:20px;letter-spacing:2px}
+.list{list-style:none;padding:0;margin:0}
+.list li{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.list li:first-child{border-top:0}
+.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:16px}
+.sum div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.sum b{display:block;font:700 26px Poppins,sans-serif}
+.grp h3{font-size:16px;margin:0 0 4px}
+.stu{display:grid;grid-template-columns:minmax(120px,1fr) auto;gap:8px 12px;padding:12px 0;border-top:1px solid var(--line);align-items:center}
+.stu:first-of-type{border-top:0}
+.stu .acts{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.stu .acts button{min-height:38px;padding:6px 11px;border-radius:9px;border:1.5px solid var(--line);background:#fff;font:600 13px Inter,sans-serif;cursor:pointer;color:var(--ink)}
+.stu .acts button.on{border-color:var(--teal);background:var(--teal);color:#fff}
+.stu .acts input{min-height:38px;padding:6px 10px;font-size:14px;flex:1 1 180px;width:auto}
+.starbtn{border:0!important;background:none!important;font-size:20px!important;color:#c9b98f!important;padding:2px!important;min-height:auto!important}
+.starbtn.lit{color:var(--gold)!important}
+.scroll{overflow-x:auto}
+table.reg{border-collapse:collapse;width:100%;font-size:14px}
+table.reg th,table.reg td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:center;white-space:nowrap}
+table.reg th:first-child,table.reg td:first-child{text-align:left;position:sticky;left:0;background:#fff}
+.c-ok{color:var(--ok);font-weight:700}.c-sub{color:var(--sub);font-weight:700}.c-redo{color:var(--redo);font-weight:700}.c-bad{color:var(--bad);font-weight:700}.c-none{color:#b8c4c2}
+.pwbox{background:#fff7e6;border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-top:10px}
+.pwbox code{font:700 20px ui-monospace,monospace}
+.demo{background:var(--gold);color:#2a1d00;text-align:center;font:600 13px Inter,sans-serif;padding:6px}
+.hide{display:none!important}
+.loginwrap{max-width:420px;margin:6vh auto 0}
+footer{text-align:center;font-size:13px;color:var(--mute);padding:0 16px 28px}
+@media(prefers-reduced-motion:no-preference){.stamp .big{animation:pop .35s ease-out}@keyframes pop{from{transform:scale(.85);opacity:0}}}
+</style>
+</head>
+<body>
+<div id="demo" class="demo hide">Demo mode – sample data only, nothing is saved.</div>
+<header>
+  <div class="brand">HINDE CLASSES<small>Home Task Portal · Bicholim, Goa</small></div>
+  <span class="who" id="who"></span>
+  <button id="out" class="hide" type="button">Log out</button>
+</header>
+<nav id="nav" class="hide"></nav>
+<main id="app"><p class="mute">Loading…</p></main>
+<footer>Hinde Classes · Bicholim, Goa · Maitreya Hinde | 7358425108</footer>
+
+<script>
+{
+/* ---------- settings ---------- */
+const API_URL = "";            // ← Google Apps Script web-app URL goes here
+const WA_TEACHER = "917358425108";
+const GROUP_ORDER = ["6GB","7GB","7ICSE","8GB","9GB","9CBSE","10GB","10ADV"];
+const GROUP_NAME = {"6GB":"Std 6 · Goa Board","7GB":"Std 7 · Goa Board","7ICSE":"Std 7 · ICSE","8GB":"Std 8 · Goa Board",
+  "9GB":"Std 9 · Goa Board","9CBSE":"Std 9 · CBSE","10GB":"Std 10 · Goa Board","10ADV":"Std 10 · Goa Board (advanced)"};
+const DEMO = new URLSearchParams(location.search).has("demo");
+
+/* ---------- small helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = {get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}, del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const istISO = (d = new Date()) => new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).format(d);
+const nice = iso => new Date(iso+"T12:00:00").toLocaleDateString("en-IN",{weekday:"short",day:"numeric",month:"short"});
+const niceLong = iso => new Date(iso+"T12:00:00").toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+const addDays = (iso, n) => { const d = new Date(iso+"T12:00:00"); d.setDate(d.getDate()+n); return istISO(d); };
+const time = t => t ? new Date(t).toLocaleTimeString("en-IN",{hour:"numeric",minute:"2-digit",timeZone:"Asia/Kolkata"}) : "";
+const phone91 = p => { p = String(p||"").replace(/\D/g,""); return p.length === 10 ? "91"+p : p; };
+const chip = s => `<span class="chip s-${esc(String(s).replace(/\s/g,""))}">${esc(s === "Checked" ? "Checked ✓" : s)}</span>`;
+const starsTxt = n => n ? "★".repeat(n) + "☆".repeat(5-n) : "";
+
+const SKEY = DEMO ? "hc_hw_session_demo" : "hc_hw_session";
+let session = store.get(SKEY);   // {token,user}
+let manifest = {days:{}};
+
+/* ---------- API ---------- */
+async function api(action, data = {}) {
+  const body = Object.assign({action, token: session && session.token}, data);
+  let res;
+  if (DEMO) res = await mock(body);
+  else {
+    if (!API_URL) throw new Error("The portal is being set up. Please try again later.");
+    const r = await fetch(API_URL, {method:"POST", body: JSON.stringify(body)});
+    res = await r.json();
+  }
+  if (!res.ok) {
+    if (res.error === "SESSION_EXPIRED") { logout(true); throw new Error("Please log in again."); }
+    throw new Error(res.error || "Something went wrong.");
+  }
+  return res;
+}
+
+/* ---------- worksheet lookup ---------- */
+function sheetFor(user, date) {
+  const e = manifest.days[date] && manifest.days[date][user.group];
+  if (!e) return null;
+  const v = user.variant && e.variants && e.variants[user.variant];
+  return Object.assign({}, e, v || {});
+}
+const wsLink = (ws, name) => `${ws.file}.html?n=${encodeURIComponent(name||"")}`;
+
+/* ---------- shell ---------- */
+function setShell() {
+  const u = session && session.user;
+  $("#who").textContent = u ? `${u.name}${u.role !== "student" ? " · " + u.role : ""}` : "";
+  $("#out").classList.toggle("hide", !u);
+  const nav = $("#nav");
+  if (!u) { nav.classList.add("hide"); return; }
+  const items = u.role === "student"
+    ? [["today","Today"],["history","My worksheets"],["account","Password"]]
+    : [["today","Today"],["week","Register"],["students","Students"],["account","Password"]];
+  nav.innerHTML = items.map(([h,t]) => `<a href="#${h}" data-h="${h}">${t}</a>`).join("");
+  nav.classList.remove("hide");
+}
+function markNav(h) { document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.h === h)); }
+
+function logout(silent) {
+  if (!silent && session) api("logout").catch(() => {});
+  session = null; store.del(SKEY); setShell(); route();
+}
+$("#out").addEventListener("click", () => logout());
+
+/* ---------- views ---------- */
+function viewLogin(msg) {
+  $("#app").innerHTML = `<div class="loginwrap card">
+    <h1>Log in</h1><p class="mute small">Students and parents: use the username and password given by Hinde Classes.</p>
+    <form id="lf"><div style="margin:12px 0"><label for="lu">Username</label><input id="lu" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="e.g. yug.hc" required></div>
+    <div style="margin:12px 0"><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password" required></div>
+    <button class="btn pri" style="width:100%" id="lb">Log in</button><p class="err" id="le">${esc(msg||"")}</p></form>
+    <p class="small mute">Forgot your password? WhatsApp <b>7358425108</b>.</p></div>`;
+  $("#lf").addEventListener("submit", async e => {
+    e.preventDefault(); $("#lb").disabled = true; $("#le").textContent = "";
+    try {
+      const r = await api("login", {username: $("#lu").value, password: $("#lp").value});
+      session = {token: r.token, user: r.user}; store.set(SKEY, session);
+      setShell(); location.hash = "#today"; route();
+    } catch (err) { $("#le").textContent = err.message; $("#lb").disabled = false; }
+  });
+}
+
+/* --- student --- */
+async function studentToday() {
+  const u = session.user, today = istISO();
+  const ws = sheetFor(u, today);
+  let st = {status:"Pending"};
+  try { const r = await api("myStatus", {from: today, to: today}); st = r.rows[0] || st; } catch (e) { return showErr(e); }
+  const left = ws ? `<div class="card ws">
+      <div class="subj">${esc(ws.subject.toUpperCase())} · ${esc(niceLong(today))}</div>
+      <h1>${esc(ws.chapter)}</h1>
+      <div class="facts"><div><b>${ws.questions}</b>questions</div><div><b>${Math.round(ws.minutes/60*10)/10} h</b>about</div><div><b>${esc(ws.due)}</b>last date</div></div>
+      <div class="row"><a class="btn pri" href="${esc(wsLink(ws, u.name))}">Open today's worksheet</a></div>
+      <p class="small mute" style="margin-bottom:0">Each section starts with "How to solve" and a worked example. Write answers in your notebook with all steps.</p></div>`
+    : `<div class="card ws"><div class="subj">${esc(niceLong(today))}</div><h1>No home task today</h1><p class="mute">Enjoy your day! New worksheets appear here every working day after 1 pm.</p></div>`;
+  $("#app").innerHTML = `<div class="today">${left}<div class="card stamp" id="stamp"></div></div>
+    <div class="card"><h2>Last few days</h2><ul class="list" id="recent"><li class="mute">Loading…</li></ul></div>`;
+  drawStamp(ws, st, today);
+  recentList(5);
+}
+function drawStamp(ws, st, date) {
+  const el = $("#stamp"); if (!el) return;
+  if (!ws) { el.innerHTML = `<div class="big">🌤️</div><p class="mute">Nothing to submit today.</p>`; return; }
+  if (st.status === "Pending" || st.status === "Redo") {
+    el.innerHTML = `${st.status === "Redo" ? `<div>${chip("Redo")}</div><p><b>Teacher's note:</b> ${esc(st.remark||"Please redo and submit again.")}</p>` : `<div class="big">Finished?</div>`}
+      <p class="mute small">Tell your teacher how you submitted it.</p>
+      <div style="display:grid;gap:10px">
+        <button class="btn pri" id="bClass">✅ Submitted in class</button>
+        <a class="btn wa" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${WA_TEACHER}?text=${encodeURIComponent(`Worksheet photos – ${session.user.name} – ${nice(date)}`)}">📷 Send photos on WhatsApp</a>
+      </div><p class="small mute">Send clear photos of every page to <b>7358425108</b>.</p><p class="err" id="se"></p>`;
+    $("#bClass").onclick = () => submit(date, "class");
+    $("#bWa").addEventListener("click", () => setTimeout(() => submit(date, "whatsapp"), 300));
+  } else {
+    el.innerHTML = `${chip(st.status)}<div class="big">${st.status === "Checked" ? "Well done!" : st.status === "Not done" ? "Marked not done" : "Submitted"}</div>
+      <p class="mute small">${esc(st.method||"")}${st.submittedAt ? " · " + esc(time(st.submittedAt)) : ""}</p>
+      ${st.stars ? `<div class="stars">${starsTxt(Number(st.stars))}</div>` : ""}
+      ${st.remark ? `<p><b>Teacher's note:</b> ${esc(st.remark)}</p>` : (st.status === "Submitted" ? `<p class="small mute">Your teacher will check it soon.</p>` : "")}`;
+  }
+}
+async function submit(date, method) {
+  try { await api("submit", {date, method}); route(); }
+  catch (e) { const x = $("#se"); if (x) x.textContent = e.message; }
+}
+async function recentList(n) {
+  const u = session.user, today = istISO();
+  const dates = Object.keys(manifest.days).filter(d => d <= today && manifest.days[d][u.group]).sort().reverse().slice(0, n);
+  if (!dates.length) { $("#recent").innerHTML = `<li class="mute">No worksheets yet.</li>`; return; }
+  let rows = [];
+  try { rows = (await api("myStatus", {from: dates[dates.length-1], to: today})).rows; } catch (e) {}
+  $("#recent").innerHTML = dates.map(d => {
+    const ws = sheetFor(u, d), st = rows.find(r => r.date === d) || {status:"Pending"};
+    const canSubmit = (st.status === "Pending" || st.status === "Redo") && d >= addDays(today, -3) && d !== today;
+    return `<li><span><b>${esc(nice(d))}</b> · ${esc(ws.subject)}: <a href="${esc(wsLink(ws, u.name))}">${esc(ws.chapter)}</a>
+      ${st.remark ? `<br><span class="small mute">Note: ${esc(st.remark)}</span>` : ""}</span>
+      <span class="row">${chip(st.status)}${st.stars ? `<span class="stars" style="font-size:15px">${starsTxt(Number(st.stars))}</span>` : ""}
+      ${canSubmit ? `<button class="btn sec" style="min-height:36px;padding:4px 10px" data-late="${d}">Submitted in class</button>` : ""}</span></li>`;
+  }).join("");
+  document.querySelectorAll("[data-late]").forEach(b => b.onclick = () => submit(b.dataset.late, "class"));
+}
+async function studentHistory() {
+  $("#app").innerHTML = `<div class="card"><h2>My worksheets</h2><p class="small mute">Your last 30 worksheets and what your teacher said.</p><ul class="list" id="recent"><li class="mute">Loading…</li></ul></div>`;
+  recentList(30);
+}
+
+/* --- admin / teacher --- */
+let adminDate = istISO();
+async function adminToday() {
+  $("#app").innerHTML = `<div class="row" style="justify-content:space-between;margin-bottom:12px">
+      <h1 style="margin:0">Daily register</h1>
+      <div class="row"><button class="btn sec" id="dPrev" aria-label="Previous day">‹</button>
+      <input type="date" id="dPick" value="${adminDate}" style="width:auto"><button class="btn sec" id="dNext" aria-label="Next day">›</button></div></div>
+    <div id="adm"><p class="mute">Loading…</p></div>`;
+  $("#dPick").onchange = e => { adminDate = e.target.value || istISO(); adminToday(); };
+  $("#dPrev").onclick = () => { adminDate = addDays(adminDate, -1); adminToday(); };
+  $("#dNext").onclick = () => { adminDate = addDays(adminDate, 1); adminToday(); };
+  let r; try { r = await api("adminDay", {date: adminDate}); } catch (e) { return showErr(e); }
+  const day = manifest.days[adminDate] || {};
+  const S = r.students;
+  const count = k => S.filter(s => s.status === k).length;
+  const given = S.filter(s => day[s.group]).length;
+  let h = `<div class="sum"><div><span class="mute small">Worksheets given</span><b>${given}</b></div>
+    <div><span class="mute small">Pending</span><b style="color:var(--pend)">${count("Pending")}</b></div>
+    <div><span class="mute small">Submitted</span><b style="color:var(--sub)">${count("Submitted")}</b></div>
+    <div><span class="mute small">Checked</span><b style="color:var(--ok)">${count("Checked")}</b></div>
+    <div><span class="mute small">Redo / not done</span><b style="color:var(--bad)">${count("Redo")+count("Not done")}</b></div></div>`;
+  if (!given) h += `<div class="card"><p class="mute" style="margin:0">No worksheets were published for ${esc(niceLong(adminDate))}.</p></div>`;
+  const groups = GROUP_ORDER.concat([...new Set(S.map(s => s.group))].filter(g => !GROUP_ORDER.includes(g)));
+  groups.forEach(g => {
+    const list = S.filter(s => s.group === g); if (!list.length) return;
+    const ws = day[g];
+    h += `<div class="card grp"><div class="row" style="justify-content:space-between"><div><h3>${esc(GROUP_NAME[g]||g)}</h3>
+      <div class="small mute">${ws ? `${esc(ws.subject)}: <a href="${esc(ws.file)}.html" target="_blank" rel="noopener">${esc(ws.chapter)}</a>` : "No worksheet"}</div></div></div>`;
+    list.forEach(s => {
+      const remind = `https://wa.me/${phone91(s.parentPhone)}?text=${encodeURIComponent(`Dear Parent, a gentle reminder from Hinde Classes: ${s.name}'s home task for ${nice(adminDate)} is not submitted yet. Please check hindeclasses.com/homework. Thank you! – Maitreya Hinde, 7358425108`)}`;
+      h += `<div class="stu" data-u="${esc(s.username)}">
+        <div><b>${esc(s.name)}</b><div class="small mute">${esc(s.method||"")}${s.submittedAt ? " · " + esc(time(s.submittedAt)) : ""}</div></div>
+        <div>${chip(s.status)}</div>
+        <div class="acts">
+          ${["Checked","Redo","Not done"].map(k => `<button data-set="${k}" class="${s.status===k?"on":""}">${k==="Checked"?"✓ Checked":k==="Redo"?"↺ Redo":"✗ Not done"}</button>`).join("")}
+          <span>${[1,2,3,4,5].map(n => `<button class="starbtn ${Number(s.stars)>=n?"lit":""}" data-star="${n}" aria-label="${n} stars">★</button>`).join("")}</span>
+          <input placeholder="Remark for student/parent" value="${esc(s.remark||"")}" data-rem maxlength="300">
+          <button data-save>Save</button>
+          ${(s.status === "Pending" && ws) ? `<a class="btn wa" style="min-height:38px;padding:6px 11px;font-size:13px" target="_blank" rel="noopener" href="${esc(remind)}">Remind</a>` : ""}
+        </div></div>`;
+    });
+    h += `</div>`;
+  });
+  $("#adm").innerHTML = h;
+  document.querySelectorAll(".stu").forEach(row => {
+    const u = row.dataset.u, s = S.find(x => x.username === u);
+    let stars = Number(s.stars) || 0, status = s.status;
+    const save = async (patch) => {
+      Object.assign(s, patch);
+      try { await api("adminSet", {username: u, date: adminDate, status: s.status, remark: row.querySelector("[data-rem]").value, stars: s.stars || ""}); adminToday(); }
+      catch (e) { alertBox(e.message); }
+    };
+    row.querySelectorAll("[data-set]").forEach(b => b.onclick = () => save({status: b.dataset.set}));
+    row.querySelectorAll("[data-star]").forEach(b => b.onclick = () => save({stars: Number(b.dataset.star), status: status === "Pending" || status === "Submitted" ? "Checked" : status}));
+    row.querySelector("[data-save]").onclick = () => save({remark: row.querySelector("[data-rem]").value});
+  });
+}
+async function adminWeek() {
+  const today = istISO();
+  const span = Number(store.get("hc_hw_span") || 7);
+  $("#app").innerHTML = `<div class="row" style="justify-content:space-between;margin-bottom:12px"><h1 style="margin:0">Register</h1>
+    <div class="row"><select id="span" style="width:auto">${[7,14,30].map(n => `<option value="${n}" ${n===span?"selected":""}>Last ${n} days</option>`).join("")}</select>
+    <button class="btn sec" id="csv">Copy as CSV</button></div></div><div class="card"><div id="wk" class="scroll"><p class="mute">Loading…</p></div>
+    <p class="small mute" style="margin-bottom:0">✓ checked · S submitted · ↺ redo · ✗ not done · · pending · – no worksheet. Completion counts checked + submitted.</p></div>`;
+  $("#span").onchange = e => { store.set("hc_hw_span", Number(e.target.value)); adminWeek(); };
+  const from = addDays(today, -(span-1));
+  let users, rows;
+  try { [users, rows] = await Promise.all([api("adminUsers"), api("adminRange", {from, to: today})]); } catch (e) { return showErr(e); }
+  const studs = users.users.filter(u => u.role === "student" && u.active !== false)
+    .sort((a,b) => (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || a.name.localeCompare(b.name));
+  const dates = Object.keys(manifest.days).filter(d => d >= from && d <= today).sort();
+  const sym = {Checked:["✓","c-ok"],Submitted:["S","c-sub"],Redo:["↺","c-redo"],"Not done":["✗","c-bad"],Pending:["·","c-none"]};
+  const csv = [["Student","Class",...dates,"Given","Done","Completion %"]];
+  let t = `<table class="reg"><thead><tr><th>Student</th>${dates.map(d => `<th>${esc(nice(d))}</th>`).join("")}<th>Done</th><th>%</th></tr></thead><tbody>`;
+  studs.forEach(u => {
+    let given = 0, done = 0; const line = [u.name, GROUP_NAME[u.group]||u.group];
+    t += `<tr><td><b>${esc(u.name)}</b><div class="small mute">${esc(GROUP_NAME[u.group]||u.group)}</div></td>`;
+    dates.forEach(d => {
+      if (!manifest.days[d][u.group]) { t += `<td class="c-none">–</td>`; line.push("-"); return; }
+      given++; const st = (rows.rows.find(r => r.username === u.username && r.date === d) || {status:"Pending"}).status;
+      if (st === "Checked" || st === "Submitted") done++;
+      const [s, c] = sym[st] || ["?",""]; t += `<td class="${c}" title="${esc(st)}">${s}</td>`; line.push(st);
+    });
+    const pct = given ? Math.round(done/given*100) : 0;
+    t += `<td>${done}/${given}</td><td><b>${given ? pct + "%" : "–"}</b></td></tr>`; line.push(given, done, given ? pct : "");
+    csv.push(line);
+  });
+  t += `</tbody></table>`;
+  $("#wk").innerHTML = dates.length ? t : `<p class="mute">No worksheets in this period.</p>`;
+  $("#csv").onclick = async () => {
+    const text = csv.map(r => r.map(x => `"${String(x).replace(/"/g,'""')}"`).join(",")).join("\n");
+    try { await navigator.clipboard.writeText(text); $("#csv").textContent = "Copied ✓"; } catch (e) { $("#csv").textContent = "Copy failed"; }
+    setTimeout(() => $("#csv").textContent = "Copy as CSV", 2000);
+  };
+}
+async function adminStudents() {
+  const admin = session.user.role === "admin";
+  $("#app").innerHTML = `<div class="row" style="justify-content:space-between;margin-bottom:12px"><h1 style="margin:0">Students</h1>
+    ${admin ? `<button class="btn pri" id="add">+ Add student or teacher</button>` : ""}</div>
+    <div id="form"></div><div class="card"><ul class="list" id="ul"><li class="mute">Loading…</li></ul></div>`;
+  let r; try { r = await api("adminUsers"); } catch (e) { return showErr(e); }
+  const users = r.users.sort((a,b) => (a.role==="student") - (b.role==="student") || (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || a.name.localeCompare(b.name));
+  $("#ul").innerHTML = users.map(u => `<li><span><b>${esc(u.name)}</b> <span class="small mute">${esc(u.username)}</span><br>
+    <span class="small mute">${u.role === "student" ? esc(GROUP_NAME[u.group]||u.group) + (u.variant ? " · extra practice" : "") : esc(u.role) + (u.teacherGroups ? " · groups: " + esc(u.teacherGroups) : "")}
+    ${u.parentPhone ? " · 📞 " + esc(u.parentPhone) : ""}${u.active === false ? " · <b style='color:var(--bad)'>inactive</b>" : ""}</span></span>
+    ${admin ? `<span class="row"><button class="btn sec" style="min-height:36px;padding:4px 10px" data-edit="${esc(u.username)}">Edit</button>
+    <button class="btn sec" style="min-height:36px;padding:4px 10px" data-reset="${esc(u.username)}">Reset password</button></span>` : ""}</li>`).join("");
+  if (!admin) return;
+  $("#add").onclick = () => userForm({role:"student", active:true}, true);
+  document.querySelectorAll("[data-edit]").forEach(b => b.onclick = () => userForm(users.find(u => u.username === b.dataset.edit), false));
+  document.querySelectorAll("[data-reset]").forEach(b => b.onclick = async () => {
+    const u = users.find(x => x.username === b.dataset.reset);
+    confirmBox(`Make a new password for ${u.name}? The old one will stop working.`, async () => {
+      try { const x = await api("adminResetPassword", {username: u.username}); pwShow(u, x.password); } catch (e) { alertBox(e.message); }
+    });
+  });
+}
+function userForm(u, isNew) {
+  const groups = GROUP_ORDER.map(g => `<option value="${g}" ${u.group===g?"selected":""}>${esc(GROUP_NAME[g])}</option>`).join("");
+  $("#form").innerHTML = `<div class="card"><h2>${isNew ? "New account" : "Edit " + esc(u.name)}</h2><form id="uf" class="grid2">
+    <div><label>Full name</label><input name="name" value="${esc(u.name||"")}" required></div>
+    <div><label>Username</label><input name="username" value="${esc(u.username||"")}" ${isNew ? "" : "readonly"} required placeholder="firstname.hc" autocapitalize="none"></div>
+    <div><label>Role</label><select name="role">${["student","teacher","admin"].map(r => `<option ${u.role===r?"selected":""}>${r}</option>`).join("")}</select></div>
+    <div><label>Class (students)</label><select name="group"><option value="">–</option>${groups}</select></div>
+    <div><label>Extra Maths practice</label><select name="variant"><option value="">No</option><option value="x" ${u.variant==="x"?"selected":""}>Yes</option></select></div>
+    <div><label>Parent WhatsApp number</label><input name="parentPhone" inputmode="numeric" value="${esc(u.parentPhone||"")}" placeholder="10-digit number"></div>
+    <div><label>Teacher's classes (e.g. 7GB,8GB or *)</label><input name="teacherGroups" value="${esc(u.teacherGroups||"")}"></div>
+    <div><label>Login allowed</label><select name="active"><option value="1">Active</option><option value="0" ${u.active===false?"selected":""}>Turned off</option></select></div>
+    <div class="row" style="grid-column:1/-1"><button class="btn pri">Save</button><button type="button" class="btn sec" id="cancel">Cancel</button><span class="err" id="fe"></span></div></form></div>`;
+  $("#cancel").onclick = () => $("#form").innerHTML = "";
+  $("#uf").onsubmit = async e => {
+    e.preventDefault(); const f = Object.fromEntries(new FormData(e.target)); f.active = f.active === "1";
+    try { const x = await api("adminSaveUser", {user: f}); if (x.password) { $("#form").innerHTML = ""; pwShow(f, x.password, true); } else adminStudents(); }
+    catch (err) { $("#fe").textContent = err.message; }
+  };
+}
+function pwShow(u, pw, isNew) {
+  const msg = `Hinde Classes Home Task Portal\nWebsite: hindeclasses.com/homework\nUsername: ${u.username}\nPassword: ${pw}\nPlease keep this private.`;
+  $("#form").innerHTML = `<div class="card pwbox"><b>${isNew ? "Account created" : "New password"} for ${esc(u.name)}</b>
+    <p>Username: <code>${esc(u.username)}</code><br>Password: <code>${esc(pw)}</code></p>
+    <p class="small mute">This password is shown only now. Send it to the student or parent.</p>
+    <div class="row"><a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/${phone91(u.parentPhone)}?text=${encodeURIComponent(msg)}">Send on WhatsApp</a>
+    <button class="btn sec" id="cp">Copy</button><button class="btn sec" id="done">Done</button></div></div>`;
+  $("#cp").onclick = async () => { try { await navigator.clipboard.writeText(msg); $("#cp").textContent = "Copied ✓"; } catch (e) {} };
+  $("#done").onclick = () => adminStudents();
+}
+
+/* --- account (everyone) --- */
+function account() {
+  $("#app").innerHTML = `<div class="card" style="max-width:460px"><h2>Change password</h2><form id="pf">
+    <div style="margin:10px 0"><label>Current password</label><input type="password" id="p0" autocomplete="current-password" required></div>
+    <div style="margin:10px 0"><label>New password (6+ characters)</label><input type="password" id="p1" autocomplete="new-password" minlength="6" required></div>
+    <button class="btn pri">Change password</button><p class="err" id="pe"></p></form></div>`;
+  $("#pf").onsubmit = async e => {
+    e.preventDefault();
+    try { await api("changePassword", {oldPassword: $("#p0").value, newPassword: $("#p1").value}); $("#pe").style.color = "var(--ok)"; $("#pe").textContent = "Password changed."; e.target.reset(); }
+    catch (err) { $("#pe").style.color = ""; $("#pe").textContent = err.message; }
+  };
+}
+
+/* --- small dialogs built into the page --- */
+function alertBox(m) { const d = document.createElement("div"); d.className = "card"; d.style.cssText = "position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9;border-color:var(--bad);max-width:90vw"; d.textContent = m; document.body.append(d); setTimeout(() => d.remove(), 3500); }
+function confirmBox(m, yes) {
+  const f = $("#form"); f.innerHTML = `<div class="card pwbox"><p>${esc(m)}</p><div class="row"><button class="btn coral" id="cy">Yes</button><button class="btn sec" id="cn">Cancel</button></div></div>`;
+  $("#cy").onclick = () => { f.innerHTML = ""; yes(); }; $("#cn").onclick = () => f.innerHTML = "";
+}
+function showErr(e) { if (!session) return; $("#app").innerHTML = `<div class="card"><p class="err" style="margin:0">${esc(e.message)}</p></div>`; }
+
+/* ---------- router ---------- */
+function route() {
+  if (!session) { setShell(); return viewLogin(API_URL || DEMO ? "" : "The portal is being set up. Logins will open soon."); }
+  const h = (location.hash || "#today").slice(1);
+  markNav(h);
+  const student = session.user.role === "student";
+  const map = student ? {today: studentToday, history: studentHistory, account} : {today: adminToday, week: adminWeek, students: adminStudents, account};
+  (map[h] || map.today)();
+}
+window.addEventListener("hashchange", route);
+
+/* ---------- demo backend (only with ?demo) ---------- */
+let mockDB = (() => { try { return JSON.parse(sessionStorage.getItem("hc_hw_mock")); } catch (e) { return null; } })();
+async function mock(b) {
+  const r = mock2(b); try { sessionStorage.setItem("hc_hw_mock", JSON.stringify(mockDB)); } catch (e) {} return r;
+}
+function mock2(b) {
+  if (!mockDB) {
+    const S = [["demo.student","Demo Student","7GB","x"],["aman.demo","Aman","7GB",""],["riya.demo","Riya","8GB",""],["kabir.demo","Kabir","9GB",""],["tara.demo","Tara","10ADV",""]];
+    mockDB = {users: [{username:"demo.admin",name:"Demo Teacher",role:"admin",group:"",variant:"",pw:"admin123",active:true,teacherGroups:"*",parentPhone:""}]
+      .concat(S.map(([u,n,g,v]) => ({username:u,name:n,role:"student",group:g,variant:v,pw:"demo123",active:true,parentPhone:"9800000000"}))),
+      status: [], sessions: {}};
+    const latest = Object.keys(manifest.days).sort().pop();
+    if (latest) mockDB.status.push({date: latest, username: "riya.demo", status: "Submitted", method: "In class", submittedAt: new Date().toISOString(), remark: "", stars: ""},
+      {date: latest, username: "kabir.demo", status: "Checked", method: "Photos on WhatsApp", submittedAt: new Date().toISOString(), remark: "Neat work, show units.", stars: 4});
+  }
+  const D = mockDB, me = D.sessions[b.token] && D.users.find(u => u.username === D.sessions[b.token]);
+  const pub = u => ({username:u.username,name:u.name,role:u.role,group:u.group,variant:u.variant});
+  const need = staff => { if (!me) return {ok:false,error:"SESSION_EXPIRED"}; if (staff && me.role === "student") return {ok:false,error:"Teacher login needed."}; };
+  const rng = (f,t) => D.status.filter(r => (!f || r.date >= f) && (!t || r.date <= t));
+  switch (b.action) {
+    case "login": { const u = D.users.find(x => x.username === String(b.username).trim().toLowerCase() && x.pw === b.password);
+      if (!u) return {ok:false,error:"Wrong username or password."}; const t = "t"+Math.random(); D.sessions[t] = u.username; return {ok:true,token:t,user:pub(u)}; }
+    case "logout": return {ok:true};
+    case "myStatus": return need() || {ok:true, rows: rng(b.from,b.to).filter(r => r.username === me.username)};
+    case "submit": { const e = need(); if (e) return e; const cur = D.status.find(r => r.date === b.date && r.username === me.username);
+      const rec = {date:b.date,username:me.username,status:"Submitted",method:b.method==="whatsapp"?"Photos on WhatsApp":"In class",submittedAt:new Date().toISOString()};
+      if (cur) Object.assign(cur, rec); else D.status.push(rec); return {ok:true}; }
+    case "adminDay": return need(true) || {ok:true, students: D.users.filter(u => u.role==="student").map(u => Object.assign(pub(u),{parentPhone:u.parentPhone}, D.status.find(r => r.date===b.date && r.username===u.username) || {status:"Pending"}))};
+    case "adminRange": return need(true) || {ok:true, rows: rng(b.from,b.to)};
+    case "adminSet": { const e = need(true); if (e) return e; let cur = D.status.find(r => r.date===b.date && r.username===b.username);
+      if (!cur) { cur = {date:b.date,username:b.username}; D.status.push(cur); } Object.assign(cur,{status:b.status,remark:b.remark,stars:b.stars}); return {ok:true}; }
+    case "adminUsers": return need(true) || {ok:true, users: D.users.map(u => Object.assign(pub(u),{parentPhone:u.parentPhone,active:u.active,teacherGroups:u.teacherGroups}))};
+    case "adminSaveUser": { const e = need(true); if (e) return e; const u = b.user, cur = D.users.find(x => x.username === u.username);
+      if (cur) { Object.assign(cur, u); return {ok:true}; } D.users.push(Object.assign({pw:"newpw123"}, u)); return {ok:true,password:"newpw123"}; }
+    case "adminResetPassword": return need(true) || {ok:true,password:"reset456"};
+    case "changePassword": return need() || (me.pw === b.oldPassword ? (me.pw = b.newPassword, {ok:true}) : {ok:false,error:"Current password is wrong."});
+  }
+  return {ok:false,error:"Unknown action"};
+}
+
+/* ---------- start ---------- */
+(async () => {
+  if (DEMO) $("#demo").classList.remove("hide");
+  try { manifest = await (await fetch("data/manifest.json?v=" + Date.now(), {cache: "no-store"})).json(); } catch (e) {}
+  setShell(); route();
+  if (session && !DEMO) api("me").then(r => { session.user = r.user; store.set(SKEY, session); setShell(); }).catch(() => {});
+})();
+}
+</script>
+</body>
+</html>
