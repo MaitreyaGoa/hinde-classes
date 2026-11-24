@@ -37,6 +37,42 @@
     "questions": 22,
     "minutes": 120,
     "seq": 3
+   },
+   {
+    "id": "6GB-m-perimeter-area-1",
+    "subject": "Mathematics",
+    "chapter": "Perimeter and Area",
+    "ws": 1,
+    "std": "Std 6 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/6GB/6GB-m-perimeter-area-1",
+    "questions": 24,
+    "minutes": 120,
+    "seq": 4
+   },
+   {
+    "id": "6GB-m-perimeter-area-2",
+    "subject": "Mathematics",
+    "chapter": "Perimeter and Area",
+    "ws": 2,
+    "std": "Std 6 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/6GB/6GB-m-perimeter-area-2",
+    "questions": 19,
+    "minutes": 120,
+    "seq": 5
+   },
+   {
+    "id": "6GB-m-symmetry-1",
+    "subject": "Mathematics",
+    "chapter": "Symmetry",
+    "ws": 1,
+    "std": "Std 6 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/6GB/6GB-m-symmetry-1",
+    "questions": 27,
+    "minutes": 120,
+    "seq": 6
    }
   ],
   "7GB": [
@@ -89,6 +125,49 @@
     "questions": 21,
     "minutes": 105,
     "seq": 3
+   },
+   {
+    "id": "7GB-m-geometric-twins-2",
+    "subject": "Mathematics",
+    "chapter": "Geometric Twins (Congruence)",
+    "ws": 2,
+    "std": "Std 7 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/7GB/7GB-m-geometric-twins-2",
+    "questions": 22,
+    "minutes": 120,
+    "seq": 4
+   },
+   {
+    "id": "7GB-m-operations-with-integers-1",
+    "subject": "Mathematics",
+    "chapter": "Operations with Integers",
+    "ws": 1,
+    "std": "Std 7 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/7GB/7GB-m-operations-with-integers-1",
+    "questions": 24,
+    "minutes": 120,
+    "seq": 5
+   },
+   {
+    "id": "7GB-m-operations-with-integers-2",
+    "subject": "Mathematics",
+    "chapter": "Operations with Integers",
+    "ws": 2,
+    "std": "Std 7 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/7GB/7GB-m-operations-with-integers-2",
+    "questions": 17,
+    "minutes": 100,
+    "variants": {
+     "x": {
+      "file": "ws/7GB/7GB-m-operations-with-integers-2-x",
+      "questions": 20,
+      "minutes": 120
+     }
+    },
+    "seq": 6
    }
   ],
   "7ICSE": [
@@ -127,6 +206,42 @@
     "questions": 19,
     "minutes": 120,
     "seq": 3
+   },
+   {
+    "id": "7ICSE-m-ratio-proportion-1",
+    "subject": "Mathematics",
+    "chapter": "Ratio and Proportion",
+    "ws": 1,
+    "std": "Std 7 · ICSE",
+    "level": "Basic to Medium",
+    "file": "ws/7ICSE/7ICSE-m-ratio-proportion-1",
+    "questions": 21,
+    "minutes": 120,
+    "seq": 4
+   },
+   {
+    "id": "7ICSE-m-ratio-proportion-2",
+    "subject": "Mathematics",
+    "chapter": "Ratio and Proportion (Unitary Method)",
+    "ws": 2,
+    "std": "Std 7 · ICSE",
+    "level": "Basic to Medium",
+    "file": "ws/7ICSE/7ICSE-m-ratio-proportion-2",
+    "questions": 18,
+    "minutes": 120,
+    "seq": 5
+   },
+   {
+    "id": "7ICSE-m-percent-1",
+    "subject": "Mathematics",
+    "chapter": "Percent and Percentage",
+    "ws": 1,
+    "std": "Std 7 · ICSE",
+    "level": "Basic to Medium",
+    "file": "ws/7ICSE/7ICSE-m-percent-1",
+    "questions": 21,
+    "minutes": 120,
+    "seq": 6
    }
   ],
   "8GB": [
@@ -179,6 +294,42 @@
      }
     },
     "seq": 3
+   },
+   {
+    "id": "8GB-m-proportional-reasoning-1-2",
+    "subject": "Mathematics",
+    "chapter": "Proportional Reasoning – 1",
+    "ws": 2,
+    "std": "Std 8 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/8GB/8GB-m-proportional-reasoning-1-2",
+    "questions": 20,
+    "minutes": 120,
+    "seq": 4
+   },
+   {
+    "id": "8GB-m-fractions-in-disguise-1",
+    "subject": "Mathematics",
+    "chapter": "Fractions in Disguise (Percentages)",
+    "ws": 1,
+    "std": "Std 8 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/8GB/8GB-m-fractions-in-disguise-1",
+    "questions": 24,
+    "minutes": 120,
+    "seq": 5
+   },
+   {
+    "id": "8GB-m-fractions-in-disguise-2",
+    "subject": "Mathematics",
+    "chapter": "Fractions in Disguise (Percentages)",
+    "ws": 2,
+    "std": "Std 8 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/8GB/8GB-m-fractions-in-disguise-2",
+    "questions": 20,
+    "minutes": 120,
+    "seq": 6
    }
   ],
   "9GB": [
@@ -217,6 +368,42 @@
     "questions": 16,
     "minutes": 120,
     "seq": 3
+   },
+   {
+    "id": "9GB-m-statistics-2",
+    "subject": "Mathematics",
+    "chapter": "Statistics",
+    "ws": 2,
+    "std": "Std 9 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/9GB/9GB-m-statistics-2",
+    "questions": 19,
+    "minutes": 120,
+    "seq": 4
+   },
+   {
+    "id": "9GB-m-probability-1",
+    "subject": "Mathematics",
+    "chapter": "Probability",
+    "ws": 1,
+    "std": "Std 9 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/9GB/9GB-m-probability-1",
+    "questions": 18,
+    "minutes": 120,
+    "seq": 5
+   },
+   {
+    "id": "9GB-m-herons-formula-1",
+    "subject": "Mathematics",
+    "chapter": "Heron's Formula",
+    "ws": 1,
+    "std": "Std 9 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/9GB/9GB-m-herons-formula-1",
+    "questions": 14,
+    "minutes": 120,
+    "seq": 6
    }
   ],
   "9CBSE": [
@@ -269,6 +456,49 @@
     "questions": 19,
     "minutes": 125,
     "seq": 3
+   },
+   {
+    "id": "9CBSE-m-surface-area-volume-1",
+    "subject": "Mathematics",
+    "chapter": "Math of Space: Surface Area and Volume (Ch 14)",
+    "ws": 1,
+    "std": "Std 9 · CBSE",
+    "level": "Basic to Medium",
+    "file": "ws/9CBSE/9CBSE-m-surface-area-volume-1",
+    "questions": 17,
+    "minutes": 120,
+    "seq": 4
+   },
+   {
+    "id": "9CBSE-m-surface-area-volume-2",
+    "subject": "Mathematics",
+    "chapter": "Math of Space: Surface Area and Volume (Ch 14)",
+    "ws": 2,
+    "std": "Std 9 · CBSE",
+    "level": "Basic to Medium",
+    "file": "ws/9CBSE/9CBSE-m-surface-area-volume-2",
+    "questions": 14,
+    "minutes": 120,
+    "variants": {
+     "x": {
+      "file": "ws/9CBSE/9CBSE-m-surface-area-volume-2-x",
+      "questions": 17,
+      "minutes": 140
+     }
+    },
+    "seq": 5
+   },
+   {
+    "id": "9CBSE-m-quadrilaterals-1",
+    "subject": "Mathematics",
+    "chapter": "Quadrilaterals (Ch 12)",
+    "ws": 1,
+    "std": "Std 9 · CBSE",
+    "level": "Basic to Medium",
+    "file": "ws/9CBSE/9CBSE-m-quadrilaterals-1",
+    "questions": 19,
+    "minutes": 120,
+    "seq": 6
    }
   ],
   "10GB": [
@@ -307,6 +537,42 @@
     "questions": 20,
     "minutes": 120,
     "seq": 3
+   },
+   {
+    "id": "10GB-m-arithmetic-progressions-2",
+    "subject": "Mathematics",
+    "chapter": "Arithmetic Progressions",
+    "ws": 2,
+    "std": "Std 10 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/10GB/10GB-m-arithmetic-progressions-2",
+    "questions": 18,
+    "minutes": 120,
+    "seq": 4
+   },
+   {
+    "id": "10GB-m-triangles-1",
+    "subject": "Mathematics",
+    "chapter": "Triangles (Similarity)",
+    "ws": 1,
+    "std": "Std 10 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/10GB/10GB-m-triangles-1",
+    "questions": 16,
+    "minutes": 120,
+    "seq": 5
+   },
+   {
+    "id": "10GB-m-coordinate-geometry-1",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "ws": 1,
+    "std": "Std 10 · Goa Board",
+    "level": "Basic to Medium",
+    "file": "ws/10GB/10GB-m-coordinate-geometry-1",
+    "questions": 18,
+    "minutes": 120,
+    "seq": 6
    }
   ],
   "10ADV": [
@@ -345,6 +611,42 @@
     "questions": 15,
     "minutes": 120,
     "seq": 3
+   },
+   {
+    "id": "10ADV-m-triangles-1",
+    "subject": "Mathematics",
+    "chapter": "Triangles – Board Challenge",
+    "ws": 1,
+    "std": "Std 10 · Goa Board",
+    "level": "Advanced (95%+ target)",
+    "file": "ws/10ADV/10ADV-m-triangles-1",
+    "questions": 13,
+    "minutes": 120,
+    "seq": 4
+   },
+   {
+    "id": "10ADV-m-coordinate-geometry-1",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry – Board Challenge",
+    "ws": 1,
+    "std": "Std 10 · Goa Board",
+    "level": "Advanced (95%+ target)",
+    "file": "ws/10ADV/10ADV-m-coordinate-geometry-1",
+    "questions": 13,
+    "minutes": 120,
+    "seq": 5
+   },
+   {
+    "id": "10ADV-m-applications-of-trigonometry-1",
+    "subject": "Mathematics",
+    "chapter": "Some Applications of Trigonometry – Board Challenge",
+    "ws": 1,
+    "std": "Std 10 · Goa Board",
+    "level": "Advanced (95%+ target)",
+    "file": "ws/10ADV/10ADV-m-applications-of-trigonometry-1",
+    "questions": 11,
+    "minutes": 120,
+    "seq": 6
    }
   ]
  }
