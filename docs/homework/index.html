@@ -278,6 +278,7 @@ async function adminToday() {
     h += `<div class="card grp"><div class="row" style="justify-content:space-between"><div><h3>${esc(GROUP_NAME[g]||g)}</h3>
       <div class="small mute">${ws ? `${esc(ws.subject)}: <a href="${esc(ws.file)}.html" target="_blank" rel="noopener">${esc(ws.chapter)}</a>` : "No worksheet"}</div></div></div>`;
     list.forEach(s => {
+      const task = ws ? `https://wa.me/${phone91(s.parentPhone)}?text=${encodeURIComponent(`Dear Parent,\nGreetings from Hinde Classes! 🙏\n\n📅 *Today's Home Task for ${s.name}* – ${nice(adminDate)}\n📘 *${ws.subject}:* ${ws.chapter}\n⏱ *Time:* about 2 hours · ${(ws.variants && s.variant && ws.variants[s.variant] || ws).questions} questions\n\n📲 *Open the worksheet on the portal:* hindeclasses.com/homework\n   Username: *${s.username}* (password as given)\n\n✅ Please complete it *today*. Last date: *${ws.due}*.\nWhen finished, press *Submitted in class* or *Send photos on WhatsApp* in the portal (photos to 7358425108).\n\nThank you for your support!\n– Maitreya Hinde\nHinde Classes, Bicholim | 7358425108`)}` : "";
       const remind = `https://wa.me/${phone91(s.parentPhone)}?text=${encodeURIComponent(`Dear Parent, a gentle reminder from Hinde Classes: ${s.name}'s home task for ${nice(adminDate)} is not submitted yet. Please check hindeclasses.com/homework. Thank you! – Maitreya Hinde, 7358425108`)}`;
       h += `<div class="stu" data-u="${esc(s.username)}">
         <div><b>${esc(s.name)}</b><div class="small mute">${esc(s.method||"")}${s.submittedAt ? " · " + esc(time(s.submittedAt)) : ""}</div></div>
@@ -287,6 +288,7 @@ async function adminToday() {
           <span>${[1,2,3,4,5].map(n => `<button class="starbtn ${Number(s.stars)>=n?"lit":""}" data-star="${n}" aria-label="${n} stars">★</button>`).join("")}</span>
           <input placeholder="Remark for student/parent" value="${esc(s.remark||"")}" data-rem maxlength="300">
           <button data-save>Save</button>
+          ${task ? `<a class="btn sec" style="min-height:38px;padding:6px 11px;font-size:13px" target="_blank" rel="noopener" href="${esc(task)}" title="${s.parentPhone ? "Opens WhatsApp with the message typed" : "No parent number saved – choose the contact"}">📲 Send task</a>` : ""}
           ${(s.status === "Pending" && ws) ? `<a class="btn wa" style="min-height:38px;padding:6px 11px;font-size:13px" target="_blank" rel="noopener" href="${esc(remind)}">Remind</a>` : ""}
         </div></div>`;
     });
