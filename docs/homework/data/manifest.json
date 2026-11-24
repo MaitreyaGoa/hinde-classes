@@ -13,7 +13,7 @@
     "chapter": "Fractions",
     "std": "Std 6 · Goa Board",
     "level": "Basic to Medium",
-    "game": null
+    "game": "class-6-fractions"
    },
    {
     "id": "6GB-m-fractions-2",
@@ -26,7 +26,7 @@
     "questions": 26,
     "minutes": 120,
     "seq": 2,
-    "game": null
+    "game": "class-6-fractions"
    },
    {
     "id": "6GB-m-fractions-3",
@@ -39,7 +39,7 @@
     "questions": 22,
     "minutes": 120,
     "seq": 3,
-    "game": null
+    "game": "class-6-fractions"
    },
    {
     "id": "6GB-m-perimeter-area-1",
@@ -52,7 +52,7 @@
     "questions": 24,
     "minutes": 120,
     "seq": 4,
-    "game": null
+    "game": "class-6-perimeter-and-area"
    },
    {
     "id": "6GB-m-perimeter-area-2",
@@ -65,7 +65,7 @@
     "questions": 19,
     "minutes": 120,
     "seq": 5,
-    "game": null
+    "game": "class-6-perimeter-and-area"
    },
    {
     "id": "6GB-m-symmetry-1",
@@ -78,7 +78,7 @@
     "questions": 27,
     "minutes": 120,
     "seq": 6,
-    "game": null
+    "game": "class-6-symmetry"
    }
   ],
   "7GB": [
