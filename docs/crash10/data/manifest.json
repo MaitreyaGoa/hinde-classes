@@ -1,0 +1,72 @@
+{
+ "version": 2,
+ "groups": {
+  "C10": [
+   {
+    "id": "C10-D01",
+    "subject": "Mathematics",
+    "chapter": "Day 1 · Real Numbers",
+    "ws": 1,
+    "std": "Std 10 · Goa Board · 30-Day Crash Course",
+    "level": "Board exam level",
+    "file": "ws/C10/C10-D01",
+    "questions": 23,
+    "minutes": 120,
+    "seq": 1,
+    "game": null
+   },
+   {
+    "id": "C10-D02",
+    "subject": "Mathematics",
+    "chapter": "Day 2 · Polynomials",
+    "ws": 2,
+    "std": "Std 10 · Goa Board · 30-Day Crash Course",
+    "level": "Board exam level",
+    "file": "ws/C10/C10-D02",
+    "questions": 19,
+    "minutes": 120,
+    "seq": 2,
+    "game": "class-10-polynomials"
+   },
+   {
+    "id": "C10-D03",
+    "subject": "Mathematics",
+    "chapter": "Day 3 · Logarithms",
+    "ws": 3,
+    "std": "Std 10 · Goa Board · 30-Day Crash Course",
+    "level": "Board exam level",
+    "file": "ws/C10/C10-D03",
+    "questions": 24,
+    "minutes": 120,
+    "seq": 3,
+    "game": "class-9-logarithms"
+   },
+   {
+    "id": "C10-D04",
+    "subject": "Mathematics",
+    "chapter": "Day 4 · Pair of Linear Equations – Methods",
+    "ws": 4,
+    "std": "Std 10 · Goa Board · 30-Day Crash Course",
+    "level": "Board exam level",
+    "file": "ws/C10/C10-D04",
+    "questions": 19,
+    "minutes": 120,
+    "seq": 4,
+    "game": "class-10-pair-of-linear-equations"
+   },
+   {
+    "id": "C10-D05",
+    "subject": "Mathematics",
+    "chapter": "Day 5 · Pair of Linear Equations – Word Problems",
+    "ws": 5,
+    "std": "Std 10 · Goa Board · 30-Day Crash Course",
+    "level": "Board exam level",
+    "file": "ws/C10/C10-D05",
+    "questions": 15,
+    "minutes": 120,
+    "seq": 5,
+    "game": "class-10-pair-of-linear-equations"
+   }
+  ]
+ }
+}

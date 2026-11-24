@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Std 10 Maths 30-Day Crash Course – Hinde Classes</title>
+<meta name="description" content="Goa Board Std 10 Maths 30-day crash course: a worksheet every day, 5 offline classes, mock tests and 1-to-1 doubt slots. ₹799.">
+<link rel="icon" href="/icons/favicon-32.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: focused and encouraging – "one day at a time, you will be ready for the Board"
+   IDEA: a 30-step path; only today's step is lit, the rest wait behind a lock
+   COLOUR and TYPE: Hinde teal #0B4F4A, coral #FF6B54, gold #E0A93B; Poppins headings, Inter body; frosted glass tiles */
+:root{--ink:#12302d;--mute:#4f6764;--teal:#0B4F4A;--teal2:#0e7b72;--coral:#FF6B54;--gold:#E0A93B;--glass:rgba(255,255,255,.6);--glass2:rgba(255,255,255,.82);
+--edge:rgba(255,255,255,.78);--line:rgba(11,79,74,.12);--ok:#1b8a4b;--okbg:rgba(31,138,76,.14);--sub:#2463a6;--subbg:rgba(36,99,166,.13);--bad:#c2452f;--badbg:rgba(194,69,47,.12);--pend:#5f7270;--pendbg:rgba(95,114,112,.12)}
+*{box-sizing:border-box;min-width:0}
+html{background:#eaf3f1}
+body{margin:0;min-height:100vh;color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;
+  background:radial-gradient(60vw 60vw at 5% 0%,rgba(14,123,114,.35),transparent 60%),radial-gradient(50vw 50vw at 100% 12%,rgba(255,107,84,.28),transparent 60%),
+  radial-gradient(60vw 50vw at 60% 100%,rgba(224,169,59,.28),transparent 60%),linear-gradient(160deg,#eef7f5,#f8f3ea);background-attachment:fixed}
+h1,h2,h3,.brand,.btn{font-family:Poppins,system-ui,sans-serif}
+a{color:var(--teal2)}
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);border:1px solid var(--edge);border-radius:22px;box-shadow:0 10px 30px rgba(11,79,74,.10),inset 0 1px 0 rgba(255,255,255,.7)}
+header{position:sticky;top:0;z-index:5;margin:10px max(3vw,10px) 0;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-radius:18px}
+.brand{font-weight:700;font-size:17px;color:var(--teal);margin-right:auto;letter-spacing:.4px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand img{width:38px;height:38px;border-radius:10px;object-fit:cover}
+.brand small{display:block;font:500 12px Inter,sans-serif;color:var(--mute);letter-spacing:0}
+.pill{border:1px solid var(--line);background:var(--glass2);color:var(--teal);border-radius:999px;padding:8px 14px;font:600 14px Inter,sans-serif;cursor:pointer;min-height:38px;text-decoration:none;display:inline-flex;align-items:center}
+main{max-width:1180px;margin:0 auto;padding:18px max(3vw,10px) 48px}
+.bento{display:grid;gap:14px;grid-template-columns:repeat(6,minmax(0,1fr))}
+.tile{padding:18px}
+.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}.s6{grid-column:1/-1}
+@media(max-width:900px){.bento{grid-template-columns:repeat(2,minmax(0,1fr))}.s2{grid-column:span 1}.s3,.s4,.s6{grid-column:1/-1}}
+@media(max-width:560px){.bento{grid-template-columns:minmax(0,1fr)}.s2{grid-column:1/-1}}
+.kicker{font:700 12px Inter,sans-serif;letter-spacing:.5px;color:var(--coral);text-transform:uppercase}
+h1{font-size:clamp(26px,5vw,42px);line-height:1.06;margin:6px 0 10px;text-wrap:balance}
+h2{font-size:19px;margin:0 0 10px}
+.mute{color:var(--mute)}.small{font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:14px;border:0;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none}
+.btn.pri{background:linear-gradient(135deg,#0B4F4A,#0e7b72);color:#fff;box-shadow:0 8px 20px rgba(11,79,74,.25)}
+.btn.sec{background:var(--glass2);color:var(--teal);border:1px solid var(--line)}
+.btn.coral{background:var(--coral);color:#fff;box-shadow:0 8px 20px rgba(255,107,84,.3)}
+.btn.wa{background:#1fa855;color:#fff}
+.btn.sm{min-height:36px;padding:6px 12px;font-size:13px;border-radius:11px}
+.btn:disabled{opacity:.5;cursor:default}
+.btn:focus-visible,input:focus,select:focus,.day:focus-visible,.slot:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input,select{font:16px Inter,sans-serif;color:var(--ink);background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-height:46px;width:100%}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 6px}
+.err{color:var(--bad);font-size:14px;min-height:1.2em;margin:8px 0 0}
+.chip{display:inline-block;border-radius:999px;padding:3px 10px;font:600 12.5px Inter,sans-serif;white-space:nowrap}
+.c-ok{background:var(--okbg);color:var(--ok)}.c-sub{background:var(--subbg);color:var(--sub)}.c-pend{background:var(--pendbg);color:var(--pend)}.c-bad{background:var(--badbg);color:var(--bad)}
+.c-class{background:rgba(224,169,59,.22);color:#8a5d0b}.c-mock{background:rgba(255,107,84,.16);color:#b8402c}
+.hero{padding:24px;background:linear-gradient(135deg,rgba(11,79,74,.94),rgba(14,123,114,.88));color:#fff;border-color:rgba(255,255,255,.3)}
+.hero h1{color:#fff}.hero .mute{color:rgba(255,255,255,.86)}.hero .kicker{color:#ffd9a8}
+.ring{--p:0;width:110px;height:110px;border-radius:50%;display:grid;place-items:center;flex:none;background:conic-gradient(var(--gold) calc(var(--p)*1%),rgba(255,255,255,.2) 0)}
+.ring span{width:86px;height:86px;border-radius:50%;background:rgba(11,79,74,.9);display:grid;place-items:center;font:700 22px Poppins,sans-serif;text-align:center;line-height:1.05}
+.ring small{display:block;font:500 11px Inter,sans-serif;opacity:.8}
+.facts{display:flex;gap:22px;flex-wrap:wrap;margin:12px 0;font-size:13px}
+.facts b{display:block;font:700 22px Poppins,sans-serif}
+.path{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.day{position:relative;padding:12px;border-radius:16px;border:1px solid var(--edge);background:var(--glass2);text-align:left;font:inherit;color:inherit;cursor:pointer;min-height:96px;display:flex;flex-direction:column;gap:4px}
+.day .n{font:700 12px Inter,sans-serif;letter-spacing:.5px;color:var(--coral);text-transform:uppercase}
+.day .t{font:600 14px/1.3 Poppins,sans-serif}
+.day.locked{background:rgba(255,255,255,.3);color:#8aa09d;cursor:default;align-items:center;justify-content:center;text-align:center}
+.day.locked .n{color:#8aa09d}.day.locked .lock{font-size:22px}
+.day.today{outline:2px solid var(--coral);box-shadow:0 10px 24px rgba(255,107,84,.25)}
+.day.done{background:linear-gradient(135deg,rgba(31,138,76,.12),rgba(255,255,255,.8))}
+.list{list-style:none;padding:0;margin:0}
+.list li{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.list li:first-child{border-top:0}
+.slots{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.sday h3{font-size:15px;margin:0 0 8px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.slot{border:1px solid var(--line);background:var(--glass2);border-radius:10px;padding:8px 4px;font:600 13px Inter,sans-serif;cursor:pointer;color:var(--teal)}
+.slot.mine{background:var(--teal);color:#fff;border-color:var(--teal)}
+.slot:disabled{opacity:.45;cursor:default;text-decoration:line-through}
+.res{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.res a{display:flex;gap:12px;align-items:center;padding:14px;border-radius:16px;text-decoration:none;color:var(--ink);background:var(--glass2);border:1px solid var(--edge)}
+.res a i{font-style:normal;font-size:26px}.res a b{display:block;font:600 15px Poppins,sans-serif}.res a span{font-size:13px;color:var(--mute)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start}
+.steps li::before{content:counter(s);flex:none;width:30px;height:30px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font:700 14px Poppins,sans-serif}
+.price{font:800 44px Poppins,sans-serif;color:var(--coral);line-height:1}
+.price small{font:600 14px Inter,sans-serif;color:var(--mute)}
+table.adm{width:100%;border-collapse:collapse;font-size:14px}
+table.adm th,table.adm td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+.cls{display:inline-flex;gap:4px}.cls button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:#fff;font:700 12px Inter;cursor:pointer;color:var(--mute)}
+.cls button.on{background:var(--gold);color:#2a1d00;border-color:var(--gold)}
+.scroll{overflow-x:auto}
+.demo{background:var(--gold);color:#2a1d00;text-align:center;font:600 13px Inter,sans-serif;padding:6px}
+.hide{display:none!important}
+footer{text-align:center;font-size:13px;color:var(--mute);padding:0 16px 28px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:9;padding:12px 16px;max-width:90vw}
+@media(prefers-reduced-motion:no-preference){.tile,.day{animation:rise .35s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(8px)}}}
+</style>
+</head>
+<body>
+<div id="demo" class="demo hide">Demo mode – sample data only, nothing is saved.</div>
+<header class="glass">
+  <a class="brand" href="/"><img src="/app/logo.jpg" alt=""><span>HINDE CLASSES<small>Std 10 Maths · 30-Day Crash Course</small></span></a>
+  <span id="who" class="small" style="font-weight:600"></span>
+  <a class="pill hide" id="hwlink" href="/homework/#home">Home Task Portal</a>
+  <button id="out" class="pill hide" type="button">Log out</button>
+</header>
+<main id="app"><p class="mute">Loading…</p></main>
+<footer>Hinde Classes · Bicholim, Goa · Maitreya Hinde | 7358425108</footer>
+<script>
+{
+const API_URL = "https://script.google.com/macros/s/AKfycbyCaaL-WbSf9FCZ51KE7ZqBInC0eIbXdNF1_UVLfZsAWUjBORTxI9u5FHjNn34thIjz/exec";
+const WA = "917358425108";
+const MOCK_PAPERS = "https://drive.google.com/file/d/1ZFA_azuQObcziFHUfistqwlnmoVrWrgv/view?usp=drive_link";
+const DEMO = new URLSearchParams(location.search).has("demo");
+const SKEY = DEMO ? "hc_hw_session_demo" : "hc_hw_session";   // same login as the Home Task Portal
+const CLASS_DAYS = {1: 1, 7: 2, 13: 3, 19: 4, 25: 5};          // day → offline class number
+// The 30-day plan follows the Goa Board 2026–27 SSC Maths blueprint (80 marks, 42 questions, sections A–D).
+const PLAN = [
+ [1,"Real Numbers","A"],[2,"Polynomials","A"],[3,"Logarithms","D"],[4,"Pair of Linear Equations – methods","A"],[5,"Pair of Linear Equations – word problems","A"],
+ [6,"Quadratic Equations – solving","A"],[7,"Quadratic Equations – word problems","A"],[8,"Arithmetic Progressions – nth term","A"],[9,"Arithmetic Progressions – sums and word problems","A"],
+ [10,"Unit Test 1 · Numbers & Algebra (30 marks)","T"],
+ [11,"Triangles – BPT and similarity","B"],[12,"Triangles – proofs","B"],[13,"Coordinate Geometry","B"],[14,"Circles – tangents","B"],[15,"Areas Related to Circles","B"],
+ [16,"Introduction to Trigonometry – ratios and values","C"],[17,"Trigonometric identities","C"],[18,"Applications of Trigonometry","C"],[19,"Geometry + Trigonometry mixed practice","C"],
+ [20,"Unit Test 2 · Geometry & Trigonometry (31 marks)","T"],
+ [21,"Surface Areas and Volumes","D"],[22,"Statistics – mean, median, mode","D"],[23,"Probability","D"],[24,"Logarithms with tables + Data revision","D"],
+ [25,"1-mark & Assertion–Reason speed drill","R"],[26,"Full Mock Test 1 (80 marks, 3 hours)","M"],[27,"Mock 1 corrections + weak chapters","R"],
+ [28,"Full Mock Test 2 (80 marks, 3 hours)","M"],[29,"Mock 2 corrections + formula sheet","R"],[30,"Final revision + exam-day strategy","R"]
+].map(([d,t,k]) => ({d, t, k, cls: CLASS_DAYS[d] || 0}));
+const KIND = {A:"Numbers & Algebra",B:"Geometry",C:"Trigonometry",D:"Mensuration & Data",T:"Unit test",M:"Full mock test",R:"Revision"};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store = {get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}, set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}, del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const istISO = (d = new Date()) => new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).format(d);
+const pad = n => ("0" + n).slice(-2);
+const dayId = d => "C10-D" + pad(d);
+const phone91 = p => { p = String(p||"").replace(/\D/g,""); return p.length === 10 ? "91"+p : p; };
+function toast(m, bad) { const d = document.createElement("div"); d.className = "glass toast"; d.style.borderColor = bad ? "var(--bad)" : "var(--teal)"; d.textContent = m; document.body.append(d); setTimeout(() => d.remove(), 3200); }
+let session = store.get(SKEY);
+let sheets = {};   // worksheets published so far: id → manifest entry
+
+async function api(action, data = {}) {
+  const body = Object.assign({action, token: session && session.token}, data);
+  const res = DEMO ? mock(body) : await (await fetch(API_URL, {method: "POST", body: JSON.stringify(body)})).json();
+  if (!res.ok) {
+    if (res.error === "SESSION_EXPIRED") { logout(true); throw new Error("Please log in again."); }
+    throw new Error(res.error === "Unknown action" ? "The crash course needs the latest Code.gs. Please ask Hinde Classes." : (res.error || "Something went wrong."));
+  }
+  return res;
+}
+function shell() {
+  const u = session && session.user;
+  $("#who").textContent = u ? u.name : "";
+  $("#out").classList.toggle("hide", !u);
+  $("#hwlink").classList.toggle("hide", !(u && u.role !== "student"));
+}
+function logout(silent) { if (!silent && session) api("logout").catch(() => {}); session = null; store.del(SKEY); shell(); route(); }
+$("#out").onclick = () => logout();
+const showErr = e => { $("#app").innerHTML = `<div class="glass tile"><p class="err" style="margin:0">${esc(e.message)}</p></div>`; };
+
+/* ---------- public page + login ---------- */
+function viewLanding(msg) {
+  $("#app").innerHTML = `<div class="bento">
+    <section class="glass tile hero s4">
+      <div class="kicker">Goa Board · SSC March 2027</div>
+      <h1>Std 10 Maths<br>30-Day Crash Course</h1>
+      <p class="mute" style="max-width:560px">One worksheet a day, 5 offline classes, unit tests, 2 full mock tests and 1-to-1 doubt slots, all on the full 2026–27 Goa Board syllabus and paper pattern.</p>
+      <div class="facts"><div><b>30</b>daily worksheets</div><div><b>5</b>offline classes</div><div><b>2 + 2</b>unit + mock tests</div><div><b>5</b>1-to-1 slots</div></div>
+    </section>
+    <div class="glass tile s2">
+      <div class="kicker">Student login</div><h2 style="margin-top:4px">Already joined? Log in</h2>
+      <form id="lf"><div style="margin:10px 0"><label for="lu">Username</label><input id="lu" autocomplete="username" autocapitalize="none" spellcheck="false" required></div>
+      <div style="margin:10px 0"><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password" required></div>
+      <button class="btn pri" style="width:100%" id="lb">Log in</button><p class="err" id="le">${esc(msg||"")}</p></form>
+    </div>
+    <div class="glass tile s3"><h2>How it works</h2><ol class="steps">
+      <li><span><b>Join</b> – WhatsApp 7358425108. You get your own login.</span></li>
+      <li><b>One day at a time</b> – each day your teacher unlocks the next day's worksheet (about 2 hours).</li>
+      <li><b>5 offline classes</b> at Hinde Classes, Bicholim – learn each unit's concepts thoroughly.</li>
+      <li><b>Tests</b> – unit tests on Day 10 and Day 20, full 80-mark mock tests on Day 26 and Day 28.</li>
+      <li><b>1-to-1 doubt slots</b> – from Day 7, book up to 5 slots on Saturdays and Sundays.</li></ol></div>
+    <div class="glass tile s3"><div class="kicker">Course fee</div><div class="price" style="margin:6px 0">₹799 <small>for the full 30 days</small></div>
+      <p class="mute small">Includes all 30 worksheets, the 5 offline classes, tests with checking, 5 doubt slots, the Std 10 study portal and chapter games.</p>
+      <a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent("Hi, I want to join the Std 10 Maths 30-Day Crash Course (₹799).")}">💬 Join on WhatsApp · 7358425108</a></div>
+    <div class="glass tile s6"><h2>The 30-day plan</h2><div class="path">${PLAN.map(p => `<div class="day ${p.k === "M" || p.k === "T" ? "" : ""}" style="cursor:default"><span class="n">Day ${p.d}${p.cls ? " · 🏫 class " + p.cls : ""}</span><span class="t">${esc(p.t)}</span><span class="small mute">${esc(KIND[p.k])}</span></div>`).join("")}</div></div>
+  </div>`;
+  $("#lf").onsubmit = async e => {
+    e.preventDefault(); $("#lb").disabled = true; $("#le").textContent = "";
+    try { const r = await api("login", {username: $("#lu").value, password: $("#lp").value}); session = {token: r.token, user: r.user}; store.set(SKEY, session); shell(); route(); }
+    catch (err) { $("#le").textContent = err.message; $("#lb").disabled = false; }
+  };
+}
+
+/* ---------- student ---------- */
+function upcomingSlots(times) {
+  const out = []; const now = new Date();
+  for (let i = 0; i < 21 && out.length < 4; i++) {
+    const d = new Date(now.getTime() + i * 864e5); const iso = istISO(d);
+    const dow = new Date(iso + "T12:00:00+05:30").getUTCDay();
+    if (dow === 6 || dow === 0) out.push({iso, label: new Date(iso + "T12:00:00+05:30").toLocaleDateString("en-IN", {weekday: "long", day: "numeric", month: "short"}),
+      slots: times.map(t => ({id: iso + "T" + t, t, past: new Date(iso + "T" + t + ":00+05:30") < now}))});
+  }
+  return out;
+}
+const t12 = t => { const [h, m] = t.split(":").map(Number); return ((h + 11) % 12 + 1) + (m ? ":" + pad(m) : "") + (h < 12 ? " am" : " pm"); };
+async function studentHome() {
+  let r; try { r = await api("crashMe"); } catch (e) { return showErr(e); }
+  const unlocked = r.day, st = id => (r.status.find(x => x.date === id) || {});
+  const doneDays = PLAN.filter(p => p.d <= unlocked && ["Submitted","Checked"].includes(st(dayId(p.d)).status)).length;
+  const pct = Math.round(doneDays / 30 * 100);
+  const today = PLAN[unlocked - 1];
+  const nextClass = PLAN.find(p => p.cls && p.d > unlocked);
+  const classesDone = [1,2,3,4,5].filter(c => st("C10-C" + c).status === "Checked").length;
+  const ws = today && sheets[dayId(today.d)];
+  const tst = today ? st(dayId(today.d)) : {};
+  const doneToday = ["Submitted","Checked"].includes(tst.status);
+  const todayCard = !today ? `<div class="glass tile s4"><div class="kicker">Welcome</div><h1 style="font-size:30px">Your course starts soon 🚀</h1>
+      <p class="mute">Your teacher will unlock <b>Day 1</b> on your first day. Meanwhile, explore the Std 10 study portal below.</p></div>`
+    : `<div class="glass tile s4"><div class="kicker">Today · Day ${today.d} of 30 · ${esc(KIND[today.k])}</div>
+      <h1 style="font-size:clamp(24px,4vw,34px)">${esc(today.t)}</h1>
+      ${today.cls ? `<p class="chip c-class">🏫 Offline class ${today.cls} today – learn the concepts at Hinde Classes</p>` : ""}
+      ${today.k === "M" || today.k === "T" ? `<p class="small">Sit for <b>${today.k === "M" ? "3 hours" : "1 hour 15 minutes"}</b> without breaks, like the real exam. Use a Hinde Classes model paper.</p>` : ""}
+      <div class="row" style="margin-top:8px">
+        ${ws ? `<a class="btn pri" href="${esc(ws.file)}.html?n=${encodeURIComponent(session.user.name)}">📄 Open Day ${today.d} worksheet</a>` : today.k === "M" || today.k === "T" ? `<a class="btn pri" target="_blank" rel="noopener" href="${MOCK_PAPERS}">📄 Open the model paper</a>` : `<span class="chip c-pend">Worksheet will be added by your teacher</span>`}
+        ${ws && ws.game ? `<a class="btn coral" href="../games/${esc(ws.game)}/">🎮 Chapter game</a>` : ""}
+      </div>
+      <div class="row" style="margin-top:14px">${doneToday ? `<span class="chip ${tst.status === "Checked" ? "c-ok" : "c-sub"}">${tst.status === "Checked" ? "Checked by teacher ✓" : "Submitted ✓"}</span>${tst.remark ? `<span class="small"><b>Teacher:</b> ${esc(tst.remark)}</span>` : ""}`
+        : !ws && today.k !== "M" && today.k !== "T" ? "" : `<button class="btn sec" id="dClass">✅ Done – hand in at class</button><a class="btn wa" id="dWa" target="_blank" rel="noopener" href="https://wa.me/${WA}?text=${encodeURIComponent(`Crash course Day ${today.d} – ${session.user.name}: photos of my worksheet`)}">📷 Send photos on WhatsApp</a>`}</div></div>`;
+  const canBook = unlocked >= r.rules.fromDay;
+  const weeks = upcomingSlots(r.rules.times);
+  $("#app").innerHTML = `<div class="bento">
+    <section class="glass tile hero s2" style="display:flex;flex-direction:column;justify-content:space-between;gap:12px">
+      <div><div class="kicker">Std 10 Maths Crash Course</div><h2 style="color:#fff;font-size:22px;margin:4px 0 0">Hi ${esc(String(session.user.name).split(" ")[0])} 👋</h2></div>
+      <div class="row"><div class="ring" style="--p:${pct}"><span>${unlocked}<small>of 30 days</small></span></div>
+      <div class="small"><b style="font:700 22px Poppins">${doneDays}</b> worksheets done<br><b style="font:700 22px Poppins">${classesDone}/5</b> classes attended</div></div>
+      ${nextClass ? `<div class="small mute">Next offline class: <b style="color:#fff">Class ${nextClass.cls}</b> on Day ${nextClass.d}</div>` : ""}
+    </section>
+    ${todayCard}
+    <div class="glass tile s6"><div class="row" style="justify-content:space-between"><h2 style="margin:0">Your 30-day path</h2><span class="small mute">New days unlock one at a time</span></div>
+      <div class="path" style="margin-top:12px">${PLAN.map(p => { const open = p.d <= unlocked; const s = st(dayId(p.d)).status;
+        if (!open) return `<div class="day locked"><span class="lock">🔒</span><span class="n">Day ${p.d}</span>${p.cls ? `<span class="small">🏫 class ${p.cls}</span>` : ""}</div>`;
+        const w = sheets[dayId(p.d)];
+        return `<a class="day ${p.d === unlocked ? "today" : ""} ${s === "Checked" || s === "Submitted" ? "done" : ""}" href="${w ? esc(w.file) + ".html" : p.k === "M" || p.k === "T" ? MOCK_PAPERS : "#"}" ${p.k === "M" || p.k === "T" ? `target="_blank" rel="noopener"` : ""} style="text-decoration:none">
+          <span class="n">Day ${p.d}${p.cls ? " · 🏫 " + p.cls : ""}</span><span class="t">${esc(p.t)}</span>
+          <span>${s === "Checked" ? `<span class="chip c-ok">Checked ✓</span>` : s === "Submitted" ? `<span class="chip c-sub">Submitted</span>` : p.k === "M" || p.k === "T" ? `<span class="chip c-mock">${esc(KIND[p.k])}</span>` : `<span class="chip c-pend">To do</span>`}</span></a>`; }).join("")}</div></div>
+    <div class="glass tile s4"><div class="row" style="justify-content:space-between"><h2 style="margin:0">💬 1-to-1 doubt slots</h2><span class="chip ${r.bookings.length >= r.rules.max ? "c-bad" : "c-ok"}">${r.bookings.length}/${r.rules.max} used</span></div>
+      ${canBook ? `<p class="small mute">Saturdays and Sundays only, 30 minutes each at Hinde Classes. Tap a time to book; tap your booking to cancel (up to 12 hours before).</p>
+        <div class="slots">${weeks.map(w => `<div class="sday"><h3>${esc(w.label)}</h3><div class="sgrid">${w.slots.map(s => { const mine = r.bookings.includes(s.id), taken = !mine && r.taken.includes(s.id);
+          return `<button class="slot ${mine ? "mine" : ""}" data-slot="${s.id}" ${s.past || taken || (!mine && r.bookings.length >= r.rules.max) ? "disabled" : ""} title="${mine ? "Your booking – tap to cancel" : taken ? "Booked" : "Book"}">${t12(s.t)}</button>`; }).join("")}</div></div>`).join("")}</div>`
+        : `<p class="mute">🔒 Doubt slots open on <b>Day ${r.rules.fromDay}</b>, after your second offline class. You can then book up to ${r.rules.max} slots on Saturdays and Sundays.</p>`}
+      ${r.bookings.length ? `<p class="small" style="margin-bottom:0"><b>Your bookings:</b> ${r.bookings.slice().sort().map(b => esc(new Date(b + ":00+05:30").toLocaleString("en-IN", {weekday:"short", day:"numeric", month:"short", hour:"numeric", minute:"2-digit", timeZone:"Asia/Kolkata"}))).join(" · ")}</p>` : ""}</div>
+    <div class="glass tile s2"><h2>🏫 Offline classes</h2><ul class="list">${[1,2,3,4,5].map(c => { const p = PLAN.find(x => x.cls === c); const a = st("C10-C" + c).status === "Checked";
+      return `<li><span><b>Class ${c}</b> · Day ${p.d}<br><span class="small mute">${esc(KIND[p.k])}</span></span>${a ? `<span class="chip c-ok">Attended ✓</span>` : p.d <= unlocked ? `<span class="chip c-pend">Today / due</span>` : `<span class="chip c-pend">Upcoming</span>`}</li>`; }).join("")}</ul></div>
+    <div class="glass tile s6"><h2>📚 Your study resources</h2><div class="res">
+      <a href="/tests/std10-portal.html"><i>🎓</i><span><b>Std 10 study portal</b><span>Notes, worksheets and blueprints for all subjects</span></span></a>
+      <a href="/tests/assets/std10/maths-model-paper-blueprint.html"><i>🗺️</i><span><b>Maths paper blueprint</b><span>All 42 questions, marks and chapters</span></span></a>
+      <a href="${MOCK_PAPERS}" target="_blank" rel="noopener"><i>📝</i><span><b>Model question papers</b><span>Hinde Classes Goa Board mock papers (PDF)</span></span></a>
+      <a href="/games/"><i>🎮</i><span><b>Chapter games</b><span>Play to master each Std 10 chapter</span></span></a>
+    </div></div>
+  </div>`;
+  const submit = async method => { try { await api("crashSubmit", {day: today.d, method}); toast("Marked as done ✓"); studentHome(); } catch (e) { toast(e.message, true); } };
+  if ($("#dClass")) $("#dClass").onclick = () => submit("class");
+  if ($("#dWa")) $("#dWa").addEventListener("click", () => setTimeout(() => submit("whatsapp"), 300));
+  document.querySelectorAll("[data-slot]").forEach(b => b.onclick = async () => {
+    const mine = b.classList.contains("mine"); b.disabled = true;
+    try { await api(mine ? "crashCancel" : "crashBook", {slot: b.dataset.slot}); toast(mine ? "Booking cancelled" : "Slot booked ✓ See you at Hinde Classes!"); studentHome(); }
+    catch (e) { toast(e.message, true); b.disabled = false; }
+  });
+  document.querySelectorAll("a.day[href='#']").forEach(a => a.onclick = e => { e.preventDefault(); toast("This day's worksheet will be added by your teacher."); });
+}
+
+/* ---------- teacher / admin ---------- */
+async function adminHome() {
+  $("#app").innerHTML = `<p class="mute">Loading crash-course students…</p>`;
+  let r; try { r = await api("crashAdmin"); } catch (e) { return showErr(e); }
+  const st = (u, id) => r.status.find(x => x.username === u && x.date === id) || {};
+  const upcoming = r.bookings.slice().sort((a, b) => a.slot.localeCompare(b.slot));
+  const name = u => (r.students.find(s => s.username === u) || {name: u}).name;
+  $("#app").innerHTML = `<div class="bento">
+    <section class="glass tile hero s6"><div class="kicker">Teacher view</div><h1 style="font-size:30px">Std 10 Maths Crash Course</h1>
+      <p class="mute" style="margin:0">${r.students.length} student${r.students.length === 1 ? "" : "s"} enrolled. Unlock the next day for each student with one tap; tick the offline classes they attend.</p>
+      <div class="row" style="margin-top:12px"><a class="btn coral sm" href="/homework/#accounts">+ Add a crash-course student</a><span class="small mute">In Accounts, choose class "Std 10 · Crash Course".</span></div></section>
+    <div class="glass tile s4"><h2>Students</h2><div class="scroll"><table class="adm"><thead><tr><th>Student</th><th>Unlocked</th><th>Done</th><th>Classes</th><th></th></tr></thead><tbody>
+      ${r.students.map(s => { const done = PLAN.filter(p => ["Submitted","Checked"].includes(st(s.username, dayId(p.d)).status)).length;
+        const sub = PLAN.filter(p => st(s.username, dayId(p.d)).status === "Submitted");
+        const next = PLAN[s.day];
+        return `<tr><td><b>${esc(s.name)}</b><div class="small mute">${esc(s.username)}</div></td>
+          <td><b>Day ${s.day}</b>${s.day ? `<div class="small mute">${esc(PLAN[s.day-1].t)}</div>` : ""}</td>
+          <td>${done}/30${sub.length ? `<div>${sub.map(p => `<button class="btn sec sm" data-check="${esc(s.username)}|${p.d}">✓ Check Day ${p.d}</button>`).join(" ")}</div>` : ""}</td>
+          <td><span class="cls">${[1,2,3,4,5].map(c => `<button class="${st(s.username, "C10-C" + c).status === "Checked" ? "on" : ""}" data-cls="${esc(s.username)}|${c}" title="Class ${c} attended">${c}</button>`).join("")}</span></td>
+          <td><div class="row">${next ? `<button class="btn pri sm" data-unlock="${esc(s.username)}|${s.day + 1}">Unlock Day ${s.day + 1}</button>` : `<span class="chip c-ok">Course complete</span>`}
+            ${s.day ? `<button class="btn sec sm" data-unlock="${esc(s.username)}|${s.day - 1}" title="Lock the last day again">↶</button>` : ""}
+            ${s.parentPhone && next ? `<a class="btn wa sm" target="_blank" rel="noopener" href="https://wa.me/${phone91(s.parentPhone)}?text=${encodeURIComponent(`Hinde Classes Crash Course: Day ${s.day + 1} (${next.t}) is now open for ${s.name}. Log in at hindeclasses.com/crash10`)}">Tell parent</a>` : ""}</div></td></tr>`; }).join("") || `<tr><td colspan="5" class="mute">No crash-course students yet. Add one in Accounts.</td></tr>`}
+      </tbody></table></div></div>
+    <div class="glass tile s2"><h2>📅 Doubt-slot bookings</h2><ul class="list">${upcoming.map(b => `<li><span><b>${esc(new Date(b.slot + ":00+05:30").toLocaleString("en-IN", {weekday:"short", day:"numeric", month:"short", hour:"numeric", minute:"2-digit", timeZone:"Asia/Kolkata"}))}</b><br><span class="small mute">${esc(name(b.username))}</span></span>
+      <button class="btn sec sm" data-cancel="${esc(b.slot)}">Cancel</button></li>`).join("") || `<li class="mute small">No bookings yet.</li>`}</ul></div>
+    <div class="glass tile s6"><h2>The 30-day plan</h2><div class="path">${PLAN.map(p => { const w = sheets[dayId(p.d)];
+      return `<a class="day" style="text-decoration:none" href="${w ? esc(w.file) + ".html" : p.k === "M" || p.k === "T" ? MOCK_PAPERS : "#"}" target="_blank" rel="noopener"><span class="n">Day ${p.d}${p.cls ? " · 🏫 " + p.cls : ""}</span><span class="t">${esc(p.t)}</span>
+        <span>${w ? `<span class="chip c-ok">Worksheet ready</span>` : p.k === "M" || p.k === "T" ? `<span class="chip c-mock">${esc(KIND[p.k])}</span>` : `<span class="chip c-pend">To be made</span>`}</span></a>`; }).join("")}</div></div>
+  </div>`;
+  const reload = () => adminHome();
+  document.querySelectorAll("[data-unlock]").forEach(b => b.onclick = async () => { const [u, d] = b.dataset.unlock.split("|"); b.disabled = true;
+    try { await api("crashUnlock", {username: u, day: Number(d)}); toast(`Day ${d} unlocked ✓`); reload(); } catch (e) { toast(e.message, true); b.disabled = false; } });
+  document.querySelectorAll("[data-cls]").forEach(b => b.onclick = async () => { const [u, c] = b.dataset.cls.split("|"); const on = b.classList.contains("on");
+    try { await api("adminSet", {username: u, date: "C10-C" + c, status: on ? "Pending" : "Checked", remark: "", stars: "", method: "In class"}); reload(); } catch (e) { toast(e.message, true); } });
+  document.querySelectorAll("[data-check]").forEach(b => b.onclick = async () => { const [u, d] = b.dataset.check.split("|");
+    try { await api("adminSet", {username: u, date: dayId(Number(d)), status: "Checked", remark: "", stars: ""}); toast("Checked ✓"); reload(); } catch (e) { toast(e.message, true); } });
+  document.querySelectorAll("[data-cancel]").forEach(b => b.onclick = async () => {
+    try { await api("crashCancel", {slot: b.dataset.cancel}); toast("Booking cancelled"); reload(); } catch (e) { toast(e.message, true); } });
+}
+
+function route() {
+  shell();
+  if (!session) return viewLanding("");
+  return session.user.role === "student" ? studentHome() : adminHome();
+}
+
+/* ---------- demo backend (?demo=1): crash.demo / demo123 and demo.admin / admin123 ---------- */
+let DB = (() => { try { return JSON.parse(sessionStorage.getItem("hc_crash_mock")); } catch (e) { return null; } })();
+function mock(b) { const r = mock2(b); try { sessionStorage.setItem("hc_crash_mock", JSON.stringify(DB)); } catch (e) {} return r; }
+function mock2(b) {
+  if (!DB) DB = {users: [{username:"demo.admin",name:"Demo Teacher",role:"admin",pw:"admin123"},{username:"crash.demo",name:"Riya Demo",role:"student",group:"CRASH10",pw:"demo123",day:8,parentPhone:"9800000000"},
+    {username:"crash2.demo",name:"Kabir Demo",role:"student",group:"CRASH10",pw:"demo123",day:3,parentPhone:"9800000001"}],
+    status:[{date:"C10-D01",username:"crash.demo",status:"Checked"},{date:"C10-D02",username:"crash.demo",status:"Checked"},{date:"C10-D03",username:"crash.demo",status:"Submitted"},{date:"C10-C1",username:"crash.demo",status:"Checked"},{date:"C10-C2",username:"crash.demo",status:"Checked"}],
+    book:[], sessions:{}};
+  const me = DB.sessions[b.token] && DB.users.find(u => u.username === DB.sessions[b.token]);
+  const pub = u => ({username:u.username,name:u.name,role:u.role,group:u.group||""});
+  const rules = {max:5, fromDay:7, times:["10:00","11:00","12:00","16:00","17:00","18:00"]};
+  const upsert = (u, id, patch) => { let x = DB.status.find(s => s.username === u && s.date === id); if (!x) { x = {date:id, username:u}; DB.status.push(x); } Object.assign(x, patch); };
+  switch (b.action) {
+    case "login": { const u = DB.users.find(x => x.username === String(b.username).trim().toLowerCase() && x.pw === b.password); if (!u) return {ok:false,error:"Wrong username or password."};
+      const t = "t" + Math.random(); DB.sessions[t] = u.username; return {ok:true, token:t, user:pub(u)}; }
+    case "logout": return {ok:true};
+    case "crashMe": if (!me) return {ok:false,error:"SESSION_EXPIRED"}; return {ok:true, user:pub(me), day: me.role === "student" ? me.day : 30, status: DB.status.filter(s => s.username === me.username),
+      bookings: DB.book.filter(x => x.username === me.username).map(x => x.slot), taken: DB.book.map(x => x.slot), rules};
+    case "crashSubmit": upsert(me.username, dayId(b.day), {status:"Submitted"}); return {ok:true};
+    case "crashBook": if (DB.book.filter(x => x.username === me.username).length >= 5) return {ok:false,error:"You have used all 5 discussion slots."}; DB.book.push({slot:b.slot, username:me.username}); return {ok:true};
+    case "crashCancel": DB.book = DB.book.filter(x => x.slot !== b.slot); return {ok:true};
+    case "crashAdmin": return {ok:true, students: DB.users.filter(u => u.group === "CRASH10").map(u => Object.assign(pub(u), {day:u.day, parentPhone:u.parentPhone})), status: DB.status, bookings: DB.book};
+    case "crashUnlock": DB.users.find(u => u.username === b.username).day = b.day; return {ok:true};
+    case "adminSet": upsert(b.username, b.date, {status:b.status}); return {ok:true};
+  }
+  return {ok:false, error:"Unknown action"};
+}
+
+(async () => {
+  if (DEMO) $("#demo").classList.remove("hide");
+  try { const m = await (await fetch("data/manifest.json?v=" + Date.now(), {cache: "no-store"})).json(); (m.groups.C10 || []).forEach(w => sheets[w.id] = w); } catch (e) {}
+  route();
+})();
+}
+</script>
+</body>
+</html>

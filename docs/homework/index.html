@@ -149,10 +149,10 @@ body.staff nav a{display:inline-flex;align-items:center;gap:6px}body.staff nav a
 /* ---------- settings ---------- */
 const API_URL = "https://script.google.com/macros/s/AKfycbyCaaL-WbSf9FCZ51KE7ZqBInC0eIbXdNF1_UVLfZsAWUjBORTxI9u5FHjNn34thIjz/exec";
 const WA_TEACHER = "917358425108";
-const GROUP_ORDER = ["6GB","7GB","7ICSE","8GB","9GB","9CBSE","10GB","10ADV"];
+const GROUP_ORDER = ["6GB","7GB","7ICSE","8GB","9GB","9CBSE","10GB","10ADV","CRASH10"];
 const GROUP_NAME = {"6GB":"Std 6 · Goa Board","7GB":"Std 7 · Goa Board","7ICSE":"Std 7 · ICSE","8GB":"Std 8 · Goa Board",
-  "9GB":"Std 9 · Goa Board","9CBSE":"Std 9 · CBSE","10GB":"Std 10 · Goa Board","10ADV":"Std 10 · Goa Board (advanced)"};
-const GROUP_SHORT = {"6GB":"6 GB","7GB":"7 GB","7ICSE":"7 ICSE","8GB":"8 GB","9GB":"9 GB","9CBSE":"9 CBSE","10GB":"10 GB","10ADV":"10 GB+"};
+  "9GB":"Std 9 · Goa Board","9CBSE":"Std 9 · CBSE","10GB":"Std 10 · Goa Board","10ADV":"Std 10 · Goa Board (advanced)","CRASH10":"Std 10 · Crash Course (30 days)"};
+const GROUP_SHORT = {"6GB":"6 GB","7GB":"7 GB","7ICSE":"7 ICSE","8GB":"8 GB","9GB":"9 GB","9CBSE":"9 CBSE","10GB":"10 GB","10ADV":"10 GB+","CRASH10":"10 Crash"};
 const AV_COL = ["#0B4F4A","#c2452f","#9a6b12","#2463a6","#6b3fa0","#1b8a4b","#8c2f5d","#0e7b72"];
 const DONE = ["Submitted","Checked"];
 const DEMO = new URLSearchParams(location.search).has("demo");
@@ -222,9 +222,9 @@ function setShell() {
   const items = u.role === "student"
     ? [["home","My worksheet"],["history","All worksheets"],["account","Password"]]
     : [["home","🏠 Today"],["students","👥 Students"],["worksheets","📚 Worksheets"]].concat(u.role === "admin" ? [["fees","💰 Fees"]] : [])
-        .concat([["register","📊 Register"],["accounts","⚙️ Accounts"],["account","🔑 Password"]]);
+        .concat([["register","📊 Register"],["crash","🚀 Crash course"],["accounts","⚙️ Accounts"],["account","🔑 Password"]]);
   document.body.classList.toggle("staff", u.role !== "student");
-  nav.innerHTML = items.map(([h,t]) => { const [ic, ...w] = t.split(" "); return u.role === "student" ? `<a href="#${h}" data-h="${h}">${t}</a>` : `<a href="#${h}" data-h="${h}"><i>${ic}</i><span>${w.join(" ")}</span></a>`; }).join("");
+  nav.innerHTML = items.map(([h,t]) => { if (h === "crash") { const [ic, ...w] = t.split(" "); return `<a href="/crash10/"><i>${ic}</i><span>${w.join(" ")}</span></a>`; } const [ic, ...w] = t.split(" "); return u.role === "student" ? `<a href="#${h}" data-h="${h}">${t}</a>` : `<a href="#${h}" data-h="${h}"><i>${ic}</i><span>${w.join(" ")}</span></a>`; }).join("");
   nav.classList.remove("hide");
   placeNav();
 }
@@ -363,6 +363,7 @@ const avatar = (n, size) => `<div class="av" style="background:${avCol(n)}${size
 async function loadOverview() {
   const r = await api("adminOverview");
   OV = r; OV.byUser = {}; OV.requests = r.requests || [];
+  r.students = r.students.filter(s => s.group !== "CRASH10");   // crash-course students live in /crash10/
   r.students.forEach(s => {
     const asg = r.assignments.filter(a => a.username === s.username).sort(bySent);
     const items = asg.map(a => Object.assign({status:"Pending"}, r.status.find(x => x.username === s.username && x.date === a.date) || {}, a));
@@ -386,6 +387,10 @@ async function loadFees(force) {
 function feeState(st, month) {
   const paid = FEES.payments.filter(p => p.username === st.username && p.month === month).reduce((a, p) => a + p.amount, 0);
   if (st.feePlan === "paid") return {paid, due: 0, label: "Paid for year", cls: "Checked"};
+  if (st.feePlan === "course") {   // one-time course fee (crash course): count payments in every month
+    const all = FEES.payments.filter(p => p.username === st.username).reduce((a, p) => a + p.amount, 0);
+    return all >= st.fee ? {paid, due: 0, label: "Course paid", cls: "Checked"} : {paid, due: month === monthISO() ? st.fee - all : 0, label: all ? "Course part paid" : "Course fee due", cls: all ? "Redo" : "Notdone"};
+  }
   if (!st.fee) return {paid, due: 0, label: "No fee set", cls: "Pending"};
   if (paid >= st.fee) return {paid, due: 0, label: "Paid", cls: "Checked"};
   return {paid, due: st.fee - paid, label: paid ? "Part paid" : "Due", cls: paid ? "Redo" : "Notdone"};
@@ -625,7 +630,7 @@ async function adminFees() {
   const draw = () => {
     const list = f.students.slice().sort((a,b) => (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || a.name.localeCompare(b.name));
     const rows = list.map(st => Object.assign({st}, feeState(st, month)));
-    const expected = rows.reduce((a, r) => a + (r.st.feePlan === "paid" ? 0 : r.st.fee), 0);
+    const expected = rows.reduce((a, r) => a + (r.st.feePlan === "paid" ? 0 : r.st.feePlan === "course" ? r.paid + r.due : r.st.fee), 0);
     const got = rows.reduce((a, r) => a + r.paid, 0), due = rows.reduce((a, r) => a + r.due, 0);
     const pct = expected ? Math.min(100, Math.round(got / expected * 100)) : 0;
     $("#fsum").innerHTML = `<div class="kpi glass"><span>Expected</span><b>${rupees(expected)}</b><i>📒</i></div>
@@ -635,7 +640,7 @@ async function adminFees() {
     $("#fl").innerHTML = rows.map(r => { const st = r.st; const pays = f.payments.filter(p => p.username === st.username && p.month === month);
       const lbl = r.label; const cls = r.cls;
       return `<li data-row="${esc(st.username)}"><span class="who2">${avatar(st.name)}<span><b>${esc(st.name)}</b> <span class="small mute">${esc(GROUP_SHORT[st.group]||"")}</span><br>
-        <span class="small mute">${st.feePlan === "paid" ? "Paid in full for the year" : st.fee ? rupees(st.fee) + " / month" : "No fee set"}${pays.map(p => ` · paid ${rupees(p.amount)} ${esc(p.mode||"")} ${esc(time(p.paidOn))} <button class="lnk" data-undo="${esc(p.row)}" data-un="${esc(st.username)}" title="Delete this payment">undo</button>`).join("")}</span></span></span>
+        <span class="small mute">${st.feePlan === "paid" ? "Paid in full for the year" : st.feePlan === "course" ? "Course fee " + rupees(st.fee) + " (one time)" : st.fee ? rupees(st.fee) + " / month" : "No fee set"}${pays.map(p => ` · paid ${rupees(p.amount)} ${esc(p.mode||"")} ${esc(time(p.paidOn))} <button class="lnk" data-undo="${esc(p.row)}" data-un="${esc(st.username)}" title="Delete this payment">undo</button>`).join("")}</span></span></span>
         <span class="row"><span class="chip s-${cls}">${esc(lbl)}${r.due && r.paid ? " · " + rupees(r.due) + " left" : ""}</span>
         ${r.due ? `<button class="btn pri sm" data-pay="${esc(st.username)}">Mark paid</button>${st.parentPhone ? `<a class="btn sec sm" target="_blank" rel="noopener" href="${esc(waTo(st.parentPhone, `Dear Parent, a gentle reminder from Hinde Classes: ${st.name}'s fee for ${monthName(month)} (${rupees(r.due)}) is due. You can pay by cash or UPI. Thank you! – Maitreya Hinde, 7358425108`))}">Remind</a>` : ""}` : ""}
         <button class="btn sec sm" data-plan="${esc(st.username)}" title="Change monthly fee">✎</button></span>
@@ -663,7 +668,7 @@ async function adminFees() {
   };
   const planForm = u => {
     const st = f.students.find(v => v.username === u); const el = box(u); el.classList.remove("hide");
-    el.innerHTML = `<form class="row"><select aria-label="Plan" style="width:auto"><option value="monthly">Monthly fee</option><option value="paid" ${st.feePlan==="paid"?"selected":""}>Paid in full for the year</option></select>
+    el.innerHTML = `<form class="row"><select aria-label="Plan" style="width:auto"><option value="monthly">Monthly fee</option><option value="paid" ${st.feePlan==="paid"?"selected":""}>Paid in full for the year</option><option value="course" ${st.feePlan==="course"?"selected":""}>One-time course fee</option></select>
       <input type="number" min="0" step="50" value="${st.fee}" aria-label="Monthly fee" style="width:130px"><button class="btn pri sm">Save</button><button type="button" class="btn sec sm">Cancel</button></form>`;
     const [plan, fee] = el.querySelectorAll("select,input");
     el.querySelector("button[type=button]").onclick = () => el.classList.add("hide");
