@@ -484,6 +484,25 @@ body{
   .cov-div{width:100%;height:1px;margin:0;}
 }
 
+/* ══ HOMEWORK PORTAL TILE (small tile at top of hero) ═════════ */
+.hw-tile{
+  display:flex;align-items:center;gap:12px;text-align:left;
+  max-width:420px;margin:0 auto 16px;padding:12px 14px;
+  background:linear-gradient(135deg,#0B4F4A,#0d9488);color:#fff;
+  border-radius:16px;text-decoration:none;
+  box-shadow:0 8px 22px rgba(11,79,74,0.18);
+  transition:transform .15s,box-shadow .15s;
+}
+.hw-tile:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(11,79,74,0.26);}
+.hw-tile:focus-visible{outline:3px solid #E0A93B;outline-offset:3px;}
+.hw-icon{width:42px;height:42px;border-radius:12px;flex-shrink:0;background:rgba(255,255,255,0.16);
+  display:flex;align-items:center;justify-content:center;font-size:21px;}
+.hw-text{flex:1;min-width:0;}
+.hw-title{font-size:14px;font-weight:700;margin-bottom:1px;}
+.hw-sub{font-size:11.5px;opacity:.88;}
+.hw-arrow{font-size:12px;font-weight:700;background:#FF6B54;border-radius:999px;padding:6px 11px;flex-shrink:0;}
+@media(max-width:700px){.hw-tile{max-width:100%;}}
+
 /* ══ CONCEPT VIDEOS TEASER (small tile at bottom) ═════════════ */
 .videos-teaser{
   padding:8px 40px 32px;
@@ -600,6 +619,15 @@ body{
 <!-- ══ HERO ══════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-inner">
+
+    <a href="/homework/" class="hw-tile fade-up d1" aria-label="Open the Home Task Portal">
+      <div class="hw-icon" aria-hidden="true">📘</div>
+      <div class="hw-text">
+        <div class="hw-title">Homework Portal</div>
+        <div class="hw-sub">Students: log in for today's worksheet</div>
+      </div>
+      <span class="hw-arrow">Open →</span>
+    </a>
 
     <div class="hero-badge fade-up d1">
       <div class="hero-badge-dot"></div>
