@@ -12,7 +12,8 @@
     "subject": "Mathematics",
     "chapter": "Fractions",
     "std": "Std 6 · Goa Board",
-    "level": "Basic to Medium"
+    "level": "Basic to Medium",
+    "game": null
    },
    {
     "id": "6GB-m-fractions-2",
@@ -24,7 +25,8 @@
     "file": "ws/6GB/6GB-m-fractions-2",
     "questions": 26,
     "minutes": 120,
-    "seq": 2
+    "seq": 2,
+    "game": null
    },
    {
     "id": "6GB-m-fractions-3",
@@ -36,7 +38,8 @@
     "file": "ws/6GB/6GB-m-fractions-3",
     "questions": 22,
     "minutes": 120,
-    "seq": 3
+    "seq": 3,
+    "game": null
    },
    {
     "id": "6GB-m-perimeter-area-1",
@@ -48,7 +51,8 @@
     "file": "ws/6GB/6GB-m-perimeter-area-1",
     "questions": 24,
     "minutes": 120,
-    "seq": 4
+    "seq": 4,
+    "game": null
    },
    {
     "id": "6GB-m-perimeter-area-2",
@@ -60,7 +64,8 @@
     "file": "ws/6GB/6GB-m-perimeter-area-2",
     "questions": 19,
     "minutes": 120,
-    "seq": 5
+    "seq": 5,
+    "game": null
    },
    {
     "id": "6GB-m-symmetry-1",
@@ -72,7 +77,8 @@
     "file": "ws/6GB/6GB-m-symmetry-1",
     "questions": 27,
     "minutes": 120,
-    "seq": 6
+    "seq": 6,
+    "game": null
    }
   ],
   "7GB": [
@@ -93,7 +99,8 @@
       "questions": 33,
       "minutes": 130
      }
-    }
+    },
+    "game": null
    },
    {
     "id": "7GB-m-fractions-2",
@@ -112,7 +119,8 @@
       "minutes": 120
      }
     },
-    "seq": 2
+    "seq": 2,
+    "game": null
    },
    {
     "id": "7GB-m-geometric-twins-1",
@@ -124,7 +132,8 @@
     "file": "ws/7GB/7GB-m-geometric-twins-1",
     "questions": 21,
     "minutes": 105,
-    "seq": 3
+    "seq": 3,
+    "game": "class-7-geometric-twins"
    },
    {
     "id": "7GB-m-geometric-twins-2",
@@ -136,7 +145,8 @@
     "file": "ws/7GB/7GB-m-geometric-twins-2",
     "questions": 22,
     "minutes": 120,
-    "seq": 4
+    "seq": 4,
+    "game": "class-7-geometric-twins"
    },
    {
     "id": "7GB-m-operations-with-integers-1",
@@ -148,7 +158,8 @@
     "file": "ws/7GB/7GB-m-operations-with-integers-1",
     "questions": 24,
     "minutes": 120,
-    "seq": 5
+    "seq": 5,
+    "game": "class-7-operations-with-integers"
    },
    {
     "id": "7GB-m-operations-with-integers-2",
@@ -167,7 +178,8 @@
       "minutes": 120
      }
     },
-    "seq": 6
+    "seq": 6,
+    "game": "class-7-operations-with-integers"
    }
   ],
   "7ICSE": [
@@ -181,7 +193,8 @@
     "subject": "Mathematics",
     "chapter": "Simple Linear Equations",
     "std": "Std 7 · ICSE",
-    "level": "Basic to Medium"
+    "level": "Basic to Medium",
+    "game": "class-7-finding-the-unknown"
    },
    {
     "id": "7ICSE-m-linear-equations-2",
@@ -193,7 +206,8 @@
     "file": "ws/7ICSE/7ICSE-m-linear-equations-2",
     "questions": 21,
     "minutes": 110,
-    "seq": 2
+    "seq": 2,
+    "game": "class-7-finding-the-unknown"
    },
    {
     "id": "7ICSE-m-linear-equations-3",
@@ -205,7 +219,8 @@
     "file": "ws/7ICSE/7ICSE-m-linear-equations-3",
     "questions": 19,
     "minutes": 120,
-    "seq": 3
+    "seq": 3,
+    "game": "class-7-finding-the-unknown"
    },
    {
     "id": "7ICSE-m-ratio-proportion-1",
@@ -217,7 +232,8 @@
     "file": "ws/7ICSE/7ICSE-m-ratio-proportion-1",
     "questions": 21,
     "minutes": 120,
-    "seq": 4
+    "seq": 4,
+    "game": "class-8-proportional-reasoning"
    },
    {
     "id": "7ICSE-m-ratio-proportion-2",
@@ -229,7 +245,8 @@
     "file": "ws/7ICSE/7ICSE-m-ratio-proportion-2",
     "questions": 18,
     "minutes": 120,
-    "seq": 5
+    "seq": 5,
+    "game": "class-8-proportional-reasoning"
    },
    {
     "id": "7ICSE-m-percent-1",
@@ -241,7 +258,8 @@
     "file": "ws/7ICSE/7ICSE-m-percent-1",
     "questions": 21,
     "minutes": 120,
-    "seq": 6
+    "seq": 6,
+    "game": "class-8-fractions-in-disguise"
    }
   ],
   "8GB": [
@@ -255,7 +273,8 @@
     "subject": "Mathematics",
     "chapter": "We Distribute, Yet Things Multiply (Expansions and Identities)",
     "std": "Std 8 · Goa Board",
-    "level": "Basic to Medium"
+    "level": "Basic to Medium",
+    "game": "class-8-algebra-play"
    },
    {
     "id": "8GB-m-we-distribute-2",
@@ -274,7 +293,8 @@
       "minutes": 120
      }
     },
-    "seq": 2
+    "seq": 2,
+    "game": "class-8-algebra-play"
    },
    {
     "id": "8GB-m-proportional-reasoning-1",
@@ -293,7 +313,8 @@
       "minutes": 115
      }
     },
-    "seq": 3
+    "seq": 3,
+    "game": "class-8-proportional-reasoning"
    },
    {
     "id": "8GB-m-proportional-reasoning-1-2",
@@ -305,7 +326,8 @@
     "file": "ws/8GB/8GB-m-proportional-reasoning-1-2",
     "questions": 20,
     "minutes": 120,
-    "seq": 4
+    "seq": 4,
+    "game": "class-8-proportional-reasoning"
    },
    {
     "id": "8GB-m-fractions-in-disguise-1",
@@ -317,7 +339,8 @@
     "file": "ws/8GB/8GB-m-fractions-in-disguise-1",
     "questions": 24,
     "minutes": 120,
-    "seq": 5
+    "seq": 5,
+    "game": "class-8-fractions-in-disguise"
    },
    {
     "id": "8GB-m-fractions-in-disguise-2",
@@ -329,7 +352,8 @@
     "file": "ws/8GB/8GB-m-fractions-in-disguise-2",
     "questions": 20,
     "minutes": 120,
-    "seq": 6
+    "seq": 6,
+    "game": "class-8-fractions-in-disguise"
    }
   ],
   "9GB": [
@@ -343,7 +367,8 @@
     "subject": "Mathematics",
     "chapter": "Surface Areas and Volumes (Cone, Sphere, Hemisphere)",
     "std": "Std 9 · Goa Board",
-    "level": "Basic to Medium"
+    "level": "Basic to Medium",
+    "game": "class-9-surface-area-and-volume"
    },
    {
     "id": "9GB-m-surface-areas-volumes-2",
@@ -355,7 +380,8 @@
     "file": "ws/9GB/9GB-m-surface-areas-volumes-2",
     "questions": 19,
     "minutes": 110,
-    "seq": 2
+    "seq": 2,
+    "game": "class-9-surface-area-and-volume"
    },
    {
     "id": "9GB-m-statistics-1",
@@ -367,7 +393,8 @@
     "file": "ws/9GB/9GB-m-statistics-1",
     "questions": 16,
     "minutes": 120,
-    "seq": 3
+    "seq": 3,
+    "game": "class-9-weighted-averages-and-data"
    },
    {
     "id": "9GB-m-statistics-2",
@@ -379,7 +406,8 @@
     "file": "ws/9GB/9GB-m-statistics-2",
     "questions": 19,
     "minutes": 120,
-    "seq": 4
+    "seq": 4,
+    "game": "class-9-weighted-averages-and-data"
    },
    {
     "id": "9GB-m-probability-1",
@@ -391,7 +419,8 @@
     "file": "ws/9GB/9GB-m-probability-1",
     "questions": 18,
     "minutes": 120,
-    "seq": 5
+    "seq": 5,
+    "game": "class-10-probability"
    },
    {
     "id": "9GB-m-herons-formula-1",
@@ -403,7 +432,8 @@
     "file": "ws/9GB/9GB-m-herons-formula-1",
     "questions": 14,
     "minutes": 120,
-    "seq": 6
+    "seq": 6,
+    "game": null
    }
   ],
   "9CBSE": [
@@ -424,7 +454,8 @@
       "questions": 29,
       "minutes": 115
      }
-    }
+    },
+    "game": "class-9-two-variables-one-line"
    },
    {
     "id": "9CBSE-m-two-variables-one-line-1",
@@ -443,7 +474,8 @@
       "minutes": 140
      }
     },
-    "seq": 2
+    "seq": 2,
+    "game": "class-9-two-variables-one-line"
    },
    {
     "id": "9CBSE-m-two-variables-one-line-2",
@@ -455,7 +487,8 @@
     "file": "ws/9CBSE/9CBSE-m-two-variables-one-line-2",
     "questions": 19,
     "minutes": 125,
-    "seq": 3
+    "seq": 3,
+    "game": "class-9-two-variables-one-line"
    },
    {
     "id": "9CBSE-m-surface-area-volume-1",
@@ -467,7 +500,8 @@
     "file": "ws/9CBSE/9CBSE-m-surface-area-volume-1",
     "questions": 17,
     "minutes": 120,
-    "seq": 4
+    "seq": 4,
+    "game": "class-9-surface-area-and-volume"
    },
    {
     "id": "9CBSE-m-surface-area-volume-2",
@@ -486,7 +520,8 @@
       "minutes": 140
      }
     },
-    "seq": 5
+    "seq": 5,
+    "game": "class-9-surface-area-and-volume"
    },
    {
     "id": "9CBSE-m-quadrilaterals-1",
@@ -498,7 +533,8 @@
     "file": "ws/9CBSE/9CBSE-m-quadrilaterals-1",
     "questions": 19,
     "minutes": 120,
-    "seq": 6
+    "seq": 6,
+    "game": "class-9-quadrilaterals"
    }
   ],
   "10GB": [
@@ -512,7 +548,8 @@
     "subject": "Mathematics",
     "chapter": "Quadratic Equations",
     "std": "Std 10 · Goa Board",
-    "level": "Basic to Medium"
+    "level": "Basic to Medium",
+    "game": "class-10-quadratic-equations"
    },
    {
     "id": "10GB-m-quadratic-equations-2",
@@ -524,7 +561,8 @@
     "file": "ws/10GB/10GB-m-quadratic-equations-2",
     "questions": 19,
     "minutes": 120,
-    "seq": 2
+    "seq": 2,
+    "game": "class-10-quadratic-equations"
    },
    {
     "id": "10GB-m-arithmetic-progressions-1",
@@ -536,7 +574,8 @@
     "file": "ws/10GB/10GB-m-arithmetic-progressions-1",
     "questions": 20,
     "minutes": 120,
-    "seq": 3
+    "seq": 3,
+    "game": "class-10-arithmetic-progressions"
    },
    {
     "id": "10GB-m-arithmetic-progressions-2",
@@ -548,7 +587,8 @@
     "file": "ws/10GB/10GB-m-arithmetic-progressions-2",
     "questions": 18,
     "minutes": 120,
-    "seq": 4
+    "seq": 4,
+    "game": "class-10-arithmetic-progressions"
    },
    {
     "id": "10GB-m-triangles-1",
@@ -560,7 +600,8 @@
     "file": "ws/10GB/10GB-m-triangles-1",
     "questions": 16,
     "minutes": 120,
-    "seq": 5
+    "seq": 5,
+    "game": "class-10-triangles"
    },
    {
     "id": "10GB-m-coordinate-geometry-1",
@@ -572,7 +613,8 @@
     "file": "ws/10GB/10GB-m-coordinate-geometry-1",
     "questions": 18,
     "minutes": 120,
-    "seq": 6
+    "seq": 6,
+    "game": "class-10-coordinate-geometry"
    }
   ],
   "10ADV": [
@@ -586,7 +628,8 @@
     "subject": "Mathematics",
     "chapter": "Pair of Linear Equations and Quadratic Equations – Board Challenge",
     "std": "Std 10 · Goa Board",
-    "level": "Advanced (95%+ target)"
+    "level": "Advanced (95%+ target)",
+    "game": "class-10-pair-of-linear-equations"
    },
    {
     "id": "10ADV-m-arithmetic-progressions-1",
@@ -598,7 +641,8 @@
     "file": "ws/10ADV/10ADV-m-arithmetic-progressions-1",
     "questions": 14,
     "minutes": 120,
-    "seq": 2
+    "seq": 2,
+    "game": "class-10-arithmetic-progressions"
    },
    {
     "id": "10ADV-m-trigonometry-1",
@@ -610,7 +654,8 @@
     "file": "ws/10ADV/10ADV-m-trigonometry-1",
     "questions": 15,
     "minutes": 120,
-    "seq": 3
+    "seq": 3,
+    "game": "class-10-trigonometry"
    },
    {
     "id": "10ADV-m-triangles-1",
@@ -622,7 +667,8 @@
     "file": "ws/10ADV/10ADV-m-triangles-1",
     "questions": 13,
     "minutes": 120,
-    "seq": 4
+    "seq": 4,
+    "game": "class-10-triangles"
    },
    {
     "id": "10ADV-m-coordinate-geometry-1",
@@ -634,7 +680,8 @@
     "file": "ws/10ADV/10ADV-m-coordinate-geometry-1",
     "questions": 13,
     "minutes": 120,
-    "seq": 5
+    "seq": 5,
+    "game": "class-10-coordinate-geometry"
    },
    {
     "id": "10ADV-m-applications-of-trigonometry-1",
@@ -646,7 +693,8 @@
     "file": "ws/10ADV/10ADV-m-applications-of-trigonometry-1",
     "questions": 11,
     "minutes": 120,
-    "seq": 6
+    "seq": 6,
+    "game": "class-10-heights-and-distances"
    }
   ]
  }

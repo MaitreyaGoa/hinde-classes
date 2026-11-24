@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapter game coming soon · Hinde Classes</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0B4F4A;--coral:#FF6B54;--gold:#E0A93B;--ink:#12302d}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:20px;color:var(--ink);font:16px/1.55 Inter,system-ui,sans-serif;
+  background:radial-gradient(60vw 60vw at 10% 0%,rgba(14,123,114,.35),transparent 60%),radial-gradient(50vw 50vw at 100% 20%,rgba(255,107,84,.28),transparent 60%),linear-gradient(160deg,#eef7f5,#f8f3ea)}
+.card{max-width:460px;width:100%;text-align:center;padding:34px 26px;border-radius:26px;background:rgba(255,255,255,.65);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.8);box-shadow:0 16px 40px rgba(11,79,74,.14)}
+.icon{font-size:64px;line-height:1;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px) rotate(-4deg)}}
+@media(prefers-reduced-motion:reduce){.icon{animation:none}}
+.kicker{font:700 12px Inter,sans-serif;letter-spacing:.5px;text-transform:uppercase;color:var(--coral);margin-top:14px}
+h1{font:700 clamp(24px,6vw,32px)/1.15 Poppins,sans-serif;margin:6px 0 8px;color:var(--teal)}
+p{margin:6px 0;color:#4f6764}
+.ch{font-weight:600;color:var(--ink)}
+.row{display:grid;gap:10px;margin-top:22px}
+a.btn{display:block;padding:13px 18px;border-radius:14px;font:600 15px Poppins,sans-serif;text-decoration:none}
+a.pri{background:linear-gradient(135deg,#0B4F4A,#0e7b72);color:#fff}
+a.sec{background:#fff;color:var(--teal);border:1px solid rgba(11,79,74,.15)}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="icon">🎮</div>
+  <div class="kicker">Coming soon</div>
+  <h1>This chapter's game is on its way!</h1>
+  <p>We're building a game for <span class="ch" id="ch">this chapter</span>.</p>
+  <p>Until then, finish your worksheet step by step, and try the other maths games below.</p>
+  <div class="row">
+    <a class="btn pri" href="/games/">Play other maths games</a>
+    <a class="btn sec" href="/homework/">← Back to my worksheet</a>
+  </div>
+</main>
+<script>
+{ const c = new URLSearchParams(location.search).get("c"); if (c) document.getElementById("ch").textContent = c.slice(0, 80); }
+</script>
+</body>
+</html>

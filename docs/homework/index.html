@@ -102,6 +102,33 @@ table.reg th:first-child,table.reg td:first-child{text-align:left;position:stick
 .hide{display:none!important}
 .loginwrap{max-width:430px;margin:7vh auto 0;padding:26px}
 footer{text-align:center;font-size:13px;color:var(--mute);padding:0 16px 28px}
+.hero{padding:20px 22px;margin-bottom:14px;background:linear-gradient(135deg,rgba(11,79,74,.92),rgba(14,123,114,.86));color:#fff;border-color:rgba(255,255,255,.3)}
+.hero h1{color:#fff;margin:4px 0}.hero .mute{color:rgba(255,255,255,.85)}.hero .kicker{color:#ffd9a8}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px}
+.kpi{position:relative;display:block;padding:14px 16px;border-radius:18px;text-decoration:none;color:var(--ink);overflow:hidden}
+.kpi span{font-size:13px;color:var(--mute);font-weight:600}.kpi b{display:block;font:700 28px Poppins,sans-serif;margin-top:2px}
+.kpi i{position:absolute;right:12px;top:10px;font-style:normal;font-size:22px;opacity:.55}
+a.kpi:hover{transform:translateY(-2px);transition:transform .15s}
+.th{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}.th h2{margin:0}
+.tasks li{align-items:center}.who2{display:flex;gap:10px;align-items:flex-start;flex:1 1 220px}
+.empty{color:var(--mute);justify-content:center!important;padding:18px 0!important}
+.toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 14px;border-radius:18px;margin-bottom:14px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.cbtn{border:1px solid var(--line);background:rgba(255,255,255,.7);color:var(--teal);border-radius:999px;padding:7px 13px;font:600 13.5px Inter,sans-serif;cursor:pointer;min-height:36px}
+.cbtn.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.bar.big{height:10px;border-radius:9px;background:rgba(11,79,74,.12);overflow:hidden}.bar.big i{display:block;height:100%;background:linear-gradient(90deg,#0e7b72,#E0A93B)}
+.kpi .bar{height:6px;border-radius:9px;background:rgba(11,79,74,.12);overflow:hidden}.kpi .bar i{display:block;height:100%;position:static;opacity:1;background:linear-gradient(90deg,#0e7b72,#E0A93B)}
+.payform{flex-basis:100%;padding:10px;border-radius:12px;background:rgba(255,255,255,.7);border:1px solid var(--line)}
+.lnk{border:0;background:none;color:var(--bad);font:600 12px Inter,sans-serif;cursor:pointer;padding:0 2px;text-decoration:underline}
+body.staff nav a{display:inline-flex;align-items:center;gap:6px}body.staff nav a i{font-style:normal}
+@media(max-width:760px){
+  body.staff{padding-bottom:78px}
+  body.staff nav{position:fixed;left:0;right:0;bottom:0;z-index:8;margin:0;padding:6px 6px calc(6px + env(safe-area-inset-bottom));gap:0;flex-wrap:nowrap;overflow-x:auto;
+    background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid var(--line);width:auto}
+  body.staff nav a{flex:1 0 auto;flex-direction:column;gap:0;padding:6px 10px;border:0;background:none;border-radius:12px;font-size:11.5px;min-width:64px}
+  body.staff .toast{bottom:92px}
+  body.staff nav a i{font-size:20px}body.staff nav a.on{background:rgba(11,79,74,.1);color:var(--teal)}
+}
 .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:9;padding:12px 16px;max-width:90vw}
 @media(prefers-reduced-motion:no-preference){.tile,.stile{animation:rise .35s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(8px)}}}
 </style>
@@ -194,11 +221,23 @@ function setShell() {
   if (!u) { nav.classList.add("hide"); return; }
   const items = u.role === "student"
     ? [["home","My worksheet"],["history","All worksheets"],["account","Password"]]
-    : [["home","Students"],["register","Register"],["accounts","Accounts"],["account","Password"]];
-  nav.innerHTML = items.map(([h,t]) => `<a href="#${h}" data-h="${h}">${t}</a>`).join("");
+    : [["home","🏠 Today"],["students","👥 Students"],["worksheets","📚 Worksheets"]].concat(u.role === "admin" ? [["fees","💰 Fees"]] : [])
+        .concat([["register","📊 Register"],["accounts","⚙️ Accounts"],["account","🔑 Password"]]);
+  document.body.classList.toggle("staff", u.role !== "student");
+  nav.innerHTML = items.map(([h,t]) => { const [ic, ...w] = t.split(" "); return u.role === "student" ? `<a href="#${h}" data-h="${h}">${t}</a>` : `<a href="#${h}" data-h="${h}"><i>${ic}</i><span>${w.join(" ")}</span></a>`; }).join("");
   nav.classList.remove("hide");
+  placeNav();
 }
-function markNav(h) { document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.h === h || (h.startsWith("s-") && a.dataset.h === "home"))); }
+// On phones the staff menu is a bottom tab bar. It must live outside the frosted header,
+// because a backdrop-filter parent would trap a position:fixed child.
+const MQ = matchMedia("(max-width:760px)");
+function placeNav() {
+  const nav = $("#nav"), staff = document.body.classList.contains("staff");
+  if (staff && MQ.matches) { if (nav.parentNode !== document.body) document.body.append(nav); }
+  else if (nav.parentNode !== $("header")) $("header").append(nav);
+}
+MQ.addEventListener("change", placeNav);
+function markNav(h) { document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.h === h || (h.startsWith("s-") && a.dataset.h === "students") || (h.startsWith("todo-") && a.dataset.h === "home"))); }
 function logout(silent) {
   if (!silent && session) api("logout").catch(() => {});
   session = null; store.del(SKEY); setShell(); route();
@@ -246,7 +285,8 @@ async function studentHome() {
       <div class="kicker">${esc(ws.subject)} · sent ${esc(cur.sentAt ? ago(cur.sentAt) : nice(cur.date))}</div>
       <h1>${esc(wsTitle(ws))}</h1>
       <div class="facts"><div><b>${ws.questions}</b>questions</div><div><b>~${Math.round(ws.minutes/60*10)/10} h</b>time</div><div><b>${esc(GROUP_SHORT[u.group]||"")}</b>class</div></div>
-      <div class="row"><a class="btn pri" href="${esc(wsLink(ws, u.name))}">Open worksheet</a></div>
+      <div class="row"><a class="btn pri" href="${esc(wsLink(ws, u.name))}">Open worksheet</a>
+        <a class="btn coral" href="${esc(ws.game ? `../games/${ws.game}/` : `../games/coming-soon/?c=${encodeURIComponent(ws.chapter)}`)}">🎮 ${ws.game ? "Play the chapter game" : "Chapter game – coming soon"}</a></div>
       <p class="small mute" style="margin-bottom:0">Every section starts with "How to solve" and a worked example. Write all steps in your notebook.</p></div>`
     : `<div class="glass tile s4 r2"><div class="kicker">My worksheet</div><h1>No worksheet yet</h1><p class="mute">Your teacher will send your worksheet here. You'll also get a WhatsApp message.</p></div>`;
   $("#app").innerHTML = `<div class="bento">
@@ -289,7 +329,7 @@ function drawList(items, sel, empty) {
   $(sel).innerHTML = items.length ? items.map(it => {
     const ws = sheetFor(u, it.date);
     const can = it.status === "Pending" || it.status === "Redo";
-    return `<li><span><b>${esc(ws.subject)}</b>: <a href="${esc(wsLink(ws, u.name))}">${esc(wsTitle(ws))}</a><br>
+    return `<li><span><b>${esc(ws.subject)}</b>: <a href="${esc(wsLink(ws, u.name))}">${esc(wsTitle(ws))}</a>${ws.game ? ` · <a href="../games/${esc(ws.game)}/">🎮 game</a>` : ""}<br>
       <span class="small mute">Sent ${esc(it.sentAt ? time(it.sentAt) : nice(it.date))}${it.remark ? " · Note: " + esc(it.remark) : ""}</span></span>
       <span class="row">${chip(it.status)}${it.stars ? `<span class="stars" style="font-size:15px">${starsTxt(Number(it.stars))}</span>` : ""}
       ${can ? `<button class="btn sec sm" data-late="${esc(it.date)}">Submitted in class</button>` : ""}</span></li>`;
@@ -309,11 +349,20 @@ async function studentHistory() {
 }
 
 /* ---------- admin / teacher ---------- */
-let OV = null;            // overview cache {students, assignments, status, byUser}
-let filterKey = store.get("hc_hw_filter") || "all";
+let OV = null;            // overview cache {students, assignments, status, requests, byUser}
+let FEES = null;          // fees cache {students, payments}
+let classKey = store.get("hc_hw_class") || "all";
+const monthISO = (d = new Date()) => istISO(d).slice(0, 7);
+const monthName = m => new Date(m + "-15T12:00:00").toLocaleDateString("en-IN", {month: "long", year: "numeric"});
+const rupees = n => "₹" + Number(n || 0).toLocaleString("en-IN");
+const isAdmin = () => session && session.user.role === "admin";
+const gameHref = w => w && w.game ? `../games/${w.game}/` : `../games/coming-soon/?c=${encodeURIComponent(w ? w.chapter : "")}`;
+const sortStudents = arr => arr.sort((a,b) => (GROUP_ORDER.indexOf(a.s.group) - GROUP_ORDER.indexOf(b.s.group)) || a.s.name.localeCompare(b.s.name));
+const avatar = (n, size) => `<div class="av" style="background:${avCol(n)}${size ? `;width:${size}px;height:${size}px;font-size:${Math.round(size*.38)}px` : ""}">${esc(initials(n))}</div>`;
+
 async function loadOverview() {
   const r = await api("adminOverview");
-  OV = r; OV.byUser = {};
+  OV = r; OV.byUser = {}; OV.requests = r.requests || [];
   r.students.forEach(s => {
     const asg = r.assignments.filter(a => a.username === s.username).sort(bySent);
     const items = asg.map(a => Object.assign({status:"Pending"}, r.status.find(x => x.username === s.username && x.date === a.date) || {}, a));
@@ -325,74 +374,170 @@ async function loadOverview() {
     if (cur && cur.status === "Submitted") state = "To check";
     else if (!cur || DONE.includes(cur.status) || cur.status === "Not done") state = next.length ? "Ready" : "Up to date";
     else state = cur.status === "Redo" ? "Redo" : "Working";
-    OV.byUser[s.username] = {s, items, cur, next, done, pct: items.length ? Math.round(done/items.length*100) : 0, state};
+    const days = cur && cur.sentAt ? (Date.now() - new Date(cur.sentAt)) / 864e5 : 0;
+    OV.byUser[s.username] = {s, items, cur, next, done, pct: items.length ? Math.round(done/items.length*100) : 0, state, late: (state === "Working" || state === "Redo") && days > 2};
   });
 }
-async function adminHome() {
-  $("#app").innerHTML = `<p class="mute">Loading students…</p>`;
+async function loadFees(force) {
+  if (!isAdmin()) return null;
+  if (!FEES || force) { try { FEES = await api("adminFees"); } catch (e) { FEES = {error: e.message}; } }
+  return FEES.error ? null : FEES;
+}
+function feeState(st, month) {
+  const paid = FEES.payments.filter(p => p.username === st.username && p.month === month).reduce((a, p) => a + p.amount, 0);
+  if (st.feePlan === "paid") return {paid, due: 0, label: "Paid for year", cls: "Checked"};
+  if (!st.fee) return {paid, due: 0, label: "No fee set", cls: "Pending"};
+  if (paid >= st.fee) return {paid, due: 0, label: "Paid", cls: "Checked"};
+  return {paid, due: st.fee - paid, label: paid ? "Part paid" : "Due", cls: paid ? "Redo" : "Notdone"};
+}
+const sendLink = (x, d, label, cls) => { const w = sheetFor(x.s, d);
+  return `<a class="btn ${cls||"wa"} sm" data-send="${esc(d)}" data-u="${esc(x.s.username)}" target="_blank" rel="noopener" href="${esc(waTo(x.s.parentPhone, taskMsg(x.s, w)))}">${label || "📲 Send"}</a>`; };
+function wireSend(after) {
+  document.querySelectorAll("[data-send]").forEach(a => a.addEventListener("click", () => {
+    // WhatsApp opens in a new tab from the link itself; the send is recorded at the same time.
+    const x = OV.byUser[a.dataset.u];
+    api("adminAssign", {username: a.dataset.u, date: a.dataset.send})
+      .then(() => { toast(`Sent to ${x ? x.s.name : "student"}'s portal ✓`); OV = null; after(); })
+      .catch(e => toast(e.message, true));
+  }));
+}
+async function quickSet(x, it, status, extra) {
+  await api("adminSet", Object.assign({username: x.s.username, date: it.date, status, remark: it.remark || "", stars: it.stars || ""}, extra || {}));
+}
+const remindMsg = (s, w) => `Dear Parent, a gentle reminder from Hinde Classes: ${s.name}'s home task (${w ? w.subject + ": " + wsTitle(w) : ""}) is not submitted yet. Please check hindeclasses.com/homework. Thank you! – Maitreya Hinde, 7358425108`;
+
+/* --- Today: everything that needs a tap, in one place --- */
+async function adminToday() {
+  $("#app").innerHTML = `<p class="mute">Loading today's work…</p>`;
   try { await loadOverview(); }
   catch (e) {
-    if (e.message === "Unknown action") return showErr(new Error("Almost there: please paste the new Code.gs into your Apps Script, run setup once, then Deploy → Manage deployments → ✏️ Edit → Version: New version → Deploy. The student tiles will then appear here."));
+    if (e.message === "Unknown action") return showErr(new Error("Almost there: please paste the new Code.gs into your Apps Script, run setup once, then Deploy → Manage deployments → ✏️ Edit → Version: New version → Deploy."));
     return showErr(e);
   }
-  const all = Object.values(OV.byUser).sort((a,b) => (GROUP_ORDER.indexOf(a.s.group) - GROUP_ORDER.indexOf(b.s.group)) || a.s.name.localeCompare(b.s.name));
-  const n = k => all.filter(x => x.state === k).length;
-  const F = [["all","All students",all.length,"var(--teal)"],["Ready","Ready for next",n("Ready"),"#b8402c"],["To check","To check",n("To check"),"var(--sub)"],["Working","Working on it",n("Working")+n("Redo"),"var(--pend)"]];
-  const shown = all.filter(x => filterKey === "all" || x.state === filterKey || (filterKey === "Working" && x.state === "Redo"));
-  $("#app").innerHTML = `<div class="sum">${F.map(([k,t,c,col]) => `<div class="glass ${filterKey===k?"on":""}" data-f="${k}" role="button" tabindex="0"><span class="small mute">${t}</span><b style="color:${col}">${c}</b></div>`).join("")}</div>
-    <div class="tiles">${shown.map(x => {
+  const all = sortStudents(Object.values(OV.byUser));
+  const check = all.filter(x => x.state === "To check"), ready = all.filter(x => x.state === "Ready"),
+        working = all.filter(x => x.state === "Working" || x.state === "Redo"), late = working.filter(x => x.late);
+  const hr = Number(new Intl.DateTimeFormat("en-IN", {hour: "numeric", hour12: false, timeZone: "Asia/Kolkata"}).format(new Date()));
+  const hello = hr < 12 ? "Good morning" : hr < 17 ? "Good afternoon" : "Good evening";
+  const first = String(session.user.name).split(" ")[0];
+  const today = new Date().toLocaleDateString("en-IN", {weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata"});
+  $("#app").innerHTML = `<section class="hero glass">
+      <div><div class="kicker">${esc(today)}</div><h1>${hello}, ${esc(first)} 👋</h1>
+      <p class="mute" style="margin:0">${check.length || ready.length ? `You have <b>${check.length}</b> worksheet${check.length===1?"":"s"} to check and <b>${ready.length}</b> student${ready.length===1?"":"s"} ready for the next one.` : "All caught up. Nothing needs you right now. 🎉"}</p></div>
+    </section>
+    <div class="kpis">
+      <a class="kpi glass" href="#todo-check"><span>To check</span><b style="color:var(--sub)">${check.length}</b><i>📥</i></a>
+      <a class="kpi glass" href="#todo-send"><span>Ready to send</span><b style="color:#b8402c">${ready.length}</b><i>📲</i></a>
+      <a class="kpi glass" href="#students"><span>Working on it</span><b style="color:var(--pend)">${working.length}</b><i>✏️</i></a>
+      ${isAdmin() ? `<a class="kpi glass" href="#fees"><span>Fees due · ${esc(monthName(monthISO()).split(" ")[0])}</span><b id="kfee" style="color:var(--bad)">…</b><i>₹</i></a>` : ""}
+    </div>
+    <div class="bento">
+      <div class="glass tile s3" id="todo-check"><div class="th"><h2>📥 To check</h2><span class="chip s-Submitted">${check.length}</span></div>
+        <ul class="list tasks">${check.map(x => { const w = sheetFor(x.s, x.cur.date); return `<li>
+          <span class="who2">${avatar(x.s.name)}<span><b>${esc(x.s.name)}</b> <span class="small mute">${esc(GROUP_SHORT[x.s.group]||"")}</span><br>
+          <span class="small">${esc(w ? wsTitle(w) : "")}</span><br><span class="small mute">${esc(x.cur.method||"Submitted")} · ${esc(ago(x.cur.submittedAt))}</span></span></span>
+          <span class="row"><button class="btn pri sm" data-ok="${esc(x.s.username)}">✓ Checked</button><button class="btn sec sm" data-redo="${esc(x.s.username)}">↺ Redo</button><a class="btn sec sm" href="#${slug(x.s.username)}">Open</a></span></li>`; }).join("") || `<li class="empty">Nothing to check. 👍</li>`}</ul></div>
+      <div class="glass tile s3" id="todo-send"><div class="th"><h2>📲 Send the next worksheet</h2><span class="chip s-Ready">${ready.length}</span></div>
+        <ul class="list tasks">${ready.map(x => { const w = sheetFor(x.s, x.next[0]); return `<li>
+          <span class="who2">${avatar(x.s.name)}<span><b>${esc(x.s.name)}</b> <span class="small mute">${esc(GROUP_SHORT[x.s.group]||"")}</span><br>
+          <span class="small">${esc(wsTitle(w))}</span><br><span class="small mute">${w.questions} questions · <a href="${esc(w.file)}.html" target="_blank" rel="noopener">preview</a></span></span></span>
+          <span class="row">${sendLink(x, x.next[0])}</span></li>`; }).join("") || `<li class="empty">No one is waiting for a worksheet.</li>`}</ul>
+        <p class="small mute" style="margin-bottom:0">📲 Send opens WhatsApp with the parent message and puts the worksheet on the student's portal.</p></div>
+      <div class="glass tile s4"><div class="th"><h2>⏰ Still working</h2><span class="chip s-Pending">${working.length}</span></div>
+        <ul class="list tasks">${working.map(x => { const w = sheetFor(x.s, x.cur.date); return `<li>
+          <span class="who2">${avatar(x.s.name)}<span><b>${esc(x.s.name)}</b> ${x.state === "Redo" ? chip("Redo") : ""}<br>
+          <span class="small">${esc(w ? wsTitle(w) : "")}</span><br><span class="small ${x.late ? "" : "mute"}" ${x.late ? `style="color:var(--bad)"` : ""}>sent ${esc(ago(x.cur.sentAt))}${x.late ? " · overdue" : ""}</span></span></span>
+          <span class="row">${x.s.parentPhone ? `<a class="btn sec sm" target="_blank" rel="noopener" href="${esc(waTo(x.s.parentPhone, remindMsg(x.s, w)))}">Remind parent</a>` : ""}<button class="btn sec sm" data-ok="${esc(x.s.username)}">✓ Done in class</button></span></li>`; }).join("") || `<li class="empty">No one has a worksheet open.</li>`}</ul></div>
+      <div class="glass tile s2"><div class="th"><h2>📝 Worksheet requests</h2></div>
+        ${OV.requests.length ? `<ul class="list">${OV.requests.map(q => `<li><span><b>${esc(GROUP_SHORT[q.group]||q.group||"Any class")}</b>: ${esc(q.topic)} <span class="small mute">× ${esc(q.count)}</span></span></li>`).join("")}</ul>` : `<p class="small mute">No open requests.</p>`}
+        <a class="btn sec sm" href="#worksheets">Request worksheets</a>
+        <p class="small mute" style="margin-bottom:0">New worksheets are added to every class queue each Sunday at 3:43 pm.</p></div>
+    </div>`;
+  const by = u => OV.byUser[u];
+  document.querySelectorAll("[data-ok]").forEach(b => b.onclick = async () => {
+    const x = by(b.dataset.ok); b.disabled = true;
+    try { await quickSet(x, x.cur, "Checked", x.state === "Working" || x.state === "Redo" ? {method: "In class"} : {}); toast(`${x.s.name}: checked ✓`); adminToday(); } catch (e) { toast(e.message, true); b.disabled = false; }
+  });
+  document.querySelectorAll("[data-redo]").forEach(b => b.onclick = () => { location.hash = "#" + slug(b.dataset.redo); });
+  wireSend(adminToday);
+  if (isAdmin()) loadFees().then(f => { const el = $("#kfee"); if (!el) return; if (!f) { el.textContent = "–"; return; }
+    const m = monthISO(); el.textContent = rupees(f.students.reduce((a, st) => a + feeState(st, m).due, 0)); });
+}
+
+/* --- Students: tiles with search and class filter --- */
+async function adminStudents() {
+  $("#app").innerHTML = `<p class="mute">Loading students…</p>`;
+  if (!OV) { try { await loadOverview(); } catch (e) { return showErr(e); } }
+  const all = sortStudents(Object.values(OV.byUser));
+  const groups = GROUP_ORDER.filter(g => all.some(x => x.s.group === g));
+  $("#app").innerHTML = `<div class="toolbar glass"><input id="q" type="search" placeholder="🔍  Search a student" autocomplete="off" style="max-width:280px">
+      <div class="chips"><button class="cbtn ${classKey==="all"?"on":""}" data-c="all">All</button>${groups.map(g => `<button class="cbtn ${classKey===g?"on":""}" data-c="${g}">${esc(GROUP_SHORT[g])}</button>`).join("")}</div></div>
+    <div class="tiles" id="tl"></div>`;
+  const draw = () => {
+    const q = $("#q").value.trim().toLowerCase();
+    const shown = all.filter(x => (classKey === "all" || x.s.group === classKey) && (!q || x.s.name.toLowerCase().includes(q)));
+    $("#tl").innerHTML = shown.map(x => {
       const ws = x.cur && sheetFor(x.s, x.cur.date);
       const st = x.state === "To check" ? "Submitted" : x.state === "Working" ? "Pending" : x.state;
       return `<button class="glass stile" data-u="${esc(x.s.username)}">
-        <div class="row" style="gap:10px;flex-wrap:nowrap"><div class="av" style="background:${avCol(x.s.name)}">${esc(initials(x.s.name))}</div>
+        <div class="row" style="gap:10px;flex-wrap:nowrap">${avatar(x.s.name)}
         <div style="min-width:0"><div class="nm">${esc(x.s.name)}</div><div class="small mute">${esc(GROUP_SHORT[x.s.group]||x.s.group)}${x.s.variant ? " · extra maths" : ""}</div></div></div>
-        <div>${chip(st)} ${x.state === "Ready" ? `<span class="small mute">${x.next.length} queued</span>` : ""}</div>
-        <div class="small" style="min-height:2.6em">${ws ? `${esc(ws.subject)}: ${esc(wsTitle(ws))}<br><span class="mute">sent ${esc(ago(x.cur.sentAt) || nice(x.cur.date))}</span>` : `<span class="mute">No worksheet sent yet</span>`}</div>
-        <div class="bar" title="${x.pct}% done"><i style="width:${x.pct}%"></i></div><div class="small mute">${x.done}/${x.items.length} done · ${x.pct}%</div></button>`;
-    }).join("") || `<p class="mute">No students here.</p>`}</div>`;
-  document.querySelectorAll("[data-f]").forEach(b => { const go = () => { filterKey = b.dataset.f; store.set("hc_hw_filter", filterKey); adminHome(); }; b.onclick = go; b.onkeydown = e => { if (e.key === "Enter") go(); }; });
-  document.querySelectorAll(".stile").forEach(b => b.onclick = () => { location.hash = "#" + slug(b.dataset.u); });
+        <div>${chip(st)} ${x.late ? `<span class="chip s-Notdone">overdue</span>` : ""}</div>
+        <div class="small" style="min-height:2.6em">${ws ? `${esc(wsTitle(ws))}<br><span class="mute">sent ${esc(ago(x.cur.sentAt) || nice(x.cur.date))}</span>` : `<span class="mute">No worksheet sent yet</span>`}</div>
+        <div class="bar" title="${x.pct}% done"><i style="width:${x.pct}%"></i></div><div class="small mute">${x.done}/${x.items.length} done · ${x.next.length} in queue</div></button>`;
+    }).join("") || `<p class="mute">No students match.</p>`;
+    document.querySelectorAll(".stile").forEach(b => b.onclick = () => { location.hash = "#" + slug(b.dataset.u); });
+  };
+  $("#q").oninput = draw;
+  document.querySelectorAll("[data-c]").forEach(b => b.onclick = () => { classKey = b.dataset.c; store.set("hc_hw_class", classKey);
+    document.querySelectorAll("[data-c]").forEach(c => c.classList.toggle("on", c === b)); draw(); });
+  draw();
 }
+
+/* --- One student --- */
 async function adminStudent(slugName) {
   if (!OV) { try { await loadOverview(); } catch (e) { return showErr(e); } }
   const x = Object.values(OV.byUser).find(v => slug(v.s.username) === slugName);
-  if (!x) { location.hash = "#home"; return; }
+  if (!x) { location.hash = "#students"; return; }
   const s = x.s, cur = x.cur, ws = cur && sheetFor(s, cur.date);
   const curDone = !cur || DONE.includes(cur.status) || cur.status === "Not done";
-  const remind = cur && waTo(s.parentPhone, `Dear Parent, a gentle reminder from Hinde Classes: ${s.name}'s home task (${ws ? ws.subject + ": " + wsTitle(ws) : ""}) is not submitted yet. Please check hindeclasses.com/homework. Thank you! – Maitreya Hinde, 7358425108`);
-  $("#app").innerHTML = `<div class="row" style="margin-bottom:12px"><a class="pill" href="#home">← All students</a></div>
+  $("#app").innerHTML = `<div class="row" style="margin-bottom:12px"><a class="pill" href="#students">← All students</a></div>
   <div class="bento">
     <div class="glass tile s4">
-      <div class="row" style="gap:12px;flex-wrap:nowrap"><div class="av" style="width:52px;height:52px;font-size:20px;background:${avCol(s.name)}">${esc(initials(s.name))}</div>
+      <div class="row" style="gap:12px;flex-wrap:nowrap">${avatar(s.name, 56)}
       <div><h1 style="margin:0">${esc(s.name)}</h1><div class="small mute">${esc(GROUP_NAME[s.group]||s.group)} · ${esc(s.username)}${s.variant ? " · extra maths practice" : ""}</div></div></div>
-      <div class="facts"><div><b>${x.done}/${x.items.length}</b>done</div><div><b>${x.pct}%</b>completion</div><div><b>${x.next.length}</b>ready to send</div></div>
+      <div class="facts"><div><b>${x.done}/${x.items.length}</b>done</div><div><b>${x.pct}%</b>completion</div><div><b>${x.next.length}</b>in queue</div></div>
+      <div class="bar big"><i style="width:${x.pct}%"></i></div>
     </div>
     <div class="glass tile s2"><div class="kicker">Parent</div>
       <div class="big" style="font-size:20px">${s.parentPhone ? "📞 " + esc(s.parentPhone) : "No number"}</div>
-      ${cur && !curDone ? `<a class="btn wa sm" target="_blank" rel="noopener" href="${esc(remind)}">Remind parent</a>` : `<span class="small mute">${s.parentPhone ? "" : "Add it in Accounts."}</span>`}</div>
+      <div class="row">${s.parentPhone ? `<a class="btn sec sm" target="_blank" rel="noopener" href="https://wa.me/${phone91(s.parentPhone)}">WhatsApp</a>` : ""}
+      ${cur && !curDone && s.parentPhone ? `<a class="btn sec sm" target="_blank" rel="noopener" href="${esc(waTo(s.parentPhone, remindMsg(s, ws)))}">Remind</a>` : ""}</div>
+      <div id="feebox" class="small mute" style="margin-top:10px"></div></div>
     <div class="glass tile s3">
       <div class="kicker">Current worksheet</div>
       ${ws ? `<h2 style="margin-top:6px">${esc(ws.subject)}: <a href="${esc(ws.file)}.html" target="_blank" rel="noopener">${esc(wsTitle(ws))}</a></h2>
         <div class="row">${chip(cur.status)}<span class="small mute">Sent ${esc(time(cur.sentAt) || nice(cur.date))}${cur.submittedAt ? " · submitted " + esc(time(cur.submittedAt)) + (cur.method ? " (" + esc(cur.method) + ")" : "") : ""}</span></div>
         <div class="acts">${["Checked","Redo","Not done"].map(k => `<button class="mark ${cur.status===k?"on":""}" data-set="${k}">${k==="Checked"?"✓ Checked":k==="Redo"?"↺ Redo":"✗ Not done"}</button>`).join("")}</div>
         <div class="acts"><span>${[1,2,3,4,5].map(n => `<button class="starbtn ${Number(cur.stars)>=n?"lit":""}" data-star="${n}" aria-label="${n} stars">★</button>`).join("")}</span></div>
-        <div class="acts"><input id="rem" placeholder="Remark for student and parent" value="${esc(cur.remark||"")}" maxlength="300" style="flex:1 1 200px;width:auto;min-height:40px"><button class="btn sec sm" id="saveRem">Save</button></div>`
-      : `<p class="mute">Nothing sent yet. Send the first worksheet from the list.</p>`}
+        <div class="acts"><input id="rem" placeholder="Remark for student and parent" value="${esc(cur.remark||"")}" maxlength="300" style="flex:1 1 200px;width:auto;min-height:40px"><button class="btn sec sm" id="saveRem">Save</button></div>
+        <div class="acts"><a class="btn sec sm" href="${esc(gameHref(ws))}" target="_blank" rel="noopener">🎮 ${ws.game ? "Chapter game" : "Game coming soon"}</a></div>`
+      : `<p class="mute">Nothing sent yet. Send the first worksheet from the queue.</p>`}
     </div>
-    <div class="glass tile s3"><div class="kicker">Next ${x.next.length || ""} worksheets</div>
+    <div class="glass tile s3"><div class="kicker">Queue · next ${x.next.length || ""}</div>
       ${x.next.length && !curDone ? `<div class="warn">${esc(s.name)} hasn't finished the current worksheet yet. Usually wait, or send anyway.</div>` : ""}
       <ul class="list q5" style="margin-top:6px">${x.next.map((d, i) => { const w = sheetFor(s, d); return `<li><span class="n">${i+1}</span>
-        <span style="flex:1"><b>${esc(w.subject)}</b>: ${esc(wsTitle(w))}<br><span class="small mute">${w.questions} questions · ${w.minutes} min · <a href="${esc(w.file)}.html" target="_blank" rel="noopener">preview</a></span></span>
-        ${i === 0 ? `<a class="btn ${curDone ? "wa" : "sec"} sm" data-send="${esc(d)}" target="_blank" rel="noopener" href="${esc(waTo(s.parentPhone, taskMsg(s, w)))}">${curDone ? "📲 Send" : "Send anyway"}</a>` : ""}</li>`; }).join("") || `<li class="mute">No new worksheets yet. New ones are made every working day around 1 pm.</li>`}</ul>
-      <p class="small mute" style="margin-bottom:0">Send opens WhatsApp with the message to ${s.parentPhone ? "the parent" : "a contact you choose"} and puts the worksheet on ${esc(s.name)}'s portal.</p></div>
-    <div class="glass tile s6"><h2>All sent worksheets</h2><ul class="list">${x.items.slice().reverse().map(it => { const w = sheetFor(s, it.date); return w ? `<li><span><b>${esc(w.subject)}</b>: ${esc(wsTitle(w))}<br><span class="small mute">Sent ${esc(time(it.sentAt) || nice(it.date))}${it.remark ? " · " + esc(it.remark) : ""}</span></span>
+        <span style="flex:1"><b>${esc(wsTitle(w))}</b><br><span class="small mute">${w.questions} questions · ${w.minutes} min · <a href="${esc(w.file)}.html" target="_blank" rel="noopener">preview</a> · <a href="${esc(gameHref(w))}" target="_blank" rel="noopener">game</a></span></span>
+        ${sendLink(x, d, i === 0 ? (curDone ? "📲 Send" : "Send anyway") : "Send", i === 0 && curDone ? "wa" : "sec")}</li>`; }).join("") || `<li class="mute">No new worksheets in the queue. New ones arrive every Sunday.</li>`}</ul></div>
+    <div class="glass tile s6"><h2>All sent worksheets</h2><ul class="list">${x.items.slice().reverse().map(it => { const w = sheetFor(s, it.date); return w ? `<li><span><b>${esc(wsTitle(w))}</b><br><span class="small mute">Sent ${esc(time(it.sentAt) || nice(it.date))}${it.remark ? " · " + esc(it.remark) : ""}</span></span>
       <span class="row">${chip(it.status)}${it.stars ? `<span class="stars" style="font-size:15px">${starsTxt(Number(it.stars))}</span>` : ""}
       ${it !== cur && it.status === "Submitted" ? `<button class="btn sec sm" data-quick="${esc(it.date)}">✓ Checked</button>` : ""}
       ${it.status === "Pending" ? `<button class="btn sec sm" data-unsend="${esc(it.date)}" title="Take back a worksheet sent by mistake">Undo send</button>` : ""}</span></li>` : ""; }).join("") || `<li class="mute">Nothing sent yet.</li>`}</ul></div>
   </div>`;
+  const reload = () => { OV = null; adminStudent(slugName); };
   const set = async patch => {
     const p = Object.assign({status: cur.status, remark: ($("#rem")||{}).value || "", stars: cur.stars || ""}, patch);
-    try { await api("adminSet", {username: s.username, date: cur.date, status: p.status, remark: p.remark, stars: p.stars}); toast("Saved ✓"); OV = null; adminStudent(slugName); }
+    try { await api("adminSet", {username: s.username, date: cur.date, status: p.status, remark: p.remark, stars: p.stars}); toast("Saved ✓"); reload(); }
     catch (e) { toast(e.message, true); }
   };
   document.querySelectorAll("[data-set]").forEach(b => b.onclick = () => set({status: b.dataset.set}));
@@ -400,28 +545,156 @@ async function adminStudent(slugName) {
   const sr = $("#saveRem"); if (sr) sr.onclick = () => set({});
   document.querySelectorAll("[data-quick]").forEach(b => b.onclick = async () => {
     const it = x.items.find(i => i.date === b.dataset.quick);
-    try { await api("adminSet", {username: s.username, date: it.date, status: "Checked", remark: it.remark || "", stars: it.stars || ""}); OV = null; adminStudent(slugName); } catch (e) { toast(e.message, true); }
+    try { await quickSet(x, it, "Checked"); reload(); } catch (e) { toast(e.message, true); }
   });
   document.querySelectorAll("[data-unsend]").forEach(b => b.onclick = async () => {
-    try { await api("adminUnassign", {username: s.username, date: b.dataset.unsend}); toast("Taken back"); OV = null; adminStudent(slugName); } catch (e) { toast(e.message, true); }
+    try { await api("adminUnassign", {username: s.username, date: b.dataset.unsend}); toast("Taken back"); reload(); } catch (e) { toast(e.message, true); }
   });
-  document.querySelectorAll("[data-send]").forEach(a => a.addEventListener("click", () => {
-    // WhatsApp opens in a new tab from the link itself; record the send at the same time.
-    api("adminAssign", {username: s.username, date: a.dataset.send})
-      .then(() => { toast(`Sent to ${s.name}'s portal ✓`); OV = null; adminStudent(slugName); })
-      .catch(e => toast(e.message, true));
-  }));
+  wireSend(() => adminStudent(slugName));
+  if (isAdmin()) loadFees().then(f => { const el = $("#feebox"); if (!el || !f) return; const st = f.students.find(v => v.username === s.username); if (!st) return;
+    const fs = feeState(st, monthISO());
+    el.innerHTML = `<div class="kicker" style="margin-bottom:4px">Fees · ${esc(monthName(monthISO()))}</div><span class="chip s-${fs.cls}">${esc(fs.label)}</span>
+      ${fs.due ? ` <b style="color:var(--ink)">${rupees(fs.due)}</b> due` : ""} · <a href="#fees">Fees</a>`; });
 }
+
+/* --- Worksheets: the queue of each class, games, and requests for new sheets --- */
+async function adminWorksheets() {
+  $("#app").innerHTML = `<p class="mute">Loading…</p>`;
+  if (!OV) { try { await loadOverview(); } catch (e) { return showErr(e); } }
+  const groups = GROUP_ORDER.filter(g => (manifest.groups[g] || []).length);
+  let g = groups.includes(classKey) ? classKey : groups[0];
+  const studs = Object.values(OV.byUser);
+  const draw = () => {
+    const list = (manifest.groups[g] || []).slice().sort((a,b) => a.seq - b.seq);
+    const inClass = studs.filter(x => x.s.group === g);
+    $("#wl").innerHTML = list.map(w => {
+      const got = inClass.filter(x => x.items.some(i => i.date === w.id)).length;
+      return `<li><span class="n">${w.seq}</span><span style="flex:1"><b>${esc(wsTitle(w))}</b><br>
+        <span class="small mute">${esc(w.subject)} · ${w.questions} questions · ${w.minutes} min · sent to ${got}/${inClass.length}</span></span>
+        <span class="row"><a class="btn sec sm" href="${esc(w.file)}.html" target="_blank" rel="noopener">Preview</a>
+        <a class="btn sm ${w.game ? "coral" : "sec"}" href="${esc(gameHref(w))}" target="_blank" rel="noopener">🎮 ${w.game ? "Game" : "Soon"}</a></span></li>`; }).join("") || `<li class="mute">No worksheets yet.</li>`;
+    $("#rg").value = g;
+  };
+  $("#app").innerHTML = `<div class="bento">
+    <div class="glass tile s4"><div class="th"><h2>📚 Worksheet queue</h2></div>
+      <div class="chips" style="margin-bottom:8px">${groups.map(k => `<button class="cbtn ${k===g?"on":""}" data-g="${k}">${esc(GROUP_SHORT[k])}</button>`).join("")}</div>
+      <ul class="list q5" id="wl"></ul></div>
+    <div class="glass tile s2"><div class="th"><h2>➕ Need more worksheets?</h2></div>
+      <p class="small mute" style="margin-top:0">Every Sunday at 3:43 pm, 5 new worksheets are added to each class. Ask here for a particular chapter or extra practice.</p>
+      <form id="rf" style="display:grid;gap:10px">
+        <div><label for="rg">Class</label><select id="rg">${GROUP_ORDER.map(k => `<option value="${k}">${esc(GROUP_NAME[k])}</option>`).join("")}</select></div>
+        <div><label for="rt">Chapter or topic</label><input id="rt" required placeholder="e.g. Integers – more word problems"></div>
+        <div><label for="rc">How many worksheets</label><select id="rc">${[1,2,3,4,5].map(n => `<option>${n}</option>`).join("")}</select></div>
+        <div><label for="rn">Note (optional)</label><input id="rn" placeholder="e.g. Advait is weak in division"></div>
+        <button class="btn pri">Save request</button><p class="err" id="re"></p></form>
+      <div id="rout"></div>
+      <h2 style="margin-top:14px">Open requests</h2>
+      <ul class="list" id="rl">${OV.requests.map(q => `<li><span><b>${esc(GROUP_SHORT[q.group]||q.group)}</b>: ${esc(q.topic)} × ${esc(q.count)}${q.note ? `<br><span class="small mute">${esc(q.note)}</span>` : ""}</span>
+        <button class="btn sec sm" data-done="${esc(q.row)}">Done ✓</button></li>`).join("") || `<li class="mute small">None.</li>`}</ul></div>
+  </div>`;
+  document.querySelectorAll("[data-g]").forEach(b => b.onclick = () => { g = b.dataset.g; classKey = g; store.set("hc_hw_class", g);
+    document.querySelectorAll("[data-g]").forEach(c => c.classList.toggle("on", c === b)); draw(); });
+  draw();
+  $("#rf").onsubmit = async e => {
+    e.preventDefault();
+    const req = {group: $("#rg").value, topic: $("#rt").value, count: Number($("#rc").value), note: $("#rn").value};
+    try {
+      await api("adminRequest", req);
+      const text = `Hinde Classes worksheet request: ${GROUP_NAME[req.group]} – ${req.topic} – ${req.count} worksheet(s).${req.note ? " Note: " + req.note : ""} Please add them to the portal queue.`;
+      $("#rout").innerHTML = `<div class="pwbox small">Saved ✓. To get them sooner than Sunday, paste this into your Claude chat in the Hinde Classes project:<p style="margin:8px 0"><b>${esc(text)}</b></p><button class="btn sec sm" id="rcopy">Copy</button></div>`;
+      $("#rcopy").onclick = async () => { try { await navigator.clipboard.writeText(text); $("#rcopy").textContent = "Copied ✓"; } catch (err) {} };
+      e.target.reset(); $("#rg").value = req.group; OV = null; await loadOverview();
+      $("#rl").innerHTML = OV.requests.map(q => `<li><span><b>${esc(GROUP_SHORT[q.group]||q.group)}</b>: ${esc(q.topic)} × ${esc(q.count)}</span><button class="btn sec sm" data-done="${esc(q.row)}">Done ✓</button></li>`).join("");
+      wireDone();
+    } catch (err) { $("#re").textContent = err.message; }
+  };
+  const wireDone = () => document.querySelectorAll("[data-done]").forEach(b => b.onclick = async () => {
+    try { await api("adminRequestDone", {row: b.dataset.done}); b.closest("li").remove(); OV = null; } catch (err) { toast(err.message, true); } });
+  wireDone();
+}
+
+/* --- Fees (admin only) --- */
+async function adminFees() {
+  if (!isAdmin()) { location.hash = "#students"; return; }
+  $("#app").innerHTML = `<p class="mute">Loading fees…</p>`;
+  const f = await loadFees(true);
+  if (!f) return showErr(new Error(FEES && FEES.error === "Unknown action" ? "Fees need the new Code.gs: paste it into Apps Script, run setup once, then Deploy → Manage deployments → ✏️ → New version." : (FEES && FEES.error) || "Could not load fees."));
+  let month = store.get("hc_hw_month") || monthISO();
+  const months = []; { const d = new Date(); d.setDate(15); for (let i = -2; i < 10; i++) { const m = new Date(d.getFullYear(), d.getMonth() - i, 15); months.push(istISO(m).slice(0, 7)); } }
+  if (!months.includes(month)) month = monthISO();
+  const draw = () => {
+    const list = f.students.slice().sort((a,b) => (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || a.name.localeCompare(b.name));
+    const rows = list.map(st => Object.assign({st}, feeState(st, month)));
+    const expected = rows.reduce((a, r) => a + (r.st.feePlan === "paid" ? 0 : r.st.fee), 0);
+    const got = rows.reduce((a, r) => a + r.paid, 0), due = rows.reduce((a, r) => a + r.due, 0);
+    const pct = expected ? Math.min(100, Math.round(got / expected * 100)) : 0;
+    $("#fsum").innerHTML = `<div class="kpi glass"><span>Expected</span><b>${rupees(expected)}</b><i>📒</i></div>
+      <div class="kpi glass"><span>Collected</span><b style="color:var(--ok)">${rupees(got)}</b><i>✅</i></div>
+      <div class="kpi glass"><span>Still due</span><b style="color:var(--bad)">${rupees(due)}</b><i>⏳</i></div>
+      <div class="kpi glass"><span>Collected</span><b>${pct}%</b><div class="bar" style="margin-top:6px"><i style="width:${pct}%"></i></div></div>`;
+    $("#fl").innerHTML = rows.map(r => { const st = r.st; const pays = f.payments.filter(p => p.username === st.username && p.month === month);
+      const lbl = r.label; const cls = r.cls;
+      return `<li data-row="${esc(st.username)}"><span class="who2">${avatar(st.name)}<span><b>${esc(st.name)}</b> <span class="small mute">${esc(GROUP_SHORT[st.group]||"")}</span><br>
+        <span class="small mute">${st.feePlan === "paid" ? "Paid in full for the year" : st.fee ? rupees(st.fee) + " / month" : "No fee set"}${pays.map(p => ` · paid ${rupees(p.amount)} ${esc(p.mode||"")} ${esc(time(p.paidOn))} <button class="lnk" data-undo="${esc(p.row)}" data-un="${esc(st.username)}" title="Delete this payment">undo</button>`).join("")}</span></span></span>
+        <span class="row"><span class="chip s-${cls}">${esc(lbl)}${r.due && r.paid ? " · " + rupees(r.due) + " left" : ""}</span>
+        ${r.due ? `<button class="btn pri sm" data-pay="${esc(st.username)}">Mark paid</button>${st.parentPhone ? `<a class="btn sec sm" target="_blank" rel="noopener" href="${esc(waTo(st.parentPhone, `Dear Parent, a gentle reminder from Hinde Classes: ${st.name}'s fee for ${monthName(month)} (${rupees(r.due)}) is due. You can pay by cash or UPI. Thank you! – Maitreya Hinde, 7358425108`))}">Remind</a>` : ""}` : ""}
+        <button class="btn sec sm" data-plan="${esc(st.username)}" title="Change monthly fee">✎</button></span>
+        <div class="payform hide" id="pf-${esc(slug(st.username))}"></div></li>`; }).join("");
+    document.querySelectorAll("[data-pay]").forEach(b => b.onclick = () => payForm(b.dataset.pay, rows.find(r => r.st.username === b.dataset.pay)));
+    document.querySelectorAll("[data-plan]").forEach(b => b.onclick = () => planForm(b.dataset.plan));
+    document.querySelectorAll("[data-undo]").forEach(b => b.onclick = async () => {
+      if (!confirmInline(b)) return;
+      try { await api("adminFeeUndo", {row: b.dataset.undo, username: b.dataset.un, month}); toast("Payment removed"); await loadFees(true); Object.assign(f, FEES); draw(); } catch (e) { toast(e.message, true); }
+    });
+  };
+  const confirmInline = b => { if (b.dataset.sure) return true; b.dataset.sure = 1; b.textContent = "tap again to delete"; setTimeout(() => { delete b.dataset.sure; b.textContent = "undo"; }, 3000); return false; };
+  const box = u => $("#pf-" + slug(u));
+  const payForm = (u, r) => {
+    const el = box(u); el.classList.remove("hide");
+    el.innerHTML = `<form class="row"><input type="number" min="1" step="1" value="${r.due || r.st.fee}" aria-label="Amount" style="width:130px">
+      <select aria-label="Paid by" style="width:auto"><option>UPI</option><option>Cash</option><option>Bank</option><option>Cheque</option></select>
+      <input placeholder="Note (optional)" style="flex:1 1 140px;width:auto"><button class="btn pri sm">Save ${esc(monthName(month).split(" ")[0])}</button><button type="button" class="btn sec sm">Cancel</button></form>`;
+    const [amt, mode, note] = el.querySelectorAll("input,select");
+    el.querySelector("button[type=button]").onclick = () => el.classList.add("hide");
+    el.querySelector("form").onsubmit = async e => { e.preventDefault();
+      try { await api("adminFeePay", {username: u, month, amount: Number(amt.value), mode: mode.value, note: note.value}); toast("Payment saved ✓"); await loadFees(true); Object.assign(f, FEES); draw(); }
+      catch (err) { toast(err.message, true); } };
+    amt.focus();
+  };
+  const planForm = u => {
+    const st = f.students.find(v => v.username === u); const el = box(u); el.classList.remove("hide");
+    el.innerHTML = `<form class="row"><select aria-label="Plan" style="width:auto"><option value="monthly">Monthly fee</option><option value="paid" ${st.feePlan==="paid"?"selected":""}>Paid in full for the year</option></select>
+      <input type="number" min="0" step="50" value="${st.fee}" aria-label="Monthly fee" style="width:130px"><button class="btn pri sm">Save</button><button type="button" class="btn sec sm">Cancel</button></form>`;
+    const [plan, fee] = el.querySelectorAll("select,input");
+    el.querySelector("button[type=button]").onclick = () => el.classList.add("hide");
+    el.querySelector("form").onsubmit = async e => { e.preventDefault();
+      try { await api("adminFeePlan", {username: u, fee: Number(fee.value), feePlan: plan.value}); toast("Saved ✓"); await loadFees(true); Object.assign(f, FEES); draw(); }
+      catch (err) { toast(err.message, true); } };
+  };
+  $("#app").innerHTML = `<div class="toolbar glass"><h2 style="margin:0">💰 Fees</h2>
+      <select id="fm" style="width:auto">${months.map(m => `<option value="${m}" ${m===month?"selected":""}>${esc(monthName(m))}</option>`).join("")}</select>
+      <button class="btn sec sm" id="fcsv">Copy as CSV</button></div>
+    <div class="kpis" id="fsum"></div>
+    <div class="glass tile"><ul class="list tasks" id="fl"></ul>
+    <p class="small mute" style="margin-bottom:0">Fees are private: only admin logins can see this page.</p></div>`;
+  $("#fm").onchange = e => { month = e.target.value; store.set("hc_hw_month", month); draw(); };
+  $("#fcsv").onclick = async () => {
+    const lines = [["Student","Class","Plan","Monthly fee","Paid " + month,"Due"]].concat(f.students.map(st => { const r = feeState(st, month); return [st.name, GROUP_NAME[st.group]||st.group, st.feePlan, st.fee, r.paid, r.due]; }));
+    try { await navigator.clipboard.writeText(lines.map(l => l.map(v => `"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n")); $("#fcsv").textContent = "Copied ✓"; } catch (e) {}
+  };
+  draw();
+}
+
 async function adminRegister() {
   const span = Number(store.get("hc_hw_span") || 14);
-  $("#app").innerHTML = `<div class="glass tile"><div class="row" style="justify-content:space-between;margin-bottom:10px"><h2 style="margin:0">Register</h2>
+  $("#app").innerHTML = `<div class="glass tile"><div class="row" style="justify-content:space-between;margin-bottom:10px"><h2 style="margin:0">📊 Progress register</h2>
     <div class="row"><select id="span" style="width:auto">${[7,14,30,60].map(n => `<option value="${n}" ${n===span?"selected":""}>Sent in last ${n} days</option>`).join("")}</select>
     <button class="btn sec sm" id="csv">Copy as CSV</button></div></div><div id="wk" class="scroll"><p class="mute">Loading…</p></div>
     <p class="small mute" style="margin-bottom:0">One column per worksheet sent, oldest first. ✓ checked · S submitted · ↺ redo · ✗ not done · · pending.</p></div>`;
   $("#span").onchange = e => { store.set("hc_hw_span", Number(e.target.value)); adminRegister(); };
   try { await loadOverview(); } catch (e) { return showErr(e); }
   const from = addDays(istISO(), -(span-1));
-  const all = Object.values(OV.byUser).sort((a,b) => (GROUP_ORDER.indexOf(a.s.group) - GROUP_ORDER.indexOf(b.s.group)) || a.s.name.localeCompare(b.s.name));
+  const all = sortStudents(Object.values(OV.byUser));
   const rowsFor = x => x.items.filter(i => (i.sentAt ? istISO(new Date(i.sentAt)) : i.date) >= from);
   const cols = Math.max(0, ...all.map(x => rowsFor(x).length));
   const sym = {Checked:["✓","c-ok"],Submitted:["S","c-sub"],Redo:["↺","c-redo"],"Not done":["✗","c-bad"],Pending:["·","c-none"]};
@@ -429,11 +702,11 @@ async function adminRegister() {
   let t = `<table class="reg"><thead><tr><th>Student</th>${Array.from({length: cols}, (_, i) => `<th>${i+1}</th>`).join("")}<th>Done</th><th>%</th></tr></thead><tbody>`;
   all.forEach(x => {
     const its = rowsFor(x); const done = its.filter(i => DONE.includes(i.status)).length; const pct = its.length ? Math.round(done/its.length*100) : 0;
-    t += `<tr><td><b>${esc(x.s.name)}</b><div class="small mute">${esc(GROUP_SHORT[x.s.group]||x.s.group)}</div></td>`;
+    t += `<tr><td><a href="#${slug(x.s.username)}"><b>${esc(x.s.name)}</b></a><div class="small mute">${esc(GROUP_SHORT[x.s.group]||x.s.group)}</div></td>`;
     const line = [x.s.name, GROUP_NAME[x.s.group]||x.s.group];
     for (let i = 0; i < cols; i++) { const it = its[i]; if (!it) { t += `<td class="c-none">–</td>`; line.push(""); continue; }
       const w = sheetFor(x.s, it.date); const [sy, c] = sym[it.status] || ["?",""];
-      t += `<td class="${c}" title="${esc((w ? w.subject + ": " + wsTitle(w) : it.date) + " – " + it.status)}">${sy}</td>`; line.push(it.status); }
+      t += `<td class="${c}" title="${esc((w ? wsTitle(w) : it.date) + " – " + it.status)}">${sy}</td>`; line.push(it.status); }
     t += `<td>${done}/${its.length}</td><td><b>${its.length ? pct + "%" : "–"}</b></td></tr>`; line.push(its.length, done, its.length ? pct : ""); csv.push(line);
   });
   $("#wk").innerHTML = t + `</tbody></table>`;
@@ -517,8 +790,9 @@ function route() {
   markNav(h);
   if (session.user.role === "student") return ({home: studentHome, history: studentHistory, account}[h] || studentHome)();
   if (h.startsWith("s-")) return adminStudent(h);
-  if (h === "home") OV = null;
-  ({home: adminHome, register: adminRegister, accounts: adminAccounts, account}[h] || adminHome)();
+  if (h.startsWith("todo-")) { const el = document.getElementById(h); if (el) { el.scrollIntoView({behavior: "smooth"}); return; } }
+  if (h === "home" || h === "students") OV = null;
+  ({home: adminToday, students: adminStudents, worksheets: adminWorksheets, fees: adminFees, register: adminRegister, accounts: adminAccounts, account}[h] || adminToday)();
 }
 window.addEventListener("hashchange", route);
 
@@ -530,7 +804,10 @@ function mock2(b) {
     const S = [["demo.student","Demo Student","7GB","x"],["aman.demo","Aman","7GB",""],["riya.demo","Riya","8GB",""],["kabir.demo","Kabir","9GB",""],["tara.demo","Tara","10ADV",""],["neel.demo","Neel","6GB",""]];
     mockDB = {users: [{username:"demo.admin",name:"Demo Teacher",role:"admin",group:"",variant:"",pw:"admin123",active:true,teacherGroups:"*",parentPhone:""}]
       .concat(S.map(([u,n,g,v]) => ({username:u,name:n,role:"student",group:g,variant:v,pw:"demo123",active:true,parentPhone:"9800000000"}))),
-      status: [], assign: [], sessions: {}};
+      status: [], assign: [], sessions: {}, pays: [], reqs: []};
+    const FEE = {"demo.student":[2500,"monthly"],"aman.demo":[2700,"monthly"],"riya.demo":[2000,"monthly"],"kabir.demo":[0,"paid"],"tara.demo":[500,"monthly"],"neel.demo":[1500,"monthly"]};
+    mockDB.users.forEach(u => { const f = FEE[u.username]; if (f) { u.fee = f[0]; u.feePlan = f[1]; } });
+    mockDB.pays.push({month: monthISO(), username: "aman.demo", amount: 2700, paidOn: new Date().toISOString(), mode: "UPI", note: "", row: 2});
     const first = groupDates("7GB")[0];
     if (first) {
       const t = new Date(Date.now() - 20 * 36e5).toISOString();
@@ -554,7 +831,13 @@ function mock2(b) {
       const cur = D.status.find(r => r.date === b.date && r.username === me.username);
       const rec = {date:b.date,username:me.username,status:"Submitted",method:b.method==="whatsapp"?"Photos on WhatsApp":"In class",submittedAt:new Date().toISOString()};
       if (cur) Object.assign(cur, rec); else D.status.push(rec); return {ok:true}; }
-    case "adminOverview": return need(true) || {ok:true, students: studs().map(u => Object.assign(pub(u),{parentPhone:u.parentPhone})), assignments: D.assign, status: D.status};
+    case "adminOverview": return need(true) || {ok:true, students: studs().map(u => Object.assign(pub(u),{parentPhone:u.parentPhone})), assignments: D.assign, status: D.status, requests: (D.reqs||[]).filter(q => !q.done)};
+    case "adminFees": return need(true) || {ok:true, students: studs().map(u => Object.assign(pub(u),{parentPhone:u.parentPhone, fee:u.fee||0, feePlan:u.feePlan||"monthly"})), payments: D.pays||[]};
+    case "adminFeePay": { const e = need(true); if (e) return e; D.pays = D.pays||[]; D.pays.push({month:b.month,username:b.username,amount:Number(b.amount),paidOn:new Date().toISOString(),mode:b.mode,note:b.note,row:Date.now()}); return {ok:true}; }
+    case "adminFeeUndo": { const e = need(true); if (e) return e; D.pays = D.pays.filter(p => String(p.row) !== String(b.row)); return {ok:true}; }
+    case "adminFeePlan": { const e = need(true); if (e) return e; const u = D.users.find(x => x.username === b.username); u.fee = b.fee; u.feePlan = b.feePlan; return {ok:true}; }
+    case "adminRequest": { const e = need(true); if (e) return e; D.reqs = D.reqs||[]; D.reqs.push({group:b.group,topic:b.topic,count:b.count,note:b.note,row:Date.now(),created:new Date().toISOString()}); return {ok:true}; }
+    case "adminRequestDone": { const e = need(true); if (e) return e; const q = (D.reqs||[]).find(x => String(x.row) === String(b.row)); if (q) q.done = true; return {ok:true}; }
     case "adminAssign": { const e = need(true); if (e) return e; if (!D.assign.some(a => a.username === b.username && a.date === b.date)) D.assign.push({date:b.date,username:b.username,sentAt:new Date().toISOString(),sentBy:me.username}); return {ok:true}; }
     case "adminUnassign": { const e = need(true); if (e) return e; D.assign = D.assign.filter(a => !(a.username === b.username && a.date === b.date)); return {ok:true}; }
     case "adminSet": { const e = need(true); if (e) return e; let cur = D.status.find(r => r.date===b.date && r.username===b.username);
