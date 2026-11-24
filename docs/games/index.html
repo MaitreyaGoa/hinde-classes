@@ -1101,6 +1101,9 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .g-log9{--a1:#38bdf8;--a2:#f472b6}
 .g-apt9{--a1:#f59e0b;--a2:#34d399}
 .chno .chl{font-size:17px;font-weight:800;font-style:italic;letter-spacing:-.02em}
+.g-prb9{--a1:#a78bfa;--a2:#22d3ee}
+.g-her9{--a1:#fb7185;--a2:#fbbf24}
+.tw-multi.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tw-multi.three .tw-b{min-height:52px}
 
 </style>
 </head>
@@ -1217,6 +1220,8 @@ var HG = (function () {
     'c10-trigonometry': { name: 'Introduction to Trigonometry', div: 8, max: 60000, good: 1000 },
     'c9-logarithms': { name: 'Logarithms', div: 8, max: 60000, good: 1000 },
     'c9-areas-parallelograms': { name: 'Areas of Parallelograms and Triangles', div: 8, max: 60000, good: 1000 },
+    'c9-probability': { name: 'Probability', div: 8, max: 60000, good: 1000 },
+    'c9-herons-formula': { name: 'Heron’s Formula', div: 8, max: 60000, good: 1000 },
     'c9-converses': { name: 'Propositions and their Converses', div: 8, max: 60000, good: 1000 },
     'c9-weighted': { name: 'How Quantities Combine', div: 8, max: 60000, good: 1000 },
     'c9-algorithms': { name: 'The World of Algorithms', div: 8, max: 60000, good: 1000 },
@@ -1499,6 +1504,8 @@ const GICON = {
   "c8-area":'<svg viewBox="0 0 64 64"><path d="M8 52L20 16h36L44 52z"/><path d="M20 16v36" stroke-dasharray="4 4"/></svg>',
   "c9-logarithms":'<svg viewBox="0 0 64 64"><path d="M8 52c10-30 22-40 48-44"/><path d="M8 56h50M8 56V6" opacity=".5"/></svg>',
   "c9-areas-parallelograms":'<svg viewBox="0 0 64 64"><path d="M6 14h52M6 50h52" stroke-dasharray="4 4"/><path d="M14 50L26 14h26L40 50z"/><path d="M14 50l30-36 0 0" opacity=".6"/></svg>',
+  "c9-probability":'<svg viewBox="0 0 64 64"><rect x="8" y="22" width="26" height="26" rx="5"/><circle cx="16" cy="30" r="2"/><circle cx="26" cy="40" r="2"/><circle cx="46" cy="20" r="10"/><path d="M46 14v12"/></svg>',
+  "c9-herons-formula":'<svg viewBox="0 0 64 64"><path d="M8 52L24 12l32 40z"/><path d="M24 12v40" stroke-dasharray="3 3"/></svg>',
   "c9-converses":'<svg viewBox="0 0 64 64"><path d="M8 24h36l-8-8M56 40H20l8 8"/></svg>',
   "c9-weighted":'<svg viewBox="0 0 64 64"><path d="M8 18h20v10H8zM28 18h14v10H28zM42 18h14v10H42zM8 36h28v10H8zM36 36h20v10H36z"/></svg>',
   "c9-algorithms":'<svg viewBox="0 0 64 64"><rect x="22" y="6" width="20" height="12" rx="3"/><path d="M32 18v8M32 26l-14 10 14 10 14-10z"/><path d="M18 36H8v20M46 36h10v20"/></svg>',
@@ -1766,6 +1773,8 @@ const CH = [
   {id:"c10-trigonometry", cls:"g-trig", std:10, book:"NCERT", chn:8, name:"Introduction to Trigonometry", tag:"Sides, SOH-CAH-TOA, one ratio → all ratios, special angles 0°–90°, identities and step-by-step proofs", missions:9, key:"tr10c8_stars"},
   {id:"c9-logarithms", cls:"g-log9", std:9, book:"Mathematics", chn:0, ord:0.1, chl:"log", name:"Logarithms", tag:"Exponential and log form, evaluating logs, special logs, product, quotient and power laws, log 2 and log 3, equations and change of base", missions:9, key:"lg9_stars"},
   {id:"c9-areas-parallelograms", cls:"g-apt9", std:9, book:"NCERT", chn:9, ord:0.2, name:"Areas of Parallelograms and Triangles", tag:"Same base and same parallels, parallelogram area, Theorems 9.1–9.3, medians, diagonals, inside points and area proofs", missions:9, key:"apt9_stars"},
+  {id:"c9-probability", cls:"g-prb9", std:9, book:"NCERT", chn:15, ord:0.3, name:"Probability", tag:"Trials, outcomes and events, experimental probability, dice and coin tables, real-life and grouped data, the long run", missions:9, key:"pb9_stars"},
+  {id:"c9-herons-formula", cls:"g-her9", std:9, book:"NCERT", chn:12, ord:0.4, name:"Heron’s Formula", tag:"Semi-perimeter, Heron’s formula, surds, real-life costs, quadrilaterals by a diagonal, rhombuses and trapeziums", missions:9, key:"hf9_stars"},
   {id:"c9-converses", cls:"g-cnv9", std:9, book:"Ganita Manjari · Part 2", chn:9, name:"Propositions and their Converses", tag:"Propositions, converses, counterexamples, different wordings, chains of reasoning and divisibility logic", missions:9, key:"pc9c9_stars"},
   {id:"c9-weighted", cls:"g-wav9", std:9, book:"Ganita Manjari · Part 2", chn:10, name:"How Quantities Combine", tag:"Average of averages, mixtures, custom weights, updating averages, and stacked and 100% stacked bar charts", missions:9, key:"wa9c10_stars"},
   {id:"c9-algorithms", cls:"g-alg9", std:9, book:"Ganita Manjari · Part 2", chn:11, name:"The World of Algorithms", tag:"The addition algorithm, writing steps, divisors and gcd, efficiency, Euclid’s and Āryabhaṭa’s gcd algorithms", missions:9, key:"al9c11_stars"},
@@ -1798,7 +1807,7 @@ const CH = [
   {id:"c10-ap", cls:"g-ap10", std:10, book:"NCERT", chn:5, name:"Arithmetic Progressions", tag:"Common difference, the nth term, term detective, sums of n terms and APs in real life", missions:9, key:"ap10c5_stars"}
 ];
 // each game's own page lives at /games/<slug>/ (built by build.py)
-const GAME_SLUGS = {"c9-logarithms":"class-9-logarithms", "c9-areas-parallelograms":"class-9-areas-of-parallelograms-and-triangles", "en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c9-converses":"class-9-propositions-and-converses", "c9-weighted":"class-9-weighted-averages-and-data", "c9-algorithms":"class-9-world-of-algorithms", "c9-quadrilaterals":"class-9-quadrilaterals", "c9-two-variables":"class-9-two-variables-one-line", "c9-solids":"class-9-surface-area-and-volume", "c7-data":"class-7-connecting-the-dots", "c7-constructions":"class-7-constructions-and-tilings", "c7-unknown":"class-7-finding-the-unknown", "c8-dots-lines":"class-8-tales-by-dots-and-lines", "c8-algebra-play":"class-8-algebra-play", "c8-area":"class-8-area", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
+const GAME_SLUGS = {"c9-probability":"class-9-probability", "c9-herons-formula":"class-9-herons-formula", "c9-logarithms":"class-9-logarithms", "c9-areas-parallelograms":"class-9-areas-of-parallelograms-and-triangles", "en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c9-converses":"class-9-propositions-and-converses", "c9-weighted":"class-9-weighted-averages-and-data", "c9-algorithms":"class-9-world-of-algorithms", "c9-quadrilaterals":"class-9-quadrilaterals", "c9-two-variables":"class-9-two-variables-one-line", "c9-solids":"class-9-surface-area-and-volume", "c7-data":"class-7-connecting-the-dots", "c7-constructions":"class-7-constructions-and-tilings", "c7-unknown":"class-7-finding-the-unknown", "c8-dots-lines":"class-8-tales-by-dots-and-lines", "c8-algebra-play":"class-8-algebra-play", "c8-area":"class-8-area", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
 const CH_CLASSES = [7, 8, 9, 10];
 /* English games */
 const EN = [
@@ -4803,6 +4812,382 @@ GAME_MODS["c9-areas-parallelograms"] = CQ.quest({
   key:"apt9_stars", missions:APT9.MISSIONS, gen:APT9.GEN, chapter:{std:9, ch:9},
   desc:"Class 9 · Areas of Parallelograms and Triangles. Master the chapter in 9 missions: same base and same parallels, area of a parallelogram, Theorems 9.1–9.3, triangles as half parallelograms, medians, diagonals and inside points, proofs and area puzzles.",
   modes:{foundation:"Same base and same parallels, area of a parallelogram and Theorem 9.1", core:"Triangles and parallelograms, Theorems 9.2 and 9.3, and medians", advanced:"Diagonals and inside points, proofs, area puzzles and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 9 · Probability (empirical / experimental probability)
+   Chapter game "Chance Lab": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Trials, Outcomes & Events  2 Experimental Probability  3 Probability Facts
+   Apply  : 4 Dice & Coin Tables  5 Probability from Real Data  6 Grouped Data
+   Master : 7 The Long Run  8 Working Backwards  9 Chance Master (timed)
+   ============================================================ */
+const PRB9 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, fr, n2, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const PAD = (pre = "P =") => padHTML(pre, "", {dec:true});
+  const NUM = (pre = "", post = "") => padHTML(pre, post, {dec:false});
+  const tbl = (head, rows) => `<table class="tw-tbl"><tr>${head.map(h => `<th>${h}</th>`).join("")}</tr>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join("")}</tr>`).join("")}</table>`;
+  const dec = (a, b) => +(a/b).toFixed(4);
+  const show = (a, b) => `${fr(a, b)} = <b>${n2(+(a/b).toFixed(4))}</b>`;
+  // trial counts that always give terminating decimals with at most 3 places
+  const NS = [20, 25, 40, 50, 100, 125, 200, 250, 500, 1000];
+  // split n into k random positive parts
+  function split(n, k, min = 1){ for (;;){ const cuts = SH([...Array(n - 1)].map((_, i) => i + 1)).slice(0, k - 1).sort((a, b) => a - b), parts = [];
+    let prev = 0; cuts.concat(n).forEach(c => { parts.push(c - prev); prev = c; }); if (parts.every(p => p >= min)) return parts; } }
+  const dieFace = n => { const pos = {1:[[20, 20]], 2:[[10, 10], [30, 30]], 3:[[10, 10], [20, 20], [30, 30]], 4:[[10, 10], [30, 10], [10, 30], [30, 30]], 5:[[10, 10], [30, 10], [20, 20], [10, 30], [30, 30]], 6:[[10, 10], [30, 10], [10, 20], [30, 20], [10, 30], [30, 30]]}[n];
+    return `<svg viewBox="0 0 40 40" width="26" height="26" style="vertical-align:middle"><rect x="1" y="1" width="38" height="38" rx="8" fill="#f4f6ff"/>${pos.map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="3.6" fill="#1b2140"/>`).join("")}</svg>`; };
+
+  /* ---------- Mission 1: Trials, Outcomes & Events ---------- */
+  const EV = [["getting an even number", [2, 4, 6]], ["getting a number greater than 4", [5, 6]], ["getting a prime number", [2, 3, 5]], ["getting a multiple of 3", [3, 6]], ["getting a number less than 3", [1, 2]], ["getting an odd number", [1, 3, 5]], ["getting a factor of 6", [1, 2, 3, 6]]];
+  function m1(i){
+    const t = i % 3;
+    if (t === 0){ const [e, out] = P(EV);
+      return {html:`<p class="tw-q">A die is thrown. Select <b>all</b> the outcomes in the event “${e}”.</p>${multiHTML([1, 2, 3, 4, 5, 6].map(dieFace), "three")}`,
+        mount(el, done){ bindMulti(el, out.map(x => x - 1), done, `An <b>event</b> is a collection of outcomes. “${e}” = {${out.join(", ")}}.`, "Outcomes and events"); }}; }
+    if (t === 1){ const [exp, outs, wrong] = P([["tossing one coin", "Head, Tail", ["Head only", "1, 2, 3, 4, 5, 6", "Two heads, one head, no head"]], ["throwing a die", "1, 2, 3, 4, 5, 6", ["Head, Tail", "Even, odd, prime", "1 to 12"]], ["tossing two coins together", "Two heads, one head and one tail, two tails", ["Head, Tail", "Two heads only", "1, 2, 3, 4"]], ["spinning a spinner with sectors Red, Blue, Green", "Red, Blue, Green", ["Red, Blue", "Head, Tail", "1, 2, 3, 4, 5, 6"]]]);
+      const o = opts4(outs, wrong);
+      return {html:`<p class="tw-q">The trial is <b>${exp}</b>. What are the possible outcomes?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(outs), done, `A <b>trial</b> is an action that results in one of several outcomes. For ${exp}, the outcomes are: <b>${outs}</b>.`, "Trials and outcomes"); }}; }
+    const [s, right, w] = P([["Throwing a die once", "A trial", ["An outcome", "An event", "A probability"]], ["Getting a 4 on a die", "An outcome", ["A trial", "An experiment", "A probability"]], ["Getting an even number on a die", "An event (made of the outcomes 2, 4, 6)", ["A single outcome", "A trial", "A probability"]], ["The fraction 47/100 for heads in 100 tosses", "An experimental probability", ["A trial", "An outcome", "An event"]]]);
+    const o = opts4(right, w);
+    return {html:`<p class="tw-q">What is this?</p><div class="tw-ex" style="font-size:17px">${s}</div>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `<b>${right}</b>. Trial = the action; outcome = one possible result; event = a collection of outcomes; probability = how often an event happened, as a fraction of the trials.`, "Trials and outcomes"); }};
+  }
+
+  /* ---------- Mission 2: Experimental Probability ---------- */
+  function m2(i){
+    const t = i % 3, n = P(NS);
+    if (t === 0){ const h = R(Math.round(n*.35), Math.round(n*.65)), ask = P(["head", "tail"]), k = ask === "head" ? h : n - h;
+      return {html:`<p class="tw-q">A coin is tossed <b>${n}</b> times: Head <b>${h}</b> times, Tail <b>${n - h}</b> times. Find the probability of getting a <b>${ask}</b>.</p>${PAD(`P(${ask === "head" ? "H" : "T"}) =`)}`,
+        mount(el, done){ bindPad(el, dec(k, n), .0005, done, `P(E) = number of trials in which E happened ÷ total trials = ${show(k, n)}.`, "Experimental probability"); }}; }
+    if (t === 1){ const c = P(["red", "blue", "green", "yellow"]), k = R(1, n - 1);
+      return {html:`<p class="tw-q">A spinner was spun <b>${n}</b> times and landed on <b>${c}</b> ${k} times. Find P(${c}).</p>${PAD(`P(${c}) =`)}`,
+        mount(el, done){ bindPad(el, dec(k, n), .0005, done, `P(${c}) = ${show(k, n)}.`, "Experimental probability"); }}; }
+    const balls = P([10, 20, 25, 30, 40, 50]), hits = R(2, Math.floor(balls/3)), ask = P(["hit", "not hit"]), k = ask === "hit" ? hits : balls - hits;
+    return {html:`<p class="tw-q">A batter hits a boundary <b>${hits}</b> times out of <b>${balls}</b> balls. Find the probability that she <b>${ask === "hit" ? "hits" : "does not hit"}</b> a boundary.</p>${PAD()}`,
+      mount(el, done){ bindPad(el, dec(k, balls), .0005, done, `${ask === "hit" ? "" : `Balls without a boundary = ${balls} − ${hits} = ${k}. `}P = ${show(k, balls)}.`, "Experimental probability"); }};
+  }
+
+  /* ---------- Mission 3: Probability Facts ---------- */
+  function m3(i){
+    const t = i % 4;
+    if (t === 0){ const p = +(R(1, 99)/100).toFixed(2);
+      return {html:`<p class="tw-q">In an experiment, P(E) = <b>${p}</b>. Find P(not E).</p>${PAD("P(not E) =")}`,
+        mount(el, done){ bindPad(el, +(1 - p).toFixed(2), .0005, done, `Every trial either has E or not, so P(E) + P(not E) = 1. P(not E) = 1 − ${p} = <b>${n2(1 - p)}</b>.`, "P(E) + P(not E) = 1"); }}; }
+    if (t === 1){ const bad = P(["−0.5", "1.3", "115%", fr(7, 5), "−1.5"]), good = SH(["0", "1", "0.75", fr(2, 3), "15%", "0.07"]).slice(0, 3), o = SH([bad, ...good]);
+      return {html:`<p class="tw-q">Which of these <b>cannot</b> be a probability?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(bad), done, `A probability is a fraction of trials, so it is always between 0 and 1: 0 ≤ P(E) ≤ 1. <b>${bad}</b> is outside that range.`, "Range of probability"); }}; }
+    if (t === 2){ const k = P([3, 4]), n = 100*R(2, 5), parts = split(n, k, 5), miss = R(0, k - 1), ps = parts.map(x => +(x/n).toFixed(4)), names = k === 3 ? ["Two heads", "One head", "No head"] : ["A", "B", "O", "AB"];
+      return {html:`<p class="tw-q">These ${k} outcomes cover every trial. Find the missing probability.</p>${tbl(names, [ps.map((x, j) => j === miss ? `<span style="color:var(--cyan)">?</span>` : n2(x))])}${PAD()}`,
+        mount(el, done){ bindPad(el, ps[miss], .0005, done, `The probabilities of outcomes that cover all trials add to 1: ? = 1 − (${ps.filter((_, j) => j !== miss).map(n2).join(" + ")}) = <b>${n2(ps[miss])}</b>.`, "Probabilities add to 1"); }}; }
+    const S = [["0 ≤ P(E) ≤ 1 for every event", true], ["P(E) + P(not E) = 1", true], ["The probabilities of all the outcomes of a trial add up to 1", true], ["An experimental probability can change when we do more trials", true], ["A probability can be greater than 1 if the event happens very often", false], ["If a coin gave 7 heads in 10 tosses, the coin must be unfair", false], ["Experimental probability = total trials ÷ number of times the event happened", false]];
+    const it = SH(S.slice()).slice(0, 4); if (!it.some(x => x[1])) return m3(i + 4);
+    return {html:`<p class="tw-q">Select <b>all</b> the true statements.</p>${multiHTML(it.map(x => x[0]))}`,
+      mount(el, done){ bindMulti(el, it.map((x, k) => x[1] ? k : -1).filter(k => k >= 0), done, it.map(x => `${x[1] ? "✓" : "✗"} ${x[0]}`).join("<br>"), "Probability facts"); }};
+  }
+
+  /* ---------- Mission 4: Dice & Coin Tables ---------- */
+  const DQ = [["a 3", o => o === 3], ["an even number", o => o % 2 === 0], ["a number greater than 4", o => o > 4], ["a prime number", o => [2, 3, 5].includes(o)], ["a 6", o => o === 6], ["a number less than 3", o => o < 3]];
+  function m4(i){
+    if (i % 3 === 2){ const n = P([200, 250, 500, 1000]), f = split(n, 3, Math.round(n*.12)), ask = R(0, 2), nm = ["two heads", "exactly one head", "no head"];
+      return {html:`<p class="tw-q">Two coins are tossed together <b>${n}</b> times. Find the probability of <b>${nm[ask]}</b>.</p>${tbl(["Two heads", "One head", "No head"], [f])}${PAD()}`,
+        mount(el, done){ bindPad(el, dec(f[ask], n), .0005, done, `P = ${show(f[ask], n)}. (Check: the three probabilities add to 1.)`, "Frequency tables"); }}; }
+    const n = P([200, 250, 500, 1000]), f = split(n, 6, Math.round(n*.1)), [q, test] = P(DQ), k = [1, 2, 3, 4, 5, 6].filter(test).reduce((a, o) => a + f[o - 1], 0);
+    return {html:`<p class="tw-q">A die is thrown <b>${n}</b> times. Find the probability of getting <b>${q}</b>.</p>${tbl([1, 2, 3, 4, 5, 6].map(dieFace), [f])}${PAD()}`,
+      mount(el, done){ const used = [1, 2, 3, 4, 5, 6].filter(test); bindPad(el, dec(k, n), .0005, done, `${used.length > 1 ? `Add the frequencies of ${used.join(", ")}: ${used.map(o => f[o - 1]).join(" + ")} = ${k}. ` : ""}P = ${show(k, n)}.`, "Frequency tables"); }};
+  }
+
+  /* ---------- Mission 5: Probability from Real Data ---------- */
+  function m5(i){
+    const t = i % 4;
+    if (t === 0){ const n = P([500, 1000, 2000]), f = split(n, 3, Math.round(n*.1)), ask = R(0, 2), nm = ["2 girls", "1 girl", "no girl"];
+      return {html:`<p class="tw-q"><b>${n}</b> families with 2 children were surveyed. A family is chosen at random. Find the probability that it has <b>${nm[ask]}</b>.</p>${tbl(["2 girls", "1 girl", "No girl"], [f])}${PAD()}`,
+        mount(el, done){ bindPad(el, dec(f[ask], n), .0005, done, `P = ${show(f[ask], n)}.`, "Data-based probability"); }}; }
+    if (t === 1){ const days = P([200, 250, 500]), ok = R(Math.round(days*.6), days - 10), ask = P(["correct", "not correct"]), k = ask === "correct" ? ok : days - ok;
+      return {html:`<p class="tw-q">A weather office’s forecasts were checked on <b>${days}</b> days and were correct on <b>${ok}</b> days. Find the probability that a forecast was <b>${ask}</b>.</p>${PAD()}`,
+        mount(el, done){ bindPad(el, dec(k, days), .0005, done, `${ask === "correct" ? "" : `Wrong on ${days} − ${ok} = ${k} days. `}P = ${show(k, days)}.`, "Data-based probability"); }}; }
+    if (t === 2){ const n = P([40, 50]), f = split(n, 4, 4), names = ["O", "A", "B", "AB"], ask = R(0, 3), most = f.indexOf(Math.max(...f));
+      if (i % 2) return {html:`<p class="tw-q">Blood groups of <b>${n}</b> students are recorded. Find the probability that a student chosen at random has blood group <b>${names[ask]}</b>.</p>${tbl(names, [f])}${PAD()}`,
+        mount(el, done){ bindPad(el, dec(f[ask], n), .0005, done, `P(${names[ask]}) = ${show(f[ask], n)}.`, "Data-based probability"); }};
+      if (f.filter(x => x === f[most]).length > 1) return m5(i + 4);
+      const o = names.slice();
+      return {html:`<p class="tw-q">Blood groups of <b>${n}</b> students. Which blood group is a randomly chosen student <b>most likely</b> to have?</p>${tbl(names, [f])}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, most, done, `The highest frequency gives the highest probability: <b>${names[most]}</b> with ${show(f[most], n)}.`, "Data-based probability"); }}; }
+    const n = P([20, 25, 40, 50]), rows = [["Less than 10 km", 0], ["10 km to 20 km", 0], ["More than 20 km", 0]], f = split(n, 3, 2), ask = R(0, 2);
+    return {html:`<p class="tw-q">The distance from home to school of <b>${n}</b> students. Find the probability that a student lives <b>${rows[ask][0].toLowerCase()}</b> away.</p>${tbl(rows.map(r => r[0]), [f])}${PAD()}`,
+      mount(el, done){ bindPad(el, dec(f[ask], n), .0005, done, `P = ${show(f[ask], n)}.`, "Data-based probability"); }};
+  }
+
+  /* ---------- Mission 6: Grouped Data ---------- */
+  function m6(i){
+    const t = i % 3;
+    if (t === 0){ const n = P([40, 50, 80, 100]), lab = ["0–20", "20–30", "30–60", "60–90", "90–100"], f = split(n, 5, 2), cut = R(1, 4), dir = P(["less than", "at least"]);
+      const k = dir === "less than" ? f.slice(0, cut).reduce((a, b) => a + b, 0) : f.slice(cut).reduce((a, b) => a + b, 0), edge = lab[cut].split("–")[0];
+      return {html:`<p class="tw-q">Marks (out of 100) of <b>${n}</b> students. Find the probability that a student scored <b>${dir} ${edge}%</b>.</p>${tbl(["Marks", ...lab], [["Students", ...f]])}${PAD()}`,
+        mount(el, done){ bindPad(el, dec(k, n), .0005, done, `“${dir} ${edge}” covers the classes ${(dir === "less than" ? lab.slice(0, cut) : lab.slice(cut)).join(", ")} (an upper limit belongs to the next class). ${(dir === "less than" ? f.slice(0, cut) : f.slice(cut)).join(" + ")} = ${k}, so P = ${show(k, n)}.`, "Grouped data"); }}; }
+    if (t === 1){ const n = P([40, 50, 80, 100]), lab = ["500–700", "700–900", "900–1100", "1100–1300", "1300+"], f = split(n, 5, 2), cut = R(1, 4), k = f.slice(cut).reduce((a, b) => a + b, 0), edge = lab[cut].split(/[–+]/)[0];
+      return {html:`<p class="tw-q">Lifetimes (in hours) of <b>${n}</b> bulbs. Find the probability that a bulb lasts <b>${edge} hours or more</b>.</p>${tbl(["Hours", ...lab], [["Bulbs", ...f]])}${PAD()}`,
+        mount(el, done){ bindPad(el, dec(k, n), .0005, done, `Add the classes from ${edge} upwards: ${f.slice(cut).join(" + ")} = ${k}. P = ${show(k, n)}.`, "Grouped data"); }}; }
+    const w = [4.97, 5.05, 5.08, 5.03, 5.00, 5.06, 5.08, 4.98, 5.04, 5.07, 5.00, 4.99, 5.02, 5.01, 4.96, 5.05, 5.09, 4.95, 5.03, 5.00].map(x => +(x + (R(-2, 2))/100).toFixed(2)).slice(0, P([10, 20]));
+    const k = w.filter(x => x > 5).length;
+    return {html:`<p class="tw-q">Weights (kg) of bags of flour marked <b>5 kg</b>: ${w.map(n2).join(", ")}. Find the probability that a bag has <b>more than 5 kg</b>.</p>${PAD()}`,
+      mount(el, done){ bindPad(el, dec(k, w.length), .0005, done, `${k} of the ${w.length} bags weigh more than 5 kg (exactly 5.00 does not count). P = ${show(k, w.length)}.`, "Grouped data"); }};
+  }
+
+  /* ---------- Mission 7: The Long Run ---------- */
+  function m7(i){
+    const t = i % 4;
+    if (t === 0){ const [what, v] = P([["a head on a fair coin", "0.5"], ["a 1 on a fair die", fr(1, 6)], ["two heads with two fair coins", "0.25"], ["exactly one head with two fair coins", "0.5"]]);
+      const o = opts4(v, ["0.5", fr(1, 6), "0.25", "1", "0", fr(1, 3)]);
+      return {html:`<p class="tw-q">As the number of trials gets very large, the experimental probability of <b>${what}</b> gets closer and closer to…</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(v), done, `With more and more trials, the fraction settles down near <b>${v}</b>. Few trials can give a value far from it; many trials give a value close to it.`, "The long run"); }}; }
+    if (t === 1){ const p = P([.2, .25, .3, .4, .45, .6, .75, .8]), n = P([100, 200, 400, 500, 1000]);
+      return {html:`<p class="tw-q">From past data, P(a seed germinates) = <b>${p}</b>. About how many of <b>${n}</b> seeds would you expect to germinate?</p>${NUM("≈", "seeds")}`,
+        mount(el, done){ bindPad(el, p*n, 0, done, `Expected number ≈ probability × number of trials = ${p} × ${n} = <b>${n2(p*n)}</b>. (It is an estimate; the actual number can differ a little.)`, "Expected number"); }}; }
+    if (t === 2){ const right = "No: 10 tosses are too few; with many more tosses the fraction of heads would settle near 0.5 for a fair coin", o = opts4(right, ["Yes: 7 out of 10 proves the coin is unfair", "Yes: a fair coin always gives exactly 5 heads in 10 tosses", "No: a coin can never be unfair"]);
+      return {html:`<p class="tw-q">A coin gave <b>7 heads in 10 tosses</b>. Does this prove the coin is unfair?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `<b>Not proved.</b> Small samples vary a lot. Experimental probability becomes reliable only over a large number of trials.`, "The long run"); }}; }
+    const g = [[R(4, 11), 15], [R(4, 11), 15], [R(4, 11), 15]], c1 = g[0][0] + g[1][0], c2 = c1 + g[2][0];
+    return {html:`<p class="tw-q">Three groups each toss a coin 15 times and get <b>${g[0][0]}, ${g[1][0]}, ${g[2][0]}</b> heads. Find the cumulative probability of a head after all three groups (to 3 decimal places).</p>${PAD()}`,
+      mount(el, done){ bindPad(el, +(c2/45).toFixed(4), .0006, done, `Combine all the trials: (${g.map(x => x[0]).join(" + ")}) ÷ (15 + 15 + 15) = ${fr(c2, 45)} ≈ <b>${(c2/45).toFixed(3)}</b>. (After two groups it was ${fr(c1, 30)}.)`, "Cumulative probability"); }};
+  }
+
+  /* ---------- Mission 8: Working Backwards ---------- */
+  function m8(i){
+    const t = i % 4;
+    if (t === 0){ const n = P([200, 400, 500, 1000]), p = +(R(30, 70)/100).toFixed(2), k = Math.round(p*n);
+      return {html:`<p class="tw-q">A coin was tossed <b>${n}</b> times and P(head) = <b>${p}</b>. How many <b>tails</b> came up?</p>${NUM("", "tails")}`,
+        mount(el, done){ bindPad(el, n - k, 0, done, `Heads = ${p} × ${n} = ${k}, so tails = ${n} − ${k} = <b>${n - k}</b>. (Or: P(tail) = ${n2(1 - p)}, × ${n}.)`, "Working backwards"); }}; }
+    if (t === 1){ const k = R(3, 12), n = k*P([4, 5, 8, 10, 20, 25]), p = k/n;
+      return {html:`<p class="tw-q">An event happened <b>${k}</b> times and its experimental probability is <b>${n2(p)}</b>. How many trials were done?</p>${NUM("", "trials")}`,
+        mount(el, done){ bindPad(el, n, 0, done, `P = event ÷ trials, so trials = ${k} ÷ ${n2(p)} = <b>${n}</b>.`, "Working backwards"); }}; }
+    if (t === 2){ const n = P([40, 50, 100]), f = split(n, 3, 3), [a, b] = SH([0, 1, 2]).slice(0, 2), nm = ["walk", "come by bus", "cycle"];
+      return {html:`<p class="tw-q">Of <b>${n}</b> students, ${f[0]} walk, ${f[1]} come by bus and ${f[2]} cycle to school. Find the probability that a student does <b>not ${nm[a]}</b>.</p>${PAD()}`,
+        mount(el, done){ bindPad(el, dec(n - f[a], n), .0005, done, `Either count the rest (${n} − ${f[a]} = ${n - f[a]}) or use 1 − P(${nm[a]}) = 1 − ${n2(dec(f[a], n))}. P = ${show(n - f[a], n)}.`, "P(E) + P(not E) = 1"); }}; }
+    const n = P([20, 25, 40, 50]), d = R(1, Math.floor(n/4));
+    return {html:`<p class="tw-q">A box of <b>${n}</b> bulbs has <b>${d}</b> defective ones (found by testing). One bulb is taken out. Find P(it is <b>not</b> defective).</p>${PAD()}`,
+      mount(el, done){ bindPad(el, dec(n - d, n), .0005, done, `Good bulbs = ${n} − ${d} = ${n - d}. P = ${show(n - d, n)}.`, "P(E) + P(not E) = 1"); }};
+  }
+
+  const LS = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Trials, Outcomes & Events", goal:"The language of chance.", n:8,
+      learn:LS("Words to know", "A <b>trial</b> is an action with several possible results (tossing a coin, throwing a die). Each result is an <b>outcome</b>. An <b>event</b> is a collection of outcomes, like “an even number” = {2, 4, 6}.", "Throw a die → outcomes 1 to 6")},
+    {id:2, track:"foundation", name:"Experimental Probability", goal:"Count, then divide.", n:8,
+      learn:LS("The formula", "P(E) = (number of trials in which E happened) ÷ (total number of trials). This is the experimental (empirical) probability, found from what actually happened.", "455 heads in 1000 tosses → P(H) = 0.455")},
+    {id:3, track:"foundation", name:"Probability Facts", goal:"0 to 1, and everything adds to 1.", n:8,
+      learn:LS("Three facts", "0 ≤ P(E) ≤ 1. P(E) + P(not E) = 1. If some outcomes cover every trial, their probabilities add up to 1.", "P(E) = 0.05 → P(not E) = 0.95")},
+    {id:4, track:"core", name:"Dice & Coin Tables", goal:"Read frequency tables.", n:8,
+      learn:LS("Read, add, divide", "Find the frequency of the event in the table. For an event made of several outcomes (like “even”), add their frequencies first. Then divide by the total number of trials.", "Even = f(2) + f(4) + f(6)")},
+    {id:5, track:"core", name:"Probability from Real Data", goal:"Surveys, weather, blood groups.", n:8,
+      learn:LS("Data = trials", "In a survey, each person or day counts as a trial. P(event) = how many had it ÷ how many were recorded. The biggest frequency is the most likely outcome.", "Forecast correct on 175 of 250 days → 0.7")},
+    {id:6, track:"core", name:"Grouped Data", goal:"Marks, lifetimes and weights in classes.", n:8,
+      learn:LS("Use whole classes", "Add the frequencies of all the classes that fit the event. In a class like 20–30, the upper limit 30 belongs to the next class. “More than 5 kg” does not include exactly 5.", "Less than 30 = classes 0–20 and 20–30")},
+    {id:7, track:"advanced", name:"The Long Run", goal:"More trials, steadier answers.", n:8,
+      learn:LS("Large numbers", "With few trials, results jump around. As trials increase, the fraction settles near a fixed value (0.5 for a fair coin, 1/6 for each face of a fair die). Expected count ≈ P × number of trials.", "P = 0.3 → in 500 trials expect about 150")},
+    {id:8, track:"advanced", name:"Working Backwards", goal:"From probabilities back to counts.", n:8,
+      learn:LS("Rearrange the formula", "Count = P × total; total = count ÷ P. Use P(not E) = 1 − P(E) whenever “not” appears.", "P(H) = 0.48 in 500 tosses → 240 heads, 260 tails")},
+    {id:9, track:"advanced", name:"Chance Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m2, m2, m3, m4, m4, m5, m6, m7, m8, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c9-probability"] = CQ.quest({
+  key:"pb9_stars", missions:PRB9.MISSIONS, gen:PRB9.GEN, chapter:{std:9, ch:15},
+  desc:"Class 9 · Probability. Master experimental probability in 9 missions: trials, outcomes and events, P(E) from data, probability facts, dice and coin tables, surveys, grouped data, the long run and working backwards.",
+  modes:{foundation:"Trials, outcomes, events and experimental probability", core:"Frequency tables, real-life data and grouped data", advanced:"The long run, expected counts, working backwards and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 9 · Heron's Formula
+   Chapter game "Heron's Workshop": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 The Semi-perimeter  2 Heron in Action  3 Special Triangles & Surds
+   Apply  : 4 Triangles in Real Life  5 Quadrilaterals by a Diagonal  6 Right Angle + Heron
+   Master : 7 Rhombus, Kites & Trapeziums  8 Reverse & Compare  9 Heron Master (timed)
+   ============================================================ */
+const HER9 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, rs, orderHTML, bindOrder} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const svg = (g, w = 300, h = 170, mh = 165) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const T = (x, y, s, c = "#e8ecff", fs = 13) => `<text x="${x}" y="${y}" text-anchor="middle" style="font-size:${fs}px;font-weight:800;fill:${c}">${s}</text>`;
+  const F1 = `fill="#5aa9ff26" stroke="#9cc8ff" stroke-width="2.2" stroke-linejoin="round"`, F2 = `fill="#ffcf5a22" stroke="#ffcf5a" stroke-width="2.2" stroke-linejoin="round"`;
+  const poly = (pts, st) => `<polygon points="${pts.map(p => p.join(",")).join(" ")}" ${st}/>`;
+  const PAD = u => padHTML("", u, {dec:true});
+  const box = s => `<div class="tw-ex" style="font-size:16px">${s}</div>`;
+  // Heronian triangles (integer sides AND integer area)
+  const BANK = [[3, 4, 5], [5, 5, 6], [5, 5, 8], [5, 12, 13], [6, 8, 10], [7, 15, 20], [9, 10, 17], [10, 13, 13], [13, 14, 15], [9, 12, 15], [8, 15, 17], [10, 10, 12], [11, 13, 20], [12, 16, 20], [15, 15, 18], [20, 21, 29], [13, 20, 21], [10, 17, 21], [7, 24, 25], [12, 35, 37], [15, 28, 41], [9, 40, 41], [26, 28, 30], [13, 13, 24], [14, 25, 25], [16, 17, 17], [11, 25, 30], [13, 37, 40], [15, 34, 35], [10, 35, 39], [16, 25, 39], [17, 25, 28], [20, 34, 42]];
+  const heron2 = (a, b, c) => { const p = a + b + c; return p*(p - 2*a)*(p - 2*b)*(p - 2*c)/16; };   // area²
+  const area = (a, b, c) => Math.sqrt(heron2(a, b, c));
+  const ALL = []; BANK.forEach(t => [1, 2, 3].forEach(k => { const s = t.map(x => x*k); if (Math.max(...s) <= 60) ALL.push(s); }));
+  const pickTri = (max = 60) => SH(P(ALL.filter(t => Math.max(...t) <= max)).slice());
+  const sur = N => { let k = 1, m = N; for (let f = 2; f*f <= m; f++) while (m % (f*f) === 0){ m /= f*f; k *= f; } return [k, m]; };
+  const sstr = ([k, m]) => m === 1 ? `${k}` : `${k === 1 ? "" : k}√${m}`;
+  const triPic = (a, b, c, u = "") => { // scaled drawing of a triangle with sides a (base), b, c
+    const x = (a*a + b*b - c*c)/(2*a), y = Math.sqrt(Math.max(b*b - x*x, 1)), sc = Math.min(220/Math.max(a, Math.abs(x), a - x), 120/y), ox = 150 - a*sc/2 - Math.min(0, x)*sc/2;
+    const A = [ox, 150], B = [ox + a*sc, 150], C = [ox + x*sc, 150 - y*sc];
+    return svg(poly([A, B, C], F1) + T((A[0] + B[0])/2, 166, a + u, "#b6f36a") + T((A[0] + C[0])/2 - 14, (A[1] + C[1])/2, b + u, "#ffcf5a") + T((B[0] + C[0])/2 + 16, (B[1] + C[1])/2, c + u, "#ffcf5a"), 300, 172); };
+
+  /* ---------- Mission 1: The Semi-perimeter ---------- */
+  function m1(i){
+    const t = i % 4, [a, b, c] = pickTri(40), s = (a + b + c)/2;
+    if (t === 0) return {html:`<p class="tw-q">A triangle has sides <b>${a} cm, ${b} cm, ${c} cm</b>. Find its semi-perimeter s.</p>${triPic(a, b, c)}${PAD("cm")}`,
+      mount(el, done){ bindPad(el, s, 0, done, `s = (a + b + c) ÷ 2 = (${a} + ${b} + ${c}) ÷ 2 = ${a + b + c} ÷ 2 = <b>${n2(s)} cm</b>.`, "Semi-perimeter"); }};
+    if (t === 1){ const which = P([a, b, c]);
+      return {html:`<p class="tw-q">Sides <b>${a}, ${b}, ${c}</b> (s = ${n2(s)}). Find <b>s − ${which}</b>.</p>${PAD("")}`,
+        mount(el, done){ bindPad(el, s - which, 0, done, `s − ${which} = ${n2(s)} − ${which} = <b>${n2(s - which)}</b>. Check: (s − a) + (s − b) + (s − c) = 3s − 2s = s.`, "Semi-perimeter"); }}; }
+    if (t === 2){ const right = "√(s(s − a)(s − b)(s − c))", o = opts4(right, ["s(s − a)(s − b)(s − c)", "½ √(s(s − a)(s − b)(s − c))", "√((s + a)(s + b)(s + c))", "√(s(s − a)) + √((s − b)(s − c))"]);
+      return {html:`<p class="tw-q">Heron’s formula for the area of a triangle with sides a, b, c and s = (a + b + c)/2 is…</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Area = <b>${right}</b>. Heron of Alexandria (about 10 – 75 CE) gave it; it needs only the three sides, no height.`, "Heron’s formula"); }}; }
+    const BADS = SH([[3, 4, 9], [2, 5, 8], [4, 6, 11], [5, 5, 10], [1, 2, 4], [6, 7, 14]]), [p, q, r] = BADS[0], all = SH([[a, b, c], BADS[0], BADS[1]]), good = all.findIndex(t => t[0] === a && t[1] === b && t[2] === c), o = all.map(t => t.join(", ") + " cm");
+    return {html:`<p class="tw-q">Which set of lengths can form a triangle?</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, good, done, `Each side must be less than the sum of the other two. In the other sets the two shorter sides do not add up to more than the longest (e.g. ${p} + ${q} = ${p + q} ≤ ${r}), so Heron’s formula would give s − (longest side) ≤ 0. <b>${a}, ${b}, ${c}</b> works.`, "Triangle inequality"); }};
+  }
+
+  /* ---------- Mission 2: Heron in Action ---------- */
+  function m2(i){
+    const [a, b, c] = pickTri(i % 2 ? 60 : 30), s = (a + b + c)/2, A = area(a, b, c);
+    if (i % 4 === 3){ const pf = [`s = (${a} + ${b} + ${c}) ÷ 2 = ${s}`, `s − a = ${s - a}, s − b = ${s - b}, s − c = ${s - c}`, `s(s − a)(s − b)(s − c) = ${s} × ${s - a} × ${s - b} × ${s - c} = ${A*A}`, `Area = √${A*A} = ${A} cm²`];
+      return {html:`<p class="tw-q">Put the steps for the area of the triangle with sides <b>${a}, ${b}, ${c} cm</b> in order.</p>${orderHTML(pf)}`,
+        mount(el, done){ bindOrder(el, pf, done, `Semi-perimeter, then the three differences, then multiply, then the square root.`, "Heron’s formula"); }}; }
+    return {html:`<p class="tw-q">Find the area of a triangle with sides <b>${a} cm, ${b} cm, ${c} cm</b>.</p>${triPic(a, b, c)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, A, 0, done, `s = ${s}; s − a = ${s - a}, s − b = ${s - b}, s − c = ${s - c}. Area = √(${s} × ${s - a} × ${s - b} × ${s - c}) = √${A*A} = <b>${A} cm²</b>.`, "Heron’s formula"); }};
+  }
+
+  /* ---------- Mission 3: Special Triangles & Surds ---------- */
+  function surdQ(a, b, c, intro, u = "cm"){
+    const s = (a + b + c)/2, N = s*(s - a)*(s - b)*(s - c), [k, m] = sur(N), right = sstr([k, m]) + ` ${u}²`;
+    const w = [sstr([2*k, m]), sstr([k, m === 3 ? 2 : 3]), sstr([k + 1, m]), sstr([k % 2 ? 3*k : k/2, m]), m > 1 ? `${k*k*m}` : sstr([k, 3])].map(x => x + ` ${u}²`), o = opts4(right, w);
+    return {html:`<p class="tw-q">${intro}</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `Sides ${a}, ${b}, ${c}: s = ${s}. Area = √(${s} × ${s - a} × ${s - b} × ${s - c}) = √${N}${m > 1 ? ` = √(${k*k} × ${m})` : ""} = <b>${right}</b>.`, "Simplifying surds"); }};
+  }
+  function m3(i){
+    const t = i % 4;
+    if (t === 0){ const a = 2*R(2, 30), right = `${(a/2)**2}√3 cm²`, o = opts4(right, [`${a*a}√3 cm²`, `${(a/2)**2*2}√3 cm²`, `${a*a/2}√3 cm²`, `${(a/2)**2}√2 cm²`]);
+      return {html:`<p class="tw-q">An equilateral triangle (a “SCHOOL AHEAD” board) has perimeter <b>${3*a} cm</b>. Its area is…</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Side = ${a}, s = ${3*a/2}, s − a = ${a/2} three times: √(${3*a/2} × ${a/2} × ${a/2} × ${a/2}) = (√3/4)a² = (√3/4) × ${a*a} = <b>${right}</b>.`, "Equilateral triangle"); }}; }
+    if (t === 1){ const e = R(5, 25), b = 2*R(1, e - 1);
+      return surdQ(e, e, b, `An isosceles triangle has perimeter <b>${2*e + b} cm</b> and each equal side is <b>${e} cm</b>. Its area is…`); }
+    if (t === 2){ let a, b, c; do { a = R(6, 30); b = R(6, 30); c = R(Math.abs(a - b) + 1, a + b - 1); } while ((a + b + c) % 2);
+      return surdQ(a, b, c, `Find the area of a triangle two of whose sides are <b>${a} cm</b> and <b>${b} cm</b>, with perimeter <b>${a + b + c} cm</b>.`); }
+    const [r, k] = P([[[3, 5, 7], 20], [[3, 5, 7], 10], [[12, 17, 25], 10], [[2, 3, 3], 8], [[4, 5, 7], 6], [[5, 6, 7], 6], [[3, 4, 6], 6], [[3, 5, 6], 10]]), sd = r.map(x => x*k);
+    if ((sd[0] + sd[1] + sd[2]) % 2) return m3(i + 4);
+    return surdQ(sd[0], sd[1], sd[2], `The sides of a triangular plot are in the ratio <b>${r.join(" : ")}</b> and its perimeter is <b>${sd[0] + sd[1] + sd[2]} m</b>. Its area is…`, "m");
+  }
+
+  /* ---------- Mission 4: Triangles in Real Life ---------- */
+  function m4(i){
+    const t = i % 4;
+    if (t === 0){ const f = P([1, 2]), [a, b, c] = pickTri(60).map(x => x*f), g = R(2, 5), rate = P([10, 15, 20, 25, 30]), per = a + b + c;
+      return {html:`<p class="tw-q">A triangular park has sides <b>${a} m, ${b} m, ${c} m</b>. Find the cost of fencing it at <b>₹${rate} per metre</b>, leaving <b>${g} m</b> for a gate.</p>${padHTML("₹", "", {dec:true})}`,
+        mount(el, done){ bindPad(el, (per - g)*rate, 0, done, `Perimeter = ${per} m. Wire = ${per} − ${g} = ${per - g} m. Cost = ${per - g} × ${rate} = <b>${rs((per - g)*rate)}</b>.`, "Perimeter and cost"); }}; }
+    if (t === 1){ const [a, b, c] = pickTri(60), A = area(a, b, c), rate = P([2, 5, 10, 50]), mo = P([3, 4, 6, 12]);
+      if (i % 2) return {html:`<p class="tw-q">A triangular tile has sides <b>${a} cm, ${b} cm, ${c} cm</b>. A floor design uses <b>16</b> such tiles. Find the cost of polishing them at <b>₹${rate} per cm²</b>.</p>${padHTML("₹", "", {dec:true})}`,
+        mount(el, done){ bindPad(el, 16*A*rate, 0, done, `One tile: s = ${(a + b + c)/2}, area = ${A} cm². 16 tiles = ${16*A} cm². Cost = ${16*A} × ${rate} = <b>${rs(16*A*rate)}</b>.`, "Area and cost"); }};
+      return {html:`<p class="tw-q">A flyover wall is a triangle with sides <b>122 m, 22 m, 120 m</b>. Advertising earns <b>₹5000 per m² per year</b>. A company rents it for <b>${mo} months</b>. Find the rent.</p>${padHTML("₹", "", {dec:true})}`,
+        mount(el, done){ bindPad(el, 1320*5000*mo/12, 0, done, `s = 132; area = √(132 × 10 × 110 × 12) = 1320 m². Rent = 1320 × 5000 × ${mo}/12 = <b>${rs(1320*5000*mo/12)}</b>.`, "Area and cost"); }}; }
+    if (t === 2){ const [a, b, c] = pickTri(45), A = area(a, b, c), n = P([5, 8, 10, 12]);
+      return {html:`<p class="tw-q">A flag is made of <b>${n}</b> identical triangular pieces with sides <b>${a} cm, ${b} cm, ${c} cm</b>. How much cloth is needed?</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, n*A, 0, done, `Area of one piece = ${A} cm² (Heron, s = ${(a + b + c)/2}). Total = ${n} × ${A} = <b>${n*A} cm²</b>.`, "Area and cost"); }}; }
+    return surdQ(15, 11, 6, `A slide’s side wall is a triangle with sides <b>15 m, 11 m, 6 m</b>. Find the area painted with “KEEP THE PARK GREEN AND CLEAN”.`, "m");
+  }
+
+  /* ---------- Mission 5: Quadrilaterals by a Diagonal ---------- */
+  const PAIRS = (() => { const out = []; ALL.forEach(t1 => ALL.forEach(t2 => { if (t1 === t2) return; t1.forEach(d => { if (!t2.includes(d) || d < 8) return; const o1 = t1.slice(), o2 = t2.slice(); o1.splice(o1.indexOf(d), 1); o2.splice(o2.indexOf(d), 1); out.push([d, o1, o2]); }); })); return out; })();
+  function quadPic(d, o1, o2){ return svg(poly([[40, 90], [150, 20], [260, 90], [130, 160]], F1) + `<line x1="40" y1="90" x2="260" y2="90" stroke="#ffcf5a" stroke-width="2" stroke-dasharray="5 4"/>` + T(30, 95, "A") + T(150, 13, "B") + T(272, 95, "C") + T(130, 172, "D") + T(150, 84, d, "#ffcf5a") + T(84, 46, o1[0], "#b6f36a") + T(214, 46, o1[1], "#b6f36a") + T(194, 136, o2[0], "#b6f36a") + T(78, 136, o2[1], "#b6f36a"), 300, 178); }
+  function m5(i){
+    const [d, o1, o2] = P(PAIRS), A1 = area(d, ...o1), A2 = area(d, ...o2);
+    if (i % 3 === 2){ const big = A1 > A2 ? "ABC" : "ACD"; if (A1 === A2) return m5(i + 1);
+      return {html:`<p class="tw-q">Two groups clean the regions ABC and ACD of this plot (lengths in m). Which group cleans more, and by how much?</p>${quadPic(d, o1, o2)}${PAD("m² more")}`,
+        mount(el, done){ bindPad(el, Math.abs(A1 - A2), 0, done, `ar(ABC) = ${A1} m², ar(ACD) = ${A2} m². Group ${big} cleans <b>${Math.abs(A1 - A2)} m²</b> more; together ${A1 + A2} m².`, "Quadrilateral areas"); }}; }
+    return {html:`<p class="tw-q">Find the area of quadrilateral ABCD: AB = ${o1[0]}, BC = ${o1[1]}, CD = ${o2[0]}, DA = ${o2[1]} and diagonal AC = <b>${d}</b> (cm).</p>${quadPic(d, o1, o2)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, A1 + A2, 0, done, `The diagonal splits it into two triangles. △ABC (${d}, ${o1.join(", ")}): ${A1}. △ACD (${d}, ${o2.join(", ")}): ${A2}. Total = <b>${A1 + A2} cm²</b>.`, "Quadrilateral areas"); }};
+  }
+
+  /* ---------- Mission 6: Right Angle + Heron ---------- */
+  const PY = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15], [8, 15, 17], [12, 16, 20], [7, 24, 25], [15, 20, 25], [10, 24, 26], [20, 21, 29], [9, 40, 41], [18, 24, 30]];
+  function m6(i){
+    for (;;){ const [p, q, h] = P(PY), cand = ALL.filter(t => t.includes(h) && !(t.join() === [p, q, h].join())); if (!cand.length) continue;
+      const t2 = P(cand).slice(); t2.splice(t2.indexOf(h), 1); const A1 = p*q/2, A2 = area(h, ...t2);
+      if (i % 2) return {html:`<p class="tw-q">In quadrilateral ABCD, <b>∠B = 90°</b>, AB = ${p} m, BC = ${q} m, CD = ${t2[0]} m, DA = ${t2[1]} m. Find the diagonal AC.</p>${PAD("m")}`,
+        mount(el, done){ bindPad(el, h, 0, done, `Pythagoras in right △ABC: AC = √(${p}² + ${q}²) = √${p*p + q*q} = <b>${h} m</b>. Now △ACD has all three sides known, ready for Heron.`, "Right angle + Heron"); }};
+      return {html:`<p class="tw-q">A park ABCD has <b>∠B = 90°</b>, AB = ${p} m, BC = ${q} m, CD = ${t2[0]} m, DA = ${t2[1]} m. Find its area.</p>${PAD("m²")}`,
+        mount(el, done){ bindPad(el, A1 + A2, 0, done, `AC = √(${p}² + ${q}²) = ${h}. ar(ABC) = ½ × ${p} × ${q} = ${A1}. △ACD has sides ${h}, ${t2.join(", ")}: s = ${(h + t2[0] + t2[1])/2}, area = ${A2}. Total = <b>${A1 + A2} m²</b>.`, "Right angle + Heron"); }};
+    }
+  }
+
+  /* ---------- Mission 7: Rhombus, Kites & Trapeziums ---------- */
+  const ISO = [[5, 6], [5, 8], [13, 10], [10, 12], [15, 18], [13, 24], [25, 14], [17, 16], [25, 48], [30, 48], [50, 60], [26, 20], [100, 160], [100, 120]];
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ const [a, d] = P(ISO), A = 2*area(a, a, d), cows = P([2, 3, 4, 6, 8, 12, 18].filter(c => A % c === 0));
+      if (i % 2) return {html:`<p class="tw-q">A rhombus-shaped field has each side <b>${a} m</b> and one diagonal <b>${d} m</b>. It feeds <b>${cows}</b> cows equally. How much area does each cow get?</p>${PAD("m²")}`,
+        mount(el, done){ bindPad(el, A/cows, 0, done, `The diagonal makes two congruent triangles (${a}, ${a}, ${d}), each ${A/2} m² by Heron. Field = ${A} m², so each cow gets ${A} ÷ ${cows} = <b>${n2(A/cows)} m²</b>.`, "Rhombus"); }};
+      return {html:`<p class="tw-q">A rhombus has perimeter <b>${4*a} m</b> and one diagonal <b>${d} m</b>. Find its area.</p>${PAD("m²")}`,
+        mount(el, done){ bindPad(el, A, 0, done, `Side = ${4*a} ÷ 4 = ${a}. One triangle (${a}, ${a}, ${d}): s = ${(2*a + d)/2}, area = ${A/2}. Rhombus = 2 × ${A/2} = <b>${A} m²</b>.`, "Rhombus"); }}; }
+    if (t === 1){ for (;;){ const tr = pickTri(30), x = tr[0], A = area(...tr), b = R(4, 20), a = b + x, ar_ = (a + b)*A/x;
+        if (Math.abs(ar_*100 - Math.round(ar_*100)) > 1e-6) continue;
+        return {html:`<p class="tw-q">A trapezium-shaped field has parallel sides <b>${a} m</b> and <b>${b} m</b>, and non-parallel sides <b>${tr[1]} m</b> and <b>${tr[2]} m</b>. Find its area.</p>${PAD("m²")}`,
+          mount(el, done){ bindPad(el, ar_, .01, done, `Cut off a parallelogram of side ${b}: the leftover triangle has sides ${a} − ${b} = ${x}, ${tr[1]}, ${tr[2]}, area ${A} by Heron. Its height h = 2 × ${A} ÷ ${x} = ${n2(2*A/x)} m. Trapezium = ½ (${a} + ${b}) × ${n2(2*A/x)} = <b>${n2(ar_)} m²</b>.`, "Trapezium"); }}; } }
+    const dg = 2*R(8, 20), side = P([6, 5]), base = 8, tri = side === 6 ? `8√5` : `12`, sq = dg*dg/2, each = sq/2;
+    return {html:`<p class="tw-q">A kite is a square with diagonal <b>${dg} cm</b> (split into two halves of different shades) plus an isosceles triangle of base <b>${base} cm</b> and sides <b>${side} cm</b>. How much paper is used for <b>one half of the square</b>?</p>${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, each, 0, done, `Square with diagonal d has area d²/2 = ${dg*dg}/2 = ${sq} cm², so each half = <b>${each} cm²</b>. (The tail triangle ${base}, ${side}, ${side} has area ${tri} cm² by Heron.)`, "Kites"); }};
+  }
+
+  /* ---------- Mission 8: Reverse & Compare ---------- */
+  function m8(i){
+    const t = i % 4;
+    if (t === 0){ const tr = pickTri(60), A = area(...tr), base = P(tr);
+      if (Math.abs(A/base*100 - Math.round(A/base*100)) > 1e-6) return m8(i + 4);
+      return {html:`<p class="tw-q">A triangle with sides <b>${tr.join(" cm, ")} cm</b> and a parallelogram stand on the same base of <b>${base} cm</b> and have equal areas. Find the parallelogram’s height.</p>${PAD("cm")}`,
+        mount(el, done){ bindPad(el, A/base, .01, done, `Triangle area = ${A} cm² (Heron). Parallelogram: ${base} × h = ${A} → h = <b>${n2(A/base)} cm</b>.`, "Reverse problems"); }}; }
+    if (t === 1){ const tr = pickTri(50), A = area(...tr), side = P(tr);
+      if (Math.abs(2*A/side*100 - Math.round(2*A/side*100)) > 1e-6) return m8(i + 4);
+      return {html:`<p class="tw-q">Find the <b>altitude</b> of the triangle with sides <b>${tr.join(", ")} cm</b> on the side of <b>${side} cm</b>.</p>${triPic(side, ...tr.filter((x, k) => k !== tr.indexOf(side)))}${PAD("cm")}`,
+        mount(el, done){ bindPad(el, 2*A/side, .01, done, `Area = ${A} (Heron) = ½ × ${side} × h → h = 2 × ${A} ÷ ${side} = <b>${n2(2*A/side)} cm</b>.`, "Reverse problems"); }}; }
+    if (t === 2){ const each = `${1000}√6 cm²`, o = opts4(each + " of each colour", ["200√6 cm² of each colour", "2000√6 cm² of each colour", "500√6 cm² of each colour", "1000√3 cm² of each colour"]);
+      return {html:`<p class="tw-q">An umbrella has <b>10</b> triangular pieces, each <b>20 cm, 50 cm, 50 cm</b>, in two colours (5 of each). How much cloth of each colour?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(each + " of each colour"), done, `s = 60; one piece = √(60 × 10 × 10 × 40) = √240000 = 200√6 cm². Five pieces = <b>1000√6 cm²</b> (≈ 2449.5 cm²) of each colour.`, "Area and cost"); }}; }
+    const [a, b, c] = pickTri(40), p = P([2, 3]);
+    const o = opts4(`${p*p} times`, [`${p} times`, `${2*p} times`, `${p*p*p} times`, "The same"]);
+    return {html:`<p class="tw-q">Every side of a triangle (${a}, ${b}, ${c} cm) is multiplied by <b>${p}</b>. Its area becomes…</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(`${p*p} times`), done, `s and each (s − side) are multiplied by ${p}, so the product under the root grows ${p}⁴ times and the area ${p}² = <b>${p*p} times</b>: ${area(a, b, c)} → ${area(a, b, c)*p*p} cm².`, "Scaling areas"); }};
+  }
+
+  const LS = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"The Semi-perimeter", goal:"s, s − a, s − b, s − c.", n:8,
+      learn:LS("Half the perimeter", "For sides a, b, c the semi-perimeter is s = (a + b + c) ÷ 2. The three differences s − a, s − b, s − c must all be positive, which is exactly the triangle inequality.", "Sides 13, 14, 15 → s = 21; 8, 7, 6")},
+    {id:2, track:"foundation", name:"Heron in Action", goal:"Area from three sides, no height needed.", n:8,
+      learn:LS("Heron’s formula", "Area = √(s(s − a)(s − b)(s − c)). Use it when you know all three sides but not the height.", "13, 14, 15: √(21 × 8 × 7 × 6) = √7056 = 84")},
+    {id:3, track:"foundation", name:"Special Triangles & Surds", goal:"Equilateral, isosceles, ratios, and simplest surd form.", n:8,
+      learn:LS("Simplify the root", "Pull square factors out: √1215 = √(81 × 15) = 9√15. Equilateral triangle of side a: area = (√3/4)a². Sides in a ratio: find the multiplier from the perimeter first.", "3 : 5 : 7, perimeter 300 → 60, 100, 140 → 1500√3")},
+    {id:4, track:"core", name:"Triangles in Real Life", goal:"Parks, walls, tiles and costs.", n:8,
+      learn:LS("Area or perimeter?", "Fencing and borders use the perimeter (minus any gate); grass, paint, cloth and polish use the area. Then multiply by the rate.", "Fence 250 m − 3 m gate at ₹20/m = ₹4940")},
+    {id:5, track:"core", name:"Quadrilaterals by a Diagonal", goal:"Two triangles make a quadrilateral.", n:8,
+      learn:LS("Split and add", "If you know the four sides and one diagonal, the diagonal cuts the quadrilateral into two triangles with known sides. Use Heron twice and add.", "AB 3, BC 4, CD 4, DA 5, AC 5 → 6 + 2√21")},
+    {id:6, track:"core", name:"Right Angle + Heron", goal:"Pythagoras first, then Heron.", n:8,
+      learn:LS("Find the missing diagonal", "If one angle is 90°, Pythagoras gives the diagonal opposite it. That right triangle’s area is ½ × base × height; the other triangle uses Heron.", "∠B = 90°, AB 9, BC 40 → AC 41")},
+    {id:7, track:"advanced", name:"Rhombus, Kites & Trapeziums", goal:"Special quadrilaterals with Heron.", n:8,
+      learn:LS("Use the symmetry", "A diagonal cuts a rhombus into two congruent triangles. For a trapezium, cut off a parallelogram to leave a triangle; Heron gives its area, then its height.", "Trapezium 25, 10 with legs 14, 13 → triangle 15, 14, 13 → h = 11.2 → 196 m²")},
+    {id:8, track:"advanced", name:"Reverse & Compare", goal:"Heights, equal areas and scaling.", n:8,
+      learn:LS("Run it backwards", "Area from Heron, then height = 2 × area ÷ base. Equal areas on equal bases mean equal heights (for a parallelogram, h = area ÷ base). Doubling every side multiplies the area by 4.", "26, 28, 30 → 336; parallelogram on 28 → h = 12")},
+    {id:9, track:"advanced", name:"Heron Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m2, m3, m4, m5, m5, m6, m7, m8])(i % 4 === 3 ? i + 1 : i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c9-herons-formula"] = CQ.quest({
+  key:"hf9_stars", missions:HER9.MISSIONS, gen:HER9.GEN, chapter:{std:9, ch:12},
+  desc:"Class 9 · Heron’s Formula. Master the chapter in 9 missions: semi-perimeter, Heron’s formula, equilateral and isosceles triangles, surds, real-life costs, quadrilaterals by a diagonal, right angles, rhombuses, kites, trapeziums and reverse problems.",
+  modes:{foundation:"Semi-perimeter, Heron’s formula and special triangles", core:"Real-life triangles and quadrilaterals split by a diagonal", advanced:"Rhombuses, kites, trapeziums, reverse problems and the timed master round"}
 });
 
 </script>
