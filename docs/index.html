@@ -570,6 +570,8 @@ body{
 /* ══ LEARNING GAMES promo ══ */
 .nav-games{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;color:#07101f;background:linear-gradient(135deg,#c7b8ff,#3fd5f5 55%,#b6f36a);box-shadow:0 6px 18px -4px rgba(63,213,245,.55)}
 .nav-games:hover{filter:brightness(1.06)}
+.nav-hw{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;color:#fff;background:linear-gradient(135deg,#0B4F4A,#0d9488);box-shadow:0 6px 18px -4px rgba(13,148,136,.5)}
+.nav-hw:hover{filter:brightness(1.08)}
 .lg-promo{padding:8px 24px 28px}
 .lg-card{position:relative;overflow:hidden;isolation:isolate;max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:26px;align-items:center;padding:30px;border-radius:28px;color:#eef1ff;text-decoration:none;
   background:#0a0e1c;box-shadow:0 24px 60px -18px rgba(10,14,40,.55),inset 0 0 0 1px rgba(255,255,255,.1);transition:transform .25s,box-shadow .25s}
@@ -594,7 +596,12 @@ body{
   .lg-card{grid-template-columns:1fr;gap:18px;padding:22px 18px;border-radius:24px}
   .lg-title{font-size:25px}
   .lg-btn{width:100%;justify-content:center}
-  .nav-games{padding:6px 11px;font-size:12px}
+  .nav-games,.nav-hw{padding:6px 11px;font-size:12px}
+}
+@media(max-width:430px){
+  .nav-right{gap:5px}
+  .nav-games,.nav-hw,.nav-cta{padding:6px 9px;font-size:11.5px}
+  .nav-name{display:none}
 }
 </style>
 </head>
@@ -610,6 +617,7 @@ body{
     <div class="nav-right">
       <a href="tests/index.html" class="nav-link">Free Tests</a>
       <a href="https://excelbicholim.in" class="nav-link" target="_blank">Govt Exams</a>
+      <a href="/homework/" class="nav-hw">📘 Homework</a>
       <a href="/games/" class="nav-games">🎮 Games</a>
       <a href="https://wa.me/917358425108" class="nav-cta" target="_blank">📞 Contact</a>
     </div>
