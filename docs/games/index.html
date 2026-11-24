@@ -1098,6 +1098,9 @@ a.bt:active,button.bt:active{transform:scale(.98)}
   .sec-label.sec-big span{display:none}
   .clc-t .hm{display:none}
 }
+.g-log9{--a1:#38bdf8;--a2:#f472b6}
+.g-apt9{--a1:#f59e0b;--a2:#34d399}
+.chno .chl{font-size:17px;font-weight:800;font-style:italic;letter-spacing:-.02em}
 
 </style>
 </head>
@@ -1212,6 +1215,8 @@ var HG = (function () {
     'c7-geometric-twins': { name: 'Geometric Twins', div: 8, max: 60000, good: 1000 },
     'c8-fractions-disguise': { name: 'Fractions in Disguise', div: 8, max: 60000, good: 1000 },
     'c10-trigonometry': { name: 'Introduction to Trigonometry', div: 8, max: 60000, good: 1000 },
+    'c9-logarithms': { name: 'Logarithms', div: 8, max: 60000, good: 1000 },
+    'c9-areas-parallelograms': { name: 'Areas of Parallelograms and Triangles', div: 8, max: 60000, good: 1000 },
     'c9-converses': { name: 'Propositions and their Converses', div: 8, max: 60000, good: 1000 },
     'c9-weighted': { name: 'How Quantities Combine', div: 8, max: 60000, good: 1000 },
     'c9-algorithms': { name: 'The World of Algorithms', div: 8, max: 60000, good: 1000 },
@@ -1492,6 +1497,8 @@ const GICON = {
   "c8-dots-lines":'<svg viewBox="0 0 64 64"><path d="M6 50L20 34l12 8 12-20 14 6"/><circle cx="20" cy="34" r="3"/><circle cx="32" cy="42" r="3"/><circle cx="44" cy="22" r="3"/><path d="M6 58h52"/></svg>',
   "c8-algebra-play":'<svg viewBox="0 0 64 64"><rect x="24" y="8" width="16" height="12" rx="2"/><rect x="14" y="26" width="16" height="12" rx="2"/><rect x="34" y="26" width="16" height="12" rx="2"/><rect x="4" y="44" width="16" height="12" rx="2"/><rect x="24" y="44" width="16" height="12" rx="2"/><rect x="44" y="44" width="16" height="12" rx="2"/></svg>',
   "c8-area":'<svg viewBox="0 0 64 64"><path d="M8 52L20 16h36L44 52z"/><path d="M20 16v36" stroke-dasharray="4 4"/></svg>',
+  "c9-logarithms":'<svg viewBox="0 0 64 64"><path d="M8 52c10-30 22-40 48-44"/><path d="M8 56h50M8 56V6" opacity=".5"/></svg>',
+  "c9-areas-parallelograms":'<svg viewBox="0 0 64 64"><path d="M6 14h52M6 50h52" stroke-dasharray="4 4"/><path d="M14 50L26 14h26L40 50z"/><path d="M14 50l30-36 0 0" opacity=".6"/></svg>',
   "c9-converses":'<svg viewBox="0 0 64 64"><path d="M8 24h36l-8-8M56 40H20l8 8"/></svg>',
   "c9-weighted":'<svg viewBox="0 0 64 64"><path d="M8 18h20v10H8zM28 18h14v10H28zM42 18h14v10H42zM8 36h28v10H8zM36 36h20v10H36z"/></svg>',
   "c9-algorithms":'<svg viewBox="0 0 64 64"><rect x="22" y="6" width="20" height="12" rx="3"/><path d="M32 18v8M32 26l-14 10 14 10 14-10z"/><path d="M18 36H8v20M46 36h10v20"/></svg>',
@@ -1757,6 +1764,8 @@ const CH = [
   {id:"c7-geometric-twins", cls:"g-twins", std:7, book:"Ganita Prakash · Part 2", chn:1, name:"Geometric Twins", tag:"Congruence: superimposing, SSS, SAS, ASA, AAS, RHS, and isosceles angles", missions:9, key:"tw7c1_stars"},
   {id:"c8-fractions-disguise", cls:"g-fdis", std:8, book:"Ganita Prakash · Part 2", chn:1, name:"Fractions in Disguise", tag:"Percentages: the FDP trio, part & whole, increase/decrease, profit, discount, GST and compound interest", missions:9, key:"fd8c1_stars"},
   {id:"c10-trigonometry", cls:"g-trig", std:10, book:"NCERT", chn:8, name:"Introduction to Trigonometry", tag:"Sides, SOH-CAH-TOA, one ratio → all ratios, special angles 0°–90°, identities and step-by-step proofs", missions:9, key:"tr10c8_stars"},
+  {id:"c9-logarithms", cls:"g-log9", std:9, book:"Mathematics", chn:0, ord:0.1, chl:"log", name:"Logarithms", tag:"Exponential and log form, evaluating logs, special logs, product, quotient and power laws, log 2 and log 3, equations and change of base", missions:9, key:"lg9_stars"},
+  {id:"c9-areas-parallelograms", cls:"g-apt9", std:9, book:"NCERT", chn:9, ord:0.2, name:"Areas of Parallelograms and Triangles", tag:"Same base and same parallels, parallelogram area, Theorems 9.1–9.3, medians, diagonals, inside points and area proofs", missions:9, key:"apt9_stars"},
   {id:"c9-converses", cls:"g-cnv9", std:9, book:"Ganita Manjari · Part 2", chn:9, name:"Propositions and their Converses", tag:"Propositions, converses, counterexamples, different wordings, chains of reasoning and divisibility logic", missions:9, key:"pc9c9_stars"},
   {id:"c9-weighted", cls:"g-wav9", std:9, book:"Ganita Manjari · Part 2", chn:10, name:"How Quantities Combine", tag:"Average of averages, mixtures, custom weights, updating averages, and stacked and 100% stacked bar charts", missions:9, key:"wa9c10_stars"},
   {id:"c9-algorithms", cls:"g-alg9", std:9, book:"Ganita Manjari · Part 2", chn:11, name:"The World of Algorithms", tag:"The addition algorithm, writing steps, divisors and gcd, efficiency, Euclid’s and Āryabhaṭa’s gcd algorithms", missions:9, key:"al9c11_stars"},
@@ -1789,7 +1798,7 @@ const CH = [
   {id:"c10-ap", cls:"g-ap10", std:10, book:"NCERT", chn:5, name:"Arithmetic Progressions", tag:"Common difference, the nth term, term detective, sums of n terms and APs in real life", missions:9, key:"ap10c5_stars"}
 ];
 // each game's own page lives at /games/<slug>/ (built by build.py)
-const GAME_SLUGS = {"en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c9-converses":"class-9-propositions-and-converses", "c9-weighted":"class-9-weighted-averages-and-data", "c9-algorithms":"class-9-world-of-algorithms", "c9-quadrilaterals":"class-9-quadrilaterals", "c9-two-variables":"class-9-two-variables-one-line", "c9-solids":"class-9-surface-area-and-volume", "c7-data":"class-7-connecting-the-dots", "c7-constructions":"class-7-constructions-and-tilings", "c7-unknown":"class-7-finding-the-unknown", "c8-dots-lines":"class-8-tales-by-dots-and-lines", "c8-algebra-play":"class-8-algebra-play", "c8-area":"class-8-area", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
+const GAME_SLUGS = {"c9-logarithms":"class-9-logarithms", "c9-areas-parallelograms":"class-9-areas-of-parallelograms-and-triangles", "en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c9-converses":"class-9-propositions-and-converses", "c9-weighted":"class-9-weighted-averages-and-data", "c9-algorithms":"class-9-world-of-algorithms", "c9-quadrilaterals":"class-9-quadrilaterals", "c9-two-variables":"class-9-two-variables-one-line", "c9-solids":"class-9-surface-area-and-volume", "c7-data":"class-7-connecting-the-dots", "c7-constructions":"class-7-constructions-and-tilings", "c7-unknown":"class-7-finding-the-unknown", "c8-dots-lines":"class-8-tales-by-dots-and-lines", "c8-algebra-play":"class-8-algebra-play", "c8-area":"class-8-area", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
 const CH_CLASSES = [7, 8, 9, 10];
 /* English games */
 const EN = [
@@ -1917,11 +1926,11 @@ function howHTML(open){
 
 let chTab = 7;
 function chapterBlock(p){
-  const list = CH.filter(c => c.std === chTab).sort((a, b) => a.chn - b.chn);
+  const list = CH.filter(c => c.std === chTab).sort((a, b) => (a.ord ?? a.chn) - (b.ord ?? b.chn));
   const starsOf = c => { try { return Object.values(JSON.parse(localStorage.getItem(c.key) || "{}")).reduce((a, b) => a + b, 0); } catch { return 0; } };
   const tiles = list.map(c => { const b = p.best[c.id], pct = Math.round(starsOf(c)/(c.missions*3)*100);
     return `<button class="bt chg ${c.cls} b2" type="button" data-g="${c.id}" aria-label="Play ${c.name}">
-      <span class="head"><span class="chno"><small>Ch</small>${c.chn}</span><span class="eyebrow">Std ${c.std} · ${c.book}</span>${gIcon(c.id)}</span>
+      <span class="head"><span class="chno">${c.chl ? `<b class="chl">${c.chl}</b>` : `<small>Ch</small>${c.chn}`}</span><span class="eyebrow">Std ${c.std} · ${c.book}</span>${gIcon(c.id)}</span>
       <span><h3>${c.name}</h3><p>${c.tag}</p></span>
       <span class="foot"><span class="mastery"><i style="width:${pct}%"></i></span><span class="lvp"><b>${pct}%</b> mastered · ${c.missions} missions</span>${b ? `<span class="fbest">Best ${fmt(b.score)}</span>` : ""}</span></button>`; }).join("");
   const clsCard = s => { const g = CH.filter(c => c.std === s), tot = g.length * 9 * 3, got = g.reduce((a, c) => a + starsOf(c), 0), pct = tot ? Math.round(got/tot*100) : 0;
@@ -4375,6 +4384,426 @@ const GTrig = CQ.quest({
 });
 
 GAME_MODS["c10-trigonometry"] = GTrig;
+
+</script>
+<script>
+/* ============================================================
+   Class 9 · Logarithms
+   Chapter game "Log Lab": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Powers ↔ Logs  2 Evaluating Logs  3 Special Logs & Rules of the Game
+   Apply  : 4 Product & Quotient Laws  5 The Power Law  6 Condense to One Log
+   Master : 7 Using log 2, log 3, log 7  8 Log Equations & Change of Base  9 Log Master (timed)
+   ============================================================ */
+const LOG9 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, fr, n2, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const L = (b, x) => `log<sub>${b}</sub>&#8202;${x}`;                         // log_b x
+  const L10 = x => `log&#8202;${x}`;                                           // common log
+  const pw = (b, e) => `${b}<sup>${e}</sup>`;
+  const sgn = e => (e < 0 ? "−" + Math.abs(e) : "" + e);
+  const PADN = (pre, post = "") => padHTML(pre, post, {neg:true, dec:true});
+  const box = s => `<div class="tw-ex" style="font-size:19px;text-align:center">${s}</div>`;
+  const BASES = [2, 3, 4, 5, 6, 7, 10];
+  // b^e as a display value (integers, or 1/b^k for negative e)
+  const val = (b, e) => e >= 0 ? "" + b**e : fr(1, b**(-e));
+  function pickPow(neg = true){ for (;;){ const b = P(BASES), e = neg && Math.random() < .3 ? -R(1, 3) : R(0, 5); if (Math.abs(b**e) <= 10000 && (e >= 0 || b**(-e) <= 1000) && !(b === 10 && e === 0)) return [b, e]; } }
+
+  /* ---------- Mission 1: Powers ↔ Logs ---------- */
+  function m1(i){
+    const t = i % 3, [b, e] = pickPow(i > 2), x = val(b, e);
+    if (t === 0){
+      const right = `${L(b, x)} = ${sgn(e)}`, o = opts4(right, [`${L(e === 0 ? b + 1 : Math.abs(e), x)} = ${b}`, `${L(x, b)} = ${sgn(e)}`, `${L(b, sgn(e))} = ${x}`, `${L(sgn(e), b)} = ${x}`]);
+      return {html:`<p class="tw-q">Write in <b>logarithmic form</b>:</p>${box(`${pw(b, sgn(e))} = ${x}`)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `The base stays the base and the exponent becomes the answer: ${pw(b, sgn(e))} = ${x} ⇔ <b>${right}</b>. “The log is the exponent.”`, "Exponential ↔ log form"); }};
+    }
+    if (t === 1){
+      const right = `${pw(b, sgn(e))} = ${x}`, o = opts4(right, [`${pw(sgn(e), b)} = ${x}`, `${pw(x, sgn(e))} = ${b}`, `${pw(b, x)} = ${sgn(e)}`, `${b} × ${sgn(e)} = ${x}`]);
+      return {html:`<p class="tw-q">Write in <b>exponential form</b>:</p>${box(`${L(b, x)} = ${sgn(e)}`)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `${L("b", "x")} = y means b<sup>y</sup> = x. So ${L(b, x)} = ${sgn(e)} ⇔ <b>${right}</b>.`, "Exponential ↔ log form"); }};
+    }
+    const ask = P(["base", "exponent (the logarithm)", "number (the argument)"]), ans = ask === "base" ? b : ask.startsWith("exponent") ? e : null;
+    if (ans === null || e < 0) return {html:`<p class="tw-q">${pw(b, e < 0 ? sgn(e) : e)} = ${x}. The logarithm of ${x} to the base ${b} is…</p>${PADN(L(b, x) + " =")}`,
+      mount(el, done){ bindPad(el, e, 0, done, `The logarithm is the <b>exponent</b>: ${b} must be raised to the power <b>${sgn(e)}</b> to give ${x}, so ${L(b, x)} = ${sgn(e)}.`, "What a logarithm means"); }};
+    return {html:`<p class="tw-q">In ${L(b, x)} = ${e}, what is the <b>${ask}</b>?</p>${PADN("")}`,
+      mount(el, done){ bindPad(el, ans, 0, done, `${L(b, x)} = ${e} ⇔ ${pw(b, e)} = ${x}: base <b>${b}</b>, exponent (log) <b>${e}</b>, number ${x}.`, "What a logarithm means"); }};
+  }
+
+  /* ---------- Mission 2: Evaluating Logs ---------- */
+  const FRACT = [[4, 2, .5, "4<sup>½</sup> = 2"], [9, 3, .5, "9<sup>½</sup> = 3"], [25, 5, .5, "25<sup>½</sup> = 5"], [8, 2, 1/3, null], [4, 8, 1.5, "4<sup>3/2</sup> = (√4)³ = 8"], [9, 27, 1.5, "9<sup>3/2</sup> = (√9)³ = 27"], [27, 3, 1/3, null], [16, 8, .75, "16<sup>3/4</sup> = 2³ = 8"], [16, 2, .25, "16<sup>¼</sup> = 2"], [100, 10, .5, "100<sup>½</sup> = 10"], [25, 125, 1.5, "25<sup>3/2</sup> = 5³ = 125"], [4, 32, 2.5, "4<sup>5/2</sup> = 2⁵ = 32"]].filter(r => r[3]);
+  function m2(i){
+    const t = i % 4;
+    if (t === 3){ const [b, x, a, why] = P(FRACT);
+      return {html:`<p class="tw-q">Evaluate</p>${box(L(b, x))}${PADN(L(b, x) + " =")}`,
+        mount(el, done){ bindPad(el, a, .001, done, `Write both as powers of the same number: ${why}, so ${L(b, x)} = <b>${n2(a)}</b>.`, "Evaluating logs"); }}; }
+    if (t === 2){ const k = R(1, 4), d = (10**-k).toFixed(k);
+      return {html:`<p class="tw-q">Evaluate (common log, base 10)</p>${box(L10(d))}${PADN(L10(d) + " =")}`,
+        mount(el, done){ bindPad(el, -k, 0, done, `${d} = ${fr(1, 10**k)} = 10<sup>−${k}</sup>, so ${L10(d)} = <b>−${k}</b>. “log” with no base means base 10.`, "Evaluating logs"); }}; }
+    const [b, e] = pickPow(t === 1), x = val(b, e);
+    return {html:`<p class="tw-q">Evaluate</p>${box(L(b, x))}${PADN(L(b, x) + " =")}`,
+      mount(el, done){ bindPad(el, e, 0, done, `Ask: “${b} to what power gives ${x}?” ${pw(b, sgn(e))} = ${x}, so ${L(b, x)} = <b>${sgn(e)}</b>.${e < 0 ? " A fraction less than 1 has a negative log (for a base > 1)." : e === 0 ? " Any base to the power 0 is 1." : ""}`, "Evaluating logs"); }};
+  }
+
+  /* ---------- Mission 3: Special Logs & the Rules of the Game ---------- */
+  function m3(i){
+    const t = i % 4, a = P([2, 3, 5, 7, 8, 11, 12, 15]);
+    if (t === 0){ const k = P(["one", "self", "pow"]), n = R(2, 9);
+      const [q, v, why] = k === "one" ? [L(a, 1), 0, `${pw(a, 0)} = 1, so ${L(a, 1)} = <b>0</b> for every base.`] : k === "self" ? [L(a, a), 1, `${pw(a, 1)} = ${a}, so ${L(a, a)} = <b>1</b>.`] : [L(a, pw(a, n)), n, `${L("a", "a<sup>n</sup>")} = n, so the answer is <b>${n}</b>.`];
+      return {html:`<p class="tw-q">Evaluate</p>${box(q)}${PADN("")}`, mount(el, done){ bindPad(el, v, 0, done, why, "Special logs"); }}; }
+    if (t === 1){ const n = R(3, 40);
+      return {html:`<p class="tw-q">Evaluate</p>${box(`${a}<sup>${L(a, n)}</sup>`)}${PADN("")}`,
+        mount(el, done){ bindPad(el, n, 0, done, `${L(a, n)} is the power of ${a} that gives ${n}. Raise ${a} to that power and you get <b>${n}</b> back: a<sup>log<sub>a</sub> x</sup> = x.`, "Special logs"); }}; }
+    const BAD = [[L(2, 0), "no power of 2 equals 0"], [L(3, "(−9)"), "a positive base raised to any power is positive, so the number must be > 0"], [L(1, 5), "1 to any power is 1, so the base cannot be 1"], [L("(−2)", 4), "the base must be positive"], [L(0, 7), "the base cannot be 0"]];
+    const GOOD = [L(2, fr(1, 8)), L(5, 1), L(fr(1, 2), 4), L(10, "0.01"), L(9, 3), L(7, 7)];
+    if (t === 2){ const [bad, why] = P(BAD), o = SH([bad, ...SH(GOOD.slice()).slice(0, 3)]);
+      return {html:`<p class="tw-q">Which logarithm is <b>not defined</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(bad), done, `<b>${bad}</b> is not defined: ${why}. Rule: in ${L("b", "x")}, b &gt; 0, b ≠ 1 and x &gt; 0. (${L(fr(1, 2), 4)} = −2 and ${L(2, fr(1, 8))} = −3 are fine: the <i>answer</i> may be negative.)`, "When logs are defined"); }}; }
+    const S = [["log<sub>a</sub> 1 = 0 for every valid base a", true], ["log<sub>a</sub> a = 1", true], ["A logarithm can be negative", true], ["log 1000 = 3", true], ["log<sub>a</sub> 0 = 0", false], ["The base of a logarithm can be 1", false], ["log<sub>2</sub> 8 = 4", false], ["The log of a negative number is negative", false]];
+    const it = SH(S.slice()).slice(0, 4); if (!it.some(x => x[1])) return m3(i + 1);
+    return {html:`<p class="tw-q">Select <b>all</b> the true statements.</p>${multiHTML(it.map(x => x[0]))}`,
+      mount(el, done){ bindMulti(el, it.map((x, k) => x[1] ? k : -1).filter(k => k >= 0), done, it.map(x => `${x[1] ? "✓" : "✗"} ${x[0]}`).join("<br>") + `<br>(log<sub>2</sub> 8 = 3; logs of 0 and of negative numbers are not defined.)`, "Special logs"); }};
+  }
+
+  /* ---------- Mission 4: Product & Quotient Laws ---------- */
+  function m4(i){
+    const t = i % 4;
+    if (t === 0){ const b = P([2, 3, 6, 10, 10]), k = b === 10 ? R(2, 3) : R(2, 4), N = b**k;
+      const ds = []; for (let d = 2; d < N; d++) if (N % d === 0 && d !== b && N/d !== b && d <= N/d) ds.push(d); if (!ds.length) return m4(i + 4);
+      const m = P(ds), n = N/m, B = b === 10 ? L10 : x => L(b, x);
+      return {html:`<p class="tw-q">Evaluate without a calculator</p>${box(`${B(m)} + ${B(n)}`)}${PADN("")}`,
+        mount(el, done){ bindPad(el, k, 0, done, `Product law: ${B(m)} + ${B(n)} = ${B(`(${m} × ${n})`)} = ${B(N)} = <b>${k}</b> (since ${pw(b, k)} = ${N}).`, "Product law"); }}; }
+    if (t === 1){ const b = P([2, 3, 5, 10]), k = R(1, 4), c = P([3, 5, 6, 7, 9, 11].filter(c => c !== b)), N = b**k*c, B = b === 10 ? L10 : x => L(b, x);
+      return {html:`<p class="tw-q">Evaluate without a calculator</p>${box(`${B(N)} − ${B(c)}`)}${PADN("")}`,
+        mount(el, done){ bindPad(el, k, 0, done, `Quotient law: ${B(N)} − ${B(c)} = ${B(`(${N} ÷ ${c})`)} = ${B(N/c)} = <b>${k}</b>.`, "Quotient law"); }}; }
+    if (t === 2){ const [q, right, w] = P([[L10("(xy/z)"), "log x + log y − log z", ["log x × log y ÷ log z", "log x + log y + log z", "log (x + y) − log z"]],
+      [L10("(ab)"), "log a + log b", ["log a × log b", "log (a + b)", "(log a)(log b)"]], [L10("(p/q)"), "log p − log q", ["log p ÷ log q", "log (p − q)", "log q − log p"]], [L10("(5x)"), "log 5 + log x", ["5 log x", "log 5 × log x", "x log 5"]]]);
+      const o = opts4(right, w);
+      return {html:`<p class="tw-q">Expand</p>${box(q)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `log (mn) = log m + log n and log (m/n) = log m − log n. So ${q} = <b>${right}</b>.`, "Product law"); }}; }
+    const [s, ok, why] = P([["log (8 + 2) = log 8 + log 2", false, "log m + log n = log (mn), not log (m + n). log 8 + log 2 = log 16."], ["log 8 + log 2 = log 16", true, "Product law: log 8 + log 2 = log (8 × 2) = log 16."],
+      ["log 20 − log 4 = log 16", false, "log 20 − log 4 = log (20 ÷ 4) = log 5, not log (20 − 4)."], ["log 20 − log 4 = log 5", true, "Quotient law: log (20/4) = log 5."], ["log 12 ÷ log 3 = log 4", false, "log m ÷ log n is NOT log (m/n). log 12 − log 3 = log 4."], ["log 3 + log 4 + log 5 = log 60", true, "The product law works for any number of factors: log (3 × 4 × 5) = log 60."]]);
+    return {html:`<p class="tw-q">True or false?</p>${box(s)}${choice(["True", "False"], "two")}`,
+      mount(el, done){ bindChoice(el, ok ? 0 : 1, done, `<b>${ok ? "True" : "False"}</b>. ${why}`, "Common log mistakes"); }};
+  }
+
+  /* ---------- Mission 5: The Power Law ---------- */
+  function m5(i){
+    const t = i % 4;
+    if (t === 0){ const b = P([2, 3, 5, 10]), k = b === 10 ? R(1, 3) : R(1, 3), n = R(2, 6), B = b === 10 ? L10 : x => L(b, x);
+      return {html:`<p class="tw-q">Evaluate</p>${box(B(`(${b**k}<sup>${n}</sup>)`))}${PADN("")}`,
+        mount(el, done){ bindPad(el, k*n, 0, done, `Power law: ${B(`(${b**k}<sup>${n}</sup>)`)} = ${n} × ${B(b**k)} = ${n} × ${k} = <b>${k*n}</b>.`, "Power law"); }}; }
+    if (t === 1){ const p = R(2, 5), q = R(2, 5), r = R(0, 3), x = R(2, 6), y = R(1, 5), z = R(1, 4);
+      const v = p*x + q*y - r*z, expr = `x<sup>${p}</sup>y<sup>${q}</sup>${r ? `/z${r > 1 ? `<sup>${r}</sup>` : ""}` : ""}`;
+      return {html:`<p class="tw-q">If ${L("a", "x")} = ${x}, ${L("a", "y")} = ${y}${r ? ` and ${L("a", "z")} = ${z}` : ""}, find</p>${box(L("a", "(" + expr + ")"))}${PADN("")}`,
+        mount(el, done){ bindPad(el, v, 0, done, `${L("a", "(" + expr + ")")} = ${p}·${L("a", "x")} + ${q}·${L("a", "y")}${r ? ` − ${r}·${L("a", "z")}` : ""} = ${p}(${x}) + ${q}(${y})${r ? ` − ${r}(${z})` : ""} = <b>${v}</b>.`, "Expanding logs"); }}; }
+    if (t === 2){ const p = R(2, 4), q = R(2, 4), right = `${p} log a + ${q} log b − log c`;
+      const o = opts4(right, [`${p*q} log ab − log c`, `log ${p}a + log ${q}b − log c`, `${p} log a × ${q} log b ÷ log c`, `${p + q} log ab − log c`]);
+      return {html:`<p class="tw-q">Expand</p>${box(L10(`(a<sup>${p}</sup>b<sup>${q}</sup>/c)`))}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Product and quotient laws first, then bring each power down: <b>${right}</b>.`, "Expanding logs"); }}; }
+    const n = P([2, 3, 4]), N = P([[8, 2, 3], [27, 3, 3], [16, 2, 4], [32, 2, 5], [81, 3, 4], [25, 5, 2], [125, 5, 3]]), [num, b, k] = N;
+    return {html:`<p class="tw-q">Evaluate</p>${box(`${L10(num)} ÷ ${L10(b)}`)}${PADN("")}`,
+      mount(el, done){ bindPad(el, k, 0, done, `${num} = ${pw(b, k)}, so ${L10(num)} = ${k} ${L10(b)}. Then ${k} ${L10(b)} ÷ ${L10(b)} = <b>${k}</b>. (Careful: this is a division of logs, not log of a division.)`, "Power law"); }};
+  }
+
+  /* ---------- Mission 6: Condense to One Log ---------- */
+  // [display, value (base-10, must be an integer or nice), steps]
+  const COND = [["2 log 5 + 2 log 2", "2 log 10 = 2"], ["log 8 + log 125", "log 1000 = 3"], ["½ log 16 + log 25", "log 4 + log 25 = log 100 = 2"], ["3 log 2 + 3 log 5", "3 log 10 = 3"], ["log 2 + log 3 − log 6", "log (2 × 3 ÷ 6) = log 1 = 0"],
+    ["2 log 4 + log 625 − log 1", "log (16 × 625) = log 10000 = 4"], ["log 500 + log 2", "log 1000 = 3"], ["3 log 4 + 3 log 25 − log 10", "log (64 × 15625 ÷ 10) = log 100000 = 5"], ["log 50 − log 5", "log 10 = 1"], ["⅓ log 8 + log 5", "log 2 + log 5 = log 10 = 1"],
+    ["2 log 3 + log 1000 − log 9", "log (9 × 1000 ÷ 9) = log 1000 = 3"], ["log 40 + log 25", "log 1000 = 3"], ["log 72 − 2 log 6 + log 50", "log (72 ÷ 36 × 50) = log 100 = 2"], ["½ log 10000", "log 100 = 2"]];
+  function m6(i){
+    if (i % 3 === 2){ let p, q, A, B, v; do { p = R(2, 3); q = R(2, 4); A = P([3, 5, 7]); B = P([2, 4, 6]); v = A**p*B**q; } while (v > 3000);
+      const right = `log ${v}`, o = opts4(right, [`log ${p*A + q*B}`, `log ${(A*B)**(p + q)}`, `log ${A**p + B**q}`, `log ${A*B*p*q}`]);
+      return {html:`<p class="tw-q">Write as a single logarithm</p>${box(`${p} log ${A} + ${q} log ${B}`)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Power law first: ${p} log ${A} = log ${A**p}, ${q} log ${B} = log ${B**q}. Then product law: log (${A**p} × ${B**q}) = <b>${right}</b>.`, "Condensing logs"); }}; }
+    const [d, s] = P(COND), v = +s.split("= ").pop();
+    return {html:`<p class="tw-q">Simplify (base 10)</p>${box(d)}${PADN("")}`,
+      mount(el, done){ bindPad(el, v, 0, done, `Coefficients become powers, + becomes ×, − becomes ÷: ${d} = ${s.replace(/= (\d+)$/, "= <b>$1</b>")}.`, "Condensing logs"); }};
+  }
+
+  /* ---------- Mission 7: Using log 2, log 3, log 7 ---------- */
+  const LG = {2:.3010, 3:.4771, 7:.8451};
+  function m7(i){
+    for (;;){
+      const a = R(-1, 3), b = R(0, 2), c = i % 3 === 2 ? R(0, 1) : 0, d = R(-1, 1), x = 2**a * 3**b * 7**c * 10**d;
+      if ([1, 2, 3, 7, 10, 0.1].includes(x) || x > 5000 || (a === 0 && b === 0 && c === 0)) continue;
+      const s = +x.toFixed(4); if (Math.abs(s - x) > 1e-9) continue;
+      const v = a*LG[2] + b*LG[3] + c*LG[7] + d;
+      const fact = [a ? (a === -1 ? "½" : a === 1 ? "2" : `2<sup>${a}</sup>`) : "", b ? (b === 1 ? "3" : `3<sup>${b}</sup>`) : "", c ? "7" : "", d ? (d > 0 ? "10" : fr(1, 10)) : ""].filter(Boolean).join(" × ");
+      const terms = [a ? `${a === 1 ? "" : a === -1 ? "−" : a + " "}log 2` : "", b ? `${b === 1 ? "" : b + " "}log 3` : "", c ? "log 7" : "", d ? (d > 0 ? "1" : "−1") : ""].filter(Boolean).join(" + ").replace(/\+ −/g, "− ");
+      const nums = [a ? `${a}(0.3010)` : "", b ? `${b}(0.4771)` : "", c ? "0.8451" : "", d ? (d > 0 ? "1" : "−1") : ""].filter(Boolean).join(" + ").replace(/\+ −/g, "− ").replace(/^-1\(/, "−(").replace(/\+ -1\(/, "− (");
+      return {html:`<p class="tw-q">Given log 2 = 0.3010, log 3 = 0.4771${c ? ", log 7 = 0.8451" : ""}. Find</p>${box(L10(n2(s)))}${PADN(L10(n2(s)) + " =")}`,
+        mount(el, done){ bindPad(el, +v.toFixed(4), .00051, done, `${n2(s)} = ${fact}, so ${L10(n2(s))} = ${terms} = ${nums} = <b>${v.toFixed(4)}</b>. (log 10 = 1, and log 5 = log 10 − log 2.)`, "Using known log values"); }};
+    }
+  }
+
+  /* ---------- Mission 8: Log Equations & Change of Base ---------- */
+  const QUAD = [[2, 3, 4, 2], [2, 5, 8, 4], [2, 4, 8, 6], [3, 2, 9, 8], [10, 2, 20, 15], [2, 6, 16, 12], [3, 3, 9, 6], [6, 2, 9, 5]];  // log_b x + log_b(x − m) = k
+  const COB = [[4, 8, 1.5, "8 = 2³, 4 = 2²: (3 log 2)/(2 log 2)"], [9, 27, 1.5, "(3 log 3)/(2 log 3)"], [8, 32, 5/3, null], [16, 64, 1.5, "(6 log 2)/(4 log 2)"], [4, 2, .5, "(log 2)/(2 log 2)"], [25, 125, 1.5, "(3 log 5)/(2 log 5)"], [8, 16, 4/3, null], [32, 4, .4, "(2 log 2)/(5 log 2)"]].filter(r => r[3]);
+  function m8(i){
+    const t = i % 5;
+    if (t === 0){ const [b, e] = pickPow(false); if (e === 0) return m8(i + 5);
+      return {html:`<p class="tw-q">Solve for x</p>${box(`${L(b, "x")} = ${e}`)}${PADN("x =")}`,
+        mount(el, done){ bindPad(el, b**e, 0, done, `Rewrite in exponential form: x = ${pw(b, e)} = <b>${b**e}</b>.`, "Solving log equations"); }}; }
+    if (t === 1){ const x = R(2, 9), k = R(2, x <= 4 ? 4 : 3);
+      return {html:`<p class="tw-q">Solve for x</p>${box(`${L("x", x**k)} = ${k}`)}${PADN("x =")}`,
+        mount(el, done){ bindPad(el, x, 0, done, `x<sup>${k}</sup> = ${x**k}, so x = <b>${x}</b> (the base must be positive, so we ignore any negative root).`, "Solving log equations"); }}; }
+    if (t === 2){ const b = P([2, 3, 5]), k = R(1, 3), p = R(1, 4), x = R(1, 9), q = b**k - p*x;
+      const lhs = `${p === 1 ? "" : p}x ${q < 0 ? "−" : "+"} ${Math.abs(q)}`;
+      if (q === 0) return m8(i + 5);
+      return {html:`<p class="tw-q">Solve for x</p>${box(`${L(b, "(" + lhs + ")")} = ${k}`)}${PADN("x =")}`,
+        mount(el, done){ bindPad(el, x, 0, done, `${lhs} = ${pw(b, k)} = ${b**k} → ${p === 1 ? "" : p}x = ${b**k - q} → x = <b>${x}</b>. Check: ${lhs.replace("x", "(" + x + ")")} = ${b**k} &gt; 0 ✓`, "Solving log equations"); }}; }
+    if (t === 3){ const [b, k, x, m] = P(QUAD), r2 = m - x;
+      return {html:`<p class="tw-q">Solve for x</p>${box(`${L(b, "x")} + ${L(b, `(x − ${m})`)} = ${k}`)}${PADN("x =")}`,
+        mount(el, done){ bindPad(el, x, 0, done, `Product law: ${L(b, `x(x − ${m})`)} = ${k}, so x(x − ${m}) = ${b**k} → x² − ${m}x − ${b**k} = 0 → x = ${x} or x = ${sgn(r2)}. x = ${sgn(r2)} makes ${L(b, "x")} not defined, so <b>x = ${x}</b>.`, "Solving log equations"); }}; }
+    const [b, x, v, why] = P(COB);
+    return {html:`<p class="tw-q">Use change of base, ${L("b", "x")} = ${fr("log x", "log b")}, to evaluate</p>${box(L(b, x))}${PADN(L(b, x) + " =")}`,
+      mount(el, done){ bindPad(el, v, .001, done, `${L(b, x)} = ${fr("log " + x, "log " + b)} = ${why} = <b>${n2(v)}</b>.`, "Change of base"); }};
+  }
+
+  const LS = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Powers ↔ Logs", goal:"Switch between exponential and logarithmic form.", n:8,
+      learn:LS("The log is the exponent", "If b<sup>y</sup> = x then log<sub>b</sub> x = y. Read it as: “the power to which b must be raised to get x”. The base stays the base; the exponent becomes the answer.", "2⁵ = 32 ⇔ log₂ 32 = 5")},
+    {id:2, track:"foundation", name:"Evaluating Logs", goal:"Find log values without a calculator.", n:8,
+      learn:LS("Ask the question", "To find log<sub>b</sub> x, ask “b to what power gives x?”. Fractions below 1 give negative logs (base > 1). If x and b are powers of the same number, compare the exponents. “log” with no base means base 10.", "log₃ 1/9 = −2 · log₄ 8 = 3/2 · log 0.001 = −3")},
+    {id:3, track:"foundation", name:"Special Logs", goal:"log 1, log of the base, and when logs are defined.", n:8,
+      learn:LS("Four facts to remember", "log<sub>a</sub> 1 = 0 · log<sub>a</sub> a = 1 · log<sub>a</sub> aⁿ = n · a<sup>log<sub>a</sub> x</sup> = x. A log is defined only when the base b &gt; 0, b ≠ 1, and the number x &gt; 0.", "log₂ 0 and log₂(−4) are not defined")},
+    {id:4, track:"core", name:"Product & Quotient Laws", goal:"Add logs to multiply, subtract to divide.", n:8,
+      learn:LS("Two laws", "log<sub>a</sub>(mn) = log<sub>a</sub> m + log<sub>a</sub> n and log<sub>a</sub>(m/n) = log<sub>a</sub> m − log<sub>a</sub> n. Watch out: log (m + n) is NOT log m + log n.", "log₆ 4 + log₆ 9 = log₆ 36 = 2")},
+    {id:5, track:"core", name:"The Power Law", goal:"Bring powers down in front.", n:8,
+      learn:LS("Power law", "log<sub>a</sub>(mⁿ) = n · log<sub>a</sub> m. Use it with the other two laws to expand any product, quotient or power into simple logs.", "log (a²b³/c) = 2 log a + 3 log b − log c")},
+    {id:6, track:"core", name:"Condense to One Log", goal:"Combine many logs into one, then evaluate.", n:8,
+      learn:LS("Run the laws backwards", "Coefficients become powers (2 log 5 = log 25), + becomes ×, − becomes ÷. Aim for a power of 10, since log 10ⁿ = n.", "2 log 5 + 2 log 2 = log 100 = 2")},
+    {id:7, track:"advanced", name:"Using log 2, log 3, log 7", goal:"Break numbers into primes and powers of 10.", n:8,
+      learn:LS("Factorise first", "Write the number as 2<sup>a</sup> × 3<sup>b</sup> × 7<sup>c</sup> × 10<sup>d</sup>, then log = a log 2 + b log 3 + c log 7 + d. Remember log 5 = log 10 − log 2 = 0.6990.", "log 1.5 = log 3 − log 2 = 0.1761")},
+    {id:8, track:"advanced", name:"Log Equations & Change of Base", goal:"Solve for x and switch bases.", n:8,
+      learn:LS("Solve by rewriting", "Turn log<sub>b</sub>(stuff) = k into stuff = b<sup>k</sup>. Combine logs first if there are several. Always check that every log in the question is defined. Change of base: log<sub>b</sub> x = log x ÷ log b.", "log₂ x + log₂(x − 2) = 3 → x(x − 2) = 8 → x = 4")},
+    {id:9, track:"advanced", name:"Log Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m4, m5, m6, m6, m7, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c9-logarithms"] = CQ.quest({
+  key:"lg9_stars", missions:LOG9.MISSIONS, gen:LOG9.GEN, chapter:{std:9, ch:"Logarithms"},
+  desc:"Class 9 · Logarithms. Master logarithms in 9 missions: exponential and log form, evaluating logs, special logs, the product, quotient and power laws, condensing, using log 2 and log 3, log equations and change of base.",
+  modes:{foundation:"What a logarithm is, evaluating logs and special logs", core:"The product, quotient and power laws, expanding and condensing", advanced:"Using log tables values, log equations, change of base and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 9 · Areas of Parallelograms and Triangles
+   Chapter game "Same Base, Same Parallels": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Same Base, Same Parallels?  2 Area of a Parallelogram  3 Parallelograms on the Same Base
+   Apply  : 4 Triangle = ½ Parallelogram  5 Triangles on the Same Base  6 Medians Split Areas
+   Master : 7 Diagonals & Inside Points  8 Proofs & Area Puzzles  9 Area Master (timed)
+   ============================================================ */
+const APT9 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, orderHTML, bindOrder} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const svg = (g, w = 300, h = 180, mh = 175) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const T = (x, y, s, c = "#e8ecff", fs = 13) => `<text x="${x}" y="${y}" text-anchor="middle" style="font-size:${fs}px;font-weight:800;fill:${c}">${s}</text>`;
+  const F1 = `fill="#5aa9ff26" stroke="#9cc8ff" stroke-width="2.2" stroke-linejoin="round"`, F2 = `fill="#ffcf5a22" stroke="#ffcf5a" stroke-width="2.2" stroke-linejoin="round"`, F3 = `fill="#b6f36a22" stroke="#b6f36a" stroke-width="2.2" stroke-linejoin="round"`;
+  const poly = (pts, st) => `<polygon points="${pts.map(p => p.join(",")).join(" ")}" ${st}/>`;
+  const seg = (a, b, c = "#ffcf5a", d = "") => `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="${c}" stroke-width="1.8" ${d ? `stroke-dasharray="${d}"` : ""}/>`;
+  const par = (y1 = 35, y2 = 150) => `<line x1="8" y1="${y1}" x2="292" y2="${y1}" stroke="#8b93b8" stroke-width="1.4" stroke-dasharray="6 5"/><line x1="8" y1="${y2}" x2="292" y2="${y2}" stroke="#8b93b8" stroke-width="1.4" stroke-dasharray="6 5"/>`;
+  const lab = (pts, names, c) => pts.map((p, k) => T(p[0] + (p[2] || 0), p[1] + (p[1] > 100 ? 16 : -7), names[k], c)).join("");
+  const PAD = u => padHTML("", u, {dec:true});
+  const ar = s => `ar(${s})`;
+  const box = s => `<div class="tw-ex" style="font-size:16px">${s}</div>`;
+
+  /* ---------- Mission 1: Same Base, Same Parallels? ---------- */
+  const YES = "Yes", NOBASE = "No: they have no common base", NOPAR = "No: a vertex opposite the base is not on the parallel line";
+  function m1(i){
+    const k = P(["pp", "tp", "tt", "nobase", "nopar", "nopar2"]);
+    const B = [90, 150], C = [200, 150]; let g = par(), ans, why;
+    if (k === "pp"){ const A = [40, 35], D = [150, 35], Pp = [140, 35], Q = [250, 35];
+      g += poly([B, C, D, A], F1) + poly([B, C, Q, Pp], F2) + lab([A, D, Pp, Q, B, C], ["A", "D", "P", "Q", "B", "C"]); ans = YES; why = `Parallelograms ABCD and PBCQ share base <b>BC</b>, and their opposite sides AD and PQ both lie on the line parallel to BC.`; }
+    else if (k === "tp"){ const A = [50, 35], D = [160, 35], Pp = [245, 35];
+      g += poly([B, C, D, A], F1) + poly([B, C, Pp], F2) + lab([A, D, Pp, B, C], ["A", "D", "P", "B", "C"]); ans = YES; why = `Triangle PBC and parallelogram ABCD share base <b>BC</b>; P, A and D all lie on the line parallel to BC.`; }
+    else if (k === "tt"){ const Pp = [60, 35], Q = [230, 35];
+      g += poly([B, C, Pp], F1) + poly([B, C, Q], F2) + lab([Pp, Q, B, C], ["P", "Q", "B", "C"]); ans = YES; why = `Triangles PBC and QBC share base <b>BC</b>, and P and Q lie on one line parallel to BC.`; }
+    else if (k === "nobase"){ const A = [30, 35], D = [130, 35], E = [205, 150], Fp = [285, 150], Pp = [250, 35], B2 = [40, 150], C2 = [140, 150];
+      g += poly([B2, C2, D, A], F1) + poly([E, Fp, Pp], F2) + lab([A, D, B2, C2, E, Pp, Fp], ["A", "D", "B", "C", "E", "P", "F"]); ans = NOBASE; why = `They lie between the same parallels, but ABCD stands on BC and triangle PEF on EF. They need a <b>common base</b>.`; }
+    else if (k === "nopar"){ const A = [40, 35], D = [150, 35], Pp = [240, 80];
+      g += poly([B, C, D, A], F1) + poly([B, C, Pp], F2) + lab([A, D, Pp, B, C], ["A", "D", "P", "B", "C"]); ans = NOPAR; why = `They share base BC, but <b>P is not on the line through A and D</b>. Both opposite vertices must lie on one line parallel to the base.`; }
+    else { const Pp = [70, 35], Q = [235, 85];
+      g += poly([B, C, Pp], F1) + poly([B, C, Q], F2) + lab([Pp, Q, B, C], ["P", "Q", "B", "C"]); ans = NOPAR; why = `Common base BC, but <b>Q is below the dashed parallel</b> through P, so they are not between the same parallels.`; }
+    const o = [YES, NOBASE, NOPAR];
+    return {html:`<p class="tw-q">Do the two figures lie on the <b>same base and between the same parallels</b>? (Dashed lines are parallel.)</p>${svg(g, 300, 172)}${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.indexOf(ans), done, `<b>${ans}</b>. ${why}`, "Same base, same parallels"); }};
+  }
+
+  /* ---------- Mission 2: Area of a Parallelogram ---------- */
+  const pgm = (t = []) => { const A = [40, 150], B = [210, 150], C = [270, 40], D = [100, 40], E = [100, 150];
+    return svg(poly([A, B, C, D], F1) + seg(D, E, "#ffcf5a", "4 3") + `<rect x="100" y="139" width="10" height="11" fill="none" stroke="#ffcf5a" stroke-width="1.3"/>` + lab([A, B, C, D, E], ["A", "B", "C", "D", "E"]) + t.map(x => T(...x)).join(""), 300, 172); };
+  function m2(i){
+    const t = i % 4;
+    if (t === 0){ const b = R(6, 20), h = R(3, 14);
+      return {html:`<p class="tw-q">Base AB = <b>${b} cm</b>, height DE = <b>${h} cm</b>. Find ${ar("ABCD")}.</p>${pgm([[125, 166, b + " cm", "#b6f36a"], [86, 100, h, "#ffcf5a"]])}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, b*h, 0, done, `Area of a parallelogram = base × corresponding height = ${b} × ${h} = <b>${b*h} cm²</b>.`, "Area of a parallelogram"); }}; }
+    if (t === 1){ const b = R(5, 16), h = R(3, 12);
+      return {html:`<p class="tw-q">${ar("ABCD")} = <b>${b*h} cm²</b> and base AB = <b>${b} cm</b>. Find the height DE.</p>${pgm([[125, 166, b + " cm", "#b6f36a"], [86, 100, "?", "#ffcf5a"]])}${PAD("cm")}`,
+        mount(el, done){ bindPad(el, h, 0, done, `Height = area ÷ base = ${b*h} ÷ ${b} = <b>${h} cm</b>.`, "Area of a parallelogram"); }}; }
+    if (t === 2){ let AB, AD, AE, CF; do { AB = R(8, 20); AD = R(6, 16); AE = R(3, AD - 1); CF = AB*AE/AD; } while (Math.abs(CF*10 - Math.round(CF*10)) > 1e-9);
+      const ask = P(["AD", "CF"]);
+      return {html:`<p class="tw-q">ABCD is a parallelogram, AE ⊥ DC and CF ⊥ AD. AB = <b>${AB} cm</b>, AE = <b>${AE} cm</b>, ${ask === "AD" ? `CF = <b>${n2(CF)} cm</b>. Find <b>AD</b>.` : `AD = <b>${AD} cm</b>. Find <b>CF</b>.`}</p>${PAD("cm")}`,
+        mount(el, done){ bindPad(el, ask === "AD" ? AD : CF, .01, done, `The same area two ways: DC × AE = AD × CF, with DC = AB = ${AB}. So ${AB} × ${AE} = ${AB*AE} = AD × CF → ${ask} = ${AB*AE} ÷ ${ask === "AD" ? n2(CF) : AD} = <b>${n2(ask === "AD" ? AD : CF)} cm</b>.`, "Two bases, two heights"); }}; }
+    const s1 = R(8, 15), s2 = R(5, 9), h = R(2, s2 - 1), right = `${s1*h} cm²`, o = opts4(right, [`${s1*s2} cm²`, `${s2*h} cm²`, `${2*(s1 + s2)} cm²`, `${s1*h/2} cm²`]);
+    return {html:`<p class="tw-q">A parallelogram has sides <b>${s1} cm</b> and <b>${s2} cm</b>. The height on the ${s1} cm side is <b>${h} cm</b>. Its area is…</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `Use the base with its <b>perpendicular</b> height: ${s1} × ${h} = <b>${right}</b>. The slanting side (${s2} cm) is not the height!`, "Area of a parallelogram"); }};
+  }
+
+  /* ---------- Mission 3: Parallelograms on the Same Base ---------- */
+  const twoPgm = svg(par() + poly([[90, 150], [200, 150], [150, 35], [40, 35]], F1) + poly([[90, 150], [200, 150], [270, 35], [160, 35]], F2) + lab([[40, 35], [150, 35], [160, 35], [270, 35], [90, 150], [200, 150]], ["D", "C", "F", "E", "A", "B"]), 300, 172);
+  function m3(i){
+    const t = i % 4;
+    if (t === 0){ const X = R(12, 90);
+      return {html:`<p class="tw-q">ABCD and ABEF are parallelograms on the same base AB, between the same parallels. ${ar("ABCD")} = <b>${X} cm²</b>. Find ${ar("ABEF")}.</p>${twoPgm}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, X, 0, done, `<b>Theorem 9.1</b>: parallelograms on the same base and between the same parallels are equal in area. ${ar("ABEF")} = <b>${X} cm²</b>, even though they look different.`, "Theorem 9.1"); }}; }
+    if (t === 1){ const b = R(5, 15), h = R(3, 11);
+      return {html:`<p class="tw-q">Parallelogram ABCD and rectangle ABEF stand on base AB = <b>${b} cm</b>, between the same parallels. The rectangle’s side BE = <b>${h} cm</b>. Find ${ar("ABCD")}.</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, b*h, 0, done, `The rectangle’s side BE is the distance between the parallels, i.e. the parallelogram’s height. ${ar("ABCD")} = ${ar("ABEF")} = ${b} × ${h} = <b>${b*h} cm²</b>.`, "Theorem 9.1"); }}; }
+    if (t === 2){ const o = SH(["The parallelogram", "The rectangle", "They are always equal", "It depends on the base"]);
+      return {html:`<p class="tw-q">A parallelogram and a rectangle stand on the same base, between the same parallels. Which has the <b>greater perimeter</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf("The parallelogram"), done, `Areas are equal, but the parallelogram’s slanting side is longer than the perpendicular distance (the rectangle’s side), since the perpendicular is the shortest path. So <b>the parallelogram</b> has the greater perimeter.`, "Equal area, different perimeter"); }}; }
+    const [s, ok, why] = P([["Parallelograms on equal bases and between the same parallels have equal areas", true, "Theorem 9.1 also works for equal bases (area = base × same height)."],
+      ["Parallelograms on the same base with equal areas lie between the same parallels", true, "Equal area and equal base force equal heights, so the opposite sides lie on one parallel line (the converse)."],
+      ["Two figures with equal areas must be congruent", false, "A 4 × 9 rectangle and a 6 × 6 square both have area 36 but are not congruent. (Congruent ⇒ equal area, not the reverse.)"],
+      ["Congruent figures have equal areas", true, "They cover exactly the same region when placed on each other."],
+      ["Two parallelograms with equal areas must have equal perimeters", false, "A tall thin and a short wide parallelogram can have equal area but different perimeters."]]);
+    return {html:`<p class="tw-q">True or false?</p>${box(s)}${choice(["True", "False"], "two")}`,
+      mount(el, done){ bindChoice(el, ok ? 0 : 1, done, `<b>${ok ? "True" : "False"}</b>. ${why}`, "Area facts and converses"); }};
+  }
+
+  /* ---------- Mission 4: Triangle = ½ Parallelogram ---------- */
+  const triPgm = x => svg(par() + poly([[40, 150], [200, 150], [260, 35], [100, 35]], F1) + poly([[40, 150], [200, 150], [x, 35]], F2) + lab([[40, 150], [200, 150], [260, 35], [100, 35], [x, 35, x === 100 || x === 260 ? 12 : 0]], ["A", "B", "C", "D", "P"]), 300, 172);
+  function m4(i){
+    const t = i % 5;
+    if (t === 0){ const X = 2*R(8, 60);
+      return {html:`<p class="tw-q">ABCD is a parallelogram and P is any point on DC. ${ar("ABCD")} = <b>${X} cm²</b>. Find ${ar("PAB")}.</p>${triPgm(R(130, 230))}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, X/2, 0, done, `Triangle PAB and parallelogram ABCD are on the same base AB and between the same parallels AB and DC, so ${ar("PAB")} = ½ ${ar("ABCD")} = <b>${X/2} cm²</b>, wherever P is on DC.`, "Triangle and parallelogram"); }}; }
+    if (t === 1){ const Tt = R(6, 60);
+      return {html:`<p class="tw-q">Triangle PAB and parallelogram ABCD are on the same base AB, between the same parallels. ${ar("PAB")} = <b>${Tt} cm²</b>. Find ${ar("ABCD")}.</p>${triPgm(150)}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, 2*Tt, 0, done, `The triangle is half the parallelogram, so ${ar("ABCD")} = 2 × ${Tt} = <b>${2*Tt} cm²</b>.`, "Triangle and parallelogram"); }}; }
+    if (t === 2){ const a = R(10, 40);
+      return {html:`<p class="tw-q">P is on DC and Q is on AD of parallelogram ABCD. ${ar("APB")} = <b>${a} cm²</b>. Find ${ar("BQC")}.</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, a, 0, done, `${ar("APB")} = ½ ${ar("ABCD")} (base AB, parallels AB ∥ DC) and ${ar("BQC")} = ½ ${ar("ABCD")} (base BC, parallels BC ∥ AD). So ${ar("BQC")} = <b>${a} cm²</b>.`, "Triangle and parallelogram"); }}; }
+    if (t === 3){ const right = "Sow one crop in triangle APQ and the other in the two triangles PSA and QRA", o = opts4(right, ["Split it with the diagonal PR only", "Sow one crop in triangle PSA and the other in QRA", "It cannot be split into equal parts this way"]);
+      return {html:`<p class="tw-q">A farmer’s field is parallelogram PQRS. She joins a point A on RS to P and Q. How can she sow wheat and pulses in <b>equal</b> portions?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `The field splits into 3 triangles. △APQ has base PQ and lies between PQ ∥ SR, so ${ar("APQ")} = ½ ${ar("PQRS")}. The other two together are the other half. <b>${right}</b>.`, "Triangle and parallelogram"); }}; }
+    const X = 2*R(10, 50);
+    return {html:`<p class="tw-q">PQRS and ABRS are parallelograms on base SR, and X is any point on BR. ${ar("PQRS")} = <b>${X} cm²</b>. Find ${ar("AXS")}.</p>${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, X/2, 0, done, `${ar("ABRS")} = ${ar("PQRS")} (same base SR, same parallels). △AXS and ABRS share base AS and lie between AS ∥ BR, so ${ar("AXS")} = ½ × ${X} = <b>${X/2} cm²</b>.`, "Triangle and parallelogram"); }};
+  }
+
+  /* ---------- Mission 5: Triangles on the Same Base ---------- */
+  function m5(i){
+    const t = i % 5;
+    if (t === 0){ const X = R(8, 70), g = svg(par() + poly([[70, 150], [210, 150], [50, 35]], F1) + poly([[70, 150], [210, 150], [250, 35]], F2) + lab([[70, 150], [210, 150], [50, 35], [250, 35]], ["A", "B", "C", "D"]), 300, 172);
+      return {html:`<p class="tw-q">CD ∥ AB. ${ar("ABC")} = <b>${X} cm²</b>. Find ${ar("ABD")}.</p>${g}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, X, 0, done, `<b>Theorem 9.2</b>: triangles on the same base and between the same parallels have equal areas (same base, same height). ${ar("ABD")} = <b>${X} cm²</b>.`, "Theorem 9.2"); }}; }
+    if (t === 1){ const X = R(6, 40), g = svg(poly([[40, 150], [260, 150], [190, 40], [110, 40]], F1) + seg([40, 150], [190, 40], "#ffcf5a") + seg([260, 150], [110, 40], "#ffcf5a") + lab([[40, 150], [260, 150], [190, 40], [110, 40], [150, 72]], ["A", "B", "C", "D", "O"]), 300, 170);
+      return {html:`<p class="tw-q">ABCD is a trapezium with AB ∥ DC; its diagonals meet at O. ${ar("AOD")} = <b>${X} cm²</b>. Find ${ar("BOC")}.</p>${g}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, X, 0, done, `△ABD and △ABC are on base AB between AB ∥ DC, so they are equal. Subtract the common part △AOB from both: ${ar("AOD")} = ${ar("BOC")} = <b>${X} cm²</b>.`, "Trapezium diagonals"); }}; }
+    if (t === 2){ const right = "DE ∥ BC", o = opts4(right, ["DE ⟂ BC", "D and E are midpoints", "DE = BC"]);
+      return {html:`<p class="tw-q">D and E are points on AB and AC of △ABC with ${ar("DBC")} = ${ar("EBC")}. What must be true?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `<b>Theorem 9.3</b> (converse): triangles on the same base BC with equal areas lie between the same parallels, so <b>${right}</b>. D and E need not be midpoints.`, "Theorem 9.3 (converse)"); }}; }
+    if (t === 3){ const a = R(8, 40), b = R(6, 30);
+      return {html:`<p class="tw-q">ABCD is a quadrilateral. A line through B parallel to AC meets DC produced at E. ${ar("ABC")} = <b>${a} cm²</b> and ${ar("ADC")} = <b>${b} cm²</b>. Find ${ar("ADE")}.</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, a + b, 0, done, `△BAC and △EAC share base AC between AC ∥ BE, so ${ar("EAC")} = ${ar("BAC")} = ${a}. Then ${ar("ADE")} = ${ar("ADC")} + ${ar("ACE")} = ${b} + ${a} = <b>${a + b} cm²</b> = ${ar("ABCD")}. A quadrilateral turned into a triangle of equal area!`, "Theorem 9.2"); }}; }
+    const b = R(4, 18), h = R(3, 15);
+    return {html:`<p class="tw-q">A triangle has base <b>${b} cm</b> and corresponding altitude <b>${h} cm</b>. Find its area.</p>${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, b*h/2, 0, done, `A diagonal cuts a parallelogram (area ${b} × ${h}) into two congruent triangles, so area = ½ × ${b} × ${h} = <b>${n2(b*h/2)} cm²</b>.`, "Area of a triangle"); }};
+  }
+
+  /* ---------- Mission 6: Medians Split Areas ---------- */
+  const medFig = (E) => svg(poly([[150, 18], [30, 160], [270, 160]], F1) + seg([150, 18], [150, 160]) + (E ? seg([30, 160], [150, 89], "#b6f36a", "4 3") + seg([270, 160], [150, 89], "#b6f36a", "4 3") + T(162, 92, "E", "#b6f36a") : "") + lab([[150, 18], [30, 160], [270, 160], [150, 160]], ["A", "B", "C", "D"]), 300, 178);
+  function m6(i){
+    const t = i % 5, X = 24*R(1, 8);
+    if (t === 0) return {html:`<p class="tw-q">AD is a median of △ABC and ${ar("ABC")} = <b>${X} cm²</b>. Find ${ar("ABD")}.</p>${medFig(false)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, X/2, 0, done, `BD = DC and both triangles share the altitude from A, so a median splits the area equally: ${ar("ABD")} = ½ × ${X} = <b>${X/2} cm²</b>.`, "Median splits the area"); }};
+    if (t === 1) return {html:`<p class="tw-q">AD is a median of △ABC and E is the midpoint of AD. ${ar("ABC")} = <b>${X} cm²</b>. Find ${ar("BED")}.</p>${medFig(true)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, X/4, 0, done, `AD halves △ABC: ${ar("ABD")} = ${X/2}. BE is a median of △ABD, so ${ar("BED")} = ½ × ${X/2} = <b>${X/4} cm²</b> (¼ of ${ar("ABC")}).`, "Median splits the area"); }};
+    if (t === 2){ const a = R(5, 30); return {html:`<p class="tw-q">E is any point on median AD of △ABC. ${ar("ABE")} = <b>${a} cm²</b>. Find ${ar("ACE")}.</p>${medFig(true)}${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, a, 0, done, `${ar("ABD")} = ${ar("ACD")} (AD is a median) and ${ar("EBD")} = ${ar("ECD")} (ED is a median of △EBC). Subtract: ${ar("ABE")} = ${ar("ACE")} = <b>${a} cm²</b>.`, "Median splits the area"); }}; }
+    if (t === 3){ const ask = P(["DEF", "BDEF"]);
+      return {html:`<p class="tw-q">D, E, F are the midpoints of BC, CA, AB of △ABC, and ${ar("ABC")} = <b>${X} cm²</b>. Find ${ar(ask)}.</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, ask === "DEF" ? X/4 : X/2, 0, done, `The midpoint segments cut △ABC into 4 congruent triangles (Midpoint Theorem), each ${X/4} cm². ${ask === "DEF" ? `${ar("DEF")} = <b>${X/4} cm²</b>` : `BDEF is a parallelogram made of 2 of them: <b>${X/2} cm²</b>`}.`, "Midpoints and areas"); }}; }
+    const n = P([3, 4, 6]);
+    return {html:`<p class="tw-q">Side BC of △ABC (area <b>${X} cm²</b>) is divided into <b>${n}</b> equal parts, and each point is joined to A. Find the area of each small triangle.</p>${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, X/n, 0, done, `Equal bases and the same altitude from A give equal areas: ${X} ÷ ${n} = <b>${n2(X/n)} cm²</b> each.`, "Median splits the area"); }};
+  }
+
+  /* ---------- Mission 7: Diagonals & Inside Points ---------- */
+  const inPt = svg(poly([[40, 150], [220, 150], [270, 40], [90, 40]], F1) + [[40, 150], [220, 150], [270, 40], [90, 40]].map(p => seg(p, [150, 100], "#ffcf5a")).join("") + `<circle cx="150" cy="100" r="4" fill="#ffcf5a"/>` + lab([[40, 150], [220, 150], [270, 40], [90, 40], [150, 100, 12]], ["A", "B", "C", "D", "P"]), 300, 170);
+  function m7(i){
+    const t = i % 5, X = 4*R(5, 30);
+    if (t === 0) return {html:`<p class="tw-q">The diagonals of parallelogram ABCD meet at O. ${ar("ABCD")} = <b>${X} cm²</b>. Find ${ar("AOB")}.</p>${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, X/4, 0, done, `The diagonals bisect each other, so each of OA, OB, OC, OD is a median of a triangle. All four triangles have equal area: ${X} ÷ 4 = <b>${X/4} cm²</b>.`, "Diagonals of a parallelogram"); }};
+    if (t === 1){ const a = R(Math.round(X/10), Math.round(X/2) - 2);
+      return {html:`<p class="tw-q">P is a point inside parallelogram ABCD with ${ar("ABCD")} = <b>${X} cm²</b>. ${ar("APB")} = <b>${a} cm²</b>. Find ${ar("PCD")}.</p>${inPt}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, X/2 - a, 0, done, `Draw a line through P parallel to AB: △APB and △PCD are each half of a smaller parallelogram, so ${ar("APB")} + ${ar("PCD")} = ½ ${ar("ABCD")} = ${X/2}. ${ar("PCD")} = ${X/2} − ${a} = <b>${X/2 - a} cm²</b>.`, "Point inside a parallelogram"); }}; }
+    if (t === 2){ const a = R(5, 20), b = R(5, 20);
+      return {html:`<p class="tw-q">P is inside parallelogram ABCD. ${ar("APB")} = <b>${a}</b>, ${ar("PCD")} = <b>${b}</b>. Find ${ar("APD")} + ${ar("PBC")}.</p>${inPt}${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, a + b, 0, done, `Each pair of “opposite” triangles makes half the parallelogram, so ${ar("APD")} + ${ar("PBC")} = ${ar("APB")} + ${ar("PCD")} = <b>${a + b} cm²</b>.`, "Point inside a parallelogram"); }}; }
+    if (t === 3) return {html:`<p class="tw-q">E, F, G, H are the midpoints of the sides of parallelogram ABCD, and ${ar("ABCD")} = <b>${X} cm²</b>. Find ${ar("EFGH")}.</p>${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, X/2, 0, done, `Join HF (parallel to AB). Each half-parallelogram contains a triangle of EFGH on the same base, between the same parallels, so each triangle is half of it. ${ar("EFGH")} = ½ × ${X} = <b>${X/2} cm²</b>.`, "Midpoints and areas"); }};
+    const right = "Each triangle is half the parallelogram, because a diagonal divides it into two congruent triangles", o = opts4(right, ["The triangles have equal perimeters", "The diagonal is an axis of symmetry", "Each triangle is one-third of the parallelogram"]);
+    return {html:`<p class="tw-q">Why is ${ar("ABC")} = ½ ${ar("ABCD")} for a parallelogram ABCD?</p>${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `△ABC ≅ △CDA (SSS: AB = CD, BC = DA, AC common). Congruent figures have equal areas, so each is ½. (A parallelogram’s diagonal is not usually a line of symmetry!)`, "Diagonals of a parallelogram"); }};
+  }
+
+  /* ---------- Mission 8: Proofs & Area Puzzles ---------- */
+  const PROOF = ["Parallelograms ABCD and EFCD stand on base DC between the parallels AF and DC.", "In △ADE and △BCF: ∠DAE = ∠CBF (corresponding angles, AD ∥ BC).", "∠AED = ∠BFC (corresponding angles, ED ∥ FC).", "AD = BC (opposite sides of a parallelogram).", "So △ADE ≅ △BCF (AAS rule) and ar(ADE) = ar(BCF).", "ar(ABCD) = ar(ADE) + ar(EDCB) = ar(BCF) + ar(EDCB) = ar(EFCD)."];
+  const PROOF2 = ["Let AD be a median of △ABC, so BD = CD.", "Draw AN ⊥ BC; AN is the altitude of both △ABD and △ACD.", "ar(ABD) = ½ × BD × AN.", "= ½ × CD × AN, since BD = CD.", "= ar(ACD). So a median divides a triangle into two triangles of equal area."];
+  function m8(i){
+    const t = i % 4;
+    if (t === 0){ const pf = P([PROOF, PROOF2]), nm = pf === PROOF ? "Theorem 9.1 (parallelograms on the same base and between the same parallels are equal in area)" : "“a median divides a triangle into two triangles of equal area”";
+      return {html:`<p class="tw-q">Put the steps of the proof of <b>${nm}</b> in order.</p>${orderHTML(pf)}`,
+        mount(el, done){ bindOrder(el, pf, done, `Set up the figure, prove the congruence (or the equal bases and shared height), then add or compare the areas.`, "Writing area proofs"); }}; }
+    if (t === 1){ let a, b, c; do { a = R(2, 12); b = R(2, 12); c = R(2, 12); } while ((a*c) % b);
+      return {html:`<p class="tw-q">The diagonals of quadrilateral ABCD meet at P. ${ar("APB")} = <b>${a}</b>, ${ar("APD")} = <b>${b}</b>, ${ar("CPD")} = <b>${c}</b> (cm²). Find ${ar("BPC")}.</p>${PAD("cm²")}`,
+        mount(el, done){ bindPad(el, a*c/b, 0, done, `Triangles sharing a height have areas in the ratio of their bases on BD, which gives ${ar("APB")} × ${ar("CPD")} = ${ar("APD")} × ${ar("BPC")}. So ${a} × ${c} = ${b} × ${ar("BPC")} → ${ar("BPC")} = <b>${a*c/b} cm²</b>.`, "Area puzzles"); }}; }
+    if (t === 2){ const a = R(4, 14), b = R(a + 2, 24), h = R(3, 12);
+      return {html:`<p class="tw-q">A trapezium has parallel sides <b>${a} m</b> and <b>${b} m</b>, <b>${h} m</b> apart. Find its area.</p>${PAD("m²")}`,
+        mount(el, done){ bindPad(el, (a + b)*h/2, 0, done, `A diagonal splits it into two triangles with the same height: ½ × ${a} × ${h} + ½ × ${b} × ${h} = ½ (${a} + ${b}) × ${h} = <b>${n2((a + b)*h/2)} m²</b>.`, "Area of a trapezium"); }}; }
+    const k = R(6, 30);
+    return {html:`<p class="tw-q">ABCD is a parallelogram; BC is produced to Q with CQ = AD, and AQ meets DC at P. ${ar("BPC")} = <b>${k} cm²</b>. Find ${ar("DPQ")}.</p>${PAD("cm²")}`,
+      mount(el, done){ bindPad(el, k, 0, done, `Join AC. ACQD is a parallelogram (AD = CQ and AD ∥ CQ), so its diagonals bisect each other at P: ${ar("DPQ")} = ${ar("APC")}. Also △APC and △BPC share base PC between AB ∥ DC, so ${ar("APC")} = ${ar("BPC")}. Hence ${ar("DPQ")} = <b>${k} cm²</b>.`, "Area puzzles"); }};
+  }
+
+  const LS = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Same Base, Same Parallels?", goal:"Spot figures that share a base and lie between the same parallels.", n:8,
+      learn:LS("What the phrase means", "Two figures are on the same base and between the same parallels if they share a side (the base) and the vertex or side opposite that base lies on one line parallel to the base. One of the two parallels must contain the base.", "△PBC and ABCD on base BC, with P, A, D on a line ∥ BC")},
+    {id:2, track:"foundation", name:"Area of a Parallelogram", goal:"Base × corresponding height.", n:8,
+      learn:LS("Base × height", "Area of a parallelogram = base × corresponding altitude (the perpendicular distance to the opposite side). Any side can be the base, so the area can be written two ways: AB × AE = AD × CF.", "AB = 16, AE = 8, CF = 10 → AD = 128 ÷ 10 = 12.8")},
+    {id:3, track:"foundation", name:"Parallelograms on the Same Base", goal:"Theorem 9.1 and its converse.", n:8,
+      learn:LS("Theorem 9.1", "Parallelograms on the same base (or equal bases) and between the same parallels are equal in area. Converse: on the same base with equal areas → between the same parallels. Equal area does not mean congruent.", "ar(ABCD) = ar(ABEF)")},
+    {id:4, track:"core", name:"Triangle = ½ Parallelogram", goal:"A triangle and a parallelogram on the same base.", n:8,
+      learn:LS("Half of it", "If a triangle and a parallelogram are on the same base and between the same parallels, the triangle has half the area of the parallelogram.", "P anywhere on DC: ar(PAB) = ½ ar(ABCD)")},
+    {id:5, track:"core", name:"Triangles on the Same Base", goal:"Theorems 9.2 and 9.3.", n:8,
+      learn:LS("Equal triangles", "Theorem 9.2: triangles on the same base (or equal bases) between the same parallels have equal areas. Theorem 9.3: triangles on the same base with equal areas lie between the same parallels. Area of a triangle = ½ × base × altitude.", "Trapezium AB ∥ DC: ar(AOD) = ar(BOC)")},
+    {id:6, track:"core", name:"Medians Split Areas", goal:"Halves, quarters and equal parts.", n:8,
+      learn:LS("A median halves the area", "A median AD gives two triangles with equal bases (BD = DC) and the same altitude, so ar(ABD) = ar(ACD) = ½ ar(ABC). Use it again inside smaller triangles.", "E midpoint of median AD: ar(BED) = ¼ ar(ABC)")},
+    {id:7, track:"advanced", name:"Diagonals & Inside Points", goal:"Four equal triangles and the ‘half’ rule.", n:8,
+      learn:LS("Parallelogram facts", "A diagonal splits a parallelogram into two congruent triangles. Both diagonals give four triangles of equal area. For any point P inside: ar(APB) + ar(PCD) = ar(APD) + ar(PBC) = ½ ar(ABCD).", "Midpoints of the sides form a parallelogram of half the area")},
+    {id:8, track:"advanced", name:"Proofs & Area Puzzles", goal:"Order proofs and crack the exercise classics.", n:8,
+      learn:LS("How area proofs work", "Look for a shared base and a pair of parallels (or a median), state the theorem, then add or subtract common areas. Diagonals of a quadrilateral: ar(APB) × ar(CPD) = ar(APD) × ar(BPC).", "Trapezium area = ½ (sum of parallel sides) × distance between them")},
+    {id:9, track:"advanced", name:"Area Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m4, m5, m5, m6, m6, m7, m7, m8])(i % 4 === 0 && i > 0 ? i + 1 : i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c9-areas-parallelograms"] = CQ.quest({
+  key:"apt9_stars", missions:APT9.MISSIONS, gen:APT9.GEN, chapter:{std:9, ch:9},
+  desc:"Class 9 · Areas of Parallelograms and Triangles. Master the chapter in 9 missions: same base and same parallels, area of a parallelogram, Theorems 9.1–9.3, triangles as half parallelograms, medians, diagonals and inside points, proofs and area puzzles.",
+  modes:{foundation:"Same base and same parallels, area of a parallelogram and Theorem 9.1", core:"Triangles and parallelograms, Theorems 9.2 and 9.3, and medians", advanced:"Diagonals and inside points, proofs, area puzzles and the timed master round"}
+});
 
 </script>
 <script>
