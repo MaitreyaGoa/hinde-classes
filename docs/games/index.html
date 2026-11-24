@@ -1104,6 +1104,13 @@ a.bt:active,button.bt:active{transform:scale(.98)}
 .g-prb9{--a1:#a78bfa;--a2:#22d3ee}
 .g-her9{--a1:#fb7185;--a2:#fbbf24}
 .tw-multi.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.tw-multi.three .tw-b{min-height:52px}
+.g-pa6{--a1:#22c55e;--a2:#38bdf8}
+.g-fr6{--a1:#f97316;--a2:#facc15}
+.g-sy6{--a1:#e879f9;--a2:#60a5fa}
+.g-oz6{--a1:#4ade80;--a2:#f87171}
+.clc-6{--c1:#f472b6;--c2:#fde047}
+@media (min-width:760px){.clsel{grid-template-columns:repeat(5,minmax(0,1fr))}.clc{padding:12px;gap:10px}.clc-n{width:52px;height:52px;font-size:23px}.clc-t b{font-size:13px}}
+@media (max-width:759px){.clsel .clc:first-child{grid-column:span 2}}
 
 </style>
 </head>
@@ -1218,6 +1225,10 @@ var HG = (function () {
     'c7-geometric-twins': { name: 'Geometric Twins', div: 8, max: 60000, good: 1000 },
     'c8-fractions-disguise': { name: 'Fractions in Disguise', div: 8, max: 60000, good: 1000 },
     'c10-trigonometry': { name: 'Introduction to Trigonometry', div: 8, max: 60000, good: 1000 },
+    'c6-perimeter-area': { name: 'Perimeter and Area', div: 8, max: 60000, good: 1000 },
+    'c6-fractions': { name: 'Fractions', div: 8, max: 60000, good: 1000 },
+    'c6-symmetry': { name: 'Symmetry', div: 8, max: 60000, good: 1000 },
+    'c6-other-side-zero': { name: 'The Other Side of Zero', div: 8, max: 60000, good: 1000 },
     'c9-logarithms': { name: 'Logarithms', div: 8, max: 60000, good: 1000 },
     'c9-areas-parallelograms': { name: 'Areas of Parallelograms and Triangles', div: 8, max: 60000, good: 1000 },
     'c9-probability': { name: 'Probability', div: 8, max: 60000, good: 1000 },
@@ -1502,6 +1513,10 @@ const GICON = {
   "c8-dots-lines":'<svg viewBox="0 0 64 64"><path d="M6 50L20 34l12 8 12-20 14 6"/><circle cx="20" cy="34" r="3"/><circle cx="32" cy="42" r="3"/><circle cx="44" cy="22" r="3"/><path d="M6 58h52"/></svg>',
   "c8-algebra-play":'<svg viewBox="0 0 64 64"><rect x="24" y="8" width="16" height="12" rx="2"/><rect x="14" y="26" width="16" height="12" rx="2"/><rect x="34" y="26" width="16" height="12" rx="2"/><rect x="4" y="44" width="16" height="12" rx="2"/><rect x="24" y="44" width="16" height="12" rx="2"/><rect x="44" y="44" width="16" height="12" rx="2"/></svg>',
   "c8-area":'<svg viewBox="0 0 64 64"><path d="M8 52L20 16h36L44 52z"/><path d="M20 16v36" stroke-dasharray="4 4"/></svg>',
+  "c6-perimeter-area":'<svg viewBox="0 0 64 64"><rect x="10" y="16" width="44" height="32" rx="2"/><path d="M10 32h44M32 16v32" opacity=".5"/></svg>',
+  "c6-fractions":'<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22"/><path d="M32 10v44M32 32l19 11"/></svg>',
+  "c6-symmetry":'<svg viewBox="0 0 64 64"><path d="M32 6v52" stroke-dasharray="4 4"/><path d="M32 14L12 46h20M32 14l20 32H32"/></svg>',
+  "c6-other-side-zero":'<svg viewBox="0 0 64 64"><path d="M6 32h52"/><path d="M32 24v16M14 28v8M50 28v8"/><path d="M44 12h10M49 7v10M10 12h10"/></svg>',
   "c9-logarithms":'<svg viewBox="0 0 64 64"><path d="M8 52c10-30 22-40 48-44"/><path d="M8 56h50M8 56V6" opacity=".5"/></svg>',
   "c9-areas-parallelograms":'<svg viewBox="0 0 64 64"><path d="M6 14h52M6 50h52" stroke-dasharray="4 4"/><path d="M14 50L26 14h26L40 50z"/><path d="M14 50l30-36 0 0" opacity=".6"/></svg>',
   "c9-probability":'<svg viewBox="0 0 64 64"><rect x="8" y="22" width="26" height="26" rx="5"/><circle cx="16" cy="30" r="2"/><circle cx="26" cy="40" r="2"/><circle cx="46" cy="20" r="10"/><path d="M46 14v12"/></svg>',
@@ -1768,6 +1783,10 @@ const XG = [
 const XMODES = {classic:{name:"12 overs"}, quick:{name:"2 overs"}, story:{name:"Story"}, tournament:{name:"Shootout Cup"}, arcade:{name:"Arcade"}};
 /* Chapter games: one game per textbook chapter, grouped by class */
 const CH = [
+  {id:"c6-perimeter-area", cls:"g-pa6", std:6, book:"Ganita Prakash", chn:6, name:"Perimeter and Area", tag:"Borders of rectangles, squares and regular polygons, tracks, counting squares, area formulas, triangles on a grid and L-shapes", missions:9, key:"pa6c6_stars"},
+  {id:"c6-fractions", cls:"g-fr6", std:6, book:"Ganita Prakash", chn:7, name:"Fractions", tag:"Fractional units, equal shares, number line, mixed and equivalent fractions, lowest terms, comparing, Brahmagupta’s addition", missions:9, key:"fr6c7_stars"},
+  {id:"c6-symmetry", cls:"g-sy6", std:6, book:"Ganita Prakash", chn:9, name:"Symmetry", tag:"Lines of symmetry, mirror images, rotational symmetry, angles of symmetry, half-turn letters and colour wheels", missions:9, key:"sy6c9_stars"},
+  {id:"c6-other-side-zero", cls:"g-oz6", std:6, book:"Ganita Prakash", chn:10, name:"The Other Side of Zero", tag:"Bela’s Building of Fun, lift moves, the number line, token model, credits and debits, temperatures and Brahmagupta’s rules", missions:9, key:"oz6c10_stars"},
   {id:"c7-geometric-twins", cls:"g-twins", std:7, book:"Ganita Prakash · Part 2", chn:1, name:"Geometric Twins", tag:"Congruence: superimposing, SSS, SAS, ASA, AAS, RHS, and isosceles angles", missions:9, key:"tw7c1_stars"},
   {id:"c8-fractions-disguise", cls:"g-fdis", std:8, book:"Ganita Prakash · Part 2", chn:1, name:"Fractions in Disguise", tag:"Percentages: the FDP trio, part & whole, increase/decrease, profit, discount, GST and compound interest", missions:9, key:"fd8c1_stars"},
   {id:"c10-trigonometry", cls:"g-trig", std:10, book:"NCERT", chn:8, name:"Introduction to Trigonometry", tag:"Sides, SOH-CAH-TOA, one ratio → all ratios, special angles 0°–90°, identities and step-by-step proofs", missions:9, key:"tr10c8_stars"},
@@ -1807,8 +1826,8 @@ const CH = [
   {id:"c10-ap", cls:"g-ap10", std:10, book:"NCERT", chn:5, name:"Arithmetic Progressions", tag:"Common difference, the nth term, term detective, sums of n terms and APs in real life", missions:9, key:"ap10c5_stars"}
 ];
 // each game's own page lives at /games/<slug>/ (built by build.py)
-const GAME_SLUGS = {"c9-probability":"class-9-probability", "c9-herons-formula":"class-9-herons-formula", "c9-logarithms":"class-9-logarithms", "c9-areas-parallelograms":"class-9-areas-of-parallelograms-and-triangles", "en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c9-converses":"class-9-propositions-and-converses", "c9-weighted":"class-9-weighted-averages-and-data", "c9-algorithms":"class-9-world-of-algorithms", "c9-quadrilaterals":"class-9-quadrilaterals", "c9-two-variables":"class-9-two-variables-one-line", "c9-solids":"class-9-surface-area-and-volume", "c7-data":"class-7-connecting-the-dots", "c7-constructions":"class-7-constructions-and-tilings", "c7-unknown":"class-7-finding-the-unknown", "c8-dots-lines":"class-8-tales-by-dots-and-lines", "c8-algebra-play":"class-8-algebra-play", "c8-area":"class-8-area", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
-const CH_CLASSES = [7, 8, 9, 10];
+const GAME_SLUGS = {"c6-perimeter-area":"class-6-perimeter-and-area", "c6-fractions":"class-6-fractions", "c6-symmetry":"class-6-symmetry", "c6-other-side-zero":"class-6-the-other-side-of-zero", "c9-probability":"class-9-probability", "c9-herons-formula":"class-9-herons-formula", "c9-logarithms":"class-9-logarithms", "c9-areas-parallelograms":"class-9-areas-of-parallelograms-and-triangles", "en-tenses":"english-tenses", "c7-geometric-twins":"class-7-geometric-twins", "c8-fractions-disguise":"class-8-fractions-in-disguise", "c10-trigonometry":"class-10-trigonometry", "c9-converses":"class-9-propositions-and-converses", "c9-weighted":"class-9-weighted-averages-and-data", "c9-algorithms":"class-9-world-of-algorithms", "c9-quadrilaterals":"class-9-quadrilaterals", "c9-two-variables":"class-9-two-variables-one-line", "c9-solids":"class-9-surface-area-and-volume", "c7-data":"class-7-connecting-the-dots", "c7-constructions":"class-7-constructions-and-tilings", "c7-unknown":"class-7-finding-the-unknown", "c8-dots-lines":"class-8-tales-by-dots-and-lines", "c8-algebra-play":"class-8-algebra-play", "c8-area":"class-8-area", "c10-triangles":"class-10-triangles", "c10-coordinate":"class-10-coordinate-geometry", "c10-heights":"class-10-heights-and-distances", "c10-circles":"class-10-circles-tangents", "c10-circle-areas":"class-10-areas-related-to-circles", "c10-solids":"class-10-surface-areas-and-volumes", "c10-statistics":"class-10-statistics", "c10-probability":"class-10-probability", "c7-integers":"class-7-operations-with-integers", "c7-common-ground":"class-7-hcf-lcm-common-ground", "c7-decimals":"class-7-decimals-beyond-the-point", "c8-pythagoras":"class-8-baudhayana-pythagoras-theorem", "c8-proportion":"class-8-proportional-reasoning", "c8-geothemes":"class-8-geometric-themes", "c10-polynomials":"class-10-polynomials", "c10-linear-pair":"class-10-pair-of-linear-equations", "c10-quadratic":"class-10-quadratic-equations", "c10-ap":"class-10-arithmetic-progressions"};
+const CH_CLASSES = [6, 7, 8, 9, 10];
 /* English games */
 const EN = [
   {id:"en-tenses", cls:"g-tense", name:"Tense Time Machine", eyebrow:"English grammar · Std 5–10", tag:"All 12 tenses with lessons, timelines, V1-V2-V3 verbs and step-by-step explanations for every mistake", missions:18, key:"tense_tm_v1"}
@@ -1982,7 +2001,7 @@ function renderHome(){
   const lbTile = `<div class="bt lbp b2" id="lbPrev"><h2 class="tt">This week's leaders <a class="more" href="#leaders">All ${ICO.chev}</a></h2><div class="top3"><div class="empty">Loading…</div></div></div>`;
   const xpTile = `<a class="bt howxp b2" href="#leaders"><span class="eyebrow">How XP works</span><h3>Every chapter mission earns XP</h3><p>Clear missions, collect up to 3 stars each, keep a daily streak for up to ×1.5 XP, and top the weekly board for prizes.</p><span class="tagrow"><span>9 missions per chapter</span><span>Learn cards</span><span>Explanations</span></span></a>`;
   v.innerHTML = `<div class="bento">
-    <section class="bt hero ball"><div><span class="eyebrow">Hinde Classes · Std 7 to 10 · ${CH.length} chapter games</span>
+    <section class="bt hero ball"><div><span class="eyebrow">Hinde Classes · Std 6 to 10 · ${CH.length} chapter games</span>
       <h1>Every chapter. <span>Now a game.</span></h1>
       <p>Pick your class and play your textbook chapter by chapter. Each game teaches the idea, explains every answer and tracks your mastery. Then sharpen up in the maths arcade, and unwind with cricket, football and more.</p>
       <div class="chips"><span>${CH.length} chapter games</span><span>${GL.length} maths arcade</span><span>Explanations for every answer</span><span>Free</span></div></div>${side}</section>
@@ -4393,6 +4412,690 @@ const GTrig = CQ.quest({
 });
 
 GAME_MODS["c10-trigonometry"] = GTrig;
+
+</script>
+<script>
+/* ============================================================
+   Class 6 · Ganita Prakash · Ch 6 · Perimeter and Area
+   Chapter game "Border & Inside": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Walk the Border  2 Regular Shapes & Missing Sides  3 Tracks & Rounds
+   Apply  : 4 Count the Squares  5 Area of Rectangles & Squares  6 Same Perimeter, Different Area
+   Master : 7 Triangles on a Grid  8 L-Shapes & Paths  9 Border Master (timed)
+   ============================================================ */
+const PA6 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, n2, rs} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const svg = (g, w = 300, h = 170, mh = 170) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const T = (x, y, s, c = "#e8ecff", fs = 13) => `<text x="${x}" y="${y}" text-anchor="middle" style="font-size:${fs}px;font-weight:800;fill:${c}">${s}</text>`;
+  const ST = `fill="#5aa9ff2e" stroke="#9cc8ff" stroke-width="2.4" stroke-linejoin="round"`;
+  const NUM = u => padHTML("", u, {dec:false});
+  // a labelled rectangle drawing
+  const rect = (l, b, u = "cm") => { const sc = Math.min(200/l, 110/b), w = l*sc, h = b*sc, x = 150 - w/2, y = 85 - h/2;
+    return svg(`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3" ${ST}/>` + T(150, y + h + 18, `${l} ${u}`, "#b6f36a") + T(x - 22, 89, `${b} ${u}`, "#ffcf5a"), 300, 172); };
+  // grid with shaded unit squares (cells = [[c,r],...]) and optional half-squares (tris = [[c,r,corner]])
+  function grid(cols, rows, cells, tris = [], hl = "#5aa9ff"){
+    const s = Math.min(26, 270/cols, 150/rows), ox = 150 - cols*s/2, oy = 82 - rows*s/2; let g = "";
+    for (let i = 0; i <= cols; i++) g += `<line x1="${ox + i*s}" y1="${oy}" x2="${ox + i*s}" y2="${oy + rows*s}" stroke="#ffffff22"/>`;
+    for (let j = 0; j <= rows; j++) g += `<line x1="${ox}" y1="${oy + j*s}" x2="${ox + cols*s}" y2="${oy + j*s}" stroke="#ffffff22"/>`;
+    cells.forEach(([c, r]) => g += `<rect x="${ox + c*s}" y="${oy + r*s}" width="${s}" height="${s}" fill="${hl}88" stroke="${hl}"/>`);
+    tris.forEach(([c, r, k]) => { const x = ox + c*s, y = oy + r*s, pts = [[[x, y], [x + s, y], [x, y + s]], [[x, y], [x + s, y], [x + s, y + s]], [[x + s, y], [x + s, y + s], [x, y + s]], [[x, y], [x + s, y + s], [x, y + s]]][k];
+      g += `<polygon points="${pts.map(p => p.join(",")).join(" ")}" fill="#ffcf5a88" stroke="#ffcf5a"/>`; });
+    return svg(g, 300, 168); }
+
+  /* ---------- Mission 1: Walk the Border ---------- */
+  function m1(i){
+    const t = i % 3;
+    if (t === 0){ const l = R(4, 20), b = R(2, l - 1);
+      return {html:`<p class="tw-q">Find the <b>perimeter</b> of this rectangle.</p>${rect(l, b)}${NUM("cm")}`,
+        mount(el, done){ bindPad(el, 2*(l + b), 0, done, `Perimeter = the length of the border = ${l} + ${b} + ${l} + ${b} = 2 × (${l} + ${b}) = <b>${2*(l + b)} cm</b>.`, "Perimeter of a rectangle"); }}; }
+    if (t === 1){ const s = R(3, 25);
+      return {html:`<p class="tw-q">A square photo frame has side <b>${s} cm</b>. Find its perimeter.</p>${rect(s, s)}${NUM("cm")}`,
+        mount(el, done){ bindPad(el, 4*s, 0, done, `All 4 sides of a square are equal: 4 × ${s} = <b>${4*s} cm</b>.`, "Perimeter of a square"); }}; }
+    const a = R(3, 15), b = R(3, 15), c = R(Math.abs(a - b) + 1, a + b - 1);
+    return {html:`<p class="tw-q">A triangle has sides <b>${a} cm, ${b} cm and ${c} cm</b>. Find its perimeter.</p>${NUM("cm")}`,
+      mount(el, done){ bindPad(el, a + b + c, 0, done, `Add all three sides: ${a} + ${b} + ${c} = <b>${a + b + c} cm</b>.`, "Perimeter of a triangle"); }};
+  }
+
+  /* ---------- Mission 2: Regular Shapes & Missing Sides ---------- */
+  const POLY = [[3, "equilateral triangle"], [4, "square"], [5, "regular pentagon"], [6, "regular hexagon"], [8, "regular octagon"], [10, "regular decagon"]];
+  function m2(i){
+    const t = i % 3, [n, nm] = P(POLY);
+    if (t === 0){ const s = R(2, 15);
+      return {html:`<p class="tw-q">A <b>${nm}</b> has each side <b>${s} cm</b>. Find its perimeter.</p>${NUM("cm")}`,
+        mount(el, done){ bindPad(el, n*s, 0, done, `A regular polygon has all sides equal. A ${nm} has ${n} sides: ${n} × ${s} = <b>${n*s} cm</b>.`, "Regular polygons"); }}; }
+    if (t === 1){ const s = R(2, 15);
+      return {html:`<p class="tw-q">The perimeter of a <b>${nm}</b> is <b>${n*s} cm</b>. How long is each side?</p>${NUM("cm")}`,
+        mount(el, done){ bindPad(el, s, 0, done, `${n} equal sides share the perimeter: ${n*s} ÷ ${n} = <b>${s} cm</b>.`, "Regular polygons"); }}; }
+    const l = R(5, 25), b = R(2, l - 1);
+    return {html:`<p class="tw-q">A rectangle has perimeter <b>${2*(l + b)} cm</b> and length <b>${l} cm</b>. Find its breadth.</p>${NUM("cm")}`,
+      mount(el, done){ bindPad(el, b, 0, done, `Half the perimeter = length + breadth = ${l + b}. So breadth = ${l + b} − ${l} = <b>${b} cm</b>.`, "Missing sides"); }};
+  }
+
+  /* ---------- Mission 3: Tracks & Rounds ---------- */
+  function m3(i){
+    const t = i % 4;
+    if (t === 0){ const l = 10*R(5, 15), b = 10*R(2, 6), per = 2*(l + b), k = R(2, 6);
+      return {html:`<p class="tw-q">Akshi runs <b>${k} rounds</b> of a rectangular park <b>${l} m</b> long and <b>${b} m</b> wide. How far does she run?</p>${rect(l, b, "m")}${NUM("m")}`,
+        mount(el, done){ bindPad(el, k*per, 0, done, `One round = perimeter = 2 × (${l} + ${b}) = ${per} m. ${k} rounds = ${k} × ${per} = <b>${k*per} m</b>.`, "Rounds and distance"); }}; }
+    if (t === 1){ const l = 10*R(3, 12), b = 10*R(2, 6), per = 2*(l + b), k = R(2, 8);
+      return {html:`<p class="tw-q">Toshi wants to run <b>${k*per} m</b> around a rectangular ground <b>${l} m × ${b} m</b>. How many rounds must he run?</p>${NUM("rounds")}`,
+        mount(el, done){ bindPad(el, k, 0, done, `One round = ${per} m. Rounds = ${k*per} ÷ ${per} = <b>${k}</b>.`, "Rounds and distance"); }}; }
+    if (t === 2){ const s = R(5, 30), k = P([2, 3, 4]);
+      return {html:`<p class="tw-q">A farmer puts a wire <b>${k} times</b> around a square field of side <b>${s} m</b>. How much wire does he need?</p>${NUM("m")}`,
+        mount(el, done){ bindPad(el, k*4*s, 0, done, `Perimeter = 4 × ${s} = ${4*s} m. ${k} rounds of wire: ${k} × ${4*s} = <b>${k*4*s} m</b>.`, "Rounds and distance"); }}; }
+    const [arr, per, why] = P([["end to end in a long strip (12 cm × 2 cm)", 28, "2 × (12 + 2) = 28 cm"], ["side by side to make the original 6 cm × 4 cm rectangle", 20, "2 × (6 + 4) = 20 cm"], ["in an L-shape, corner to corner", 28, "the outline has the same total length as the long strip: 28 cm"]]);
+    const o = opts4(per + " cm", ["20 cm", "24 cm", "28 cm", "32 cm"]);
+    return {html:`<p class="tw-q">A 6 cm × 4 cm chit is cut into two 6 cm × 2 cm pieces, which are joined <b>${arr}</b>. Find the perimeter.</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(per + " cm"), done, `${why}. Joining the same pieces in different ways can change the perimeter, while the area (24 cm²) stays the same!`, "Split and rejoin"); }};
+  }
+
+  /* ---------- Mission 4: Count the Squares ---------- */
+  function shapeCells(){ // a random connected blob of cells
+    const cols = R(6, 9), rows = R(4, 5), set = new Set([`${R(1, cols - 2)},${R(1, rows - 2)}`]), n = R(6, Math.min(16, cols*rows - 6));
+    while (set.size < n){ const [c, r] = P([...set]).split(",").map(Number), [dc, dr] = P([[1, 0], [-1, 0], [0, 1], [0, -1]]), nc = c + dc, nr = r + dr;
+      if (nc >= 0 && nr >= 0 && nc < cols && nr < rows) set.add(`${nc},${nr}`); }
+    return {cols, rows, cells:[...set].map(s => s.split(",").map(Number))}; }
+  function m4(i){
+    const {cols, rows, cells} = shapeCells();
+    if (i % 2){ const k = 2*R(1, 3), free = []; for (let c = 0; c < cols; c++) for (let r = 0; r < rows; r++) if (!cells.some(x => x[0] === c && x[1] === r)) free.push([c, r]);
+      const tris = SH(free).slice(0, k).map(([c, r]) => [c, r, R(0, 3)]), A = cells.length + tris.length/2;
+      return {html:`<p class="tw-q">Each small square is <b>1 sq unit</b>. Find the area of the coloured region (blue squares + yellow half-squares).</p>${grid(cols, rows, cells, tris)}${padHTML("", "sq units", {dec:true})}`,
+        mount(el, done){ bindPad(el, A, 0, done, `${cells.length} full squares + ${tris.length} half-squares (${tris.length} × ½ = ${tris.length/2}) = <b>${n2(A)} sq units</b>.`, "Counting squares"); }}; }
+    return {html:`<p class="tw-q">Each small square is <b>1 sq unit</b>. What is the area of the blue shape?</p>${grid(cols, rows, cells)}${NUM("sq units")}`,
+      mount(el, done){ bindPad(el, cells.length, 0, done, `Area = the number of unit squares covered = <b>${cells.length} sq units</b>. Area measures the region inside; perimeter measures the border.`, "Counting squares"); }};
+  }
+
+  /* ---------- Mission 5: Area of Rectangles & Squares ---------- */
+  function m5(i){
+    const t = i % 4;
+    if (t === 0){ const l = R(3, 20), b = R(2, 15);
+      return {html:`<p class="tw-q">Find the <b>area</b> of a rectangle ${l} cm long and ${b} cm wide.</p>${rect(l, b)}${NUM("sq cm")}`,
+        mount(el, done){ bindPad(el, l*b, 0, done, `Area = length × breadth = ${l} × ${b} = <b>${l*b} sq cm</b> (cm²). There are ${b} rows of ${l} unit squares.`, "Area of a rectangle"); }}; }
+    if (t === 1){ const s = R(2, 15), ask = P(["area", "side"]);
+      return ask === "area" ? {html:`<p class="tw-q">Find the area of a square of side <b>${s} m</b>.</p>${NUM("sq m")}`, mount(el, done){ bindPad(el, s*s, 0, done, `Area of a square = side × side = ${s} × ${s} = <b>${s*s} sq m</b>.`, "Area of a square"); }}
+        : {html:`<p class="tw-q">A square has area <b>${s*s} sq m</b>. Find its side.</p>${NUM("m")}`, mount(el, done){ bindPad(el, s, 0, done, `Which number times itself is ${s*s}? ${s} × ${s} = ${s*s}, so side = <b>${s} m</b>.`, "Area of a square"); }}; }
+    if (t === 2){ const l = R(3, 12), b = R(2, 10), ts = P([1, 2]);
+      const tiles = (l*b)/(ts*ts); if (tiles % 1 || l % ts || b % ts) return m5(i + 4);
+      return {html:`<p class="tw-q">A floor is <b>${l} m × ${b} m</b>. How many square tiles of side <b>${ts} m</b> are needed to cover it?</p>${NUM("tiles")}`,
+        mount(el, done){ bindPad(el, tiles, 0, done, `Floor area = ${l*b} sq m, one tile = ${ts*ts} sq m. Tiles = ${l*b} ÷ ${ts*ts} = <b>${tiles}</b>.`, "Area word problems"); }}; }
+    const l = R(4, 15), b = R(3, 10), rate = P([5, 10, 20, 25, 50]);
+    return {html:`<p class="tw-q">A rectangular wall is <b>${l} m × ${b} m</b>. Painting costs <b>₹${rate} per sq m</b>. Find the total cost.</p>${padHTML("₹", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, l*b*rate, 0, done, `Painting covers the area: ${l} × ${b} = ${l*b} sq m. Cost = ${l*b} × ${rate} = <b>${rs(l*b*rate)}</b>.`, "Area word problems"); }};
+  }
+
+  /* ---------- Mission 6: Same Perimeter, Different Area ---------- */
+  function m6(i){
+    const t = i % 3;
+    if (t === 0){ const half = R(6, 12), opts = []; for (let l = half - 1; l >= Math.ceil(half/2); l--) opts.push([l, half - l]); const c = SH(opts).slice(0, 4), best = c.reduce((a, x) => x[0]*x[1] > a[0]*a[1] ? x : a, c[0]);
+      const o = c.map(x => `${x[0]} cm × ${x[1]} cm`);
+      return {html:`<p class="tw-q">All these rectangles have perimeter <b>${2*half} cm</b>. Which has the <b>largest area</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, c.indexOf(best), done, `Areas: ${c.map(x => `${x[0]} × ${x[1]} = ${x[0]*x[1]}`).join(", ")}. The one closest to a square, <b>${best[0]} × ${best[1]}</b>, wins.`, "Same perimeter, different area"); }}; }
+    if (t === 1){ const A = P([12, 16, 18, 24, 36]), fs = []; for (let l = 1; l*l <= A; l++) if (A % l === 0) fs.push([A/l, l]);
+      const best = fs[fs.length - 1], pick = SH(uniq([best, ...SH(fs.slice(0, -1))]).slice(0, 4)), o = pick.map(x => `${x[0]} cm × ${x[1]} cm`);
+      return {html:`<p class="tw-q">These rectangles all have area <b>${A} sq cm</b>. Which has the <b>smallest perimeter</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, pick.indexOf(best), done, `Perimeters: ${pick.map(x => `${x[0]} × ${x[1]} → ${2*(x[0] + x[1])}`).join(", ")}. Same area, different borders; the most square-like, <b>${best[0]} × ${best[1]}</b>, has the shortest.`, "Same perimeter, different area"); }}; }
+    const [s, ok, why] = P([["If two rectangles have the same perimeter, they must have the same area", false, "4 × 2 and 5 × 1 both have perimeter 12, but areas 8 and 5."], ["If two rectangles have the same area, they can have different perimeters", true, "6 × 1 and 3 × 2 both have area 6, perimeters 14 and 10."], ["Joining two pieces in a different way can change the perimeter but not the area", true, "The pieces still cover the same squares; only the border changes."], ["A shape with a bigger perimeter always has a bigger area", false, "A 10 × 1 strip (perimeter 22, area 10) vs a 4 × 4 square (perimeter 16, area 16)."]]);
+    return {html:`<p class="tw-q">True or false?</p><div class="tw-ex" style="font-size:16px">${s}</div>${choice(["True", "False"], "two")}`,
+      mount(el, done){ bindChoice(el, ok ? 0 : 1, done, `<b>${ok ? "True" : "False"}</b>. ${why}`, "Same perimeter, different area"); }};
+  }
+
+  /* ---------- Mission 7: Triangles on a Grid ---------- */
+  function m7(i){
+    const t = i % 3, w = R(2, 8), h = 2*R(1, 3), s = Math.min(24, 260/w, 140/h), ox = 150 - w*s/2, oy = 84 - h*s/2;
+    let g = ""; for (let c = 0; c <= w; c++) g += `<line x1="${ox + c*s}" y1="${oy}" x2="${ox + c*s}" y2="${oy + h*s}" stroke="#ffffff22"/>`; for (let r = 0; r <= h; r++) g += `<line x1="${ox}" y1="${oy + r*s}" x2="${ox + w*s}" y2="${oy + r*s}" stroke="#ffffff22"/>`;
+    g += `<rect x="${ox}" y="${oy}" width="${w*s}" height="${h*s}" fill="none" stroke="#9cc8ff" stroke-dasharray="4 3"/>`;
+    if (t === 0){ g += `<polygon points="${ox},${oy + h*s} ${ox + w*s},${oy + h*s} ${ox},${oy}" ${ST}/>`;
+      return {html:`<p class="tw-q">Find the area of the right triangle (each square = 1 sq unit).</p>${svg(g, 300, 168)}${padHTML("", "sq units", {dec:true})}`,
+        mount(el, done){ bindPad(el, w*h/2, 0, done, `The diagonal cuts the ${w} × ${h} rectangle into two equal triangles: ½ × ${w*h} = <b>${n2(w*h/2)} sq units</b>.`, "Triangle = half a rectangle"); }}; }
+    const apex = R(0, w);
+    g += `<polygon points="${ox},${oy + h*s} ${ox + w*s},${oy + h*s} ${ox + apex*s},${oy}" ${ST}/>`;
+    if (t === 1) return {html:`<p class="tw-q">The triangle’s top corner is on the top side of the dashed ${w} × ${h} rectangle. Find the triangle’s area.</p>${svg(g, 300, 168)}${padHTML("", "sq units", {dec:true})}`,
+      mount(el, done){ bindPad(el, w*h/2, 0, done, `Drop a line from the top corner: each part of the rectangle is cut in half by a side of the triangle. Triangle = ½ × rectangle = ½ × ${w*h} = <b>${n2(w*h/2)} sq units</b>.`, "Triangle = half a rectangle"); }};
+    const o = SH(["Half the rectangle", "The whole rectangle", "A quarter of the rectangle", "It depends on where the top corner is"]);
+    return {html:`<p class="tw-q">A triangle has the same base as a rectangle and its top corner on the rectangle’s opposite side. Its area is always…</p>${svg(g, 300, 168)}${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf("Half the rectangle"), done, `Wherever the top corner sits on the top side, the area is <b>half the rectangle</b>.`, "Triangle = half a rectangle"); }};
+  }
+
+  /* ---------- Mission 8: L-Shapes & Paths ---------- */
+  function m8(i){
+    const t = i % 3;
+    if (t < 2){ const W = R(6, 14), H = R(5, 12), cw = R(2, W - 3), ch = R(2, H - 3), sc = Math.min(200/W, 120/H), x0 = 150 - W*sc/2, y0 = 84 - H*sc/2;
+      const pts = [[0, 0], [W - cw, 0], [W - cw, ch], [W, ch], [W, H], [0, H]].map(([x, y]) => [x0 + x*sc, y0 + y*sc]);
+      const g = `<polygon points="${pts.map(p => p.join(",")).join(" ")}" ${ST}/>` + T(x0 + W*sc/2, y0 + H*sc + 16, W + " m", "#b6f36a") + T(x0 - 18, y0 + H*sc/2 + 4, H + " m", "#b6f36a") + T(x0 + (W - cw)*sc/2, y0 - 6, (W - cw) + " m", "#ffcf5a") + T(x0 + (W - cw)*sc + 18, y0 + ch*sc/2 + 4, ch + " m", "#ffcf5a");
+      if (t === 0) return {html:`<p class="tw-q">Find the <b>area</b> of this L-shaped plot.</p>${svg(g, 300, 175)}${NUM("sq m")}`,
+        mount(el, done){ bindPad(el, W*H - cw*ch, 0, done, `Big rectangle ${W} × ${H} = ${W*H}, minus the missing corner ${cw} × ${ch} = ${cw*ch}: <b>${W*H - cw*ch} sq m</b>. (Or split it into two rectangles.)`, "L-shapes"); }};
+      return {html:`<p class="tw-q">Find the <b>perimeter</b> of this L-shaped plot.</p>${svg(g, 300, 175)}${NUM("m")}`,
+        mount(el, done){ bindPad(el, 2*(W + H), 0, done, `Walk around: the steps add up to the same as the full ${W} × ${H} rectangle. Perimeter = 2 × (${W} + ${H}) = <b>${2*(W + H)} m</b>.`, "L-shapes"); }}; }
+    const L = R(10, 30), B = R(6, 20), p = P([1, 2]);
+    return {html:`<p class="tw-q">A garden is <b>${L} m × ${B} m</b>. A path <b>${p} m</b> wide runs all around it, outside. Find the area of the path.</p>${NUM("sq m")}`,
+      mount(el, done){ const A = (L + 2*p)*(B + 2*p) - L*B; bindPad(el, A, 0, done, `Outer rectangle: (${L} + ${2*p}) × (${B} + ${2*p}) = ${(L + 2*p)*(B + 2*p)}. Path = outer − garden = ${(L + 2*p)*(B + 2*p)} − ${L*B} = <b>${A} sq m</b>.`, "Paths"); }};
+  }
+
+  const LS = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Walk the Border", goal:"Perimeter of rectangles, squares and triangles.", n:8,
+      learn:LS("Perimeter = boundary length", "Walk once around the shape and add every side. Rectangle: 2 × (length + breadth). Square: 4 × side. Triangle: add the three sides.", "8 cm × 5 cm → 2 × 13 = 26 cm")},
+    {id:2, track:"foundation", name:"Regular Shapes & Missing Sides", goal:"Equal sides, and working backwards.", n:8,
+      learn:LS("Regular polygons", "All sides of a regular polygon are equal, so perimeter = number of sides × side. To find a side, divide. For a rectangle, half the perimeter = length + breadth.", "Regular hexagon, side 5 → 30 cm")},
+    {id:3, track:"foundation", name:"Tracks & Rounds", goal:"Running, fencing and rejoining pieces.", n:8,
+      learn:LS("One round = one perimeter", "Distance for k rounds = k × perimeter. Number of rounds = distance ÷ perimeter. Rearranging pieces keeps the area but can change the perimeter.", "Park 150 m × 70 m: one round = 440 m")},
+    {id:4, track:"core", name:"Count the Squares", goal:"Area on squared paper.", n:8,
+      learn:LS("Area = squares covered", "Area is the amount of region a shape covers. On squared paper, count the full unit squares; two half-squares make one whole.", "9 full + 4 halves = 11 sq units")},
+    {id:5, track:"core", name:"Area of Rectangles & Squares", goal:"length × breadth.", n:8,
+      learn:LS("Rows of squares", "A rectangle with length l and breadth b has b rows of l squares: area = l × b. Square: side × side. Units are square units: sq cm, sq m.", "Floor 6 m × 4 m with 1 m tiles → 24 tiles")},
+    {id:6, track:"core", name:"Same Perimeter, Different Area", goal:"The two ideas are different!", n:8,
+      learn:LS("Do not mix them up", "Shapes with the same perimeter can have different areas, and the other way round. For a fixed perimeter, the rectangle closest to a square has the largest area.", "Perimeter 20: 9 × 1 → 9, 5 × 5 → 25")},
+    {id:7, track:"advanced", name:"Triangles on a Grid", goal:"A triangle is half a rectangle.", n:8,
+      learn:LS("Half of the box", "A diagonal splits a rectangle into two equal triangles. Any triangle whose base is a side of the rectangle and whose top corner lies on the opposite side is also half the rectangle.", "Base 6, height 4 → ½ × 24 = 12 sq units")},
+    {id:8, track:"advanced", name:"L-Shapes & Paths", goal:"Break shapes into rectangles.", n:8,
+      learn:LS("Split or subtract", "Area of an L-shape: split into two rectangles, or take a big rectangle and subtract the missing corner. A path around a garden = outer rectangle − garden.", "")},
+    {id:9, track:"advanced", name:"Border Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m3, m4, m5, m5, m6, m7, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c6-perimeter-area"] = CQ.quest({
+  key:"pa6c6_stars", missions:PA6.MISSIONS, gen:PA6.GEN, chapter:{std:6, ch:6},
+  desc:"Class 6 · Ganita Prakash · Chapter 6. Master perimeter and area in 9 missions: borders of rectangles, squares and regular polygons, running tracks, counting squares, area formulas, same perimeter but different area, triangles on a grid and L-shapes.",
+  modes:{foundation:"Perimeter of rectangles, squares, triangles and regular polygons", core:"Area by counting squares, area formulas and comparing area with perimeter", advanced:"Triangles on a grid, L-shapes, paths and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 6 · Ganita Prakash · Ch 7 · Fractions
+   Chapter game "Fraction Bazaar": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Fractional Units  2 Equal Shares  3 Number Line & Mixed Fractions
+   Apply  : 4 Equivalent Fractions  5 Lowest Terms  6 Which Is Bigger?
+   Master : 7 Brahmagupta’s Addition  8 Subtraction & Stories  9 Fraction Master (timed)
+   ============================================================ */
+const FR6 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, fr, n2} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const gcd = (a, b) => b ? gcd(b, a % b) : a, lcm = (a, b) => a*b/gcd(a, b);
+  const low = (n, d) => { const g = gcd(n, d); return [n/g, d/g]; };
+  const F = (n, d) => d === 1 ? `${n}` : fr(n, d);
+  const MX = (n, d) => { const [a, b] = low(n, d); if (a < b) return F(a, b); const w = Math.floor(a/b), r = a % b; return r ? `${w}${fr(r, b)}` : `${w}`; };
+  const key = (n, d) => low(n, d).join("/");
+  // options from [n,d] pairs, unique by value
+  function fopts(right, wrong){ const seen = new Set([key(...right)]), out = [right]; SH(wrong).forEach(w => { if (w[0] <= 0 || w[1] <= 0) return; if (w.some(v => v % 1)) return; const k = key(...w); if (!seen.has(k) && out.length < 4){ seen.add(k); out.push(w); } }); return SH(out); }
+  const svg = (g, w = 300, h = 120, mh = 130) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const bar = (n, d, c = "#ffcf5a") => { const w = 260/d; let g = ""; for (let k = 0; k < d; k++) g += `<rect x="${20 + k*w}" y="30" width="${w}" height="50" fill="${k < n ? c + "aa" : "#ffffff10"}" stroke="#e8ecff" stroke-width="1.5"/>`; return svg(g, 300, 110); };
+  const pie = (n, d) => { let g = ""; for (let k = 0; k < d; k++){ const a1 = k/d*2*Math.PI - Math.PI/2, a2 = (k + 1)/d*2*Math.PI - Math.PI/2;
+    g += `<path d="M150 60 L${150 + 50*Math.cos(a1)} ${60 + 50*Math.sin(a1)} A50 50 0 ${d === 1 ? 1 : 0} 1 ${150 + 50*Math.cos(a2)} ${60 + 50*Math.sin(a2)} Z" fill="${k < n ? "#5aa9ffaa" : "#ffffff10"}" stroke="#e8ecff" stroke-width="1.5"/>`; } return svg(g, 300, 120); };
+
+  /* ---------- Mission 1: Fractional Units ---------- */
+  function m1(i){
+    const t = i % 3;
+    if (t === 0){ const d = R(2, 10), n = R(1, d - 1), o = fopts([n, d], [[d, n], [n, d + 1], [d - n, d], [n, 10], [1, d]]);
+      return {html:`<p class="tw-q">What fraction of the ${P(["chikki", "roti", "strip"])} is shaded?</p>${i % 2 ? pie(n, d) : bar(n, d)}${choice(o.map(x => F(...x)), "two")}`,
+        mount(el, done){ bindChoice(el, o.findIndex(x => x[0] === n && x[1] === d), done, `The whole is cut into <b>${d}</b> equal parts, so each part is the fractional unit ${fr(1, d)}. ${n} parts are shaded: <b>${F(n, d)}</b>.`, "Fractional units"); }}; }
+    if (t === 1){ const [a, b] = SH([R(2, 6), R(7, 12)]), o = [F(1, a), F(1, b)];
+      return {html:`<p class="tw-q">Which piece is <b>bigger</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, a < b ? 0 : 1, done, `Cutting the same whole into more pieces makes each piece smaller. ${fr(1, Math.min(a, b))} is bigger than ${fr(1, Math.max(a, b))}.`, "Fractional units"); }}; }
+    const d = P([2, 3, 4, 5, 6, 8, 10]), n = R(2, 3*d);
+    return {html:`<p class="tw-q">How many ${fr(1, d)} pieces make <b>${MX(n, d)}</b>?</p>${padHTML("", "pieces", {dec:false})}`,
+      mount(el, done){ bindPad(el, n, 0, done, `${MX(n, d)} = ${fr(n, d)}, which is <b>${n}</b> pieces of ${fr(1, d)}.${n >= d ? ` (${d} pieces make 1 whole.)` : ""}`, "Fractional units"); }};
+  }
+
+  /* ---------- Mission 2: Equal Shares ---------- */
+  function m2(i){
+    const t = i % 3;
+    if (t === 0){ const k = R(2, 9), m = R(2, 9); if (k === m) return m2(i + 3);
+      const [a, b] = low(k, m), o = fopts([k, m], [[m, k], [1, k], [1, m], [k, m + k]]);
+      return {html:`<p class="tw-q"><b>${k}</b> rotis are shared equally among <b>${m}</b> children. How much does each child get?</p>${choice(o.map(x => MX(...x)), "two")}`,
+        mount(el, done){ bindChoice(el, o.findIndex(x => key(...x) === key(k, m)), done, `${k} ÷ ${m} = ${fr(k, m)}${a !== k || b !== m || k > m ? ` = ${MX(k, m)}` : ""} roti each. Sharing k wholes among m people gives k/m to each.`, "Fraction as equal share"); }}; }
+    if (t === 1){ const g1 = [R(1, 4), R(2, 6)], g2 = [R(1, 4), R(2, 6)]; if (g1[0]*g2[1] === g2[0]*g1[1]) return m2(i + 3);
+      const o = [`Group A: ${g1[0]} cake for ${g1[1]} children`, `Group B: ${g2[0]} cake for ${g2[1]} children`].map(x => x.replace(/ (\d+) cake/, (_, n) => ` ${n} cake${n > 1 ? "s" : ""}`)), a = g1[0]/g1[1] > g2[0]/g2[1] ? 0 : 1;
+      return {html:`<p class="tw-q">In which group does each child get <b>more</b> cake?</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, a, done, `Group A: ${F(g1[0], g1[1])} each; Group B: ${F(g2[0], g2[1])} each. ${a ? "B" : "A"} gets more.`, "Fraction as equal share"); }}; }
+    const d = P([2, 3, 4, 5, 6, 8]), k = R(2, 5);
+    const o = fopts([k, d], [[1, d], [k, d*k], [d, k], [k + 1, d]]);
+    return {html:`<p class="tw-q">${k} children each get ${fr(1, d)} of a chikki. How much chikki is that altogether?</p>${choice(o.map(x => MX(...x)), "two")}`,
+      mount(el, done){ bindChoice(el, o.findIndex(x => key(...x) === key(k, d)), done, `${k} pieces of ${fr(1, d)} = ${fr(k, d)}${k >= d ? ` = ${MX(k, d)}` : ""} chikki.`, "Fraction as equal share"); }};
+  }
+
+  /* ---------- Mission 3: Number Line & Mixed Fractions ---------- */
+  function m3(i){
+    const t = i % 3;
+    if (t === 0){ const d = P([2, 3, 4, 5, 6, 8]), max = 2, n = R(1, max*d - 1); if (n % d === 0) return m3(i + 3);
+      let g = `<line x1="20" y1="60" x2="280" y2="60" stroke="#e8ecff" stroke-width="2"/>`; for (let k = 0; k <= max*d; k++){ const x = 20 + k*260/(max*d), big = k % d === 0; g += `<line x1="${x}" y1="${big ? 48 : 53}" x2="${x}" y2="${big ? 72 : 67}" stroke="#e8ecff" stroke-width="${big ? 2 : 1.2}"/>`; if (big) g += `<text x="${x}" y="90" text-anchor="middle" style="font-size:14px;font-weight:800;fill:#e8ecff">${k/d}</text>`; }
+      const X = 20 + n*260/(max*d); g += `<circle cx="${X}" cy="60" r="7" fill="#ffcf5a"/>`;
+      const o = fopts([n, d], [[n, d + 1], [n + 1, d], [n - 1, d], [d, n]]);
+      return {html:`<p class="tw-q">Which fraction is marked on the number line?</p>${svg(g, 300, 100)}${choice(o.map(x => MX(...x)), "two")}`,
+        mount(el, done){ bindChoice(el, o.findIndex(x => key(...x) === key(n, d)), done, `Each whole is split into ${d} equal steps of ${fr(1, d)}. The point is ${n} steps from 0: ${fr(n, d)} = <b>${MX(n, d)}</b>.`, "Fractions on the number line"); }}; }
+    const d = R(2, 9), w = R(1, 5); let r = R(1, d - 1); while (gcd(r, d) !== 1) r = R(1, d - 1); const n = w*d + r;
+    if (t === 1){ const right = `${w}${fr(r, d)}`, o = SH(uniq([right, `${w + 1}${fr(r, d)}`, `${w}${fr(d - r === r ? r + 1 : d - r, d)}`, `${r}${fr(w, d)}`, `${n}${fr(1, d)}`])).slice(0, 4);
+      if (!o.includes(right)) o[0] = right; SH(o);
+      return {html:`<p class="tw-q">Write ${fr(n, d)} as a <b>mixed fraction</b>.</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `${n} ÷ ${d} = ${w} remainder ${r}, so ${fr(n, d)} = <b>${right}</b> (${w} wholes and ${fr(r, d)}).`, "Mixed fractions"); }}; }
+    return {html:`<p class="tw-q">Write <b>${w}${fr(r, d)}</b> as an improper fraction. Fill the numerator: ?/${d}</p>${padHTML("?", "/" + d, {dec:false})}`,
+      mount(el, done){ bindPad(el, n, 0, done, `${w} wholes = ${w} × ${d} = ${w*d} pieces of ${fr(1, d)}; plus ${r} more = <b>${n}</b>. So ${w}${fr(r, d)} = ${fr(n, d)}.`, "Mixed fractions"); }};
+  }
+
+  /* ---------- Mission 4: Equivalent Fractions ---------- */
+  function m4(i){
+    const t = i % 3, d = R(2, 9), n = R(1, d - 1), k = R(2, 6);
+    if (t === 0) return {html:`<p class="tw-q">Fill in the missing number.</p><div class="tw-ex" style="font-size:22px;text-align:center">${fr(n, d)} = ${fr("?", d*k)}</div>${padHTML("?", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, n*k, 0, done, `${d} × ${k} = ${d*k}, so multiply the top by ${k} too: ${n} × ${k} = <b>${n*k}</b>. Cutting every piece into ${k} gives ${k} times as many pieces of the same total.`, "Equivalent fractions"); }};
+    if (t === 1) return {html:`<p class="tw-q">Fill in the missing number.</p><div class="tw-ex" style="font-size:22px;text-align:center">${fr(n*k, d*k)} = ${fr(n, "?")}</div>${padHTML("?", "", {dec:false})}`,
+      mount(el, done){ bindPad(el, d, 0, done, `${n*k} ÷ ${k} = ${n}, so divide the bottom by ${k} too: ${d*k} ÷ ${k} = <b>${d}</b>.`, "Equivalent fractions"); }};
+    const right = [n*k, d*k], o = fopts(right, [[n + k, d + k], [n*k, d + k], [n + 1, d + 1], [n*k, d*(k + 1)], [d*k, n*k]]);
+    return {html:`<p class="tw-q">Which fraction is <b>equivalent</b> to ${fr(n, d)}?</p>${choice(o.map(x => F(...x)), "two")}`,
+      mount(el, done){ bindChoice(el, o.findIndex(x => x[0] === right[0] && x[1] === right[1]), done, `Multiply top and bottom by the same number: ${fr(n, d)} = ${fr(n + " × " + k, d + " × " + k)} = <b>${F(...right)}</b>. Adding the same number to both does NOT work.`, "Equivalent fractions"); }};
+  }
+
+  /* ---------- Mission 5: Lowest Terms ---------- */
+  function m5(i){
+    const d = R(2, 12), n = R(1, d - 1), [a, b] = low(n, d), k = R(2, 6);
+    if (i % 3 === 2){ const ok = gcd(n, d) === 1;
+      return {html:`<p class="tw-q">Is ${fr(n, d)} in its <b>lowest terms</b>?</p>${choice(["Yes", "No"], "two")}`,
+        mount(el, done){ bindChoice(el, ok ? 0 : 1, done, ok ? `<b>Yes</b>: ${n} and ${d} have no common factor other than 1.` : `<b>No</b>: ${n} and ${d} share the factor ${gcd(n, d)}. ${fr(n, d)} = ${fr(a, b)}.`, "Lowest terms"); }}; }
+    const N = a*k, D = b*k, o = fopts([a, b], [[a + 1, b], [N/2 | 0 || 1, D/2 | 0 || 2], [b, a], [a, b + 1], [N - 1, D - 1]].filter(x => x[0] !== N || x[1] !== D));
+    return {html:`<p class="tw-q">Write ${fr(N, D)} in its <b>lowest terms</b>.</p>${choice(o.map(x => F(...x)), "two")}`,
+      mount(el, done){ bindChoice(el, o.findIndex(x => x[0] === a && x[1] === b), done, `The largest common factor of ${N} and ${D} is ${gcd(N, D)}. ${fr(N + " ÷ " + gcd(N, D), D + " ÷ " + gcd(N, D))} = <b>${F(a, b)}</b>.`, "Lowest terms"); }};
+  }
+
+  /* ---------- Mission 6: Which Is Bigger? ---------- */
+  function m6(i){
+    const t = i % 3;
+    let A, B, why;
+    if (t === 0){ const d = R(3, 12); let x = R(1, d - 1), y = R(1, d - 1); while (y === x) y = R(1, d - 1); A = [x, d]; B = [y, d]; why = `Same fractional unit ${fr(1, d)}: more pieces is bigger.`; }
+    else if (t === 1){ const n = R(1, 5); let x = R(n + 1, 12), y = R(n + 1, 12); while (y === x) y = R(n + 1, 12); A = [n, x]; B = [n, y]; why = `Same number of pieces: the smaller denominator means bigger pieces.`; }
+    else { for (;;){ const d1 = R(2, 9), d2 = R(2, 9), n1 = R(1, d1 - 1), n2_ = R(1, d2 - 1); if (d1 !== d2 && n1*d2 !== n2_*d1){ A = [n1, d1]; B = [n2_, d2]; break; } }
+      const L = lcm(A[1], B[1]); why = `Use a common denominator ${L}: ${fr(A[0], A[1])} = ${fr(A[0]*L/A[1], L)} and ${fr(B[0], B[1])} = ${fr(B[0]*L/B[1], L)}.`; }
+    const big = A[0]*B[1] > B[0]*A[1] ? 0 : 1, o = [F(...A), F(...B)];
+    return {html:`<p class="tw-q">Which is <b>greater</b>?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, big, done, `${why} So <b>${o[big]}</b> is greater.`, "Comparing fractions"); }};
+  }
+
+  /* ---------- Mission 7: Brahmagupta’s Addition ---------- */
+  function addQ(i, sub){
+    let a, b, c, d; for (;;){ b = R(2, 10); d = R(2, 10); a = R(1, b - 1 + (i % 4 === 3 ? b : 0)); c = R(1, d - 1); if (!sub || a*d > c*b) break; }
+    if (i % 3 === 0){ d = b; c = R(1, b - 1); if (sub){ a = R(2, b - 1); c = R(1, a - 1); } }
+    if (sub && a*d <= c*b) return addQ(i + 1, sub);
+    const L = lcm(b, d), N = sub ? a*L/b - c*L/d : a*L/b + c*L/d, [x, y] = low(N, L);
+    const wrong = sub ? [[a - c, Math.abs(b - d) || b], [a - c, b*d], [x + 1, y], [N, L + 1]] : [[a + c, b + d], [a + c, b*d], [x + 1, y], [x, y + 1], [a*c, b*d]];
+    const o = fopts([x, y], wrong.filter(w => w[0] > 0));
+    return {html:`<p class="tw-q">${sub ? "Subtract" : "Add"} and give the answer in lowest terms.</p><div class="tw-ex" style="font-size:22px;text-align:center">${F(a, b)} ${sub ? "−" : "+"} ${F(c, d)}</div>${choice(o.map(z => MX(...z)), "two")}`,
+      mount(el, done){ bindChoice(el, o.findIndex(z => key(...z) === key(x, y)), done, `Brahmagupta’s method: make the fractional units the same (${b === d ? `already ${fr(1, b)}` : `common denominator ${L}`}). ${b === d ? "" : `${fr(a*L/b, L)} ${sub ? "−" : "+"} ${fr(c*L/d, L)}`} = ${fr(N, L)}${key(N, L) !== `${N}/${L}` || x >= y ? ` = <b>${MX(x, y)}</b>` : ""}. Never ${sub ? "subtract" : "add"} the denominators!`, sub ? "Subtracting fractions" : "Adding fractions"); }};
+  }
+  const m7 = i => addQ(i, false);
+
+  /* ---------- Mission 8: Subtraction & Stories ---------- */
+  const STORIES = [
+    () => { const [a, b] = P([[7, 10, 1, 2], [3, 4, 1, 3], [5, 6, 1, 2], [4, 5, 1, 2], [9, 10, 2, 5]].map(x => [[x[0], x[1]], [x[2], x[3]]])); return {q:`Jaya’s school is ${F(...a)} km from home. She takes an auto for ${F(...b)} km and walks the rest. How far does she walk?`, a, b, sub:true, u:"km"}; },
+    () => { const a = P([[1, 2], [1, 3], [2, 5], [1, 4]]), b = P([[1, 4], [1, 6], [1, 5], [1, 3]]); return {q:`Rehana drank ${F(...a)} of a jug of juice and her brother drank ${F(...b)}. What fraction of the jug did they drink together?`, a, b, sub:false, u:"of the jug"}; },
+    () => { const a = P([[10, 3], [13, 4], [7, 2], [11, 3]]), b = P([[13, 4], [10, 3], [16, 5], [7, 2]]); if (a[0]*b[1] === b[0]*a[1]) return null; const big = a[0]/a[1] > b[0]/b[1]; return {q:`Jeevika takes ${MX(...a)} minutes for a round of the park and Namit takes ${MX(...b)} minutes. By how much is the faster one quicker?`, a:big ? a : b, b:big ? b : a, sub:true, u:"minutes"}; },
+    () => { const a = P([[3, 4], [2, 3], [5, 8]]), b = P([[1, 8], [1, 6], [1, 4]]); return {q:`A ribbon is ${F(...a)} m long. ${F(...b)} m is cut off. How much is left?`, a, b, sub:true, u:"m"}; }
+  ];
+  function m8(i){
+    if (i % 2 === 0) return addQ(i, true);
+    const S = P(STORIES)(); if (!S || (S.sub && S.a[0]*S.b[1] <= S.b[0]*S.a[1])) return m8(i);
+    const L = lcm(S.a[1], S.b[1]), N = S.sub ? S.a[0]*L/S.a[1] - S.b[0]*L/S.b[1] : S.a[0]*L/S.a[1] + S.b[0]*L/S.b[1], [x, y] = low(N, L);
+    const o = fopts([x, y], [[Math.abs(S.a[0] - S.b[0]) || 1, Math.abs(S.a[1] - S.b[1]) || 2], [S.a[0] + S.b[0], S.a[1] + S.b[1]], [x + 1, y], [x, y + 1]]);
+    return {html:`<p class="tw-q">${S.q}</p>${choice(o.map(z => MX(...z) + " " + S.u), "two")}`,
+      mount(el, done){ bindChoice(el, o.findIndex(z => key(...z) === key(x, y)), done, `${MX(...S.a)} ${S.sub ? "−" : "+"} ${MX(...S.b)}: common denominator ${L} → ${fr(S.a[0]*L/S.a[1], L)} ${S.sub ? "−" : "+"} ${fr(S.b[0]*L/S.b[1], L)} = ${fr(N, L)} = <b>${MX(x, y)} ${S.u}</b>.`, "Fraction word problems"); }};
+  }
+
+  const LS = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Fractional Units", goal:"Equal parts of a whole.", n:8,
+      learn:LS("Fractional unit", "When one whole is cut into d equal parts, each part is the fractional unit 1/d. n such parts make n/d (n = numerator, d = denominator). More cuts → smaller pieces.", "1/3 chikki is bigger than 1/8 chikki")},
+    {id:2, track:"foundation", name:"Equal Shares", goal:"Sharing wholes fairly.", n:8,
+      learn:LS("Share and divide", "Sharing k wholes equally among m people gives each person k/m. Comparing shares tells you who gets more.", "3 rotis for 4 children → 3/4 roti each")},
+    {id:3, track:"foundation", name:"Number Line & Mixed Fractions", goal:"Where fractions live.", n:8,
+      learn:LS("Steps on the line", "Split each whole into d equal steps; n steps from 0 is n/d. A mixed fraction like 2 1/3 = 2 wholes + 1/3 = 7/3.", "13/4 = 3 1/4 because 13 ÷ 4 = 3 remainder 1")},
+    {id:4, track:"core", name:"Equivalent Fractions", goal:"Same amount, different names.", n:8,
+      learn:LS("Multiply or divide both", "Multiplying (or dividing) the numerator and denominator by the same number gives an equivalent fraction: the same share cut into more (or fewer) pieces.", "3/4 = 6/8 = 9/12")},
+    {id:5, track:"core", name:"Lowest Terms", goal:"The simplest form.", n:8,
+      learn:LS("Divide by the common factor", "A fraction is in lowest terms when the numerator and denominator have no common factor except 1. Divide both by their HCF.", "18/24 → HCF 6 → 3/4")},
+    {id:6, track:"core", name:"Which Is Bigger?", goal:"Compare fractions with confidence.", n:8,
+      learn:LS("Three ways to compare", "Same denominator: compare numerators. Same numerator: the smaller denominator is bigger. Otherwise: change both to a common denominator.", "2/3 vs 3/5 → 10/15 vs 9/15")},
+    {id:7, track:"advanced", name:"Brahmagupta’s Addition", goal:"Same units first, then add.", n:8,
+      learn:LS("Brahmagupta (628 CE)", "Convert to equivalent fractions with the same fractional unit (a common denominator), add the numerators, keep the denominator, then write in lowest terms. Never add denominators!", "1/4 + 1/3 = 3/12 + 4/12 = 7/12")},
+    {id:8, track:"advanced", name:"Subtraction & Stories", goal:"Take away fractions in real life.", n:8,
+      learn:LS("Same idea for subtraction", "Make the units the same, then subtract the numerators. Turn mixed fractions into improper fractions first.", "7/10 − 1/2 = 7/10 − 5/10 = 2/10 = 1/5 km")},
+    {id:9, track:"advanced", name:"Fraction Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m3, m4, m4, m5, m6, m6, m7, m7, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c6-fractions"] = CQ.quest({
+  key:"fr6c7_stars", missions:FR6.MISSIONS, gen:FR6.GEN, chapter:{std:6, ch:7},
+  desc:"Class 6 · Ganita Prakash · Chapter 7. Master fractions in 9 missions: fractional units, equal shares, the number line, mixed fractions, equivalent fractions, lowest terms, comparing, and Brahmagupta’s method for adding and subtracting.",
+  modes:{foundation:"Fractional units, equal shares, the number line and mixed fractions", core:"Equivalent fractions, lowest terms and comparing fractions", advanced:"Adding and subtracting with Brahmagupta’s method, word problems and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 6 · Ganita Prakash · Ch 9 · Symmetry
+   Chapter game "Mirror & Spin": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Fold & Match (letters)  2 Counting Lines of Symmetry  3 Complete the Mirror Image
+   Apply  : 4 Spin It: Rotational Symmetry  5 Angles of Symmetry  6 Both Kinds
+   Master : 7 Half-turn Letters & Numbers  8 Colour Wheel Detective  9 Symmetry Master (timed)
+   ============================================================ */
+const SYM6 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, multiHTML, bindMulti} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const svg = (g, w = 300, h = 170, mh = 170) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const ST = `fill="#5aa9ff33" stroke="#9cc8ff" stroke-width="2.4" stroke-linejoin="round"`;
+  const NUM = u => padHTML("", u, {dec:false});
+  const big = s => `<div class="tw-ex" style="font-size:64px;font-weight:900;text-align:center;letter-spacing:.1em;font-family:Arial,Helvetica,sans-serif;line-height:1.1">${s}</div>`;
+  // letters in a plain sans-serif font
+  const VERT = "AHIMOTUVWXY", HORZ = "BCDEHIKOX", ROT = "HINOSXZ";
+
+  /* ---------- Mission 1: Fold & Match ---------- */
+  function m1(i){
+    const L = P("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").filter(c => !"JQRGLNPSZF".includes(c) || Math.random() < .5)), v = VERT.includes(L), h = HORZ.includes(L);
+    const o = ["Only a vertical line", "Only a horizontal line", "Both a vertical and a horizontal line", "No line of symmetry"], ans = v && h ? 2 : v ? 0 : h ? 1 : 3;
+    return {html:`<p class="tw-q">Which lines of symmetry does this capital letter have?</p>${big(L)}${choice(o)}`,
+      mount(el, done){ bindChoice(el, ans, done, `Fold test: a line of symmetry folds the shape into two halves that match exactly. <b>${L}</b>: ${o[ans].toLowerCase()}. (Vertical-line letters: A H I M O T U V W X Y; horizontal: B C D E H I K O X.)`, "Lines of symmetry"); }};
+  }
+
+  /* ---------- Mission 2: Counting Lines of Symmetry ---------- */
+  const reg = (n, r = 62, rot = -90) => [...Array(n)].map((_, k) => { const a = (rot + 360*k/n)*Math.PI/180; return [150 + r*Math.cos(a), 85 + r*Math.sin(a)]; });
+  const SHAPES = [
+    ["equilateral triangle", reg(3), 3], ["square", reg(4, 62, -45), 4], ["regular pentagon", reg(5), 5], ["regular hexagon", reg(6), 6], ["regular octagon", reg(8, 62, -67.5), 8],
+    ["rectangle (not a square)", [[70, 50], [230, 50], [230, 120], [70, 120]], 2], ["rhombus (not a square)", [[150, 25], [215, 85], [150, 145], [85, 85]], 2], ["isosceles triangle", [[150, 25], [215, 145], [85, 145]], 1],
+    ["scalene triangle", [[90, 140], [240, 140], [130, 40]], 0], ["parallelogram", [[70, 130], [190, 130], [230, 45], [110, 45]], 0], ["kite", [[150, 20], [200, 70], [150, 150], [100, 70]], 1], ["isosceles trapezium", [[60, 135], [240, 135], [195, 45], [105, 45]], 1]];
+  function m2(i){
+    if (i % 4 === 3){ const o = opts4("Infinitely many", ["0", "1", "2", "4", "Infinitely many"]);
+      return {html:`<p class="tw-q">How many lines of symmetry does a <b>circle</b> have?</p>${svg(`<circle cx="150" cy="85" r="60" ${ST}/>`)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf("Infinitely many"), done, `<b>Infinitely many</b>: every line through the centre folds a circle onto itself.`, "Counting lines of symmetry"); }}; }
+    const [nm, pts, k] = P(SHAPES);
+    return {html:`<p class="tw-q">How many lines of symmetry does this <b>${nm}</b> have?</p>${svg(`<polygon points="${pts.map(p => p.join(",")).join(" ")}" ${ST}/>`)}${NUM("lines")}`,
+      mount(el, done){ bindPad(el, k, 0, done, `<b>${k}</b>. ${nm.startsWith("regular") || nm === "square" || nm === "equilateral triangle" ? "A regular polygon with n sides has n lines of symmetry." : nm.includes("rectangle") ? "Only the two lines through the midpoints of opposite sides work; the diagonals do not." : nm.includes("rhombus") ? "Its two diagonals are the lines of symmetry." : k === 0 ? "No fold makes the two halves match." : "Only one fold makes the halves match."}`, "Counting lines of symmetry"); }};
+  }
+
+  /* ---------- Mission 3: Complete the Mirror Image ---------- */
+  const W = 3, H = 4;
+  const cells = () => { const s = new Set(); const n = R(3, 6); while (s.size < n) s.add(`${R(0, W - 1)},${R(0, H - 1)}`); return [...s].map(x => x.split(",").map(Number)); };
+  function mini(left, right, ox = 0, sc = 14){ let g = ""; for (let c = 0; c < 2*W; c++) for (let r = 0; r < H; r++) g += `<rect x="${ox + c*sc}" y="${10 + r*sc}" width="${sc}" height="${sc}" fill="#ffffff08" stroke="#ffffff22"/>`;
+    left.forEach(([c, r]) => g += `<rect x="${ox + c*sc}" y="${10 + r*sc}" width="${sc}" height="${sc}" fill="#5aa9ff"/>`);
+    right.forEach(([c, r]) => g += `<rect x="${ox + (W + c)*sc}" y="${10 + r*sc}" width="${sc}" height="${sc}" fill="#ffcf5a"/>`);
+    return g + `<line x1="${ox + W*sc}" y1="4" x2="${ox + W*sc}" y2="${16 + H*sc}" stroke="#ff7ad9" stroke-width="2.5" stroke-dasharray="4 3"/>`; }
+  function m3(i){
+    const L = cells(), mirror = L.map(([c, r]) => [W - 1 - c, r]), copy = L.map(([c, r]) => [c, r]), flipV = L.map(([c, r]) => [W - 1 - c, H - 1 - r]), upside = L.map(([c, r]) => [c, H - 1 - r]);
+    const sig = a => a.map(x => x.join(",")).sort().join(";"), cands = [["mirror", mirror], ["copy", copy], ["flipV", flipV], ["upside", upside]].filter((c, k, s) => s.findIndex(z => sig(z[1]) === sig(c[1])) === k);
+    if (cands.length < 3) return m3(i + 1);
+    const opts = SH(cands), ans = opts.findIndex(c => c[0] === "mirror");
+    const question = svg(mini(L, [], 108, 14), 300, 80, 90), choices = opts.map(c => `<svg viewBox="0 0 90 76" width="96" height="80">${mini(L, c[1], 3, 14)}</svg>`);
+    return {html:`<p class="tw-q">The pink dashed line is a mirror. Which picture shows the blue shape <b>completed</b> so that the line is a line of symmetry?</p>${question}${choice(choices, "two")}`,
+      mount(el, done){ bindChoice(el, ans, done, `Each square’s reflection is the same distance from the mirror on the other side, in the same row. Squares next to the line stay next to it; far squares stay far.`, "Reflection"); }};
+  }
+
+  /* ---------- Mission 4: Spin It ---------- */
+  function arms(n, flag = true){ let g = `<circle cx="150" cy="85" r="5" fill="#ff7ad9"/>`;
+    for (let k = 0; k < n; k++){ const a = (-90 + 360*k/n)*Math.PI/180, b = a + (flag ? .45 : 0), x = 150 + 62*Math.cos(a), y = 85 + 62*Math.sin(a);
+      g += `<line x1="150" y1="85" x2="${x}" y2="${y}" stroke="#9cc8ff" stroke-width="4" stroke-linecap="round"/>`;
+      if (flag) g += `<polygon points="${x},${y} ${150 + 44*Math.cos(b)},${85 + 44*Math.sin(b)} ${150 + 40*Math.cos(a)},${85 + 40*Math.sin(a)}" fill="#ffcf5a"/>`; }
+    return svg(g); }
+  function m4(i){
+    const n = P([2, 3, 4, 5, 6, 8]), t = i % 3;
+    if (t === 0) return {html:`<p class="tw-q">This windmill turns about the pink centre. What is its <b>smallest angle of symmetry</b>?</p>${arms(n)}${NUM("°")}`,
+      mount(el, done){ bindPad(el, 360/n, 0, done, `It has ${n} identical arms equally spaced, so it looks the same after 360° ÷ ${n} = <b>${360/n}°</b>.`, "Rotational symmetry"); }};
+    if (t === 1) return {html:`<p class="tw-q">How many times does this figure look exactly the same in one full turn (its <b>order</b> of rotational symmetry)?</p>${arms(n)}${NUM("")}`,
+      mount(el, done){ bindPad(el, n, 0, done, `It matches itself at ${[...Array(n)].map((_, k) => (k + 1)*360/n + "°").join(", ")}: order <b>${n}</b>.`, "Rotational symmetry"); }};
+    const o = opts4("No: it only looks the same after a full 360° turn", ["Yes, after a 180° turn", "Yes, after a 90° turn", "No: it only looks the same after a full 360° turn"]);
+    return {html:`<p class="tw-q">Does this flag shape have rotational symmetry?</p>${svg(`<line x1="150" y1="25" x2="150" y2="150" stroke="#9cc8ff" stroke-width="4"/><polygon points="150,25 220,48 150,70" fill="#ffcf5a"/><circle cx="150" cy="85" r="5" fill="#ff7ad9"/>`)}${choice(o)}`,
+      mount(el, done){ bindChoice(el, o.findIndex(x => x.startsWith("No")), done, `A figure has rotational symmetry only if it matches itself before a full turn. This flag matches only at 360°, so <b>no rotational symmetry</b>.`, "Rotational symmetry"); }};
+  }
+
+  /* ---------- Mission 5: Angles of Symmetry ---------- */
+  function m5(i){
+    const t = i % 4;
+    if (t === 0){ const n = P([2, 3, 4, 5, 6]), a = 360/n, right = [...Array(n)].map((_, k) => (k + 1)*a + "°").join(", ");
+      const w = [[...Array(n)].map((_, k) => (k + 1)*a + "°").slice(0, -1).join(", "), [...Array(n + 1)].map((_, k) => (k + 1)*360/(n + 1) + "°").join(", "), [...Array(Math.max(1, n - 1))].map((_, k) => (k + 1)*360/Math.max(1, n - 1) + "°").join(", "), `${a}° only`];
+      const o = opts4(right, w);
+      return {html:`<p class="tw-q">A figure’s smallest angle of symmetry is <b>${a}°</b>. List <b>all</b> its angles of symmetry.</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `All angles of symmetry are multiples of the smallest one, up to 360°: <b>${right}</b>. Every figure has 360° as an angle of symmetry.`, "Angles of symmetry"); }}; }
+    if (t === 1){ const a = P([45, 60, 72, 90, 120, 30, 40, 36]);
+      return {html:`<p class="tw-q">A figure’s smallest angle of symmetry is <b>${a}°</b>. How many angles of symmetry does it have (its order)?</p>${NUM("")}`,
+        mount(el, done){ bindPad(el, 360/a, 0, done, `360° ÷ ${a}° = <b>${360/a}</b>. Order = 360 ÷ smallest angle.`, "Angles of symmetry"); }}; }
+    if (t === 2){ const a = P([45, 17, 24, 50, 72, 7, 30, 25, 40, 80]), ok = 360 % a === 0;
+      return {html:`<p class="tw-q">Can a figure have <b>${a}°</b> as its <b>smallest</b> angle of symmetry?</p>${choice(["Yes", "No"], "two")}`,
+        mount(el, done){ bindChoice(el, ok ? 0 : 1, done, ok ? `<b>Yes</b>: ${a} divides 360 (${360/a} equal turns), e.g. a figure with ${360/a} identical arms.` : `<b>No</b>: ${a} does not divide 360, so repeated ${a}° turns would never land exactly on 360°.`, "Angles of symmetry"); }}; }
+    const o = opts4("20°", ["20°", "30°", "40°", "10°"]);
+    return {html:`<p class="tw-q">60° is an angle of symmetry of a figure, and there are exactly <b>two</b> angles of symmetry smaller than 60°. What is its smallest angle of symmetry?</p>${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf("20°"), done, `The angles are multiples of the smallest: s, 2s, then 3s = 60°. So s = <b>20°</b> (angles 20°, 40°, 60°, …).`, "Angles of symmetry"); }};
+  }
+
+  /* ---------- Mission 6: Both Kinds ---------- */
+  const BOTH = [["Square", 4, 4], ["Equilateral triangle", 3, 3], ["Regular hexagon", 6, 6], ["Rectangle (not a square)", 2, 2], ["Rhombus (not a square)", 2, 2], ["Parallelogram (not a rectangle or rhombus)", 0, 2], ["Isosceles triangle (not equilateral)", 1, 1], ["Kite", 1, 1], ["Windmill with 4 bent arms", 0, 4], ["Scalene triangle", 0, 1]];
+  function m6(i){
+    if (i % 2){ const [nm, l, r] = P(BOTH), ask = P(["lines of symmetry", "order of rotational symmetry"]), v = ask[0] === "l" ? l : r;
+      return {html:`<p class="tw-q"><b>${nm}</b>: how many <b>${ask}</b>?</p>${NUM("")}`,
+        mount(el, done){ bindPad(el, v, 0, done, `${nm}: ${l} line${l === 1 ? "" : "s"} of symmetry, rotational order ${r} (order 1 means only the 360° turn, i.e. no rotational symmetry).`, "Both kinds of symmetry"); }}; }
+    const k = P(["rot", "ref", "both"]), pick = SH(BOTH.slice()).slice(0, 5), test = x => k === "rot" ? x[2] > 1 && x[1] === 0 : k === "ref" ? x[1] > 0 && x[2] === 1 : x[1] > 0 && x[2] > 1, cor = pick.map((x, j) => test(x) ? j : -1).filter(j => j >= 0);
+    if (!cor.length) return m6(i + 2);
+    const q = k === "rot" ? "rotational symmetry but <b>no</b> line of symmetry" : k === "ref" ? "a line of symmetry but <b>no</b> rotational symmetry" : "<b>both</b> reflection and rotational symmetry";
+    return {html:`<p class="tw-q">Select <b>all</b> the shapes that have ${q}.</p>${multiHTML(pick.map(x => x[0]))}`,
+      mount(el, done){ bindMulti(el, cor, done, pick.map(x => `${test(x) ? "✓" : "✗"} ${x[0]}: ${x[1]} line${x[1] === 1 ? "" : "s"}, order ${x[2]}`).join("<br>"), "Both kinds of symmetry"); }};
+  }
+
+  /* ---------- Mission 7: Half-turn Letters & Numbers ---------- */
+  function m7(i){
+    if (i % 2){ const pool = SH("HINOSXZABCDEKMTUVWY".split("")).slice(0, 6), cor = pool.map((c, j) => ROT.includes(c) ? j : -1).filter(j => j >= 0); if (!cor.length) return m7(i + 2);
+      return {html:`<p class="tw-q">Select <b>all</b> the capital letters that look the <b>same after a half-turn</b> (180°).</p>${multiHTML(pool.map(c => `<span style="font:900 26px Arial,Helvetica,sans-serif">${c}</span>`), "three")}`,
+        mount(el, done){ bindMulti(el, cor, done, `Turn the page upside down: <b>H I N O S X Z</b> look the same. (S, N and Z have rotational symmetry but no line of symmetry!)`, "Half-turn symmetry"); }}; }
+    const n = P(["101", "808", "69", "88", "16", "609", "818", "11", "906", "181", "619"]), rot = s => s.split("").reverse().map(c => ({0:"0", 1:"1", 8:"8", 6:"9", 9:"6"})[c] || "?").join(""), ok = rot(n) === n;
+    return {html:`<p class="tw-q">Write this number on a card and turn it upside down (half-turn). Does it read the same?</p>${big(n)}${choice(["Yes", "No"], "two")}`,
+      mount(el, done){ bindChoice(el, ok ? 0 : 1, done, `Upside down, 0, 1, 8 stay the same and 6 ↔ 9 swap; the order of the digits also reverses. ${n} becomes <b>${rot(n).includes("?") ? "not a number" : rot(n)}</b>.`, "Half-turn symmetry"); }};
+  }
+
+  /* ---------- Mission 8: Colour Wheel Detective ---------- */
+  const COLS = ["#ffcf5a", "#5aa9ff", "#ff7ad9", "#b6f36a"];
+  function m8(i){
+    const n = P([4, 6, 8]), per = P([...Array(n)].map((_, k) => k + 1).filter(p => n % p === 0)), base = [...Array(per)].map(() => R(0, 2));
+    if (per > 1 && base.every(c => c === base[0])) base[0] = (base[0] + 1) % 3;
+    const col = [...Array(n)].map((_, k) => base[k % per]);
+    let order = 0; for (let s = 1; s <= n; s++) if (col.every((c, k) => c === col[(k + s) % n])) order++;
+    let g = ""; for (let k = 0; k < n; k++){ const a1 = (-90 + 360*k/n)*Math.PI/180, a2 = (-90 + 360*(k + 1)/n)*Math.PI/180;
+      g += `<path d="M150 85 L${150 + 65*Math.cos(a1)} ${85 + 65*Math.sin(a1)} A65 65 0 0 1 ${150 + 65*Math.cos(a2)} ${85 + 65*Math.sin(a2)} Z" fill="${COLS[col[k]]}" stroke="#0b0d12" stroke-width="2"/>`; }
+    return {html:`<p class="tw-q">How many <b>angles of symmetry</b> does this coloured wheel have? (Count 360° too.)</p>${svg(g)}${NUM("")}`,
+      mount(el, done){ bindPad(el, order, 0, done, `Turn by one sector (${360/n}°) at a time and check if every colour lands on the same colour. It matches <b>${order}</b> time${order === 1 ? "" : "s"} in a full turn${order === 1 ? " (only at 360°)" : `, every ${360/order}°`}.`, "Colouring for symmetry"); }};
+  }
+
+  const LS = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Fold & Match", goal:"Lines of symmetry in letters.", n:8,
+      learn:LS("Line of symmetry", "A line of symmetry divides a figure into two halves that match exactly when folded along the line. One half is the mirror image of the other.", "A has a vertical line; B has a horizontal line; H has both")},
+    {id:2, track:"foundation", name:"Counting Lines of Symmetry", goal:"Squares, triangles, polygons and circles.", n:8,
+      learn:LS("How many folds work?", "A regular polygon with n sides has n lines of symmetry. A rectangle has 2 (not its diagonals!). A circle has infinitely many.", "Square: 4 · Rectangle: 2 · Scalene triangle: 0")},
+    {id:3, track:"foundation", name:"Complete the Mirror Image", goal:"Reflect squares across a line.", n:8,
+      learn:LS("Same distance, other side", "Each point’s reflection is on the other side of the mirror line, at the same distance, in the same row. The picture flips left–right but not up–down.", "")},
+    {id:4, track:"core", name:"Spin It", goal:"Rotational symmetry and its order.", n:8,
+      learn:LS("Turn about a centre", "A figure has rotational symmetry if it looks exactly the same after turning by less than a full turn about its centre. The number of matching positions in one full turn is its order.", "Windmill with 4 arms: 90°, order 4")},
+    {id:5, track:"core", name:"Angles of Symmetry", goal:"Multiples of the smallest angle.", n:8,
+      learn:LS("The smallest angle rules", "All angles of symmetry are multiples of the smallest one, ending at 360°. The smallest angle must divide 360. Order = 360 ÷ smallest angle.", "Smallest 120° → 120°, 240°, 360°")},
+    {id:6, track:"core", name:"Both Kinds", goal:"Reflection, rotation, or both?", n:8,
+      learn:LS("Two different ideas", "A shape can have reflection symmetry, rotational symmetry, both, or neither. A parallelogram turns (order 2) but has no line of symmetry; an isosceles triangle folds but does not turn.", "Regular n-gon: n lines and order n")},
+    {id:7, track:"advanced", name:"Half-turn Letters & Numbers", goal:"What looks the same upside down?", n:8,
+      learn:LS("The 180° test", "Turn it upside down. Letters H, I, N, O, S, X, Z pass. For numbers, 0, 1, 8 stay the same, 6 and 9 swap, and the digit order reverses.", "69 → 69 ✓ · 16 → 91 ✗")},
+    {id:8, track:"advanced", name:"Colour Wheel Detective", goal:"Count the angles of symmetry of a coloured design.", n:8,
+      learn:LS("Turn sector by sector", "Rotate the design one sector at a time. Count every turn (including the full 360°) after which every colour sits on the same colour.", "Alternating 2 colours in 6 sectors → 3 angles")},
+    {id:9, track:"advanced", name:"Symmetry Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m4, m5, m6, m7, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c6-symmetry"] = CQ.quest({
+  key:"sy6c9_stars", missions:SYM6.MISSIONS, gen:SYM6.GEN, chapter:{std:6, ch:9},
+  desc:"Class 6 · Ganita Prakash · Chapter 9. Master symmetry in 9 missions: lines of symmetry in letters and shapes, completing mirror images, rotational symmetry, angles and order of symmetry, half-turn letters and numbers, and coloured wheels.",
+  modes:{foundation:"Lines of symmetry and mirror images", core:"Rotational symmetry, angles of symmetry and shapes with both kinds", advanced:"Half-turn letters and numbers, colour wheels and the timed master round"}
+});
+
+</script>
+<script>
+/* ============================================================
+   Class 6 · Ganita Prakash · Ch 10 · The Other Side of Zero
+   Chapter game "Bela’s Lift": 9 missions. Needs lib/common.js + lib/chapter-engine.js.
+   Learn  : 1 Bela’s Building of Fun  2 Start + Move = Target  3 Integers on the Number Line
+   Apply  : 4 Token Addition  5 Token Subtraction  6 Credits & Debits
+   Master : 7 Temperatures & Sea Level  8 Brahmagupta’s Rules  9 Integer Master (timed)
+   ============================================================ */
+const OSZ6 = (() => {
+  const {P, SH, R, choice, bindChoice, padHTML, bindPad, multiHTML, bindMulti, neg, par} = CQ;
+  const uniq = a => a.filter((v, k, s) => s.indexOf(v) === k);
+  const opts4 = (right, c) => SH(uniq([right, ...SH(c.filter(x => x !== right))]).slice(0, 4));
+  const svg = (g, w = 300, h = 170, mh = 175) => `<svg class="tw-svg" viewBox="0 0 ${w} ${h}" style="max-height:${mh}px">${g}</svg>`;
+  const sg = x => x > 0 ? "+" + x : x < 0 ? "−" + Math.abs(x) : "0";      // signed display, book style (+3, −2)
+  const PADI = (pre = "") => padHTML(pre, "", {neg:true, dec:false});
+  const box = s => `<div class="tw-ex" style="font-size:22px;text-align:center">${s}</div>`;
+  const FLOORS = {6:"Space", 5:"Sports", 4:"Ice Cream", 3:"Books", 2:"Art Centre", 1:"Food Court", 0:"Welcome Hall", "-1":"Toys", "-2":"Video Games", "-3":"Cinema", "-4":"Ghost House", "-5":"Dinosaurs"};
+  const building = (hi = null, hi2 = null) => { let g = ""; for (let f = 6; f >= -5; f--){ const y = 6 + (6 - f)*13.4, on = f === hi || f === hi2;
+    g += `<rect x="60" y="${y}" width="180" height="12.4" rx="2" fill="${on ? "#ffcf5a" : f === 0 ? "#b6f36a44" : f > 0 ? "#5aa9ff33" : "#ff7ad933"}"/><text x="52" y="${y + 10}" text-anchor="end" style="font-size:10px;font-weight:800;fill:#e8ecff">${sg(f)}</text><text x="150" y="${y + 10}" text-anchor="middle" style="font-size:9.5px;font-weight:800;fill:${on ? "#1b2140" : "#e8ecff"}">${FLOORS[f]}</text>`; }
+    return svg(g + `<line x1="40" y1="${6 + 6*13.4 + 13}" x2="260" y2="${6 + 6*13.4 + 13}" stroke="#b6f36a" stroke-width="1.6"/>`, 300, 170, 190); };
+  const tokens = (p, n, cross = 0) => { let g = "", per = Math.max(p, n), s = Math.min(26, 270/Math.max(per, 1));
+    for (let k = 0; k < p; k++) g += `<circle cx="${18 + k*s}" cy="40" r="${s*.42}" fill="#7bd84f" stroke="#2f6b1e"/><text x="${18 + k*s}" y="45" text-anchor="middle" style="font-size:${s*.5}px;font-weight:900;fill:#1b2a10">+</text>`;
+    for (let k = 0; k < n; k++) g += `<circle cx="${18 + k*s}" cy="90" r="${s*.42}" fill="#f2683c" stroke="#7a2a10"/><text x="${18 + k*s}" y="95" text-anchor="middle" style="font-size:${s*.5}px;font-weight:900;fill:#2a0d05">−</text>`;
+    for (let k = 0; k < cross; k++) g += `<line x1="${18 + k*s - 9}" y1="28" x2="${18 + k*s + 9}" y2="102" stroke="#e8ecff" stroke-width="2" opacity=".8"/>`;
+    return svg(g, 300, 120, 120); };
+
+  /* ---------- Mission 1: Bela’s Building of Fun ---------- */
+  function m1(i){
+    const t = i % 3;
+    if (t === 0){ const f = P(Object.keys(FLOORS).map(Number).filter(x => x !== 0)), o = opts4(sg(f), [sg(-f), sg(f + 1), sg(f - 1), "0"]);
+      return {html:`<p class="tw-q">On which floor is the <b>${FLOORS[f]}</b>?</p>${building(f)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(sg(f)), done, `The Welcome Hall is Floor 0. ${f > 0 ? `Going up ${f} floor${f > 1 ? "s" : ""} (+ pressed ${f} times)` : `Going down ${-f} floor${f < -1 ? "s" : ""} (− pressed ${-f} times)`} reaches the ${FLOORS[f]}: Floor <b>${sg(f)}</b>.`, "Positive and negative numbers"); }}; }
+    if (t === 1){ let a, b; do { a = R(-5, 6); b = R(-5, 6); } while (a === b);
+      const right = sg(b - a), o = opts4(right, [sg(a - b), sg(b + a), sg(Math.abs(b) - Math.abs(a)) === right ? sg(b) : sg(Math.abs(b) - Math.abs(a)), sg(b)]);
+      return {html:`<p class="tw-q">You are at the <b>${FLOORS[a]}</b> (Floor ${sg(a)}). Which button press takes you to the <b>${FLOORS[b]}</b>?</p>${building(a, b)}${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `From ${sg(a)} to ${sg(b)} is ${Math.abs(b - a)} floor${Math.abs(b - a) > 1 ? "s" : ""} ${b > a ? "up" : "down"}: press <b>${right}</b>.`, "Lift movements"); }}; }
+    const s = R(-5, 6), m = R(-5, 6); if (s + m > 6 || s + m < -5 || m === 0) return m1(i + 3);
+    return {html:`<p class="tw-q">Start at Floor <b>${sg(s)}</b> and press <b>${sg(m)}</b>. Which floor do you reach?</p>${building(s)}${PADI("Floor")}`,
+      mount(el, done){ bindPad(el, s + m, 0, done, `${par(s)} + ${par(m)} = <b>${sg(s + m)}</b>: the ${FLOORS[s + m]}.`, "Lift movements"); }};
+  }
+
+  /* ---------- Mission 2: Start + Move = Target ---------- */
+  function m2(i){
+    const t = i % 3, big = i > 3 ? 10 : 1, s = big*R(-12, 12), m = big*R(-12, 12);
+    if (t === 0 || m === 0) return {html:`<p class="tw-q">Starting level + movement = target level</p>${box(`${par(s)} + ${par(m || 3)} = ?`)}${PADI()}`,
+      mount(el, done){ const mm = m || 3; bindPad(el, s + mm, 0, done, `Start at ${sg(s)} and move ${mm > 0 ? "up" : "down"} ${Math.abs(mm)}: <b>${sg(s + mm)}</b>.`, "Adding integers"); }};
+    if (t === 1) return {html:`<p class="tw-q">A mine lift is at level <b>${sg(s)}</b> m and must reach level <b>${sg(s + m)}</b> m. What movement is needed?</p>${box(`${par(s + m)} − ${par(s)} = ?`)}${PADI()}`,
+      mount(el, done){ bindPad(el, m, 0, done, `Target − start = movement: ${par(s + m)} − ${par(s)} = <b>${sg(m)}</b> (${m > 0 ? "up" : "down"} ${Math.abs(m)} m).`, "Subtracting integers"); }};
+    return {html:`<p class="tw-q">Which starting level, followed by a movement of <b>${sg(m)}</b>, ends at <b>${sg(s + m)}</b>?</p>${PADI("Start =")}`,
+      mount(el, done){ bindPad(el, s, 0, done, `Start = target − movement = ${par(s + m)} − ${par(m)} = <b>${sg(s)}</b>.`, "Subtracting integers"); }};
+  }
+
+  /* ---------- Mission 3: Integers on the Number Line ---------- */
+  function m3(i){
+    const t = i % 3;
+    if (t === 0){ let a = R(-15, 15), b = R(-15, 15); while (a === b) b = R(-15, 15); const o = [sg(a), sg(b)];
+      return {html:`<p class="tw-q">Which is <b>greater</b>?</p>${choice(o, "two")}`,
+        mount(el, done){ bindChoice(el, a > b ? 0 : 1, done, `On the number line, the number further to the <b>right</b> is greater: ${sg(Math.max(a, b))} > ${sg(Math.min(a, b))}. ${a < 0 && b < 0 ? `Among negatives, the one closer to 0 is greater.` : ""}`, "Comparing integers"); }}; }
+    if (t === 1){ const xs = uniq([...Array(5)].map(() => R(-20, 20))); if (xs.length < 4) return m3(i + 3); const a = xs.slice(0, 4), sorted = a.slice().sort((p, q) => p - q), right = sorted.map(sg).join(", ");
+      const o = opts4(right, [a.slice().sort((p, q) => Math.abs(p) - Math.abs(q)).map(sg).join(", "), sorted.slice().reverse().map(sg).join(", "), a.map(sg).join(", "), sorted.slice(1).concat(sorted[0]).map(sg).join(", ")]);
+      return {html:`<p class="tw-q">Arrange in <b>increasing</b> order: ${a.map(sg).join(", ")}</p>${choice(o)}`,
+        mount(el, done){ bindChoice(el, o.indexOf(right), done, `Left to right on the number line: <b>${right}</b>. A larger number after the minus sign means further left (smaller).`, "Ordering integers"); }}; }
+    const a = R(-9, 9), d = R(-9, 9) || 4;
+    let g = `<line x1="10" y1="60" x2="290" y2="60" stroke="#e8ecff" stroke-width="2"/>`; for (let k = -10; k <= 10; k++){ const x = 150 + k*13.5; g += `<line x1="${x}" y1="${k % 5 ? 54 : 50}" x2="${x}" y2="${k % 5 ? 66 : 70}" stroke="#e8ecff" stroke-width="${k % 5 ? 1 : 2}"/>`; if (k % 5 === 0) g += `<text x="${x}" y="88" text-anchor="middle" style="font-size:12px;font-weight:800;fill:#e8ecff">${sg(k)}</text>`; }
+    g += `<circle cx="${150 + a*13.5}" cy="60" r="6" fill="#ffcf5a"/>`;
+    return {html:`<p class="tw-q">The yellow point is at <b>${sg(a)}</b>. Where do you land if you move <b>${Math.abs(d)} steps ${d > 0 ? "right" : "left"}</b>?</p>${svg(g, 300, 100)}${PADI()}`,
+      mount(el, done){ bindPad(el, a + d, 0, done, `${d > 0 ? "Right" : "Left"} ${Math.abs(d)} means ${d > 0 ? "+" : "−"}${Math.abs(d)}: ${par(a)} + ${par(d)} = <b>${sg(a + d)}</b>.`, "Number line moves"); }};
+  }
+
+  /* ---------- Mission 4: Token Addition ---------- */
+  function m4(i){
+    const t = i % 3, p = R(0, 9), n = R(0, 9); if (p + n === 0) return m4(i + 1);
+    if (t === 0) return {html:`<p class="tw-q">What number do these tokens show? (green = +1, red = −1)</p>${tokens(p, n)}${PADI()}`,
+      mount(el, done){ bindPad(el, p - n, 0, done, `Each green–red pair is a <b>zero pair</b>. Cancel ${Math.min(p, n)} pair${Math.min(p, n) === 1 ? "" : "s"}; ${Math.abs(p - n)} ${p > n ? "green" : p < n ? "red" : ""} token${Math.abs(p - n) === 1 ? "" : "s"} remain → <b>${sg(p - n)}</b>.`, "Token model"); }};
+    const a = R(-9, 9), b = R(-9, 9); if (!a || !b) return m4(i + 3);
+    return {html:`<p class="tw-q">Use tokens: put in ${a >= 0 ? a + " green" : -a + " red"} and ${b >= 0 ? b + " green" : -b + " red"}, then remove zero pairs.</p>${box(`${par(a)} + ${par(b)} = ?`)}${tokens(Math.max(a, 0) + Math.max(b, 0), Math.max(-a, 0) + Math.max(-b, 0), Math.min(Math.max(a, 0) + Math.max(b, 0), Math.max(-a, 0) + Math.max(-b, 0)))}${PADI()}`,
+      mount(el, done){ bindPad(el, a + b, 0, done, `After removing the crossed-out zero pairs, the leftover tokens show <b>${sg(a + b)}</b>.`, "Token model"); }};
+  }
+
+  /* ---------- Mission 5: Token Subtraction ---------- */
+  function m5(i){
+    const a = R(-9, 9), b = R(-9, 9); if (b === 0) return m5(i + 1);
+    const t = i % 2;
+    if (t === 0){ const need = b > 0 ? Math.max(0, b - Math.max(a, 0)) : Math.max(0, -b - Math.max(-a, 0));
+      return {html:`<p class="tw-q">Subtract using tokens: start with ${sg(a)} and <b>take away</b> ${Math.abs(b)} ${b > 0 ? "green" : "red"} token${Math.abs(b) > 1 ? "s" : ""}.</p>${box(`${par(a)} − ${par(b)} = ?`)}${PADI()}`,
+        mount(el, done){ bindPad(el, a - b, 0, done, `${need ? `There are not enough ${b > 0 ? "green" : "red"} tokens, so first add ${need} zero pair${need > 1 ? "s" : ""} (this does not change the value). ` : ""}Removing them leaves <b>${sg(a - b)}</b>. Notice: ${par(a)} − ${par(b)} = ${par(a)} + ${par(-b)}.`, "Subtracting with tokens"); }}; }
+    const right = `${par(a)} + ${par(-b)}`, o = opts4(right, [`${par(a)} + ${par(b)}`, `${par(-a)} + ${par(b)}`, `${par(-a)} + ${par(-b)}`]);
+    return {html:`<p class="tw-q">Which addition gives the same answer as</p>${box(`${par(a)} − ${par(b)}`)}${choice(o, "two")}`,
+      mount(el, done){ bindChoice(el, o.indexOf(right), done, `Subtracting a number is the same as adding its inverse: ${par(a)} − ${par(b)} = <b>${right}</b> = ${sg(a - b)}.`, "Subtracting with tokens"); }};
+  }
+
+  /* ---------- Mission 6: Credits & Debits ---------- */
+  function m6(i){
+    const t = i % 3;
+    if (t === 0){ const start = 10*R(0, 50), ops = [...Array(R(2, 4))].map(() => 10*R(-40, 40)).filter(x => x), end = ops.reduce((a, b) => a + b, start);
+      return {html:`<p class="tw-q">Ankit’s account has <b>₹${start}</b>. Then: ${ops.map(x => x > 0 ? `credit ₹${x}` : `debit ₹${-x}`).join(", ")}. What is the balance now?</p>${padHTML("₹", "", {neg:true, dec:false})}`,
+        mount(el, done){ bindPad(el, end, 0, done, `Credits are positive, debits negative: ${start} ${ops.map(x => x > 0 ? "+ " + x : "− " + -x).join(" ")} = <b>₹${neg(end)}</b>.${end < 0 ? " A negative balance means he owes the bank money." : ""}`, "Credits and debits"); }}; }
+    if (t === 1){ const bal = 10*R(-30, -1), cr = 10*R(1, 50);
+      return {html:`<p class="tw-q">Bela’s account balance is <b>₹${neg(bal)}</b> (she owes the bank). She deposits <b>₹${cr}</b>. New balance?</p>${padHTML("₹", "", {neg:true, dec:false})}`,
+        mount(el, done){ bindPad(el, bal + cr, 0, done, `${par(bal)} + ${cr} = <b>₹${neg(bal + cr)}</b>.`, "Credits and debits"); }}; }
+    const bal = 10*R(1, 40), wd = bal + 10*R(1, 30);
+    return {html:`<p class="tw-q">A shop’s balance is <b>₹${bal}</b>. It pays a bill of <b>₹${wd}</b>. What is the balance now?</p>${padHTML("₹", "", {neg:true, dec:false})}`,
+      mount(el, done){ bindPad(el, bal - wd, 0, done, `${bal} − ${wd} = <b>₹${neg(bal - wd)}</b>. Below zero means a debt of ₹${wd - bal}.`, "Credits and debits"); }};
+  }
+
+  /* ---------- Mission 7: Temperatures & Sea Level ---------- */
+  function m7(i){
+    const t = i % 3;
+    if (t === 0){ const a = R(-15, 10), d = R(3, 15), up = P([true, false]), city = P(["Leh", "Srinagar", "Shimla", "Gulmarg", "Drass"]);
+      return {html:`<p class="tw-q">The temperature in ${city} was <b>${sg(a)} °C</b> in the morning. It ${up ? "rose" : "fell"} by <b>${d} °C</b>. What is it now?</p>${padHTML("", "°C", {neg:true, dec:false})}`,
+        mount(el, done){ bindPad(el, up ? a + d : a - d, 0, done, `${par(a)} ${up ? "+" : "−"} ${d} = <b>${sg(up ? a + d : a - d)} °C</b>.`, "Temperature"); }}; }
+    if (t === 1){ const a = R(-20, 5), b = R(a + 3, 35);
+      return {html:`<p class="tw-q">A city’s lowest temperature was <b>${sg(a)} °C</b> and its highest <b>${sg(b)} °C</b>. What is the difference?</p>${padHTML("", "°C", {dec:false})}`,
+        mount(el, done){ bindPad(el, b - a, 0, done, `Difference = highest − lowest = ${par(b)} − ${par(a)} = <b>${b - a} °C</b>.`, "Temperature"); }}; }
+    const h = 10*R(1, 90), dpt = 10*R(1, 60);
+    return {html:`<p class="tw-q">A bird flies at <b>${h} m above</b> sea level and a submarine is <b>${dpt} m below</b> sea level. How far apart are they vertically?</p>${padHTML("", "m", {dec:false})}`,
+      mount(el, done){ bindPad(el, h + dpt, 0, done, `Heights: ${sg(h)} m and ${sg(-dpt)} m. Distance = ${par(h)} − ${par(-dpt)} = ${h} + ${dpt} = <b>${h + dpt} m</b>.`, "Sea level"); }};
+  }
+
+  /* ---------- Mission 8: Brahmagupta’s Rules ---------- */
+  function m8(i){
+    const t = i % 3;
+    if (t === 0){ const S = [["A positive plus a positive is positive", true], ["A negative plus a negative is negative", true], ["A number plus its inverse is zero", true], ["Subtracting a negative number is the same as adding a positive number", true], ["Zero is a positive number", false], ["−8 is greater than −3", false], ["A positive plus a negative is always negative", false], ["Subtracting a number always makes the answer smaller", false]];
+      const it = SH(S.slice()).slice(0, 4); if (!it.some(x => x[1])) return m8(i + 3);
+      return {html:`<p class="tw-q">Select <b>all</b> the true statements (Brahmagupta, 628 CE, wrote rules like these).</p>${multiHTML(it.map(x => x[0]))}`,
+        mount(el, done){ bindMulti(el, it.map((x, k) => x[1] ? k : -1).filter(k => k >= 0), done, it.map(x => `${x[1] ? "✓" : "✗"} ${x[0]}`).join("<br>") + `<br>(0 is neither positive nor negative; 4 − (−2) = 6 is bigger than 4.)`, "Brahmagupta’s rules"); }}; }
+    if (t === 1){ const xs = [...Array(4)].map(() => R(-9, 9)), k = R(0, 3), sum = xs.reduce((a, b) => a + b, 0);
+      return {html:`<p class="tw-q">Find the sum.</p>${box(xs.map(par).join(" + "))}${PADI()}`,
+        mount(el, done){ bindPad(el, sum, 0, done, `Add the positives (${xs.filter(x => x > 0).reduce((a, b) => a + b, 0)}) and the negatives (${xs.filter(x => x < 0).reduce((a, b) => a + b, 0)}), then combine: <b>${sg(sum)}</b>.`, "Adding integers"); }}; }
+    const a = R(-9, 9), b = R(-9, 9), c = a + b, miss = R(0, 1);
+    return {html:`<p class="tw-q">Fill in the box.</p>${box(miss ? `${par(a)} + ☐ = ${par(c)}` : `☐ + ${par(b)} = ${par(c)}`)}${PADI("☐ =")}`,
+      mount(el, done){ bindPad(el, miss ? b : a, 0, done, `☐ = ${par(c)} − ${par(miss ? a : b)} = <b>${sg(miss ? b : a)}</b>.`, "Missing numbers"); }};
+  }
+
+  const LS = (h, p, ex) => `<h4>${h}</h4><p>${p}</p>${ex ? `<span class="lx">${ex}</span>` : ""}`;
+  const MISSIONS = [
+    {id:1, track:"foundation", name:"Bela’s Building of Fun", goal:"Floors above and below the ground.", n:8,
+      learn:LS("Positive and negative", "The ground floor is Floor 0. Floors above are +1, +2, …; floors below are −1, −2, … . Pressing ‘+’ goes up one floor, ‘−’ goes down one. Zero is neither positive nor negative.", "Welcome Hall 0 → press +2 → Art Centre (+2)")},
+    {id:2, track:"foundation", name:"Start + Move = Target", goal:"Lift and mine-shaft sums.", n:8,
+      learn:LS("Two equations", "Starting level + movement = target level. Target level − starting level = movement needed.", "(−90) + (−55) = −145 · (+40) − (−50) = +90")},
+    {id:3, track:"foundation", name:"Integers on the Number Line", goal:"Compare, order and move.", n:8,
+      learn:LS("Left is smaller", "Integers … −3, −2, −1, 0, 1, 2, 3 … sit on a number line. A number to the right is greater. Among negatives, the one closer to 0 is greater: −3 > −8.", "−7 < −2 < 0 < 5")},
+    {id:4, track:"core", name:"Token Addition", goal:"Green +1, red −1, zero pairs.", n:8,
+      learn:LS("Zero pairs", "A green token is +1 and a red token is −1. A green–red pair is a zero pair (value 0). Put in tokens for both numbers, remove all zero pairs, and count what is left.", "(+5) + (−8): 5 pairs vanish → 3 red → −3")},
+    {id:5, track:"core", name:"Token Subtraction", goal:"Take away, adding zero pairs when needed.", n:8,
+      learn:LS("Subtract = remove", "To subtract, remove tokens. If there are not enough, first add zero pairs. You will find that subtracting a number = adding its inverse.", "(+3) − (+5): add 2 zero pairs, remove 5 green → −2")},
+    {id:6, track:"core", name:"Credits & Debits", goal:"Integers in a bank account.", n:8,
+      learn:LS("Money in and out", "Credits (deposits) are positive, debits (withdrawals) are negative. A negative balance means money is owed.", "₹100 − ₹150 = −₹50 (owes ₹50)")},
+    {id:7, track:"advanced", name:"Temperatures & Sea Level", goal:"Integers in science.", n:8,
+      learn:LS("Above and below zero", "Temperatures below 0 °C and heights below sea level are negative. A difference is always higher − lower.", "From −5 °C to 12 °C: 12 − (−5) = 17 °C")},
+    {id:8, track:"advanced", name:"Brahmagupta’s Rules", goal:"The laws of adding and subtracting integers.", n:8,
+      learn:LS("Brahmagupta (628 CE)", "Positive + positive is positive; negative + negative is negative; positive + negative: subtract the sizes and keep the sign of the bigger; a number + its inverse = 0; subtracting a number = adding its inverse.", "(−5) + (+3) = −2")},
+    {id:9, track:"advanced", name:"Integer Master", goal:"90 seconds. Everything from the chapter, as fast as you can.", n:0, timed:90}
+  ];
+  const GEN = {1:m1, 2:m2, 3:m3, 4:m4, 5:m5, 6:m6, 7:m7, 8:m8, 9: i => P([m1, m2, m2, m3, m4, m5, m5, m6, m7, m8])(i)};
+  return {MISSIONS, GEN};
+})();
+
+GAME_MODS["c6-other-side-zero"] = CQ.quest({
+  key:"oz6c10_stars", missions:OSZ6.MISSIONS, gen:OSZ6.GEN, chapter:{std:6, ch:10},
+  desc:"Class 6 · Ganita Prakash · Chapter 10. Master integers in 9 missions: Bela’s Building of Fun, lift and mine movements, the number line, the token model for adding and subtracting, credits and debits, temperatures, sea level and Brahmagupta’s rules.",
+  modes:{foundation:"Bela’s Building, lift movements and the number line", core:"The token model, subtraction, credits and debits", advanced:"Temperatures, sea level, Brahmagupta’s rules and the timed master round"}
+});
 
 </script>
 <script>
