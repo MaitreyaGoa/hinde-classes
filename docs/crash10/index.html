@@ -15,9 +15,10 @@
 --edge:rgba(255,255,255,.78);--line:rgba(11,79,74,.12);--ok:#1b8a4b;--okbg:rgba(31,138,76,.14);--sub:#2463a6;--subbg:rgba(36,99,166,.13);--bad:#c2452f;--badbg:rgba(194,69,47,.12);--pend:#5f7270;--pendbg:rgba(95,114,112,.12)}
 *{box-sizing:border-box;min-width:0}
 html{background:#eaf3f1}
-body{margin:0;min-height:100vh;color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;
-  background:radial-gradient(60vw 60vw at 5% 0%,rgba(14,123,114,.35),transparent 60%),radial-gradient(50vw 50vw at 100% 12%,rgba(255,107,84,.28),transparent 60%),
-  radial-gradient(60vw 50vw at 60% 100%,rgba(224,169,59,.28),transparent 60%),linear-gradient(160deg,#eef7f5,#f8f3ea);background-attachment:fixed}
+body{margin:0;min-height:100vh;color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;}
+/* fixed backdrop as its own layer: works on phones too (iOS ignores background-attachment:fixed) */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(60vw 60vw at 5% 0%,rgba(14,123,114,.35),transparent 60%),radial-gradient(50vw 50vw at 100% 12%,rgba(255,107,84,.28),transparent 60%),
+  radial-gradient(60vw 50vw at 60% 100%,rgba(224,169,59,.28),transparent 60%),linear-gradient(160deg,#eef7f5,#f8f3ea)}
 h1,h2,h3,.brand,.btn{font-family:Poppins,system-ui,sans-serif}
 a{color:var(--teal2)}
 .glass{background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);border:1px solid var(--edge);border-radius:22px;box-shadow:0 10px 30px rgba(11,79,74,.10),inset 0 1px 0 rgba(255,255,255,.7)}

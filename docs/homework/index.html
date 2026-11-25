@@ -18,22 +18,25 @@
 --ok:#1b8a4b;--okbg:rgba(31,138,76,.14);--sub:#2463a6;--subbg:rgba(36,99,166,.13);--redo:#9a6b12;--redobg:rgba(224,169,59,.2);--bad:#c2452f;--badbg:rgba(194,69,47,.13);--pend:#5f7270;--pendbg:rgba(95,114,112,.12)}
 *{box-sizing:border-box;min-width:0}
 html{min-height:100%;background:#eaf3f1}
-body{margin:0;min-height:100vh;color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;
-  background:
+body{margin:0;min-height:100vh;color:var(--ink);font:16px/1.5 Inter,system-ui,sans-serif;overflow-x:clip;}
+/* fixed backdrop as its own layer: works on phones too (iOS ignores background-attachment:fixed) */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
     radial-gradient(60vw 60vw at 8% 0%,rgba(14,123,114,.35),transparent 60%),
     radial-gradient(50vw 50vw at 100% 10%,rgba(255,107,84,.28),transparent 60%),
     radial-gradient(60vw 50vw at 60% 100%,rgba(224,169,59,.28),transparent 60%),
-    linear-gradient(160deg,#eef7f5,#f8f3ea);background-attachment:fixed}
+    linear-gradient(160deg,#eef7f5,#f8f3ea)}
 h1,h2,h3,.brand,.btn{font-family:Poppins,system-ui,sans-serif}
 a{color:var(--teal2)}
 .glass{background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
   border:1px solid var(--edge);border-radius:22px;box-shadow:0 10px 30px rgba(11,79,74,.10),inset 0 1px 0 rgba(255,255,255,.7)}
-header{position:sticky;top:0;z-index:5;margin:10px max(3vw,10px) 0;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-radius:18px}
+header{position:relative;top:0;z-index:5;margin:10px max(3vw,10px) 0;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-radius:18px}
 .brand{font-weight:700;font-size:17px;color:var(--teal);margin-right:auto;letter-spacing:.4px}
 .brand small{display:block;font:500 12px Inter,sans-serif;color:var(--mute);letter-spacing:0}
 .who{font-size:14px;font-weight:600}
 .pill{border:1px solid var(--line);background:var(--glass2);color:var(--teal);border-radius:999px;padding:8px 14px;font:600 14px Inter,sans-serif;cursor:pointer;min-height:38px;text-decoration:none}
-nav{display:flex;gap:6px;flex-wrap:wrap;width:100%}
+nav{display:flex;gap:6px;flex-wrap:nowrap;width:100%;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+nav a{flex:none;white-space:nowrap}
+@media(min-width:1025px){header{position:sticky}}
 nav a{padding:8px 14px;border-radius:999px;text-decoration:none;color:var(--teal);font:600 14px Inter,sans-serif;background:rgba(255,255,255,.45);border:1px solid var(--edge)}
 nav a.on{background:var(--teal);color:#fff;border-color:var(--teal)}
 main{max-width:1180px;margin:0 auto;padding:18px max(3vw,10px) 48px}
@@ -121,14 +124,34 @@ a.kpi:hover{transform:translateY(-2px);transition:transform .15s}
 .payform{flex-basis:100%;padding:10px;border-radius:12px;background:rgba(255,255,255,.7);border:1px solid var(--line)}
 .lnk{border:0;background:none;color:var(--bad);font:600 12px Inter,sans-serif;cursor:pointer;padding:0 2px;text-decoration:underline}
 body.staff nav a{display:inline-flex;align-items:center;gap:6px}body.staff nav a i{font-style:normal}
-@media(max-width:760px){
-  body.staff{padding-bottom:78px}
-  body.staff nav{position:fixed;left:0;right:0;bottom:0;z-index:8;margin:0;padding:6px 6px calc(6px + env(safe-area-inset-bottom));gap:0;flex-wrap:nowrap;overflow-x:auto;
-    background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid var(--line);width:auto}
-  body.staff nav a{flex:1 0 auto;flex-direction:column;gap:0;padding:6px 10px;border:0;background:none;border-radius:12px;font-size:11.5px;min-width:64px}
-  body.staff .toast{bottom:92px}
-  body.staff nav a i{font-size:20px}body.staff nav a.on{background:rgba(11,79,74,.1);color:var(--teal)}
+/* phones and tablets: the staff menu is a bottom tab bar (+ "More" sheet); the header menu is hidden */
+#tabbar,#more,#moreback{display:none}
+@media(max-width:1024px){
+  body.staff{padding-bottom:86px}
+  body.staff header nav{display:none}
+  body.staff #tabbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:8;padding:6px 6px calc(6px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid var(--line)}
+  #tabbar a,#tabbar button{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border:0;background:none;border-radius:12px;
+    color:var(--teal);font:600 11.5px Inter,sans-serif;text-decoration:none;cursor:pointer;min-height:52px;justify-content:center}
+  #tabbar i{font-style:normal;font-size:21px;line-height:1}
+  #tabbar .on{background:rgba(11,79,74,.11)}
+  body.staff #more.open{display:block;position:fixed;left:10px;right:10px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:9;padding:8px;border-radius:20px;background:rgba(255,255,255,.96)}
+  body.staff #moreback.open{display:block;position:fixed;inset:0;z-index:8;background:rgba(10,30,28,.25)}
+  #more a,#more button{display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;border:0;background:none;border-radius:14px;color:var(--ink);
+    font:600 15px Inter,sans-serif;text-decoration:none;cursor:pointer;text-align:left}
+  #more a.on{background:rgba(11,79,74,.1);color:var(--teal)}
+  #more i{font-style:normal;font-size:20px;width:26px;text-align:center}
+  body.staff .toast{bottom:96px}
+  body.staff #out{display:none}
 }
+@media(max-width:760px){
+  header{margin-top:8px;padding:10px 12px}
+  nav a{padding:7px 12px;font-size:13.5px}
+}
+body:not(.staff) nav a{flex:1 1 auto;text-align:center}
+@media(max-width:400px){body:not(.staff) nav a{padding:7px 6px;font-size:12.5px}}
+#busy{position:fixed;top:0;left:0;height:3px;z-index:20;background:linear-gradient(90deg,var(--coral),var(--gold));width:0;opacity:0;transition:width .4s ease,opacity .3s}
+#busy.on{opacity:1;width:70%;transition:width 8s cubic-bezier(.1,.7,.3,1),opacity .2s}
 .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:9;padding:12px 16px;max-width:90vw}
 @media(prefers-reduced-motion:no-preference){.tile,.stile{animation:rise .35s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(8px)}}}
 </style>
@@ -141,7 +164,11 @@ body.staff nav a{display:inline-flex;align-items:center;gap:6px}body.staff nav a
   <button id="out" class="pill hide" type="button">Log out</button>
   <nav id="nav" class="hide"></nav>
 </header>
+<div id="busy" aria-hidden="true"></div>
 <main id="app"><p class="mute">Loading…</p></main>
+<div id="moreback"></div>
+<div id="more" class="glass" aria-label="More"></div>
+<nav id="tabbar" aria-label="Teacher menu"></nav>
 <footer>Hinde Classes · Bicholim, Goa · Maitreya Hinde | 7358425108</footer>
 
 <script>
@@ -172,21 +199,35 @@ const starsTxt = n => n ? "★".repeat(n) + "☆".repeat(5-n) : "";
 const slug = u => "s-" + String(u).replace(/[^a-z0-9]/gi, "-");
 const initials = n => String(n).split(/\s+/).map(x => x[0]).join("").slice(0,2).toUpperCase();
 const avCol = n => AV_COL[[...String(n)].reduce((a,c) => a + c.charCodeAt(0), 0) % AV_COL.length];
-function toast(m, bad) { const d = document.createElement("div"); d.className = "glass toast"; d.style.borderColor = bad ? "var(--bad)" : "var(--teal)"; d.textContent = m; document.body.append(d); setTimeout(() => d.remove(), 3200); }
+function toast(m, bad) { if (!m) return; const d = document.createElement("div"); d.className = "glass toast"; d.style.borderColor = bad ? "var(--bad)" : "var(--teal)"; d.textContent = m; document.body.append(d); setTimeout(() => d.remove(), 3200); }
 
 const SKEY = DEMO ? "hc_hw_session_demo" : "hc_hw_session";
 let session = store.get(SKEY);
 let manifest = {version:2, groups:{}};
 
 /* ---------- API ---------- */
+let NAV = 0, BUSY = 0;   // NAV counts page changes: a slow answer for a page you have already left is ignored
+function busy(d) { BUSY = Math.max(0, BUSY + d); const b = document.getElementById("busy"); if (b) b.classList.toggle("on", BUSY > 0); }
+class Stale extends Error { constructor() { super(""); this.stale = true; } }
 async function api(action, data = {}) {
   const body = Object.assign({action, token: session && session.token}, data);
+  const nav = NAV, readOnly = /^(admin(Overview|Users|Fees|Day|Range)|me|myStatus|myAssignments)$/.test(action);
   let res;
-  if (DEMO) res = await mock(body);
-  else {
-    const r = await fetch(API_URL, {method:"POST", body: JSON.stringify(body)});
-    res = await r.json();
-  }
+  busy(1);
+  try {
+    if (DEMO) res = await mock(body);
+    else {
+      const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 30000);
+      try {
+        const r = await fetch(API_URL, {method:"POST", body: JSON.stringify(body), signal: ctl.signal});
+        res = await r.json();
+      } catch (e) {
+        throw new Error(e.name === "AbortError" ? "The server is taking too long. Please check your internet and try again." : "Could not reach the server. Please check your internet and try again.");
+      } finally { clearTimeout(t); }
+    }
+  } finally { busy(-1); }
+  if (readOnly && nav !== NAV) throw new Stale();   // the user moved to another page meanwhile
+
   if (!res.ok) {
     if (res.error === "SESSION_EXPIRED") { logout(true); throw new Error("Please log in again."); }
     throw new Error(res.error || "Something went wrong.");
@@ -218,32 +259,56 @@ function setShell() {
   $("#who").textContent = u ? `${u.name}${u.role !== "student" ? " · " + u.role : ""}` : "";
   $("#out").classList.toggle("hide", !u);
   const nav = $("#nav");
-  if (!u) { nav.classList.add("hide"); return; }
+  if (!u) { nav.classList.add("hide"); document.body.classList.remove("staff"); $("#tabbar").innerHTML = ""; $("#more").innerHTML = ""; return; }
   const items = u.role === "student"
     ? [["home","My worksheet"],["history","All worksheets"],["account","Password"]]
     : [["home","🏠 Today"],["students","👥 Students"],["worksheets","📚 Worksheets"]].concat(u.role === "admin" ? [["fees","💰 Fees"]] : [])
         .concat([["register","📊 Register"],["crash","🚀 Crash course"],["accounts","⚙️ Accounts"],["account","🔑 Password"]]);
   document.body.classList.toggle("staff", u.role !== "student");
+  buildTabbar(u, items);
   nav.innerHTML = items.map(([h,t]) => { if (h === "crash") { const [ic, ...w] = t.split(" "); return `<a href="/crash10/"><i>${ic}</i><span>${w.join(" ")}</span></a>`; } const [ic, ...w] = t.split(" "); return u.role === "student" ? `<a href="#${h}" data-h="${h}">${t}</a>` : `<a href="#${h}" data-h="${h}"><i>${ic}</i><span>${w.join(" ")}</span></a>`; }).join("");
   nav.classList.remove("hide");
-  placeNav();
 }
-// On phones the staff menu is a bottom tab bar. It must live outside the frosted header,
-// because a backdrop-filter parent would trap a position:fixed child.
-const MQ = matchMedia("(max-width:760px)");
-function placeNav() {
-  const nav = $("#nav"), staff = document.body.classList.contains("staff");
-  if (staff && MQ.matches) { if (nav.parentNode !== document.body) document.body.append(nav); }
-  else if (nav.parentNode !== $("header")) $("header").append(nav);
+// Phones and tablets: the staff menu is a bottom tab bar with the 4 main pages and a "More" sheet for the rest.
+function buildTabbar(u, items) {
+  if (u.role === "student") { $("#tabbar").innerHTML = ""; $("#more").innerHTML = ""; return; }
+  const main = ["home","students","worksheets", u.role === "admin" ? "fees" : "register"];
+  const link = ([h,t]) => { const [ic, ...w] = t.split(" "); const href = h === "crash" ? "/crash10/" : "#" + h;
+    return `<a href="${href}" ${h === "crash" ? "" : `data-h="${h}"`}><i>${ic}</i><span>${w.join(" ")}</span></a>`; };
+  $("#tabbar").innerHTML = items.filter(([h]) => main.includes(h)).map(link).join("") +
+    `<button type="button" id="morebtn" aria-expanded="false" aria-controls="more"><i>☰</i><span>More</span></button>`;
+  $("#more").innerHTML = items.filter(([h]) => !main.includes(h)).map(link).join("") +
+    `<button type="button" id="moreout"><i>🚪</i><span>Log out · ${esc(u.name)}</span></button>`;
+  $("#morebtn").onclick = () => moreOpen(!$("#more").classList.contains("open"));
+  $("#moreout").onclick = () => { moreOpen(false); logout(); };
 }
-MQ.addEventListener("change", placeNav);
-function markNav(h) { document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.h === h || (h.startsWith("s-") && a.dataset.h === "students") || (h.startsWith("todo-") && a.dataset.h === "home"))); }
+function moreOpen(open) {
+  $("#more").classList.toggle("open", open); $("#moreback").classList.toggle("open", open);
+  const b = document.getElementById("morebtn"); if (b) b.setAttribute("aria-expanded", String(open));
+}
+$("#moreback").addEventListener("click", () => moreOpen(false));
+$("#more").addEventListener("click", e => { if (e.target.closest("a")) moreOpen(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") moreOpen(false); });
+// A tap on the menu item of the page you are already on reloads that page (the hash does not change, so no hashchange fires).
+document.addEventListener("click", e => {
+  const a = e.target.closest("#nav a[data-h], #tabbar a[data-h], #more a[data-h]");
+  if (a && location.hash === "#" + a.dataset.h) { e.preventDefault(); route(); }
+});
+function markNav(h) {
+  document.querySelectorAll("#nav a, #tabbar a, #more a").forEach(a => a.classList.toggle("on", a.dataset.h === h || (h.startsWith("s-") && a.dataset.h === "students") || (h.startsWith("todo-") && a.dataset.h === "home")));
+  const mb = document.getElementById("morebtn");   // highlight "More" when the open page lives in it
+  if (mb) mb.classList.toggle("on", !!document.querySelector("#more a.on"));
+}
 function logout(silent) {
   if (!silent && session) api("logout").catch(() => {});
   session = null; store.del(SKEY); setShell(); route();
 }
 $("#out").addEventListener("click", () => logout());
-function showErr(e) { if (!session) return; $("#app").innerHTML = `<div class="glass tile"><p class="err" style="margin:0">${esc(e.message)}</p></div>`; }
+function showErr(e) {
+  if (!session || !e || e.stale || !e.message) return;
+  $("#app").innerHTML = `<div class="glass tile"><p class="err" style="margin:0 0 12px">${esc(e.message)}</p><button class="btn sec sm" id="retry">↻ Try again</button></div>`;
+  $("#retry").onclick = () => route();
+}
 
 /* ---------- login ---------- */
 function viewLogin(msg) {
@@ -357,7 +422,7 @@ const monthName = m => new Date(m + "-15T12:00:00").toLocaleDateString("en-IN", 
 const rupees = n => "₹" + Number(n || 0).toLocaleString("en-IN");
 const isAdmin = () => session && session.user.role === "admin";
 const gameHref = w => w && w.game ? `../games/${w.game}/` : `../games/coming-soon/?c=${encodeURIComponent(w ? w.chapter : "")}`;
-const sortStudents = arr => arr.sort((a,b) => (GROUP_ORDER.indexOf(a.s.group) - GROUP_ORDER.indexOf(b.s.group)) || a.s.name.localeCompare(b.s.name));
+const sortStudents = arr => arr.sort((a,b) => (GROUP_ORDER.indexOf(a.s.group) - GROUP_ORDER.indexOf(b.s.group)) || String(a.s.name||"").localeCompare(String(b.s.name||"")));
 const avatar = (n, size) => `<div class="av" style="background:${avCol(n)}${size ? `;width:${size}px;height:${size}px;font-size:${Math.round(size*.38)}px` : ""}">${esc(initials(n))}</div>`;
 
 async function loadOverview() {
@@ -381,7 +446,7 @@ async function loadOverview() {
 }
 async function loadFees(force) {
   if (!isAdmin()) return null;
-  if (!FEES || force) { try { FEES = await api("adminFees"); } catch (e) { FEES = {error: e.message}; } }
+  if (!FEES || force) { try { FEES = await api("adminFees"); } catch (e) { FEES = e.stale ? null : {error: e.message}; if (!FEES) return null; } }
   return FEES.error ? null : FEES;
 }
 function feeState(st, month) {
@@ -465,6 +530,7 @@ async function adminToday() {
   });
   document.querySelectorAll("[data-redo]").forEach(b => b.onclick = () => { location.hash = "#" + slug(b.dataset.redo); });
   wireSend(adminToday);
+  document.querySelectorAll('a.kpi[href^="#todo-"]').forEach(k => k.onclick = e => { e.preventDefault(); const t = document.getElementById(k.hash.slice(1)); if (t) t.scrollIntoView({behavior: "smooth", block: "start"}); });
   if (isAdmin()) loadFees().then(f => { const el = $("#kfee"); if (!el) return; if (!f) { el.textContent = "–"; return; }
     const m = monthISO(); el.textContent = rupees(f.students.reduce((a, st) => a + feeState(st, m).due, 0)); });
 }
@@ -628,7 +694,7 @@ async function adminFees() {
   const months = []; { const d = new Date(); d.setDate(15); for (let i = -2; i < 10; i++) { const m = new Date(d.getFullYear(), d.getMonth() - i, 15); months.push(istISO(m).slice(0, 7)); } }
   if (!months.includes(month)) month = monthISO();
   const draw = () => {
-    const list = f.students.slice().sort((a,b) => (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || a.name.localeCompare(b.name));
+    const list = f.students.slice().sort((a,b) => (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || String(a.name||"").localeCompare(String(b.name||"")));
     const rows = list.map(st => Object.assign({st}, feeState(st, month)));
     const expected = rows.reduce((a, r) => a + (r.st.feePlan === "paid" ? 0 : r.st.feePlan === "course" ? r.paid + r.due : r.st.fee), 0);
     const got = rows.reduce((a, r) => a + r.paid, 0), due = rows.reduce((a, r) => a + r.due, 0);
@@ -636,7 +702,7 @@ async function adminFees() {
     $("#fsum").innerHTML = `<div class="kpi glass"><span>Expected</span><b>${rupees(expected)}</b><i>📒</i></div>
       <div class="kpi glass"><span>Collected</span><b style="color:var(--ok)">${rupees(got)}</b><i>✅</i></div>
       <div class="kpi glass"><span>Still due</span><b style="color:var(--bad)">${rupees(due)}</b><i>⏳</i></div>
-      <div class="kpi glass"><span>Collected</span><b>${pct}%</b><div class="bar" style="margin-top:6px"><i style="width:${pct}%"></i></div></div>`;
+      <div class="kpi glass"><span>Progress</span><b>${pct}%</b><div class="bar" style="margin-top:6px"><i style="width:${pct}%"></i></div></div>`;
     $("#fl").innerHTML = rows.map(r => { const st = r.st; const pays = f.payments.filter(p => p.username === st.username && p.month === month);
       const lbl = r.label; const cls = r.cls;
       return `<li data-row="${esc(st.username)}"><span class="who2">${avatar(st.name)}<span><b>${esc(st.name)}</b> <span class="small mute">${esc(GROUP_SHORT[st.group]||"")}</span><br>
@@ -728,7 +794,7 @@ async function adminAccounts() {
   $("#app").innerHTML = `<div id="form"></div><div class="glass tile"><div class="row" style="justify-content:space-between"><h2 style="margin:0">Accounts</h2>
     ${admin ? `<button class="btn pri sm" id="add">+ Add student or teacher</button>` : ""}</div><ul class="list" id="ul" style="margin-top:8px"><li class="mute">Loading…</li></ul></div>`;
   let r; try { r = await api("adminUsers"); } catch (e) { return showErr(e); }
-  const users = r.users.sort((a,b) => (a.role==="student") - (b.role==="student") || (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || a.name.localeCompare(b.name));
+  const users = r.users.sort((a,b) => (a.role==="student") - (b.role==="student") || (GROUP_ORDER.indexOf(a.group) - GROUP_ORDER.indexOf(b.group)) || String(a.name||"").localeCompare(String(b.name||"")));
   $("#ul").innerHTML = users.map(u => `<li><span><b>${esc(u.name)}</b> <span class="small mute">${esc(u.username)}</span><br>
     <span class="small mute">${u.role === "student" ? esc(GROUP_NAME[u.group]||u.group) + (u.variant ? " · extra practice" : "") : esc(u.role) + (u.teacherGroups ? " · classes: " + esc(u.teacherGroups) : "")}
     ${u.parentPhone ? " · 📞 " + esc(u.parentPhone) : ""}${u.active === false ? " · <b style='color:var(--bad)'>inactive</b>" : ""}</span></span>
@@ -790,14 +856,20 @@ function account() {
 
 /* ---------- router ---------- */
 function route() {
-  if (!session) { setShell(); return viewLogin(""); }
   const h = (location.hash || "#home").slice(1) || "home";
+  if (session && h.startsWith("todo-")) { const el = document.getElementById(h); if (el) { el.scrollIntoView({behavior: "smooth"}); return; } }
+  NAV++;
+  if (!session) { setShell(); return viewLogin(""); }
   markNav(h);
+  if (!h.startsWith("todo-")) window.scrollTo(0, 0);
+  try { const p = view(h); if (p && p.catch) p.catch(showErr); } catch (e) { showErr(e); }
+}
+function view(h) {
   if (session.user.role === "student") return ({home: studentHome, history: studentHistory, account}[h] || studentHome)();
   if (h.startsWith("s-")) return adminStudent(h);
   if (h.startsWith("todo-")) { const el = document.getElementById(h); if (el) { el.scrollIntoView({behavior: "smooth"}); return; } }
   if (h === "home" || h === "students") OV = null;
-  ({home: adminToday, students: adminStudents, worksheets: adminWorksheets, fees: adminFees, register: adminRegister, accounts: adminAccounts, account}[h] || adminToday)();
+  return ({home: adminToday, students: adminStudents, worksheets: adminWorksheets, fees: adminFees, register: adminRegister, accounts: adminAccounts, account}[h] || adminToday)();
 }
 window.addEventListener("hashchange", route);
 
